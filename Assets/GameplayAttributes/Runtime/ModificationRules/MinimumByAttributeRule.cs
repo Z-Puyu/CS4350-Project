@@ -3,13 +3,12 @@ using SaintsField;
 using UnityEngine;
 
 namespace GameplayAttributes.Runtime.ModificationRules {
-    [Serializable]
-    public class MaximumByAttributeRule : IAttributeModificationRule {
-        [field: SerializeField, Required] private AttributeTypeDefinition Max { get; set; }
+    public class MinimumByAttributeRule : IAttributeModificationRule {
+        [field: SerializeField, Required] private AttributeTypeDefinition Min { get; set; }
         
         public float Apply(float value, AttributeSet root) {
-            if (this.Max) {
-                return Math.Min(value, root.GetCurrent(this.Max.Id));
+            if (this.Min) {
+                return Math.Max(value, root.GetCurrent(this.Min.Id));
             }
 
             Debug.LogError("Max Attribute is not set");

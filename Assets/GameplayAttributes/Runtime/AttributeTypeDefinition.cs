@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GameplayAttributes.Runtime.ModificationRules;
 using SaintsField;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameplayAttributes.Runtime {
     [CreateAssetMenu(fileName = "Attribute Type Definition", menuName = "Gameplay Attributes")]
     public class AttributeTypeDefinition : ScriptableObject {
         [field: SerializeField] private string Name { get; set; }
+        [SerializeField] private string displayName;
 
         [field: SerializeReference]
         public List<IAttributeModificationRule> ModificationRules { get; private set; } =
             new List<IAttributeModificationRule>();
 
-        [field: SerializeField, ReadOnly] public string FullName { get; private set; }
+        [field: SerializeField, ReadOnly] public string Id { get; private set; }
         [field: SerializeField, ReadOnly] private AttributeTypeDefinition Parent { get; set; }
         
         [field: SerializeField, OnValueChanged(nameof(this.OnSubtypesChanged))]
         public List<AttributeTypeDefinition> SubTypes { get; private set; } = new List<AttributeTypeDefinition>();
+        
+        public string DisplayName => string.IsNullOrWhiteSpace(this.displayName) ? this.Name : this.displayName;
 
         private void OnSubtypesChanged() {
             foreach (AttributeTypeDefinition def in this.SubTypes) {
@@ -35,7 +38,7 @@ namespace GameplayAttributes.Runtime {
                 curr = curr.Parent;
             }
             
-            this.FullName = string.Join(".", names);
+            this.Id = string.Join(".", names);
         }
     }
 }
