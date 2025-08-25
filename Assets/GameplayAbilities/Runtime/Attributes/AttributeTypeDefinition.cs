@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GameplayAbilities.Runtime.ModificationRules;
 using SaintsField;
 using UnityEngine;
@@ -21,6 +22,10 @@ namespace GameplayAbilities.Runtime.Attributes {
         
         public string DisplayName => string.IsNullOrWhiteSpace(this.displayName) ? this.Name : this.displayName;
         public bool IsCategory => this.SubTypes.Count > 0;
+
+        public bool Includes(string attribute) {
+            return this.Id == attribute || this.SubTypes.Any(def => def.Includes(attribute));
+        }
 
         private void OnSubtypesChanged() {
             foreach (AttributeTypeDefinition def in this.SubTypes) {
