@@ -69,7 +69,7 @@ namespace GameplayAbilities.Runtime {
         /// <remarks>
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
-        public void AddModifier(Modifier modifier) {
+        internal void AddModifier(Modifier modifier) {
             this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
         }
 

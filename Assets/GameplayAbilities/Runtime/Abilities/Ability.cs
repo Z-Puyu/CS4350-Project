@@ -15,5 +15,14 @@ namespace GameplayAbilities.Runtime.Abilities {
         public bool IsUsable(AttributeSet instigator, AttributeSet target) {
             return true;
         }
+
+        public void Begin() {
+            throw new System.NotImplementedException();
+        }
+        
+        public void End() {
+            throw new System.NotImplementedException();
+        }
     }
 }
+
