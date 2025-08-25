@@ -73,8 +73,12 @@ namespace GameplayAbilities.Runtime {
             this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
         }
 
-        public void AddEffect(GameplayEffectData effectData, int chance, GameplayEffectExecutionArgs args) {
-            GameplayEffect effect = new GameplayEffect(effectData, args);
+        /// <summary>
+        /// Add a gameplay effect to the attribute set.
+        /// </summary>
+        /// <param name="effect">The gameplay effect.</param>
+        /// <param name="chance">The base probability of this effect being successfully applied.</param>
+        public void AddEffect(GameplayEffect effect, int chance) {
             if (effect.Commit(this, chance) == GameplayEffect.Outcome.Success) {
                 this.GameplayEffectCoordinator.Add(effect);
             }

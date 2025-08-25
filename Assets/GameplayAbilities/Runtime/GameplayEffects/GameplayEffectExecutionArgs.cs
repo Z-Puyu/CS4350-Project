@@ -32,9 +32,16 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 this.Level = level;
                 return this;
             }
-            
-            public Builder WithModifier(int magnitude, string key) {
-                this.CallerSuppliedModifierValues[key] = magnitude;
+
+            /// <summary>
+            /// Set a modifier value that will be used by the gameplay effect.
+            /// </summary>
+            /// <param name="magnitude">The modifier's magnitude.</param>
+            /// <param name="label">The label of the modifier.
+            /// It must match the label of the modifier in the gameplay effect.</param>
+            /// <returns>The execution argument builder.</returns>
+            public Builder WithModifier(int magnitude, string label) {
+                this.CallerSuppliedModifierValues[label] = magnitude;
                 return this;
             }
             

@@ -51,9 +51,13 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             };
         }
 
-        internal void Commit(AttributeSet target) {
+        /// <summary>
+        /// Commits the cost to the consumer's attribute set.
+        /// </summary>
+        /// <param name="consumer">The actor that will consume the cost to commit an effect.</param>
+        internal void Commit(AttributeSet consumer) {
             int value = this.WillAddInsteadOfUse ? this.Value : -this.Value;
-            target.AddModifier(new Modifier(value, Modifier.Operation.Offset, this.Attribute.Id));
+            consumer.AddModifier(new Modifier(value, Modifier.Operation.Offset, this.Attribute.Id));
         }
 
         private DropdownList<AffordabilityPolicy> GetAffordabilityOptions() {

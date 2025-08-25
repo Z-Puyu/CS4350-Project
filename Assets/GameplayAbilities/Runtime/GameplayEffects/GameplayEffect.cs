@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using GameplayAbilities.Runtime.Modifiers;
-using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffect {
@@ -34,12 +33,20 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                     : this.Data.Executor.Execute(target, this.Args);
         }
 
+        /// <summary>
+        /// Apply the effect to the target.
+        /// </summary>
+        /// <param name="target">The target game object.</param>
         internal void Apply(AttributeSet target) {
             foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(modifier);
             }
         }
 
+        /// <summary>
+        /// Terminates the gameplay effect on the target. This will revert things like temporary buffs.
+        /// </summary>
+        /// <param name="target">The target on which this gameplay effect has been active.</param>
         internal void EndOn(AttributeSet target) {
             if (this.Data.ExecutionTime != GameplayEffectData.Periodicity.Continuous) {
                 return;

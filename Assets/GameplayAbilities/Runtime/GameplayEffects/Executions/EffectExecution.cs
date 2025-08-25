@@ -16,8 +16,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
         /// <summary>
         /// Additional logic to execute on the first execution of the gameplay effect.
         /// </summary>
+        /// <param name="target">The target of the gameplay effect.</param>
         /// <param name="args">The execution arguments.</param>
-        protected virtual void OnFirstExecution(GameplayEffectExecutionArgs args) { }
+        protected virtual void OnFirstExecution(AttributeSet target, GameplayEffectExecutionArgs args) { }
 
         /// <summary>
         /// Run the main execution logic here.
@@ -36,13 +37,21 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
         /// <returns>The result of the gameplay effect invocation.</returns>
         public IEnumerable<Modifier> Execute(AttributeSet target, GameplayEffectExecutionArgs args, float level = 1) {
             if (this.HasNeverExecuted) {
-                this.OnFirstExecution(args);
+                this.OnFirstExecution(target, args);
                 this.HasNeverExecuted = false;
             }
 
             return this.Run(target, args).Select(modifier => modifier * level);
         }
 
+        /// <summary>
+        /// Checks if the gameplay effect application to the target is successful.
+        /// </summary>
+        /// <param name="target">The target of the effect.</param>
+        /// <param name="chance">The base probability of the effect being successfully applied.</param>
+        /// <param name="args">The arguments used to invoke the gameplay effect.</param>
+        /// <returns><c>true</c> if the effect si successfully applied; otherwise, <c>false</c>.</returns>
+        /// <remarks>This is a good place to implement custom probability logic like precision or luck.</remarks>
         public virtual GameplayEffect.Outcome Try(IAttributeReader target, int chance, GameplayEffectExecutionArgs args) {
             bool isSuccess = chance switch {
                 >= 100 => true,

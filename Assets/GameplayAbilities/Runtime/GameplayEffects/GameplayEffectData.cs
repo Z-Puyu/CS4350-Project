@@ -40,5 +40,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         internal bool CanCommit(AttributeSet instigator) {
             return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
         }
+
+        internal GameplayEffect Instantiate(AttributeSet target, GameplayEffectExecutionArgs args) {
+            return new GameplayEffect(this, args);
+        }
     }
 }

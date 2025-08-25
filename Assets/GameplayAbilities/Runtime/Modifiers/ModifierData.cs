@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
@@ -27,6 +28,10 @@ namespace GameplayAbilities.Runtime.Modifiers {
         
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
         public int Value { get; private set; }
+        
+        [field: SerializeField, TableColumn("Magnitude"), Tooltip("Used to identify the user-set modifier value.")]
+        [field: HideIf(nameof(this.UseAttributeValue)), ShowIf(nameof(this.AllowSetByCaller))]
+        public string Label { get; private set; }
 
         public Modifier CreateModifier(AttributeSet target, GameplayEffectExecutionArgs args) {
             if (this.UseAttributeValue) {
@@ -39,8 +44,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 return new Modifier(value, this.Method, this.TargetAttribute.Id);
             }
 
-            if (this.AllowSetByCaller &&
-                args.CallerSuppliedModifierValues.TryGetValue(this.TargetAttribute.Id, out int val)) {
+            if (this.AllowSetByCaller && args.CallerSuppliedModifierValues.TryGetValue(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute.Id);
             }
             
