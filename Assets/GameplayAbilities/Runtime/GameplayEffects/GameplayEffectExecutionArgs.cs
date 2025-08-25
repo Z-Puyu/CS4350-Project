@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameplayAbilities.Runtime.Attributes;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {

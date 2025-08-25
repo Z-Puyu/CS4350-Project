@@ -4,7 +4,7 @@ using System.Linq;
 using GameplayAbilities.Runtime.ModificationRules;
 using GameplayAbilities.Runtime.Modifiers;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeData {
         private AttributeSet Root { get; }
         private List<IAttributeModificationRule> ModificationRules { get; }

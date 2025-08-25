@@ -1,4 +1,5 @@
 ﻿using System;
+using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using SaintsField.Playa;

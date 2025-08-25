@@ -1,4 +1,5 @@
 ﻿using System;
+using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Modifiers {

@@ -1,6 +1,4 @@
-﻿using UnityEditor;
-
-namespace SaintsField.Editor.Playa
+﻿namespace SaintsField.Editor.Playa
 {
     public class ApplySaintsEditorBase : SaintsEditor
     {

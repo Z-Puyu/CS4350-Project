@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using SaintsField.Interfaces;
-using UnityEngine;
-
-namespace SaintsField.AiNavigation
+﻿namespace SaintsField.AiNavigation
 {
 #if SAINTSFIELD_AI_NAVIGATION && !SAINTSFIELD_AI_NAVIGATION_DISABLED
     [Conditional("UNITY_EDITOR")]

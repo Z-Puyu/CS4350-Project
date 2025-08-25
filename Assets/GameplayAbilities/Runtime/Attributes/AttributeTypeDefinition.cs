@@ -3,7 +3,7 @@ using GameplayAbilities.Runtime.ModificationRules;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     [CreateAssetMenu(fileName = "Attribute Type Definition", menuName = "Gameplay Abilities/Attribute Type Definition")]
     public class AttributeTypeDefinition : ScriptableObject {
         [field: SerializeField] private string Name { get; set; }

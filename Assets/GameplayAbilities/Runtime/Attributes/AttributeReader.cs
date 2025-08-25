@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     [DisallowMultipleComponent]
     public class AttributeReader : MonoBehaviour, IAttributeReader {
         [field: SerializeField, InfoBox("If unset, will fetch from the first parent with an IAttributeReader.")]

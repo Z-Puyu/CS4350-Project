@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DataStructuresForUnity.Runtime.Tree {
     public class RedBlackTreeNode<T> where T : IComparable<T> {

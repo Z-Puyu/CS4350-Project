@@ -1,4 +1,6 @@
-﻿namespace GameplayAbilities.Runtime.ModificationRules {
+﻿using GameplayAbilities.Runtime.Attributes;
+
+namespace GameplayAbilities.Runtime.ModificationRules {
     public interface IAttributeModificationRule {
         /// <summary>
         /// Apply a modification rule to the current value of an attribute.

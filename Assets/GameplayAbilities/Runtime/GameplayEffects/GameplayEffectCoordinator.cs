@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {

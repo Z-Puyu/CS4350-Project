@@ -6,7 +6,7 @@ using GameplayAbilities.Runtime.Modifiers;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
     /// A component that manages a set of attributes or stats.
     /// </summary>

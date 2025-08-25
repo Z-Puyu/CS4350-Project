@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     [CreateAssetMenu(fileName = "Attribute Table", menuName = "Gameplay Abilities/Attribute Table")]
     public class AttributeTable : ScriptableObject, IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> {
         [field: SerializeField, SaintsDictionary("Attribute Type", "Initial Value")]

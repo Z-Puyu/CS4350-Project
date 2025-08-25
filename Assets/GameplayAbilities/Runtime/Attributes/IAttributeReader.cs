@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameplayAbilities.Runtime {
+namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
     /// An interface for anything that can read attribute values from an owning game object.
     /// </summary>

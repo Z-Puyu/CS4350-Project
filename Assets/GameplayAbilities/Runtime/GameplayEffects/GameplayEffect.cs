@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
