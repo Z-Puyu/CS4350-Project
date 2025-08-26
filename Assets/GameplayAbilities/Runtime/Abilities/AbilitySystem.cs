@@ -80,7 +80,6 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            ability.Begin();
             this.OnStartAbility.Invoke(ability);
             target.Process(ability);
         }
@@ -104,7 +103,6 @@ namespace GameplayAbilities.Runtime.Abilities {
                 }
 
                 this.ActiveAbilities.Remove(ability);
-                ability.End();
                 this.OnEndAbility.Invoke(ability);
             }
         }

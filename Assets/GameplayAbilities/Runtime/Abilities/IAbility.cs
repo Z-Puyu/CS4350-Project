@@ -22,12 +22,5 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// or whether the ability is in cool down. It should not be used to check for costs or probabilistic conditions.
         /// </remarks>
         public bool IsUsable(AttributeSet instigator, AttributeSet target);
-
-        /// <summary>
-        /// Pre-processing code when starting
-        /// </summary>
-        public void Begin();
-
-        public void End();
     }
 }
