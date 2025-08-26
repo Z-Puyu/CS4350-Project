@@ -11,8 +11,6 @@ This section covers **modifiers**, the main component to dynamically change run-
 
 Represents a modifier that can be applied to a game attribute, supporting different operation types and arithmetic operations.
 
-#### Operation Types
-
 A modifier can be of either of the following types:
 
 - `Shift`: Adds or subtracts from the base value (flat modification)
@@ -20,6 +18,12 @@ A modifier can be of either of the following types:
     
     Multipliers are **added before applied** to the base value, i.e., two +10% multipliers are composed to +20% instead of +21%.
 - `Offset`: Adds or subtracts from the final value (applied after all other modifications), reasonable to be used for things like health reduction
+
+The formula to compute the final attribute value based on modifiers is:
+
+$$
+\textrm{final} = (\textrm{base} + \textrm{shift}) * \textrm{multiplier} + \textrm{offset}
+$$
 
 #### Properties
 
@@ -35,12 +39,12 @@ A modifier can be of either of the following types:
 
 The modifier class comes with support for basic arithmetic operators.
 
-- `-(Modifier modifier)`: Negates the magnitude of a modifier
-- `+(Modifier a, Modifier b)`: Adds two modifiers of the same type and target
-- `-(Modifier a, Modifier b)`: Subtracts one modifier from another of the same type and target
-- `*(Modifier modifier, float multiplier)`: Multiplies a modifier's magnitude by a scalar value
-- `*(float multiplier, Modifier modifier)`: Same as above
-- `/(Modifier modifier, float divisor)`: Divides a modifier's magnitude by a scalar value
+- `Modifier -(Modifier modifier)`: Negates the magnitude of a modifier
+- `Modifier +(Modifier a, Modifier b)`: Adds two modifiers of the same type and target
+- `Modifier -(Modifier a, Modifier b)`: Subtracts one modifier from another of the same type and target
+- `Modifier *(Modifier modifier, float multiplier)`: Multiplies a modifier's magnitude by a scalar value
+- `Modifier *(float multiplier, Modifier modifier)`: Same as above
+- `Modifier /(Modifier modifier, float divisor)`: Divides a modifier's magnitude by a scalar value
 
 ---
 
