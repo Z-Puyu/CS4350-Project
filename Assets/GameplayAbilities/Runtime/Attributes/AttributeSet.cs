@@ -10,16 +10,10 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
     /// A component that manages a set of attributes or stats.
     /// </summary>
-    [DisallowMultipleComponent, RequireComponent(typeof(GameplayEffectCoordinator))]
+    [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
             new TrieDictionary<string, char, AttributeData>();
-        
-        private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
-
-        private void Awake() {
-            this.GameplayEffectCoordinator = this.GetComponent<GameplayEffectCoordinator>();
-        }
 
         /// <summary>
         /// Invoked when an attribute is first initialised or when it is modified.
@@ -73,17 +67,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
         }
 
-        /// <summary>
-        /// Add a gameplay effect to the attribute set.
-        /// </summary>
-        /// <param name="effect">The gameplay effect.</param>
-        /// <param name="chance">The base probability of this effect being successfully applied.</param>
-        public void AddEffect(GameplayEffect effect, int chance) {
-            if (effect.Commit(this, chance) == GameplayEffect.Outcome.Success) {
-                this.GameplayEffectCoordinator.Add(effect);
-            }
-        }
-        
         public int GetCurrent(string key) {
             if (this.Attributes.TryGetValue(key, out AttributeData data)) {
                 return data.Value;

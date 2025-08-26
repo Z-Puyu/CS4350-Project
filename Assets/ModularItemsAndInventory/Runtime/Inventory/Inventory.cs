@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ModularItemsAndInventory.Runtime.Items;
+using ModularItemsAndInventory.Runtime.Items.Orderings;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -210,6 +211,10 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
             }
             
             return record.TryGetValue(item, out int count) && count >= quantity;
+        }
+
+        public IEnumerable<KeyValuePair<Item, int>> DenumerateItems(ItemOrdering ordering) {
+            return this.Items.SelectMany(record => record.Value).OrderBy(pair => pair.Key, ordering);
         }
 
         public IEnumerator<KeyValuePair<Item, int>> GetEnumerator() {

@@ -1,19 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
+    [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
     internal class GameplayEffectCoordinator : MonoBehaviour {
-        private AttributeSet AttributeSet { get; }
-
+        private AttributeSet AttributeSet { get; set; }
+        
         private Dictionary<GameplayEffect, Coroutine> ActiveEffects { get; } =
             new Dictionary<GameplayEffect, Coroutine>();
-        
-        internal GameplayEffectCoordinator(AttributeSet attributeSet) {
-            this.AttributeSet = attributeSet;
+
+        private void Awake() {
+            this.AttributeSet = this.GetComponent<AttributeSet>();
         }
-        
+
         private IEnumerator ExecutePeriodically(GameplayEffect effect, float period, float duration) {
             float elapsed = 0f;
             yield return new WaitForSeconds(period);

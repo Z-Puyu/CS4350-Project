@@ -18,11 +18,11 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public void Begin() {
-            throw new System.NotImplementedException();
+            Debug.Log($"Ability {this} began", this);
         }
         
         public void End() {
-            throw new System.NotImplementedException();
+            Debug.Log($"Ability {this} ended", this);
         }
     }
 }

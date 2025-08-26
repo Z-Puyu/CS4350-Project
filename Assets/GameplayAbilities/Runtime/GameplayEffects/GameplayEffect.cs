@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 
@@ -12,6 +13,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         internal GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
+        internal event Action OnEnded;
         
         internal GameplayEffect(GameplayEffectData data, GameplayEffectExecutionArgs args) {
             this.Data = data;
@@ -56,6 +58,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(-modifier);
             }
+            
+            this.OnEnded?.Invoke();
+            this.OnEnded = null;
         }
     }
 }

@@ -23,6 +23,9 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// </remarks>
         public bool IsUsable(AttributeSet instigator, AttributeSet target);
 
+        /// <summary>
+        /// Pre-processing code when starting
+        /// </summary>
         public void Begin();
 
         public void End();
