@@ -4,11 +4,15 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
     [Serializable]
-    public class MaximumByConstantRule : IAttributeModificationRule {
+    public class MaximumByConstantRule : IAttributeClampRule {
         [field: SerializeField] private int Max { get; set; }
+
+        public float MaxValueIn(AttributeSet root) {
+            return this.Max;
+        }
         
-        public float Apply(float value, AttributeSet root) {
-            return Math.Min(value, this.Max);
+        public float MinValueIn(AttributeSet root) {
+            return float.NegativeInfinity;
         }
     }
 }

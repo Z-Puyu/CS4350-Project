@@ -8,18 +8,14 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField, Table] 
         private List<AttributeConversionRule> ConversionRules { get; set; } = new List<AttributeConversionRule>();
         
-        public bool TryConvert(float value, string from, out string convertedAttribute, out float convertedValue) {
-            foreach (AttributeConversionRule rule in this.ConversionRules) {
-                if (rule.TryConvert(value, from, out convertedAttribute, out convertedValue)) {
-                    return true;
-                }
-            }
-            
-            convertedAttribute = from;
-            convertedValue = value;
-            return false;
-        }
-        
+        /// <summary>
+        /// Try to convert the given value from the given attribute to the given attribute.
+        /// </summary>
+        /// <param name="value">The value of the attribute to convert.</param>
+        /// <param name="from">The original attribute.</param>
+        /// <param name="to">The attribute to convert to.</param>
+        /// <param name="convertedValue">The converted value of the attribute.</param>
+        /// <returns><c>true</c> if the conversion is successful, <c>false</c> otherwise.</returns>
         public bool TryConvert(float value, string from, string to, out float convertedValue) {
             foreach (AttributeConversionRule rule in this.ConversionRules) {
                 if (rule.TryConvert(value, from, to, out convertedValue)) {

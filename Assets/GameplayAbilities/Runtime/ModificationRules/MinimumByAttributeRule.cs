@@ -4,16 +4,15 @@ using SaintsField;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
-    public class MinimumByAttributeRule : IAttributeModificationRule {
+    public class MinimumByAttributeRule : IAttributeClampRule {
         [field: SerializeField, Required] private AttributeTypeDefinition Min { get; set; }
-        
-        public float Apply(float value, AttributeSet root) {
-            if (this.Min) {
-                return Math.Max(value, root.GetCurrent(this.Min.Id));
-            }
 
-            Debug.LogError("Max Attribute is not set");
-            return value;
+        public float MaxValueIn(AttributeSet root) {
+            return float.PositiveInfinity;
+        }
+        
+        public float MinValueIn(AttributeSet root) {
+            return root.GetCurrent(this.Min.Id);
         }
     }
 }

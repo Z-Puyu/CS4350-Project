@@ -11,8 +11,8 @@ namespace GameplayAbilities.Runtime.Attributes {
         [SerializeField] private string displayName;
 
         [field: SerializeReference]
-        public List<IAttributeModificationRule> ModificationRules { get; private set; } =
-            new List<IAttributeModificationRule>();
+        public List<IAttributeClampRule> ModificationRules { get; private set; } =
+            new List<IAttributeClampRule>();
 
         [field: SerializeField, ReadOnly] public string Id { get; private set; }
         [field: SerializeField, ReadOnly] private AttributeTypeDefinition Parent { get; set; }

@@ -14,19 +14,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField, ValidateInput(nameof(this.IsValidDestinationAttribute))] 
         private AttributeTypeDefinition To { get; set; }
 
-        public bool TryConvert(float value, string attribute, out string convertedAttribute, out float convertedValue) {
-            if (this.From.Includes(attribute)) {
-                convertedAttribute = this.To.Id;
-                convertedValue = value * this.ConversionRate;
-                return true;
-            }
-            
-            convertedAttribute = attribute;
-            convertedValue = value;
-            return false;
-        }
-
-        public bool TryConvert(float value, string from, string to, out float convertedValue) {
+        internal bool TryConvert(float value, string from, string to, out float convertedValue) {
             if (this.From.Includes(from) && this.To.Id == to) {
                 convertedValue = this.ConversionRate * value;
                 return true;

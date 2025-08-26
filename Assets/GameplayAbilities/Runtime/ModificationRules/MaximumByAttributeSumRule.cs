@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
-using SaintsField;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
     [Serializable]
-    public class MaximumByAttributeRule : IAttributeClampRule {
-        [field: SerializeField, Required] private AttributeTypeDefinition Max { get; set; }
+    public class MaximumByAttributeSumRule : IAttributeClampRule {
+        [field: SerializeField]
+        private List<MaximumByAttributeRule> Rules { get; set; } = new List<MaximumByAttributeRule>();
 
         public float MaxValueIn(AttributeSet root) {
-            return root.GetCurrent(this.Max.Id);
+            return this.Rules.Sum(rule => rule.MaxValueIn(root));
         }
         
         public float MinValueIn(AttributeSet root) {

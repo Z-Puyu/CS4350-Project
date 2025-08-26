@@ -7,7 +7,7 @@ using GameplayAbilities.Runtime.Modifiers;
 namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeData {
         private AttributeSet Root { get; }
-        private List<IAttributeModificationRule> ModificationRules { get; }
+        private List<IAttributeClampRule> ModificationRules { get; }
         private float BaseValue { get; }
         internal int Value { get; private set; }
         
@@ -18,7 +18,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             new SortedList<Modifier.Operation, Modifier>();
 
         private AttributeData(
-            List<IAttributeModificationRule> modificationRules, float value, AttributeSet root
+            List<IAttributeClampRule> modificationRules, float value, AttributeSet root
         ) {
             this.ModificationRules = modificationRules;
             this.BaseValue = value;
@@ -26,7 +26,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         internal static AttributeData From(AttributeTypeDefinition definition, float initValue, AttributeSet root) {
-            List<IAttributeModificationRule> rules = definition.ModificationRules.ToList();
+            List<IAttributeClampRule> rules = definition.ModificationRules.ToList();
             return new AttributeData(rules, initValue, root);
         }
         
@@ -35,8 +35,8 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         private float ExecuteModificationRules(float value) {
-            foreach (IAttributeModificationRule rule in this.ModificationRules) {
-                value = rule.Apply(value, this.Root);
+            foreach (IAttributeClampRule rule in this.ModificationRules) {
+                value = Math.Clamp(value, rule.MinValueIn(this.Root), rule.MaxValueIn(this.Root));
             }
             
             return value;
