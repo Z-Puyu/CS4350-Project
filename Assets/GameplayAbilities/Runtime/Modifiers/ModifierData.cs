@@ -3,10 +3,13 @@ using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Modifiers {
     [Serializable]
     public class ModifierData {
+        private enum MagnitudeType { Constant, AttributeValue, CallerSupplied }
+        
         private enum ValueSource { Target, Instigator }
         
         [field: SerializeField, TableColumn("Target")] 
@@ -15,7 +18,11 @@ namespace GameplayAbilities.Runtime.Modifiers {
         [field: SerializeField] public Modifier.Operation Method { get; private set; }
         
         [field: SerializeField, TableColumn("Magnitude")] 
-        private bool UseAttributeValue { get; set; }
+        private MagnitudeType Form { get; set; }
+        
+        private bool UseAttributeValue => this.Form == MagnitudeType.AttributeValue;
+        private bool AllowSetByCaller => this.Form == MagnitudeType.CallerSupplied;
+        private bool UseConstant => this.Form == MagnitudeType.Constant;
 
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
         private ValueSource Source { get; set; } = ValueSource.Instigator;
@@ -24,13 +31,10 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private AttributeTypeDefinition SourceAttribute { get; set; }
         
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
-        private bool AllowSetByCaller { get; set; }
-        
-        [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
-        public int Value { get; private set; }
+        public int DefaultValue { get; private set; }
         
         [field: SerializeField, TableColumn("Magnitude"), Tooltip("Used to identify the user-set modifier value.")]
-        [field: HideIf(nameof(this.UseAttributeValue)), ShowIf(nameof(this.AllowSetByCaller))]
+        [field: ShowIf(nameof(this.AllowSetByCaller))]
         public string Label { get; private set; }
 
         public Modifier CreateModifier(AttributeSet target, GameplayEffectExecutionArgs args) {
@@ -48,7 +52,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 return new Modifier(val, this.Method, this.TargetAttribute.Id);
             }
             
-            return new Modifier(this.Value, this.Method, this.TargetAttribute.Id);
+            return new Modifier(this.DefaultValue, this.Method, this.TargetAttribute.Id);
         }
     }
 }

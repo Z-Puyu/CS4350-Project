@@ -2,6 +2,8 @@
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
+using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {

@@ -27,7 +27,11 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         /// <param name="chance">The probability of the gameplay effect being activated on the target.</param>
         /// <returns>The result of the gameplay effect invocation.</returns>
         internal Outcome Commit(AttributeSet target, int chance) {
-            return !this.Data.CanCommit(target) ? Outcome.Cancelled : this.Data.Executor.Try(target, chance, this.Args);
+            if (!this.Data.CanCommit(target)) {
+                return Outcome.Cancelled;
+            }
+
+            return this.Data.CanMiss ? this.Data.Executor.Try(target, chance, this.Args) : Outcome.Success;
         }
         
         private IEnumerable<Modifier> Execute(AttributeSet target) {
