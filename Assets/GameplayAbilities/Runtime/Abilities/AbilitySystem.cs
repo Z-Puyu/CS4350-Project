@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.Abilities {
-    [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
+    [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet), typeof(GameplayEffectCoordinator))]
     public class AbilitySystem : MonoBehaviour {
         private HashSet<IAbility> Abilities { get; } = new HashSet<IAbility>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();

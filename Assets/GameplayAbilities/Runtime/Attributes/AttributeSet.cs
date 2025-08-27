@@ -12,6 +12,8 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
+        [field: SerializeField] private AttributeTable DefaultAttributeTable { get; set; }
+        
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
             new TrieDictionary<string, char, AttributeData>();
 
@@ -27,7 +29,15 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// This method should be called once, before any other method of this class.
         /// </remarks>
-        public void Initialise(AttributeTable table) {
+        public void Initialise(AttributeTable table = null) {
+            if (!table) {
+                table = this.DefaultAttributeTable;
+                if (!table) {
+                    Debug.LogError("No attribute table provided and no default attribute table set.", this);
+                    return;
+                }
+            }
+            
             foreach (KeyValuePair<AttributeTypeDefinition, int> attribute in table) {
                 this.Attributes.Add(attribute.Key.Id, AttributeData.From(attribute.Key, attribute.Value, this));
                 this.OnAttributeChanged?.Invoke(new AttributeChange(attribute.Key.Id, 0, attribute.Value));
