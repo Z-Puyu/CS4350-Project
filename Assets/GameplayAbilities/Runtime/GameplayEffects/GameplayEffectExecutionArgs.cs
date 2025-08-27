@@ -4,6 +4,7 @@ using GameplayAbilities.Runtime.Attributes;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
+        
         public float Level { get; }
         public Dictionary<string, int> CallerSuppliedModifierValues { get; }
 

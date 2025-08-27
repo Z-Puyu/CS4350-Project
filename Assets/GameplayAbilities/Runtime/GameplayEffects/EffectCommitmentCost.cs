@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public class EffectCommitmentCost {
+    public class EffectCommitmentCost : IComparable<EffectCommitmentCost>, IEquatable<EffectCommitmentCost> {
         private enum AffordabilityPolicy {
             [RichLabel("Have Strictly More")] HaveStrictlyMore,
             [RichLabel("Have Enough")] HaveEnough,
@@ -93,6 +93,23 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return this.Attribute && !this.Attribute.IsCategory
                     ? null
                     : "Attribute type must be a leaf type without subtypes!";
+        }
+
+        public override string ToString() {
+            string sign = this.WillAddInsteadOfUse ? "+" : "-";
+            return $"{sign}{this.Value} {this.Attribute.Id} ({this.Affordability})";
+        }
+
+        public int CompareTo(EffectCommitmentCost other) {
+            if (other is null) {
+                return 1;
+            }
+            
+            return object.ReferenceEquals(this, other) ? 0 : string.CompareOrdinal(this.ToString(), other.ToString());
+        }
+
+        public bool Equals(EffectCommitmentCost other) {
+            return this.CompareTo(other) == 0;
         }
     }
 }

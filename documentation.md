@@ -56,6 +56,7 @@ playerAbilitySystem.Enable(fireMastery);
 - `void Grant(IAbility ability)`: Adds an ability to the system
 - `void Revoke(IAbility ability)`: Removes an ability from the system
 - `void Use(IAbility ability, AbilitySystem target)`: Attempts to use an ability on a target
+- `void AddEffect(GameplayEffectData effect)`: Adds a gameplay effect to the system
 
 #### Events
 

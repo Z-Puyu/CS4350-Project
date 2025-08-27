@@ -11,7 +11,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
     /// Each gameplay effect asset defines a set of parameters which are used to generate changes in attributes in run-time.
     /// </summary>
     [Serializable]
-    public abstract class EffectExecution {
+    public abstract class EffectExecution : IComparable<EffectExecution>, IEquatable<EffectExecution> {
         private bool HasNeverExecuted { get; set; } = true;
 
         /// <summary>
@@ -61,6 +61,12 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
             };
             
             return isSuccess ? GameplayEffect.Outcome.Success : GameplayEffect.Outcome.Failure;
+        }
+
+        public abstract int CompareTo(EffectExecution other);
+        
+        public bool Equals(EffectExecution other) {
+            return this.CompareTo(other) == 0;
         }
     }
 }

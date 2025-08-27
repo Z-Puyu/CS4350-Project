@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.ModificationRules;
 using SaintsField;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
     [CreateAssetMenu(fileName = "Attribute Type Definition", menuName = "Gameplay Abilities/Attribute Type Definition")]
-    public class AttributeTypeDefinition : ScriptableObject {
+    public class AttributeTypeDefinition : ScriptableObject, IComparable<AttributeTypeDefinition>, IEquatable<AttributeTypeDefinition> {
         [field: SerializeField] private string Name { get; set; }
         [SerializeField] private string displayName;
 
@@ -44,6 +45,14 @@ namespace GameplayAbilities.Runtime.Attributes {
             }
             
             this.Id = string.Join(".", names);
+        }
+
+        public int CompareTo(AttributeTypeDefinition other) {
+            return other ? string.CompareOrdinal(this.Id, other.Id) : 1;
+        }
+        
+        public bool Equals(AttributeTypeDefinition other) {
+            return this.CompareTo(other) == 0;
         }
     }
 }

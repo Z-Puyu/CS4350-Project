@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects.Executions;
 using SaintsField;
@@ -8,7 +11,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public class GameplayEffectData {
+    public class GameplayEffectData : IComparable<GameplayEffectData> {
         public enum Periodicity { Instant, Periodic, Continuous }
         
         [field: SerializeReference, DefaultExpand] 
@@ -31,11 +34,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         public int BaseChance { get; private set; } = 100;
         
         [field: SerializeField] public List<EffectCommitmentCost> Costs { get; private set; } = new List<EffectCommitmentCost>();
-        [field: SerializeField] internal bool HasLevel { get; private set; }
-
-        [field: SerializeField, Tooltip("This curve describes how a level is mapped to a modifier value coefficient")]
-        [field: ShowIf(nameof(this.HasLevel))]
-        internal AnimationCurve LevelEffect { get; private set; } = AnimationCurve.Linear(-1, -1, 1, 1);
         
         /// <summary>
         /// Checks if <paramref name="instigator"/> can afford to commit this effect.
@@ -46,8 +44,38 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
         }
 
-        internal GameplayEffect Instantiate(AttributeSet target, GameplayEffectExecutionArgs args) {
+        public GameplayEffect Instantiate(AttributeSet target, GameplayEffectExecutionArgs args) {
             return new GameplayEffect(this, args);
+        }
+        
+        public override string ToString() {
+            StringBuilder sb = new StringBuilder("Effect:\n");
+            sb.AppendLine(this.ExecutionTime.ToString());
+            switch (this.ExecutionTime) {
+                case Periodicity.Periodic:
+                    sb.AppendLine(this.Period.ToString(CultureInfo.InvariantCulture));
+                    sb.AppendLine(this.Duration.ToString(CultureInfo.InvariantCulture));
+                    break;
+                case Periodicity.Continuous:
+                    sb.AppendLine(this.Duration.ToString(CultureInfo.InvariantCulture));
+                    break;
+            }
+            
+            sb.AppendLine($"Can miss: {this.CanMiss}");
+            sb.AppendLine($"Success chance: {this.BaseChance}%");
+            foreach (EffectCommitmentCost cost in this.Costs.OrderBy(cost => cost)) {
+                sb.AppendLine(cost.ToString());
+            }
+
+            return sb.AppendLine(this.Executor.ToString()).ToString();
+        }
+
+        public int CompareTo(GameplayEffectData other) {
+            if (other is null) {
+                return 1;
+            }
+            
+            return object.ReferenceEquals(this, other) ? 0 : string.CompareOrdinal(this.ToString(), other.ToString());
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
@@ -37,6 +36,16 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (effect.Commit(this.AttributeSet, chance) == GameplayEffect.Outcome.Success) {
                 this.GameplayEffectCoordinator.Add(effect);
             }
+        }
+
+        /// <summary>
+        /// Add a gameplay effect to the attribute set.
+        /// </summary>
+        /// <param name="effect">The gameplay effect.</param>
+        public void AddEffect(GameplayEffectData effect) {
+            GameplayEffectExecutionArgs args = this.CreateEffectExecutionArgs();
+            GameplayEffect gameplayEffect = effect.Instantiate(this.AttributeSet, args);
+            this.AddEffect(gameplayEffect, effect.BaseChance);
         }
         
         public void Enable(Perk perk) {

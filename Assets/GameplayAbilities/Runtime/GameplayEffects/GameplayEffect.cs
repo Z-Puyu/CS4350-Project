@@ -35,9 +35,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
         
         private IEnumerable<Modifier> Execute(AttributeSet target) {
-            return this.Data.HasLevel
-                    ? this.Data.Executor.Execute(target, this.Args, this.Data.LevelEffect.Evaluate(this.Args.Level))
-                    : this.Data.Executor.Execute(target, this.Args);
+            return this.Data.Executor.Execute(target, this.Args);
         }
 
         /// <summary>
