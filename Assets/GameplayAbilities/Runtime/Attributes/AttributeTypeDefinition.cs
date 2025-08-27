@@ -10,7 +10,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField] private string Name { get; set; }
         [SerializeField] private string displayName;
 
-        [field: SerializeReference]
+        [field: SerializeReference, ReferencePicker]
         public List<IAttributeClampRule> ModificationRules { get; private set; } =
             new List<IAttributeClampRule>();
 
