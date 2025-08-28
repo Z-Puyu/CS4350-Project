@@ -12,7 +12,16 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
     /// </summary>
     [Serializable]
     public abstract class EffectExecution : IComparable<EffectExecution>, IEquatable<EffectExecution> {
+        private Lazy<string> CachedSortKey { get; }
+        internal string SortKey => this.CachedSortKey.Value;
+        
         private bool HasNeverExecuted { get; set; } = true;
+        
+        protected abstract string GenerateSortKey();
+        
+        protected EffectExecution() {
+            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+        }
 
         /// <summary>
         /// Additional logic to execute on the first execution of the gameplay effect.
@@ -63,10 +72,22 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
             return isSuccess ? GameplayEffect.Outcome.Success : GameplayEffect.Outcome.Failure;
         }
 
-        public abstract int CompareTo(EffectExecution other);
+        public int CompareTo(EffectExecution other) {
+            if (other is null) {
+                return 1;
+            }
+
+            return object.ReferenceEquals(this, other)
+                    ? 0
+                    : string.CompareOrdinal(this.SortKey, other.SortKey);
+        }
         
         public bool Equals(EffectExecution other) {
             return this.CompareTo(other) == 0;
+        }
+
+        public sealed override int GetHashCode() {
+            return this.SortKey.GetHashCode();
         }
     }
 }

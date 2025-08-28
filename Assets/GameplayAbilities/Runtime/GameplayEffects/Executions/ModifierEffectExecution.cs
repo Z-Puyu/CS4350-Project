@@ -16,33 +16,15 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
     public sealed class ModifierEffectExecution : EffectExecution {
         [field: SerializeField, Table] private List<ModifierData> Modifiers { get; set; }
 
-        protected override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
-            return this.Modifiers.Select(data => data.CreateModifier(target, args));
+        protected override string GenerateSortKey() {
+            List<ModifierData> data = this.Modifiers.ToList();
+            data.Sort();
+            return $"{this.GetType().FullName}" + 
+                   $"_Modifiers:{string.Join('_', data.Select(modifier => modifier.SortKey))}";
         }
 
-        public override int CompareTo(EffectExecution other) {
-            if (object.ReferenceEquals(this, other)) {
-                return 0;
-            }
-
-            if (other is not ModifierEffectExecution execution) {
-                return string.CompareOrdinal(other.GetType().Name, this.GetType().Name);
-            }
-
-            if (this.Modifiers.Count > execution.Modifiers.Count) {
-                return 1;
-            }
-            
-            List<ModifierData> sorted = this.Modifiers.OrderBy(modifier => modifier).ToList();
-            List<ModifierData> otherSorted = execution.Modifiers.OrderBy(modifier => modifier).ToList();
-            for (int i = 0; i < this.Modifiers.Count; i += 1) {
-                int comp = sorted[i].CompareTo(otherSorted[1]);
-                if (comp != 0) {
-                    return comp;
-                }
-            }
-
-            return 0;
+        protected override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
+            return this.Modifiers.Select(data => data.CreateModifier(target, args));
         }
 
         public override string ToString() {
@@ -52,10 +34,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects.Executions {
             }
             
             return sb.ToString();
-        }
-
-        public override int GetHashCode() {
-            return this.ToString().GetHashCode();
         }
     }
 }

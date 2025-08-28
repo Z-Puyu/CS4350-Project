@@ -18,16 +18,13 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
         /// <summary>
         /// Applies the item properties to the specified target.
         /// Iterates through all properties contained in this instance, and if a property implements
-        /// the <see cref="IItemProperty{T}"/> interface for the specified type, it invokes
+        /// the <see cref="IItemProperty"/> interface for the specified type, it invokes
         /// the property-specific processing logic.
         /// </summary>
-        /// <typeparam name="T">The target type to which the item properties are applied.</typeparam>
         /// <param name="target">The target instance that will have the properties applied to it.</param>
-        public void Affect<T>(T target) {
+        public void Affect(GameObject target) {
             foreach (IItemProperty p in this.Properties.Values) {
-                if (p is IItemProperty<T> property) {
-                    property.Process(this.OwningItem, target);
-                }
+                p.Process(this.OwningItem, target);
             }
         }
 
@@ -112,34 +109,38 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
                     this.Properties.Add(type, p.Instantiate());
                 }
             }
-            
+
             return this;
         }
-        
+
         public bool Equals(ItemProperties other) {
-            return other != null && this.Properties.Values.ToHashSet().SetEquals(other.Properties.Values);
+            return other != null &&
+                   this.Properties.Values.ToHashSet().SetEquals(other.Properties.Values);
         }
 
         public int CompareTo(ItemProperties other) {
-            int length = Math.Min(this.Properties.Count, other.Properties.Count);
+            int comp = this.Properties.Count.CompareTo(other.Properties.Count);
+            if (comp != 0) {
+                return comp;
+            }
+            
             List<IItemProperty> otherProperties = other.Properties.Values.ToList();
             otherProperties.Sort();
             List<IItemProperty> thisProperties = this.Properties.Values.ToList();
             thisProperties.Sort();
-            for (int i = 0; i < length; i += 1) {
-                IItemProperty thisProperty = thisProperties[i];
-                IItemProperty otherProperty = otherProperties[i];
-                int comparison = thisProperty.CompareTo(otherProperty);
+            for (int i = 0; i < thisProperties.Count; i += 1) {
+                int comparison = thisProperties[i].CompareTo(otherProperties[i]);
                 if (comparison != 0) {
                     return comparison;
                 }
             }
-            
-            return this.Properties.Count - otherProperties.Count;
+
+            return 0;
         }
 
         public override int GetHashCode() {
-            return HashSet<IItemProperty>.CreateSetComparer().GetHashCode(this.Properties.Values.ToHashSet());
+            return HashSet<IItemProperty>.CreateSetComparer()
+                                         .GetHashCode(this.Properties.Values.ToHashSet());
         }
     }
 }

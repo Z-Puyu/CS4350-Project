@@ -15,12 +15,11 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
                 this.Worth = this.Price;
             }
         }
-        
-        protected override int CompareToSameType(IItemProperty otherOfSameType) {
-            Merchandise merchandise = (Merchandise)otherOfSameType;
-            return (this.Worth + this.Price).CompareTo(merchandise.Worth + merchandise.Price);
+
+        protected override string GenerateSortKey() {
+            return $"{this.GetType().FullName}_Price:{this.Price}_Worth:{this.Worth}";
         }
-        
+
         public override IItemProperty Instantiate() {
             return new Merchandise {
                 Worth = this.Worth,
@@ -28,5 +27,7 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
                 HasDifferentPriceForSale = this.HasDifferentPriceForSale
             };
         }
+
+        public override void Process(in Item item, GameObject target) { }
     }
 }

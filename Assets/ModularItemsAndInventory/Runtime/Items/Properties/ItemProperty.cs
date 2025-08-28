@@ -1,8 +1,21 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ModularItemsAndInventory.Runtime.Items.Properties {
+    /// <summary>
+    /// Encapsulate an immutable property defined in an asset.
+    /// </summary>
     [Serializable]
     public abstract class ItemProperty : IItemProperty {
+        private Lazy<string> CachedSortKey { get; }
+        internal string SortKey => this.CachedSortKey.Value;
+
+        protected ItemProperty() {
+            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+        }
+
+        protected abstract string GenerateSortKey();
+
         public bool Equals(IItemProperty other) {
             return this.CompareTo(other) == 0;
         }
@@ -12,68 +25,17 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
                 return 0;
             }
 
-            if (other is null) {
-                return 1;
-            }
-            
-            int comparison = string.CompareOrdinal(this.GetType().FullName, other.GetType().FullName);
-            return comparison == 0 ? this.CompareToSameType(other) : comparison;
-        }
-        
-        /// <summary>
-        /// Compare this instance with another instance of the exact same type.
-        /// </summary>
-        /// <param name="otherOfSameType">The other instance of the exact same type.</param>
-        /// <returns>A positive integer if this instance is greater, a negative integer if
-        /// the other instance is greater, and zero if they are equal.</returns>
-        protected abstract int CompareToSameType(IItemProperty otherOfSameType);
-
-        public abstract IItemProperty Instantiate();
-    }
-    
-    [Serializable]
-    public abstract class ItemProperty<T> : IItemProperty<T> {
-        public int CompareTo(IItemProperty other) {
-            if (object.ReferenceEquals(this, other)) {
-                return 0;
-            }
-
-            if (other is null) {
-                return 1;
-            }
-            
-            int comparison = string.CompareOrdinal(this.GetType().FullName, other.GetType().FullName);
-            return comparison == 0 ? this.CompareToSameType(other) : comparison;
+            return other is null
+                    ? 1
+                    : string.CompareOrdinal(this.SortKey, ((ItemProperty)other).SortKey);
         }
 
         public abstract IItemProperty Instantiate();
 
-        /// <summary>
-        /// Compare this instance with another instance of the exact same type.
-        /// </summary>
-        /// <param name="otherOfSameType">The other instance of the exact same type.</param>
-        /// <returns>A positive integer if this instance is greater, a negative integer if
-        /// the other instance is greater, and zero if they are equal.</returns>
-        protected abstract int CompareToSameType(IItemProperty otherOfSameType);
-
-        public abstract void Process(in Item item, T target);
-
-        public sealed override bool Equals(object obj) {
-            return this.Equals(obj as IItemProperty);
-        }
-
-        public bool Equals(IItemProperty other) {
-            return this.CompareTo(other) == 0;
-        }
+        public abstract void Process(in Item item, GameObject target);
 
         public sealed override int GetHashCode() {
-            return HashCode.Combine(this.GetType(), this.HashPropertyContents());
+            return this.SortKey.GetHashCode();
         }
-
-        /// <summary>
-        /// Concrete types must return a stable hash code for their fields used in comparison.
-        /// </summary>
-        /// <returns>A hash code evaluated from the fields used in comparison.</returns>
-        protected abstract int HashPropertyContents();
     }
 }

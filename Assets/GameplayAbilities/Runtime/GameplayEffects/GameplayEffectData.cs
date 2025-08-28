@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects.Executions;
 using SaintsField;
-using SaintsField.Playa;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public class GameplayEffectData : IComparable<GameplayEffectData> {
+    public sealed class GameplayEffectData : IComparable<GameplayEffectData>, IEquatable<GameplayEffectData> {
+        private Lazy<string> CachedSortKey { get; }
+        public string SortKey => this.CachedSortKey.Value;
+
         public enum Periodicity { Instant, Periodic, Continuous }
         
         [field: SerializeReference, DefaultExpand] 
@@ -34,6 +35,10 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         public int BaseChance { get; private set; } = 100;
         
         [field: SerializeField] public List<EffectCommitmentCost> Costs { get; private set; } = new List<EffectCommitmentCost>();
+
+        private GameplayEffectData() {
+            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+        }
         
         /// <summary>
         /// Checks if <paramref name="instigator"/> can afford to commit this effect.
@@ -48,34 +53,46 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return new GameplayEffect(this, args);
         }
         
-        public override string ToString() {
-            StringBuilder sb = new StringBuilder("Effect:\n");
-            sb.AppendLine(this.ExecutionTime.ToString());
+        public string GenerateSortKey() {
+            StringBuilder sb = new StringBuilder(this.GetType().FullName);
+            sb.Append($"_ExecutionTime:{this.ExecutionTime}");
             switch (this.ExecutionTime) {
                 case Periodicity.Periodic:
-                    sb.AppendLine(this.Period.ToString(CultureInfo.InvariantCulture));
-                    sb.AppendLine(this.Duration.ToString(CultureInfo.InvariantCulture));
+                    sb.Append($"_Period:{this.Period}");
+                    sb.Append($"_Duration:{this.Duration}");
                     break;
                 case Periodicity.Continuous:
-                    sb.AppendLine(this.Duration.ToString(CultureInfo.InvariantCulture));
+                    sb.Append($"_Duration:{this.Duration}");
                     break;
             }
             
-            sb.AppendLine($"Can miss: {this.CanMiss}");
-            sb.AppendLine($"Success chance: {this.BaseChance}%");
-            foreach (EffectCommitmentCost cost in this.Costs.OrderBy(cost => cost)) {
-                sb.AppendLine(cost.ToString());
+            sb.Append($"_CanMiss:{this.CanMiss}");
+            sb.Append($"_BaseChance: {this.BaseChance}%");
+            List<EffectCommitmentCost> costs = this.Costs.ToList();
+            costs.Sort();
+            foreach (EffectCommitmentCost cost in costs) {
+                sb.Append($"_Cost:{cost.SortKey}");
             }
 
-            return sb.AppendLine(this.Executor.ToString()).ToString();
+            return sb.Append($"_Executor:{this.Executor.SortKey}").ToString();
         }
 
         public int CompareTo(GameplayEffectData other) {
             if (other is null) {
                 return 1;
             }
-            
-            return object.ReferenceEquals(this, other) ? 0 : string.CompareOrdinal(this.ToString(), other.ToString());
+
+            return object.ReferenceEquals(this, other)
+                    ? 0
+                    : string.CompareOrdinal(this.CachedSortKey.Value, other.CachedSortKey.Value);
+        }
+
+        public bool Equals(GameplayEffectData other) {
+            return this.CompareTo(other) == 0;
+        }
+        
+        public override int GetHashCode() {
+            return this.SortKey.GetHashCode();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ModularItemsAndInventory.Runtime.Items {
     /// </summary>
     [CreateAssetMenu(fileName = "New Item Data", menuName = "Modular Items and Inventory/Item Data")]
     public sealed class ItemData : ScriptableObject {
+        [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public ItemType Type { get; private set; } 
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }

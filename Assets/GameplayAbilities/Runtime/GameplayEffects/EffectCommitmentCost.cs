@@ -8,6 +8,9 @@ using UnityEngine;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
     public class EffectCommitmentCost : IComparable<EffectCommitmentCost>, IEquatable<EffectCommitmentCost> {
+        private Lazy<string> CachedSortKey { get; }
+        internal string SortKey => this.CachedSortKey.Value;
+        
         private enum AffordabilityPolicy {
             [RichLabel("Have Strictly More")] HaveStrictlyMore,
             [RichLabel("Have Enough")] HaveEnough,
@@ -30,6 +33,16 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         [field: SerializeField, RichLabel("Affordable If")]
         [field: Dropdown(nameof(this.GetAffordabilityOptions))]
         private AffordabilityPolicy Affordability { get; set; }
+
+        private EffectCommitmentCost() {
+            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+        }
+
+        private string GenerateSortKey() {
+            int value = this.WillAddInsteadOfUse ? this.Value : -this.Value;
+            return $"{this.GetType().FullName}_Attribute:{this.Attribute.Id}" + 
+                   $"_Value:{value}_Affordability:{this.Affordability}";
+        }
 
         internal bool IsAffordable(IAttributeReader source) {
             string attribute = this.Attribute.Id;
@@ -95,11 +108,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                     : "Attribute type must be a leaf type without subtypes!";
         }
 
-        public override string ToString() {
-            string sign = this.WillAddInsteadOfUse ? "+" : "-";
-            return $"{sign}{this.Value} {this.Attribute.Id} ({this.Affordability})";
-        }
-
         public int CompareTo(EffectCommitmentCost other) {
             if (other is null) {
                 return 1;
@@ -110,6 +118,10 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         public bool Equals(EffectCommitmentCost other) {
             return this.CompareTo(other) == 0;
+        }
+
+        public sealed override int GetHashCode() {
+            return this.SortKey.GetHashCode();
         }
     }
 }

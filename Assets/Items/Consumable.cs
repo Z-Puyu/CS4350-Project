@@ -10,33 +10,28 @@ using UnityEngine;
 
 namespace Items {
     [Serializable]
-    public class Consumable : ItemProperty<AbilitySystem> {
+    public class Consumable : ItemProperty {
         [field: SerializeField] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
-        
+
+        protected override string GenerateSortKey() {
+            StringBuilder sb = new StringBuilder(this.GetType().FullName);
+            List<GameplayEffectData> effects = this.Effects.ToList();
+            effects.Sort();
+            foreach (GameplayEffectData effect in effects) {
+                sb.AppendLine($"_Effect:{effect.SortKey}");
+            }
+            
+            return sb.ToString();
+        }
+
         public override IItemProperty Instantiate() {
             return new Consumable { Effects = this.Effects.ToList() };
         }
         
-        protected override int CompareToSameType(IItemProperty otherOfSameType) {
-            Consumable other = (Consumable)otherOfSameType;
-            if (this.Effects.Count > other.Effects.Count) {
-                return 1;
+        public override void Process(in Item item, GameObject target) {
+            if (target.TryGetComponent(out AbilitySystem system)) {
+                this.Effects.ForEach(system.AddEffect);
             }
-            
-            List<GameplayEffectData> sorted = this.Effects.OrderBy(effect => effect).ToList();
-            List<GameplayEffectData> otherSorted = other.Effects.OrderBy(effect => effect).ToList();
-            for (int i = 0; i < sorted.Count; i += 1) {
-                int comparison = sorted[i].CompareTo(otherSorted[i]);
-                if (comparison != 0) {
-                    return comparison;
-                }
-            }
-            
-            return 0;
-        }
-        
-        public override void Process(in Item item, AbilitySystem target) {
-            this.Effects.ForEach(target.AddEffect);
         }
         
         public override string ToString() {
@@ -46,10 +41,6 @@ namespace Items {
             }
             
             return sb.ToString();
-        }
-        
-        protected override int HashPropertyContents() {
-            return this.ToString().GetHashCode();
         }
     }
 }
