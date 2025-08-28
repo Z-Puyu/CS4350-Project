@@ -23,11 +23,6 @@ namespace ModularItemsAndInventory.Runtime.Items {
             }
 
             comparison = this.Type.CompareTo(other.Type);
-            if (comparison != 0) {
-                return comparison;
-            }
-            
-            comparison = string.CompareOrdinal(this.Name, other.Name);
             return comparison != 0 ? comparison : this.Properties.CompareTo(other.Properties);
         }
     }
