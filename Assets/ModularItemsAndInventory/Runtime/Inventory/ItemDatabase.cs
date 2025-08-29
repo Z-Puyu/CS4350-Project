@@ -22,6 +22,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 
                 this.Items.Add(data.Id, data);
             }
+            
+            Debug.Log($"Loaded {this.Items.Count} items from {this.ItemDataFolder}", this);
         }
 
         public static bool IsRuntimeDefined(ItemKey key) {

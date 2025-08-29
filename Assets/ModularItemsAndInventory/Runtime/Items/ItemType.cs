@@ -11,7 +11,8 @@ namespace ModularItemsAndInventory.Runtime.Items {
     /// This class provides shared functionality to item types and categories,
     /// including name, category assignments, and comparison logic.
     /// </remarks>
-    public abstract class ItemType : ScriptableObject, IComparable<ItemType> {
+    [CreateAssetMenu(fileName = "New Item Type", menuName = "Modular Items and Inventory/Item Type")]
+    public class ItemType : ScriptableObject, IComparable<ItemType> {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public ItemType Category { get; private set; }
         [field: SerializeField] public Sprite DefaultIcon { get; private set; }
