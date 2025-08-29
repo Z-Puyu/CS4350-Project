@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ModularItemsAndInventory.Runtime.Items;
@@ -15,58 +16,63 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
     /// methods to add, remove, and query items.
     /// </summary>
     /// <remarks>
-    /// The inventory groups items by <see cref="ItemTypeDefinition"/> and
+    /// The inventory groups items by <see cref="ItemType"/> and
     /// maintains a count for each specific <see cref="Item"/>.
     /// Supports operations such as adding, removing, counting, and querying items.
     /// </remarks>
     [DisallowMultipleComponent]
-    public class Inventory : MonoBehaviour, IEnumerable<KeyValuePair<Item, int>> {
+    public class Inventory : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>> {
         public enum OperationType { AddItem, RemoveItem }
-        
+
         public struct ItemOperation {
-            public Item Item { get; }
+            public ItemKey Item { get; }
             public int OldQuantity { get; }
             public int CurrentQuantity { get; }
             public OperationType OperationType { get; }
-            
-            public ItemOperation(Item item, int oldQuantity, int currentQuantity, OperationType operationType) {
+
+            public ItemOperation(ItemKey item, int oldQuantity, int currentQuantity, OperationType operationType) {
                 this.Item = item;
                 this.OldQuantity = oldQuantity;
                 this.CurrentQuantity = currentQuantity;
                 this.OperationType = operationType;
             }
         }
-        
+
         [field: SerializeField] private ItemTypeDefinitionContext DefinedItemTypes { get; set; }
 
-        private Dictionary<ItemTypeDefinition, Dictionary<Item, int>> Items { get; set; } =
-            new Dictionary<ItemTypeDefinition, Dictionary<Item, int>>();
-        
+        private Dictionary<ItemType, Dictionary<ItemKey, int>> Items { get; set; } =
+            new Dictionary<ItemType, Dictionary<ItemKey, int>>();
+
         public event UnityAction<ItemOperation> OnInventoryChanged;
 
         /// <summary>
         /// Provides indexer access to retrieve items of a specific type definition stored in the inventory.
         /// </summary>
-        /// <param name="type">The <see cref="ItemTypeDefinition"/> used to filter and retrieve associated items.</param>
+        /// <param name="type">The <see cref="ItemType"/> used to filter and retrieve associated items.</param>
         /// <returns>
         /// A dictionary of <see cref="Item"/> objects and their respective quantities
         /// for the specified item type definition.
         /// If no items of the given type are present, an empty dictionary is returned.
         /// </returns>
-        public IDictionary<Item, int> this[[NotNull] ItemTypeDefinition type] =>
-                this.Items.TryGetValue(type, out Dictionary<Item, int> items)
-                        ? items
-                        : new Dictionary<Item, int>();
+        public IReadOnlyDictionary<ItemKey, int> this[[NotNull] ItemType type] {
+            get {
+                if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> items)) {
+                    return new ReadOnlyDictionary<ItemKey, int>(items);
+                }
+
+                return new Dictionary<ItemKey, int>();
+            }
+        }
 
         /// <summary>
         /// Retrieves the count of a specific item in the inventory.
         /// </summary>
         /// <param name="item">The item for which the count is to be retrieved.</param>
         /// <returns>The total number of the specified item in the inventory. Returns 0 if the item does not exist in the inventory.</returns>
-        public int Count([NotNull] Item item) {
-            return this.Items.TryGetValue(item.Type, out Dictionary<Item, int> record)
-                    ? record.GetValueOrDefault(item, 0)
-                    : 0;
+        public int Count(ItemKey item) {
+            return !this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record)
+                    ? 0
+                    : record.GetValueOrDefault(item, 0);
         }
 
         /// <summary>
@@ -74,8 +80,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="type">The type definition of the items to be counted.</param>
         /// <returns>The total count of items with the specified type in the inventory. Returns 0 if no items of that type are found.</returns>
-        public int Count([NotNull] ItemTypeDefinition type) {
-            return this.Items.TryGetValue(type, out Dictionary<Item, int> record) ? record.Values.Sum() : 0;
+        public int Count([NotNull] ItemType type) {
+            return this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record) ? record.Values.Sum() : 0;
         }
 
         /// <summary>
@@ -85,7 +91,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <returns>The total count of items that meet the specified condition.</returns>
         public int Count(Predicate<Item> predicate) {
             return this.Items.SelectMany(entry => entry.Value)
-                       .Count(record => predicate(record.Key));
+                       .Count(pair => ItemDatabase.TryGet(pair.Key, out Item item) && predicate(item));
         }
 
         /// <summary>
@@ -93,8 +99,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item to be checked for storage eligibility.</param>
         /// <returns>true if the item can be stored in the inventory; otherwise, false.</returns>
-        public bool CanStore([NotNull] Item item) {
-            return this.DefinedItemTypes && this.DefinedItemTypes.Contains(item.Type);
+        public bool CanStore(ItemKey item) {
+            return this.DefinedItemTypes && this.DefinedItemTypes.Contains(ItemDatabase.TypeOf(item));
         }
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item to be added to the inventory.</param>
         /// <returns>True if the item was successfully added to the inventory, otherwise false.</returns>
-        public bool Add([NotNull] Item item) {
+        public bool Add(ItemKey item) {
             return this.Add(1, item);
         }
 
@@ -112,7 +118,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="quantity">The quantity of the item to add. Must be greater than or equal to 1.</param>
         /// <param name="item">The item to add to the inventory.</param>
         /// <returns>True if the item was successfully added to the inventory; otherwise, false.</returns>
-        public bool Add(int quantity, [NotNull] Item item) {
+        public bool Add(int quantity, ItemKey item) {
             if (quantity < 1) {
                 Debug.LogWarning("Minimally should add one copy of an item.", this);
                 return false;
@@ -124,13 +130,13 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
             int oldQty = 0;
             int currQty;
-            ItemTypeDefinition type = item.Type;
-            if (this.Items.TryGetValue(type, out Dictionary<Item, int> record)) {
+            ItemType type = ItemDatabase.TypeOf(item);
+            if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record)) {
                 oldQty = record.GetValueOrDefault(item, 0);
                 currQty = record[item] = oldQty + quantity;
             } else {
                 currQty = quantity;
-                this.Items.Add(type, new Dictionary<Item, int> { { item, quantity } });
+                this.Items.Add(type, new Dictionary<ItemKey, int> { { item, quantity } });
             }
 
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, oldQty, currQty, OperationType.AddItem));
@@ -141,8 +147,9 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// Removes all instances of the specified item from the inventory.
         /// </summary>
         /// <param name="item">The item to remove from the inventory.</param>
-        public void RemoveAll([NotNull] Item item) {
-            if (this.Items.TryGetValue(item.Type, out Dictionary<Item, int> record) && record.Remove(item, out int count)) {
+        public void RemoveAll(ItemKey item) {
+            if (this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record) &&
+                record.Remove(item, out int count)) {
                 this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, 0, OperationType.RemoveItem));
             }
         }
@@ -153,7 +160,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="item">The item to be removed from the inventory. Must already exist in the inventory.</param>
         /// <returns>True if the item was successfully removed; otherwise,
         /// false if the item does not exist in the inventory or could not be removed.</returns>
-        public bool Remove([NotNull] Item item) {
+        public bool Remove(ItemKey item) {
             return this.Remove(1, item);
         }
 
@@ -167,19 +174,14 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// Returns false if the item is null, the quantity is invalid, or the item does not exist
         /// in the required quantity within the inventory.
         /// </returns>
-        public bool Remove(int quantity, [NotNull] Item item) {
-            if (item is null) {
-                Debug.LogError("Cannot remove null item to inventory.", this);
-                return false;
-            }
-            
+        public bool Remove(int quantity, ItemKey item) {
             if (quantity < 1) {
                 Debug.LogWarning("Minimally should remove one copy of an item.", this);
                 return false;
             }
-            
-            ItemTypeDefinition type = item.Type;
-            if (!this.Items.TryGetValue(type, out Dictionary<Item, int> record) ||
+
+            ItemType type = ItemDatabase.TypeOf(item);
+            if (!this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record) ||
                 !record.TryGetValue(item, out int count)) {
                 Debug.LogWarning($"Does not have any {item} to remove.", this);
                 return false;
@@ -187,8 +189,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
             if (count < quantity) {
                 Debug.LogWarning($"Trying to remove {quantity} copies of {item} but only has {count}.", this);
-            } 
-            
+            }
+
             int remaining = record[item] = count - quantity;
             if (remaining <= 0) {
                 record.Remove(item);
@@ -205,19 +207,15 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="item">The item whose availability is to be verified.</param>
         /// <returns>Returns true if the inventory contains at least the specified quantity of the item;
         /// otherwise, returns false.</returns>
-        public bool ContainsAtLeast(int quantity, [NotNull] Item item) {
-            if (!this.Items.TryGetValue(item.Type, out Dictionary<Item, int> record)) {
+        public bool ContainsAtLeast(int quantity, ItemKey item) {
+            if (!this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record)) {
                 return false;
             }
-            
+
             return record.TryGetValue(item, out int count) && count >= quantity;
         }
 
-        public IEnumerable<KeyValuePair<Item, int>> DenumerateItems(ItemOrdering ordering) {
-            return this.Items.SelectMany(record => record.Value).OrderBy(pair => pair.Key, ordering);
-        }
-
-        public IEnumerator<KeyValuePair<Item, int>> GetEnumerator() {
+        public IEnumerator<KeyValuePair<ItemKey, int>> GetEnumerator() {
             return this.Items.SelectMany(record => record.Value).GetEnumerator();
         }
 

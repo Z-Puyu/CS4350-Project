@@ -24,7 +24,7 @@ namespace ModularItemsAndInventory.Runtime.Items.Orderings {
         /// </remarks>
         /// <seealso cref="ItemOrdering"/>
         /// <seealso cref="DefaultItemOrdering"/>
-        public static ItemOrdering Default = new DefaultItemOrdering();
+        public static ItemOrdering Default { get; } = new DefaultItemOrdering();
         
         public int Compare(Item x, Item y) {
             if (object.ReferenceEquals(x, y)) {
