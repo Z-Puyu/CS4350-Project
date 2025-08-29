@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ModularItemsAndInventory.Runtime.Items;
-using ModularItemsAndInventory.Runtime.Items.Orderings;
 using UnityEngine;
 using UnityEngine.Events;
 

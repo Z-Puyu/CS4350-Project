@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using DataStructuresForUnity.Runtime.GeneralUtils;
 using ModularItemsAndInventory.Runtime.Items;
-using ModularItemsAndInventory.Runtime.Items.Properties;
 using SaintsField;
-using Unity.VisualScripting.TextureAssets;
 using UnityEngine;
 
 namespace ModularItemsAndInventory.Runtime.Inventory {

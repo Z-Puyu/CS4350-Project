@@ -1,5 +1,4 @@
 ﻿using System;
-using ModularItemsAndInventory.Runtime.Items.Properties;
 
 namespace ModularItemsAndInventory.Runtime.Items {
     /// <summary>
@@ -9,7 +8,7 @@ namespace ModularItemsAndInventory.Runtime.Items {
     /// </summary>
     public readonly struct ItemKey : IEquatable<ItemKey>, IComparable<ItemKey> {
         public string Id { get; }
-        private string Name { get; }
+        internal string Name { get; }
         private string EncodedProperties { get; }
 
         internal ItemKey(string id, string name, string encodedProperties) {
