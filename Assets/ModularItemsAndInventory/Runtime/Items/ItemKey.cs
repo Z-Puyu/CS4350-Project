@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ModularItemsAndInventory.Runtime.Items {
     /// <summary>
@@ -12,9 +13,9 @@ namespace ModularItemsAndInventory.Runtime.Items {
         private string EncodedProperties { get; }
 
         internal ItemKey(string id, string name, string encodedProperties) {
-            this.Id = id;
-            this.Name = name;
-            this.EncodedProperties = encodedProperties;
+            this.Id = id.Trim();
+            this.Name = name.Trim();
+            this.EncodedProperties = encodedProperties.Trim();
         }
 
         public static ItemKey From(Item item) {
@@ -46,7 +47,16 @@ namespace ModularItemsAndInventory.Runtime.Items {
         }
         
         public static implicit operator string(ItemKey key) {
-            return $"{key.Id}-{key.Name}-{key.EncodedProperties}";
+            StringBuilder sb = new StringBuilder(key.Id);
+            if (!string.IsNullOrWhiteSpace(key.Name)) {
+                sb.Append('-').Append(key.Name);
+            }
+
+            if (!string.IsNullOrWhiteSpace(key.EncodedProperties)) {
+                sb.Append('-').Append(key.EncodedProperties);
+            }
+            
+            return sb.ToString();
         }
     }
 }

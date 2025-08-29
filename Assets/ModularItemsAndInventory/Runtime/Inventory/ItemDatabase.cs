@@ -27,7 +27,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         }
 
         public static bool IsRuntimeDefined(ItemKey key) {
-            return ItemDatabase.TryGet(key, out Item item) && item.Key.Equals(key);
+            return Singleton<ItemDatabase>.Instance.Items.ContainsKey(key);
         }
 
         public static bool TryGet(string id, out ItemData data) {
@@ -40,7 +40,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 return true;
             }
 
-            if (!database.Items.TryGetValue(key.Id, out ItemData data)) {
+            if (!database.Items.TryGetValue(key, out ItemData data)) {
                 Debug.LogError($"Item {key} not found", database);
                 return false;
             }
