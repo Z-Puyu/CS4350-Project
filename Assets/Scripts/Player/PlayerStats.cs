@@ -7,10 +7,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private int maxHealth;
     public CrossObjectEventWithDataSO broadcastHealth;
+    public CrossObjectEventSO broadcastPlayerDie;
 
     void Start()
     {
         currentHealth = maxHealth;
+        broadcastHealth.TriggerEvent(this);
     }
 
     public void UpdateHealthBar(Slider slider)
@@ -22,6 +24,11 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth -= damage;
         broadcastHealth.TriggerEvent(this);
+        if (currentHealth == 0)
+        {
+            broadcastPlayerDie.TriggerEvent();
+            Destroy(gameObject);
+        }
     }
 
 }
