@@ -4,7 +4,6 @@ using GameplayAbilities.Runtime.Attributes;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
-        
         public float Level { get; }
         public Dictionary<string, int> CallerSuppliedModifierValues { get; }
 
@@ -15,20 +14,19 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             this.Level = level;
             this.CallerSuppliedModifierValues = callerSuppliedModifierValues;
         }
+        
+        public static Builder From(IAttributeReader instigator) {
+            return new Builder(instigator);
+        }
 
         public sealed class Builder {
             private IAttributeReader Instigator { get; set; }
             private float Level { get; set; } = 1;
             private Dictionary<string, int> CallerSuppliedModifierValues { get; set; } = new Dictionary<string, int>();
 
-            private Builder(IAttributeReader instigator) {
+            internal Builder(IAttributeReader instigator) {
                 this.Instigator = instigator;
             }
-            
-            public static Builder From(IAttributeReader instigator) {
-                return new Builder(instigator);
-            }
-            
             
             public Builder WithLevel(float level) {
                 this.Level = level;
