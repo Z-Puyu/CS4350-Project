@@ -117,7 +117,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private GameplayEffectExecutionArgs CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.Builder.From(this.AttributeSet).Build();
+            return GameplayEffectExecutionArgs.From(this.AttributeSet).Build();
         }
     }
 }
