@@ -45,6 +45,14 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 return this;
             }
             
+            public Builder WithModifiers(IEnumerable<KeyValuePair<string, int>> modifiers) {
+                foreach (KeyValuePair<string, int> modifier in modifiers) {
+                    this.CallerSuppliedModifierValues[modifier.Key] = modifier.Value;
+                }
+                
+                return this;
+            }
+            
             public GameplayEffectExecutionArgs Build() {
                 return new GameplayEffectExecutionArgs(this.Instigator, this.Level, this.CallerSuppliedModifierValues);
             }
