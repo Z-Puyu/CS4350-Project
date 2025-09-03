@@ -2,14 +2,17 @@
 using System.Text;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using Player;
+using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace PlayerInput {
     [DisallowMultipleComponent]
     public sealed class PlayerInputParser : MonoBehaviour {
-        [field: SerializeField] private Inventory Inventory { get; set; }
-
+        [field: SerializeField, Required] private Inventory Inventory { get; set; }
+        [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
+        
         public void OnToggleInventory(InputAction.CallbackContext context) {
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
@@ -28,12 +31,12 @@ namespace PlayerInput {
         }
 
         public void OnMove(InputAction.CallbackContext context) {
-            if (!context.performed) {
-                return;
+            if (context.performed) {
+                Vector2 input = context.ReadValue<Vector2>();
+                this.Movement.MoveTowards(input);
+            } else if (context.canceled) {
+                this.Movement.Stop();
             }
-            
-            Vector2 input = context.ReadValue<Vector2>();
-            Debug.Log($"Move towards {input}", this);
         }
     }
 }
