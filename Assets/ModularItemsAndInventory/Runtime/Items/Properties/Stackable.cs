@@ -5,7 +5,7 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
     public sealed class Stackable : ItemProperty {
         [field: SerializeField, MinValue(2)] public int StackLimit { get; private set; } = 2;
 
-        protected override string Encode() {
+        protected override string GenerateSortKey() {
             return $"{this.GetType().FullName}_StackLimit:{this.StackLimit}";
         }
 

@@ -66,24 +66,11 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (!this.Perks.Remove(perk)) {
                 Debug.LogError($"Removing perk {perk} before it is enabled for {this.gameObject.name}", this);
             } else {
-                disable(perk);
-            }
-
-            return;
-            void disable(Perk p) {
-                foreach (Perk child in PerkDatabase.GetChildren(p)) {
-                    disable(child);
-                }
-
-                if (!this.Perks.Contains(p)) {
-                    return;
-                }
-                
-                foreach (Modifier modifier in p.Modifiers.Select(m => m.ToModifier())) {
+                foreach (Modifier modifier in perk.Modifiers.Select(m => m.ToModifier())) {
                     this.AttributeSet.AddModifier(-modifier);
                 }
                 
-                foreach (Ability ability in p.Abilities) {
+                foreach (Ability ability in perk.Abilities) {
                     this.Revoke(ability);
                 }
             }
@@ -130,7 +117,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private GameplayEffectExecutionArgs CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet).Build();
+            return GameplayEffectExecutionArgs.Builder.From(this.AttributeSet).Build();
         }
     }
 }

@@ -12,17 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13b2fe0613549798a1e24ecb7ef3cde, type: 3}
   m_Name: Item - HealthPotion
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Items.ItemData
-  <Id>k__BackingField: health_potion
   <Type>k__BackingField: {fileID: 11400000, guid: 57d5a45dabf32ad49af11ee7dd9d2f23, type: 2}
   <Name>k__BackingField: Health Potion
   <Description>k__BackingField: A potion to restore health
   <CustomIcon>k__BackingField: {fileID: 0}
   <Properties>k__BackingField:
-  - rid: 4925886426016907350
+  - rid: 4925886386017141046
   - rid: 4925886386017141051
   references:
     version: 2
     RefIds:
+    - rid: 4925886386017141046
+      type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: Assembly-CSharp}
+      data:
+        <Price>k__BackingField: 100
+        <HasDifferentPriceForSale>k__BackingField: 0
+        <Worth>k__BackingField: 0
     - rid: 4925886386017141051
       type: {class: Consumable, ns: Items, asm: Assembly-CSharp}
       data:
@@ -46,9 +51,3 @@ MonoBehaviour:
           <SourceAttribute>k__BackingField: {fileID: 0}
           <DefaultValue>k__BackingField: 20
           <Label>k__BackingField: 
-    - rid: 4925886426016907350
-      type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
-      data:
-        <Price>k__BackingField: 50
-        <HasDifferentPriceForSale>k__BackingField: 0
-        <Worth>k__BackingField: 0

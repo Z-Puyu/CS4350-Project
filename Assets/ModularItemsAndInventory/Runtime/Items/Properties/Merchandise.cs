@@ -16,7 +16,7 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
             }
         }
 
-        protected override string Encode() {
+        protected override string GenerateSortKey() {
             return $"{this.GetType().FullName}_Price:{this.Price}_Worth:{this.Worth}";
         }
 

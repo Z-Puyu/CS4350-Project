@@ -7,13 +7,11 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
     /// Support comparison-semantics to enable ordering between items which only differ in properties.
     /// </summary>
     public interface IItemProperty : IEquatable<IItemProperty>, IComparable<IItemProperty> {
-        internal string Encoding { get; }
-        
         public IItemProperty Instantiate();
 
         /// <summary>
         /// Processes an item used by a specific target. The implementation is determined
-        /// by the concrete class inheriting from <see cref="ItemProperty"/>.
+        /// by the concrete class inheriting from <see cref="ItemProperty{T}"/>.
         /// </summary>
         /// <param name="item">
         /// The <see cref="Item"/> instance to be processed. This parameter is read-only.
@@ -23,9 +21,5 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
         /// The type and behaviour depend on the specific implementation of the derived class.
         /// </param>
         public void Process(in Item item, GameObject target);
-
-        int IComparable<IItemProperty>.CompareTo(IItemProperty other) {
-            return string.CompareOrdinal(this.Encoding, other.Encoding);
-        }
     }
 }
