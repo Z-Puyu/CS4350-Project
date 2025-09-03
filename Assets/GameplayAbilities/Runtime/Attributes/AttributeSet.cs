@@ -29,10 +29,10 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// This method should be called once, before any other method of this class.
         /// </remarks>
-        public void Initialise(AttributeTable table = null) {
-            if (!table) {
+        public void Initialise(IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> table = null) {
+            if (table == null) {
                 table = this.DefaultAttributeTable;
-                if (!table) {
+                if (table == null) {
                     Debug.LogError("No attribute table provided and no default attribute table set.", this);
                     return;
                 }
