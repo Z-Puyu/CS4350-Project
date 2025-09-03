@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3324175696564490730}
   - component: {fileID: 8172879604390269937}
-  - component: {fileID: 7779909020562112349}
   - component: {fileID: 9044932256310309293}
-  - component: {fileID: 6893636041849527563}
   - component: {fileID: 8133807558494651657}
   - component: {fileID: 3797095984724131894}
   - component: {fileID: 2535223743861042130}
@@ -96,21 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7779909020562112349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454949747492492771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aac4d243b5f99a4a96cf52bcc3f52b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 200
-  broadcastHealth: {fileID: 11400000, guid: bb97dabafb8e36e43b3b42c245d51efa, type: 2}
-  broadcastPlayerDie: {fileID: 11400000, guid: 6a597c3dbb5b4924bb34e77ffe4f38af, type: 2}
 --- !u!114 &9044932256310309293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 45a773951d033824b9b85329b48f43b6, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -141,19 +124,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6893636041849527563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454949747492492771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.05
 --- !u!50 &8133807558494651657
 Rigidbody2D:
   serializedVersion: 5
