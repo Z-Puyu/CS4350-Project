@@ -7,14 +7,15 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
     /// </summary>
     [Serializable]
     public abstract class ItemProperty : IItemProperty {
-        private Lazy<string> CachedSortKey { get; }
-        internal string SortKey => this.CachedSortKey.Value;
+        protected Lazy<string> CachedEncoding { get; }
+        
+        string IItemProperty.Encoding => this.CachedEncoding.Value;
 
         protected ItemProperty() {
-            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+            this.CachedEncoding = new Lazy<string>(this.Encode);
         }
-
-        protected abstract string GenerateSortKey();
+        
+        protected abstract string Encode();
 
         public bool Equals(IItemProperty other) {
             return this.CompareTo(other) == 0;
@@ -25,17 +26,15 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
                 return 0;
             }
 
-            return other is null
-                    ? 1
-                    : string.CompareOrdinal(this.SortKey, ((ItemProperty)other).SortKey);
+            return other is null ? 1 : string.CompareOrdinal(this.CachedEncoding.Value, other.Encoding);
         }
-
+        
         public abstract IItemProperty Instantiate();
 
         public abstract void Process(in Item item, GameObject target);
 
         public sealed override int GetHashCode() {
-            return this.SortKey.GetHashCode();
+            return this.CachedEncoding.Value.GetHashCode();
         }
     }
 }
