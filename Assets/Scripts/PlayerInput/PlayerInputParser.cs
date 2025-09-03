@@ -26,5 +26,14 @@ namespace PlayerInput {
             
             Debug.Log("Attack", this);
         }
+
+        public void OnMove(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+            
+            Vector2 input = context.ReadValue<Vector2>();
+            Debug.Log($"Move towards {input}", this);
+        }
     }
 }
