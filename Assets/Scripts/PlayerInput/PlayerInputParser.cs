@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Common;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using Player;
@@ -14,12 +15,16 @@ namespace PlayerInput {
         [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
         
         public void OnToggleInventory(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+            
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
                 sb.AppendLine($"{item.Key}: {item.Value}");
             }
             
-            Debug.Log(sb, this);
+            OnScreenDebugger.Log(sb.ToString());
         }
 
         public void OnAttack(InputAction.CallbackContext context) {

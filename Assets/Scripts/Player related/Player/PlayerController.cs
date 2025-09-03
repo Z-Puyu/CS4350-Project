@@ -19,7 +19,7 @@ namespace Player {
             
             this.AttributeSet.Initialise(this.InitialData.Attributes);
             foreach (KeyValuePair<ItemData, int> data in this.InitialData.Items) {
-                this.Inventory.Add(data.Value, Item.From(data.Key).Key);
+                this.Inventory.Add(data.Value, ItemKey.From(data.Key));
             }
         }
     }

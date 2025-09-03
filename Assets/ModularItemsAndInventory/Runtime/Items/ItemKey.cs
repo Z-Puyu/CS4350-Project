@@ -20,8 +20,12 @@ namespace ModularItemsAndInventory.Runtime.Items {
 
         public static ItemKey From(Item item) {
             return item.HasRuntimeData
-                    ? new ItemKey(item.Id, string.Empty, string.Empty)
-                    : new ItemKey(item.Id, item.Name, item.Properties.Encoding.Value);
+                    ? new ItemKey(item.Id, item.Name, item.Properties.Encoding.Value)
+                    : new ItemKey(item.Id, string.Empty, string.Empty);
+        }
+
+        public static ItemKey From(ItemData data) {
+            return new ItemKey(data.Id, string.Empty, string.Empty);
         }
 
         public bool Equals(ItemKey other) {
