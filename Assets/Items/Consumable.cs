@@ -13,7 +13,7 @@ namespace Items {
     public class Consumable : ItemProperty {
         [field: SerializeField] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
 
-        protected override string Encode() {
+        protected override string GenerateSortKey() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
             List<GameplayEffectData> effects = this.Effects.ToList();
             effects.Sort();

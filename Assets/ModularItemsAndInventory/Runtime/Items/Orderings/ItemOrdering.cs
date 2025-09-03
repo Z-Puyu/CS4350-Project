@@ -1,25 +1,43 @@
 ﻿using System.Collections.Generic;
-using ModularItemsAndInventory.Runtime.Inventory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ModularItemsAndInventory.Runtime.Items.Orderings {
     /// <summary>
-    /// A collection of useful orderings based on item keys.
+    /// Represents an abstract base class for defining custom item ordering logic.
+    /// Provides a mechanism for comparing two items and determining their relative order.
     /// </summary>
-    public static partial class ItemOrdering {
-        public static IComparer<ItemKey> Default { get; } = Comparer<ItemKey>.Create((x, y) => x.CompareTo(y));
+    /// <remarks>
+    /// The class implements the <see cref="IComparer{T}"/> interface for comparing <see cref="Item"/> instances.
+    /// This ensures that derived classes provide a consistent way to order items based on specific criteria.
+    /// </remarks>
+    /// <example>
+    /// Custom implementations should override the <see cref="CompareExistingItems(Item, Item)"/>
+    /// method to define their specific ordering logic.
+    /// </example>
+    public abstract class ItemOrdering : IComparer<Item> {
+        /// <summary>
+        /// Represents the default implementation of the <see cref="ItemOrdering"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This instance applies the default logic for comparing and ordering items.
+        /// It uses the <see cref="DefaultItemOrdering"/> class to define the standard behaviour.
+        /// </remarks>
+        /// <seealso cref="ItemOrdering"/>
+        /// <seealso cref="DefaultItemOrdering"/>
+        public static ItemOrdering Default = new DefaultItemOrdering();
+        
+        public int Compare(Item x, Item y) {
+            if (object.ReferenceEquals(x, y)) {
+                return 0;
+            }
 
-        public static IComparer<ItemKey> DefaultReverse { get; } = Comparer<ItemKey>.Create((x, y) => y.CompareTo(x));
+            if (x is null) {
+                return -1;
+            }
 
-        public static IComparer<ItemKey> ByName { get; } =
-            Comparer<ItemKey>.Create((x, y) => string.CompareOrdinal(x.Name, y.Name));
-        
-        public static IComparer<ItemKey> ByNameReverse { get; } =
-            Comparer<ItemKey>.Create((x, y) => string.CompareOrdinal(y.Name, x.Name));
-        
-        public static IComparer<ItemKey> ByType { get; } =
-            Comparer<ItemKey>.Create((x, y) => ItemDatabase.TypeOf(x).CompareTo(ItemDatabase.TypeOf(y)));
-        
-        public static IComparer<ItemKey> ByTypeReverse { get; } =
-            Comparer<ItemKey>.Create((x, y) => ItemDatabase.TypeOf(y).CompareTo(ItemDatabase.TypeOf(x)));
+            return y is null ? 1 : this.CompareExistingItems(x, y);
+        }
+
+        protected abstract int CompareExistingItems([NotNull] Item x, [NotNull] Item y);
     }
 }

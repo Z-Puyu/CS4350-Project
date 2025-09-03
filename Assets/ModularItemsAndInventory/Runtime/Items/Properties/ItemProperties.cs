@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,22 +9,11 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
     /// Provides functionality to manage, query, and manipulate these properties.
     /// Implements <see cref="IEquatable{T}"/> for equality comparisons and <see cref="IComparable{T}"/> for sorting.
     /// </summary>
-    public sealed class ItemProperties : IEquatable<ItemProperties>, IComparable<ItemProperties>, IEnumerable<IItemProperty> {
+    public sealed class ItemProperties : IEquatable<ItemProperties>, IComparable<ItemProperties> {
         private Item OwningItem { get; }
-        internal Lazy<string> Encoding { get; }
 
         private Dictionary<Type, IItemProperty> Properties { get; } =
             new Dictionary<Type, IItemProperty>();
-
-        public static string Encode(IEnumerable<IItemProperty> props) {
-            List<string> properties = props.Select(p => p.Encoding).ToList();
-            properties.Sort();
-            return string.Join('|', properties);
-        }
-
-        private string Encode() {
-            return ItemProperties.Encode(this.Properties.Values);
-        }
 
         /// <summary>
         /// Applies the item properties to the specified target.
@@ -95,7 +83,6 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
 
         private ItemProperties(Item owningItem) {
             this.OwningItem = owningItem;
-            this.Encoding = new Lazy<string>(this.Encode);
         }
 
         public static ItemProperties Of(Item item) {
@@ -151,17 +138,9 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
             return 0;
         }
 
-        public IEnumerator<IItemProperty> GetEnumerator() {
-            return this.Properties.Values.GetEnumerator();
-        }
-
         public override int GetHashCode() {
             return HashSet<IItemProperty>.CreateSetComparer()
                                          .GetHashCode(this.Properties.Values.ToHashSet());
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() {
-            return this.GetEnumerator();
         }
     }
 }

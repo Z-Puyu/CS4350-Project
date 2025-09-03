@@ -15,10 +15,10 @@ namespace ModularItemsAndInventory.Runtime.Items {
         menuName = "Modular Items and Inventory/Item Type Definition Context")]
     public sealed class ItemTypeDefinitionContext : ScriptableObject {
         [field: SerializeField]
-        private List<ItemType> DefinedItemTypesAndCategories { get; set; } =
-            new List<ItemType>();
+        private List<ItemTypeDefinition> DefinedItemTypesAndCategories { get; set; } =
+            new List<ItemTypeDefinition>();
 
-        public bool Contains(ItemType definition) {
+        public bool Contains(ItemTypeDefinition definition) {
             return this.DefinedItemTypesAndCategories.Any(definition.BelongsTo);
         }
     }

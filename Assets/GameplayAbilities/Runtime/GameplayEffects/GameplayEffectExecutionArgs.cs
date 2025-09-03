@@ -4,6 +4,7 @@ using GameplayAbilities.Runtime.Attributes;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
+        
         public float Level { get; }
         public Dictionary<string, int> CallerSuppliedModifierValues { get; }
 
@@ -14,19 +15,20 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             this.Level = level;
             this.CallerSuppliedModifierValues = callerSuppliedModifierValues;
         }
-        
-        public static Builder From(IAttributeReader instigator) {
-            return new Builder(instigator);
-        }
 
         public sealed class Builder {
             private IAttributeReader Instigator { get; set; }
             private float Level { get; set; } = 1;
             private Dictionary<string, int> CallerSuppliedModifierValues { get; set; } = new Dictionary<string, int>();
 
-            internal Builder(IAttributeReader instigator) {
+            private Builder(IAttributeReader instigator) {
                 this.Instigator = instigator;
             }
+            
+            public static Builder From(IAttributeReader instigator) {
+                return new Builder(instigator);
+            }
+            
             
             public Builder WithLevel(float level) {
                 this.Level = level;
@@ -42,14 +44,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             /// <returns>The execution argument builder.</returns>
             public Builder WithModifier(int magnitude, string label) {
                 this.CallerSuppliedModifierValues[label] = magnitude;
-                return this;
-            }
-            
-            public Builder WithModifiers(IEnumerable<KeyValuePair<string, int>> modifiers) {
-                foreach (KeyValuePair<string, int> modifier in modifiers) {
-                    this.CallerSuppliedModifierValues[modifier.Key] = modifier.Value;
-                }
-                
                 return this;
             }
             
