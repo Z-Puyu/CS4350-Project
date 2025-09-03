@@ -1,14 +1,15 @@
-#if UNITY_2022_2_OR_NEWER && !SAINTSFIELD_DEBUG_UNITY_BROKEN_FALLBACK && !SAINTSFIELD_UI_TOOLKIT_DISABLE
+#if UNITY_2021_3_OR_NEWER
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using SaintsField.DropdownBase;
+using SaintsField.Editor.Core;
 using SaintsField.Editor.Drawers.AdvancedDropdownDrawer;
 using SaintsField.Editor.UIToolkitElements;
 using SaintsField.Editor.Utils;
 using SaintsField.Playa;
-using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -17,273 +18,358 @@ namespace SaintsField.Editor.Drawers.TreeDropdownDrawer
 {
     public class SaintsTreeDropdownElement: VisualElement
     {
-        // public UnityEvent<object> OnValueSelected { get; } = new UnityEvent<object>();
+        // value
+        // new status on or off;
+        // is row click or not (row click need to close the dropdown)
+        public readonly UnityEvent<object, bool, bool> OnClickedEvent = new UnityEvent<object, bool, bool>();
 
-        public SaintsTreeDropdownElement(AdvancedDropdownMetaInfo metaInfo)
+        public readonly UnityEvent<TreeRowAbsElement> ScrollToElementEvent = new UnityEvent<TreeRowAbsElement>();
+
+        public TreeRowAbsElement CurrentFocus { get; private set; }
+        private readonly bool _allowToggle;
+
+        private readonly IReadOnlyList<TreeRowAbsElement> _flatList;
+
+        public SaintsTreeDropdownElement(AdvancedDropdownMetaInfo metaInfo, bool toggle)
         {
+            _allowToggle = toggle;
+
             // VisualElement root = new VisualElement();
 
-            CleanableTextInputFullWidth cleanableTextInput = new CleanableTextInputFullWidth(null);
-            Add(cleanableTextInput);
-
-            TreeView treeView = new TreeView();
-            Add(treeView);
-
-            HashSet<int> selectedIds = new HashSet<int>();
-            HashSet<int> selectedValueIds = new HashSet<int>();
-
-            List<TreeViewItemData<IAdvancedDropdownList>> nestedItems = MakeNestedItems(
-                Array.Empty<ListSearchToken>(),
-                metaInfo.DropdownListValue,
-                metaInfo.CurValues,
-                0,
-                selectedIds,
-                selectedValueIds).ItemDatas;
-
-            // List<TreeViewItemData<string>> items = new List<TreeViewItemData<string>>(10);
-            // for (int i = 0; i < 10; i++)
-            // {
-            //     int itemIndex = i * 10 + i;
-            //
-            //     List<TreeViewItemData<string>> treeViewSubItemsData = new List<TreeViewItemData<string>>(10);
-            //     for (int j = 0; j < 10; j++)
-            //     {
-            //         treeViewSubItemsData.Add(new TreeViewItemData<string>(itemIndex + j + 1, $"Data {i + 1}-{j + 1}"));
-            //     }
-            //
-            //     TreeViewItemData<string> treeViewItemData = new TreeViewItemData<string>(itemIndex, $"Data {i+1}", treeViewSubItemsData);
-            //     items.Add(treeViewItemData);
-            // }
-
-            Func<VisualElement> makeItem = () => new Label();
-
-            Action<VisualElement, int> bindItem = (e, i) =>
+            // CleanableTextInputFullWidth cleanableTextInput = new CleanableTextInputFullWidth(null);
+            // Add(cleanableTextInput);
+            ToolbarSearchField toolbarSearchField = new ToolbarSearchField
             {
-                IAdvancedDropdownList item = treeView.GetItemDataForIndex<IAdvancedDropdownList>(i);
-                int id = treeView.GetIdForIndex(i);
-                ((Label)e).text = $"{(selectedIds.Contains(id) ? "✓" : "")}{item.displayName}({item.value})";
-            };
-
-            treeView.SetRootItems(nestedItems);
-            treeView.makeItem = makeItem;
-            treeView.bindItem = bindItem;
-            treeView.selectionType = SelectionType.Multiple;
-            treeView.selectionType = SelectionType.Single;
-            treeView.Rebuild();
-
-            HashSet<int> initSelectedIds = new HashSet<int>(selectedIds);
-            HashSet<int> initSelectedValueIds = new HashSet<int>(selectedValueIds);
-
-            treeView.SetSelectionById(initSelectedIds);
-            Debug.Log($"selectedIds={string.Join(",", initSelectedIds)}");
-
-            cleanableTextInput.TextField.RegisterValueChangedCallback(evt =>
-            {
-                string searchText = evt.newValue.Trim();
-                selectedIds.Clear();
-                selectedValueIds.Clear();
-
-                if(string.IsNullOrEmpty(searchText))
+                style =
                 {
-                    selectedIds.UnionWith(initSelectedIds);
-                    selectedValueIds.UnionWith(initSelectedValueIds);
-                    treeView.SetRootItems(nestedItems);
-                    treeView.Rebuild();
-                    return;
-                }
+                    flexGrow = 1,
+                    width = StyleKeyword.None,
+                },
+            };
+            Add(toolbarSearchField);
 
-                Debug.Log($"searchText={searchText}");
-                treeView.SetRootItems(MakeNestedItems(
-                    SerializedUtils.ParseSearch(searchText).ToArray(),
-                    metaInfo.DropdownListValue,
-                    metaInfo.CurValues,
-                    0,
-                    selectedIds,
-                    selectedValueIds).ItemDatas);
-                treeView.Rebuild();
+            HashSet<object> curValues = metaInfo.CurValues.ToHashSet();
+
+            OnClickedEvent.AddListener((v, isOn, _) =>
+            {
+                if (isOn)
+                {
+                    curValues.Add(v);
+                }
+                else
+                {
+                    curValues.Remove(v);
+                }
             });
 
-            // Callback invoked when the user double clicks an item
-            // treeView.itemsChosen += (selectedItems) =>
-            // {
-            //     Debug.Log("Items chosen: " + string.Join(", ", selectedItems));
-            // };
+            TreeRowAbsElement[] treeRowElements = MakeNestedTreeRow(0,
+                metaInfo.DropdownListValue,
+                curValues)
+                .ToArray();
 
-            double lastClickTime = double.MinValue;
-            double lastSelectTime = double.MinValue;
-            IReadOnlyList<object> selectedItems = null;
-
-            // Callback invoked when the user changes the selection inside the TreeView
-            treeView.selectedIndicesChanged += selectedIndices =>
+            VisualElement treeContainer = new VisualElement
             {
-                bool valueSelected = false;
-                List<object> curSelectedItems = new List<object>();
-                foreach (int index in selectedIndices)
+                focusable = true,
+            };
+             List<TreeRowAbsElement> flatList = new List<TreeRowAbsElement>();
+            foreach (TreeRowAbsElement treeRow in treeRowElements)
+            {
+                treeContainer.Add(treeRow);
+                foreach (TreeRowAbsElement rowAbsElement in FlatTreeRow(treeRow))
                 {
-                    IAdvancedDropdownList r = treeView.GetItemDataForIndex<IAdvancedDropdownList>(index);
-                    // ReSharper disable once InvertIf
-                    if (r.Count == 0)
+                    flatList.Add(rowAbsElement);
+                    switch (rowAbsElement)
                     {
-                        valueSelected = true;
-                        curSelectedItems.Add(r.value);
+                        case TreeRowValueElement tr:
+                            tr.OnClickedEvent.AddListener((_, _) => CurrentFocus = tr);
+                            break;
+                        case TreeRowFoldoutElement tf:
+                            tf.RegisterValueChangedCallback(_ => CurrentFocus = tf);
+                            break;
+                    }
+                }
+            }
+
+            _flatList = flatList;
+
+            Add(treeContainer);
+
+#if UNITY_6000_0_OR_NEWER
+            toolbarSearchField.placeholderText = "Search";
+#endif
+            toolbarSearchField.RegisterCallback<NavigationMoveEvent>(evt =>
+            {
+                if (evt.direction == NavigationMoveEvent.Direction.Down)
+                {
+                    treeContainer.Focus();
+                }
+            });
+
+            RegisterCallback<AttachToPanelEvent>(_ => toolbarSearchField.Q<TextField>().Q("unity-text-input").Focus());
+
+            toolbarSearchField.RegisterValueChangedCallback(evt =>
+            {
+                string searchText = evt.newValue;
+
+                ListSearchToken[] searchTokens = string.IsNullOrWhiteSpace(searchText)
+                    ? Array.Empty<ListSearchToken>()
+                    : SerializedUtils.ParseSearch(searchText).ToArray();
+
+                foreach (TreeRowAbsElement treeRowAbsElement in treeRowElements)
+                {
+                    treeRowAbsElement.OnSearch(searchTokens);
+                }
+            });
+
+            // navigation
+            RegisterCallback<NavigationMoveEvent>(e =>
+            {
+                // Debug.Log(e.direction);
+                bool isUp;
+                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+                switch (e.direction)
+                {
+                    case NavigationMoveEvent.Direction.Up:
+                        isUp = true;
+                        break;
+                    case NavigationMoveEvent.Direction.Down:
+                        isUp = false;
+                        break;
+                    case NavigationMoveEvent.Direction.Left:
+                    {
+                        switch (CurrentFocus)
+                        {
+                            case TreeRowFoldoutElement { value: true } foldoutElement:
+                                foldoutElement.value = false;
+                                break;
+                            case { Parent: not null }:
+                            {
+                                CurrentFocus = CurrentFocus.Parent;
+                                // Debug.Log($"currentFocus={_currentFocus}");
+                                foreach (TreeRowAbsElement treeRowAbsElement in _flatList)
+                                {
+                                    treeRowAbsElement.SetNavigateHighlight(CurrentFocus == treeRowAbsElement);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        return;
+                    }
+                    case NavigationMoveEvent.Direction.Right:
+                    {
+                        if (CurrentFocus is TreeRowFoldoutElement { value: false } foldoutElement)
+                        {
+                            foldoutElement.value = true;
+                        }
+                        return;
+                    }
+                    default:
+                        return;
+                }
+
+                TreeRowAbsElement toFocus = null;
+                if (CurrentFocus != null)
+                {
+                    List<TreeRowAbsElement> prevList = new List<TreeRowAbsElement>(_flatList.Count);
+                    for (int index = 0; index < _flatList.Count; index++)
+                    {
+                        TreeRowAbsElement current = _flatList[index];
+                        if (current == CurrentFocus)
+                        {
+                            if (isUp)
+                            {
+                                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                                if (prevList.Count > 0)
+                                {
+                                    // Debug.Log(prevList.Count);
+                                    // Debug.Log($"pres: {string.Join(", ", prevList)}");
+                                    toFocus = prevList.LastOrDefault(each => each.Navigateable);
+                                }
+                                else
+                                {
+                                    toFocus = _flatList.LastOrDefault(each => each.Navigateable);
+                                }
+
+                                // Debug.Log($"up to {toFocus}");
+                            }
+                            else
+                            {
+                                toFocus = _flatList.Skip(index + 1).FirstOrDefault(each => each.Navigateable)
+                                          ?? _flatList.FirstOrDefault(each => each.Navigateable);
+                            }
+
+                            break;
+                        }
+
+                        // Debug.Log($"{current} -> {currentFocus}");
+                        prevList.Add(current);
                     }
                 }
 
-                if (!valueSelected)
+                if (CurrentFocus == null)
                 {
-                    selectedItems = null;
-                    lastSelectTime = double.MinValue;
+                    toFocus = isUp
+                        ? _flatList.LastOrDefault(each => each.Navigateable)
+                        : _flatList.FirstOrDefault(each => each.Navigateable);
+                }
+
+                if (toFocus != null)
+                {
+                    CurrentFocus = toFocus;
+
+                    // Debug.Log($"currentFocus={_currentFocus}");
+
+                    foreach (TreeRowAbsElement treeRowAbsElement in _flatList)
+                    {
+                        treeRowAbsElement.SetNavigateHighlight(toFocus == treeRowAbsElement);
+                    }
+
+                    ScrollToElementEvent.Invoke(CurrentFocus);
+                }
+            }, TrickleDown.TrickleDown);
+            RegisterCallback<KeyUpEvent>(e =>
+            {
+
+                if (CurrentFocus is null)
+                {
                     return;
                 }
 
-                // Debug.Log($"{string.Join(", ", selectedItems)}");
-                selectedItems = curSelectedItems;
-                lastSelectTime = EditorApplication.timeSinceStartup;
-                CheckClickTarget();
-            };
+                // ReSharper disable once InvertIf
+                if (e.keyCode is KeyCode.Space or KeyCode.Return or KeyCode.KeypadEnter)
+                {
+                    switch (CurrentFocus)
+                    {
+                        case TreeRowFoldoutElement foldoutElement:
+                            foldoutElement.value = !foldoutElement.value;
+                            break;
+                        case TreeRowValueElement valueElement:
+                            valueElement.SetValueOn(!valueElement.IsOn);
+                            valueElement.OnClickedEvent.Invoke(valueElement.IsOn, false);
+                            break;
+                    }
+                }
 
-            treeView.RegisterCallback<MouseDownEvent>(_ =>
-            {
-                lastClickTime = EditorApplication.timeSinceStartup;
-                CheckClickTarget();
             });
+        }
 
-            treeView.RegisterCallback<KeyUpEvent>(e =>
+        public int GetMaxHeight()
+        {
+            int result = SaintsPropertyDrawer.SingleLineHeight + 2;  // search bar height + border
+            foreach (TreeRowAbsElement treeRowAbsElement in _flatList)
             {
-                // Debug.Log(e.keyCode);
-                if (e.keyCode is KeyCode.Return or KeyCode.KeypadEnter && selectedItems != null)
+                if (treeRowAbsElement is TreeRowSepElement)
                 {
-                    Debug.Log($"enter {string.Join(", ", selectedItems)}");
+                    result += 2;
                 }
-            }, TrickleDown.TrickleDown);
-            return;
-
-            void CheckClickTarget()
-            {
-                double diff = lastSelectTime - lastClickTime;
-                // Debug.Log(diff);
-                if (diff is > -0.01d and < 0.01d && selectedItems != null)
+                else
                 {
-                    Debug.Log($"click {string.Join(", ", selectedItems)}");
+                    result += 20;
+                }
+            }
+
+            return result;
+        }
+
+        public void RefreshValues(IReadOnlyList<object> curValues)
+        {
+            foreach (TreeRowAbsElement treeRowAbsElement in _flatList)
+            {
+                // ReSharper disable once InvertIf
+                if (treeRowAbsElement is TreeRowValueElement valueElement)
+                {
+                    bool shouldOn = curValues.Contains(valueElement.Value);
+                    if (valueElement.IsOn != shouldOn)
+                    {
+                        valueElement.SetValueOn(shouldOn);
+                    }
                 }
             }
         }
 
-        public readonly struct MakeNestedItemResult
+        private static IEnumerable<TreeRowAbsElement> FlatTreeRow(TreeRowAbsElement treeRow)
         {
-            public readonly List<TreeViewItemData<IAdvancedDropdownList>> ItemDatas;
-            public readonly int ResultId;
-            public readonly bool HasSelect;
-            // public readonly bool IsEmptyNode;
-
-            public MakeNestedItemResult(List<TreeViewItemData<IAdvancedDropdownList>> itemDatas, int resultId, bool hasSelect)
+            if (treeRow is TreeRowSepElement)
             {
-                ItemDatas = itemDatas;
-                ResultId = resultId;
-                HasSelect = hasSelect;
-                // IsEmptyNode = isEmptyNode;
+                yield break;
+            }
+
+            yield return treeRow;
+
+            // ReSharper disable once InvertIf
+            if (treeRow is TreeRowFoldoutElement treeRowFoldoutElement)
+            {
+                foreach (TreeRowAbsElement subRow in treeRowFoldoutElement.ContentChildren)
+                {
+                    foreach (TreeRowAbsElement flatSub in FlatTreeRow(subRow))
+                    {
+                        yield return flatSub;
+                    }
+                }
             }
         }
 
-        private static MakeNestedItemResult MakeNestedItems(IReadOnlyList<ListSearchToken> searchTokens, IAdvancedDropdownList dropdownLis,
-            IReadOnlyList<object> curValues, int accId, HashSet<int> selectedNestedIds, HashSet<int> selectedValueIds)
+        private IReadOnlyList<TreeRowAbsElement> MakeNestedTreeRow(int indent, IAdvancedDropdownList dropdownLis, ICollection<object> curValues)
         {
-            List<TreeViewItemData<IAdvancedDropdownList>> result = new List<TreeViewItemData<IAdvancedDropdownList>>(dropdownLis.Count);
+            List<TreeRowAbsElement> result = new List<TreeRowAbsElement>(dropdownLis.Count);
 
-            bool hasSelect = false;
-            int incrId = accId;
+            bool hasMeaningfulChild = false;
+            // bool hasSelect = false;
+            // int incrId = accId;
             // bool isEmptyNode = true;
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (IAdvancedDropdownList dropdownItem in dropdownLis)
             {
-                bool isSearchMatched;
-                if (searchTokens.Count == 0)
+                if (dropdownItem.isSeparator)
                 {
-                    isSearchMatched = true;
-                }
-                else if (dropdownItem.isSeparator)
-                {
-                    isSearchMatched = searchTokens.Count == 0;
-                }
-                else if (dropdownItem.ChildCount() > 0)  // leaf node is always matched, unless the children are empty
-                {
-                    isSearchMatched = true;
-                }
-                else
-                {
-                    isSearchMatched = IsSearchMatched(dropdownItem.absolutePathFragments, searchTokens);
-                    Debug.Log($"matched for {string.Join('/', dropdownItem.absolutePathFragments)}");
-                }
-
-                if (!isSearchMatched)
-                {
+                    result.Add(new TreeRowSepElement(indent));
                     continue;
                 }
 
-                incrId += 1;
+                if (dropdownItem.ChildCount() == 0)  // value node
+                {
+                    hasMeaningfulChild = true;
+                    TreeRowValueElement valueElement = new TreeRowValueElement(dropdownItem.value, string.IsNullOrEmpty(dropdownItem.icon)? dropdownItem.displayName: $"<icon={dropdownItem.icon}/>{dropdownItem.displayName}", indent, _allowToggle);
+                    if (curValues.Contains(dropdownItem.value))
+                    {
+                        valueElement.SetValueOn(true);
+                        CurrentFocus ??= valueElement;
+                    }
 
-                Debug.Log($"id={incrId} for {dropdownItem.displayName}");
+                    if (dropdownItem.disabled)
+                    {
+                        valueElement.SetEnabled(false);
+                    }
+
+                    object value = dropdownItem.value;
+                    valueElement.OnClickedEvent.AddListener((on, isPrimary) => OnClickedEvent.Invoke(value, on, isPrimary));
+                    result.Add(valueElement);
+
+                    continue;
+                }
 
                 // (List<TreeViewItemData<IAdvancedDropdownList>> children, int resultId, bool childSelect) = MakeNestedItems(dropdownItem, curValues, incrId, selectedNestedIds, selectedValueIds);
-                MakeNestedItemResult tailResult = MakeNestedItems(searchTokens, dropdownItem, curValues, incrId, selectedNestedIds, selectedValueIds);
+                IReadOnlyList<TreeRowAbsElement> tailResult = MakeNestedTreeRow(indent + 1, dropdownItem, curValues);
 
-                if (dropdownItem.ChildCount() > 0 && tailResult.ItemDatas.Count == 0)
+                if (dropdownItem.ChildCount() > 0 && tailResult.Count == 0)
                 {
                     continue;
                 }
 
-                result.Add(new TreeViewItemData<IAdvancedDropdownList>(
-                    incrId,
-                    dropdownItem,
-                    tailResult.ItemDatas));
+                hasMeaningfulChild = true;
 
-                bool selectedValue = (dropdownItem.Count == 0 && curValues.Contains(dropdownItem.value));
-                if (tailResult.HasSelect || selectedValue)
+                TreeRowFoldoutElement thisNode = new TreeRowFoldoutElement(dropdownItem.displayName, indent, true);
+                foreach (TreeRowAbsElement childElement in tailResult)
                 {
-                    selectedNestedIds.Add(incrId);
-                    hasSelect = true;
-                    if (selectedValue)
-                    {
-                        selectedValueIds.Add(incrId);
-                    }
+                    thisNode.AddContent(childElement);
                 }
 
-                incrId = tailResult.ResultId;
-                // isEmptyNode = false;
+                result.Add(thisNode);
             }
 
-            return new MakeNestedItemResult(result, incrId, hasSelect);
-        }
-
-        private static bool IsSearchMatched(IReadOnlyList<string> sourceFragments, IReadOnlyList<ListSearchToken> searchTokens)
-        {
-            IReadOnlyList<string> sourceLow = sourceFragments.Select(each => each.ToLower()).ToArray();
-            foreach (ListSearchToken token in searchTokens)
-            {
-                string tokenLow = token.Token.ToLower();
-
-                bool hasMatched = false;
-                foreach (string sourceContent in sourceLow)
-                {
-                    if (token.Type == ListSearchType.Exclude && sourceContent.Contains(tokenLow))
-                    {
-                        return false;
-                    }
-
-                    if (token.Type == ListSearchType.Include && sourceContent.Contains(tokenLow))
-                    {
-                        hasMatched = true;
-                        break;
-                    }
-                }
-
-                if (!hasMatched)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return hasMeaningfulChild ? result : Array.Empty<TreeRowAbsElement>();
         }
     }
 }

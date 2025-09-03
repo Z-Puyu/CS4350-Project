@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,8 +49,8 @@ namespace DataStructuresForUnity.Runtime.Trie {
                         yield return new KeyValuePair<K, V>(curr.Key, curr.Value);
                     }
 
-                    for (int i = this.Children.Count - 1; i >= 0; i -= 1) {
-                        stack.Push(this.Children.Values[i]);
+                    for (int i = curr.Children.Count - 1; i >= 0; i -= 1) {
+                        stack.Push(curr.Children.Values[i]);
                     }
                 }
             }
@@ -61,13 +61,7 @@ namespace DataStructuresForUnity.Runtime.Trie {
         private bool HasSeparator { get; }
 
         public V this[K key] {
-            get {
-                if (this.TryGetValue(key, out V value)) {
-                    return value;
-                }
-
-                throw new KeyNotFoundException();
-            }
+            get => this.TryGetValue(key, out V value) ? value : throw new KeyNotFoundException();
             set => this.Add(key, value);
         }
 

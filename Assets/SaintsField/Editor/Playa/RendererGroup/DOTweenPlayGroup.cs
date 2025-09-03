@@ -30,6 +30,7 @@ namespace SaintsField.Editor.Playa.RendererGroup
     {
         public bool InDirectHorizontalLayout { get; set; }
         public bool InAnyHorizontalLayout { get; set; }
+        public bool NoLabel { get; set; }
 
         private readonly List<(MethodInfo methodInfo, DOTweenPlayAttribute attribute)> _doTweenMethods = new List<(MethodInfo methodInfo, DOTweenPlayAttribute attribute)>();
         private readonly object _target;
@@ -435,7 +436,10 @@ namespace SaintsField.Editor.Playa.RendererGroup
         {
         }
 
-        private readonly UnityEvent<string> _onSearchFieldUIToolkit = new UnityEvent<string>();
+        // fix for old unity
+        private class OnSearchFieldUIToolkitEvent: UnityEvent<string> {}
+
+        private readonly UnityEvent<string> _onSearchFieldUIToolkit = new OnSearchFieldUIToolkitEvent();
 
         // private bool _debugCheck;
 

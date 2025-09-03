@@ -28,6 +28,10 @@ namespace ModularItemsAndInventory.Runtime.Items {
             return new ItemKey(data.Id, string.Empty, string.Empty);
         }
 
+        public override string ToString() {
+            return $"{this.Id}{(string.IsNullOrWhiteSpace(this.Name) ? string.Empty : $"({this.Name})")}";
+        }
+
         public bool Equals(ItemKey other) {
             return this.CompareTo(other) == 0;
         }

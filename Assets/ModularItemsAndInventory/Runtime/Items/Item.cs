@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items.Properties;
+using UnityEngine;
 
 namespace ModularItemsAndInventory.Runtime.Items {
     /// <summary>
@@ -63,6 +64,12 @@ namespace ModularItemsAndInventory.Runtime.Items {
         ) : this(hasRuntimeData, id, type, name) {
             this.Properties = ItemProperties.Of(this).With(properties);
             this.CachedKey = new Lazy<ItemKey>(this.GenerateKey);
+        }
+
+        public PickUp AsPickUp(int count = 1) {
+            GameObject pickUp = new GameObject("Pick-up: " + this.Name);
+            pickUp.transform.position = Vector3.zero;
+            return pickUp.AddComponent<PickUp>().With(count, this.Key);
         }
 
         private ItemKey GenerateKey() {

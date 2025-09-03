@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using SaintsField.Editor.Drawers.EnumFlagsDrawers.FlagsDropdownDrawer;
 using SaintsField.Interfaces;
 #if UNITY_2021_3_OR_NEWER
 using SaintsField.Editor.Drawers.SaintsRowDrawer;
@@ -504,10 +505,11 @@ namespace SaintsField.Editor.Utils
             bool useImGui = uiToolkitMethod == null ||
                             uiToolkitMethod.DeclaringType == typeof(PropertyDrawer);  // null: old Unity || did not override
 
-            // Debug.Log($"{useDrawerType}/{uiToolkitMethod.DeclaringType}/{FieldWithInfo.SerializedProperty.propertyPath}");
+            // Debug.Log($"{useDrawerType}/{uiToolkitMethod?.DeclaringType}/{property.propertyPath}");
 
             if (!useImGui)
             {
+                // Debug.Log($"CreatePropertyGUI for {property.propertyPath} with {propertyDrawer}");
                 VisualElement r = propertyDrawer.CreatePropertyGUI(property);
                 if (r != null)
                 {
@@ -583,10 +585,26 @@ namespace SaintsField.Editor.Utils
                     if(propertyRelative != null)
                     {
                         lv.BindProperty(propertyRelative);
+                        return;
                     }
                 }
                 // Debug.Log(lv.itemsSource);
                 // return ele;
+            }
+
+            // Debug.Log(element is BindableElement);
+            if (element is IBindable bindableElement)
+            {
+                // https://github.com/TylerTemp/SaintsField/issues/286
+                // Even TextAreaDrawer has `propertyGui.bindingPath = property.propertyPath;`
+                // the binding process will still fail, and need to bind again
+                // I have no idea why... UI Toolkit's editor function is documented very poorly
+
+                // Debug.Log(bindableElement.bindingPath);  // this have a value
+                // Debug.Log(bindableElement.binding);
+                bindableElement.BindProperty(property);
+                // Debug.Log(bindableElement.bindingPath);
+                // Debug.Log(bindableElement.binding);
             }
         }
 

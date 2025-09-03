@@ -15,12 +15,14 @@ MonoBehaviour:
   <Name>k__BackingField: MaxHealth
   displayName: Maximum Health
   <ModificationRules>k__BackingField:
-  - rid: -2
+  - rid: 2098011204545675553
   <Id>k__BackingField: MaxHealth
   <Parent>k__BackingField: {fileID: 0}
   <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2098011204545675553
+      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
+      data:
+        <Min>k__BackingField: 0

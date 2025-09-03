@@ -21,7 +21,7 @@ namespace PlayerInput {
             
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
-                sb.AppendLine($"{item.Key}: {item.Value}");
+                sb.AppendLine($"{item.Key.Id}: {item.Value}");
             }
             
             OnScreenDebugger.Log(sb.ToString());
@@ -32,7 +32,7 @@ namespace PlayerInput {
                 return;
             }
             
-            Debug.Log("Attack", this);
+            OnScreenDebugger.Log("Attack");
         }
 
         public void OnMove(InputAction.CallbackContext context) {

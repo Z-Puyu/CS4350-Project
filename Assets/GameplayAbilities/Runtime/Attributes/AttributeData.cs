@@ -7,7 +7,7 @@ using GameplayAbilities.Runtime.Modifiers;
 namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeData {
         private AttributeSet Root { get; }
-        private List<IAttributeClampRule> ModificationRules { get; }
+        private List<IAttributeClampRule> ModificationRules { get; } = new List<IAttributeClampRule>();
         private float BaseValue { get; }
         internal int Value { get; private set; }
         
@@ -17,17 +17,18 @@ namespace GameplayAbilities.Runtime.Attributes {
         private SortedList<Modifier.Operation, Modifier> Modifiers { get; } =
             new SortedList<Modifier.Operation, Modifier>();
 
-        private AttributeData(
-            List<IAttributeClampRule> modificationRules, float value, AttributeSet root
-        ) {
-            this.ModificationRules = modificationRules;
+        private AttributeData(float value, AttributeSet root) {
             this.BaseValue = value;
             this.Root = root;
         }
 
         internal static AttributeData From(AttributeTypeDefinition definition, float initValue, AttributeSet root) {
-            List<IAttributeClampRule> rules = definition.ModificationRules.ToList();
-            return new AttributeData(rules, initValue, root);
+            AttributeData data = new AttributeData(initValue, root);
+            foreach (IAttributeClampRule rule in definition.ModificationRules) {
+                data.ModificationRules.Add(rule);
+            }
+            
+            return data;
         }
         
         internal void Clamp() {
