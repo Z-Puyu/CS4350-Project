@@ -5,11 +5,6 @@ namespace SaintsField.Samples.Scripts
 {
     public class AdvancedDropdownExample: MonoBehaviour
     {
-        public int place1;
-        public int place2;
-        public int place3;
-        public int place4;
-
         [AdvancedDropdown(nameof(AdvDropdown)), PostFieldButton(nameof(Reset), "R")] public int selectIt;
 
         private void Reset() => selectIt = 0;
@@ -30,16 +25,16 @@ namespace SaintsField.Samples.Scripts
                 {
                     new AdvancedDropdownList<int>("Wednesday")
                     {
-                        new AdvancedDropdownList<int>("Morning", 3, icon: "eye.png"),
+                        new AdvancedDropdownList<int>("Morning", 3, icon: "star.png"),
                         new AdvancedDropdownList<int>("Afternoon", 8),
                     },
-                    new AdvancedDropdownList<int>("Thursday", 4, true, icon: "eye.png"),
+                    new AdvancedDropdownList<int>("Thursday", 4, true, icon: "star.png"),
                 },
                 // direct value
                 new AdvancedDropdownList<int>("Friday", 5, true),
                 AdvancedDropdownList<int>.Separator(),
-                new AdvancedDropdownList<int>("Saturday", 6, icon: "eye.png"),
-                new AdvancedDropdownList<int>("Sunday", 7, icon: "eye.png"),
+                new AdvancedDropdownList<int>("Saturday", 6, icon: "star.png"),
+                new AdvancedDropdownList<int>("Sunday", 7, icon: "star.png"),
             };
         }
 

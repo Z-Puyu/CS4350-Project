@@ -42,8 +42,8 @@ namespace DataStructuresForUnity.Runtime.Trie {
                         yield return curr.Value;
                     }
 
-                    for (int i = this.Children.Count - 1; i >= 0; i -= 1) {
-                        stack.Push(this.Children.Values[i]);
+                    for (int i = curr.Children.Count - 1; i >= 0; i -= 1) {
+                        stack.Push(curr.Children.Values[i]);
                     }
                 }
             }

@@ -5,7 +5,7 @@ namespace ModularItemsAndInventory.Runtime.Items.Properties {
     public sealed class CarryWeight : ItemProperty {
         [field: SerializeField, MinValue(0)] public int Weight { get; private set; }
 
-        protected override string GenerateSortKey() {
+        protected override string Encode() {
             return $"{this.GetType().FullName}_Weight:{this.Weight}";
         }
 
