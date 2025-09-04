@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=b7c188242865abc44a74ebeba45581e0&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-image: none; background-color: rgb(233, 205, 171);">
+        <ui:Label text="Farming Survival" name="Header" class="header" />
+        <ui:Button text="Start" name="StartButton" class="button" />
+        <ui:Button text="Settings" name="SettingsButton" class="button" />
+    </ui:VisualElement>
+</ui:UXML>
