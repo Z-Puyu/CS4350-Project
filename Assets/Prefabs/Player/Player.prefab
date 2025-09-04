@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: <Body>k__BackingField
       value: 
       objectReference: {fileID: 8133807558494651657}
+    - target: {fileID: 4409929462851600091, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: <Body>k__BackingField
+      value: 
+      objectReference: {fileID: 8133807558494651657}
     - target: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: m_Name
       value: PlayerMovementComponent
@@ -476,15 +480,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
---- !u!114 &1956780031150378473 stripped
+--- !u!114 &1566752552558087471 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3723051152404577821, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4409929462851600091, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
 --- !u!4 &4076413442697336507 stripped
@@ -507,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 1956780031150378473}
+      objectReference: {fileID: 1566752552558087471}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 

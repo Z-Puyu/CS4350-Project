@@ -1521,6 +1521,11 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
+--- !u!50 &1353007309 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8133807558494651657, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+  m_PrefabInstance: {fileID: 1398289267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1398289267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,6 +1534,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1566752552558087471, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <Body>k__BackingField
+      value: 
+      objectReference: {fileID: 1353007309}
     - target: {fileID: 3324175696564490730, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01735
@@ -1593,7 +1602,12 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1398289268}
-    m_RemovedComponents: []
+    - target: {fileID: 9190158357360914346, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <Movement>k__BackingField
+      value: 
+      objectReference: {fileID: 1398289271}
+    m_RemovedComponents:
+    - {fileID: 1956780031150378473, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1631,6 +1645,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa7e411613744bcb91ed23552266ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Inventory.Inventory
+--- !u!114 &1398289271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1566752552558087471, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+  m_PrefabInstance: {fileID: 1398289267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
 --- !u!1001 &1453472073
 PrefabInstance:
   m_ObjectHideFlags: 0
