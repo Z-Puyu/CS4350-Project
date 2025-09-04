@@ -1,129 +1,87 @@
-﻿/*
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
-using ModularItemsAndInventory.Runtime.LootContainers;
-using Project.Scripts.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
-using Project.Scripts.Interaction;
-using Project.Scripts.Util.Components;
 using UnityEngine;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-namespace Project.Scripts.Items.InventorySystem.LootContainers;
-
-[DisallowMultipleComponent, RequireComponent(typeof(InteractableObject))]
-public class LootContainer : MonoBehaviour {
-    public sealed record class UIData(Inventory Loot, Inventory Inventory) : IPresentable {
-        public string FormatAsText() {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Loot Container:");
-            sb.AppendLine(this.Loot.FormatAsText());
-            sb.AppendLine("Inventory:");
-            sb.AppendLine(this.Inventory.FormatAsText());
-            return sb.ToString();
-        }
-    }
-    
-    public static event UnityAction<UIData> OnOpen = delegate { };
-    
-    [field: SerializeField] private Inventory? OwnerInventory { get; set; }
-    
-    [NotNull] 
-    [field: SerializeField, Required] 
-    private Inventory? LocalInventory { get; set; }
-    
-    [NotNull] private InteractableObject? Interactable { get; set; }
-    private Inventory? CurrentInteractorInventory { get; set; }
-    
-    [field: SerializeField] private LootTable? LootTable { get; set; }
-    
-    [field: SerializeField] public LootDropConfig? LootDropConfig { private get; set; }
-    
-    [field: SerializeField, MinMaxSlider(1, 20)] 
-    private Vector2Int DropAmount { get; set; } = new Vector2Int(1, 5);
-    
-    private bool HasBeenOpenedBefore { get; set; }
-
-    private void Awake() {
-        if (!this.LocalInventory) {
-            this.LocalInventory = this.GetComponentInChildren<Inventory>();
-        }
+namespace ModularItemsAndInventory.Runtime.LootContainers {
+    [DisallowMultipleComponent]
+    public class LootContainer : MonoBehaviour {
+        [field: SerializeField] private LootTable LootTable { get; set; }
         
-        this.Interactable = this.GetComponent<InteractableObject>();
-    }
+        [field: SerializeField, MinMaxSlider(1, 20)] 
+        private Vector2Int RandomDropAmount { get; set; } = new Vector2Int(1, 5);
 
-    private void Start() {
-        if (this.OwnerInventory) {
-            foreach ((Item item, int count) in this.OwnerInventory.Items) {
-                this.Inject(item, count);    
+        private Dictionary<ItemKey, DropConfig> Loots { get; set; } =
+            new Dictionary<ItemKey, DropConfig>();
+
+        private Dictionary<ItemKey, int> Container { get; set; } = new Dictionary<ItemKey, int>();
+        private bool HasBeenOpenedBefore { get; set; }
+
+        private void Start() {
+            if (!this.LootTable) {
+                return;
+            }
+            
+            foreach ((ItemKey item, DropConfig config) in this.LootTable) {
+                this.Loots.Add(item, config);
+            }
+            
+            foreach ((ItemData item, int count) in this.LootTable.AlwaysDrop) {
+                this.Container.Add(ItemKey.From(item), count);
             }
         }
+
+        /// <summary>
+        /// Injects an item that must be dropped into the container.
+        /// </summary>
+        /// <param name="item">The item to drop.</param>
+        /// <param name="count">The count of the item to drop.</param>
+        public void ShouldDrop(ItemKey item, int count) {
+            this.Container.Add(item, count);
+        }
+
+        /// <summary>
+        /// Injects a drop configuration into the loot container.
+        /// </summary>
+        /// <param name="item">The item to drop.</param>
+        /// <param name="config">The drop configuration.</param>
+        public void ShouldRandomlyDrop(ItemKey item, DropConfig config) {
+            this.Loots[item] = config;
+        }
+
+        private float ComputeTotalWeight() {
+            return this.Loots.Values.Sum(config => config.Weight);
+        }
+
+        private void DropRandomly() {
+            if (this.HasBeenOpenedBefore) {
+                return;
+            }
         
-        // TODO: Implement concrete loot drop parameters.
-        this.Interactable.OnInteraction += this.Open;
-    }
+            int count = Random.Range(this.RandomDropAmount.x, this.RandomDropAmount.y + 1);
+            float total = this.ComputeTotalWeight();
+            for (int i = 0; i < count; i += 1) {
+                float select = Random.Range(0, total);
+                float current = 0;
+                foreach ((ItemKey item, DropConfig config) in this.Loots) {
+                    current += config.Weight;
+                    if (select >= current) {
+                        continue;
+                    }
 
-    public void Inject(Item item, int count) {
-        this.LocalInventory.Add(item, count);
-    }
-
-    public void Inject(LootTable table) {
-        if (!this.LootTable) {
-            this.LootTable = table;
-        }
-    }
-
-    private float ComputeTotalWeight(LootDropParameters parameters) {
-        if (!this.LootTable) {
-            return 0;
-        }
-        
-        return this.LootTable.ComputeTotalWeight(parameters);
-    }
-
-    private void Open(Interactor interactor) {
-        if (!this.HasBeenOpenedBefore) {
-            int level = interactor.GetSiblingComponent<ExperienceSystem>().CurrentLevel;
-            this.DropRandom(new LootDropParameters(level));
-        }
-
-        this.CurrentInteractorInventory = interactor.GetSiblingComponent<Inventory>();
-        // Toggle UI event only when the interactor is the player.
-        if (!interactor.gameObject.CompareTag("Player")) {
-            return;
-        }
-
-        Debug.Log($"Open loot container {this.LocalInventory}");
-        LootContainer.OnOpen.Invoke(new UIData(this.LocalInventory, this.CurrentInteractorInventory));
-    }
-
-    private void DropRandom(LootDropParameters parameters) {
-        if (this.HasBeenOpenedBefore || !this.LootTable || this.LootTable.IsEmpty) {
-            return;
-        }
-
-        foreach (ItemData item in this.LootTable.AlwaysDrop) {
-            this.LocalInventory.Add(Item.From(item));    
-        }
-        
-        int count = Random.Range(this.DropAmount.x, this.DropAmount.y + 1);
-        float total = this.ComputeTotalWeight(parameters);
-        for (int i = 0; i < count; i += 1) {
-            float select = Random.Range(0, total);
-            float current = 0;
-            foreach ((ItemData item, int weight) in this.LootTable) {
-                current += weight;
-                if (select >= current) {
-                    continue;
+                    this.Container[item] = this.Container.GetValueOrDefault(item, 0) + 
+                                           config.CountPerDrop;
+                    if (this.Container[item] >= config.MaxCount) {
+                        this.Loots.Remove(item);
+                    }
+                    
+                    break;
                 }
-
-                this.LocalInventory.Add(Item.From(item));
-                break;
             }
-        }
         
-        this.HasBeenOpenedBefore = true;
+            this.HasBeenOpenedBefore = true;
+        }
     }
 }
-*/
