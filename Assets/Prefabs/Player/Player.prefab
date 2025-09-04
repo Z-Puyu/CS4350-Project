@@ -86,8 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerController
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
-  <AttributeSet>k__BackingField: {fileID: 0}
-  <Inventory>k__BackingField: {fileID: 0}
+  <AttributeSet>k__BackingField: {fileID: 106646709540062668}
+  <Inventory>k__BackingField: {fileID: 7364736450214849462}
 --- !u!114 &9044932256310309293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9190158357360914346}
         m_TargetAssemblyTypeName: PlayerInput.PlayerInputParser, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9190158357360914346}
         m_TargetAssemblyTypeName: PlayerInput.PlayerInputParser, Assembly-CSharp
         m_MethodName: OnAttack
         m_Mode: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     m_ActionName: 'Player/SwitchPlaceable[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9190158357360914346}
         m_TargetAssemblyTypeName: PlayerInput.PlayerInputParser, Assembly-CSharp
         m_MethodName: OnToggleInventory
         m_Mode: 0
@@ -476,26 +476,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 815994176039510104, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+    - {fileID: 4409929462851600091, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6309791963776212560}
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
---- !u!114 &1566752552558087471 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4409929462851600091, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-  m_PrefabInstance: {fileID: 2922007530389713908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
 --- !u!4 &4076413442697336507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7849829060772088775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6309791963776212560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849829060772088775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
+  <SpeedMultiplier>k__BackingField: 5
+  <Body>k__BackingField: {fileID: 8133807558494651657}
 --- !u!1001 &4152145185797166675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,7 +523,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 1566752552558087471}
+      objectReference: {fileID: 6309791963776212560}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 
@@ -566,6 +578,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5874751560248157011, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
   m_PrefabInstance: {fileID: 4152145185797166675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9190158357360914346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+  m_PrefabInstance: {fileID: 4152145185797166675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3105d5510e724088be8a3fc57aeffa21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInput.PlayerInputParser
 --- !u!1001 &5559903773095756734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -623,6 +646,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
+--- !u!114 &106646709540062668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5499561002961962610, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
+  m_PrefabInstance: {fileID: 5559903773095756734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
 --- !u!4 &6059059717299930962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819073491181274348, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
