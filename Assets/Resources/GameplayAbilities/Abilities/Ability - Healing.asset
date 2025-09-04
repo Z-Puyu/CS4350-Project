@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
   m_Name: Ability - Healing
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  <Id>k__BackingField: a_healing
+  <Name>k__BackingField: Healing
   <Effects>k__BackingField:
   - <Executor>k__BackingField:
       rid: 4925886386017141032
@@ -21,13 +23,6 @@ MonoBehaviour:
     <CanMiss>k__BackingField: 0
     <BaseChance>k__BackingField: 100
     <Costs>k__BackingField: []
-    <HasLevel>k__BackingField: 0
-    <LevelEffect>k__BackingField:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
   references:
     version: 2
     RefIds:
