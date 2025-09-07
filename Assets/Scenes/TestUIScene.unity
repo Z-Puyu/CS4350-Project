@@ -228,93 +228,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9190158357360914346, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <InventoryUIManager>k__BackingField
+      value: 
+      objectReference: {fileID: 5869916272792167068, guid: 454f69b4df2dd0545b4c8f0eb608f9e1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
---- !u!1 &1099101717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1099101719}
-  - component: {fileID: 1099101718}
-  - component: {fileID: 1099101720}
-  m_Layer: 5
-  m_Name: InventoryUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1099101718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099101717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: fab793c9d6b46e8448860aa7327f9969, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: b673063ceedf3df40ab75954be647360, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!4 &1099101719
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099101717}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1099101720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099101717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da06682de3ac464489a94bcbfe07b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager.InventoryUIManager
-  uiDocument: {fileID: 1099101718}
-  slotTemplate: {fileID: 9197481963319205126, guid: cacbe58af12a891488eb635e7274b30b, type: 3}
-  inventory: {fileID: 1630899421}
---- !u!114 &1630899421 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7364736450214849462, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
-  m_PrefabInstance: {fileID: 772344686}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa7e411613744bcb91ed23552266ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Inventory.Inventory
 --- !u!1 &1847694476
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +334,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1847694479}
-  - {fileID: 1099101719}
   - {fileID: 772344686}
   - {fileID: 697665999}

@@ -11,13 +11,22 @@ namespace Inventory_related.Inventory_UI_Manager
         private readonly VisualElement _iconElement;
         private readonly Label _nameLabel;
         private readonly Label _quantityLabel;
+        private readonly InventoryUIManager _uiManager;
+        private string _itemDescription;
 
-        public SlotUI(VisualElement root)
+        public SlotUI(VisualElement root, InventoryUIManager uiManager)
         {
             _root = root;
+            _uiManager = uiManager;
+            
             _iconElement = root.Q<VisualElement>("ItemIcon");
             _nameLabel = root.Q<Label>("ItemName");
             _quantityLabel = root.Q<Label>("ItemQuantity");
+            
+            // Hook hover events
+            _root.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+            _root.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
+            _root.RegisterCallback<MouseMoveEvent>(OnMouseMove);
         }
 
         public void SetData(ItemKey itemKey, int quantity)
@@ -46,6 +55,25 @@ namespace Inventory_related.Inventory_UI_Manager
             
             // Set Quantity
             _quantityLabel.text = quantity.ToString();
+            
+            // Set tooltip
+            _itemDescription = itemData.Description;
+            
+        }
+
+        private void OnMouseEnter(MouseEnterEvent e)
+        { 
+            _uiManager.ShowTooltip(_itemDescription, e.mousePosition);
+        }
+
+        private void OnMouseLeave(MouseLeaveEvent e)
+        {
+            _uiManager.HideTooltip();
+        }
+
+        private void OnMouseMove(MouseMoveEvent e)
+        {
+            _uiManager.ShowTooltip(_itemDescription, e.mousePosition);
         }
 
     }
