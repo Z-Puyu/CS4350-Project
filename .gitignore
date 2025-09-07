@@ -1,0 +1,92 @@
+# -------------------------
+# Unity Gitignore
+# -------------------------
+
+# User-specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.unityproj
+*.sln
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.DotSettings.user
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Unity generated folders
+# -------------------------
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# -------------------------
+# Unity specific files
+# -------------------------
+sysinfo.txt
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.unitypackage
+*.unitypackage.meta
+*.apk
+*.aab
+*.app
+*.zip
+*.rar
+*.7z
+*.blend1
+*.blend1.meta
+mono_crash.*
+
+# -------------------------
+# Addressables
+# -------------------------
+/Assets/AddressableAssetsData/*/*.bin*
+/Assets/Addressables_Temp*
+/Assets/AddressableAssetsData/link.xml*
+/ServerData
+
+# -------------------------
+# StreamingAssets
+# -------------------------
+/Assets/StreamingAssets/aa*
+/Assets/StreamingAssets/aa.meta
+
+# -------------------------
+# Visual Scripting
+# -------------------------
+/Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+/Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+/Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+/Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+# -------------------------
+# TestRunner auto-generated
+# -------------------------
+/Assets/InitTestScene*.unity*
+/Assets/InitTestScene*.unity.meta
+
+# -------------------------
+# Editor and IDE temp files
+# -------------------------
+.vs/
+*.tmp
+*.log
