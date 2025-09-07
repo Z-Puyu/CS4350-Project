@@ -1,5 +1,6 @@
 using System;
 using ModularItemsAndInventory.Runtime.Inventory;
+using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,12 +11,16 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private UIDocument uiDocument;
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory inventory;
-        [SerializeField] private VisualTreeAsset tooltipTemplate;
 
+        private ItemKey _currentItemKey;
+        
         private VisualElement _root;
         private VisualElement _grid;
-        private VisualElement _tooltip;
-        private Label _tooltipText;
+        
+        private VisualElement _itemDescriptionContainer;
+        private Label _itemDescription;
+        private Label _itemName;
+        private VisualElement _itemIcon;
 
         private void Awake()
         {
@@ -25,14 +30,15 @@ namespace Inventory_related.Inventory_UI_Manager
         private void OnEnable()
         {
             _root = uiDocument.rootVisualElement;
-            _grid = _root.Q<VisualElement>("InventoryGrid");
+            _grid = _root.Q<VisualElement>("Grid");
             
-            // Tooltip
-            _tooltip = tooltipTemplate.CloneTree();
-            // _tooltip.style.visibility = Visibility.Hidden;
-            _tooltipText = _tooltip.Q<Label>("TooltipText");
+            _itemDescriptionContainer = _root.Q<VisualElement>("ItemDescriptionContainer");
+            _itemName = _root.Q<Label>("ItemName");
+            _itemDescription = _root.Q<Label>("ItemDescription");
+            _itemIcon = _root.Q<VisualElement>("ItemIcon");
             
-            _root.Add(_tooltip);
+            // Hide item description
+            _itemDescriptionContainer.style.visibility = Visibility.Hidden;
 
             // Listen to inventory changes
             inventory.OnInventoryChanged += HandleInventoryChanged;
@@ -51,20 +57,14 @@ namespace Inventory_related.Inventory_UI_Manager
             RefreshInventoryUI();
         }
 
-        public void ShowTooltip(string text, Vector2 mousePosition)
+        public void UpdateItemPanel(ItemKey itemKey, ItemData itemData)
         {
-            _tooltipText.text = text;
-            
-            _tooltip.style.left = mousePosition.x;
-            _tooltip.style.top = mousePosition.y;
-            _tooltip.style.visibility = Visibility.Visible;
+            _itemDescriptionContainer.style.visibility = Visibility.Visible;
+            _currentItemKey = itemKey;
+            _itemDescription.text = itemData.Description;
+            _itemName.text = itemData.Name;
         }
-
-        public void HideTooltip()
-        {
-            // _tooltip.style.visibility = Visibility.Hidden;
-        }
-
+        
         private void RefreshInventoryUI()
         {
             _grid.Clear();
