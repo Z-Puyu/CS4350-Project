@@ -15,13 +15,13 @@ namespace InteractionSystem.Runtime {
             circle.isTrigger = true;
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerEnter2D(Collider2D other) {
             if (other.TryGetComponent(out Interactable interactable)) {
                 this.Approach(interactable);
             }
         }
 
-        private void OnTriggerExit(Collider other) {
+        private void OnTriggerExit2D(Collider2D other) {
             if (other.TryGetComponent(out Interactable interactable)) {
                 this.Forget(interactable);
             }
