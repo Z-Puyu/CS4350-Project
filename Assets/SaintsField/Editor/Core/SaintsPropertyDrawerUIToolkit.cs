@@ -664,11 +664,11 @@ namespace SaintsField.Editor.Core
 
             VisualElement element = DrawUsingDrawerInstance(passedPreferredLabel, drawerType, typeDrawer, property, info,
                 saintsPropertyDrawers, containerElement);
-            // ReSharper disable once InvertIf
-            if (element != null)
-            {
-                UIToolkitUtils.PropertyDrawerElementDirtyFix(property, typeDrawer, element);
-            }
+            // // ReSharper disable once InvertIf
+            // if (element != null)
+            // {
+            //     UIToolkitUtils.PropertyDrawerElementDirtyFix(property, typeDrawer, element);
+            // }
 
             return element;
         }
@@ -700,6 +700,7 @@ namespace SaintsField.Editor.Core
                         return;
                     }
 
+                    SaintsContext.SerializedProperty = property;
                     foreach (SaintsPropertyInfo saintsPropertyInfo in saintsPropertyDrawers)
                     {
                         saintsPropertyInfo.Drawer.OnValueChanged(
@@ -931,6 +932,8 @@ namespace SaintsField.Editor.Core
                     Debug.LogWarning($"{property.propertyPath} parent disposed unexpectedly.");
                     return;
                 }
+
+                SaintsContext.SerializedProperty = property;
 
                 foreach (SaintsPropertyInfo saintsPropertyInfo in saintsPropertyDrawers)
                 {
