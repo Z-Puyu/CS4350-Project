@@ -56,7 +56,7 @@ namespace InteractionSystem.Runtime {
         }
 
         internal void Activate(Interactor interactor) {
-            if (this.PromptWidget) {
+            if (this.PromptWidget && interactor.CompareTag("Player")) {
                 this.PromptWidget.SetActive(true);
             }
             
@@ -65,7 +65,7 @@ namespace InteractionSystem.Runtime {
         
         internal void Deactivate(Interactor interactor) {
             this.OnDeactivate(interactor);
-            if (this.PromptWidget) {
+            if (this.PromptWidget && interactor.CompareTag("Player")) {
                 this.PromptWidget.SetActive(false);
             }
         }
