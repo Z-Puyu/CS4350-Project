@@ -1,0 +1,17 @@
+:root {
+}
+
+.container:hover {
+    scale: 1.05 1.05;
+}
+
+.container:focus {
+    border-left-color: rgb(255, 184, 69);
+    border-right-color: rgb(255, 184, 69);
+    border-top-color: rgb(255, 184, 69);
+    border-bottom-color: rgb(255, 184, 69);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}

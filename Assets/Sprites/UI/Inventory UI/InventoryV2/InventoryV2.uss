@@ -1,0 +1,45 @@
+:root {
+}
+
+.tab {
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    font-size: 24px;
+}
+
+#Container > #Body > #GridContainer > #Grid > #unity-content-and-vertical-scroll-container > #unity-content-viewport > #unity-content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.itemButton {
+    margin-bottom: 40px;
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left-color: rgb(255, 184, 69);
+    border-right-color: rgb(255, 184, 69);
+    border-top-color: rgb(255, 184, 69);
+    border-bottom-color: rgb(255, 184, 69);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-image: url("project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=7054122074006996332&guid=5faddf85691868e4bb5b6234945a4948&type=3#Pixel UI pack 1_75");
+    width: 250px;
+    height: 120px;
+    align-self: center;
+}
