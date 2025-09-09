@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
@@ -7,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace ModularItemsAndInventory.Runtime.LootContainers {
     [DisallowMultipleComponent]
-    public class LootContainer : MonoBehaviour {
+    public class LootContainer : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>> {
         [field: SerializeField] private LootTable LootTable { get; set; }
         
         [field: SerializeField, MinMaxSlider(1, 20)] 
@@ -38,8 +39,10 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
         /// </summary>
         /// <param name="item">The item to drop.</param>
         /// <param name="count">The count of the item to drop.</param>
-        public void ShouldDrop(ItemKey item, int count) {
+        /// <returns>The loot container instance.</returns>
+        public LootContainer ShouldDrop(ItemKey item, int count) {
             this.Container.Add(item, count);
+            return this;
         }
 
         /// <summary>
@@ -47,8 +50,10 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
         /// </summary>
         /// <param name="item">The item to drop.</param>
         /// <param name="config">The drop configuration.</param>
-        public void ShouldRandomlyDrop(ItemKey item, DropConfig config) {
+        /// <returns>The loot container instance.</returns>
+        public LootContainer ShouldRandomlyDrop(ItemKey item, DropConfig config) {
             this.Loots[item] = config;
+            return this;
         }
 
         private float ComputeTotalWeight() {
@@ -82,6 +87,14 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
             }
         
             this.HasBeenOpenedBefore = true;
+        }
+
+        public IEnumerator<KeyValuePair<ItemKey, int>> GetEnumerator() {
+            return this.Container.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return this.GetEnumerator();
         }
     }
 }
