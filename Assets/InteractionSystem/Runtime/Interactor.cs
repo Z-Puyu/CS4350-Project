@@ -18,11 +18,19 @@ namespace InteractionSystem.Runtime {
 			Gizmos.color = this.GizmosColor;
 			Gizmos.DrawWireSphere(this.transform.position, this.DetectionRadius);
 		}
+		
+		internal void Approach(Interactable target) {
+			this.TargetsInRange.Add(target);
+			target.Awaken(this);
+		}
 
 		internal void Forget(Interactable target) {
-			this.TargetsInRange.Remove(target);
 			if (this.Target == target) {
 				this.SwitchTarget(null);
+			}
+			
+			if (this.TargetsInRange.Remove(target)) {
+				target.Sleep(this);
 			}
 		}
 
@@ -45,7 +53,7 @@ namespace InteractionSystem.Runtime {
 		private protected void PollTarget() {
 			float minDistance = float.MaxValue;
 			foreach (Interactable candidate in this.TargetsInRange.Where(obj => obj.CanInteract(this))) {
-				candidate.Activate(this);
+				candidate.Awaken(this);
 				float dist = Vector2.SqrMagnitude(this.transform.position - candidate.transform.position);
 				if (dist >= minDistance) {
 					continue;

@@ -17,17 +17,14 @@ namespace InteractionSystem.Runtime {
 
         private void OnTriggerEnter(Collider other) {
             if (other.TryGetComponent(out Interactable interactable)) {
-                this.TargetsInRange.Add(interactable);
+                this.Approach(interactable);
             }
         }
 
         private void OnTriggerExit(Collider other) {
-            if (!other.TryGetComponent(out Interactable interactable)) {
-                return;
+            if (other.TryGetComponent(out Interactable interactable)) {
+                this.Forget(interactable);
             }
-
-            this.TargetsInRange.Remove(interactable);
-            interactable.Deactivate(this);
         }
 
         private void Update() { 
