@@ -61,5 +61,9 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         internal static ItemType TypeOf(ItemKey key) {
             return ItemDatabase.TryGet(key.Id, out ItemData data) ? data.Type : null;
         }
+        
+        public static Sprite IconOf(ItemKey key) {
+            return ItemDatabase.TryGet(key.Id, out ItemData data) ? data.Icon : null;
+        }
     }
 }

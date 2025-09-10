@@ -30,7 +30,7 @@ namespace InteractionSystem.Runtime {
         /// Triggers the interaction and broadcasts an event.
         /// </summary>
         /// <param name="interactor">The interactor.</param>
-        public void TriggerInteraction(Interactor interactor) {
+        internal void TriggerInteraction(Interactor interactor) {
             this.OnInteract(interactor);
             this.OnInteracted.Invoke();
         }

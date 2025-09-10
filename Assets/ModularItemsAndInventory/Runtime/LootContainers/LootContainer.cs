@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace ModularItemsAndInventory.Runtime.LootContainers {
     [DisallowMultipleComponent]
     public class LootContainer : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>> {
-        [field: SerializeField] private LootTable LootTable { get; set; }
+        [field: SerializeField, Required] private LootTable LootTable { get; set; }
         
         [field: SerializeField, MinMaxSlider(1, 20)] 
         private Vector2Int RandomDropAmount { get; set; } = new Vector2Int(1, 5);
@@ -19,6 +19,7 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
 
         private Dictionary<ItemKey, int> Container { get; set; } = new Dictionary<ItemKey, int>();
         private bool HasBeenOpenedBefore { get; set; }
+        public bool IsEmpty => this.Container.Count == 0;
 
         private void Start() {
             if (!this.LootTable) {
@@ -60,7 +61,7 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
             return this.Loots.Values.Sum(config => config.Weight);
         }
 
-        private void DropRandomly() {
+        public void Open() {
             if (this.HasBeenOpenedBefore) {
                 return;
             }
@@ -76,9 +77,8 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
                         continue;
                     }
 
-                    this.Container[item] = this.Container.GetValueOrDefault(item, 0) + 
-                                           config.CountPerDrop;
-                    if (this.Container[item] >= config.MaxCount) {
+                    this.Container[item] = this.Container.GetValueOrDefault(item, 0) + config.DropCount;
+                    if (this.Container[item] >= config.MaxDrop) {
                         this.Loots.Remove(item);
                     }
                     

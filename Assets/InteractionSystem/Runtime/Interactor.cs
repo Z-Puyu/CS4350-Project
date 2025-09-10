@@ -2,21 +2,33 @@
 using System.Linq;
 using SaintsField;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace InteractionSystem.Runtime {
 	[DisallowMultipleComponent]
 	public abstract class Interactor : MonoBehaviour {
 		[field: SerializeField, MinValue(0)] protected float DetectionRadius { get; set; } = 3;
-		private protected HashSet<Interactable> TargetsInRange { get; private set; } = new HashSet<Interactable>();
-		private protected Interactable Target { get; private set; }
-    
+		private HashSet<Interactable> TargetsInRange { get; set; } = new HashSet<Interactable>();
+		private Interactable Target { get; set; }
+		[field: SerializeField] private Color GizmosColor { get; set; } = Color.yellow;
 
-		[field: SerializeField, Header("Gizmos")]
-		private Color GizmosColor { get; set; } = Color.yellow;
+		public event UnityAction<Interactable> OnInteract; 
     
 		private void OnDrawGizmosSelected() {
 			Gizmos.color = this.GizmosColor;
 			Gizmos.DrawWireSphere(this.transform.position, this.DetectionRadius);
+		}
+
+		/// <summary>
+		/// Interacts with the target.
+		/// </summary>
+		public void Interact() { 
+			if (!this.Target) {
+				return;
+			}
+
+			this.OnInteract?.Invoke(this.Target);
+			this.Target.TriggerInteraction(this);
 		}
 		
 		internal void Approach(Interactable target) {

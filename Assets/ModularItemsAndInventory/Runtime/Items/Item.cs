@@ -66,10 +66,10 @@ namespace ModularItemsAndInventory.Runtime.Items {
             this.CachedKey = new Lazy<ItemKey>(this.GenerateKey);
         }
 
-        public PickUp AsPickUp(int count = 1) {
+        public PickUp2D AsPickUp(int count = 1) {
             GameObject pickUp = new GameObject("Pick-up: " + this.Name);
             pickUp.transform.position = Vector3.zero;
-            return pickUp.AddComponent<PickUp>().With(count, this.Key);
+            return pickUp.AddComponent<PickUp2D>().With(count, this.Key);
         }
 
         private ItemKey GenerateKey() {

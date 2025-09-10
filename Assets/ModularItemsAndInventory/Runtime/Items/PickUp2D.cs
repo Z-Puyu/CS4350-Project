@@ -5,23 +5,26 @@ using Object = UnityEngine.Object;
 
 namespace ModularItemsAndInventory.Runtime.Items {
     [DisallowMultipleComponent]
-    public sealed class PickUp : MonoBehaviour {
+    public sealed class PickUp2D : MonoBehaviour {
         [field: SerializeField] private ItemData ItemData { get; set; }
         [field: SerializeField, Required] private Collider2D Collider { get; set; }
         private ItemKey Item { get; set; }
         [field: SerializeField, MinValue(1)] private int Count { get; set; } = 1;
+        [field: SerializeField, Required] private SpriteRenderer SpriteRenderer { get; set; }
 
         private void Awake() {
             if (!this.ItemData) {
-                Object.Destroy(this);
-            } else {
-                this.Item = ItemKey.From(this.ItemData);
+                return;
             }
+
+            this.Item = ItemKey.From(this.ItemData);
+            this.SpriteRenderer.sprite = ItemDatabase.IconOf(this.Item);
         }
 
-        internal PickUp With(int count, ItemKey item) {
+        public PickUp2D With(int count, ItemKey item) {
             this.Count = count;
             this.Item = item;
+            this.SpriteRenderer.sprite = ItemDatabase.IconOf(item);
             return this;
         }
 
