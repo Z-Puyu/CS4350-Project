@@ -1,15 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace DataStructuresForUnity.Runtime.GeneralUtils {
     public static class ExpressionTree {
+        private const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        
         public delegate P Getter<in T, out P>(T obj);
         
         public delegate void Callable<in T>(T obj);
         
         public delegate void Callable<in T, in A>(T obj, A arg);
+
+        public static IEnumerable<string> GetProducerMethodNames(this Type type) {
+            return type.GetMethods(ExpressionTree.Flags)
+                       .Where(m => m.ReturnType != typeof(void) && m.GetParameters().Length == 0 && !m.IsSpecialName)
+                       .Select(m => m.Name);
+        }
+
+        public static IEnumerable<string> GetPropertyGetterNames(this Type type) {
+            return type.GetProperties(ExpressionTree.Flags)
+                       .Where(p => p.GetGetMethod(true) is not null)
+                       .Select(p => p.Name);
+        }
         
+        public static IEnumerable<string> GetFieldNames(this Type type) {
+            return type.GetFields(ExpressionTree.Flags)
+                       .Where(f => !f.IsDefined(typeof(CompilerGeneratedAttribute), false))
+                       .Select(f => f.Name);
+        }
+
         /// <summary>
         /// Creates a property accessor lambda expression.
         /// </summary>
