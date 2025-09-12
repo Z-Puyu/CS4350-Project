@@ -8,8 +8,8 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace Game.MapObjects {
-    [DisallowMultipleComponent, RequireComponent(typeof(LootContainer))]
-    public class TreasureChest : Interactable {
+    [DisallowMultipleComponent, RequireComponent(typeof(LootContainer), typeof(Interactable))]
+    public class TreasureChest : MonoBehaviour {
         private LootContainer LootContainer { get; set; }
         [field: SerializeField] private PickUp2D PickUpPrefab { get; set; }
 
@@ -22,11 +22,7 @@ namespace Game.MapObjects {
             Object.Instantiate(this.PickUpPrefab, position, Quaternion.identity).With(count, item);
         }
 
-        public override bool CanInteract(Interactor interactor) {
-            return true;
-        }
-        
-        protected override void OnInteract(Interactor interactor) {
+        public void Dismantle(Interactor interactor) {
             this.LootContainer.Open();
             foreach (KeyValuePair<ItemKey, int> drop in this.LootContainer) {
                 for (int i = 0; i < drop.Value; i += 1) {

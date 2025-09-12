@@ -63,8 +63,9 @@ namespace InteractionSystem.Runtime {
 		}
 
 		private protected void PollTarget() {
+			this.TargetsInRange.RemoveWhere(obj => !obj);
 			float minDistance = float.MaxValue;
-			foreach (Interactable candidate in this.TargetsInRange.Where(obj => obj.CanInteract(this))) {
+			foreach (Interactable candidate in this.TargetsInRange) {
 				candidate.Awaken(this);
 				float dist = Vector2.SqrMagnitude(this.transform.position - candidate.transform.position);
 				if (dist >= minDistance) {
