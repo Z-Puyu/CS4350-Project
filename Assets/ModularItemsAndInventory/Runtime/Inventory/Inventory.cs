@@ -23,11 +23,13 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
     public class Inventory : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>> {
         public enum OperationType { AddItem, RemoveItem }
 
-        public struct ItemOperation {
+        public readonly struct ItemOperation {
             public ItemKey Item { get; }
             public int OldQuantity { get; }
             public int CurrentQuantity { get; }
             public OperationType OperationType { get; }
+
+            public int QuantityChange => this.CurrentQuantity - this.OldQuantity;
 
             public ItemOperation(ItemKey item, int oldQuantity, int currentQuantity, OperationType operationType) {
                 this.Item = item;

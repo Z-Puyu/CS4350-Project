@@ -5,14 +5,17 @@ using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using QuestAndObjective.Runtime;
+using SaintsField;
 using UnityEngine;
 
 namespace Player {
     [DisallowMultipleComponent]
     public sealed class PlayerController : MonoBehaviour, ICollector {
         [field: SerializeField] private PlayerData InitialData { get; set; }
-        [field: SerializeField] private AttributeSet AttributeSet { get; set; }
-        [field: SerializeField] private Inventory Inventory { get; set; }
+        [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
+        [field: SerializeField, Required] private Inventory Inventory { get; set; }
+        [field: SerializeField, Required] private QuestLog QuestLog { get; set; }
         
         private void Start() {
             if (!this.InitialData) {
@@ -24,7 +27,12 @@ namespace Player {
                 this.Inventory.Add(data.Value, ItemKey.From(data.Key));
             }
             
+            this.Inventory.OnInventoryChanged += this.HandleInventoryChange;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
+        }
+
+        private void HandleInventoryChange(Inventory.ItemOperation change) {
+            this.QuestLog.Progress(new InventoryChangeEvent(change.Item.Id, change.QuantityChange));
         }
 
         public void Collect(int count, ItemKey item) {
