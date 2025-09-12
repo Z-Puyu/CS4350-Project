@@ -5,16 +5,18 @@ namespace QuestAndObjective.Runtime {
     public abstract class Objective {
         public abstract bool IsCompleted { get; }
 
-        public abstract void Update<S>(S @event) where S : struct, IObjectiveStateUpdateEvent;
+        public abstract bool Advance<S>(S @event) where S : struct, IObjectiveStateUpdateEvent;
     }
     
     public abstract class Objective<E> : Objective where E : struct, IObjectiveStateUpdateEvent {
-        public abstract void Update(E @event);
+        protected abstract bool Advance(E @event);
         
-        public sealed override void Update<S>(S @event) {
+        public sealed override bool Advance<S>(S @event) {
             if (!this.IsCompleted && @event is E e) {
-                this.Update(e);
+                return this.Advance(e);
             }
+            
+            return false;
         }
     }
 }

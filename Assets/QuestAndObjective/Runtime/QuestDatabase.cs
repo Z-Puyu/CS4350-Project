@@ -48,6 +48,10 @@ namespace QuestAndObjective.Runtime {
         public static bool Remove(string id) {
             return Singleton<QuestDatabase>.Instance.RuntimeQuests.Remove(id);
         }
+        
+        public static bool Remove(string id, out Quest quest) {
+            return Singleton<QuestDatabase>.Instance.RuntimeQuests.Remove(id, out quest);
+        }
 
         public static bool Contains(string id) {
             return Singleton<QuestDatabase>.Instance.Quests.ContainsKey(id);

@@ -9,9 +9,9 @@ namespace QuestAndObjective.Runtime {
         private uint CurrentCount { get; set; }
         public override bool IsCompleted => this.CurrentCount >= this.Count;
 
-        public override void Update(InventoryChangeEvent @event) {
+        protected override bool Advance(InventoryChangeEvent @event) {
             if (@event.ItemId != this.Item.Id || @event.ChangeInCount == 0) {
-                return;
+                return false;
             }
             
             if (@event.ChangeInCount < 0) {
@@ -19,6 +19,8 @@ namespace QuestAndObjective.Runtime {
             } else {
                 this.CurrentCount += (uint)@event.ChangeInCount;
             }
+            
+            return this.IsCompleted;
         }
     }
 }
