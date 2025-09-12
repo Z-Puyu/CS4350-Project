@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 
 namespace LocalisationMappings.Runtime {
@@ -12,12 +13,14 @@ namespace LocalisationMappings.Runtime {
     public sealed class LocalisationTextFormatter : ScriptableObject {
         private static readonly Regex KeywordRegex = new Regex("@([A-Za-z][A-Za-z0-9]*(?:-[A-Za-z][A-Za-z0-9]*)*)"); 
         
-        [field: SerializeField, TypeReference(EType.AllAssembly), OnValueChanged(nameof(this.OnTargetTypeChanged))] 
+        [field: SerializeField, TypeReference, OnValueChanged(nameof(this.CollectKeywords))] 
         private Type LocalisedObjectType { get; set; }
         [field: SerializeField, TextArea] private string Text { get; set; }
         [field: SerializeField, Table(hideAddButton: true, hideRemoveButton: true)]
         private List<KeywordMapping> Keywords { get; set; }
-        private void OnTargetTypeChanged() {
+        
+        [Button]
+        private void CollectKeywords() {
             foreach (Match match in LocalisationTextFormatter.KeywordRegex.Matches(this.Text)) {
                 this.Keywords.Add(KeywordMapping.Of(match.Value, this.LocalisedObjectType));
             }
