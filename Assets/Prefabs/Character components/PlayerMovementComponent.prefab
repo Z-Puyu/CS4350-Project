@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161746406768059727}
-  - component: {fileID: 4409929462851600091}
+  - component: {fileID: 4499795553562504158}
   m_Layer: 0
   m_Name: PlayerMovementComponent
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4409929462851600091
+--- !u!114 &4499795553562504158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
   <SpeedMultiplier>k__BackingField: 5
   <Body>k__BackingField: {fileID: 0}

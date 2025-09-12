@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common;
 using GameplayAbilities.Runtime.Attributes;
+using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Player {
             foreach (KeyValuePair<ItemData, int> data in this.InitialData.Items) {
                 this.Inventory.Add(data.Value, ItemKey.From(data.Key));
             }
+            
+            this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
         }
 
         public void Collect(int count, ItemKey item) {
@@ -31,6 +34,10 @@ namespace Player {
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {
                 OnScreenDebugger.Log($"{pair.Key.Id}: {pair.Value}");
             }
+        }
+
+        public void Say(string message) {
+            OnScreenDebugger.Log(message);
         }
     }
 }
