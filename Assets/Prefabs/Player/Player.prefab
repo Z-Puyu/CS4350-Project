@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 8133807558494651657}
   - component: {fileID: 3797095984724131894}
   - component: {fileID: 2535223743861042130}
+  - component: {fileID: 6343450983194003330}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -312,6 +313,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitchWeapon
   broadcastSwitchWeapon: {fileID: 11400000, guid: 4b4533c8faf329843b9cac25965704cf, type: 2}
+--- !u!114 &6343450983194003330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454949747492492771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33bac1c79fcadf1479b75bfcb5280fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerInteract
 --- !u!1 &6561529514998742695
 GameObject:
   m_ObjectHideFlags: 0
