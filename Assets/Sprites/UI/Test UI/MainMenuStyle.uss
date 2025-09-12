@@ -1,0 +1,32 @@
+:root {
+}
+
+.header {
+    font-size: 100px;
+    color: rgb(140, 60, 0);
+    -unity-font-style: bold;
+    align-self: center;
+}
+
+.button {
+    font-size: 20px;
+    width: 240px;
+    height: 100px;
+    align-self: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-image: url("project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=-4338224008231212659&guid=5faddf85691868e4bb5b6234945a4948&type=3#Pixel UI pack 1_57");
+    margin-top: 100px;
+    transition-timing-function: ease;
+    transition-duration: 0.25s;
+}
+
+.button:hover {
+    scale: 1.1 1.1;
+}
+
+.button:active {
+    background-image: url("project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=7054122074006996332&guid=5faddf85691868e4bb5b6234945a4948&type=3#Pixel UI pack 1_75");
+}

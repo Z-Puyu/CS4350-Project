@@ -6,28 +6,41 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     public class PerkDatabase : Singleton<PerkDatabase> {
-        [field: SerializeField, ResourceFolder] 
-        public string PerkDataFolder { get; private set; }
+        [field: SerializeField, ResourceFolder] private string PerkDataFolder { get; set; }
         
+        [field: SerializeField, ResourceFolder] private string AbilityDataFolder { get; set; }
+
+        private Dictionary<string, Ability> Abilities { get; } = new Dictionary<string, Ability>();
         private Dictionary<Perk, List<Perk>> Perks { get; } = new Dictionary<Perk, List<Perk>>();
         
-        protected override void Awake() {
-            base.Awake();
-            foreach (Perk data in Resources.LoadAll<Perk>(this.PerkDataFolder)) {
-                if (!this.Perks.ContainsKey(data)) {
-                    this.Perks.Add(data, new List<Perk>());
-                }
-
-                foreach (Perk prerequisite in data.Prerequisites) {
-                    if (this.Perks.TryGetValue(prerequisite, out List<Perk> children)) {
-                        children.Add(data);
-                    } else {
-                        this.Perks.Add(prerequisite, new List<Perk> { data });
-                    }
+        private void LoadAbilities() {
+            foreach (Ability data in Resources.LoadAll<Ability>(this.AbilityDataFolder)) {
+                if (!this.Abilities.TryAdd(data.Id, data)) {
+                    Debug.LogError($"Duplicate ability ID {data.Id}!");
                 }
             }
+        }
+
+        private void LoadPerks() {
+            Perk[] perks = Resources.LoadAll<Perk>(this.PerkDataFolder);
+            foreach (Perk data in perks) {
+                this.Perks.Add(data, new List<Perk>());
+            }
+
+            foreach (Perk data in perks) {
+                foreach (Perk prerequisite in data.Prerequisites) {
+                    this.Perks[prerequisite].Add(data);
+                }
+            }
+        }
+
+        protected override void Awake() {
+            base.Awake();
+            this.LoadPerks();
+            this.LoadAbilities();
             
-            Debug.Log($"Loaded {this.Perks.Count} perks from {this.PerkDataFolder}", this);
+            Debug.Log($"Loaded {this.Perks.Count} perks from {this.PerkDataFolder}");
+            Debug.Log($"Loaded {this.Abilities.Count} abilities from {this.AbilityDataFolder}");
         }
 
         public static IEnumerable<Perk> GetChildren(Perk p) {

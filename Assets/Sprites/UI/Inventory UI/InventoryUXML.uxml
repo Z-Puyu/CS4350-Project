@@ -1,0 +1,31 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="InventorySlot" src="project://database/Assets/Sprites/UI/Inventory%20UI/InventorySlot.uxml?fileID=9197481963319205126&amp;guid=cacbe58af12a891488eb635e7274b30b&amp;type=3#InventorySlot" />
+    <Style src="project://database/Assets/Sprites/UI/Inventory%20UI/Inventory.uss?fileID=7433441132597879392&amp;guid=0069e59c434277c41a6ff3dbada24ba6&amp;type=3#Inventory" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: column; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: space-around; height: 100px; max-height: 150px; min-height: 100px;">
+            <ui:Button text="Seeds" name="SeedInventory" class="tab inventoryTab" />
+            <ui:Button text="Crops" name="CropsInventory" class="tab inventoryTab" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+            <ui:ScrollView name="InventoryScroll" mode="Vertical" style="flex-grow: 1;">
+                <ui:VisualElement name="InventoryGrid" class="inventoryGrid" style="background-color: rgba(255, 250, 225, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; flex-grow: 0; align-items: center; justify-content: center; align-self: flex-start; align-content: auto;">
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                    <ui:Instance template="InventorySlot" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

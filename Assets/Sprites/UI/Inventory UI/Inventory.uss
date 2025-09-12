@@ -1,0 +1,38 @@
+:root {
+}
+
+.inventoryTab {
+    align-self: stretch;
+    align-content: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 30px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.inventoryGrid {
+    flex-grow: 1;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding: 10px;
+}
+
+VisualElement > #Body > #InventoryScroll > #unity-content-and-vertical-scroll-container > #unity-content-viewport > #unity-content-container {
+    flex-grow: 1;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+VisualElement > #Body > #InventoryScroll > #unity-content-and-vertical-scroll-container > #unity-content-viewport > #unity-content-container {
+    background-image: none;
+    background-color: rgb(255, 250, 225);
+}
