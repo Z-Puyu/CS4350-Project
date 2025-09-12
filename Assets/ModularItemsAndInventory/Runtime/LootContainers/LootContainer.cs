@@ -26,13 +26,7 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
                 return;
             }
             
-            foreach ((ItemKey item, DropConfig config) in this.LootTable) {
-                this.Loots.Add(item, config);
-            }
-            
-            foreach ((ItemData item, int count) in this.LootTable.AlwaysDrop) {
-                this.Container.Add(ItemKey.From(item), count);
-            }
+            this.Use(this.LootTable);
         }
 
         /// <summary>
@@ -55,6 +49,18 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
         public LootContainer ShouldRandomlyDrop(ItemKey item, DropConfig config) {
             this.Loots[item] = config;
             return this;
+        }
+
+        public void Use(LootTable table) {
+            this.Container.Clear();
+            this.Loots.Clear();
+            foreach ((ItemKey item, DropConfig config) in this.LootTable) {
+                this.Loots.Add(item, config);
+            }
+            
+            foreach ((ItemData item, int count) in this.LootTable.AlwaysDrop) {
+                this.Container.Add(ItemKey.From(item), count);
+            }
         }
 
         private float ComputeTotalWeight() {
