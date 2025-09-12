@@ -21,22 +21,23 @@ namespace ModularItemsAndInventory.Runtime.Items {
         string Id,
         ItemType Type,
         string Name,
+        string Description,
         ItemProperties Properties = null
     ) : IComparable<Item> {
         private Lazy<ItemKey> CachedKey { get; }
         public ItemKey Key => this.CachedKey.Value;
         
         public static Item From(ItemData data) {
-            return new Item(false, data.Id, data.Type, data.Name, data.Properties);
+            return new Item(false, data.Id, data.Type, data.Name, data.Description, data.Properties);
         }
 
         public Item Duplicate() {
-            return new Item(this.HasRuntimeData, this.Id, this.Type, this.Name, this.Properties);
+            return new Item(this.HasRuntimeData, this.Id, this.Type, this.Name, this.Description, this.Properties);
         }
 
         public Item Duplicate(string newName) {
             ItemKey newKey = new ItemKey(this.Id, newName, this.Properties.Encoding.Value);
-            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, newName, this.Properties);
+            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, newName, this.Description, this.Properties);
         }
 
         public Item Duplicate(IEnumerable<IItemProperty> newProperties) {
@@ -46,7 +47,7 @@ namespace ModularItemsAndInventory.Runtime.Items {
             }
 
             ItemKey newKey = new ItemKey(this.Id, this.Name, ItemProperties.Encode(properties.Values));
-            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, this.Name, properties.Values);
+            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, this.Name, this.Description, properties.Values);
         }
 
         public Item Duplicate(string newName, IEnumerable<IItemProperty> newProperties) {
@@ -56,12 +57,13 @@ namespace ModularItemsAndInventory.Runtime.Items {
             }
             
             ItemKey newKey = new ItemKey(this.Id, newName, ItemProperties.Encode(properties.Values));
-            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, newName, properties.Values);
+            return new Item(ItemDatabase.IsRuntimeDefined(newKey), this.Id, this.Type, newName, this.Description, properties.Values);
         }
 
         private Item(
-            bool hasRuntimeData, string id, ItemType type, string name, IEnumerable<IItemProperty> properties
-        ) : this(hasRuntimeData, id, type, name) {
+            bool hasRuntimeData, string id, ItemType type, string name, string description,
+            IEnumerable<IItemProperty> properties
+        ) : this(hasRuntimeData, id, type, name, description) {
             this.Properties = ItemProperties.Of(this).With(properties);
             this.CachedKey = new Lazy<ItemKey>(this.GenerateKey);
         }

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using UnityEngine;
 
 namespace LocalisationMappings.Runtime {
