@@ -298,10 +298,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2205906151554961017, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
-      propertyPath: movement
-      value: 
-      objectReference: {fileID: 1524319620}
     - target: {fileID: 3324175696564490730, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -520,6 +516,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &676971010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5767191383680721595, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+  m_PrefabInstance: {fileID: 7148083887080709903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147da6cf5b1349e0a94b4db48552da82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.AI.AiObserver
+--- !u!114 &757702134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5962797354652754877, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+  m_PrefabInstance: {fileID: 7148083887080709903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864c9421bf58464cabc187d5207365c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.Movement2D
 --- !u!1001 &847053562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,17 +1055,6 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
---- !u!114 &1524319620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1657168983261747242, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
-  m_PrefabInstance: {fileID: 389309323}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
 --- !u!4 &1757488895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3324175696564490730, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
@@ -14530,11 +14537,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2860047985782675043, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.945
+      value: -12.01
       objectReference: {fileID: 0}
     - target: {fileID: 2860047985782675043, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.035
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 2860047985782675043, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14568,11 +14575,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3969258260617922213, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 676971010}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoseTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.AI.AiObserver, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549437132863247474, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <OnLost>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: 'managedReferences[2098011431278478289]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.CharacterControls.Movement,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: 'managedReferences[2098011431278478290]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.CharacterControls.Movement,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478289].Name
+      value: Movement Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478290].Name
+      value: Movement Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478289].m_Value
+      value: 
+      objectReference: {fileID: 757702134}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478290].m_Value
+      value: 
+      objectReference: {fileID: 757702134}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478289].GUID.m_Value0
+      value: 3912412762241096952
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478289].GUID.m_Value1
+      value: 7728192752118598210
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478290].GUID.m_Value0
+      value: 3912412762241096952
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661309015989765707, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: managedReferences[2098011431278478290].GUID.m_Value1
+      value: 7728192752118598210
+      objectReference: {fileID: 0}
+    - target: {fileID: 8069941232091151929, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: <DetectionRange>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_Name
       value: Test Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2735908339877892702, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

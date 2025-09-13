@@ -12,10 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c5a0a79bf341b88ee4e6d694bc3e96, type: 3}
   m_Name: Test Quest
   m_EditorClassIdentifier: QuestAndObjective.Runtime::QuestAndObjective.Runtime.QuestData
-  <Id>k__BackingField: 
-  <Name>k__BackingField: 
+  <Id>k__BackingField: test_quest
+  <Name>k__BackingField: Test Quest
   <Description>k__BackingField: 
-  <Stages>k__BackingField: []
+  <Stages>k__BackingField:
+  - <Objectives>k__BackingField:
+    - rid: 2098011425797832786
+    - rid: 2098011425797832796
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2098011425797832786
+      type: {class: VariableBasedObjective, ns: QuestAndObjective.Runtime, asm: QuestAndObjective.Runtime}
+      data:
+        <Variable>k__BackingField: test_variable
+        <Predicate>k__BackingField: 1
+        <TargetValue>k__BackingField: 6
+        <InitialValue>k__BackingField: 0
+    - rid: 2098011425797832796
+      type: {class: AndObjective, ns: QuestAndObjective.Runtime, asm: QuestAndObjective.Runtime}
+      data:
+        <SubObjectives>k__BackingField:
+        - rid: 2098011425797832797
+        - rid: 2098011425797832808
+    - rid: 2098011425797832797
+      type: {class: FlagBasedObjective, ns: QuestAndObjective.Runtime, asm: QuestAndObjective.Runtime}
+      data:
+        <Flag>k__BackingField: is_master
+        <WantsFlagToBePresent>k__BackingField: 1
+    - rid: 2098011425797832808
+      type: {class: GatherItemObjective, ns: Game.Objectives, asm: Assembly-CSharp}
+      data:
+        <Variable>k__BackingField: health_potion_count
+        <Predicate>k__BackingField: 4
+        <TargetValue>k__BackingField: 2
+        <InitialValue>k__BackingField: 0
+        <Item>k__BackingField: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}

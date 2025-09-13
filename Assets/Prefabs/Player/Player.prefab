@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1094391696314402652}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Components
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7203234383525610170}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,9 +82,9 @@ GameObject:
   - component: {fileID: 8133807558494651657}
   - component: {fileID: 3797095984724131894}
   - component: {fileID: 2535223743861042130}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
   <AttributeSet>k__BackingField: {fileID: 106646709540062668}
   <Inventory>k__BackingField: {fileID: 7364736450214849462}
+  <QuestLog>k__BackingField: {fileID: 0}
 --- !u!114 &9044932256310309293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +359,7 @@ GameObject:
   - component: {fileID: 1590959129665856517}
   - component: {fileID: 3990052932965461405}
   - component: {fileID: 2205906151554961017}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
-  movement: {fileID: 0}
+  movement: {fileID: 4167809144799663900}
 --- !u!1001 &2079766445519088095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -536,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 1977015082886081136, guid: 454f69b4df2dd0545b4c8f0eb608f9e1, type: 3}
       propertyPath: m_Name
       value: InventoryUIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977015082886081136, guid: 454f69b4df2dd0545b4c8f0eb608f9e1, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5869916272792167068, guid: 454f69b4df2dd0545b4c8f0eb608f9e1, type: 3}
       propertyPath: inventory
@@ -622,6 +627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1250318494093649128, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: <Body>k__BackingField
+      value: 
+      objectReference: {fileID: 8133807558494651657}
     - target: {fileID: 3723051152404577821, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: <Body>k__BackingField
       value: 
@@ -638,28 +647,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerMovementComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
---- !u!114 &1657168983261747242 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-  m_PrefabInstance: {fileID: 2922007530389713908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
 --- !u!4 &4076413442697336507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4167809144799663900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1250318494093649128, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
 --- !u!1001 &4152145185797166675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -672,6 +686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputParserComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 4034291805902291817, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Animator>k__BackingField
       value: 
@@ -679,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 1657168983261747242}
+      objectReference: {fileID: 4167809144799663900}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 
@@ -805,6 +823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbilitiesComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 2838587810476369325, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -837,6 +859,10 @@ PrefabInstance:
     - target: {fileID: 1188483911394038995, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
       propertyPath: m_Name
       value: InventoryComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188483911394038995, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2999183895713534294, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -950,6 +976,10 @@ PrefabInstance:
     - target: {fileID: 7656328867919505419, guid: ebe5e1845aa13ab4ba5737bed7e1afa4, type: 3}
       propertyPath: m_Name
       value: InteractorComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7656328867919505419, guid: ebe5e1845aa13ab4ba5737bed7e1afa4, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
