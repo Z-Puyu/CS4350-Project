@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Events;
 using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -13,6 +14,7 @@ namespace Player {
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField] private Inventory Inventory { get; set; }
+        public CrossObjectEventWithDataSO broadcastItemCollected;
         
         private void Start() {
             if (!this.InitialData) {
@@ -29,6 +31,7 @@ namespace Player {
 
         public void Collect(int count, ItemKey item) {
             this.Inventory.Add(count, item);
+            broadcastItemCollected.TriggerEvent(this, item);
             OnScreenDebugger.Log($"Collected {count} {item.Id}");
             OnScreenDebugger.Log("Current Inventory:");
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {

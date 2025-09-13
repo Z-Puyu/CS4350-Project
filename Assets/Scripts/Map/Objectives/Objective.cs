@@ -2,7 +2,7 @@
 
 namespace Map.Objectives
 {
-    public abstract class Objective : MonoBehaviour
+    public abstract class Objective : ScriptableObject
     {
         public string title;
         public string description;

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Map.Objectives;
 using UnityEngine;
 using SaintsField;
 
@@ -8,6 +10,19 @@ namespace Map
 
     {
         public Sprite key;
-        public SaintsDictionary<int, int> enemiesToKill;
+        public List<KillEnemiesObjective> killEnemiesObjectives;
+        public List<CollectItemObjective> collectItemObjectives;
+
+        public void AddRequirements(List<KillEnemiesObjective> allkillEnemiesObjectives, List<CollectItemObjective> allCollectItemObjectives)
+        {
+            foreach (var objective in killEnemiesObjectives)
+            {
+                allkillEnemiesObjectives.Add(objective);
+            }
+            foreach (var objective in collectItemObjectives)
+            {
+                allCollectItemObjectives.Add(objective);
+            }
+        }
     }
 }

@@ -1,18 +1,25 @@
-﻿using ModularItemsAndInventory.Runtime.Items;
+﻿using System.Collections.Generic;
+using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 
 namespace Map.Objectives
 {
+    [CreateAssetMenu(fileName = "Collect items objective", menuName = "Objectives/Collect items objective")]
     public class CollectItemObjective : Objective
     {
-        public Item itemToCollect;
+        public ItemData itemToCollect;
         public int itemToCollectAmount;
-        private int currentItemCounter;
+        [SerializeField] private int currentItemCounter;
 
-        public void AddProgress(Item itemToCollect) {
+        public void AddProgress(ItemData itemToCollect, List<CollectItemObjective> allCollectItesmObjectives) {
             if (this.itemToCollect == itemToCollect)
             {
                 currentItemCounter += 1;
+            }
+
+            if (currentItemCounter >= itemToCollectAmount)
+            {
+                allCollectItesmObjectives.Remove(this);
             }
         }
     }

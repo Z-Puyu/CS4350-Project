@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Noticeboard region 1
   m_EditorClassIdentifier: Assembly-CSharp::Map.MapUnlockRequirementSO
   key: {fileID: 2921908482603741932, guid: 23e0bbf8bfb22604abb20f9a48562a3d, type: 3}
-  enemiesToKill:
-    _keys: 
-    _values: 
-    _saintsKeys: []
-    _saintsValues: []
+  killEnemiesObjectives: []
+  collectItemObjectives:
+  - {fileID: 11400000, guid: 2ba98a920bd69ea449db02779a3d2372, type: 2}

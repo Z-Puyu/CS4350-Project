@@ -11,6 +11,7 @@ namespace ModularItemsAndInventory.Runtime.Items {
         private ItemKey Item { get; set; }
         [field: SerializeField, MinValue(1)] private int Count { get; set; } = 1;
         [field: SerializeField, Required] private SpriteRenderer SpriteRenderer { get; set; }
+        
         private void Awake() {
             if (!this.ItemData) {
                 return;

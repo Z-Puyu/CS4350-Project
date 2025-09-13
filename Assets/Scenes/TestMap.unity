@@ -38343,6 +38343,50 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.432732, y: 1.2975026}
   m_EdgeRadius: 0
+--- !u!1 &1436918159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3020849860333577498, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+  m_PrefabInstance: {fileID: 1713279359534170061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1436918162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+  m_PrefabInstance: {fileID: 1713279359534170061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436918159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287559f9790f6d24594b6fa1da1a0c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveManager
+--- !u!114 &1436918164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436918159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 017908980cf3979488d871354bd2e014, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1436918162}
+        m_TargetAssemblyTypeName: Objectives.ObjectiveManager, Assembly-CSharp
+        m_MethodName: AddObjectives
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1453472073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52171,6 +52215,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+      propertyPath: collectItesmObjectives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+      propertyPath: 'collectItesmObjectives.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ba98a920bd69ea449db02779a3d2372, type: 2}
     - target: {fileID: 9064610046622730796, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 327.73413
@@ -52214,7 +52266,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3020849860333577498, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1436918164}
   m_SourcePrefab: {fileID: 100100000, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
 --- !u!1001 &8001388339152996734
 PrefabInstance:

@@ -2,6 +2,7 @@
 
 namespace Map.Objectives
 {
+	[CreateAssetMenu(fileName = "Kill enemies objective", menuName = "Objectives/Kill enemies objective")]
     public class KillEnemiesObjective : Objective
     {
         //private EnemySO enemySO;
