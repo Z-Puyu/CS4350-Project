@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Interactable;
 using Player;
 using UnityEngine.UI;
 
 namespace Map
 {
-    public sealed class MapNoticeboard : MonoBehaviour, IInteractable
+    public sealed class MapNoticeboard : MonoBehaviour
     {
         public MapUnlockRequirementSO mapUnlockRequirementSO;
         public TilemapCollider2D mapTileCollider2D;
@@ -19,13 +18,13 @@ namespace Map
             promptCanvas.gameObject.SetActive(false);
         }
 
-        public void Interact()
-        {
-            if (!isInteracted)
-            {
-                broadcastNoticeboardUnlockRequirement.TriggerEvent(this, mapUnlockRequirementSO);
-            }
-        }
+        // public void Interact()
+        // {
+        //     if (!isInteracted)
+        //     {
+        //         broadcastNoticeboardUnlockRequirement.TriggerEvent(this, mapUnlockRequirementSO);
+        //     }
+        // }
 
         void OnTriggerEnter2D(Collider2D collider)
         {
@@ -33,7 +32,7 @@ namespace Map
             if (playerInteract)
             {
                 promptCanvas.gameObject.SetActive(true);
-                playerInteract.SetInteractableObject(this);
+                //playerInteract.SetInteractableObject(this);
             }
         }
 
@@ -43,7 +42,7 @@ namespace Map
             if (playerInteract)
             {
                 promptCanvas.gameObject.SetActive(false);
-                playerInteract.SetInteractableObject(null);
+                //playerInteract.SetInteractableObject(null);
             }
         }
     }
