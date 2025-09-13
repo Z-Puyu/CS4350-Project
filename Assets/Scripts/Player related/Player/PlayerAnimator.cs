@@ -7,7 +7,7 @@ namespace Player_related.Player
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerAnimator: MonoBehaviour
     {
-        [SerializeField] private PlayerMovement movement;
+        public PlayerMovement movement;
         
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;

@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
-  movement: {fileID: 0}
+  movement: {fileID: 938500026693590273}
 --- !u!1001 &2079766445519088095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,26 +653,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 938500026693590273}
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
---- !u!114 &1657168983261747242 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-  m_PrefabInstance: {fileID: 2922007530389713908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b9aac969cc59b4d91d429687e74c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
 --- !u!4 &4076413442697336507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7849829060772088775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &938500026693590273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849829060772088775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
+  <SpeedMultiplier>k__BackingField: 5
+  <Body>k__BackingField: {fileID: 8133807558494651657}
 --- !u!1001 &4152145185797166675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 1657168983261747242}
+      objectReference: {fileID: 938500026693590273}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 
