@@ -13,17 +13,22 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private Inventory inventory;
 
         private ItemKey _currentItemKey;
-        
+
         private VisualElement _root;
         private VisualElement _grid;
-        
+
         private VisualElement _itemDescriptionContainer;
         private Label _itemDescription;
         private Label _itemName;
         private VisualElement _itemIcon;
 
+        public static InventoryUIManager Instance;
+
+        public SoilPlantInteraction CurrentSoil { get; private set; }
+
         private void Awake()
         {
+            Instance = this;
             gameObject.SetActive(false);
         }
 
@@ -31,12 +36,12 @@ namespace Inventory_related.Inventory_UI_Manager
         {
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
-            
+
             _itemDescriptionContainer = _root.Q<VisualElement>("ItemDescriptionContainer");
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
-            
+
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
 
@@ -64,7 +69,7 @@ namespace Inventory_related.Inventory_UI_Manager
             _itemDescription.text = itemData.Description;
             _itemName.text = itemData.Name;
         }
-        
+
         private void RefreshInventoryUI()
         {
             _grid.Clear();
@@ -77,6 +82,20 @@ namespace Inventory_related.Inventory_UI_Manager
                 var slotUI = new SlotUI(slotElement, this);
                 slotUI.SetData(kvp.Key, kvp.Value);
             }
+        }
+
+        public void OpenForSeedSelection(SoilPlantInteraction soil)
+        {
+            CurrentSoil = soil;
+            gameObject.SetActive(true);
+            RefreshInventoryUI();
+        }
+
+        public void OnSeedSelected(string seedId)
+        {
+            CurrentSoil?.PlantSeed(seedId);
+            CurrentSoil = null;
+            gameObject.SetActive(false);
         }
     }
 }

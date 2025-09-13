@@ -1,25 +1,21 @@
 using UnityEngine;
 using System.Collections;
+using Inventory_related.Inventory_UI_Manager;
+using Common;
 
 public class SoilPlantInteraction : MonoBehaviour
 {
-    public enum PlantStage
-    {
-        Planted,
-        Seedling,
-        Grown,
-        Wilting,
-        Wilted
-    }
+    public enum PlantStage { Planted, Seedling, Grown, Wilting, Wilted }
 
+    [SerializeField] private string plantedSeedId; // which seed type (from inventory)
     private PlantStage currentStage = PlantStage.Planted;
     private bool hasPlant = false;
     private bool isWatered = false;
     private int waterCount = 0;
+    private bool playerIsOver = false;
 
     private Animator animator;
 
-    // Harvest event for external scripts
     public delegate void OnHarvest();
     public event OnHarvest HarvestEvent;
 
@@ -30,40 +26,68 @@ public class SoilPlantInteraction : MonoBehaviour
 
     void Update()
     {
-        // LEFT CLICK: Plant / Harvest
-        if (Input.GetMouseButtonDown(0) && IsMouseOver())
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            if (!hasPlant)
-                PlantSeed();
-            else if (currentStage >= PlantStage.Grown)
-                HarvestPlant();
+            OnScreenDebugger.Log("C key pressed");
+
+            if (playerIsOver)
+            {
+                OnScreenDebugger.Log("Player is over soil → opening inventory");
+                OpenInventoryForSeed();
+            }
+            else
+            {
+                OnScreenDebugger.Log("Player is NOT over soil → cannot open inventory");
+            }
         }
 
-        // RIGHT CLICK: Water
-        if (Input.GetMouseButtonDown(1) && IsMouseOver())
+        if (Input.GetKeyDown(KeyCode.V) && playerIsOver)
         {
+            OnScreenDebugger.Log("V key pressed → watering plant");
             WaterPlant();
         }
     }
 
-    bool IsMouseOver()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D col = GetComponent<Collider2D>();
-        return col != null && col.OverlapPoint(mousePos);
+        if (other.CompareTag("Player")) // Make sure your player GameObject has the tag "Player"
+        {
+            playerIsOver = true;
+            OnScreenDebugger.Log("Player entered soil tile");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsOver = false;
+            OnScreenDebugger.Log("Player left soil tile");
+        }
     }
 
     // -----------------------
-    void PlantSeed()
+    void OpenInventoryForSeed()
     {
+        Debug.Log("Opening inventory to choose a seed...");
+        InventoryUIManager.Instance.OpenForSeedSelection(this);
+    }
+
+    // Called by Inventory when a seed is chosen
+    public void PlantSeed(string seedId)
+    {
+        plantedSeedId = seedId;
         hasPlant = true;
         currentStage = PlantStage.Planted;
         isWatered = false;
         waterCount = 0;
 
         PlayPlantAnimation("dry");
+        Debug.Log($"Planted {seedId} in soil!");
     }
 
+    // -----------------------
     void WaterPlant()
     {
         if (hasPlant && currentStage != PlantStage.Wilted)
@@ -73,7 +97,6 @@ public class SoilPlantInteraction : MonoBehaviour
                 waterCount++;
                 StartCoroutine(PlayPlantWateringThenWet());
 
-                // Age after 2 waterings
                 if (waterCount >= 2)
                 {
                     waterCount = 0;
@@ -87,24 +110,15 @@ public class SoilPlantInteraction : MonoBehaviour
         }
     }
 
-    // -----------------------
     IEnumerator PlayPlantWateringThenWet()
     {
         isWatered = true;
-
-        // Play watering animation once
         PlayPlantAnimation("watering");
-
-        // Wait for actual watering animation duration (set according to your clip length)
         yield return new WaitForSeconds(4f);
 
-        // Switch to looping wet animation
         PlayPlantAnimation("wet");
-
-        // Stay wet for 10 seconds
         yield return new WaitForSeconds(10f);
 
-        // Dry out after loop
         isWatered = false;
         if (hasPlant && currentStage != PlantStage.Wilted)
             PlayPlantAnimation("dry");
@@ -113,41 +127,37 @@ public class SoilPlantInteraction : MonoBehaviour
     IEnumerator AgePlantAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
         if (hasPlant && isWatered)
             AgePlant();
     }
 
-    // -----------------------
     void HarvestPlant()
     {
         HarvestEvent?.Invoke();
 
+        Debug.Log($"Harvested {plantedSeedId}!");
+        plantedSeedId = null;
         hasPlant = false;
         currentStage = PlantStage.Planted;
         isWatered = false;
 
         animator.SetTrigger("Harvest");
-        animator.Play("dry_dirt", 0); // soil always stays dry
+        animator.Play("dry_dirt", 0);
     }
 
     void AgePlant()
     {
-        if (currentStage == PlantStage.Planted)
-            currentStage = PlantStage.Seedling;
-        else if (currentStage == PlantStage.Seedling)
-            currentStage = PlantStage.Grown;
-        else if (currentStage == PlantStage.Grown)
-            currentStage = PlantStage.Wilting;
-        else if (currentStage == PlantStage.Wilting)
-            currentStage = PlantStage.Wilted;
+        if (currentStage == PlantStage.Planted) currentStage = PlantStage.Seedling;
+        else if (currentStage == PlantStage.Seedling) currentStage = PlantStage.Grown;
+        else if (currentStage == PlantStage.Grown) currentStage = PlantStage.Wilting;
+        else if (currentStage == PlantStage.Wilting) currentStage = PlantStage.Wilted;
 
         PlayPlantAnimation(isWatered ? "wet" : "dry");
     }
 
     void PlayPlantAnimation(string condition)
     {
-        string animName = $"seed_1_{currentStage.ToString().ToLower()}_{condition}";
+        string animName = $"{plantedSeedId}_{currentStage.ToString().ToLower()}_{condition}";
         animator.Play(animName, 0);
     }
 }
