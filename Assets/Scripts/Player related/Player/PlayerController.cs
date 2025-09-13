@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Game.Inventory;
 using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -32,7 +33,7 @@ namespace Player {
         }
 
         private void HandleInventoryChange(Inventory.ItemOperation change) {
-            this.QuestLog.Progress(new InventoryChangeEvent(change.Item.Id, change.QuantityChange));
+            this.QuestLog.Progress($"{change.Item.Id}.count", change.QuantityChange);
         }
 
         public void Collect(int count, ItemKey item) {

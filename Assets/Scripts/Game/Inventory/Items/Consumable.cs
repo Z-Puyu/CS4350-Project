@@ -8,7 +8,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
 using UnityEngine;
 
-namespace Items {
+namespace Game.Inventory.Items {
     [Serializable]
     public class Consumable : ItemProperty {
         [field: SerializeField] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();

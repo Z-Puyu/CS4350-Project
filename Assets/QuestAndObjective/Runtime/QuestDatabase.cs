@@ -12,7 +12,8 @@ namespace QuestAndObjective.Runtime {
         private Dictionary<string, Quest> RuntimeQuests { get; set; } =
             new Dictionary<string, Quest>();
         
-        [field: SerializeField, ResourceFolder] private string QuestDataFolder { get; set; }
+        [field: SerializeField, ResourceFolder] 
+        private string QuestDataFolder { get; set; }
         
         protected override void Awake() {
             base.Awake();

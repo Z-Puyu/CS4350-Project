@@ -21,18 +21,30 @@ namespace QuestAndObjective.Runtime {
             }
 
             return;
+            
             void handleStageProgress(Objective completedObjective) {
                 this.OnObjectiveCompleted?.Invoke(completedObjective);
             }
         }
 
-        internal bool Advance<E>(E @event) where E : struct, IObjectiveStateUpdateEvent {
-            this.CurrentStage.Advance(@event);
-            if (this.CurrentStage.CompletionStatus != QuestStage.Status.Completed) {
-                return false;
-            }
+        /// <summary>
+        /// Advances a quest.
+        /// </summary>
+        /// <param name="variables">The quest variables</param>
+        /// <returns><c>true</c> if the quest is completed, <c>false</c> otherwise</returns>
+        internal bool Advance(QuestVariableContainer variables) {
+            do {
+                this.CurrentStage.Advance(variables);
+                if (this.CurrentStage.CompletionStatus != QuestStage.Status.Completed) {
+                    return false;
+                }
+                
+                this.CurrentStageIndex += 1;
+                if (this.CurrentStageIndex < this.Data.Stages.Count) {
+                    this.CurrentStage.Begin();
+                }
+            } while (this.CurrentStageIndex < this.Data.Stages.Count);
             
-            this.CurrentStageIndex += 1;
             return true;
         }
 

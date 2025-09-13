@@ -16,21 +16,24 @@ namespace QuestAndObjective.Runtime {
 
         internal Status CompletionStatus { get; private set; } = Status.NotStarted;
 
-        [field: SerializeReference, ReferencePicker]
+        [field: SerializeReference, ReferencePicker, RichLabel(nameof(this.ObjectiveLabels), true)]
         private List<Objective> Objectives { get; set; } = new List<Objective>();
 
         internal event Action<Objective> OnProgressed; 
         
+        private string ObjectiveLabels(Objective obj, int index) => obj is null ? $"{index + 1}." : $"{index + 1}. {obj.Name}";
+        
         internal void Begin() {
             this.CompletionStatus = Status.Ongoing;
+            this.Objectives.ForEach(objective => objective.Initialise());
         }
         
-        internal bool Advance<E>(E @event) where E : struct, IObjectiveStateUpdateEvent {
-            foreach (Objective objective in this.Objectives.Where(objective => objective.Advance(@event))) {
+        internal bool Advance(QuestVariableContainer variables) {
+            foreach (Objective objective in this.Objectives.Where(objective => objective.Advance(variables))) {
                 this.OnProgressed?.Invoke(objective);
             }
 
-            if (!this.Objectives.TrueForAll(objective => objective.IsCompleted)) {
+            if (!this.Objectives.TrueForAll(objective => objective.IsCompleted(variables))) {
                 return false;
             }
 

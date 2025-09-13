@@ -8,6 +8,8 @@ namespace QuestAndObjective.Runtime {
     [DisallowMultipleComponent]
     public sealed class QuestLog : MonoBehaviour, IEnumerable<Quest> {
         private List<Quest> Quests { get; set; } = new List<Quest>();
+        private List<Quest> JustCompletedQuests { get; set; } = new List<Quest>();
+        public QuestVariableContainer Variables { get; } = new QuestVariableContainer();
 
         public event UnityAction<Objective> OnObjectiveAchieved;
         public event UnityAction<(QuestStage from, QuestStage to)> OnQuestAdvanced;
@@ -24,28 +26,41 @@ namespace QuestAndObjective.Runtime {
                 quest.Start();
                 quest.OnObjectiveCompleted += handleCompletedObjective;
                 this.OnQuestStarted?.Invoke(quest);
+                this.UpdateQuest(quest);
+                if (quest.IsCompleted) {
+                    this.Finish(quest);
+                }
             }
 
-            return;
+            return; 
+            
             void handleCompletedObjective(Objective completedObjective) {
                 this.OnObjectiveAchieved?.Invoke(completedObjective);
             }
         }
+        
+        private void UpdateQuest(Quest quest) {
+            QuestStage prev = quest.CurrentStage;
+            if (quest.Advance(this.Variables)) {
+                this.OnQuestAdvanced?.Invoke((prev, quest.CurrentStage));
+            }
+        }
 
-        public void Progress<E>(E @event) where E : struct, IObjectiveStateUpdateEvent {
-            List<Quest> completed = new List<Quest>();
+        private void UpdateAllQuests() {
             foreach (Quest quest in this.Quests) {
-                QuestStage prev = quest.CurrentStage;
-                if (quest.Advance(@event)) {
-                    this.OnQuestAdvanced?.Invoke((prev, quest.CurrentStage));
-                }
-                
+                this.UpdateQuest(quest);
                 if (quest.IsCompleted) {
-                    completed.Add(quest);
+                    this.JustCompletedQuests.Add(quest);
                 }
             }
-            
-            completed.ForEach(this.Finish);
+
+            this.JustCompletedQuests.ForEach(this.Finish);
+            this.JustCompletedQuests.Clear();
+        }
+
+        public void Progress(string questVariable, int delta) {
+            this.Variables.UpdateIntValue(questVariable, delta);
+            this.UpdateAllQuests();
         }
 
         public void Finish(Quest quest) {

@@ -1,22 +1,16 @@
 ﻿using System;
+using SaintsField;
+using UnityEngine;
 
 namespace QuestAndObjective.Runtime {
     [Serializable]
     public abstract class Objective {
-        public abstract bool IsCompleted { get; }
+        protected internal abstract string Name { get; }
 
-        public abstract bool Advance<S>(S @event) where S : struct, IObjectiveStateUpdateEvent;
-    }
-    
-    public abstract class Objective<E> : Objective where E : struct, IObjectiveStateUpdateEvent {
-        protected abstract bool Advance(E @event);
+        public abstract void Initialise();
         
-        public sealed override bool Advance<S>(S @event) {
-            if (!this.IsCompleted && @event is E e) {
-                return this.Advance(e);
-            }
-            
-            return false;
-        }
+        public abstract bool IsCompleted(QuestVariableContainer variables);
+
+        public abstract bool Advance(QuestVariableContainer variables);
     }
 }
