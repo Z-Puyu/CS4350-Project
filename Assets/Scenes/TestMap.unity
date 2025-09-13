@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3797095984724131894, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6454949747492492771, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
       propertyPath: m_Name
       value: Player
@@ -530,6 +534,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &618673864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618673865}
+  m_Layer: 0
+  m_Name: Objective manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &618673865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618673864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 327.73413, y: 113.01425, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669694233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7849829060772088775, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
@@ -617,7 +652,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -20441,7 +20476,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -38552,7 +38587,7 @@ PrefabInstance:
     - target: {fileID: 4759863161539669015, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
       propertyPath: mapTileCollider2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 961728426}
     - target: {fileID: 4759863161539669015, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
       propertyPath: mapUnlockRequirementSO
       value: 
@@ -52027,7 +52062,7 @@ PrefabInstance:
     - target: {fileID: 4759863161539669015, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
       propertyPath: mapTileCollider2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 801469308}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52048,3 +52083,4 @@ SceneRoots:
   - {fileID: 1290042881}
   - {fileID: 2057058207}
   - {fileID: 8001388339152996734}
+  - {fileID: 618673865}
