@@ -15,11 +15,11 @@ namespace Game.Objectives {
 
         public GatherItemObjective() {
             this.IsReadonlyCondition = true;
-            this.Predicate = Condition.GreaterThanOrEqualTo;
+            this.Predicate = Condition.GreaterThanOrEqual;
         }
 
         private void OnValidate() {
-            this.Variable = $"{this.Item.Id}_count";
+            this.Variable = $"{this.Item.Id}:count";
         }
     }
 }

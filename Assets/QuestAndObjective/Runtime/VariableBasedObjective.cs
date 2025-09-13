@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SaintsField;
 using UnityEngine;
 
@@ -7,10 +9,10 @@ namespace QuestAndObjective.Runtime {
         protected enum Condition {
             GreaterThan,
             LessThan,
-            EqualTo,
-            NotEqualTo,
-            GreaterThanOrEqualTo,
-            LessThanOrEqualTo
+            Equal,
+            NotEqual,
+            GreaterThanOrEqual,
+            LessThanOrEqual
         }
         
         protected bool IsReadonlyCondition { private get; set; }
@@ -20,6 +22,9 @@ namespace QuestAndObjective.Runtime {
         
         [field: SerializeField, ReadOnly(nameof(this.IsReadonlyCondition))] 
         protected Condition Predicate { private get; set; }
+        
+        [field: SerializeField, ReadOnly(nameof(this.IsReadonlyCondition))] 
+        protected bool IncludesHistoricalValues { private get; set; } = true;
         
         [field: SerializeField] 
         protected int TargetValue { get; set; }
@@ -33,10 +38,10 @@ namespace QuestAndObjective.Runtime {
                 char verb = this.Predicate switch {
                     Condition.GreaterThan => '>',
                     Condition.LessThan => '<',
-                    Condition.EqualTo => '=',
-                    Condition.NotEqualTo => '≠',
-                    Condition.GreaterThanOrEqualTo => '≥',
-                    Condition.LessThanOrEqualTo => '≤',
+                    Condition.Equal => '=',
+                    Condition.NotEqual => '≠',
+                    Condition.GreaterThanOrEqual => '≥',
+                    Condition.LessThanOrEqual => '≤',
                     var _ => '?'
                 };
             
@@ -44,30 +49,40 @@ namespace QuestAndObjective.Runtime {
             }
         }
 
-        public override void Initialise() {
-            this.CurrentValue = this.InitialValue;
+        public override void Initialise(IQuestProgressProvider provider) {
+            if (this.IncludesHistoricalValues) {
+                this.CurrentValue = provider.HasValue(this.Variable, out int value)
+                        ? value + this.InitialValue
+                        : this.InitialValue;
+            } else {
+                this.CurrentValue = this.InitialValue;
+            }
         }
 
-        public override bool IsCompleted(QuestVariableContainer variables) {
+        public override bool IsCompleted(IQuestProgressProvider provider) {
             return this.Predicate switch {
-                Condition.EqualTo => variables.GetIntValue(this.Variable) == this.TargetValue,
-                Condition.GreaterThan => variables.GetIntValue(this.Variable) > this.TargetValue,
-                Condition.GreaterThanOrEqualTo => variables.GetIntValue(this.Variable) >= this.TargetValue,
-                Condition.LessThan => variables.GetIntValue(this.Variable) < this.TargetValue,
-                Condition.LessThanOrEqualTo => variables.GetIntValue(this.Variable) <= this.TargetValue,
-                Condition.NotEqualTo => variables.GetIntValue(this.Variable) != this.TargetValue,
+                Condition.Equal => provider.HasValue(this.Variable, out int value) && value == this.TargetValue,
+                Condition.NotEqual => provider.HasValue(this.Variable, out int value) && value != this.TargetValue,
+                Condition.GreaterThan => provider.HasValue(this.Variable, out int value) && value > this.TargetValue,
+                Condition.LessThan => provider.HasValue(this.Variable, out int value) && value < this.TargetValue,
+                Condition.GreaterThanOrEqual => provider.HasValue(this.Variable, out int value) &&
+                                                value >= this.TargetValue,
+                Condition.LessThanOrEqual => provider.HasValue(this.Variable, out int value) &&
+                                             value <= this.TargetValue,
                 var _ => false
             };
         }
 
-        public override bool Advance(QuestVariableContainer variables) {
-            if (this.IsCompleted(variables)) {
+        public override bool Advance(IQuestProgressProvider provider) {
+            if (this.IsCompleted(provider)) {
                 return false;
             }
+
+            if (provider.HasValue(this.Variable, out int value)) {
+                return Math.Abs(value - this.CurrentValue) < Math.Abs(this.TargetValue - this.CurrentValue);
+            }
             
-            int distance = Math.Abs(this.TargetValue - this.CurrentValue);
-            this.CurrentValue = variables.GetIntValue(this.Variable);
-            return Math.Abs(this.TargetValue - this.CurrentValue) < distance;
+            return false;
         }
     }
 }

@@ -11,16 +11,16 @@ namespace QuestAndObjective.Runtime {
         
         private string ObjectiveLabels(Objective obj, int index) => obj is null ? $"{index + 1}." : $"{index + 1}. {obj.Name}";
 
-        public override void Initialise() {
-            this.SubObjectives.ForEach(objective => objective.Initialise());
+        public override void Initialise(IQuestProgressProvider provider) {
+            this.SubObjectives.ForEach(objective => objective.Initialise(provider));
         }
         
-        public override bool IsCompleted(QuestVariableContainer variables) {
-            return this.SubObjectives.Exists(objective => objective.IsCompleted(variables));
+        public override bool IsCompleted(IQuestProgressProvider provider) {
+            return this.SubObjectives.Exists(objective => objective.IsCompleted(provider));
         }
         
-        public override bool Advance(QuestVariableContainer variables) {
-            return this.SubObjectives.Exists(objective => objective.Advance(variables));
+        public override bool Advance(IQuestProgressProvider provider) {
+            return this.SubObjectives.Exists(objective => objective.Advance(provider));
         }
     }
 }

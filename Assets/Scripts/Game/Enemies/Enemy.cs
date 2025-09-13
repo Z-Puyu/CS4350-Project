@@ -10,13 +10,14 @@ using UnityEngine.Events;
 namespace Game.Enemies {
     [DisallowMultipleComponent]
     public class Enemy : MonoBehaviour {
-        public static event UnityAction<Enemy> OnDeath; 
+        public static event UnityAction<EnemyDeathEvent> OnDeath; 
         
         [field: SerializeField] private EnemyData Data { get; set; }
         [field: SerializeField] private Animator Animator { get; set; }
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
         [field: SerializeField, Required] private Health Health { get; set; }
+        private GameObject LastAttacker { get; set; }
         
         private void Start() {
             this.Animator.runtimeAnimatorController = this.Data.Animations;
@@ -26,7 +27,7 @@ namespace Game.Enemies {
         }
 
         private void Die() {
-            Enemy.OnDeath?.Invoke(this);
+            Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
         }
     }
 }

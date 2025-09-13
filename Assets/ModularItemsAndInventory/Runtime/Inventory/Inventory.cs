@@ -43,6 +43,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
         private Dictionary<ItemType, Dictionary<ItemKey, int>> Items { get; set; } =
             new Dictionary<ItemType, Dictionary<ItemKey, int>>();
+        
+        private Dictionary<string, int> UniqueItems { get; set; } = new Dictionary<string, int>();
 
         public event UnityAction<ItemOperation> OnInventoryChanged;
 
@@ -83,6 +85,15 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <returns>The total count of items with the specified type in the inventory. Returns 0 if no items of that type are found.</returns>
         public int Count([NotNull] ItemType type) {
             return this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record) ? record.Values.Sum() : 0;
+        }
+        
+        /// <summary>
+        /// Counts an item by its ID.
+        /// </summary>
+        /// <param name="id">The item ID.</param>
+        /// <returns>The count of items with the ID.</returns>
+        public int Count(string id) {
+            return this.UniqueItems.GetValueOrDefault(id, 0);
         }
 
         /// <summary>
@@ -134,10 +145,13 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
             ItemType type = ItemDatabase.TypeOf(item);
             if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record)) {
                 oldQty = record.GetValueOrDefault(item, 0);
-                currQty = record[item] = oldQty + quantity;
+                currQty = oldQty + quantity;
+                record[item] = currQty;
+                this.UniqueItems[item.Id] = currQty;
             } else {
                 currQty = quantity;
                 this.Items.Add(type, new Dictionary<ItemKey, int> { { item, quantity } });
+                this.UniqueItems.Add(item.Id, 1);
             }
 
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, oldQty, currQty, OperationType.AddItem));
@@ -149,10 +163,17 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item to remove from the inventory.</param>
         public void RemoveAll(ItemKey item) {
-            if (this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record) &&
-                record.Remove(item, out int count)) {
-                this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, 0, OperationType.RemoveItem));
+            if (!this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record) ||
+                !record.Remove(item, out int count)) {
+                return;
             }
+
+            this.UniqueItems[item.Id] -= count;
+            if (this.UniqueItems[item.Id] <= 0) {
+                this.UniqueItems.Remove(item.Id);
+            }
+                
+            this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, 0, OperationType.RemoveItem));
         }
 
         /// <summary>
@@ -197,6 +218,11 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 record.Remove(item);
             }
 
+            this.UniqueItems[item.Id] -= quantity;
+            if (this.UniqueItems[item.Id] <= 0) {
+                this.UniqueItems.Remove(item.Id);
+            }
+            
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, remaining, OperationType.RemoveItem));
             return true;
         }

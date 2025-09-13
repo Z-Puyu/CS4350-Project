@@ -10,11 +10,17 @@ namespace QuestAndObjective.Runtime {
         private List<Quest> Quests { get; set; } = new List<Quest>();
         private List<Quest> JustCompletedQuests { get; set; } = new List<Quest>();
         public QuestVariableContainer Variables { get; } = new QuestVariableContainer();
+        private IQuestProgressProvider QuestProgressProvider { get; set; }
 
         public event UnityAction<Objective> OnObjectiveAchieved;
         public event UnityAction<(QuestStage from, QuestStage to)> OnQuestAdvanced;
         public event UnityAction<Quest> OnQuestCompleted;
         public event UnityAction<Quest> OnQuestStarted;
+        
+        public QuestLog WithQuestProgressProvider(IQuestProgressProvider provider) {
+            this.QuestProgressProvider = provider;
+            return this;
+        }
         
         public void Begin(string id) {
             if (this.Quests.Any(q => q.Id == id)) {
@@ -23,7 +29,7 @@ namespace QuestAndObjective.Runtime {
                 Debug.LogWarning($"Quest {id} does not exist.", this);
             } else {
                 this.Quests.Add(quest);
-                quest.Start();
+                quest.Start(this.QuestProgressProvider);
                 quest.OnObjectiveCompleted += handleCompletedObjective;
                 this.OnQuestStarted?.Invoke(quest);
                 this.UpdateQuest(quest);
@@ -41,7 +47,7 @@ namespace QuestAndObjective.Runtime {
         
         private void UpdateQuest(Quest quest) {
             QuestStage prev = quest.CurrentStage;
-            if (quest.Advance(this.Variables)) {
+            if (quest.Advance(this.QuestProgressProvider)) {
                 this.OnQuestAdvanced?.Invoke((prev, quest.CurrentStage));
             }
         }

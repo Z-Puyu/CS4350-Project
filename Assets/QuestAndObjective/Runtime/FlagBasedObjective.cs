@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SaintsField;
 using UnityEngine;
 
@@ -15,20 +17,20 @@ namespace QuestAndObjective.Runtime {
 
         protected internal override string Name => $"Flag {this.Flag} {(this.WantsFlagToBePresent ? "is" : "is not")} present";
 
-        public override void Initialise() {
+        public override void Initialise(IQuestProgressProvider provider) {
             this.CurrentValue = !this.WantsFlagToBePresent;
         }
 
-        public override bool IsCompleted(QuestVariableContainer variables) {
+        public override bool IsCompleted(IQuestProgressProvider provider) {
             return this.CurrentValue == this.WantsFlagToBePresent;
         }
 
-        public override bool Advance(QuestVariableContainer variables) {
-            if (this.IsCompleted(variables)) {
+        public override bool Advance(IQuestProgressProvider provider) {
+            if (this.IsCompleted(provider)) {
                 return false;
             }
             
-            this.CurrentValue = variables.HasFlag(this.Flag);
+            this.CurrentValue = provider.HasFlag(this.Flag);
             return this.CurrentValue == this.WantsFlagToBePresent;
         }
     }

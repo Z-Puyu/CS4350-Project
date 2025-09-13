@@ -23,17 +23,17 @@ namespace QuestAndObjective.Runtime {
         
         private string ObjectiveLabels(Objective obj, int index) => obj is null ? $"{index + 1}." : $"{index + 1}. {obj.Name}";
         
-        internal void Begin() {
+        internal void Begin(IQuestProgressProvider progressProvider) {
             this.CompletionStatus = Status.Ongoing;
-            this.Objectives.ForEach(objective => objective.Initialise());
+            this.Objectives.ForEach(objective => objective.Initialise(progressProvider));
         }
         
-        internal bool Advance(QuestVariableContainer variables) {
-            foreach (Objective objective in this.Objectives.Where(objective => objective.Advance(variables))) {
+        internal bool Advance(IQuestProgressProvider progressProvider) {
+            foreach (Objective objective in this.Objectives.Where(objective => objective.Advance(progressProvider))) {
                 this.OnProgressed?.Invoke(objective);
             }
 
-            if (!this.Objectives.TrueForAll(objective => objective.IsCompleted(variables))) {
+            if (!this.Objectives.TrueForAll(objective => objective.IsCompleted(progressProvider))) {
                 return false;
             }
 

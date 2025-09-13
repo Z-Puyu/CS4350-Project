@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
-using Game.Inventory;
+using Game.Enemies;
+using Game.Objectives;
 using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -17,23 +18,42 @@ namespace Player {
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private QuestLog QuestLog { get; set; }
+        private GlobalQuestProgressProvider GlobalQuestProgress { get; set; } = new GlobalQuestProgressProvider();
         
         private void Start() {
             if (!this.InitialData) {
                 return;
             }
             
-            this.AttributeSet.Initialise(this.InitialData.Attributes);
-            foreach (KeyValuePair<ItemData, int> data in this.InitialData.Items) {
-                this.Inventory.Add(data.Value, ItemKey.From(data.Key));
-            }
-            
-            this.Inventory.OnInventoryChanged += this.HandleInventoryChange;
+            this.ConfigureAttributeSet();
+            this.ConfigureInventory();
+            this.ConfigureQuestLog();
+            Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
         }
 
-        private void HandleInventoryChange(Inventory.ItemOperation change) {
-            this.QuestLog.Progress($"{change.Item.Id}.count", change.QuantityChange);
+        private void ConfigureInventory() {
+            foreach (KeyValuePair<ItemData, int> data in this.InitialData.Items) {
+                this.Inventory.Add(data.Value, ItemKey.From(data.Key));
+            }
+        }
+        
+        private void ConfigureAttributeSet() {
+            this.AttributeSet.Initialise(this.InitialData.Attributes);
+        }
+
+        private void ConfigureQuestLog() {
+            IQuestProgressProvider questProgressProvider = this.GlobalQuestProgress
+                                                               .And(new InventoryQuestProgressProvider(this.Inventory));
+            this.QuestLog.WithQuestProgressProvider(questProgressProvider);
+        }
+
+        private void HandleEnemyDeath(EnemyDeathEvent @event) {
+            if (@event.Killer != this.gameObject && @event.Killer.transform.IsChildOf(this.transform)) {
+                return;
+            }
+            
+            this.GlobalQuestProgress.UpdateVariable($"{@event.DeadEnemy.Id}:kill_count", 1);
         }
 
         public void Collect(int count, ItemKey item) {

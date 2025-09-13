@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QuestAndObjective.Runtime {
     public sealed class Quest {
@@ -14,9 +15,9 @@ namespace QuestAndObjective.Runtime {
             this.Data = data;
         }
 
-        internal void Start() {
+        internal void Start(IQuestProgressProvider progressProvider) {
             foreach (QuestStage stage in this.Data.Stages) {
-                stage.Begin();
+                stage.Begin(progressProvider);
                 stage.OnProgressed += handleStageProgress;
             }
 
@@ -30,18 +31,18 @@ namespace QuestAndObjective.Runtime {
         /// <summary>
         /// Advances a quest.
         /// </summary>
-        /// <param name="variables">The quest variables</param>
+        /// <param name="progressProvider">The quest progress providers</param>
         /// <returns><c>true</c> if the quest is completed, <c>false</c> otherwise</returns>
-        internal bool Advance(QuestVariableContainer variables) {
+        internal bool Advance(IQuestProgressProvider progressProvider) {
             do {
-                this.CurrentStage.Advance(variables);
+                this.CurrentStage.Advance(progressProvider);
                 if (this.CurrentStage.CompletionStatus != QuestStage.Status.Completed) {
                     return false;
                 }
                 
                 this.CurrentStageIndex += 1;
                 if (this.CurrentStageIndex < this.Data.Stages.Count) {
-                    this.CurrentStage.Begin();
+                    this.CurrentStage.Begin(progressProvider);
                 }
             } while (this.CurrentStageIndex < this.Data.Stages.Count);
             

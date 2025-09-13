@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
 
@@ -7,10 +8,10 @@ namespace QuestAndObjective.Runtime {
     public abstract class Objective {
         protected internal abstract string Name { get; }
 
-        public abstract void Initialise();
+        public abstract void Initialise(IQuestProgressProvider provider);
         
-        public abstract bool IsCompleted(QuestVariableContainer variables);
+        public abstract bool IsCompleted(IQuestProgressProvider provider);
 
-        public abstract bool Advance(QuestVariableContainer variables);
+        public abstract bool Advance(IQuestProgressProvider provider);
     }
 }
