@@ -1,6 +1,7 @@
 using Map.Objectives;
 using UnityEngine;
 using System.Collections.Generic;
+using ModularItemsAndInventory.Runtime.Items;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -14,4 +15,15 @@ public class ObjectiveManager : MonoBehaviour
             objective.AddProgress();
         }
     }
+
+    public void AddItemToObjective(Component component, object item)
+    {
+        Item itemToAdd = (Item)((object[])item)[0];
+        foreach (var objective in collectItesmObjectives)
+        {
+            objective.AddProgress(itemToAdd);
+        }
+    }
+    
+
 }

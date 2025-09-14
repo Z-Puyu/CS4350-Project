@@ -1,20 +1,23 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CrossObjectEventListener : MonoBehaviour
+namespace Events
 {
-    public CrossObjectEventSO gameEvent;
-    public UnityEvent responseOnTrigger;
+    public class CrossObjectEventListener : MonoBehaviour
+    {
+        public CrossObjectEventSO gameEvent;
+        public UnityEvent responseOnTrigger;
 
-    private void OnEnable() {
-        gameEvent.AddListener(this);
-    }
+        private void OnEnable() {
+            gameEvent.AddListener(this);
+        }
 
-    private void OnDisable() {
-        gameEvent.RemoveListener(this);
-    }
+        private void OnDisable() {
+            gameEvent.RemoveListener(this);
+        }
 
-    public virtual void TriggerEvent() {
-        responseOnTrigger?.Invoke();
-    }
+        public virtual void TriggerEvent() {
+            responseOnTrigger?.Invoke();
+        }
+    }   
 }

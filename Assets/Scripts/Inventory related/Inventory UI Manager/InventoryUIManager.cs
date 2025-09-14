@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Common;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
@@ -12,8 +14,8 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory inventory;
 
-        private ItemKey _currentItemKey;
-
+        private ItemKey? _currentItemKey;
+        
         private VisualElement _root;
         private VisualElement _grid;
 
@@ -25,6 +27,10 @@ namespace Inventory_related.Inventory_UI_Manager
         public static InventoryUIManager Instance;
 
         public SoilPlantInteraction CurrentSoil { get; private set; }
+        
+        // Buttons
+        private Button _useButton;
+        private Button _dropButton;
 
         private void Awake()
         {
@@ -41,9 +47,16 @@ namespace Inventory_related.Inventory_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
+            
+            _useButton = _root.Q<Button>("UseButton");
+            _dropButton = _root.Q<Button>("DropButton");
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
+            
+            // Register button actions
+            _useButton.clicked += OnUseButtonClicked;
+            _dropButton.clicked += OnDropButtonClicked;
 
             // Listen to inventory changes
             inventory.OnInventoryChanged += HandleInventoryChanged;
@@ -82,6 +95,21 @@ namespace Inventory_related.Inventory_UI_Manager
                 var slotUI = new SlotUI(slotElement, this);
                 slotUI.SetData(kvp.Key, kvp.Value);
             }
+        }
+        
+        // === Button handlers ===
+        private void OnUseButtonClicked()
+        {
+            if (!_currentItemKey.HasValue) return;
+
+            Debug.Log($"Use item: {_currentItemKey}");
+        }
+
+        private void OnDropButtonClicked()
+        {
+            if (!_currentItemKey.HasValue) return;
+
+            Debug.Log($"Drop item: {_currentItemKey}");
         }
 
         public void OpenForSeedSelection(SoilPlantInteraction soil)

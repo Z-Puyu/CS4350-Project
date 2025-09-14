@@ -290,6 +290,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecd5134b904e224b81c7fb6e14941d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map.MapNoticeboard
+  <PromptWidget>k__BackingField: {fileID: 3567552970568949193}
+  <OnInteracted>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4759863161539669015}
+        m_TargetAssemblyTypeName: Map.MapNoticeboard, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <OnAwakened>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnSleep>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnActivate>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnDeactivate>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   mapUnlockRequirementSO: {fileID: 11400000, guid: c386f2459a737a14abbfa5f68c055f80, type: 2}
   mapTileCollider2D: {fileID: 0}
   broadcastNoticeboardUnlockRequirement: {fileID: 11400000, guid: 017908980cf3979488d871354bd2e014, type: 2}
