@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 1590959129665856517}
   - component: {fileID: 3990052932965461405}
   - component: {fileID: 2205906151554961017}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,6 +547,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 7364736450214849462}
+    - target: {fileID: 5869916272792167068, guid: 454f69b4df2dd0545b4c8f0eb608f9e1, type: 3}
+      propertyPath: slotTemplate
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 8e9ff177de52b764e9ba196a121a989a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -636,10 +640,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1250318494093649128, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-      propertyPath: <Body>k__BackingField
-      value: 
-      objectReference: {fileID: 8133807558494651657}
     - target: {fileID: 3723051152404577821, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: <Body>k__BackingField
       value: 
@@ -665,17 +665,35 @@ PrefabInstance:
     - {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 938500026693590273}
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
 --- !u!114 &2716461110618952316 stripped
+--- !u!4 &4076413442697336507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7849829060772088775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &938500026693590273
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7849829060772088775}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 864c9421bf58464cabc187d5207365c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.Movement2D
 --- !u!4 &4076413442697336507 stripped
@@ -683,6 +701,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
+  <SpeedMultiplier>k__BackingField: 5
+  <Body>k__BackingField: {fileID: 8133807558494651657}
 --- !u!1001 &4152145185797166675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -706,7 +727,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 2716461110618952316}
+      objectReference: {fileID: 938500026693590273}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 
@@ -832,10 +853,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbilitiesComponent
       objectReference: {fileID: 0}
-    - target: {fileID: 2838587810476369325, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -868,10 +885,6 @@ PrefabInstance:
     - target: {fileID: 1188483911394038995, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
       propertyPath: m_Name
       value: InventoryComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188483911394038995, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2999183895713534294, guid: 71ee51d0eeb17ba439990ce5a22e6e4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -985,10 +998,6 @@ PrefabInstance:
     - target: {fileID: 7656328867919505419, guid: ebe5e1845aa13ab4ba5737bed7e1afa4, type: 3}
       propertyPath: m_Name
       value: InteractorComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656328867919505419, guid: ebe5e1845aa13ab4ba5737bed7e1afa4, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
