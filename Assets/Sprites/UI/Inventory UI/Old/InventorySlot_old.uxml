@@ -4,7 +4,7 @@
         <ui:VisualElement name="Item" style="flex-grow: 1; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px; justify-content: space-around;">
             <ui:VisualElement name="ItemIcon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/Farming/animations/seed_1/grown/dry/seed_1_grown_dry-Sheet.png?fileID=-1937354148560845212&amp;guid=23089efb5264648eba5bd9c33a0982b6&amp;type=3#seed_1_grown_dry-Sheet_0&quot;); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-size: 100% 100%; width: 250px; height: 250px; align-self: center; align-content: center; justify-content: center; align-items: center;" />
             <ui:VisualElement name="ItemStats" style="flex-grow: 0; flex-direction: row; justify-content: space-between;">
-                <ui:Label text="Item Name" name="ItemName" style="-unity-font-style: bold; font-size: 30px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                <ui:Label text="seed_1" name="seed_1" style="-unity-font-style: bold; font-size: 30px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
                 <ui:Label text="15" name="ItemQuantity" style="-unity-font-style: bold; font-size: 30px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
             </ui:VisualElement>
         </ui:VisualElement>
