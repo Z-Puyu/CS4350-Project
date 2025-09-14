@@ -1,8 +1,10 @@
+using System;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player_related.Player {
+    [Obsolete]
     public class PlayerMovement : MonoBehaviour {
         [field: SerializeField, MinValue(0)] private float SpeedMultiplier { get; set; } = 5;
         private Vector2 Velocity { get; set; }
