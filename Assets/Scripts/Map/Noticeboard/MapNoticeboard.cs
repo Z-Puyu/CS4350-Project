@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Player;
-using UnityEngine.UI;
 using Events;
 using InteractionSystem.Runtime;
 

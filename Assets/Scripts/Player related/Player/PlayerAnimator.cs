@@ -1,13 +1,15 @@
+
 using System;
 using UnityEngine;
 
 namespace Player_related.Player
 {
+    [Obsolete]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerAnimator: MonoBehaviour
     {
-        public PlayerMovement movement;
+        [SerializeField] private PlayerMovement movement;
         
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
