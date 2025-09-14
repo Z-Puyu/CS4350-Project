@@ -19,7 +19,7 @@ namespace PlayerInput {
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
-        [field: SerializeField, Required] private PlayerAnimator Animator { get; set; }
+        [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {

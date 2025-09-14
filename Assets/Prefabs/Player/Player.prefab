@@ -472,7 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
-  movement: {fileID: 2716461110618952316}
+  <MovementComponent>k__BackingField: {fileID: 2716461110618952316}
+  <AnimatorMovementFlag>k__BackingField: 1282839668
+  <AnimatorAttackTrigger>k__BackingField: -1742204373
 --- !u!1001 &2079766445519088095
 PrefabInstance:
   m_ObjectHideFlags: 0

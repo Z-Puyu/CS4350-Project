@@ -298,6 +298,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2205906151554961017, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <MovementComponent>k__BackingField
+      value: 
+      objectReference: {fileID: 720970541}
+    - target: {fileID: 2205906151554961017, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <AnimatorMovementFlag>k__BackingField
+      value: 1282839668
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205906151554961017, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <AnimatorAttackTrigger>k__BackingField
+      value: -1742204373
+      objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -374,10 +386,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 9190158357360914346, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
-      propertyPath: <Movement>k__BackingField
-      value: 
-      objectReference: {fileID: 720970541}
     m_RemovedComponents:
     - {fileID: 6309791963776212560, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
     m_RemovedGameObjects: []
