@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common;
 using Game.Enemies;
 using GameplayAbilities.Runtime.Attributes;
@@ -9,7 +8,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
 
-namespace Player {
+namespace Game.Player {
     [DisallowMultipleComponent]
     public sealed class PlayerController : MonoBehaviour, ICollector {
         [field: SerializeField] private PlayerData InitialData { get; set; }
