@@ -22,7 +22,7 @@ namespace Game.MapObjects {
             Object.Instantiate(this.PickUpPrefab, position, Quaternion.identity).With(count, item);
         }
 
-        public void Dismantle(Interactor interactor) {
+        public void Open(Interactor interactor) {
             this.LootContainer.Open();
             foreach (KeyValuePair<ItemKey, int> drop in this.LootContainer) {
                 for (int i = 0; i < drop.Value; i += 1) {

@@ -7,12 +7,11 @@ using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using Player_related.Player;
-using Player;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PlayerInput {
+namespace Game.Player {
     [DisallowMultipleComponent]
     public sealed class PlayerInputParser : MonoBehaviour {
         [field: SerializeField, Required] private Interactor Interactor { get; set; }
@@ -44,10 +43,10 @@ namespace PlayerInput {
             
             OnScreenDebugger.Log(sb.ToString());
             
-            bool isInventoryActive = InventoryUIManager.gameObject.activeSelf;
+            bool isInventoryActive = this.InventoryUIManager.gameObject.activeSelf;
             
             // Toggle inventory UI
-            InventoryUIManager.gameObject.SetActive(!isInventoryActive);
+            this.InventoryUIManager.gameObject.SetActive(!isInventoryActive);
         }
 
         public void OnAttack(InputAction.CallbackContext context) {

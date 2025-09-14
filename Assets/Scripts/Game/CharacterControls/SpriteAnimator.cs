@@ -1,13 +1,10 @@
-using System;
-using Game.CharacterControls;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player_related.Player {
+namespace Game.CharacterControls {
     [DisallowMultipleComponent, RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
     public class SpriteAnimator : MonoBehaviour {
-        [field: SerializeField] private Movement MovementComponent { get; set; }
+        [field: SerializeField, Required] private Movement MovementComponent { get; set; }
         
         [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Bool)] 
         private int AnimatorMovementFlag { get; set; } 
