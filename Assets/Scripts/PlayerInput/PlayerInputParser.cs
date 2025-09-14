@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Common;
+using Game.CharacterControls;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -17,7 +18,7 @@ namespace PlayerInput {
         [field: SerializeField, Required] private Interactor Interactor { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
-        [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
+        [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private PlayerAnimator Animator { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context) {
@@ -62,7 +63,7 @@ namespace PlayerInput {
         public void OnMove(InputAction.CallbackContext context) {
             if (context.performed) {
                 Vector2 input = context.ReadValue<Vector2>();
-                this.Movement.MoveTowards(input);
+                this.Movement.MoveIn(input);
             } else if (context.canceled) {
                 this.Movement.Stop();
             }
