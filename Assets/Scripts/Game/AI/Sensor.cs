@@ -13,7 +13,7 @@ namespace Game.AI {
         [field: SerializeField] private UnityEvent<GameObject> OnDetected { get; set; } = new UnityEvent<GameObject>();
         [field: SerializeField] private UnityEvent<GameObject> OnLost { get; set; } = new UnityEvent<GameObject>();
         
-        private HashSet<GameObject> DetectedObjects { get; } = new HashSet<GameObject>();
+        protected HashSet<GameObject> DetectedObjects { get; } = new HashSet<GameObject>();
         private Stack<GameObject> DetectedObjectStack { get; } = new Stack<GameObject>();
         public GameObject LastDetectedTarget => this.GetLastDetectedTarget();
         
@@ -39,16 +39,14 @@ namespace Game.AI {
         }
         
         protected virtual bool IsValidTarget(GameObject target) {
-            return !this.DetectedObjects.Contains(target) &&
-                   (this.WatchedTags.Count <= 0 || this.WatchedTags.Exists(target.CompareTag));
+            return this.WatchedTags.Count <= 0 || this.WatchedTags.Exists(target.CompareTag);
         }
         
         protected void Capture(GameObject target) {
-            if (!this.IsValidTarget(target)) {
+            if (!this.DetectedObjects.Add(target)) {
                 return;
             }
-            
-            this.DetectedObjects.Add(target);
+
             this.DetectedObjectStack.Push(target);
             this.OnDetected.Invoke(target);
         }
