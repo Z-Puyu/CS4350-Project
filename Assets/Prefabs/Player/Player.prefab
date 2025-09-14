@@ -122,7 +122,6 @@ MonoBehaviour:
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
   <AttributeSet>k__BackingField: {fileID: 106646709540062668}
   <Inventory>k__BackingField: {fileID: 7364736450214849462}
-  <QuestLog>k__BackingField: {fileID: 0}
 --- !u!114 &9044932256310309293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
-  movement: {fileID: 4167809144799663900}
+  movement: {fileID: 2716461110618952316}
 --- !u!1001 &2079766445519088095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,6 +586,14 @@ PrefabInstance:
       propertyPath: <DisplacementScale>k__BackingField
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: <RootRigidBody>k__BackingField
+      value: 
+      objectReference: {fileID: 8133807558494651657}
+    - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: <RootTransform>k__BackingField
+      value: 
+      objectReference: {fileID: 3324175696564490730}
     - target: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -658,22 +665,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
---- !u!4 &4076413442697336507 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-  m_PrefabInstance: {fileID: 2922007530389713908}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4167809144799663900 stripped
+--- !u!114 &2716461110618952316 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1250318494093649128, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
   m_PrefabInstance: {fileID: 2922007530389713908}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 864c9421bf58464cabc187d5207365c6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.Movement2D
+--- !u!4 &4076413442697336507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1161746406768059727, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+  m_PrefabInstance: {fileID: 2922007530389713908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4152145185797166675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -697,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
-      objectReference: {fileID: 4167809144799663900}
+      objectReference: {fileID: 2716461110618952316}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Inventory>k__BackingField
       value: 

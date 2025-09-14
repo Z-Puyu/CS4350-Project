@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161746406768059727}
-  - component: {fileID: 1250318494093649128}
+  - component: {fileID: 954693451658437000}
   m_Layer: 0
   m_Name: PlayerMovementComponent
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1250318494093649128
+--- !u!114 &954693451658437000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935170786534029363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521fe305d4a8479469afca58a5f980e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 864c9421bf58464cabc187d5207365c6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerMovement
-  <SpeedMultiplier>k__BackingField: 5
-  <Body>k__BackingField: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.Movement2D
+  <Speed>k__BackingField: 5
+  <RootTransform>k__BackingField: {fileID: 0}
+  <RootRigidBody>k__BackingField: {fileID: 0}

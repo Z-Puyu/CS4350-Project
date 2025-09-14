@@ -1,4 +1,5 @@
 using System;
+using Game.CharacterControls;
 using UnityEngine;
 
 namespace Player_related.Player
@@ -7,7 +8,7 @@ namespace Player_related.Player
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerAnimator: MonoBehaviour
     {
-        [SerializeField] private PlayerMovement movement;
+        [SerializeField] private Movement movement;
         
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
@@ -24,13 +25,13 @@ namespace Player_related.Player
         private void Update()
         {
             // Movement Animation
-            _animator.SetBool("IsWalking", movement.IsWalking);
+            _animator.SetBool("IsWalking", movement.IsMoving);
             
             // Flip based on horizontal direction
-            if (movement.CurrentDirection.x < 0)
+            if (movement.TargetDirection.x < 0)
             {
                 _spriteRenderer.flipX = true;
-            } else if (movement.CurrentDirection.x > 0)
+            } else if (movement.TargetDirection.x > 0)
             {
                 _spriteRenderer.flipX = false;
             }

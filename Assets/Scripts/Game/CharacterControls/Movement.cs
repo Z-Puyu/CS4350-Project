@@ -6,7 +6,7 @@ namespace Game.CharacterControls {
     public abstract class Movement : MonoBehaviour {
         [field: SerializeField, MinValue(1)] private float Speed { get; set; } = 5;
         [field: SerializeField, Required] private Transform RootTransform { get; set; }
-        private Vector3 TargetDirection { get; set; }
+        public Vector3 TargetDirection { get; private set; }
         protected Vector3 CurrentVelocity { get; set; }
         
         public bool IsMoving => this.TargetDirection != Vector3.zero;
