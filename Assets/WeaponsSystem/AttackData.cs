@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace WeaponsSystem {
-    [CreateAssetMenu(fileName = "AttackData", menuName = "Weapons/AttackData", order = 0)]
-    public class AttackData : ScriptableObject {
+    [Serializable]
+    public struct AttackData {
         [field: SerializeField] private float damageModifier;
         [field: SerializeField] private float knockbackModifier;
+        
+        public float Damage => this.damageModifier;
     }
 }

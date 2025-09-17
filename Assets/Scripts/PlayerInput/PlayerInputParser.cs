@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using Common;
 using Inventory_related.Inventory_UI_Manager;
@@ -10,6 +10,7 @@ using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using WeaponsSystem;
 using Cursor = UnityEngine.Cursor;
 
 namespace PlayerInput {
@@ -19,6 +20,8 @@ namespace PlayerInput {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
         [field: SerializeField, Required] private PlayerAnimator Animator { get; set; }
+        [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
+        [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
         
         
         public void OnToggleInventory(InputAction.CallbackContext context) {
@@ -46,6 +49,11 @@ namespace PlayerInput {
             }
             
             OnScreenDebugger.Log("Attack");
+            //this.MeleeWeapon.gameObject.SetActive(true);
+            this.RangedWeapon.gameObject.SetActive(true);
+            
+            //this.MeleeWeapon.Attack();
+            this.RangedWeapon.Attack();
             
             this.Animator.PlayAttack(); // Calls animator action
         }
