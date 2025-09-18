@@ -18,10 +18,10 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         public event UnityAction<(int old, int current)> OnHealthChanged; 
         
         private void Start() {
-            this.Root.OnAttributeChanged += this.OnAttributeChanged;
+            this.Root.OnAttributeChanged += this.HandleAttributeChange;
         }
 
-        private void OnAttributeChanged(AttributeChange change) {
+        private void HandleAttributeChange(AttributeChange change) {
             if (change.AttributeName != this.HealthAttribute.Id) {
                 return;
             }
