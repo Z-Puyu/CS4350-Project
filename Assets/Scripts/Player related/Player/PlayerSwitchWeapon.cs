@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Events;
 
 public class PlayerSwitchWeapon : MonoBehaviour
 {

@@ -1,0 +1,25 @@
+:root {
+}
+
+#combat_exp_slider combat_exp_slider {
+    height: auto;
+    width: auto;
+    -unity-text-align: upper-center;
+    color: rgb(0, 0, 0);
+}
+
+#combat_exp_slider #unity-dragger {
+    height: auto;
+    width: auto;
+    -unity-text-align: upper-center;
+    color: rgb(0, 0, 0);
+    opacity: 0;
+}
+
+#combat_exp_slider #unity-tracker {
+    height: auto;
+    width: auto;
+    -unity-text-align: upper-center;
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}

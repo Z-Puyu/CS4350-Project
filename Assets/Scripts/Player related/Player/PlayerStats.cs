@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Events;
 
+[Obsolete]
 public class PlayerStats : MonoBehaviour
 {
     private int currentHealth;
