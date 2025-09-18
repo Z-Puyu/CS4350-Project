@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using SaintsField.Condition;
 
 namespace SaintsField.Interfaces

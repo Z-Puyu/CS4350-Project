@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 
 namespace SaintsField.Samples.Scripts.IssueAndTesting.NA.Issue233.Editor
 {

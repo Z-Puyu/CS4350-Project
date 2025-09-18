@@ -1,4 +1,4 @@
-﻿namespace SaintsField.Playa
+namespace SaintsField.Playa
 {
     public interface ISaintsLayout: ISaintsLayoutBase
     {

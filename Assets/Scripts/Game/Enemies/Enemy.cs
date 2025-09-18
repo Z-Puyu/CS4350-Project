@@ -1,4 +1,4 @@
-﻿using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.HealthSystem;
 using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;

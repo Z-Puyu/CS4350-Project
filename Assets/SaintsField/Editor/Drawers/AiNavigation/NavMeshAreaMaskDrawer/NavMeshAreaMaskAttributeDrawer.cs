@@ -1,4 +1,4 @@
-﻿using SaintsField.AiNavigation;
+using SaintsField.AiNavigation;
 using SaintsField.Editor.Core;
 using UnityEditor;
 

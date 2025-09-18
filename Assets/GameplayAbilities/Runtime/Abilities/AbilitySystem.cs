@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
@@ -11,8 +11,9 @@ using UnityEngine.Events;
 namespace GameplayAbilities.Runtime.Abilities {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet), typeof(GameplayEffectCoordinator))]
     public class AbilitySystem : MonoBehaviour {
-        [field: SerializeField, Dropdown(nameof(this.GetAllAbilities))]
-        private List<string> DefaultAbilities { get; set; } = new List<string>();
+        [field: SerializeField, SaintsHashSet] 
+        private SaintsHashSet<Ability> DefaultAbilities { get; set; } = new SaintsHashSet<Ability>();
+        
         private HashSet<IAbility> Abilities { get; } = new HashSet<IAbility>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, int> ActiveAbilities { get; } = new Dictionary<IAbility, int>();
@@ -32,8 +33,8 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Start() {
-            foreach (string id in this.DefaultAbilities) {
-                this.Grant(PerkDatabase.GetAbility(id));
+            foreach (Ability ability in this.DefaultAbilities) {
+                this.Grant(ability);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿namespace SaintsField.Interfaces
+namespace SaintsField.Interfaces
 {
     public interface IVisibilityAttribute: IConditions
     {

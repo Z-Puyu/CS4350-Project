@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /**
 * Use these smooth methods to move one value towards another<br /><br />

@@ -1,4 +1,4 @@
-﻿using SaintsField.Utils;
+using SaintsField.Utils;
 using UnityEngine;
 
 namespace SaintsField

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using SaintsField.Editor.Drawers.EnumFlagsDrawers.FlagsDropdownDrawer;
 using SaintsField.Interfaces;
 #if UNITY_2021_3_OR_NEWER

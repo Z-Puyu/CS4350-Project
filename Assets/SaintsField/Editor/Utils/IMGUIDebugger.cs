@@ -1,4 +1,4 @@
-﻿#if SAINTSFIELD_DEBUG
+#if SAINTSFIELD_DEBUG
 using System;
 using UnityEditor;
 

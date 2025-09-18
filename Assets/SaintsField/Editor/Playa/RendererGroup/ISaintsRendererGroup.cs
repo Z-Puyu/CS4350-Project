@@ -1,4 +1,4 @@
-﻿namespace SaintsField.Editor.Playa.RendererGroup
+namespace SaintsField.Editor.Playa.RendererGroup
 {
     public interface ISaintsRendererGroup: ISaintsRenderer
     {

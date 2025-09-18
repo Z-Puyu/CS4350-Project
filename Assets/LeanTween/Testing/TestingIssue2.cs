@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class TestingIssue2 : MonoBehaviour {
 	public RectTransform rect;

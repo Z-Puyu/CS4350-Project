@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Reflection;
 
 public class GeneralEasingTypes : MonoBehaviour {

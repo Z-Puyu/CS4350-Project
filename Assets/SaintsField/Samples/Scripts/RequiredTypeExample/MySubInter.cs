@@ -1,4 +1,4 @@
-﻿namespace SaintsField.Samples.Scripts.RequiredTypeExample
+namespace SaintsField.Samples.Scripts.RequiredTypeExample
 {
     public class MySubInter: MyInter1
     {

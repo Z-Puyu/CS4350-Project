@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SaintsField.Editor.Core;
 using UnityEditor;
 

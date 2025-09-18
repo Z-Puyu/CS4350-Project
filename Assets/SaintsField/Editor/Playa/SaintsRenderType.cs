@@ -1,4 +1,4 @@
-﻿namespace SaintsField.Editor.Playa
+namespace SaintsField.Editor.Playa
 {
     public enum SaintsRenderType
     {

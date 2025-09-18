@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.LootContainers;

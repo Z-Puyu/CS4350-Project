@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SaintsField.Playa;
 using UnityEditor;
 using System.Linq;

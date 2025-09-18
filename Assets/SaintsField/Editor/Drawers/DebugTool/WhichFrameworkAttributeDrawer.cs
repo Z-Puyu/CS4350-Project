@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using SaintsField.DebugTool;
 using SaintsField.Editor.Core;
 using SaintsField.Editor.Utils;

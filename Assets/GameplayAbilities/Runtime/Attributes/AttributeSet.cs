@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.GameplayEffects;

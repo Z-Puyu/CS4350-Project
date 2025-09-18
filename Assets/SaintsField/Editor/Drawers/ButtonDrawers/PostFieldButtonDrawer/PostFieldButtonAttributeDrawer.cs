@@ -1,4 +1,4 @@
-﻿using SaintsField.Editor.Drawers.ButtonDrawers.DecButtonDrawer;
+using SaintsField.Editor.Drawers.ButtonDrawers.DecButtonDrawer;
 using UnityEditor;
 
 namespace SaintsField.Editor.Drawers.ButtonDrawers.PostFieldButtonDrawer

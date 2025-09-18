@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Game.CharacterControls;
 using Unity.Behavior;
 using Unity.Properties;

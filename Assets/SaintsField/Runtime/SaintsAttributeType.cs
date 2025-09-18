@@ -1,4 +1,4 @@
-﻿namespace SaintsField
+namespace SaintsField
 {
     public enum SaintsAttributeType
     {

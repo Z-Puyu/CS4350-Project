@@ -1,4 +1,4 @@
-﻿namespace Map.Objectives
+namespace Map.Objectives
 {
     public class KillEnemiesObjective : Objective
     {
