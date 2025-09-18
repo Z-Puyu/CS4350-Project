@@ -1,5 +1,4 @@
 ﻿using ModularItemsAndInventory.Runtime.Items;
-using UnityEngine;
 
 namespace Map.Objectives
 {

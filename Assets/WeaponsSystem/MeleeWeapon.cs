@@ -1,6 +1,4 @@
-using System;
 using Common;
-using UnityEngine;
 
 namespace WeaponsSystem {
     public class MeleeWeapon : Weapon<MeleeWeaponData>{

@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects.Executions;
+using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public sealed class GameplayEffectData : IComparable<GameplayEffectData>, IEquatable<GameplayEffectData> {
+    public abstract class GameplayEffectData : IComparable<GameplayEffectData>, IEquatable<GameplayEffectData> {
         private Lazy<string> CachedSortKey { get; }
         public string SortKey => this.CachedSortKey.Value;
 
         public enum Periodicity { Instant, Periodic, Continuous }
-        
-        [field: SerializeReference, DefaultExpand] 
-        public EffectExecution Executor { get; private set; } = new ModifierEffectExecution();
         
         [field: SerializeField] public Periodicity ExecutionTime { get; private set; } = Periodicity.Instant;
         
@@ -36,8 +34,45 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         [field: SerializeField] public List<EffectCommitmentCost> Costs { get; private set; } = new List<EffectCommitmentCost>();
 
-        private GameplayEffectData() {
+        public GameplayEffectData() {
             this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
+        }
+
+        public virtual DropdownList<string> GetDataLabels() {
+            return new DropdownList<string>();
+        }
+        
+        /// <summary>
+        /// Additional logic to execute on the first execution of the gameplay effect.
+        /// </summary>
+        /// <param name="target">The target of the gameplay effect.</param>
+        /// <param name="args">The execution arguments.</param>
+        public virtual void OnFirstExecution(AttributeSet target, GameplayEffectExecutionArgs args) { }
+
+        /// <summary>
+        /// Run the main execution logic here.
+        /// </summary>
+        /// <param name="target">The target of the gameplay effect.</param>
+        /// <param name="args">The additional arguments used to execute the gameplay effect.</param>
+        /// <returns></returns>
+        public abstract IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args);
+        
+        /// <summary>
+        /// Checks if the gameplay effect application to the target is successful.
+        /// </summary>
+        /// <param name="target">The target of the effect.</param>
+        /// <param name="chance">The base probability of the effect being successfully applied.</param>
+        /// <param name="args">The arguments used to invoke the gameplay effect.</param>
+        /// <returns><c>true</c> if the effect si successfully applied; otherwise, <c>false</c>.</returns>
+        /// <remarks>This is a good place to implement custom probability logic like precision or luck.</remarks>
+        public virtual GameplayEffect.Outcome Try(IAttributeReader target, int chance, GameplayEffectExecutionArgs args) {
+            bool isSuccess = chance switch {
+                >= 100 => true,
+                <= 0 => false,
+                var _ => Random.Range(0, 100) < chance
+            };
+            
+            return isSuccess ? GameplayEffect.Outcome.Success : GameplayEffect.Outcome.Failure;
         }
         
         /// <summary>
@@ -53,28 +88,28 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return new GameplayEffect(this, args);
         }
         
-        public string GenerateSortKey() {
+        protected virtual string GenerateSortKey() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
-            sb.Append($"_ExecutionTime:{this.ExecutionTime}");
+            sb.Append($"-ExecutionTime:{this.ExecutionTime}");
             switch (this.ExecutionTime) {
                 case Periodicity.Periodic:
-                    sb.Append($"_Period:{this.Period}");
-                    sb.Append($"_Duration:{this.Duration}");
+                    sb.Append($"-Period:{this.Period}");
+                    sb.Append($"-Duration:{this.Duration}");
                     break;
                 case Periodicity.Continuous:
-                    sb.Append($"_Duration:{this.Duration}");
+                    sb.Append($"-Duration:{this.Duration}");
                     break;
             }
             
-            sb.Append($"_CanMiss:{this.CanMiss}");
-            sb.Append($"_BaseChance: {this.BaseChance}%");
+            sb.Append($"-CanMiss:{this.CanMiss}");
+            sb.Append($"-BaseChance: {this.BaseChance}%");
             List<EffectCommitmentCost> costs = this.Costs.ToList();
             costs.Sort();
             foreach (EffectCommitmentCost cost in costs) {
-                sb.Append($"_Cost:{cost.SortKey}");
+                sb.Append($"-Cost:{cost.SortKey}");
             }
 
-            return sb.Append($"_Executor:{this.Executor.SortKey}").ToString();
+            return sb.ToString();
         }
 
         public int CompareTo(GameplayEffectData other) {

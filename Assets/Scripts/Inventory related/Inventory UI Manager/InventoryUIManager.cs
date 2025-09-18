@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Common;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;

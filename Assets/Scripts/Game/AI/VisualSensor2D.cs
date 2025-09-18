@@ -1,5 +1,4 @@
-﻿using System;
-using SaintsField;
+﻿using SaintsField;
 using UnityEngine;
 
 namespace Game.AI {

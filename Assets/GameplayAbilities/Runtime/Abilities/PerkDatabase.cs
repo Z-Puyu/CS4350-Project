@@ -48,5 +48,14 @@ namespace GameplayAbilities.Runtime.Abilities {
                     ? children
                     : Enumerable.Empty<Perk>();
         }
+        
+        public static IAbility GetAbility(string id) {
+            return Singleton<PerkDatabase>.Instance.Abilities.GetValueOrDefault(id);
+        }
+
+        public static IEnumerable<string> GetAllAbilityIds() {
+            return Resources.LoadAll<Ability>(Singleton<PerkDatabase>.Instance.AbilityDataFolder)
+                            .Select(a => a.Id);
+        }
     }
 }

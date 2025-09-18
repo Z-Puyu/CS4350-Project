@@ -1,7 +1,6 @@
 using System;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player_related.Player {
     [Obsolete]

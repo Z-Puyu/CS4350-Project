@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SaintsField;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Common {

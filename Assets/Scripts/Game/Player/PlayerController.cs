@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Common;
 using Game.Enemies;
 using GameplayAbilities.Runtime.Attributes;
@@ -7,10 +7,12 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem;
+using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : MonoBehaviour, ICollector {
+    public sealed class PlayerController : MonoBehaviour, ICollector, IDamageable {
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
@@ -53,6 +55,10 @@ namespace Game.Player {
 
         public void Say(string message) {
             OnScreenDebugger.Log(message);
+        }
+
+        public void TakeDamage(AttackData data) {
+            throw new System.NotImplementedException();
         }
     }
 }

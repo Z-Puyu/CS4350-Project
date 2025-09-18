@@ -38137,6 +38137,75 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
+--- !u!1 &1572732464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1572732465}
+  - component: {fileID: 1572732466}
+  m_Layer: 0
+  m_Name: DamageHandlerComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1572732465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572732464}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1981787308}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572732466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572732464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2b07495efc41da86c8bdfab44961a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
+  <AbilitySystem>k__BackingField: {fileID: 0}
+  <DamageEffect>k__BackingField:
+    <Executor>k__BackingField:
+      rid: 331064470531997769
+    <ExecutionTime>k__BackingField: 0
+    <Period>k__BackingField: 1
+    <Duration>k__BackingField: 1
+    <CanMiss>k__BackingField: 0
+    <BaseChance>k__BackingField: 100
+    <Costs>k__BackingField: []
+  <DamageDataLabel>k__BackingField: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 331064470531997769
+      type: {class: ModifierEffectExecution, ns: GameplayAbilities.Runtime.GameplayEffects.Executions, asm: GameplayAbilities.Runtime}
+      data:
+        <Modifiers>k__BackingField:
+        - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 2
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: {fileID: 0}
+          <DefaultValue>k__BackingField: 0
+          <Label>k__BackingField: Damage
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -38259,9 +38328,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1572732465}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+--- !u!4 &1981787308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1094391696314402652, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+  m_PrefabInstance: {fileID: 1981787307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
+using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.Abilities {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet), typeof(GameplayEffectCoordinator))]
     public class AbilitySystem : MonoBehaviour {
+        [field: SerializeField, Dropdown(nameof(this.GetAllAbilities))]
+        private List<string> DefaultAbilities { get; set; } = new List<string>();
         private HashSet<IAbility> Abilities { get; } = new HashSet<IAbility>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, int> ActiveAbilities { get; } = new Dictionary<IAbility, int>();
@@ -26,13 +30,28 @@ namespace GameplayAbilities.Runtime.Abilities {
             this.AttributeSet = this.GetComponent<AttributeSet>();
             this.GameplayEffectCoordinator = this.GetComponent<GameplayEffectCoordinator>();
         }
+
+        private void Start() {
+            foreach (string id in this.DefaultAbilities) {
+                this.Grant(PerkDatabase.GetAbility(id));
+            }
+        }
+
+        private DropdownList<string> GetAllAbilities() {
+            DropdownList<string> list = new DropdownList<string>();
+            foreach (string id in PerkDatabase.GetAllAbilityIds()) {
+                list.Add(id, id);
+            }
+            
+            return list;
+        }
         
         /// <summary>
         /// Add a gameplay effect to the attribute set.
         /// </summary>
         /// <param name="effect">The gameplay effect.</param>
         /// <param name="chance">The base probability of this effect being successfully applied.</param>
-        private void AddEffect(GameplayEffect effect, int chance) {
+        public void AddEffect(GameplayEffect effect, int chance) {
             if (effect.Commit(this.AttributeSet, chance) == GameplayEffect.Outcome.Success) {
                 this.GameplayEffectCoordinator.Add(effect);
             }
@@ -43,7 +62,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// </summary>
         /// <param name="effect">The gameplay effect.</param>
         public void AddEffect(GameplayEffectData effect) {
-            GameplayEffectExecutionArgs args = this.CreateEffectExecutionArgs();
+            GameplayEffectExecutionArgs args = this.CreateEffectExecutionArgs().Build();
             GameplayEffect gameplayEffect = effect.Instantiate(this.AttributeSet, args);
             this.AddEffect(gameplayEffect, effect.BaseChance);
         }
@@ -90,6 +109,10 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public void Grant(IAbility ability) {
+            if (ability == null) {
+                return;
+            }
+            
             this.Abilities.Add(ability);
         }
 
@@ -97,17 +120,17 @@ namespace GameplayAbilities.Runtime.Abilities {
             this.Abilities.Remove(ability);
         }
         
-        public void Use(IAbility ability, AbilitySystem target) {
+        public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
             if (!this.Abilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
                 return;
             }
             
             this.OnStartAbility.Invoke(ability);
-            target.Process(ability);
+            target.Process(ability, args);
         }
 
-        private void Process(IAbility ability) {
-            foreach (GameplayEffect effect in ability.GenerateEffects(this.CreateEffectExecutionArgs())) {
+        private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
+            foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
                 this.AddEffect(effect, effect.Data.BaseChance);
                 effect.OnEnded += () => handleEndedEffect(effect);
             }
@@ -129,8 +152,8 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
         }
 
-        private GameplayEffectExecutionArgs CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet).Build();
+        public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
+            return GameplayEffectExecutionArgs.From(this.AttributeSet);
         }
     }
 }
