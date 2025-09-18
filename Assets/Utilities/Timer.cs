@@ -15,7 +15,7 @@ namespace Utilities {
         }
 
         public void Start() {
-            this.targetTime = Time.time + duration;
+            this.targetTime = Time.time + this.duration;
             this.startTime = Time.time;
             this.isActive = true;
         }
@@ -26,10 +26,11 @@ namespace Utilities {
         
         public void Tick() {
             if (!this.isActive) return;
-            if (Time.time >= this.targetTime) {
-                this.isActive = false;
-                this.OnTimerFinished?.Invoke();
+            if (Time.time <= this.targetTime) {
+                return;
             }
+            this.isActive = false;
+            this.OnTimerFinished?.Invoke();
         }
     }
 }
