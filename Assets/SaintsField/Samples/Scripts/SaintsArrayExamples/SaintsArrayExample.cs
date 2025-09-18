@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SaintsField.Samples.Scripts.SaintsArrayExamples
 {

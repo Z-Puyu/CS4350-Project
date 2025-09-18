@@ -1,4 +1,4 @@
-using SaintsField.Playa;
+﻿using SaintsField.Playa;
 
 namespace SaintsField.Samples.Scripts.IssueAndTesting.NA.Issue318
 {

@@ -1,4 +1,4 @@
-#if UNITY_2022_2_OR_NEWER && !SAINTSFIELD_UI_TOOLKIT_DISABLE && !SAINTSFIELD_DEBUG_UNITY_BROKEN_FALLBACK
+﻿#if UNITY_2022_2_OR_NEWER && !SAINTSFIELD_UI_TOOLKIT_DISABLE && !SAINTSFIELD_DEBUG_UNITY_BROKEN_FALLBACK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,6 +120,8 @@ namespace SaintsField.Editor.Drawers.TableDrawer
                 reorderable = true,
                 reorderMode = ListViewReorderMode.Animated,
                 showBorder = true,
+
+                viewDataKey = SerializedUtils.GetUniqueId(arrayProp),
 
                 // this has some issue because we bind order with renderer. Sort is not possible
 // #if UNITY_6000_0_OR_NEWER
@@ -295,7 +297,7 @@ namespace SaintsField.Editor.Drawers.TableDrawer
                         .Where(each => each != null)
                         .ToDictionary(each => each.name, each => each.Copy());
                     IEnumerable<SaintsFieldInfoName> saintsFieldWithInfos = SaintsEditor
-                        .HelperGetSaintsFieldWithInfo(serializedPropertyDict, new []{obj0})
+                        .HelperGetSaintsFieldWithInfo(serializedPropertyDict, null,  new []{obj0})
                         .Where(SaintsEditor.SaintsFieldInfoShouldDraw)
                         .Select(each => new SaintsFieldInfoName(each, AbsRenderer.GetFriendlyName(each)));
 
@@ -411,7 +413,7 @@ namespace SaintsField.Editor.Drawers.TableDrawer
 
                             int serCount = 0;
                             foreach (SaintsFieldWithInfo saintsFieldWithInfo in SaintsEditor
-                                         .HelperGetSaintsFieldWithInfo(targetPropertyDict, new[]{targetPropValue})
+                                         .HelperGetSaintsFieldWithInfo(targetPropertyDict, null, new[]{targetPropValue})
                                          .Where(saintsFieldWithInfo => memberIds.Contains(saintsFieldWithInfo.MemberId)))
                             {
                                 allSaintsFieldWithInfos.Add(saintsFieldWithInfo);
@@ -465,7 +467,7 @@ namespace SaintsField.Editor.Drawers.TableDrawer
                 (string error, int index, object value) firstPropValue = Util.GetValue(firstProp, info, parentRefreshed);
 
                 IEnumerable<SaintsFieldWithInfo> firstSaintsFieldWithInfos = SaintsEditor
-                    .HelperGetSaintsFieldWithInfo(firstSerializedPropertyDict, new[]{firstPropValue.value})
+                    .HelperGetSaintsFieldWithInfo(firstSerializedPropertyDict, null, new[]{firstPropValue.value})
                     .Where(SaintsEditor.SaintsFieldInfoShouldDraw);
 
                 Dictionary<string, List<string>> columnToMemberIds = new Dictionary<string, List<string>>();
@@ -562,7 +564,7 @@ namespace SaintsField.Editor.Drawers.TableDrawer
 
                         int serCount = 0;
                         foreach (SaintsFieldWithInfo saintsFieldWithInfo in SaintsEditor
-                                     .HelperGetSaintsFieldWithInfo(targetSerializedPropertyDict, new[]{targetPropValue.value})
+                                     .HelperGetSaintsFieldWithInfo(targetSerializedPropertyDict, null, new[]{targetPropValue.value})
                                      .Where(saintsFieldWithInfo => memberIds.Contains(saintsFieldWithInfo.MemberId)))
                         {
                             allSaintsFieldWithInfos.Add(saintsFieldWithInfo);

@@ -1,5 +1,7 @@
+using UnityEngine;
+
 namespace WeaponsSystem.DamageHandling {
     public interface IDamageable {
-        public void TakeDamage(AttackData data);
+        public void TakeDamage(Damage damage);
     }
 }

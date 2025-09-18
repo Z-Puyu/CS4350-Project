@@ -6,9 +6,11 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     public class PerkDatabase : Singleton<PerkDatabase> {
-        [field: SerializeField, ResourceFolder] private string PerkDataFolder { get; set; }
+        [field: SerializeField, ResourceFolder] 
+        private string PerkDataFolder { get; set; }
         
-        [field: SerializeField, ResourceFolder] private string AbilityDataFolder { get; set; }
+        [field: SerializeField, ResourceFolder] 
+        private string AbilityDataFolder { get; set; }
 
         private Dictionary<string, Ability> Abilities { get; } = new Dictionary<string, Ability>();
         private Dictionary<Perk, List<Perk>> Perks { get; } = new Dictionary<Perk, List<Perk>>();

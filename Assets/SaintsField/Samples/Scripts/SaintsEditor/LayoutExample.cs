@@ -1,4 +1,4 @@
-#if DOTWEEN && !SAINTSFIELD_DOTWEEN_DISABLED
+﻿#if DOTWEEN && !SAINTSFIELD_DOTWEEN_DISABLED
 using DG.Tweening;
 #endif
 using SaintsField.Playa;

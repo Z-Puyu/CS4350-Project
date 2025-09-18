@@ -3,6 +3,7 @@ using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Serialization;
 

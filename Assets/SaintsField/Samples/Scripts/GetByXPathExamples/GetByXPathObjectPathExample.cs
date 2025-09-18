@@ -1,3 +1,4 @@
+using SaintsField.Playa;
 using SaintsField.Samples.Scripts.SaintsEditor;
 using UnityEngine;
 
@@ -21,6 +22,10 @@ namespace SaintsField.Samples.Scripts.GetByXPathExamples
         [GetByXPath(".//Child[@{activeSelf}]")] public GameObject[] childActive;
 
         [GetByXPath("scene:://@{GetComponent(Camera)}[@{tag} = 'MainCamera']")] public Camera mainCamera;
+        // Get Main Camera
+        [GetMainCamera] public Camera mainCameraComp;
+        // Get the transform that has the main camera
+        [GetMainCamera] public Transform mainCameraTrans;
         [GetByXPath("//*[@layer = 'Ignore Raycast']")] public GameObject ignoreRaycast;
     }
 }

@@ -1,4 +1,4 @@
-#if DOTWEEN && !SAINTSFIELD_DOTWEEN_DISABLED
+﻿#if DOTWEEN && !SAINTSFIELD_DOTWEEN_DISABLED
 using System;
 using System.Collections.Generic;
 using System.Linq;

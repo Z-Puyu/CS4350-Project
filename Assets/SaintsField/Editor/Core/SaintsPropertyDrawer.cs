@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -372,7 +372,7 @@ namespace SaintsField.Editor.Core
 
         private float _labelFieldBasicHeight = EditorGUIUtility.singleLineHeight;
 
-        protected virtual bool GetThisDecoratorVisibility(ShowIfAttribute targetAttribute, SerializedProperty property, FieldInfo info, object target)
+        protected virtual bool GetThisDecoratorVisibility(FieldShowIfAttribute targetAttribute, SerializedProperty property, FieldInfo info, object target)
         {
             return true;
         }

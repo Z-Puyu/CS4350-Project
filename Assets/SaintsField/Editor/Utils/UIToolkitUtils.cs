@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using SaintsField.Editor.Drawers.EnumFlagsDrawers.FlagsDropdownDrawer;
 using SaintsField.Interfaces;
 #if UNITY_2021_3_OR_NEWER
@@ -1344,6 +1344,7 @@ namespace SaintsField.Editor.Utils
                         FlagsDropdownAttribute flagsDropdownAttribute = new FlagsDropdownAttribute();
                         FlagsDropdownAttributeDrawer flagsDropdownDrawer = (FlagsDropdownAttributeDrawer) SaintsPropertyDrawer.MakePropertyDrawer(typeof(FlagsDropdownAttributeDrawer), fieldInfo, flagsDropdownAttribute, label);
                         flagsDropdownDrawer.OverridePropertyAttributes = new[] { flagsDropdownAttribute };
+                        flagsDropdownDrawer.InHorizontalLayout = inHorizontalLayout;
                         return flagsDropdownDrawer.CreatePropertyGUI(property);
                         // if (originalField is EnumFlagsField enumFlagsField)
                         // {
@@ -1382,6 +1383,7 @@ namespace SaintsField.Editor.Utils
                     AdvancedDropdownAttribute advancedDropdownAttribute = new AdvancedDropdownAttribute();
                     AdvancedDropdownAttributeDrawer advancedDropdownDrawer = (AdvancedDropdownAttributeDrawer) SaintsPropertyDrawer.MakePropertyDrawer(typeof(AdvancedDropdownAttributeDrawer), fieldInfo, advancedDropdownAttribute, label);
                     advancedDropdownDrawer.OverridePropertyAttributes = new[] { advancedDropdownAttribute };
+                    advancedDropdownDrawer.InHorizontalLayout = true;
                     return advancedDropdownDrawer.CreatePropertyGUI(property);
 
                     // List<object> enumRawValues = Enum.GetValues(rawType)

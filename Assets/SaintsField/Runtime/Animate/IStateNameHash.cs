@@ -1,4 +1,4 @@
-namespace SaintsField.Animate
+﻿namespace SaintsField.Animate
 {
     public interface IStateNameHash
     {

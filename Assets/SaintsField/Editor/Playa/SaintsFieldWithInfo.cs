@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using SaintsField.Playa;
 using UnityEditor;
@@ -15,6 +15,8 @@ namespace SaintsField.Editor.Playa
         public IReadOnlyList<object> Targets;
 
         public SaintsRenderType RenderType;
+
+        public SerializedProperty SaintsSerializedProp;
 
         public SerializedProperty SerializedProperty;
 

@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 namespace SaintsField.SaintsXPathParser.XPathAttribute
 {
     public class XPathAttrLayer: XPathAttrBase

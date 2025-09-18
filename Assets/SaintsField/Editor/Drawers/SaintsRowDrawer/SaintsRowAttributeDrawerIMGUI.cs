@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -51,7 +51,7 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
                 Dictionary<string, SerializedProperty> serializedFieldNames = GetSerializableFieldInfo(property)
                     .ToDictionary(each => each.name, each => each.property);
                 return _imGuiRenderers[index] =
-                    SaintsEditor.HelperGetRenderers(serializedFieldNames, property.serializedObject, this, new[]{current});
+                    SaintsEditor.HelperGetRenderers(serializedFieldNames, null, property.serializedObject, this, new[]{current});
             }
 
             Debug.LogWarning(error);

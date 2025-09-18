@@ -90,6 +90,7 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
 
             return;
+            
             void disable(Perk p) {
                 foreach (Perk child in PerkDatabase.GetChildren(p)) {
                     disable(child);
@@ -128,6 +129,15 @@ namespace GameplayAbilities.Runtime.Abilities {
             
             this.OnStartAbility.Invoke(ability);
             target.Process(ability, args);
+        }
+
+        public void Use(string abilityId, AbilitySystem target, GameplayEffectExecutionArgs args) {
+            IAbility ability = PerkDatabase.GetAbility(abilityId);
+            if (ability == null) {
+                Debug.LogError($"Ability {abilityId} not found!", this);
+            }
+            
+            this.Use(ability, target, args);
         }
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {

@@ -1,4 +1,4 @@
-namespace SaintsField.Editor.Playa
+﻿namespace SaintsField.Editor.Playa
 {
     // ReSharper disable once InconsistentNaming
     public interface IDOTweenPlayRecorder

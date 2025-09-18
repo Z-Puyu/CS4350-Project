@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 #if UNITY_EDITOR
 namespace SaintsField.SaintsXPathParser.XPathFilter

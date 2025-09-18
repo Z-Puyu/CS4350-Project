@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,7 +79,7 @@ namespace SaintsField.Editor.AutoRunner
         }
 
         // and, allow user to restore their scene when necessary
-        [Ordered, PlayaShowIf(nameof(AllowToRestoreScene)), Button("Restore Scene")]
+        [Ordered, ShowIf(nameof(AllowToRestoreScene)), Button("Restore Scene")]
         // ReSharper disable once UnusedMember.Local
         private void RestoreScene()
         {

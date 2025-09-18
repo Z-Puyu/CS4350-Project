@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 // ReSharper disable once CheckNamespace
 namespace SaintsField

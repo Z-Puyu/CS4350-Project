@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using SaintsField.SaintsXPathParser.Optimization;
 using SaintsField.Utils;

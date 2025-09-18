@@ -1,4 +1,5 @@
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 
 namespace ModularItemsAndInventory.Runtime.Items.Properties {
