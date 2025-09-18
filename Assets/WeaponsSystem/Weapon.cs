@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using Common;
+using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 using Utilities;
+using WeaponsSystem.DamageHandling;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
     public struct AttackRecord {
     }
 
+    [RequireComponent(typeof(AttributeSet))]
     public abstract class Weapon<D> : MonoBehaviour where D : WeaponData {
         [field: SerializeField] protected D weaponData;
         [field: SerializeField] private List<WeaponComponentData> components;
         [field: SerializeField] private List<AttackData> attacks;
         
+        protected AttributeSet AttributeSet { get; private set; }
+        protected DamageDealer DamageDealer { get; private set; }
         
         public int CurrentAttackCounter {
             get => this.currentAttackCounter;
@@ -24,6 +29,7 @@ namespace WeaponsSystem {
         }
         private int currentAttackCounter;
         private Timer comboResetTimer;
+        
         public abstract void Attack();
 
         //place hold function. Should be adjusted after determining how to handle the attack.
@@ -40,11 +46,9 @@ namespace WeaponsSystem {
             OnScreenDebugger.Log($"AttackCounter {this.CurrentAttackCounter}");
             OnScreenDebugger.Log("End Attack");
         }
-
         
-        
-
         protected virtual void Awake() {
+            this.AttributeSet = this.GetComponent<AttributeSet>();
             this.comboResetTimer = new Timer(this.weaponData.comboResetTime);
         }
         

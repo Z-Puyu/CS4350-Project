@@ -41,12 +41,12 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             /// <param name="label">The label of the modifier.
             /// It must match the label of the modifier in the gameplay effect.</param>
             /// <returns>The execution argument builder.</returns>
-            public Builder WithModifier(int magnitude, string label) {
+            public Builder WithUserData(int magnitude, string label) {
                 this.CallerSuppliedModifierValues[label] = magnitude;
                 return this;
             }
             
-            public Builder WithModifiers(IEnumerable<KeyValuePair<string, int>> modifiers) {
+            public Builder WithUserData(IEnumerable<KeyValuePair<string, int>> modifiers) {
                 foreach (KeyValuePair<string, int> modifier in modifiers) {
                     this.CallerSuppliedModifierValues[modifier.Key] = modifier.Value;
                 }
