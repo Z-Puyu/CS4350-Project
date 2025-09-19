@@ -37679,6 +37679,67 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &965293262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965293265}
+  - component: {fileID: 965293264}
+  - component: {fileID: 965293263}
+  m_Layer: 0
+  m_Name: Melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &965293263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965293262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f7462bafb94e4f83be2ed1e4786554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeapon
+  <WeaponData>k__BackingField: {fileID: 0}
+  <Components>k__BackingField: []
+  <Stats>k__BackingField: {fileID: 0}
+--- !u!114 &965293264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965293262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+--- !u!4 &965293265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965293262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.58247, y: -0.97911, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044281863
 GameObject:
   m_ObjectHideFlags: 0
@@ -37928,6 +37989,70 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1158873294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158873297}
+  - component: {fileID: 1158873296}
+  - component: {fileID: 1158873295}
+  m_Layer: 0
+  m_Name: Ranged
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1158873295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158873294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b30f89985064990a6fb6fffd6ad3915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
+  <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
+  <Components>k__BackingField: []
+  <Stats>k__BackingField: {fileID: 0}
+  bulletPool:
+    <Prefab>k__BackingField: {fileID: 0}
+--- !u!114 &1158873296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158873294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <DefaultAttributeTable>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
+--- !u!4 &1158873297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158873294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.58247, y: -0.97911, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1726620187}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1192277546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38270,6 +38395,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
   plantedSeedId: 
+--- !u!1 &1726620186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726620187}
+  - component: {fileID: 1726620189}
+  - component: {fileID: 1726620188}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726620187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726620186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1158873297}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1726620188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726620186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61eba19204354a7f9554bbc1924b9220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
+  <AttributeSet>k__BackingField: {fileID: 1726620189}
+  <AttackModifiers>k__BackingField: []
+  <ComboLengthAttributeType>k__BackingField: {fileID: 11400000, guid: 3014a4cc40c18af4590c5971ed569e0f, type: 2}
+  <KnockbackStrengthAttributeType>k__BackingField: {fileID: 11400000, guid: e4aad2996ae1e454eb59485a4b53e35b, type: 2}
+  <RangeAttributeType>k__BackingField: {fileID: 11400000, guid: c9b889d279ee239409025ecb39da3bab, type: 2}
+  <BulletSpeedAttributeType>k__BackingField: {fileID: 11400000, guid: ace73ce3fbfb17d45a58d01c19cdf380, type: 2}
+  <BulletSpreadAttributeType>k__BackingField: {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
+  <FireIntervalAttributeType>k__BackingField: {fileID: 11400000, guid: 14a973606b074b74ca8bad220af0368e, type: 2}
+  <PierceStrengthAttributeType>k__BackingField: {fileID: 0}
+--- !u!114 &1726620189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726620186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <DefaultAttributeTable>k__BackingField: {fileID: 0}
 --- !u!1001 &1981787307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52090,3 +52282,5 @@ SceneRoots:
   - {fileID: 1713279359534170061}
   - {fileID: 1981787307}
   - {fileID: 1192277546}
+  - {fileID: 965293265}
+  - {fileID: 1158873297}
