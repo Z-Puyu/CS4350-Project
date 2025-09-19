@@ -1,18 +1,11 @@
-using System;
 using System.Collections.Generic;
 using Common;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
-using SaintsField.Playa;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
-using WeaponsSystem.DamageHandling;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
-    [RequireComponent(typeof(AttributeSet))]
     public abstract class Weapon<S> : MonoBehaviour where S : WeaponStats {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField] private List<WeaponComponentData> Components { get; set; }

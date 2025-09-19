@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;

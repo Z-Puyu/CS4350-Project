@@ -9,7 +9,6 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
-using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
