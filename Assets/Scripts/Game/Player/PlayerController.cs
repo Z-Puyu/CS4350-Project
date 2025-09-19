@@ -1,19 +1,23 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Common;
 using Game.Enemies;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : MonoBehaviour, ICollector {
+    public sealed class PlayerController : MonoBehaviour, ICollector, IDamageable {
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
+        [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         
         private void Start() {
             if (!this.InitialData) {
@@ -53,6 +57,20 @@ namespace Game.Player {
 
         public void Say(string message) {
             OnScreenDebugger.Log(message);
+        }
+
+        public void TakeDamage(Damage damage) {
+            GameObject source = damage.Instigator;
+            AbilitySystem instigator = source.GetComponentInChildren<AbilitySystem>();
+            if (!instigator) {
+                Debug.LogError($"{source.name} must have an Ability System to attack the player!", source);
+            } else {
+                this.Say($"{source.name} damaged the player!");
+                GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
+                                                             .WithUserData(damage.Data)
+                                                             .Build();
+                instigator.Use("basic:attack", this.AbilitySystem, args);
+            }
         }
     }
 }

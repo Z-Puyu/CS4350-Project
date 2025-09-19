@@ -1,5 +1,3 @@
-﻿using UnityEngine;
-
 namespace Map.Objectives
 {
     public class KillEnemiesObjective : Objective

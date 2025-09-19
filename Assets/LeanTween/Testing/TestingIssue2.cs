@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using DentedPixel;
+using UnityEngine;
 
 public class TestingIssue2 : MonoBehaviour {
 	public RectTransform rect;

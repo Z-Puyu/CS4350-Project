@@ -1,4 +1,4 @@
-﻿using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.Attributes;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
     public interface IAttributeClampRule {

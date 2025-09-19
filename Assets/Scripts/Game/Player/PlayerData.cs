@@ -1,4 +1,4 @@
-﻿using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.Attributes;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;

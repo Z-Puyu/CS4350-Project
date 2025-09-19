@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
@@ -6,9 +6,11 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     public class PerkDatabase : Singleton<PerkDatabase> {
-        [field: SerializeField, ResourceFolder] private string PerkDataFolder { get; set; }
+        [field: SerializeField, ResourceFolder] 
+        private string PerkDataFolder { get; set; }
         
-        [field: SerializeField, ResourceFolder] private string AbilityDataFolder { get; set; }
+        [field: SerializeField, ResourceFolder] 
+        private string AbilityDataFolder { get; set; }
 
         private Dictionary<string, Ability> Abilities { get; } = new Dictionary<string, Ability>();
         private Dictionary<Perk, List<Perk>> Perks { get; } = new Dictionary<Perk, List<Perk>>();
@@ -47,6 +49,15 @@ namespace GameplayAbilities.Runtime.Abilities {
             return Singleton<PerkDatabase>.Instance.Perks.TryGetValue(p, out List<Perk> children)
                     ? children
                     : Enumerable.Empty<Perk>();
+        }
+        
+        public static IAbility GetAbility(string id) {
+            return Singleton<PerkDatabase>.Instance.Abilities.GetValueOrDefault(id);
+        }
+
+        public static IEnumerable<string> GetAllAbilityIds() {
+            return Resources.LoadAll<Ability>(Singleton<PerkDatabase>.Instance.AbilityDataFolder)
+                            .Select(a => a.Id);
         }
     }
 }

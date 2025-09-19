@@ -1,4 +1,4 @@
-﻿namespace GameplayAbilities.Runtime.Attributes {
+namespace GameplayAbilities.Runtime.Attributes {
     public readonly struct Attribute {
         public string Name { get; }
         public int Value { get; }

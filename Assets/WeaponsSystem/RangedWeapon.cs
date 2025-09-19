@@ -1,16 +1,14 @@
 using Common;
-using Unity.Cinemachine;
 using UnityEngine;
 using Utilities;
 
 namespace WeaponsSystem {
-    public class RangedWeapon : Weapon<RangedWeaponData>{
+    public class RangedWeapon : Weapon<RangedWeaponStats> {
         [field: SerializeField] private ObjectPool<Bullet> bulletPool;
         private Timer fireIntervalTimer;
         private bool canAttack = true;
-        
-        public override void Attack() {
 
+        public override void Attack() {
             if (this.canAttack) {
                 OnScreenDebugger.Log("RangedAttackSuccessfully");
                 this.StartAttack();
@@ -26,8 +24,11 @@ namespace WeaponsSystem {
                         direction = (mousePosWorld - this.transform.position).normalized;
                     }
 
-                    bullet.SetTarget(this.weaponData.BulletSpeed, this.weaponData.Range, direction, this.bulletPool);
+                    int speed = this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute);
+                    int range = this.Stats.GetCurrent(this.Stats.RangeAttribute);
+                    bullet.SetTarget(speed, range, direction, this.bulletPool);
                 }
+
                 this.EndAttack();
                 this.canAttack = false;
                 this.fireIntervalTimer.Start();
@@ -35,15 +36,16 @@ namespace WeaponsSystem {
                 OnScreenDebugger.Log("Cannot Attack, still in cooldown");
             }
         }
-        
+
         protected override void Awake() {
             base.Awake();
             this.bulletPool.Initialize(100);
             this.transform.position = this.transform.parent.position;
-            this.fireIntervalTimer = new Timer(this.weaponData.FireInterval / 1000);
+            int fireInterval = this.Stats.GetCurrent(this.Stats.FireIntervalAttribute);
+            this.fireIntervalTimer = new Timer(fireInterval / 1000.0f);
             this.fireIntervalTimer.OnTimerFinished += this.SetCanAttack;
         }
-        
+
         protected override void Update() {
             base.Update();
             this.transform.position = this.transform.root.position;

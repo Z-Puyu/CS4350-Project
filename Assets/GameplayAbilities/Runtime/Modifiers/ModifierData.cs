@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,7 +26,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private MagnitudeType Form { get; set; }
         
         private bool UseAttributeValue => this.Form == MagnitudeType.AttributeValue;
-        private bool AllowSetByCaller => this.Form == MagnitudeType.CallerSupplied;
+        internal bool AllowSetByCaller => this.Form == MagnitudeType.CallerSupplied;
         private bool UseConstant => this.Form == MagnitudeType.Constant;
 
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
@@ -78,7 +79,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 return new Modifier(value, this.Method, this.TargetAttribute.Id);
             }
 
-            if (this.AllowSetByCaller && args.CallerSuppliedModifierValues.TryGetValue(this.Label, out int val)) {
+            if (this.AllowSetByCaller && args.CallerSuppliedDataValues.TryGetValue(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute.Id);
             }
             

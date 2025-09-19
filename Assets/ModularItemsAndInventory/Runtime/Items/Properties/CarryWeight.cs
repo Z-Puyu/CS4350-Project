@@ -1,4 +1,4 @@
-﻿using SaintsField;
+using SaintsField;
 using UnityEngine;
 
 namespace ModularItemsAndInventory.Runtime.Items.Properties {
