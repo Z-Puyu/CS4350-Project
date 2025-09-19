@@ -34,15 +34,15 @@ MonoBehaviour:
           <IsPercentageDefence>k__BackingField: 0
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
-          <DefenceAttribute>k__BackingField: Defence.Physical
-          <IsPercentageDefence>k__BackingField: 0
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
+          <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Ice
-          <DefenceAttribute>k__BackingField: Defence.Physical
-          <IsPercentageDefence>k__BackingField: 0
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Ice
+          <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
-          <DefenceAttribute>k__BackingField: Defence.Physical
-          <IsPercentageDefence>k__BackingField: 0
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
+          <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
