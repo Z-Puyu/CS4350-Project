@@ -106,7 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75298f3d93ab41a1b5ba7b04e26728d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeaponStats
-  <AttributeSet>k__BackingField: {fileID: 1802897664357529926}
+  <DamageAttributes>k__BackingField:
+  - Damage.Physical
+  - Damage.Elemental.Fire
+  - Damage.Elemental.Ice
+  - Damage.Elemental.Lightning
   <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength

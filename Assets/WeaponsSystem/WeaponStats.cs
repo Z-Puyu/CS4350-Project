@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
@@ -9,7 +10,11 @@ using Attribute = GameplayAbilities.Runtime.Attributes.Attribute;
 namespace WeaponsSystem {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
     public abstract class WeaponStats : MonoBehaviour, IAttributeReader {
-        [field: SerializeField] private AttributeSet AttributeSet { get; set; }
+        private AttributeSet AttributeSet { get; set; }
+        
+        [field: SerializeField, Dropdown(nameof(this.GetAttributeOptions))] 
+        private List<string> DamageAttributes { get; set; } = new List<string>();
+        
         [field: SerializeField] private List<AttackData> AttackModifiers { get; set; } = new List<AttackData>();
         
         [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
@@ -40,6 +45,15 @@ namespace WeaponsSystem {
             while (this.AttackModifiers.Count < change.CurrentValue) {
                 this.AttackModifiers.Add(new AttackData());
             }
+        }
+        
+        public IReadOnlyDictionary<string, int> ReadDamageData() {
+            Dictionary<string, int> damages = new Dictionary<string, int>();
+            foreach (string attribute in this.DamageAttributes) {
+                damages.Add(attribute, this.GetCurrent(attribute));
+            }
+            
+            return new ReadOnlyDictionary<string, int>(damages);
         }
 
         public void ActivateAttackModifiers(int index) {
