@@ -12,15 +12,20 @@ namespace WeaponsSystem {
         [field: SerializeField] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField] private List<AttackData> AttackModifiers { get; set; } = new List<AttackData>();
         
-        [field: SerializeField, Required]
-        private AttributeTypeDefinition ComboLengthAttributeType { get; set; }
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        public string ComboLengthAttribute { get; private set; }
         
-        public string ComboLengthAttribute => this.ComboLengthAttributeType.Id;
-        
-        [field: SerializeField, Required] 
-        private AttributeTypeDefinition KnockbackStrengthAttributeType { get; set; }
-        
-        public string KnockbackStrengthAttribute => this.KnockbackStrengthAttributeType.Id;
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))] 
+        public string KnockbackStrengthAttribute { get; private set; }
+
+        protected DropdownList<string> GetAttributeOptions() {
+            DropdownList<string> list = new DropdownList<string>();
+            foreach (AttributeTypeDefinition resource in AttributeTypeDefinition.GetAllLeaves()) {
+                list.Add(resource.Id, resource.Id);
+            }
+
+            return list;
+        }
         
         protected virtual void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();

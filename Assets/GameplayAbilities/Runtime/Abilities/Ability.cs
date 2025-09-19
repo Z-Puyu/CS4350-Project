@@ -11,7 +11,9 @@ namespace GameplayAbilities.Runtime.Abilities {
     public class Ability : ScriptableObject, IAbility {
         [field: SerializeField] internal string Id { get; private set; }
         [field: SerializeField] internal string Name { get; private set; }
-        [field: SerializeField] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
+        
+        [field: SerializeReference, ReferencePicker] 
+        private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
 
         public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args) {
             return this.Effects.Select(effect => new GameplayEffect(effect, args));

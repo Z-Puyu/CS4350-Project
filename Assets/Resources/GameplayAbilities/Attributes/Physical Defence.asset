@@ -10,19 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Elemental Damage (Fire)
+  m_Name: Physical Defence
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Fire
-  displayName: Fire Damage
-  <ModificationRules>k__BackingField:
-  - rid: 4925886386017141022
-  <Id>k__BackingField: Damage.Elemental.Fire
-  <Parent>k__BackingField: {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  <Name>k__BackingField: Physical
+  displayName: Physical Defence
+  <ModificationRules>k__BackingField: []
+  <Id>k__BackingField: Defence.Elemental.Physical
+  <Parent>k__BackingField: {fileID: 11400000, guid: c15a15d823d833347be5231c8fdb0cb2, type: 2}
   <SubTypes>k__BackingField: []
   references:
     version: 2
-    RefIds:
-    - rid: 4925886386017141022
-      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
-      data:
-        <Min>k__BackingField: 0
+    RefIds: []

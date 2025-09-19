@@ -10,24 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Health
+  m_Name: Bullet Speed
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Health
-  displayName: Health
+  <Name>k__BackingField: BulletSpeed
+  displayName: Bullet Speed
   <ModificationRules>k__BackingField:
-  - rid: 4925886386017140807
-  - rid: 4925886386017141019
-  <Id>k__BackingField: Health
+  - rid: 2098011547707638000
+  <Id>k__BackingField: BulletSpeed
   <Parent>k__BackingField: {fileID: 0}
   <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4925886386017140807
+    - rid: 2098011547707638000
       type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
       data:
         <Min>k__BackingField: 0
-    - rid: 4925886386017141019
-      type: {class: MaximumByAttributeRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
-      data:
-        <Max>k__BackingField: {fileID: 11400000, guid: 7ac0428bf2dcbe1478ebc96a726aea26, type: 2}

@@ -108,5 +108,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeaponStats
   <AttributeSet>k__BackingField: {fileID: 1802897664357529926}
   <AttackModifiers>k__BackingField: []
-  <ComboLengthAttributeType>k__BackingField: {fileID: 11400000, guid: 3014a4cc40c18af4590c5971ed569e0f, type: 2}
-  <KnockbackStrengthAttributeType>k__BackingField: {fileID: 11400000, guid: e4aad2996ae1e454eb59485a4b53e35b, type: 2}
+  <ComboLengthAttribute>k__BackingField: ComboLength
+  <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength

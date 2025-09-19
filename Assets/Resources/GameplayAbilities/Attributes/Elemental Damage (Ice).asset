@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Damage
+  m_Name: Elemental Damage (Ice)
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Damage
-  displayName: Damage
+  <Name>k__BackingField: Ice
+  displayName: Ice Damage
   <ModificationRules>k__BackingField:
-  - rid: 4925886386017141020
-  <Id>k__BackingField: Damage
-  <Parent>k__BackingField: {fileID: 0}
-  <SubTypes>k__BackingField:
-  - {fileID: 11400000, guid: c4c97ecc99d54eb4e8d930524427f78a, type: 2}
-  - {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  - rid: 4925886386017141022
+  <Id>k__BackingField: Damage.Elemental.Ice
+  <Parent>k__BackingField: {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4925886386017141020
+    - rid: 4925886386017141022
       type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
       data:
         <Min>k__BackingField: 0

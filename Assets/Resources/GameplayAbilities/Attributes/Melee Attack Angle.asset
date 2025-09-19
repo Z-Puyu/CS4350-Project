@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Melee Attack Range
+  m_Name: Melee Attack Angle
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: MeleeAttackRange
-  displayName: Melee Attack Range
+  <Name>k__BackingField: MeleeAttackAngle
+  displayName: Melee Attack Angle
   <ModificationRules>k__BackingField:
   - rid: 2098011547707638002
-  <Id>k__BackingField: MeleeAttackRange
+  <Id>k__BackingField: MeleeAttackAngle
   <Parent>k__BackingField: {fileID: 0}
   <SubTypes>k__BackingField: []
   references:
