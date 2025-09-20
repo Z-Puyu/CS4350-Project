@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common;
+using Events;
 using Game.Enemies;
 using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
@@ -10,7 +11,9 @@ using UnityEngine;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : MonoBehaviour, ICollector {
+    public sealed class PlayerController : MonoBehaviour, ICollector
+    {
+        public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }

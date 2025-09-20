@@ -368,6 +368,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2658615090421482246, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658615090421482246, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658615090421482246, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664757436464427885, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664757436464427885, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664757436464427885, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3496846580111668329, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -404,9 +428,45 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6621089746971917479, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621089746971917479, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621089746971917479, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733979853568453600, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733979853568453600, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733979853568453600, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8268543998957134746, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_Name
       value: Skill tree UI manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725904711418611056, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725904711418611056, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725904711418611056, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9169531694925468884, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_AnchorMax.x

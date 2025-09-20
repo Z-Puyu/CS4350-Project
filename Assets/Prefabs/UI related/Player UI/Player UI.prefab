@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3447135069937027119}
   - component: {fileID: 8020536559480565293}
   - component: {fileID: 967101585195521654}
+  - component: {fileID: 5358900319304230274}
+  - component: {fileID: 6603007202969954420}
   m_Layer: 5
-  m_Name: Quest left to clear counter
+  m_Name: Objective left to clear text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +138,48 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5358900319304230274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4216182234321268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0e1bd301d3120409c513cef8dfd196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_notebook_UI.Objectives.UnclearObjectiveText
+  counterText: {fileID: 967101585195521654}
+--- !u!114 &6603007202969954420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4216182234321268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 086ae89fb72e73244bcaa6972a8aa947, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5358900319304230274}
+        m_TargetAssemblyTypeName: Player_related.Player_notebook_UI.Objectives.UnclearObjectiveText,
+          Assembly-CSharp
+        m_MethodName: UpdateCounterText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &954795298649986889
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +662,6 @@ GameObject:
   - component: {fileID: 6481423472209786971}
   - component: {fileID: 8126622238875840730}
   - component: {fileID: 6334285658949713464}
-  - component: {fileID: 4862121129172593917}
   m_Layer: 5
   m_Name: Notebook button
   m_TagString: Untagged
@@ -727,19 +770,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8126622238875840730}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4862121129172593917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3445777101217265269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f889a91ab5c9b74abee8891f5e31444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NotebookManagerUI
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c18ca7095603885429344b34773ef14d, type: 2}
+        m_TargetAssemblyTypeName: Events.CrossObjectEventSO, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3479082777431252780
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using SaintsField;
+using System.Collections.Generic;
+using Map.Objectives.Objective_UI;
 
 namespace Map.Objectives
 {
@@ -8,5 +11,12 @@ namespace Map.Objectives
         public string description;
 
         public void AddProgress() {}
+
+        public void SetText(ObjectiveText objectiveText)
+        {
+            objectiveText.SetText(title, IsComplete());
+        }
+
+        public abstract bool IsComplete();
     }
 }

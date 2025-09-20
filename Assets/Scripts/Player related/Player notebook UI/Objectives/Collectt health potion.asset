@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee036cf8494a369f7806f8c6dfb843, type: 3}
   m_Name: Collectt health potion
   m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.CollectItemObjective
-  title: 
+  title: Collect health potion
   description: 
   itemToCollect: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
   itemToCollectAmount: 1
-  currentItemCounter: 1
+  currentItemCounter: 0

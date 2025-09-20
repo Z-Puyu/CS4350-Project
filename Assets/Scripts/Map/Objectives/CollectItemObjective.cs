@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Map.Objectives.Objective_UI;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Map.Objectives
         public int itemToCollectAmount;
         [SerializeField] private int currentItemCounter;
 
-        public void AddProgress(ItemData itemToCollect, List<CollectItemObjective> allCollectItesmObjectives) {
+        public void AddProgress(ObjectiveManager objectiveManager, ItemData itemToCollect, List<CollectItemObjective> allCollectItesmObjectives) {
             if (this.itemToCollect == itemToCollect)
             {
                 currentItemCounter += 1;
@@ -20,7 +21,13 @@ namespace Map.Objectives
             if (currentItemCounter >= itemToCollectAmount)
             {
                 allCollectItesmObjectives.Remove(this);
+                objectiveManager.HandleDeletion(this);
             }
+        }
+        
+        public override bool IsComplete()
+        {
+            return currentItemCounter >= itemToCollectAmount;
         }
     }
 }
