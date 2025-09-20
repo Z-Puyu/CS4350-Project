@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
+  skillScriptableObject: {fileID: 0}
+  broadcastSkill: {fileID: 11400000, guid: 28a0d85b75ce5e8468d3da3f15ec25fd, type: 2}
   image: {fileID: 4278008393692452102}
   lockedIconBg: {fileID: -8571070166039891722, guid: 4c765722a864e1149a9c7bbc994eeef3, type: 3}
   unlockedIconBg: {fileID: 620627035, guid: 4c765722a864e1149a9c7bbc994eeef3, type: 3}
@@ -211,4 +213,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4278008393692452102}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9148213452230958340}
+        m_TargetAssemblyTypeName: SkillIcon, Assembly-CSharp
+        m_MethodName: BroadcastSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
