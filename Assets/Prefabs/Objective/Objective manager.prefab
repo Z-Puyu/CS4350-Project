@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7561960970058781470}
   - component: {fileID: 6009840848037014978}
   - component: {fileID: 300008697755524074}
+  - component: {fileID: 2790443000819973777}
+  - component: {fileID: 2082476289716531351}
+  - component: {fileID: 4329363945206573513}
   m_Layer: 0
   m_Name: Objective manager
   m_TagString: Untagged
@@ -46,8 +49,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287559f9790f6d24594b6fa1da1a0c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveManager
-  killEnemiesObjectives: []
-  collectItesmObjectives: []
+  chosenRequirement: {fileID: 0}
+  objectiveUIManager: {fileID: 0}
+  allKillEnemiesObjectives: []
+  allCollectItesmObjectives: []
+  allRequirements:
+  - {fileID: 11400000, guid: c386f2459a737a14abbfa5f68c055f80, type: 2}
+  - {fileID: 11400000, guid: 08bdb15f13261f44b81932f032c4a959, type: 2}
+  objectiveToRequirement:
+    _keys: []
+    _values: []
+    _saintsKeys: []
+    _saintsValues: []
+  taskCounterForRequirement:
+    _keys: []
+    _values: 
+    _saintsKeys: []
+    _saintsValues: []
+  broacastNumberOfIncompleteObjectives: {fileID: 11400000, guid: 086ae89fb72e73244bcaa6972a8aa947, type: 2}
 --- !u!114 &6009840848037014978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +114,90 @@ MonoBehaviour:
       - m_Target: {fileID: 7561960970058781470}
         m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
         m_MethodName: AddItemToObjective
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2790443000819973777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020849860333577498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 017908980cf3979488d871354bd2e014, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7561960970058781470}
+        m_TargetAssemblyTypeName: Objectives.ObjectiveManager, Assembly-CSharp
+        m_MethodName: AddObjectives
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2082476289716531351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020849860333577498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d94409401e4265409ace005f91296b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventListener
+  gameEvent: {fileID: 11400000, guid: c18ca7095603885429344b34773ef14d, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7561960970058781470}
+        m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
+        m_MethodName: OpenNotebook
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4329363945206573513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020849860333577498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 8a8d0bb9e1e1b9a46a273f661ca11c32, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7561960970058781470}
+        m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
+        m_MethodName: SetChosenUnlockedRequirementSO
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
