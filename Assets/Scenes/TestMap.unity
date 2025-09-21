@@ -284,6 +284,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &340246187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+  m_PrefabInstance: {fileID: 1192277546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &340246191
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340246187}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1 &528699412
 GameObject:
   m_ObjectHideFlags: 0
@@ -37936,6 +37978,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 852529405861532585, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411114512176021118, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2860047985782675043, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.81
@@ -37976,14 +38026,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4078900522303864422, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465402352982075923, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592308968209465658, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466258773648454713, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936588498972401267, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146881974437895826, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146881974437895826, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_TagString
+      value: Damageable
+      objectReference: {fileID: 0}
     - target: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
       propertyPath: m_Name
       value: Test Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_TagString
+      value: Damageable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595744344789290476, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649428442779452252, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881639770153126749, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 340246191}
   m_SourcePrefab: {fileID: 100100000, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
 --- !u!1001 &1453472073
 PrefabInstance:
@@ -38257,6 +38358,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9190158357360914346, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <MeleeWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 6657745689886287719}
+    - target: {fileID: 9190158357360914346, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+      propertyPath: <RangedWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 8203422856838049190}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51859,6 +51968,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+--- !u!114 &6657745689886287719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2697558434600564995, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+  m_PrefabInstance: {fileID: 1981787307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f7462bafb94e4f83be2ed1e4786554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeapon
 --- !u!1001 &8001388339152996734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51920,6 +52040,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
+--- !u!114 &8203422856838049190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5201466507473724545, guid: 2674a4a42a7e2fb4a87263934939ec80, type: 3}
+  m_PrefabInstance: {fileID: 1981787307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b30f89985064990a6fb6fffd6ad3915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
 --- !u!1001 &8952846475725524284
 PrefabInstance:
   m_ObjectHideFlags: 0

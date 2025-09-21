@@ -4,7 +4,7 @@ using Common;
 using NUnit.Framework;
 using UnityEngine;
 using Utilities;
-using WeaponsSystem.WeaponComponent;
+using WeaponsSystem.WeaponComponents;
 
 namespace WeaponsSystem {
     public struct AttackRecord {

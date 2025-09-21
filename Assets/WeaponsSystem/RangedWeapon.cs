@@ -2,6 +2,7 @@ using Common;
 using Unity.Cinemachine;
 using UnityEngine;
 using Utilities;
+using WeaponsSystem.BulletComponents;
 
 namespace WeaponsSystem {
     public class RangedWeapon : Weapon<RangedWeaponData>{

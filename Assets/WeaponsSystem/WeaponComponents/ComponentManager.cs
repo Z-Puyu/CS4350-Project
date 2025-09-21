@@ -1,4 +1,4 @@
-namespace WeaponsSystem.WeaponComponent {
+namespace WeaponsSystem.WeaponComponents {
     public class ComponentManager {
         
     }
