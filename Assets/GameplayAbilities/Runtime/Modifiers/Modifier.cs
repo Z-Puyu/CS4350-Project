@@ -6,7 +6,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
     /// Represents a modification that can be applied to a game attribute.
     /// Supports different types of operations (Shift, Multiply, Offset) and can be combined using arithmetic operators.
     /// </summary>
-    public readonly struct Modifier {
+    public readonly struct Modifier : IEquatable<Modifier> {
         /// <summary>
         /// Defines the types of operations that can be performed on an attribute value.
         /// </summary>
@@ -115,6 +115,18 @@ namespace GameplayAbilities.Runtime.Modifiers {
         /// <returns>A new modifier with scaled magnitude.</returns>
         public static Modifier operator /(Modifier a, float k) {
             return new Modifier(Mathf.RoundToInt(a.Magnitude / k), a.Type, a.Target);
+        }
+
+        public bool Equals(Modifier other) {
+            return this.Type == other.Type && this.Magnitude == other.Magnitude && this.Target == other.Target;
+        }
+
+        public override bool Equals(object obj) {
+            return obj is Modifier other && this.Equals(other);
+        }
+
+        public override int GetHashCode() {
+            return HashCode.Combine((int)this.Type, this.Target, this.Magnitude);
         }
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Trie;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +11,9 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
+        [field: SerializeField]
+        private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
+        
         [field: SerializeField] private AttributeTable DefaultAttributeTable { get; set; }
         
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
@@ -39,7 +41,8 @@ namespace GameplayAbilities.Runtime.Attributes {
             }
             
             foreach (KeyValuePair<AttributeTypeDefinition, int> attribute in table) {
-                this.Attributes.Add(attribute.Key.Id, AttributeData.From(attribute.Key, attribute.Value, this));
+                AttributeData data = AttributeData.From(attribute.Key, attribute.Value, this, this.ModifierMode);
+                this.Attributes.Add(attribute.Key.Id, data);
                 this.OnAttributeChanged?.Invoke(new AttributeChange(attribute.Key.Id, 0, attribute.Value));
             }
 
@@ -73,8 +76,17 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
-        internal void AddModifier(Modifier modifier) {
+        public void AddModifier(Modifier modifier) {
             this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
+        }
+
+        /// <summary>
+        /// Remove a modifier to the attribute set. The modifier must already exist.
+        /// If multiple instances of the same modifier exist, the last one will be removed.
+        /// </summary>
+        /// <param name="modifier">The modifier to remove.</param>
+        public void RemoveModifier(Modifier modifier) {
+            this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.RemoveModifier(modifier));
         }
 
         public int GetCurrent(string key) {
