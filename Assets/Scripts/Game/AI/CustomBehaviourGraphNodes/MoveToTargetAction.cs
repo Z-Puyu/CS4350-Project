@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using Game.CharacterControls;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
-using Random = UnityEngine.Random;
 
 namespace Game.AI.CustomBehaviourGraphNodes {
     [Serializable, GeneratePropertyBag]

@@ -6,7 +6,6 @@ using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
-using Player_related.Player;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +21,8 @@ namespace Game.Player {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
+        [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
+        [field: SerializeField, Required] private PlayerAnimator Animator { get; set; }
         [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
         [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
         

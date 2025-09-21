@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
+  m_Name: Elemental Damage
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
+  <Name>k__BackingField: Elemental
+  displayName: Elemental Damage
+  <ModificationRules>k__BackingField:
+  - rid: 4925886386017141022
+  <Id>k__BackingField: Damage.Elemental
+  <Parent>k__BackingField: {fileID: 11400000, guid: 3d930beb4aadd0d4f88734284110e7af, type: 2}
+  <SubTypes>k__BackingField:
+  - {fileID: 11400000, guid: 85a16bd7c86eaa8469fb5ee469e91dea, type: 2}
+  - {fileID: 11400000, guid: b4d3fd49aad078745859aab697ef9dd9, type: 2}
+  - {fileID: 11400000, guid: 5b3e4f2cd25fd354b8f27ad5c9bdd8fe, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4925886386017141022
+      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
+      data:
+        <Min>k__BackingField: 0

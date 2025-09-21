@@ -1,4 +1,3 @@
-﻿using SaintsField;
 using UnityEngine;
 
 namespace Game.CharacterControls {

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
 
 public class Testing243 : MonoBehaviour {
 	public GameObject cube1;

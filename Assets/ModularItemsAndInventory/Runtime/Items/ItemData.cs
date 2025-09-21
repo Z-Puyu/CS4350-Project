@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ModularItemsAndInventory.Runtime.Items.Properties;
 using SaintsField;
 using UnityEngine;

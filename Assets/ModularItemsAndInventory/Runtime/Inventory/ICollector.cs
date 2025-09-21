@@ -1,4 +1,4 @@
-﻿using ModularItemsAndInventory.Runtime.Items;
+using ModularItemsAndInventory.Runtime.Items;
 
 namespace ModularItemsAndInventory.Runtime.Inventory {
     public interface ICollector {

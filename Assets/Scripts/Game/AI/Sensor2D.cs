@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Game.AI {
     public abstract class Sensor2D : Sensor {

@@ -1,5 +1,4 @@
-﻿using ModularItemsAndInventory.Runtime.Items;
-using UnityEngine;
+using ModularItemsAndInventory.Runtime.Items;
 
 namespace Map.Objectives
 {

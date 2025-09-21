@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GameplayAbilities.Runtime.Attributes;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
         public float Level { get; }
-        public Dictionary<string, int> CallerSuppliedModifierValues { get; }
+        public IReadOnlyDictionary<string, int> CallerSuppliedDataValues { get; }
 
         private GameplayEffectExecutionArgs(
-            IAttributeReader instigator, float level, Dictionary<string, int> callerSuppliedModifierValues
+            IAttributeReader instigator, float level, IDictionary<string, int> callerSuppliedDataValues
         ) {
             this.Instigator = instigator;
             this.Level = level;
-            this.CallerSuppliedModifierValues = callerSuppliedModifierValues;
+            this.CallerSuppliedDataValues = new ReadOnlyDictionary<string, int>(callerSuppliedDataValues);
         }
         
         public static Builder From(IAttributeReader instigator) {
@@ -40,12 +41,12 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             /// <param name="label">The label of the modifier.
             /// It must match the label of the modifier in the gameplay effect.</param>
             /// <returns>The execution argument builder.</returns>
-            public Builder WithModifier(int magnitude, string label) {
+            public Builder WithUserData(int magnitude, string label) {
                 this.CallerSuppliedModifierValues[label] = magnitude;
                 return this;
             }
             
-            public Builder WithModifiers(IEnumerable<KeyValuePair<string, int>> modifiers) {
+            public Builder WithUserData(IEnumerable<KeyValuePair<string, int>> modifiers) {
                 foreach (KeyValuePair<string, int> modifier in modifiers) {
                     this.CallerSuppliedModifierValues[modifier.Key] = modifier.Value;
                 }

@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace Utilities {
     [Serializable]
-    public class ObjectPool<T> where T:Component {
+    public class ObjectPool<T> where T : Component {
         [field: SerializeField] public T Prefab { get; private set; }
         private Queue<T> pool = new Queue<T>();
 

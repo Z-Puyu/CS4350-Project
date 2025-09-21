@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -73,7 +73,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
-        internal void AddModifier(Modifier modifier) {
+        public void AddModifier(Modifier modifier) {
             this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
         }
 

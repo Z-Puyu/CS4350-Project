@@ -1,4 +1,4 @@
-﻿using ModularItemsAndInventory.Runtime.Inventory;
+using ModularItemsAndInventory.Runtime.Inventory;
 using SaintsField;
 using UnityEngine;
 using Object = UnityEngine.Object;
