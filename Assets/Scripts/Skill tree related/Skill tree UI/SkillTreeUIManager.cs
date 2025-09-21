@@ -1,3 +1,5 @@
+using Skill_tree_related.Skills;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,16 +15,20 @@ public class SkillTreeUIManager : MonoBehaviour
     private int maxCombatExp;
     [SerializeField]
     private int maxFarmingExp;
-
+    [Header("Skill tab")]
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    
     void Start()
     {
         UpdateExp();
     }
 
-    // void Update()
-    // {
-    //     UpdateExp();
-    // }
+    public void SetSkillInformation(Component component, object skill)
+    {
+        Skill broasdcastedSkill = (Skill)((object[])skill)[0];
+        broasdcastedSkill.SetInfo(titleText, descriptionText);
+    }
 
     public void UpdateExp()
     {

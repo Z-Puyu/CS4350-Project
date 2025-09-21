@@ -122,6 +122,7 @@ MonoBehaviour:
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
   <AttributeSet>k__BackingField: {fileID: 106646709540062668}
   <Inventory>k__BackingField: {fileID: 7364736450214849462}
+  broadcastItemCollected: {fileID: 11400000, guid: 0a5d66ab3b80d6945a3073444ef13890, type: 2}
 --- !u!114 &9044932256310309293
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,9 +5,8 @@ using UnityEngine.UIElements;
 
 namespace Inventory_related.Inventory_UI_Manager
 {
-    public class SlotUI : MonoBehaviour
+    public class SlotUI
     {
-        private readonly VisualElement _root;
         private readonly VisualElement _iconElement;
         private readonly Label _quantityLabel;
         private readonly InventoryUIManager _uiManager;
@@ -17,14 +16,13 @@ namespace Inventory_related.Inventory_UI_Manager
 
         public SlotUI(VisualElement root, InventoryUIManager uiManager)
         {
-            _root = root;
             _uiManager = uiManager;
             
             _iconElement = root.Q<VisualElement>("ItemIcon");
             _quantityLabel = root.Q<Label>("ItemQuantity");
             
             // Register click
-            _root.RegisterCallback<ClickEvent>(OnClick);
+            root.RegisterCallback<ClickEvent>(OnClick);
         }
 
         public void SetData(ItemKey itemKey, int quantity)
@@ -39,6 +37,7 @@ namespace Inventory_related.Inventory_UI_Manager
                 _iconElement.style.backgroundImage = new StyleBackground(itemData.Icon);
 
             _quantityLabel.text = quantity.ToString();
+            Debug.Log($"SetData is Called with: key = {itemKey} & quantity = {quantity} & itemData = {_itemData}");
         }
         
         

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common;
+using Events;
 using Game.Enemies;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
@@ -14,6 +15,7 @@ using WeaponsSystem.DamageHandling;
 namespace Game.Player {
     [DisallowMultipleComponent]
     public sealed class PlayerController : MonoBehaviour, ICollector, IDamageable {
+        public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
@@ -48,6 +50,7 @@ namespace Game.Player {
 
         public void Collect(int count, ItemKey item) {
             this.Inventory.Add(count, item);
+            broadcastItemCollected.TriggerEvent(this, item);
             OnScreenDebugger.Log($"Collected {count} {item.Id}");
             OnScreenDebugger.Log("Current Inventory:");
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {
