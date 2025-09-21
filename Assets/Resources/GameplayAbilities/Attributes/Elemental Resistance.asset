@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Defence
+  m_Name: Elemental Resistance
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Defence
-  displayName: Defence
+  <Name>k__BackingField: Elemental
+  displayName: Elemental Resistance
   <ModificationRules>k__BackingField: []
-  <Id>k__BackingField: Defence
-  <Parent>k__BackingField: {fileID: 0}
+  <Id>k__BackingField: Defence.Elemental
+  <Parent>k__BackingField: {fileID: 11400000, guid: c15a15d823d833347be5231c8fdb0cb2, type: 2}
   <SubTypes>k__BackingField:
-  - {fileID: 11400000, guid: 39ad1d48175a51446aa4828436f664ee, type: 2}
+  - {fileID: 11400000, guid: 95276008f26fe764bb0c94c4da23e34b, type: 2}
+  - {fileID: 11400000, guid: 20703378fa029cc49a472458a4c4c1b9, type: 2}
+  - {fileID: 11400000, guid: 2f7588f7ff700e7499300b48476d5cf1, type: 2}
   references:
     version: 2
     RefIds: []

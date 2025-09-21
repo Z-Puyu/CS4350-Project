@@ -1,7 +1,6 @@
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace WeaponsSystem {
     [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapons/WeaponData", order = 0)]

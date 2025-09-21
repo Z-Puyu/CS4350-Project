@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.ModificationRules;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
@@ -11,7 +12,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField] private string Name { get; set; }
         [SerializeField] private string displayName;
 
-        [field: SerializeReference, ReferencePicker]
+        [field: SerializeReference, ReferencePicker, HideIf(nameof(this.IsCategory))]
         public List<IAttributeClampRule> ModificationRules { get; private set; } =
             new List<IAttributeClampRule>();
 
@@ -37,6 +38,10 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         private void OnValidate() {
+            if (this.IsCategory) {
+                this.ModificationRules.Clear();
+            }
+            
             LinkedList<string> names = new LinkedList<string>();
             AttributeTypeDefinition curr = this;
             while (curr) {
@@ -53,6 +58,14 @@ namespace GameplayAbilities.Runtime.Attributes {
         
         public bool Equals(AttributeTypeDefinition other) {
             return this.CompareTo(other) == 0;
+        }
+
+        public static IEnumerable<AttributeTypeDefinition> GetAll() {
+            return Resources.LoadAll<AttributeTypeDefinition>("");
+        }
+
+        public static IEnumerable<AttributeTypeDefinition> GetAllLeaves() {
+            return Resources.LoadAll<AttributeTypeDefinition>("").Where(a => !a.IsCategory);
         }
     }
 }

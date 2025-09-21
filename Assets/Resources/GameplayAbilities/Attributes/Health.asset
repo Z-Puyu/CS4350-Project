@@ -10,19 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Elemental Damage (Lightning)
+  m_Name: Health
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Lightning
-  displayName: Lightning Damage
+  <Name>k__BackingField: Health
+  displayName: Health
   <ModificationRules>k__BackingField:
-  - rid: 4925886386017141022
-  <Id>k__BackingField: Damage.Elemental.Lightning
-  <Parent>k__BackingField: {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  - rid: 4925886386017140807
+  - rid: 4925886386017141019
+  <Id>k__BackingField: Health
+  <Parent>k__BackingField: {fileID: 0}
   <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4925886386017141022
+    - rid: 4925886386017140807
       type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
       data:
         <Min>k__BackingField: 0
+    - rid: 4925886386017141019
+      type: {class: MaximumByAttributeRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
+      data:
+        <Max>k__BackingField: {fileID: 11400000, guid: 7ac0428bf2dcbe1478ebc96a726aea26, type: 2}

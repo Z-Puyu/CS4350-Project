@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -16,12 +15,12 @@ namespace WeaponsSystem.DamageHandling {
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();
             foreach (DamageType damage in this.DamageTypes) {
-                int magnitude = args.CallerSuppliedDataValues.GetValueOrDefault(damage.DamageAttribute.Id, 0);
+                int magnitude = args.CallerSuppliedDataValues.GetValueOrDefault(damage.DamageAttribute, 0);
                 if (magnitude == 0) {
                     continue;
                 }
                 
-                int defence = target.GetCurrent(damage.DefenceAttribute.Id);
+                int defence = target.GetCurrent(damage.DefenceAttribute);
                 magnitude = damage.IsPercentageDefence
                         ? Mathf.RoundToInt(magnitude * defence * damage.DefenceCoefficient / 100.0f)
                         : magnitude - defence * damage.DefenceCoefficient;

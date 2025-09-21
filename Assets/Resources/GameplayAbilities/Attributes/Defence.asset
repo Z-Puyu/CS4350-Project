@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Melee Attack Angle
+  m_Name: Defence
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: MeleeAttackAngle
-  displayName: Melee Attack Angle
-  <ModificationRules>k__BackingField:
-  - rid: 2098011547707638002
-  <Id>k__BackingField: MeleeAttackAngle
+  <Name>k__BackingField: Defence
+  displayName: Defence
+  <ModificationRules>k__BackingField: []
+  <Id>k__BackingField: Defence
   <Parent>k__BackingField: {fileID: 0}
-  <SubTypes>k__BackingField: []
+  <SubTypes>k__BackingField:
+  - {fileID: 11400000, guid: ebf65734603cad845812c35a454c6a2a, type: 2}
+  - {fileID: 11400000, guid: 39ad1d48175a51446aa4828436f664ee, type: 2}
   references:
     version: 2
-    RefIds:
-    - rid: 2098011547707638002
-      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
-      data:
-        <Min>k__BackingField: 0
+    RefIds: []

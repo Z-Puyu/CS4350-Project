@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbebd28294d4994bd6ac56a5598ae, type: 3}
-  m_Name: Attribute - Elemental Damage (Ice)
+  m_Name: Physical Damage
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeTypeDefinition
-  <Name>k__BackingField: Ice
-  displayName: Ice Damage
+  <Name>k__BackingField: Physical
+  displayName: Physical Damage
   <ModificationRules>k__BackingField:
   - rid: 4925886386017141022
-  <Id>k__BackingField: Damage.Elemental.Ice
-  <Parent>k__BackingField: {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  <Id>k__BackingField: Damage.Physical
+  <Parent>k__BackingField: {fileID: 11400000, guid: 3d930beb4aadd0d4f88734284110e7af, type: 2}
   <SubTypes>k__BackingField: []
   references:
     version: 2
