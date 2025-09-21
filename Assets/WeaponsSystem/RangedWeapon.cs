@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Common;
 using UnityEngine;
 using Utilities;
@@ -8,7 +9,8 @@ namespace WeaponsSystem {
         private Timer fireIntervalTimer;
         private bool canAttack = true;
 
-        public override void Attack() {
+        public override int Attack() {
+            int counter = this.CurrentAttackCounter;
             if (this.canAttack) {
                 OnScreenDebugger.Log("RangedAttackSuccessfully");
                 this.StartAttack();
@@ -35,6 +37,12 @@ namespace WeaponsSystem {
             } else {
                 OnScreenDebugger.Log("Cannot Attack, still in cooldown");
             }
+
+            return counter;
+        }
+
+        public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
+            throw new System.NotImplementedException();
         }
 
         protected override void Awake() {

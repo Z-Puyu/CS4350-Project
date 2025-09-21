@@ -15,8 +15,8 @@ namespace GameplayAbilities.Runtime.Attributes {
         private ModifierMode Mode { get; }
         internal int Value { get; private set; }
         
-        internal int MaxValue => Math.Min(int.MaxValue, (int)this.ExecuteModificationRules(float.MaxValue));
-        internal int MinValue => Math.Max(int.MinValue, (int)this.ExecuteModificationRules(float.MinValue));
+        internal int MaxValue => Math.Min(int.MaxValue, (int)this.ExecuteModificationRules(int.MaxValue));
+        internal int MinValue => Math.Max(int.MinValue, (int)this.ExecuteModificationRules(int.MinValue));
 
         private SortedList<Modifier.Operation, Modifier> Modifiers { get; } =
             new SortedList<Modifier.Operation, Modifier>();
@@ -36,7 +36,8 @@ namespace GameplayAbilities.Runtime.Attributes {
             foreach (IAttributeClampRule rule in definition.ModificationRules) {
                 data.ModificationRules.Add(rule);
             }
-
+            
+            data.Value = data.RecomputeValue();
             return data;
         }
 
@@ -44,22 +45,25 @@ namespace GameplayAbilities.Runtime.Attributes {
             this.Value = (int)this.ExecuteModificationRules(this.Value);
         }
 
-        private float ExecuteModificationRules(float value) {
+        private double ExecuteModificationRules(double value) {
             foreach (IAttributeClampRule rule in this.ModificationRules) {
-                value = Math.Clamp(value, rule.MinValueIn(this.Root), rule.MaxValueIn(this.Root));
+                int min = rule.MinValueIn(this.Root);
+                int max = rule.MaxValueIn(this.Root);
+                value = Math.Clamp(value, min, max);
             }
             
             return value;
         }
 
         private int RecomputeValue() {
+            double @base = this.ExecuteModificationRules(this.BaseValue);
             return this.Mode switch {
-                ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(this.BaseValue, modify),
-                ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(this.BaseValue, modify),
+                ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(@base, modify),
+                ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(@base, modify),
                 var _ => throw new ArgumentException("Invalid modifier mode")
             };
             
-            float modify(float value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
+            double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
         }
 
         internal void AddModifier(Modifier modifier) {
@@ -90,7 +94,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <param name="modifier">The modifier to be applied.</param>
         /// <returns>The projected value of this attribute after applying the given modifier.</returns>
         internal int Project(Modifier modifier) {
-            float value = this.BaseValue;
+            double value = this.BaseValue;
             IEnumerable<Modifier> modifiers = this.Mode switch {
                 ModifierMode.ByPriority => this.Modifiers.Values,
                 ModifierMode.ByTimeOrder => this.ModifierSequence,
@@ -98,7 +102,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             };
             
             foreach (Modifier m in modifiers) {
-                float modified = m.Type == modifier.Type ? (m + modifier).Modify(value) : m.Modify(value);
+                double modified = m.Type == modifier.Type ? (m + modifier).Modify(value) : m.Modify(value);
                 value = this.ExecuteModificationRules(modified);
             }
 

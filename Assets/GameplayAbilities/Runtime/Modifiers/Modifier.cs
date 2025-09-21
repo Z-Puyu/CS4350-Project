@@ -42,7 +42,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         /// </summary>
         /// <param name="value">The original value to modify.</param>
         /// <returns>The modified value after applying this modifier.</returns>
-        public float Modify(float value) {
+        public double Modify(double value) {
             return this.Type switch {
                 Operation.Shift or Operation.Offset => value + this.Magnitude,
                 Operation.Multiply => value * Math.Min(100 + this.Magnitude, 0) / 100.0f,

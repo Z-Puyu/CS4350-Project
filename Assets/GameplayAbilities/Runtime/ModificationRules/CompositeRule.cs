@@ -10,11 +10,11 @@ namespace GameplayAbilities.Runtime.ModificationRules {
         [field: SerializeField, Tooltip("The clamped attribute will need to satisfy all of these rules")] 
         private List<IAttributeClampRule> Rules { get; set; }
 
-        public float MaxValueIn(AttributeSet root) {
+        public int MaxValueIn(AttributeSet root) {
             return this.Rules.Min(rule => rule.MaxValueIn(root));
         }
         
-        public float MinValueIn(AttributeSet root) {
+        public int MinValueIn(AttributeSet root) {
             return this.Rules.Max(rule => rule.MinValueIn(root));
         }
     }

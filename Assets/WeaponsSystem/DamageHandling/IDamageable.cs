@@ -1,5 +1,5 @@
 namespace WeaponsSystem.DamageHandling {
     public interface IDamageable {
-        public void TakeDamage(Damage damage);
+        public void HandleDamage(Damage damage);
     }
 }
