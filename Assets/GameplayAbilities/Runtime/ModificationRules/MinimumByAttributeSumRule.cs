@@ -10,11 +10,11 @@ namespace GameplayAbilities.Runtime.ModificationRules {
         [field: SerializeField]
         private List<MinimumByAttributeRule> Rules { get; set; } = new List<MinimumByAttributeRule>();
         
-        public float MaxValueIn(AttributeSet root) {
-            return float.PositiveInfinity;
+        public int MaxValueIn(AttributeSet root) {
+            return int.MaxValue;
         }
         
-        public float MinValueIn(AttributeSet root) {
+        public int MinValueIn(AttributeSet root) {
             return this.Rules.Sum(rule => rule.MinValueIn(root));
         }
     }

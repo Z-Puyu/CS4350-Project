@@ -6,7 +6,7 @@ using Utilities;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
-    public abstract class Weapon<S> : MonoBehaviour where S : WeaponStats {
+    public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField] private List<WeaponComponentData> Components { get; set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
@@ -32,7 +32,13 @@ namespace WeaponsSystem {
             this.Stats.Initialise(this.WeaponData);
         }
 
-        public abstract void Attack();
+        public abstract int Attack();
+        
+        public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
+        
+        public virtual bool AllowsDamageOn(GameObject candidate) {
+            return true;
+        }
 
         //place hold function. Should be adjusted after determining how to handle the attack.
         protected void StartAttack() {

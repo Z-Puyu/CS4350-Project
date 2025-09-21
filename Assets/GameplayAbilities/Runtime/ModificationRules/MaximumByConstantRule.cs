@@ -7,12 +7,12 @@ namespace GameplayAbilities.Runtime.ModificationRules {
     public class MaximumByConstantRule : IAttributeClampRule {
         [field: SerializeField] private int Max { get; set; }
 
-        public float MaxValueIn(AttributeSet root) {
+        public int MaxValueIn(AttributeSet root) {
             return this.Max;
         }
         
-        public float MinValueIn(AttributeSet root) {
-            return float.NegativeInfinity;
+        public int MinValueIn(AttributeSet root) {
+            return int.MinValue;
         }
     }
 }
