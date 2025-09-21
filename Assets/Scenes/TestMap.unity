@@ -37983,8 +37983,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1192277548}
   m_SourcePrefab: {fileID: 100100000, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+--- !u!1 &1192277547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8475171658649005550, guid: 1271100ec63d4a4468c6e5b034f754ae, type: 3}
+  m_PrefabInstance: {fileID: 1192277546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1192277548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192277547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62e55420aaa41978419678f46bcb052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.TestComponent
+  <Modifiers>k__BackingField:
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 3d930beb4aadd0d4f88734284110e7af, type: 2}
+    <Method>k__BackingField: 0
+    <Form>k__BackingField: 2
+    <Source>k__BackingField: 0
+    <SourceAttribute>k__BackingField: {fileID: 0}
+    <DefaultValue>k__BackingField: 0
+    <Label>k__BackingField: DamageBuff
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: ace73ce3fbfb17d45a58d01c19cdf380, type: 2}
+    <Method>k__BackingField: 1
+    <Form>k__BackingField: 0
+    <Source>k__BackingField: 0
+    <SourceAttribute>k__BackingField: {fileID: 0}
+    <DefaultValue>k__BackingField: 5
+    <Label>k__BackingField: DamageBuff
 --- !u!1001 &1453472073
 PrefabInstance:
   m_ObjectHideFlags: 0
