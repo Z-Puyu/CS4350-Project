@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace WeaponsSystem.DamageHandling {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class Combatant : MonoBehaviour {
+        [field: SerializeField] private SaintsInterface<Component, IDamageDealer> DefaultDamageDealer { get; set; }
         [field: SerializeField] private LayerMask EnemyLayerMask { get; set; }
         [field: SerializeField, Tag] private List<string> EnemyTags { get; set; } = new List<string>();
         [field: SerializeField] private UnityEvent<int> OnAttacked { get; set; } = new UnityEvent<int>();
@@ -19,6 +21,12 @@ namespace WeaponsSystem.DamageHandling {
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
+
+        private void Start() {
+            if (this.DefaultDamageDealer.I != null) {
+                this.Equip(this.DefaultDamageDealer.I);
+            }
+        }
 
         public void StartAttack() {
             if (this.IsAttacking) {
@@ -36,6 +44,10 @@ namespace WeaponsSystem.DamageHandling {
 
         public void FinishAttack() {
             this.IsAttacking = false;
+        }
+
+        public void Interrupt() {
+            this.IsAttacking = false;       
         }
         
         public void Equip(IDamageDealer damageDealer) {

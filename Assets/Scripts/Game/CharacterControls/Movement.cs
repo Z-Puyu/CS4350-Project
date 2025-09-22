@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]
-    public abstract class Movement : MonoBehaviour {
+    public class Movement : MonoBehaviour {
         [field: SerializeField, MinValue(1)] private float Speed { get; set; } = 5;
         [field: SerializeField, Required] private Transform RootTransform { get; set; }
         public Vector3 TargetDirection { get; private set; }
