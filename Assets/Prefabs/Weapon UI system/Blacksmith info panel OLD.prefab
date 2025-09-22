@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Comicly huge sword
+  m_text: 'Flaming blade of tomorrow: ABCDEFGH the disaster'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -92,10 +92,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 26.85
+  m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 30
   m_fontStyle: 1
@@ -147,13 +147,12 @@ GameObject:
   - component: {fileID: 1771636347207668277}
   - component: {fileID: 8012136282118652040}
   - component: {fileID: 3738848352366594295}
+  - component: {fileID: 1053565616133202627}
   - component: {fileID: 3080027683506880453}
   - component: {fileID: 333521361762373662}
   - component: {fileID: 2105163204947215194}
-  - component: {fileID: 5510657158444588514}
-  - component: {fileID: 6598163090590612445}
   m_Layer: 5
-  m_Name: Blacksmith info panel
+  m_Name: Blacksmith info panel OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,12 +171,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1304512214050012671}
+  - {fileID: 7040664154379885627}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.3098966}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 32.121933}
-  m_SizeDelta: {x: 0, y: -64.2498}
+  m_AnchoredPosition: {x: 0.000030517578, y: -0.000015258789}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8012136282118652040
 CanvasRenderer:
@@ -217,6 +217,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1053565616133202627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206612269544958264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26dd50b5db5cc5469e28f6f1372951b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: {fileID: 16139830082083870}
+  buffDescription: {fileID: 5139908074592073934}
+  buffPanel: {fileID: 5114815723031925393}
+  minHeightWithClosedBuffPanel: 100
+  minHeightWithActiveBuffPanel: 200
 --- !u!114 &3080027683506880453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +274,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -307,8 +324,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5510657158444588514}
-        m_TargetAssemblyTypeName: BlacksmithInfoPanel, Assembly-CSharp
+      - m_Target: {fileID: 1053565616133202627}
+        m_TargetAssemblyTypeName: ComponentInfoPanel, Assembly-CSharp
         m_MethodName: ToggleBuffPanel
         m_Mode: 1
         m_Arguments:
@@ -319,45 +336,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5510657158444588514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2206612269544958264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0648aae86bfb7574db7747eda76c6dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BlacksmithInfoPanel
-  componentName: {fileID: 16139830082083870}
-  buffDescription: {fileID: 5139908074592073934}
-  buffPanel: {fileID: 5114815723031925393}
-  minHeightWithClosedBuffPanel: 50
-  minHeightWithActiveBuffPanel: 200
---- !u!95 &6598163090590612445
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2206612269544958264}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2894762308369574563
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +369,6 @@ RectTransform:
   m_Children:
   - {fileID: 6620442757693524781}
   - {fileID: 8844353457768939256}
-  - {fileID: 7040664154379885627}
   m_Father: {fileID: 1771636347207668277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -450,9 +427,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 0
-  m_MinHeight: 0
-  m_PreferredWidth: 541.0713
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
   m_PreferredHeight: 60
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -491,7 +468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.3652617}
   m_AnchorMax: {x: 0.133, y: 0.7134767}
-  m_AnchoredPosition: {x: -3.9187012, y: 0}
+  m_AnchoredPosition: {x: -3.9187927, y: 0}
   m_SizeDelta: {x: 7.8376, y: 28.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6237149073249507682
@@ -559,19 +536,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114815723031925393}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 371031930952214669}
-  m_Father: {fileID: 1304512214050012671}
+  m_Father: {fileID: 1771636347207668277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 265.25177, y: 0}
-  m_SizeDelta: {x: 544.8345, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5587747753657359296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -593,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -623,9 +600,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 0
+  m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 541.0713
+  m_PreferredWidth: -1
   m_PreferredHeight: 50
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -640,7 +617,7 @@ Animator:
   m_GameObject: {fileID: 5114815723031925393}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 40f4774fe0980ac498ce5e07becbd7f6, type: 2}
+  m_Controller: {fileID: 9100000, guid: d8565775ef5b018478bc0d58ac44b7aa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -684,10 +661,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7040664154379885627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.7, y: 0}
-  m_SizeDelta: {x: 544.8345, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 104.06065}
+  m_SizeDelta: {x: 0, y: -208.1213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8594353576260290666
 CanvasRenderer:
@@ -717,10 +694,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A comicly huge sword. Oddly light. Probably why it''s so weak.
-
-    Materials:
-    0/10, 0/15,'
+  m_text: 'Materials: 0/10, 0/15,'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -747,15 +721,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 30
+  m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -777,15 +751,15 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_horizontalMapping: 1
-  m_verticalMapping: 1
-  m_uvLineOffset: 10
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 6.061798, z: 0, w: -5.1885414}
+  m_margin: {x: 0, y: 6.061798, z: 0, w: -201.04918}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
