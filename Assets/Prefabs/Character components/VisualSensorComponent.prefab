@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2509671278052840435}
   - component: {fileID: 2255891416654777485}
   - component: {fileID: 6098776442584836961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VisualSensorComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +55,8 @@ MonoBehaviour:
       m_Calls: []
   <DetectionRange>k__BackingField: 10
   <DetectionHalfAngle>k__BackingField: 180
+  <EyePosition>k__BackingField: {fileID: 0}
+  <LookAtPosition>k__BackingField: {fileID: 0}
 --- !u!58 &6098776442584836961
 CircleCollider2D:
   m_ObjectHideFlags: 0
