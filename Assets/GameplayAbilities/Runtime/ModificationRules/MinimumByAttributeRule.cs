@@ -7,11 +7,11 @@ namespace GameplayAbilities.Runtime.ModificationRules {
     public class MinimumByAttributeRule : IAttributeClampRule {
         [field: SerializeField, Required] private AttributeTypeDefinition Min { get; set; }
 
-        public float MaxValueIn(AttributeSet root) {
-            return float.PositiveInfinity;
+        public int MaxValueIn(AttributeSet root) {
+            return int.MaxValue;
         }
         
-        public float MinValueIn(AttributeSet root) {
+        public int MinValueIn(AttributeSet root) {
             return root.GetCurrent(this.Min.Id);
         }
     }

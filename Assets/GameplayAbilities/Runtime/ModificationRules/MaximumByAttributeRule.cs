@@ -8,12 +8,12 @@ namespace GameplayAbilities.Runtime.ModificationRules {
     public class MaximumByAttributeRule : IAttributeClampRule {
         [field: SerializeField, Required] private AttributeTypeDefinition Max { get; set; }
 
-        public float MaxValueIn(AttributeSet root) {
+        public int MaxValueIn(AttributeSet root) {
             return root.GetCurrent(this.Max.Id);
         }
         
-        public float MinValueIn(AttributeSet root) {
-            return float.NegativeInfinity;
+        public int MinValueIn(AttributeSet root) {
+            return int.MinValue;
         }
     }
 }

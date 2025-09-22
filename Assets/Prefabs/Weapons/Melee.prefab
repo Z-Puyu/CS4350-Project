@@ -48,6 +48,7 @@ MonoBehaviour:
   <WeaponData>k__BackingField: {fileID: 11400000, guid: e823039187623e34da918e1e3e9fd5df, type: 2}
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 5777750948884736783}
+  <AttackOrigin>k__BackingField: {fileID: 503650084216761073}
 --- !u!1 &5690212249861511337
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <ModifierMode>k__BackingField: 0
   <DefaultAttributeTable>k__BackingField: {fileID: 0}
 --- !u!114 &5777750948884736783
 MonoBehaviour:
@@ -114,3 +116,5 @@ MonoBehaviour:
   <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
+  <SweepHalfAngle>k__BackingField: 0
+  <MeleeRangeAttribute>k__BackingField: 

@@ -1,18 +1,36 @@
+using Events;
+using Skill_tree_related.Skills;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillIcon : MonoBehaviour
 {
-    private Image image;
+    [SerializeField] private Skill skillScriptableObject;
+    [SerializeField] private CrossObjectEventWithDataSO broadcastSkill;
+    
+    [SerializeField] private Image image;
+    [SerializeField] private Sprite lockedIconBg;
+    [SerializeField] private Sprite unlockedIconBg;
 
     void Start()
     {
         image = GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitialiseIcon(bool isFilled)
     {
-        
+        if (isFilled)
+        {
+            image.sprite = unlockedIconBg;
+        }
+        else
+        {
+            image.sprite = lockedIconBg;
+        }
+    }
+
+    public void BroadcastSkill()
+    {
+        broadcastSkill.TriggerEvent(this, skillScriptableObject);
     }
 }

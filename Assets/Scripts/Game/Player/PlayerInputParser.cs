@@ -9,9 +9,8 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using WeaponsSystem;
-using Cursor = UnityEngine.Cursor;
+using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
@@ -21,6 +20,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
+        [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
         [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
         
@@ -60,13 +60,12 @@ namespace Game.Player {
             }
             
             OnScreenDebugger.Log("Attack");
+            this.Combatant.StartAttack();
             //this.MeleeWeapon.gameObject.SetActive(true);
-            this.RangedWeapon.gameObject.SetActive(true);
+            //this.RangedWeapon.gameObject.SetActive(true);
             
             //this.MeleeWeapon.Attack();
-            this.RangedWeapon.Attack();
-            
-            this.Animator.PlayAttack(); // Calls animator action
+            //this.RangedWeapon.Attack();
         }
 
         public void OnMove(InputAction.CallbackContext context) {

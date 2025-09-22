@@ -83,7 +83,7 @@ namespace Inventory_related.Inventory_UI_Manager
         private void RefreshInventoryUI()
         {
             _grid.Clear();
-
+            
             foreach (var kvp in inventory) // kvp.Key = ItemKey, kvp.Value = quantity
             {
                 var slotElement = slotTemplate.CloneTree();

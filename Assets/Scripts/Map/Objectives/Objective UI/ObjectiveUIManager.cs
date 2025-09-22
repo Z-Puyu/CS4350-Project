@@ -1,0 +1,37 @@
+using UnityEngine;
+using UnityEngine.Serialization;
+using System.Collections.Generic;
+using TMPro;
+
+namespace Map.Objectives.Objective_UI
+{
+    public class ObjectiveUIManager : MonoBehaviour
+    {
+        [SerializeField] private MapUnlockRequirementPanel mapUnlockRequirementPanelPrefab;
+        [SerializeField] private Transform spawnContent;
+        [SerializeField] private GameObject backdrop;
+        [SerializeField] private List<MapUnlockRequirementPanel> spawnedPanels;
+        
+        public void OpenUI()
+        {
+            backdrop.SetActive(true);    
+        }
+        
+        public void SpawnPanel(MapUnlockRequirementSO requirementSO, bool isSelected)
+        {
+            GameObject spawnedPanel = Instantiate(mapUnlockRequirementPanelPrefab.gameObject, spawnContent);
+            MapUnlockRequirementPanel component = spawnedPanel.GetComponent<MapUnlockRequirementPanel>();
+            spawnedPanels.Add(component);
+            component.SetMapUnlockRequirement(requirementSO, isSelected);
+        }
+
+        public void Reset()
+        {
+            foreach (var spawnedPanel in spawnedPanels)
+            {
+                spawnedPanel.Reset();
+            }
+            spawnedPanels.Clear();
+        }
+    }   
+}
