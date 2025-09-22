@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace WeaponsSystem {
     public interface IDamageDealer {
@@ -21,7 +19,5 @@ namespace WeaponsSystem {
         public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
 
         public bool AllowsDamageOn(GameObject candidate);
-        
-        public void ConnectComboResetEvent(Action action);
     }
 }

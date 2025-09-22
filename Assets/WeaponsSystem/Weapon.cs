@@ -1,18 +1,15 @@
-using System;
 using System.Collections.Generic;
 using Common;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Events;
 using Utilities;
-using WeaponsSystem.WeaponComponents;
+using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
     public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField] private List<WeaponComponentData> Components { get; set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
-        private Action onComboReset;
 
         public int CurrentAttackCounter {
             get => this.currentAttackCounter;
@@ -67,12 +64,7 @@ namespace WeaponsSystem {
         private void ResetCombo() {
             this.CurrentAttackCounter = 0;
             this.comboResetTimer.OnTimerFinished -= this.ResetCombo;
-            this.onComboReset?.Invoke();
             OnScreenDebugger.Log("Combo Reset");
-        }
-        
-        public void ConnectComboResetEvent(Action action) {
-            this.onComboReset = action;
         }
     }
 }

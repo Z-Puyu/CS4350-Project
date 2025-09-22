@@ -5,7 +5,6 @@ using Common;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem {

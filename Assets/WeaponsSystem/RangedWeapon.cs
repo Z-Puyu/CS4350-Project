@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
-using UnityEngine.Events;
 using Utilities;
-using WeaponsSystem.BulletComponents;
 
 namespace WeaponsSystem {
     public class RangedWeapon : Weapon<RangedWeaponStats> {
