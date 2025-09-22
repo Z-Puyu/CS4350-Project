@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using Inventory_related.Inventory_UI_Manager;
+using ModularItemsAndInventory.Runtime.Inventory;
+using ModularItemsAndInventory.Runtime.Items;
 using Common;
 
 public class SoilPlantInteraction : MonoBehaviour
@@ -8,6 +10,7 @@ public class SoilPlantInteraction : MonoBehaviour
     public enum PlantStage { Planted, Seedling, Grown, Wilting, Wilted }
 
     [SerializeField] private string plantedSeedId; // which seed type (from inventory)
+    [SerializeField] private PickUp2D pickUpPrefab;
     private PlantStage currentStage = PlantStage.Planted;
     private bool hasPlant = false;
     private bool isWatered = false;
@@ -32,12 +35,24 @@ public class SoilPlantInteraction : MonoBehaviour
 
             if (playerIsOver)
             {
-                OnScreenDebugger.Log("Player is over soil → opening inventory");
-                OpenInventoryForSeed();
+                if (hasPlant && (currentStage == PlantStage.Grown || currentStage == PlantStage.Wilting))
+                {
+                    OnScreenDebugger.Log("Plant is ready → harvesting");
+                    HarvestPlant();
+                }
+                else if (!hasPlant)
+                {
+                    OnScreenDebugger.Log("Player is over soil → opening inventory");
+                    OpenInventoryForSeed();
+                }
+                else
+                {
+                    OnScreenDebugger.Log("Seed planted, do nothing.");
+                }
             }
             else
             {
-                OnScreenDebugger.Log("Player is NOT over soil → cannot open inventory");
+                OnScreenDebugger.Log("Player is NOT over soil → cannot interact");
             }
         }
 
@@ -47,7 +62,6 @@ public class SoilPlantInteraction : MonoBehaviour
             WaterPlant();
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -133,16 +147,76 @@ public class SoilPlantInteraction : MonoBehaviour
 
     void HarvestPlant()
     {
+        if (!hasPlant || currentStage < PlantStage.Grown)
+        {
+            Debug.Log("Plant not ready to harvest.");
+            return;
+        }
+
         HarvestEvent?.Invoke();
 
-        Debug.Log($"Harvested {plantedSeedId}!");
+        Debug.Log($"Harvesting {plantedSeedId} at stage {currentStage}...");
+
+        // Determine drop counts based on stage
+        int cropCount = 1; // always drop 1 crop
+        int seedCount = 0;
+        string dropItemId;
+
+        switch (currentStage)
+        {
+            case PlantStage.Grown:
+                dropItemId = plantedSeedId.Replace("seed", "crop");
+                DropItem(dropItemId, cropCount);
+                seedCount = UnityEngine.Random.Range(1, 3); // 1-2 seeds
+                break;
+            case PlantStage.Wilting:
+                dropItemId = plantedSeedId.Replace("seed", "wilting");
+                DropItem(dropItemId, cropCount);
+                seedCount = UnityEngine.Random.Range(0, 2); // 0-1 seeds
+                break;
+            case PlantStage.Wilted:
+                seedCount = UnityEngine.Random.Range(0, 2); // 0-1 seeds
+                cropCount = 0; // maybe nothing if fully wilted
+                break;
+        }
+
+        // Drop seeds
+        if (seedCount > 0)
+            DropItem(plantedSeedId, seedCount);
+
+        // Reset plant
         plantedSeedId = null;
         hasPlant = false;
         currentStage = PlantStage.Planted;
         isWatered = false;
 
-        animator.SetTrigger("Harvest");
-        animator.Play("dry_dirt", 0);
+        // Play harvest animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Harvest");
+            animator.Play("dry_dirt", 0);
+        }
+    }
+
+    private void DropItem(string itemId, int count)
+    {
+        Debug.Log($"Dropping {count} {itemId}...");
+
+        if (count <= 0 || pickUpPrefab == null) return;
+
+        if (!ItemDatabase.TryGet(itemId, out ItemData itemData))
+        {
+            Debug.LogWarning($"Item {itemId} not found in database.");
+            return;
+        }
+
+        Item item = Item.From(itemData);
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+            Object.Instantiate(pickUpPrefab, position, Quaternion.identity).With(1, item.Key);
+        }
     }
 
     void AgePlant()
