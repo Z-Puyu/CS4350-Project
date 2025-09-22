@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using SaintsField;
-using System.Collections.Generic;
 using Map.Objectives.Objective_UI;
 
 namespace Map.Objectives

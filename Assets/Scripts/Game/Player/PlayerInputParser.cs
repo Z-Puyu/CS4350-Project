@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using Common;
 using Game.CharacterControls;
@@ -6,10 +6,11 @@ using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
-using Player_related.Player;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using WeaponsSystem;
+using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
@@ -19,7 +20,10 @@ namespace Game.Player {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
-
+        [field: SerializeField, Required] private Combatant Combatant { get; set; }
+        [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
+        [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
+        
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
@@ -28,6 +32,7 @@ namespace Game.Player {
             OnScreenDebugger.Log("Interact");
             this.Interactor.Interact();
         }
+        
         
         
         public void OnToggleInventory(InputAction.CallbackContext context) {
@@ -55,8 +60,12 @@ namespace Game.Player {
             }
             
             OnScreenDebugger.Log("Attack");
+            this.Combatant.StartAttack();
+            //this.MeleeWeapon.gameObject.SetActive(true);
+            //this.RangedWeapon.gameObject.SetActive(true);
             
-            this.Animator.PlayAttack(); // Calls animator action
+            //this.MeleeWeapon.Attack();
+            //this.RangedWeapon.Attack();
         }
 
         public void OnMove(InputAction.CallbackContext context) {

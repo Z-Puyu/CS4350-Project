@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using DentedPixel;
+using UnityEngine;
 
 public class Testing240 : MonoBehaviour {
 

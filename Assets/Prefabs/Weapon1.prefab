@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3522861704847780153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 842442492425734054}
+  - component: {fileID: 5714414901251141283}
+  - component: {fileID: 5794249398174489616}
+  m_Layer: 0
+  m_Name: Weapon1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &842442492425734054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522861704847780153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5714414901251141283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522861704847780153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+--- !u!114 &5794249398174489616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522861704847780153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b30f89985064990a6fb6fffd6ad3915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
+  <WeaponData>k__BackingField: {fileID: 11400000, guid: d772c9f4563c627458560a45ebb056c7, type: 2}
+  <Components>k__BackingField: []
+  attacks: []
+  <UseAttributeForComboLength>k__BackingField: 0
+  <ComboLengthAttribute>k__BackingField: {fileID: 0}
+  <DefaultComboLength>k__BackingField: 0
+  bulletPool:
+    <Prefab>k__BackingField: {fileID: 0}
+  <UseAttributeForBulletSpeed>k__BackingField: 1
+  <BulletSpeedAttribute>k__BackingField: {fileID: 0}
+  <DefaultBulletSpeed>k__BackingField: 0
+  <UseAttributeForRange>k__BackingField: 1
+  <RangeAttribute>k__BackingField: {fileID: 0}
+  <DefaultRange>k__BackingField: 0
+  <UseAttributeForSpread>k__BackingField: 1
+  <SpreadAttribute>k__BackingField: {fileID: 0}
+  <DefaultSpread>k__BackingField: 0
+  <UseAttributeForFireInterval>k__BackingField: 1
+  <FireIntervalAttribute>k__BackingField: {fileID: 0}
+  <DefaultFireInterval>k__BackingField: 0

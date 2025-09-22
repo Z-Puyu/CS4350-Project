@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,7 +18,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private enum ValueSource { Target, Instigator }
         
         [field: SerializeField, TableColumn("Target")] 
-        public AttributeTypeDefinition TargetAttribute { get; private set; }
+        public AttributeType TargetAttribute { get; private set; }
     
         [field: SerializeField] public Modifier.Operation Method { get; private set; }
         
@@ -25,14 +26,14 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private MagnitudeType Form { get; set; }
         
         private bool UseAttributeValue => this.Form == MagnitudeType.AttributeValue;
-        private bool AllowSetByCaller => this.Form == MagnitudeType.CallerSupplied;
+        internal bool AllowSetByCaller => this.Form == MagnitudeType.CallerSupplied;
         private bool UseConstant => this.Form == MagnitudeType.Constant;
 
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
         private ValueSource Source { get; set; } = ValueSource.Instigator;
         
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
-        private AttributeTypeDefinition SourceAttribute { get; set; }
+        private AttributeType SourceAttribute { get; set; }
         
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
         public int DefaultValue { get; private set; }
@@ -78,7 +79,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 return new Modifier(value, this.Method, this.TargetAttribute.Id);
             }
 
-            if (this.AllowSetByCaller && args.CallerSuppliedModifierValues.TryGetValue(this.Label, out int val)) {
+            if (this.AllowSetByCaller && args.CallerSuppliedDataValues.TryGetValue(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute.Id);
             }
             

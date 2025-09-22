@@ -1,3 +1,4 @@
+using GameplayAbilities.Runtime.Abilities;
 using Skill_tree_related.Skills;
 using TMPro;
 using UnityEngine;
@@ -26,8 +27,9 @@ public class SkillTreeUIManager : MonoBehaviour
 
     public void SetSkillInformation(Component component, object skill)
     {
-        Skill broasdcastedSkill = (Skill)((object[])skill)[0];
-        broasdcastedSkill.SetInfo(titleText, descriptionText);
+        Perk broasdcastedSkill = (Perk)((object[])skill)[0];
+        titleText.text = broasdcastedSkill.Name;
+        descriptionText.text = broasdcastedSkill.Description;
     }
 
     public void UpdateExp()

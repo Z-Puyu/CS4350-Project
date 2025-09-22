@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5786119311899489370}
   - component: {fileID: 9138066620330964052}
   - component: {fileID: 2754932744002129096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProximitySensorComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7778f592e94a4a25886c6dfdcf606b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.AI.ProximitySensor2D
-  <DetectionRange>k__BackingField: 5
-  <DetectionHalfAngle>k__BackingField: 180
   <WatchedTags>k__BackingField:
   - Player
   <OnDetected>k__BackingField:
@@ -55,6 +53,7 @@ MonoBehaviour:
   <OnLost>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  <DetectionRange>k__BackingField: 5
 --- !u!58 &2754932744002129096
 CircleCollider2D:
   m_ObjectHideFlags: 0

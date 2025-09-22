@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Utilities {
-    public class ObjectPool<T> where T:Component {
-        [filed: SerializeField] public T Prefab { get; private set; }
+    [Serializable]
+    public class ObjectPool<T> where T : Component {
+        [field: SerializeField] public T Prefab { get; private set; }
         private Queue<T> pool = new Queue<T>();
 
         public void Initialize(int size) {

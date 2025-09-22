@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Items;

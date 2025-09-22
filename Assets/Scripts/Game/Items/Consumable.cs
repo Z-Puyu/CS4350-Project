@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Game.Items {
     [Serializable]
     public class Consumable : ItemProperty {
-        [field: SerializeField] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
+        [field: SerializeReference] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
 
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);

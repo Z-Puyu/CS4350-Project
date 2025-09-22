@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Map.Objectives.Objective_UI;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
