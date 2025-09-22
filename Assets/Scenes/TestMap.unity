@@ -49479,6 +49479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
   plantedSeedId: 
+  pickUpPrefab: {fileID: 0}
 --- !u!95 &1679046102
 Animator:
   serializedVersion: 7

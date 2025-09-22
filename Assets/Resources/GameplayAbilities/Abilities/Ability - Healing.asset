@@ -12,28 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
   m_Name: Ability - Healing
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
-  <Id>k__BackingField: a_healing
+  <Id>k__BackingField: ability:healing
   <Name>k__BackingField: Healing
+  <Description>k__BackingField: 
   <Effects>k__BackingField:
-  - <Executor>k__BackingField:
-      rid: 4925886386017141032
-    <ExecutionTime>k__BackingField: 1
-    <Period>k__BackingField: 1
-    <Duration>k__BackingField: 10
-    <CanMiss>k__BackingField: 0
-    <BaseChance>k__BackingField: 100
-    <Costs>k__BackingField: []
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 4925886386017141032
-      type: {class: ModifierEffectExecution, ns: GameplayAbilities.Runtime.GameplayEffects.Executions, asm: GameplayAbilities.Runtime}
-      data:
-        <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
-          <Method>k__BackingField: 2
-          <Form>k__BackingField: 0
-          <Source>k__BackingField: 0
-          <SourceAttribute>k__BackingField: {fileID: 0}
-          <DefaultValue>k__BackingField: 2
-          <Label>k__BackingField: 
+    - rid: -2
+      type: {class: , ns: , asm: }
