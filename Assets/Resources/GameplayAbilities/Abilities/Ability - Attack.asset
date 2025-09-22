@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
+  m_Name: Ability - Attack
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  <Id>k__BackingField: ability:attack
+  <Name>k__BackingField: Attack
+  <Description>k__BackingField: 
+  <Effects>k__BackingField:
+  - rid: 2098011628653248813
+  references:
+    version: 2
+    RefIds:
+    - rid: 2098011628653248813
+      type: {class: DamageEffectData, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
+      data:
+        <ExecutionTime>k__BackingField: 0
+        <Period>k__BackingField: 1
+        <Duration>k__BackingField: 1
+        <CanMiss>k__BackingField: 0
+        <BaseChance>k__BackingField: 100
+        <Costs>k__BackingField: []
+        <DamageTypes>k__BackingField:
+        - <DamageAttribute>k__BackingField: Damage.Physical
+          <DefenceAttribute>k__BackingField: Defence.Physical
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Ice
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Ice
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}

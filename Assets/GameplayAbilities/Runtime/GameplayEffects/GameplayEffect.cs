@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 
@@ -11,6 +12,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             Cancelled
         }
         
+        private bool HasNeverExecuted { get; set; } = true;
         internal GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
         internal event Action OnEnded;
@@ -31,11 +33,16 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 return Outcome.Cancelled;
             }
 
-            return this.Data.CanMiss ? this.Data.Executor.Try(target, chance, this.Args) : Outcome.Success;
+            return this.Data.CanMiss ? this.Data.Try(target, chance, this.Args) : Outcome.Success;
         }
         
         private IEnumerable<Modifier> Execute(AttributeSet target) {
-            return this.Data.Executor.Execute(target, this.Args);
+            if (this.HasNeverExecuted) {
+                this.Data.OnFirstExecution(target, this.Args);
+                this.HasNeverExecuted = false;
+            }
+
+            return this.Data.Run(target, this.Args).Select(modifier => modifier * this.Args.Level);
         }
 
         /// <summary>

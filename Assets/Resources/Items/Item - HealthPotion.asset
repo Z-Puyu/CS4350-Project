@@ -18,18 +18,36 @@ MonoBehaviour:
   <Description>k__BackingField: A potion to restore health
   <CustomIcon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <Properties>k__BackingField:
-  - rid: 1194328451850961090
-  - rid: 1194328451850961091
+  - rid: 4925886426016907350
+  - rid: 2098011613844733952
   references:
     version: 2
     RefIds:
-    - rid: 1194328451850961090
+    - rid: 2098011613844733952
       type: {class: Consumable, ns: Game.Items, asm: Assembly-CSharp}
       data:
-        <Effects>k__BackingField: []
-    - rid: 1194328451850961091
+        <Effects>k__BackingField:
+        - rid: 2098011613844734180
+    - rid: 2098011613844734180
+      type: {class: ModifierEffectData, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
+      data:
+        <ExecutionTime>k__BackingField: 0
+        <Period>k__BackingField: 1
+        <Duration>k__BackingField: 1
+        <CanMiss>k__BackingField: 0
+        <BaseChance>k__BackingField: 100
+        <Costs>k__BackingField: []
+        <Modifiers>k__BackingField:
+        - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 0
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: {fileID: 0}
+          <DefaultValue>k__BackingField: 10
+          <Label>k__BackingField: DamageBuff
+    - rid: 4925886426016907350
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
-        <Price>k__BackingField: 0
+        <Price>k__BackingField: 50
         <HasDifferentPriceForSale>k__BackingField: 0
         <Worth>k__BackingField: 0

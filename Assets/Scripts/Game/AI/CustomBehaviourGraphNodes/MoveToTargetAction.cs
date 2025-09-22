@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using Game.CharacterControls;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
-using Random = UnityEngine.Random;
 
 namespace Game.AI.CustomBehaviourGraphNodes {
     [Serializable, GeneratePropertyBag]
@@ -29,14 +28,26 @@ namespace Game.AI.CustomBehaviourGraphNodes {
                 return Status.Success;
             }
 
-            Vector3 position = this.Agent.Value.transform.position;
-            return Vector3.Distance(position, this.Target.Value.transform.position) <= this.DistanceThreshold
+            float closestDistance = this.CalculateDistance(this.Agent.Value, this.Target.Value);
+            return closestDistance <= this.DistanceThreshold
                     ? Status.Success
                     : Status.Running;
         }
 
         protected override void OnEnd() {
             this.MovementComponent.Value.Stop();
+        }
+
+        private float CalculateDistance(GameObject agent, GameObject target) {
+            Collider agentCollider = agent.GetComponent<Collider>();
+            Collider targetCollider = target.GetComponent<Collider>();
+            if (!agentCollider || !targetCollider) {
+                return Vector3.Distance(agent.transform.position, target.transform.position);
+            }
+            
+            Vector3 agentClosestPoint = agentCollider.ClosestPoint(targetCollider.bounds.center);
+            Vector3 targetClosestPoint = targetCollider.ClosestPoint(agentClosestPoint);
+            return Vector3.Distance(agentClosestPoint, targetClosestPoint);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
@@ -10,12 +10,12 @@ namespace GameplayAbilities.Runtime.ModificationRules {
         [field: SerializeField]
         private List<MaximumByAttributeRule> Rules { get; set; } = new List<MaximumByAttributeRule>();
 
-        public float MaxValueIn(AttributeSet root) {
+        public int MaxValueIn(AttributeSet root) {
             return this.Rules.Sum(rule => rule.MaxValueIn(root));
         }
         
-        public float MinValueIn(AttributeSet root) {
-            return float.NegativeInfinity;
+        public int MinValueIn(AttributeSet root) {
+            return int.MinValue;
         }
     }
 }

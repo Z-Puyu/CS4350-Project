@@ -1,7 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Trie;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +11,9 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
+        [field: SerializeField]
+        private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
+        
         [field: SerializeField] private AttributeTable DefaultAttributeTable { get; set; }
         
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
@@ -29,7 +31,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// This method should be called once, before any other method of this class.
         /// </remarks>
-        public void Initialise(IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> table = null) {
+        public void Initialise(IEnumerable<KeyValuePair<AttributeType, int>> table = null) {
             if (table == null) {
                 table = this.DefaultAttributeTable;
                 if (table == null) {
@@ -38,8 +40,9 @@ namespace GameplayAbilities.Runtime.Attributes {
                 }
             }
             
-            foreach (KeyValuePair<AttributeTypeDefinition, int> attribute in table) {
-                this.Attributes.Add(attribute.Key.Id, AttributeData.From(attribute.Key, attribute.Value, this));
+            foreach (KeyValuePair<AttributeType, int> attribute in table) {
+                AttributeData data = AttributeData.From(attribute.Key, attribute.Value, this, this.ModifierMode);
+                this.Attributes.Add(attribute.Key.Id, data);
                 this.OnAttributeChanged?.Invoke(new AttributeChange(attribute.Key.Id, 0, attribute.Value));
             }
 
@@ -60,9 +63,9 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         private void PostAttributeUpdate(string key, AttributeData data) {
             int oldValue = data.Value;
-            data.Clamp();
-            if (oldValue != data.Value) {
-                this.OnAttributeChanged?.Invoke(new AttributeChange(key, oldValue, data.Value));
+            int newValue = data.RecomputeValue();
+            if (oldValue != newValue) {
+                this.OnAttributeChanged?.Invoke(new AttributeChange(key, oldValue, newValue));
             }
         }
 
@@ -73,8 +76,29 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
-        internal void AddModifier(Modifier modifier) {
-            this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
+        public void AddModifier(Modifier modifier) {
+            this.Attributes.ForEachWithPrefix(modifier.Target, update);
+            return;
+            
+            void update(string attribute, AttributeData data) {
+                data.AddModifier(modifier);
+                this.PostAttributeUpdate(attribute, data);
+            }
+        }
+
+        /// <summary>
+        /// Remove a modifier to the attribute set. The modifier must already exist.
+        /// If multiple instances of the same modifier exist, the last one will be removed.
+        /// </summary>
+        /// <param name="modifier">The modifier to remove.</param>
+        public void RemoveModifier(Modifier modifier) {
+            this.Attributes.ForEachWithPrefix(modifier.Target, update);
+            return;
+            
+            void update(string attribute, AttributeData data) {
+                data.RemoveModifier(modifier);
+                this.PostAttributeUpdate(attribute, data);
+            }
         }
 
         public int GetCurrent(string key) {

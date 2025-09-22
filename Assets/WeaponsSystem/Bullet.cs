@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 using Utilities;
 
@@ -27,9 +28,14 @@ namespace WeaponsSystem {
             this.transform.position += distanceTravelledThisFrame;
         }
         
-        private void OnCollisionEnter(Collision collision) {
+        private void OnCollisionEnter2D(Collision2D collision) {
+            if (collision.gameObject.CompareTag("Damageable")) {
+                OnScreenDebugger.Log($"Hit! Target is {collision.gameObject.name}");
+                this.pool.ReturnInstance(this);
+            }
+
             this.distanceTravelled = 0;
-            this.pool.ReturnInstance(this);
+            
             // TODO: Handle collision, need implementation of enemy.
         }
     }

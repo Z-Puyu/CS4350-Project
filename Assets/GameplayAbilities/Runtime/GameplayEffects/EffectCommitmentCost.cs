@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
@@ -22,7 +22,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         [field: SerializeField, ValidateInput(nameof(this.IsValidAttribute))]
         [field: LayoutStart("Numerical", ELayout.Horizontal)]
-        private AttributeTypeDefinition Attribute { get; set; }
+        private AttributeType Attribute { get; set; }
         
         [field: SerializeField, MinValue(0)] 
         private int Value { get; set; }

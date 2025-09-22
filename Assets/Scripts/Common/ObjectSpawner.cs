@@ -1,4 +1,4 @@
-﻿using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using UnityEngine;
 
 namespace Common {

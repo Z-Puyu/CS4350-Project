@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SaintsField;
 using UnityEngine;
 
@@ -6,13 +6,13 @@ namespace GameplayAbilities.Runtime.Attributes {
     [Serializable]
     internal struct AttributeConversionRule {
         [field: SerializeField, RichLabel("Every ")] 
-        private AttributeTypeDefinition From { get; set; }
+        private AttributeType From { get; set; }
         
         [field: SerializeField, RichLabel("Is Equivalent to ")]
         private float ConversionRate { get; set; }
         
         [field: SerializeField, ValidateInput(nameof(this.IsValidDestinationAttribute))] 
-        private AttributeTypeDefinition To { get; set; }
+        private AttributeType To { get; set; }
 
         internal bool TryConvert(float value, string from, string to, out float convertedValue) {
             if (this.From.Includes(from) && this.To.Id == to) {
@@ -24,7 +24,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             return false;
         }
 
-        private string IsValidDestinationAttribute(AttributeTypeDefinition attribute) {
+        private string IsValidDestinationAttribute(AttributeType attribute) {
             return attribute.IsCategory ? "Destination attribute must be a leaf attribute" : null;
         }
     }

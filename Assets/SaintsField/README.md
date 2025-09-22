@@ -85,31 +85,33 @@ Unity: 2019.1 or higher
 If you have DOTween installed
 *   Please also ensure you do: `Tools` - `Demigaint` - `DOTween Utility Panel`, click `Create ASMDEF`
 *   Or disable related functions with `Window` - `Saints` - `Disable DOTween Support`
-*   If you can not find this menu, please read "Add a Macro" section about how to manually disable DOTween support in SaintsField.
+*   If you can not find this menu, please read the "Add a Macro" section about how to manually disable DOTween support in SaintsField.
 
 [**Optional**] To use the full functions of this project, please also do: `Window` - `Saints` - `Enable SaintsEditor`. Note this will break your existing Editor plugin like `OdinInspector`, `NaughtyAttributes`, `MyToolbox`, `Tri-Inspector`.
 
 If you're using `unitypackage` or git submodule, but you put this project under another folder rather than `Assets/SaintsField`, please also do the following:
 
 *   Create `Assets/Editor Default Resources/SaintsField`.
-*   Copy files from project's `Editor/Editor Default Resources/SaintsField` into your project's `Assets/Editor Default Resources/SaintsField`.
+*   Copy files from the project's `Editor/Editor Default Resources/SaintsField` into your project's `Assets/Editor Default Resources/SaintsField`.
     If you're using a file browser instead of Unity's project tab to copy files, you may want to exclude the `.meta` file to avoid GUID conflict.
 
 **Troubleshoot**
 
-After installed, you can use `Window` - `Saints` - `Troubleshoot` to check if some attributes do not work.
+After installation, you can use `Window` - `Saints` - `Troubleshoot` to check if some attributes do not work.
 
 namespace: `SaintsField`
 
 ### Change Log ###
 
-**4.26.0**
+**4.30.1**
 
-1.  `AboveImage`, `BelowImage` now support `./PATH` to find an image from hierarchy of current field's game object, and `/PATH` of current game object.
-2.  UI Toolkit: fix serialzable struct/class gives error when select a target. Merged [#291](https://github.com/TylerTemp/SaintsField/pull/291) by [@viitana](https://github.com/viitana)
-3.  Fix `[Expandable]` doesn't support multi selection [#284](https://github.com/TylerTemp/SaintsField/issues/284)
+UI Toolkit: fix `enum` type label didn't take a new line in horizontal layout [#296](https://github.com/TylerTemp/SaintsField/issues/296)
 
 Note: all `Handle` attributes (draw stuff in the scene view) are in stage 1, which means the arguments might change in the future.
+
+**DONATION**
+
+[bilemedimkq](https://github.com/bilemedimkq) made a donation for this project through [PayPal](https://www.paypal.com/donate/?hosted_button_id=B38BUN42VQ73N). Thank you so much!
 
 See [the full change log](https://github.com/TylerTemp/SaintsField/blob/master/CHANGELOG.md).
 
@@ -132,11 +134,11 @@ See [the full change log](https://github.com/TylerTemp/SaintsField/blob/master/C
     Note about format control:
 
     *   If the format contains `{}`, it will be used like a `string.Format`. E.g. `<field.subField=(--<color=red>{0}</color>--)/>` will be interpreted like `string.Format("(--<color=red>{0}</color>--)", this.subField)`.
-    *   Otherwise, it will be re-written to `{0:formatControl}`. E.g. `<index=D4/>` will be interpreted like `string.Format("{0:D4}", index)`.
+    *   Otherwise, it will be rewritten to `{0:formatControl}`. E.g., `<index=D4/>` will be interpreted like `string.Format("{0:D4}", index)`.
 
     `null` means no label
 
-    for `icon` it will search the following path:
+    for `icon`, it will search the following path:
 
     *   `"Assets/Editor Default Resources/SaintsField/"`  (You can override things here)
     *   `"Assets/SaintsField/Editor/Editor Default Resources/SaintsField/"` (this is most likely to be when installed using `unitypackage`)
@@ -938,10 +940,11 @@ private void Toggle() => _errorOut = !_errorOut;
 > [!IMPORTANT]
 > Enable `SaintsEditor` before using
 
-Draw a button for a function. If the method have arguments (required or optional), it'll draw inputs for these arguments.
+Draw a button for a function. If the method have arguments (required or optional), it'll draw inputs for these arguments. UI Toolkit: if the method have a return value, the result will also be shown.
 
 *   `string buttonLabel = null` the button label. If null, it'll use the function name. If it starts with `$`, use a callback or field value as the label.
     Rich text is supported.
+*   `bool hideReturnValue = false` do not display the returned value.
 
 **Known Issue**: Using dynamic label in `SaintsRow`, the label will not update in real time. This is because a `Serializable` class/struc
 field value will be cached by Unity, and reflection can not get an updated value. This issue can not be solved unless
@@ -985,6 +988,32 @@ private void OnButtonParams(UnityEngine.Object myObj, int myInt, string myStr = 
 ```
 
 ![image](https://github.com/TylerTemp/SaintsField/assets/6391063/7a79ed1f-e227-4cf4-8885-e2ea81f4df3a)
+
+```csharp
+// Please ensure you already have SaintsEditor enabled in your project before trying this example
+using SaintsField.Playa;
+
+[Button]  // Display the returned value when clicked
+private int AddCalculator(int a, int b) => a + b;
+
+[GetComponentInChildren] public GameObject[] goLis;
+
+private class ResultClass
+{
+    public GameObject Go;
+}
+
+[Button]  // A struct, class, UnityObject return type is supported too
+private ResultClass ReturnClass(int v) => new ResultClass
+{
+    Go = goLis[v % goLis.Length]
+};
+
+[Button(hideReturnValue: true)]  // Hide the returned value
+private int ReturnIgnored() => Random.Range(0, 100);
+```
+
+[![video](https://github.com/user-attachments/assets/8632fa84-2e69-46c2-aa1a-8cb247b3888f)](https://github.com/user-attachments/assets/b56f05a2-590f-4683-8b81-2ff4998c4578)
 
 ### Game Related ###
 
@@ -1818,11 +1847,11 @@ Results:
 > [!IMPORTANT]
 > Enable `SaintsEditor` before using
 
-Show a non-field property.
+Show a non-serialized target, be a field, property or a method.
 
-For UI Toolkit: this attribute allow you to edit the corresponing field like odin do. Limitation:
+For UI Toolkit: this attribute allow you to edit the corresponding field like odin do. Limitation:
 
-1.  UI Toolkit only
+1.  Only UI Toolkit support the editing feature
 2.  Does not use custom drawer even the type has one (Same as Odin)
 
 ```csharp
@@ -1844,6 +1873,32 @@ public Color AutoColor
 ```
 
 ![show_in_inspector](https://github.com/TylerTemp/SaintsField/assets/6391063/3e6158b4-6950-42b1-b102-3c8884a59899)
+
+UI Toolkit: You can use it on a function to show a computed value. If parameters / return value is provided, they'll be shown too.
+
+```csharp
+using SaintsField.Playa;
+// A function is also supported
+[ShowInInspector]
+private string Function() => $"Function is supported ({Random.Range(0, 10)})";
+
+// Make a function like a real time calculator
+[ShowInInspector]
+private int AddCalculator(int a, int b)
+{
+    return a + b;
+}
+
+// class, struct and unity object are supported too
+private class ClassType
+{
+    public Transform Value;
+}
+[ShowInInspector]
+private ClassType GetClassType(int index) => new ClassType { Value = childrenTrans[index % childrenTrans.Length] };
+```
+[![video](https://github.com/user-attachments/assets/2331745f-f950-4b84-a06a-75264b2d2f24)](https://github.com/user-attachments/assets/9b6a8be1-acc3-4322-b6e5-76b596e736e3)
+
 
 UI Toolkit: A null-class can be created, edited and set to `null`:
 
@@ -2477,6 +2532,21 @@ public string EditorGetFallbackXPath() => normalIcon == null
     : $"assets::/Alternative/{AssetDatabase.GetAssetPath(normalIcon)["Assets/".Length..]}";
 ```
 
+#### `GetMainCamera` ####
+
+Get main camera (or a gameObject/Component with main camera) from the current scene.
+
+This looks for scene object with `Camera` component and `MainCamera` tag. (This is an alias of `[GetByXPath("scene:://@{GetComponent(Camera)}[@{tag} = 'MainCamera']")]`)
+
+```csharp
+using SaintsField;
+
+// Get Main Camera
+[GetMainCamera] public Camera mainCameraComp;
+// Get the transform that has the main camera
+[GetMainCamera] public Transform mainCameraTrans;
+```
+
 #### `AddComponent` ####
 
 Automatically add a component to the current target if the target does not have this component. (This will not sign the component added)
@@ -2905,9 +2975,14 @@ using SaintsField.Playa;
 
 It also supports sub-field, and value comparison like `==`, `>`, `<=`. Read more in the "Syntax for Show/Hide/Enable/Disable/Required-If" section.
 
-#### `ShowIf` / `HideIf` ####
+#### `FieldShowIf` / `FieldHideIf` ####
 
-Show or hide the field based on a condition. . Supports callbacks (function/field/property) and **enum** types. by using multiple arguments and decorators, you can make logic operation with it.
+> [!WARNING]
+> Deprecated. Use `ShowIf`/`HideIf` instead.
+
+Only use this if you can **NOT** have `SaintsEditor` enabled. If you can not use `SaintsEditor`, you should be able to use an alternative `ShowIf`/`HideIf` provided by the editor plugin you're globally using.
+
+Show or hide the field based on a condition. Supports callbacks (function/field/property) and **enum** types. by using multiple arguments and decorators, you can make logic operation with it.
 
 Arguments:
 
@@ -2923,28 +2998,28 @@ Arguments:
 
 *   AllowMultiple: Yes
 
-You can use multiple `ShowIf`, `HideIf`, and even a mix of the two.
+You can use multiple `FieldShowIf`, `FieldShowIf`, and even a mix of the two.
 
-For `ShowIf`: The field will be shown if **ALL** condition is true (`and` operation)
+For `FieldShowIf`: The field will be shown if **ALL** condition is true (`and` operation)
 
-For `HideIf`: The field will be hidden if **ANY** condition is true (`or` operation)
+For `FieldShowIf`: The field will be hidden if **ANY** condition is true (`or` operation)
 
 For multiple attributes: The field will be shown if **ANY** condition is true (`or` operation)
 
-For example, `[ShowIf(A...), ShowIf(B...)]` will be shown if `ShowIf(A...) || ShowIf(B...)` is true.
+For example, `[FieldShowIf(A...), FieldShowIf(B...)]` will be shown if `FieldShowIf(A...) || FieldShowIf(B...)` is true.
 
-`HideIf` is the opposite of `ShowIf`. Please note "the opposite" is like the logic operation, like `!(A && B)` is `!A || !B`, `!(A || B)` is `!A && !B`.
+`FieldHideIf` is the opposite of `FieldShowIf`. Please note "the opposite" is like the logic operation, like `!(A && B)` is `!A || !B`, `!(A || B)` is `!A && !B`.
 
-*   `HideIf(A)` == `ShowIf(!A)`
-*   `HideIf(A, B)` == `HideIf(A || B)` == `ShowIf(!(A || B))` == `ShowIf(!A && !B)`
-*   `[Hideif(A), HideIf(B)]` == `[ShowIf(!A), ShowIf(!B)]` == `ShowIf(!A || !B)`
+*   `FieldHideIf(A)` == `FieldShowIf(!A)`
+*   `FieldHideIf(A, B)` == `FieldHideIf(A || B)` == `FieldShowIf(!(A || B))` == `FieldShowIf(!A && !B)`
+*   `[FieldHideIf(A), FieldHideIf(B)]` == `[FieldShowIf(!A), FieldShowIf(!B)]` == `FieldShowIf(!A || !B)`
 
 A simple example:
 
 ```csharp
 using SaintsField;
 
-[ShowIf(nameof(ShouldShow))]
+[FieldShowIf(nameof(ShouldShow))]
 public int showMe;
 
 public bool ShouldShow()  // change the logic here
@@ -2953,7 +3028,7 @@ public bool ShouldShow()  // change the logic here
 }
 
 // This also works on static/const callbacks using `$:`
-[HideIf("$:" + nameof(Util) + "." + nameof(_shouldHide))] public int hideMe;
+[FieldHideIf("$:" + nameof(Util) + "." + nameof(_shouldHide))] public int hideMe;
 // you can put this under another file like `Util.cs`
 public static class Util
 {
@@ -2973,7 +3048,7 @@ public enum EnumToggle
     On,
 }
 public EnumToggle enum1;
-[ShowIf(nameof(enum1), EnumToggle.On)] public string enum1Show;
+[FieldShowIf(nameof(enum1), EnumToggle.On)] public string enum1Show;
 ```
 
 A more complex example:
@@ -2996,13 +3071,181 @@ public bool bool2 {
 }
 
 // example of checking two normal callbacks and two enum callbacks
-[ShowIf(nameof(bool1), nameof(bool2), nameof(enum1), EnumToggle.On, nameof(enum2), EnumToggle.On)] public string bool12AndEnum12;
+[FieldShowIf(nameof(bool1), nameof(bool2), nameof(enum1), EnumToggle.On, nameof(enum2), EnumToggle.On)] public string bool12AndEnum12;
 ```
 
 A more complex example about logic operation:
 
 ```csharp
 using SaintsField;
+
+public bool _bool1;
+public bool _bool2;
+public bool _bool3;
+public bool _bool4;
+
+[FieldShowIf(nameof(_bool1))]
+[FieldShowIf(nameof(_bool2))]
+[RichLabel("<color=red>show=1||2")]
+public string _showIf1Or2;
+
+
+[FieldShowIf(nameof(_bool1), nameof(_bool2))]
+[RichLabel("<color=green>show=1&&2")]
+public string _showIf1And2;
+
+[FieldHideIf(nameof(_bool1))]
+[FieldHideIf(nameof(_bool2))]
+[RichLabel("<color=blue>show=!1||!2")]
+public string _hideIf1Or2;
+
+
+[FieldHideIf(nameof(_bool1), nameof(_bool2))]
+[RichLabel("<color=yellow>show=!(1||2)=!1&&!2")]
+public string _hideIf1And2;
+
+[FieldShowIf(nameof(_bool1))]
+[FieldHideIf(nameof(_bool2))]
+[RichLabel("<color=magenta>show=1||!2")]
+public string _showIf1OrNot2;
+
+[FieldShowIf(nameof(_bool1), nameof(_bool2))]
+[FieldShowIf(nameof(_bool3), nameof(_bool4))]
+[RichLabel("<color=orange>show=(1&&2)||(3&&4)")]
+public string _showIf1234;
+
+[FieldHideIf(nameof(_bool1), nameof(_bool2))]
+[FieldHideIf(nameof(_bool3), nameof(_bool4))]
+[RichLabel("<color=pink>show=!(1||2)||!(3||4)=(!1&&!2)||(!3&&!4)")]
+public string _hideIf1234;
+```
+
+[![video](https://github.com/TylerTemp/SaintsField/assets/6391063/1625472e-5769-4c16-81a3-637511437e1d)](https://github.com/TylerTemp/SaintsField/assets/6391063/dc7f8b78-de4c-4b12-a383-005be04c10c0)
+
+Example about EMode:
+
+```csharp
+using SaintsField;
+
+public bool boolValue;
+
+[FieldShowIf(EMode.Edit)] public string showEdit;
+[FieldShowIf(EMode.Play)] public string showPlay;
+
+[FieldShowIf(EMode.Edit, nameof(boolValue))] public string showEditAndBool;
+[FieldShowIf(EMode.Edit), FieldShowIf(nameof(boolValue))] public string showEditOrBool;
+
+[FieldHideIf(EMode.Edit)] public string hideEdit;
+[FieldHideIf(EMode.Play)] public string hidePlay;
+
+[FieldHideIf(EMode.Edit, nameof(boolValue))] public string hideEditOrBool;
+[FieldHideIf(EMode.Edit), HideIf(nameof(boolValue))] public string hideEditAndBool;
+```
+
+It also supports sub-field, and value comparison like `==`, `>`, `<=`. Read more in the "Syntax for Show/Hide/Enable/Disable/Required-If" section.
+
+
+#### `ShowIf`/`HideIf` ####
+
+> [!IMPORTANT]
+> Enable `SaintsEditor` before using
+
+Show or hide the field based on a condition. Supports callbacks (function/field/property) and **enum** types. by using multiple arguments and decorators, you can make logic operation with it.
+
+Arguments:
+
+*   (Optional) `EMode editorMode`
+
+    Condition: if it should be in edit mode, play mode for Editor or in some prefab stage. By default, (omitting this parameter) it does not check the mode at all.
+
+    See `Misc` - `EMode` for more information.
+
+*   `object by...`
+
+    callbacks or attributes for the condition. For more information, see `Callback` section.
+
+*   Allow Multiple: Yes
+
+You can use multiple `ShowIf`, `HideIf`, and even a mix of the two.
+
+For `ShowIf`: The field will be shown if **ALL** condition is true (`and` operation)
+
+For `HideIf`: The field will be hidden if **ANY** condition is true (`or` operation)
+
+For multiple attributes: The field will be shown if **ANY** condition is true (`or` operation)
+
+For example, `[ShowIf(A...), ShowIf(B...)]` will be shown if `ShowIf(A...) || ShowIf(B...)` is true.
+
+`HideIf` is the opposite of `ShowIf`. Please note "the opposite" is like the logic operation, like `!(A && B)` is `!A || !B`, `!(A || B)` is `!A && !B`.
+
+*   `HideIf(A)` == `ShowIf(!A)`
+*   `HideIf(A, B)` == `HideIf(A || B)` == `ShowIf(!(A || B))` == `ShowIf(!A && !B)`
+*   `[Hideif(A), HideIf(B)]` == `[ShowIf(!A), ShowIf(!B)]` == `ShowIf(!A || !B)`
+
+A simple example:
+
+```csharp
+using SaintsField.Playa;
+
+[ShowIf(nameof(ShouldShow))]
+public int showMe;
+
+public bool ShouldShow()  // change the logic here
+{
+    return true;
+}
+
+// This also works on static/const callbacks using `$:`
+[HideIf("$:" + nameof(Util) + "." + nameof(_shouldHide))] public int hideMe;
+// you can put this under another file like `Util.cs`
+public static class Util
+{
+    [ShowInIspector] private static bool _shouldHide;
+}
+```
+
+It also supports `enum` types. The syntax is like this:
+
+```csharp
+using SaintsField.Playa;
+
+[Serializable]
+public enum EnumToggle
+{
+    Off,
+    On,
+}
+public EnumToggle enum1;
+[ShowIf(nameof(enum1), EnumToggle.On)] public string enum1Show;
+```
+
+A more complex example:
+
+```csharp
+using SaintsField.Playa;
+
+[Serializable]
+public enum EnumToggle
+{
+    Off,
+    On,
+}
+
+public EnumToggle enum1;
+public EnumToggle enum2;
+public bool bool1;
+public bool bool2 {
+    return true;
+}
+
+// example of checking two normal callbacks and two enum callbacks
+[ShowIf(nameof(bool1), nameof(bool2), nameof(enum1), EnumToggle.On, nameof(enum2), EnumToggle.On)] public string bool12AndEnum12;
+```
+
+A more complex example about logic operation:
+
+```csharp
+using SaintsField.Playa;
 
 public bool _bool1;
 public bool _bool2;
@@ -3050,7 +3293,7 @@ public string _hideIf1234;
 Example about EMode:
 
 ```csharp
-using SaintsField;
+using SaintsField.Playa;
 
 public bool boolValue;
 
@@ -3069,17 +3312,6 @@ public bool boolValue;
 
 It also supports sub-field, and value comparison like `==`, `>`, `<=`. Read more in the "Syntax for Show/Hide/Enable/Disable/Required-If" section.
 
-
-#### `PlayaShowIf`/`PlayaHideIf` ####
-
-> [!IMPORTANT]
-> Enable `SaintsEditor` before using
-
-This is the same as `ShowIf`, `HideIf`, plus it's allowed to be applied to array, `Button`, `ShowInInspector`
-
-Different from `ShowIf`/`HideIf`:
-1.  apply on an array will directly show or hide the array itself, rather than each element.
-2.  Callback function can not receive value and index
 
 ```csharp
 // Please ensure you already have SaintsEditor enabled in your project before trying this example
@@ -4779,7 +5011,7 @@ Note: Recommended to use `AboveImage`/`BelowImage` for image/sprite/texture2D.
 
     preview height, -1 for auto resize (with the same aspect) using the width
 
-*   `EAlign align=EAlign.End`
+*   `EAlign align=EAlign.FieldStart`
 
     Align of the preview image. Options are `Start`, `End`, `Center`, `FieldStart`
 
@@ -6029,6 +6261,8 @@ Add `SaintsDictionary` attribute to control:
 *   `string valueLabel = "Values"`
 *   `bool searchable = true`: false to disable the search ability
 *   `int numberOfItemsPerPage = 0`: items per page. 0 for no paging
+*   `string keyWidth = null`: key column width. Can be percent like "20%", or pixel like "50" (or "50px"). `null` for auto width.
+*   `string valueWidth = null`: value column width. Can be percent like "20%", or pixel like "50" (or "50px"). `null` for auto width.
 
 ```csharp
 suing SaintsField;
@@ -6056,6 +6290,17 @@ public SaintsDictionary<int, MyStruct> basicType;
 ```
 
 ![image](https://github.com/user-attachments/assets/c2dad54d-bfa6-4c52-acee-e2aa74898d71)
+
+Set init width
+
+```csharp
+suing SaintsField;
+
+[SaintsDictionary(keyWidth: "30%")] public SaintsDictionary<int, string> keyWidthControl;
+[SaintsDictionary(valueWidth: "120px")] public SaintsDictionary<int, string> valueWidthControl;
+```
+
+![](https://github.com/user-attachments/assets/8ef121c0-9762-49ad-915b-cf83e1ef79f9)
 
 You can also inherit `SaintsDictionaryBase<TKey, TValue>` to create your own custom dictionary.
 
@@ -7153,7 +7398,13 @@ public class ToggleSub : MonoBehaviour
 }
 ```
 
-[![video](https://github.com/user-attachments/assets/f001fd35-3dc3-469f-b08f-127ab0448984)](https://github.com/user-attachments/assets/11e3029b-a03c-47b1-949a-a0d59b150cbd)
+[![video](https://github.com/user-attachments/assets/f001fd35-3dc3-469f-b08f-127ab0448984)](https://github.com/user-attachments/assets/082ab6db-f60a-43fa-8d84-42142b1f9398)
+
+
+
+
+
+
 
 **Value Equality**
 
@@ -7563,3 +7814,15 @@ My (not full) test about compatibility:
 *   [Markup-Attributes](https://github.com/gasgiant/Markup-Attributes): Works very well.
 *   [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes): Works well, need that `Label` hack.
 *   [OdinInspector](https://odininspector.com/): Works mostly well for MonoBehavior/ScriptableObject. Not so good when it's inside Odin's own serializer.
+
+## Donation ##
+
+## Donation Link
+
+PayPal: [![Image](https://github.com/user-attachments/assets/af35c913-151f-463d-9635-e562683b1ce8)](https://www.paypal.com/donate/?hosted_button_id=B38BUN42VQ73N)
+
+## Donation List
+
+Thanks for the following generous donors:
+
+- [bilemedimkq](https://github.com/bilemedimkq) donated on 2025-09-17

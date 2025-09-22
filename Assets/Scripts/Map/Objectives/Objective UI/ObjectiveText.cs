@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine;
 using TMPro;
 
 namespace Map.Objectives.Objective_UI

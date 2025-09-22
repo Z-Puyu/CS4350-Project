@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ModularItemsAndInventory.Runtime.Inventory;
 
 namespace ModularItemsAndInventory.Runtime.Items.Orderings {

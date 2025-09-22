@@ -1,8 +1,8 @@
-﻿using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.Attributes;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
     public interface IAttributeClampRule {
-        public float MaxValueIn(AttributeSet root);
-        public float MinValueIn(AttributeSet root);
+        public int MaxValueIn(AttributeSet root);
+        public int MinValueIn(AttributeSet root);
     }
 }

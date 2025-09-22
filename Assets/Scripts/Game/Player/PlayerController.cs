@@ -1,32 +1,37 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Common;
 using Events;
 using Game.Enemies;
-using GameplayAbilities.Runtime.Attributes;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem;
+using WeaponsSystem.DamageHandling;
+using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : MonoBehaviour, ICollector
-    {
+    public sealed class PlayerController : CharacterController, ICollector {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
-        [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-        
-        private void Start() {
+
+        protected override void Start() {
             if (!this.InitialData) {
                 return;
             }
             
-            this.ConfigureAttributeSet();
+            base.Start();
             this.ConfigureInventory();
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
+            this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
+        }
+
+        public override void HandleDeath() {
+            this.Say("Player died");
         }
 
         private void ConfigureInventory() {
@@ -35,7 +40,7 @@ namespace Game.Player {
             }
         }
         
-        private void ConfigureAttributeSet() {
+        protected override void ConfigureAttributeSet() {
             this.AttributeSet.Initialise(this.InitialData.Attributes);
         }
 
@@ -53,10 +58,6 @@ namespace Game.Player {
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {
                 OnScreenDebugger.Log($"{pair.Key.Id}: {pair.Value}");
             }
-        }
-
-        public void Say(string message) {
-            OnScreenDebugger.Log(message);
         }
     }
 }
