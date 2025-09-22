@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
     [CreateAssetMenu(fileName = "Attribute Table", menuName = "Gameplay Abilities/Attribute Table")]
-    public class AttributeTable : ScriptableObject, IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> {
+    public class AttributeTable : ScriptableObject, IEnumerable<KeyValuePair<AttributeType, int>> {
         [field: SerializeField, SaintsDictionary("Attribute Type", "Initial Value")]
-        private SaintsDictionary<AttributeTypeDefinition, int> Attributes { get; set; } =
-            new SaintsDictionary<AttributeTypeDefinition, int>();
+        private SaintsDictionary<AttributeType, int> Attributes { get; set; } =
+            new SaintsDictionary<AttributeType, int>();
 
-        public IEnumerator<KeyValuePair<AttributeTypeDefinition, int>> GetEnumerator() {
+        public IEnumerator<KeyValuePair<AttributeType, int>> GetEnumerator() {
             return this.Attributes.GetEnumerator();
         }
 

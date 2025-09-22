@@ -50,7 +50,7 @@ namespace WeaponsSystem {
         private void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
             int range = 0;
-            foreach (KeyValuePair<AttributeTypeDefinition, int> data in this.WeaponData.WeaponAttributes) {
+            foreach (KeyValuePair<AttributeType, int> data in this.WeaponData.WeaponAttributes) {
                 if (data.Key.Id == this.Stats.MeleeRangeAttribute) {
                     range = data.Value;
                 }

@@ -14,8 +14,14 @@ namespace Game.CharacterControls {
         [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Int)]
         private int AnimatorComboCounter { get; set; }
         
-        [field: SerializeField, AnimatorParam(nameof(this.Animator), AnimatorControllerParameterType.Trigger)]
+        [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Trigger)]
         private int AnimatorAttackTrigger { get; set; }
+        
+        [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Trigger)]
+        private int AnimatorTakeDamageTrigger { get; set; }
+        
+        [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Trigger)]
+        private int AnimatorDeathTrigger { get; set; }
         
         private Animator GetAnimator() {
             return this.Animator ? this.Animator : this.Animator = this.GetComponent<Animator>();
@@ -24,8 +30,19 @@ namespace Game.CharacterControls {
         private void Awake() {
             this.Animator = this.GetComponent<Animator>();
         }
+        
+        public void PlayTakeDamageAnimation() {
+            this.ResetCombo();
+            this.Animator.ResetTrigger(this.AnimatorTakeDamageTrigger);
+            this.Animator.SetTrigger(this.AnimatorTakeDamageTrigger);
+        }
+        
+        public void PlayDeathAnimation() {
+            this.ResetCombo();
+            this.Animator.SetTrigger(this.AnimatorDeathTrigger);
+        }
 
-        public void StartAttack(int combo) {
+        public void PlayAttackAnimation(int combo) {
             if (combo >= this.MaxCombo - 1) {
                 this.Animator.SetInteger(this.AnimatorComboCounter, this.MaxCombo - 1);
             } else {

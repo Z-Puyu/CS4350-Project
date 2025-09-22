@@ -9,8 +9,8 @@ namespace Game.Enemies {
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public int Experience { get; private set; }
-        [field: SerializeField, Expandable] public AnimatorOverrideController Animations { get; private set; }
-        [field: SerializeField, Expandable] public AttributeTable Attributes { get; private set; }
-        [field: SerializeField, Expandable] public LootTable LootTable { get; private set; }
+        [field: SerializeField] public AnimatorOverrideController Animations { get; private set; }
+        [field: SerializeField] public AttributeTable Attributes { get; private set; }
+        [field: SerializeField] public LootTable LootTable { get; private set; }
     }
 }

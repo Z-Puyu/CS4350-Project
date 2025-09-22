@@ -8,7 +8,7 @@ namespace GameplayAbilities.Runtime.HealthSystem {
     [DisallowMultipleComponent]
     public sealed class Health : MonoBehaviour {
         [field: SerializeField, Required] private AttributeSet Root { get; set; }
-        [field: SerializeField] private AttributeTypeDefinition HealthAttribute { get; set; }
+        [field: SerializeField] private AttributeType HealthAttribute { get; set; }
 
         public int Value => this.Root.GetCurrent(this.HealthAttribute.Id);
         public int MaxValue => this.Root.GetMax(this.HealthAttribute.Id);

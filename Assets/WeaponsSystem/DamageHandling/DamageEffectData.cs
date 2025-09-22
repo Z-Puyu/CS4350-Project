@@ -10,7 +10,7 @@ namespace WeaponsSystem.DamageHandling {
         [field: SerializeField, Table]
         private List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
 
-        [field: SerializeField] private AttributeTypeDefinition TargetAttribute { get; set; }
+        [field: SerializeField] private AttributeType TargetAttribute { get; set; }
 
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();

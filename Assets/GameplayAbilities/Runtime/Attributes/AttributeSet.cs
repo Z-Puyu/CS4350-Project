@@ -31,7 +31,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// This method should be called once, before any other method of this class.
         /// </remarks>
-        public void Initialise(IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> table = null) {
+        public void Initialise(IEnumerable<KeyValuePair<AttributeType, int>> table = null) {
             if (table == null) {
                 table = this.DefaultAttributeTable;
                 if (table == null) {
@@ -40,7 +40,7 @@ namespace GameplayAbilities.Runtime.Attributes {
                 }
             }
             
-            foreach (KeyValuePair<AttributeTypeDefinition, int> attribute in table) {
+            foreach (KeyValuePair<AttributeType, int> attribute in table) {
                 AttributeData data = AttributeData.From(attribute.Key, attribute.Value, this, this.ModifierMode);
                 this.Attributes.Add(attribute.Key.Id, data);
                 this.OnAttributeChanged?.Invoke(new AttributeChange(attribute.Key.Id, 0, attribute.Value));

@@ -30,7 +30,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         internal static AttributeData From(
-            AttributeTypeDefinition definition, float initValue, AttributeSet root, ModifierMode mode
+            AttributeType definition, float initValue, AttributeSet root, ModifierMode mode
         ) {
             AttributeData data = new AttributeData(initValue, root, mode);
             foreach (IAttributeClampRule rule in definition.ModificationRules) {

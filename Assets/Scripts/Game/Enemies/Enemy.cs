@@ -15,10 +15,14 @@ namespace Game.Enemies {
         [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
         [field: SerializeField, Required] private Health Health { get; set; }
+        [field: SerializeField] private UnityEvent OnDeathEvent { get; set; } = new UnityEvent();
         private GameObject LastAttacker { get; set; }
         
         private void Start() {
-            this.Animator.runtimeAnimatorController = this.Data.Animations;
+            if (this.Animator) {
+                this.Animator.runtimeAnimatorController = this.Data.Animations;
+            }
+            
             this.AttributeSet.Initialise(this.Data.Attributes);
             this.LootContainer.Use(this.Data.LootTable);
             this.Health.OnZeroHealth += this.Die;
@@ -26,6 +30,7 @@ namespace Game.Enemies {
 
         private void Die() {
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
+            this.OnDeathEvent.Invoke();
         }
     }
 }

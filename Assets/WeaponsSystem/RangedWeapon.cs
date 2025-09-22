@@ -42,7 +42,7 @@ namespace WeaponsSystem {
         }
 
         public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
-            throw new System.NotImplementedException();
+            int x = this.Stats.GetCurrent(this.Stats.FireIntervalAttribute);
         }
 
         protected override void Awake() {
