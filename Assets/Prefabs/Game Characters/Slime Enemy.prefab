@@ -54,6 +54,10 @@ PrefabInstance:
       propertyPath: managedReferences[2098011628653249158].GUID.m_Value1
       value: 630183425924546471
       objectReference: {fileID: 0}
+    - target: {fileID: 5012655444641614607, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <PixelOffset>k__BackingField
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5324871527755499118, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <DefaultDamageDealer>k__BackingField.<V>k__BackingField
       value: 

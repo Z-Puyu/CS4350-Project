@@ -429,6 +429,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2205906151554961017, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <PixelOffset>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2716461110618952316, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <RootRigidBody>k__BackingField
       value: 
@@ -504,6 +508,10 @@ PrefabInstance:
     - target: {fileID: 3797095984724131894, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.y
       value: -0.0742048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596162042558898101, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
@@ -905,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30106
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalPosition.z
