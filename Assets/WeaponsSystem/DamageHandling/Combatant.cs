@@ -47,9 +47,14 @@ namespace WeaponsSystem.DamageHandling {
         
         public void Equip(IDamageDealer damageDealer) {
             this.DamageDealer = damageDealer;
+            this.DamageDealer.ConnectComboResetEvent(this.ResetCombo);
             this.IsAttacking = false;
             this.Animator.SetInteger(this.AnimatorComboCounter, 0);
             this.Animator.ResetTrigger(this.AnimatorAttackTrigger);
+        }
+
+        private void ResetCombo() {
+            this.Animator.SetInteger(this.AnimatorComboCounter, 0);
         }
     }
 }
