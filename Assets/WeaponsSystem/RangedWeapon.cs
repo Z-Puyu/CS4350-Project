@@ -11,42 +11,6 @@ namespace WeaponsSystem {
         private Timer fireIntervalTimer;
         private bool canAttack = true;
 
-        public override int Attack() {
-            int counter = this.CurrentAttackCounter;
-            if (this.canAttack) {
-                OnScreenDebugger.Log("RangedAttackSuccessfully");
-                this.StartAttack();
-                if (this.bulletPool != null) {
-                    Bullet bullet = this.bulletPool.GetInstance();
-                    bullet.transform.position = this.transform.position;
-                    bullet.gameObject.SetActive(true);
-                    Vector3 mousePosScreen = Input.mousePosition;
-                    Vector3 direction = Vector3.forward;
-                    if (Camera.main != null) {
-                        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosScreen);
-                        mousePosWorld.z = this.transform.position.z;
-                        direction = (mousePosWorld - this.transform.position).normalized;
-                    }
-
-                    int speed = this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute);
-                    int range = this.Stats.GetCurrent(this.Stats.RangeAttribute);
-                    bullet.SetTarget(speed, range, direction, this.bulletPool);
-                }
-
-                this.EndAttack();
-                this.canAttack = false;
-                this.fireIntervalTimer.Start();
-            } else {
-                OnScreenDebugger.Log("Cannot Attack, still in cooldown");
-            }
-
-            return counter;
-        }
-
-        public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
-            throw new System.NotImplementedException();
-        }
-
         protected override void Awake() {
             base.Awake();
             this.bulletPool.Initialize(100);
@@ -65,5 +29,37 @@ namespace WeaponsSystem {
         private void SetCanAttack() {
             this.canAttack = true;
         }
+        
+        public override int StartAttack() {
+            if (this.canAttack) {
+                OnScreenDebugger.Log("RangedAttackSuccessfully");
+                return base.StartAttack();
+            } else {
+                OnScreenDebugger.Log("Cannot Attack, still in cooldown");
+            }
+            return -1;
+        }
+
+        public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
+            if (this.bulletPool != null) {
+                Bullet bullet = this.bulletPool.GetInstance();
+                bullet.transform.position = this.transform.position;
+                bullet.gameObject.SetActive(true);
+                Vector3 mousePosScreen = Input.mousePosition;
+                Vector3 direction = Vector3.forward;
+                if (Camera.main != null) {
+                    Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosScreen);
+                    mousePosWorld.z = this.transform.position.z;
+                    direction = (mousePosWorld - this.transform.position).normalized;
+                }
+
+                int speed = this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute);
+                int range = this.Stats.GetCurrent(this.Stats.RangeAttribute);
+                bullet.SetTarget(speed, range, direction, this.bulletPool);
+            }
+            this.canAttack = false;
+            this.fireIntervalTimer.Start();
+        }
+        
     }
 }

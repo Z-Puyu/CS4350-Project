@@ -49,7 +49,7 @@ MonoBehaviour:
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 7052933144111497264}
   bulletPool:
-    <Prefab>k__BackingField: {fileID: 0}
+    <Prefab>k__BackingField: {fileID: 8082640687752798569, guid: 09becbbf91443fc41a7e2106ce832cb1, type: 3}
 --- !u!1 &6062935445063475738
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
-  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+  <ModifierMode>k__BackingField: 0
+  <DefaultAttributeTable>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
 --- !u!114 &7052933144111497264
 MonoBehaviour:
   m_ObjectHideFlags: 0

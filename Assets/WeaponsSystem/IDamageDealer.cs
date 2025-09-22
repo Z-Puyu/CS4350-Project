@@ -9,7 +9,7 @@ namespace WeaponsSystem {
         /// Starts an attack.
         /// </summary>
         /// <returns>The combo stage counter.</returns>
-        public int Attack();
+        public int StartAttack();
 
         /// <summary>
         /// Checks for valid targets and deals damage to them.
@@ -19,9 +19,13 @@ namespace WeaponsSystem {
         /// You can ignore this if you use trigger colliders.</param>
         /// <param name="forward">The forward direction the damage dealer is facing.</param>
         public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
+        
+        public void EndAttack();
 
         public bool AllowsDamageOn(GameObject candidate);
         
         public void ConnectComboResetEvent(Action action);
+        
+        
     }
 }

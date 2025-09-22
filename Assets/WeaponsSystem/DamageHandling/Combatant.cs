@@ -33,7 +33,7 @@ namespace WeaponsSystem.DamageHandling {
             
             this.IsAttacking = true;
             this.Animator.SetTrigger(this.AnimatorAttackTrigger);
-            int combo = this.DamageDealer.Attack();
+            int combo = this.DamageDealer.StartAttack();
             this.Animator.SetInteger(this.AnimatorComboCounter, combo);
         }
 
@@ -43,6 +43,7 @@ namespace WeaponsSystem.DamageHandling {
 
         public void FinishAttack() {
             this.IsAttacking = false;
+            this.DamageDealer.EndAttack();
         }
         
         public void Equip(IDamageDealer damageDealer) {
