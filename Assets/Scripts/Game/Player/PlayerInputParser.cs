@@ -21,8 +21,6 @@ namespace Game.Player {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
-        [field: SerializeField, Required] private PlayerMovement Movement { get; set; }
-        [field: SerializeField, Required] private PlayerAnimator Animator { get; set; }
         [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
         [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
         
