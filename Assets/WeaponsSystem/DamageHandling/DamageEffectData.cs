@@ -6,7 +6,7 @@ using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
-    public sealed class DamageExecution : GameplayEffectData {
+    public sealed class DamageEffectData : GameplayEffectData {
         [field: SerializeField, Table]
         private List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
 

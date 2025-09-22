@@ -3,6 +3,7 @@ using System.Linq;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace WeaponsSystem.DamageHandling {
     /// <summary>
@@ -13,15 +14,10 @@ namespace WeaponsSystem.DamageHandling {
     public sealed class Combatant : MonoBehaviour {
         [field: SerializeField] private LayerMask EnemyLayerMask { get; set; }
         [field: SerializeField, Tag] private List<string> EnemyTags { get; set; } = new List<string>();
-        [field: SerializeField] private Animator Animator { get; set; }
-        
-        [field: SerializeField, ShowIf(nameof(this.Animator))]
-        [field: AnimatorParam(nameof(this.Animator), AnimatorControllerParameterType.Trigger)]
-        private int AnimatorAttackTrigger { get; set; }
-        
-        [field: SerializeField, ShowIf(nameof(this.Animator))]
-        [field: AnimatorParam(nameof(this.Animator), AnimatorControllerParameterType.Int)]
-        private int AnimatorComboCounter { get; set; }
+        [field: SerializeField] private UnityEvent<int> OnAttacked { get; set; } = new UnityEvent<int>();
+
+        [field: SerializeField]
+        private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
@@ -32,9 +28,8 @@ namespace WeaponsSystem.DamageHandling {
             }
             
             this.IsAttacking = true;
-            this.Animator.SetTrigger(this.AnimatorAttackTrigger);
             int combo = this.DamageDealer.Attack();
-            this.Animator.SetInteger(this.AnimatorComboCounter, combo);
+            this.OnAttacked.Invoke(combo);
         }
 
         public void DealDamage(Vector3 forward) {
@@ -46,10 +41,13 @@ namespace WeaponsSystem.DamageHandling {
         }
         
         public void Equip(IDamageDealer damageDealer) {
+            if (damageDealer == this.DamageDealer) {
+                return;           
+            }
+            
             this.DamageDealer = damageDealer;
             this.IsAttacking = false;
-            this.Animator.SetInteger(this.AnimatorComboCounter, 0);
-            this.Animator.ResetTrigger(this.AnimatorAttackTrigger);
+            this.OnSwitchedGear.Invoke(damageDealer);
         }
     }
 }
