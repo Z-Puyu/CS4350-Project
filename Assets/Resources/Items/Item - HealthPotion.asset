@@ -38,12 +38,12 @@ MonoBehaviour:
         <BaseChance>k__BackingField: 100
         <Costs>k__BackingField: []
         <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 3d930beb4aadd0d4f88734284110e7af, type: 2}
-          <Method>k__BackingField: 0
-          <Form>k__BackingField: 2
+        - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: {fileID: 0}
-          <DefaultValue>k__BackingField: 0
+          <DefaultValue>k__BackingField: 10
           <Label>k__BackingField: DamageBuff
     - rid: 4925886426016907350
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
