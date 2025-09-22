@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a13b2fe0613549798a1e24ecb7ef3cde, type: 3}
-  m_Name: Item - HealthPotion
+  m_Name: Item - Seed 1
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Items.ItemData
-  <Id>k__BackingField: health_potion
-  <Type>k__BackingField: {fileID: 11400000, guid: 7de61d4306912ba4f8f5052dfe523b39, type: 2}
-  <Name>k__BackingField: Health Potion
-  <Description>k__BackingField: A potion to restore health
-  <CustomIcon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  <Id>k__BackingField: seed_1
+  <Type>k__BackingField: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
+  <Name>k__BackingField: Seed 1
+  <Description>k__BackingField: Seed 1
+  <CustomIcon>k__BackingField: {fileID: -7339077949192003494, guid: 7ca3942dc433d4afab9dd24ad0e80f2a, type: 3}
   <Properties>k__BackingField:
-  - rid: 1194328451850961090
-  - rid: 1194328451850961091
+  - rid: 4925886426016907350
+  - rid: 1194328451850961089
   references:
     version: 2
     RefIds:
-    - rid: 1194328451850961090
+    - rid: 1194328451850961089
       type: {class: Consumable, ns: Game.Items, asm: Assembly-CSharp}
       data:
         <Effects>k__BackingField: []
-    - rid: 1194328451850961091
+    - rid: 4925886426016907350
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
-        <Price>k__BackingField: 0
+        <Price>k__BackingField: 50
         <HasDifferentPriceForSale>k__BackingField: 0
         <Worth>k__BackingField: 0
