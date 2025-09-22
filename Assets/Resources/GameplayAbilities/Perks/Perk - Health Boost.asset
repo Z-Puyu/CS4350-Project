@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
-  m_Name: Perk - Healing
+  m_Name: Perk - Health Boost
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
   <Modifiers>k__BackingField:
   - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 7ac0428bf2dcbe1478ebc96a726aea26, type: 2}

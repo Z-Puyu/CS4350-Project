@@ -1,11 +1,12 @@
 using Events;
+using GameplayAbilities.Runtime.Abilities;
 using Skill_tree_related.Skills;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillIcon : MonoBehaviour
 {
-    [SerializeField] private Skill skillScriptableObject;
+    [SerializeField] private Perk skillScriptableObject;
     [SerializeField] private CrossObjectEventWithDataSO broadcastSkill;
     
     [SerializeField] private Image image;

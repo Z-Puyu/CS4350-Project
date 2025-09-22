@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     [Serializable]
-    internal struct PerkModifier {
+    public struct PerkModifier {
         [field: SerializeField] private AttributeType TargetAttribute { get; set; }
         [field: SerializeField] private int Magnitude { get; set; }
         [field: SerializeField] private bool IsMultiplier { get; set; }

@@ -34,7 +34,7 @@ namespace Game.CharacterControls {
                 GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
                                                              .WithUserData(damage.Data)
                                                              .Build();
-                instigator.Use("basic:attack", this.AbilitySystem, args);
+                instigator.Use("ability:attack", this.AbilitySystem, args);
             }
         }
 
