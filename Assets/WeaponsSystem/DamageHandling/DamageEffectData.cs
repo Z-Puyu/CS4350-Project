@@ -28,7 +28,7 @@ namespace WeaponsSystem.DamageHandling {
                     continue;
                 }
                 
-                modifiers.Add(new Modifier(magnitude, Modifier.Operation.Offset, this.TargetAttribute.Id));
+                modifiers.Add(new Modifier(-magnitude, Modifier.Operation.Offset, this.TargetAttribute.Id));
             }
             
             return modifiers;

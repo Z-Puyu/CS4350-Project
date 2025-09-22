@@ -20,10 +20,30 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6545854170224858370, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <CharacterController>k__BackingField
+      value: 
+      objectReference: {fileID: 7129962198781924537}
+    - target: {fileID: 7805846891793197291, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d0e76d4ccb3c5a46b16b4c0ea36bf0f, type: 2}
     - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <Data>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 2df39761e2f1b0444bd19b82359db8b9, type: 2}
+    - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <AbilitySystem>k__BackingField
+      value: 
+      objectReference: {fileID: 6126115971468127911}
+    - target: {fileID: 8051744311941367104, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9740964
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051744311941367104, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0023022294
+      objectReference: {fileID: 0}
     - target: {fileID: 8443594316671374492, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -64,8 +84,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8497357954892355773, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1521088
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497357954892355773, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0028857589
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497357954892355773, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.07455498
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+--- !u!114 &6126115971468127911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6374959461441310899, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
+--- !u!114 &7129962198781924537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1366b16b5d804c25bd8f559ed50a6d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy

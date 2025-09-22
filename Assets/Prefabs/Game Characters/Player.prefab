@@ -405,6 +405,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 133981862283563124, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <CharacterController>k__BackingField
+      value: 
+      objectReference: {fileID: 5243613514484291101}
     - target: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <DefaultAbilities>k__BackingField._saintsList.Array.size
       value: 1
@@ -424,6 +428,10 @@ PrefabInstance:
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716461110618952316, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <RootRigidBody>k__BackingField
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -538,6 +546,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4552032912328813456}
+    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7781984914024726432}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
 --- !u!114 &2304898303038639166 stripped
 MonoBehaviour:
@@ -567,11 +578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14534d284d0a4c01890ede28643e7754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerController
+  <AbilitySystem>k__BackingField: {fileID: 8844079821535507021}
+  <AttributeSet>k__BackingField: {fileID: 8697166239366128196}
+  <Health>k__BackingField: {fileID: 4301556907404887175}
   broadcastItemCollected: {fileID: 11400000, guid: 0a5d66ab3b80d6945a3073444ef13890, type: 2}
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
-  <AttributeSet>k__BackingField: {fileID: 8697166239366128196}
   <Inventory>k__BackingField: {fileID: 2304898303038639166}
-  <AbilitySystem>k__BackingField: {fileID: 8844079821535507021}
 --- !u!114 &122473282743331628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,6 +747,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSwitchWeapon
   broadcastSwitchWeapon: {fileID: 11400000, guid: 4b4533c8faf329843b9cac25965704cf, type: 2}
+--- !u!50 &7781984914024726432
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332018648897565291}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &4301556907404887175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 8775378238163232648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246f51e2f05e4540a333cce7141a4841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.HealthSystem.Health
 --- !u!4 &6334788055842371170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}

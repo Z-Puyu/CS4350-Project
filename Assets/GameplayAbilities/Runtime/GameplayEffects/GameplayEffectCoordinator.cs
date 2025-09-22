@@ -45,19 +45,25 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             switch (effect.Data.ExecutionTime) {
                 case GameplayEffectData.Periodicity.Periodic:
                     if (effect.Data.Period <= 0) {
-                        Debug.LogWarning($"Periodic effect {effect.Data} has non-positive period, reverted to 1 second.");
+                        Debug.LogWarning(
+                            $"Periodic effect {effect.Data} has non-positive period, reverted to 1 second."
+                        );
                         return;
                     }
 
-                    Coroutine periodicCoroutine = this.StartCoroutine(this.ExecutePeriodically(
-                        effect, effect.Data.Period, effect.Data.Duration));
+                    Coroutine periodicCoroutine = this.StartCoroutine(
+                        this.ExecutePeriodically(effect, effect.Data.Period, effect.Data.Duration)
+                    );
                     this.ActiveEffects.Add(effect, periodicCoroutine);
                     break;
                 case GameplayEffectData.Periodicity.Continuous:
                     effect.Apply(this.AttributeSet);
-                    Coroutine continuousCoroutine = this.StartCoroutine(this.ExecuteContinuously(
-                        effect, effect.Data.Duration));
+                    Coroutine continuousCoroutine =
+                            this.StartCoroutine(this.ExecuteContinuously(effect, effect.Data.Duration));
                     this.ActiveEffects.Add(effect, continuousCoroutine);
+                    break;
+                default:
+                    effect.Apply(this.AttributeSet);
                     break;
             }
         }

@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using System.Collections.Generic;
-using TMPro;
 
 namespace Map.Objectives.Objective_UI
 {

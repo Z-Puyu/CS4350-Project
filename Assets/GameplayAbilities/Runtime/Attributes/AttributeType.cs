@@ -61,11 +61,11 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         public static IEnumerable<AttributeType> GetAll() {
-            return Resources.LoadAll<AttributeType>("");
+            return Resources.LoadAll<AttributeType>("").OrderBy(a => a.Id);
         }
 
         public static IEnumerable<AttributeType> GetAllLeaves() {
-            return Resources.LoadAll<AttributeType>("").Where(a => !a.IsCategory);
+            return Resources.LoadAll<AttributeType>("").Where(a => !a.IsCategory).OrderBy(a => a.Id);
         }
     }
 }

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
     public sealed class Damage {
         public GameObject Instigator { get; }
         public IReadOnlyDictionary<string, int> Data { get; }
+        public int TotalDamage { get; }
         
         /// <summary>
         /// Creates a new Damage object.
@@ -16,6 +18,7 @@ namespace WeaponsSystem.DamageHandling {
         public Damage(GameObject instigator, IReadOnlyDictionary<string, int> data) {
             this.Instigator = instigator;
             this.Data = data;
+            this.TotalDamage = data.Values.Sum();
         }
 
         /// <summary>
@@ -27,6 +30,7 @@ namespace WeaponsSystem.DamageHandling {
         public Damage(GameObject instigator, IDictionary<string, int> data) {
             this.Instigator = instigator;
             this.Data = new ReadOnlyDictionary<string, int>(data);
+            this.TotalDamage = data.Values.Sum();       
         }
     }
 }

@@ -41,10 +41,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             return data;
         }
 
-        internal void Clamp() {
-            this.Value = (int)this.ExecuteModificationRules(this.Value);
-        }
-
         private double ExecuteModificationRules(double value) {
             foreach (IAttributeClampRule rule in this.ModificationRules) {
                 int min = rule.MinValueIn(this.Root);
@@ -55,14 +51,15 @@ namespace GameplayAbilities.Runtime.Attributes {
             return value;
         }
 
-        private int RecomputeValue() {
+        internal int RecomputeValue() {
             double @base = this.ExecuteModificationRules(this.BaseValue);
-            return this.Mode switch {
+            this.Value = this.Mode switch {
                 ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(@base, modify),
                 ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(@base, modify),
                 var _ => throw new ArgumentException("Invalid modifier mode")
             };
             
+            return this.Value;
             double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
         }
 
@@ -71,9 +68,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             if (!this.Modifiers.TryAdd(modifier.Type, modifier)) {
                 this.Modifiers[modifier.Type] += modifier;
             }
-
-            // Apply each modifier sequentially and clamp the value to the range after each modification.
-            this.Value = this.RecomputeValue();
         }
 
         internal void RemoveModifier(Modifier modifier) {
@@ -85,7 +79,6 @@ namespace GameplayAbilities.Runtime.Attributes {
 
             this.ModifierSequence.Remove(node);
             this.Modifiers[modifier.Type] -= modifier;
-            this.Value = this.RecomputeValue();
         }
 
         /// <summary>

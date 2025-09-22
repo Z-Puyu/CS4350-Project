@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 133981862283563124, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <CharacterController>k__BackingField
+      value: 
+      objectReference: {fileID: 8038510861533440685}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
       value: 1.75
@@ -476,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716461110618952316, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <RootRigidBody>k__BackingField
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -576,6 +584,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8038510861533440685}
+    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8431198205224410881}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
 --- !u!1 &187148960694751381 stripped
 GameObject:
@@ -594,14 +605,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1366b16b5d804c25bd8f559ed50a6d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy
+  <AbilitySystem>k__BackingField: {fileID: 6374959461441310899}
+  <AttributeSet>k__BackingField: {fileID: 6518563513476792506}
+  <Health>k__BackingField: {fileID: 1834705921085040249}
   <Data>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 7805846891793197291}
-  <AttributeSet>k__BackingField: {fileID: 6518563513476792506}
   <LootContainer>k__BackingField: {fileID: 2304056634079398031}
-  <Health>k__BackingField: {fileID: 1834705921085040249}
-  <OnDeathEvent>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!50 &8431198205224410881
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187148960694751381}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &1834705921085040249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -618,6 +654,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6374959461441310899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 6560746732366513526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
 --- !u!114 &6518563513476792506 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 106646709540062668, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}

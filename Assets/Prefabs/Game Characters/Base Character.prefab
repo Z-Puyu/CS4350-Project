@@ -46,8 +46,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3324175696564490730}
-  - component: {fileID: 8133807558494651657}
   - component: {fileID: 3797095984724131894}
+  - component: {fileID: 4284936676752762451}
   m_Layer: 0
   m_Name: Base Character
   m_TagString: Untagged
@@ -72,33 +72,6 @@ Transform:
   - {fileID: 1094391696314402652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &8133807558494651657
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454949747492492771}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &3797095984724131894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,6 +118,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5, y: 1.42}
   m_EdgeRadius: 0
+--- !u!50 &4284936676752762451
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454949747492492771}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &6561529514998742695
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.CombatAnimationEventProxy
   <Combatant>k__BackingField: {fileID: 1362842556525151000}
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
+  <CharacterController>k__BackingField: {fileID: 0}
 --- !u!114 &6615670882161919381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,10 +460,6 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-      propertyPath: <RootRigidBody>k__BackingField
-      value: 
-      objectReference: {fileID: 8133807558494651657}
-    - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: <RootTransform>k__BackingField
       value: 
       objectReference: {fileID: 3324175696564490730}
@@ -506,18 +503,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3723051152404577821, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-      propertyPath: <Body>k__BackingField
-      value: 
-      objectReference: {fileID: 8133807558494651657}
-    - target: {fileID: 4409929462851600091, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-      propertyPath: <Body>k__BackingField
-      value: 
-      objectReference: {fileID: 8133807558494651657}
-    - target: {fileID: 4499795553562504158, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
-      propertyPath: <Body>k__BackingField
-      value: 
-      objectReference: {fileID: 8133807558494651657}
     - target: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: m_Name
       value: MovementComponent
@@ -724,6 +709,34 @@ PrefabInstance:
       propertyPath: <Root>k__BackingField
       value: 
       objectReference: {fileID: 106646709540062668}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6615670882161919381}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayDeathAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4151340515389337005, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
       propertyPath: m_Name
       value: HealthComponent

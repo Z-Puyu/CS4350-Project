@@ -1,6 +1,5 @@
 using GameplayAbilities.Runtime.Attributes;
 using ModularItemsAndInventory.Runtime.LootContainers;
-using SaintsField;
 using UnityEngine;
 
 namespace Game.Enemies {

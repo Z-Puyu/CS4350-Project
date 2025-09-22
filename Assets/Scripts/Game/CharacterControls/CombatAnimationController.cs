@@ -1,6 +1,4 @@
-﻿using System;
-using SaintsField;
-using Unity.VisualScripting;
+﻿using SaintsField;
 using UnityEngine;
 
 namespace Game.CharacterControls {
