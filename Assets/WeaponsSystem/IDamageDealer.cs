@@ -19,5 +19,9 @@ namespace WeaponsSystem {
         public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
 
         public bool AllowsDamageOn(GameObject candidate);
+
+        public void Enable();
+
+        public void Disable();
     }
 }

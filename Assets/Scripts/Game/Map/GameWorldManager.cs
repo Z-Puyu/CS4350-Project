@@ -9,5 +9,8 @@ namespace Game.Map {
         
         public static GameWorld Main => Singleton<GameWorldManager>.Instance.MainWorld;
         public static GameWorld Purgatory => Singleton<GameWorldManager>.Instance.PurgatoryWorld;
+        
+        public static bool IsInPurgatory => 
+                Singleton<GameWorldManager>.Instance.PurgatoryWorld.gameObject.activeInHierarchy;
     }
 }

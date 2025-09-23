@@ -9,6 +9,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
 using CharacterController = Game.CharacterControls.CharacterController;
@@ -19,7 +20,6 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-        private Vector3Int RespawnPoint { get; set; }
         
         protected override void Start() {
             if (!this.InitialData) {
@@ -31,19 +31,6 @@ namespace Game.Player {
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
             this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
-        }
-
-        [Button]
-        public override void HandleDeath() {
-            this.RespawnPoint = GameWorldManager.Main.WorldToCell(this.transform.position);
-            GameWorldManager.Purgatory.gameObject.SetActive(true);
-            ((IMap)GameWorldManager.Purgatory).PlaceObjectAtOrigin(this.gameObject);
-        }
-
-        [Button]
-        public void Resurrect() {
-            GameWorldManager.Main.PlaceObject(this.gameObject, this.RespawnPoint);
-            GameWorldManager.Purgatory.gameObject.SetActive(false);
         }
 
         private void ConfigureInventory() {

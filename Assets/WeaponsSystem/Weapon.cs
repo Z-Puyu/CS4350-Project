@@ -40,6 +40,15 @@ namespace WeaponsSystem {
             return true;
         }
 
+        public void Enable() {
+            this.gameObject.SetActive(true);
+        }
+        
+        public void Disable() {
+            this.CurrentAttackCounter = 0;
+            this.gameObject.SetActive(false);
+        }
+
         //place hold function. Should be adjusted after determining how to handle the attack.
         protected void StartAttack() {
             this.Stats.ActivateAttackModifiers(this.CurrentAttackCounter);

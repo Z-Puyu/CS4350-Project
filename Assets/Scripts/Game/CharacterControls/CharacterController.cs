@@ -4,6 +4,7 @@ using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.HealthSystem;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
@@ -14,6 +15,8 @@ namespace Game.CharacterControls {
         [field: SerializeField, Required] protected AbilitySystem AbilitySystem { get; private set; }
         [field: SerializeField, Required] protected AttributeSet AttributeSet { get; private set; }
         [field: SerializeField, Required] protected Health Health { get; private set; }
+
+        public event UnityAction OnDeath;
         
         protected abstract void ConfigureAttributeSet();
         
@@ -38,7 +41,10 @@ namespace Game.CharacterControls {
             }
         }
 
-        public abstract void HandleDeath();
+        [Button]
+        public virtual void HandleDeath() {
+            this.OnDeath?.Invoke();
+        }
 
         /// <summary>
         /// Destroy the character. Call this after the death animation is complete.
