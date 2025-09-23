@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using SaintsField;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
+using Timer = Utilities.Timer;
 
 namespace WeaponsSystem.DamageHandling {
     /// <summary>
@@ -18,6 +21,7 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
+        private Timer attackTimer;
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
@@ -28,13 +32,17 @@ namespace WeaponsSystem.DamageHandling {
             }
         }
 
+        private void Update() {
+            this.attackTimer?.Tick();
+        }
+
         public void StartAttack() {
             if (this.IsAttacking) {
                 return;
             }
             
             this.IsAttacking = true;
-            int combo = this.DamageDealer.Attack();
+            int combo = this.DamageDealer.StartAttack();
             this.OnAttacked.Invoke(combo);
         }
 
@@ -42,8 +50,15 @@ namespace WeaponsSystem.DamageHandling {
             this.DamageDealer.DealDamage(this.EnemyTags, this.EnemyLayerMask, forward);
         }
 
+        public void QueryFinishAttack() {
+            this.attackTimer = new Timer(this.DamageDealer.QueryEndAttack());
+            this.attackTimer.Start();
+            this.attackTimer.OnTimerFinished += this.FinishAttack;
+        }
+
         public void FinishAttack() {
             this.IsAttacking = false;
+            this.DamageDealer.EndAttack();
         }
 
         public void Interrupt() {

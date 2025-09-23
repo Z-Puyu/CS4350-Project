@@ -476,6 +476,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5044226221105412157, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044226221105412157, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5582658884434323390, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Size.x
       value: 0.75
@@ -544,7 +552,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1816691387449555453, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
     - {fileID: 3170095659245539717, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}, insertIndex: 0, addedObject: {fileID: 1957642021}}]
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
 --- !u!1001 &593807166
@@ -1343,6 +1351,99 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1688320010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688320011}
+  - component: {fileID: 1688320013}
+  - component: {fileID: 1688320012}
+  m_Layer: 6
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1688320011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688320010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1957642021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1688320012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688320010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61eba19204354a7f9554bbc1924b9220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
+  <DamageAttributes>k__BackingField:
+  - Damage.Elemental.Fire
+  - Damage.Elemental.Ice
+  - Damage.Elemental.Lightning
+  - Damage.Physical
+  <AttackModifiers>k__BackingField:
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+    - <Target>k__BackingField: {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 15
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 3
+    - <Target>k__BackingField: {fileID: 11400000, guid: 40b333465774e154eadb1f635b8a8715, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+    - <Target>k__BackingField: {fileID: 11400000, guid: 0da81d9df34233e4a858217859a1c6ed, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 1
+  <ComboLengthAttribute>k__BackingField: ComboLength
+  <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
+  <RangeAttribute>k__BackingField: BulletRange
+  <BulletSpeedAttribute>k__BackingField: BulletSpeed
+  <BulletSpreadAttribute>k__BackingField: BulletSpread
+  <FireIntervalAttribute>k__BackingField: BulletFireInterval
+  <PierceStrengthAttribute>k__BackingField: BulletPiercing
+  <MultitapCountAttribute>k__BackingField: BulletMultitapCount
+  <BulletCountAttribute>k__BackingField: BulletCount
+  <ExplosionRadiusAttribute>k__BackingField: BulletExplosionRadius
+  <BulletSpacingAttribute>k__BackingField: BulletSpacing
+--- !u!114 &1688320013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688320010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <ModifierMode>k__BackingField: 0
+  <DefaultAttributeTable>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
 --- !u!1001 &1781764269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1424,6 +1525,148 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+--- !u!4 &1849515893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1957642020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957642021}
+  - component: {fileID: 1957642024}
+  - component: {fileID: 1957642023}
+  - component: {fileID: 1957642022}
+  - component: {fileID: 1957642025}
+  m_Layer: 6
+  m_Name: Ranged
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1957642021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.594, y: -0.002, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1688320011}
+  m_Father: {fileID: 1849515893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1957642022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4706b37ad10416191768ea4d9a23e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponSprite
+--- !u!212 &1957642023
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -6628414004274166170, guid: 851047292543b5f4cb137d4566d7f801, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.16, y: 0.95}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &1957642024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b30f89985064990a6fb6fffd6ad3915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
+  <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
+  <Components>k__BackingField: []
+  <Stats>k__BackingField: {fileID: 1688320012}
+  bulletPool:
+    <Prefab>k__BackingField: {fileID: 8082640687752798569, guid: 09becbbf91443fc41a7e2106ce832cb1, type: 3}
+  spawnMethods: 0000000001000000
+--- !u!114 &1957642025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c780021e8fc64fda87a7ebb2c7833fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.MouseTracker
+  offset: 0.7
 --- !u!114 &1872981805 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8114700547612640779, guid: 72d59523c672d2a4e8c050cb56abbffd, type: 3}
