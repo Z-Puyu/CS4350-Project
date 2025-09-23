@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 3990052932965461405}
   - component: {fileID: 2205906151554961017}
   - component: {fileID: 133981862283563124}
+  - component: {fileID: 6615670882161919381}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -491,8 +492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <MovementComponent>k__BackingField: {fileID: 2716461110618952316}
-  <AnimatorMovementFlag>k__BackingField: 1282839668
-  <AnimatorAttackTrigger>k__BackingField: -1742204373
+  <AnimatorMovementFlag>k__BackingField: -268154354
+  <AnimatorAttackTrigger>k__BackingField: 1080829965
 --- !u!114 &133981862283563124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +508,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.CombatAnimationEventProxy
   <Combatant>k__BackingField: {fileID: 1362842556525151000}
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
+--- !u!114 &6615670882161919381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561529514998742695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.CombatAnimationController
+  <MaxCombo>k__BackingField: 3
+  <AnimationCycleLength>k__BackingField: 2
+  <AnimatorComboCounter>k__BackingField: -2064768384
+  <AnimatorAttackTrigger>k__BackingField: 1080829965
+  <AnimatorTakeDamageTrigger>k__BackingField: -1276966713
+  <AnimatorDeathTrigger>k__BackingField: 20298039
 --- !u!1001 &454449849331479342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,6 +538,58 @@ PrefabInstance:
       propertyPath: <Animator>k__BackingField
       value: 
       objectReference: {fileID: 3990052932965461405}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6615670882161919381}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAttackAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6615670882161919381}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetCombo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnAttacked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488243617223307318, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <OnSwitchedGear>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1651668061083998253, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -893,6 +964,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1094391696314402652}
     m_Modifications:
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6615670882161919381}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayTakeDamageAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4905482573666499099, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

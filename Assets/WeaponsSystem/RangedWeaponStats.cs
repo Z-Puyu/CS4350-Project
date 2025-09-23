@@ -1,5 +1,4 @@
-﻿using GameplayAbilities.Runtime.Attributes;
-using SaintsField;
+﻿using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem {

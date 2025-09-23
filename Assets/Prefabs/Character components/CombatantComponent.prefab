@@ -48,6 +48,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   <EnemyTags>k__BackingField: []
-  <Animator>k__BackingField: {fileID: 0}
-  <AnimatorAttackTrigger>k__BackingField: -1742204373
-  <AnimatorComboCounter>k__BackingField: 2116519161
+  <OnAttacked>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnSwitchedGear>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []

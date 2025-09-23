@@ -18,7 +18,7 @@ namespace Game.Items {
             List<GameplayEffectData> effects = this.Effects.ToList();
             effects.Sort();
             foreach (GameplayEffectData effect in effects) {
-                sb.AppendLine($"_Effect:{effect.SortKey}");
+                sb.AppendLine($"-Effect:{effect.SortKey}");
             }
             
             return sb.ToString();

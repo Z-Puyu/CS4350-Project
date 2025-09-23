@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Common;
 using Events;
 using Game.Enemies;
-using GameplayAbilities.Runtime.Abilities;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
@@ -13,46 +9,29 @@ using SaintsField;
 using UnityEngine;
 using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
+using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : MonoBehaviour, ICollector {
+    public sealed class PlayerController : CharacterController, ICollector {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
-        [field: SerializeField, Required] private AttributeSet AttributeSet { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-        [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
 
-        private void Awake() {
-            foreach (HitBox2D hitbox in this.GetComponentsInChildren<HitBox2D>()) {
-                hitbox.OnHit += this.HandleDamage;
-            }
-        }
-
-        private void Start() {
+        protected override void Start() {
             if (!this.InitialData) {
                 return;
             }
             
-            this.ConfigureAttributeSet();
+            base.Start();
             this.ConfigureInventory();
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
             this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
         }
-        
-        private void HandleDamage(Damage damage) {
-            GameObject source = damage.Instigator;
-            AbilitySystem instigator = source.GetComponentInChildren<AbilitySystem>();
-            if (!instigator) {
-                Debug.LogError($"{source.name} must have an Ability System to attack the player!", source);
-            } else {
-                this.Say($"{source.name} damaged the player!");
-                GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
-                                                             .WithUserData(damage.Data)
-                                                             .Build();
-                instigator.Use("basic:attack", this.AbilitySystem, args);
-            }
+
+        public override void HandleDeath() {
+            this.Say("Player died");
         }
 
         private void ConfigureInventory() {
@@ -61,7 +40,7 @@ namespace Game.Player {
             }
         }
         
-        private void ConfigureAttributeSet() {
+        protected override void ConfigureAttributeSet() {
             this.AttributeSet.Initialise(this.InitialData.Attributes);
         }
 
@@ -79,10 +58,6 @@ namespace Game.Player {
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {
                 OnScreenDebugger.Log($"{pair.Key.Id}: {pair.Value}");
             }
-        }
-
-        public void Say(string message) {
-            OnScreenDebugger.Log(message);
         }
     }
 }

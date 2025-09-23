@@ -10,6 +10,7 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private UIDocument uiDocument;
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory inventory;
+        [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
 
         private ItemKey? _currentItemKey;
         
@@ -99,8 +100,35 @@ namespace Inventory_related.Inventory_UI_Manager
         {
             if (!_currentItemKey.HasValue) return;
 
-            Debug.Log($"Use item: {_currentItemKey}");
+            var itemKey = _currentItemKey.Value;
+
+            // Look up the item
+            if (!ItemDatabase.TryGet(itemKey, out Item item))
+            {
+                Debug.LogWarning($"Item {itemKey} not found in database.");
+                return;
+            }
+
+            var itemData = item;
+
+            // 🌱 If it's a seed and we have soil selected, plant it
+            Debug.Log($"[DEBUG] CurrentSoil is {(CurrentSoil == null ? "null" : "set")}");
+            if (itemData.Type.BelongsTo(seedType) && CurrentSoil != null)
+            {
+                CurrentSoil.PlantSeed(itemData.Id);
+                inventory.Remove(itemKey); // remove 1 seed
+                CurrentSoil = null;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log($"[DEBUG] Item '{itemData.Name}' has type '{itemData.Type?.name}'");
+                Debug.Log($"[DEBUG] SeedType reference is '{seedType?.name}'");
+                Debug.Log($"[DEBUG] BelongsTo result: {itemData.Type?.BelongsTo(seedType)}");
+                Debug.Log($"Use item: {itemData.Name} (not a seed, or no soil selected)");
+            }
         }
+
 
         private void OnDropButtonClicked()
         {
@@ -114,13 +142,6 @@ namespace Inventory_related.Inventory_UI_Manager
             CurrentSoil = soil;
             gameObject.SetActive(true);
             RefreshInventoryUI();
-        }
-
-        public void OnSeedSelected(string seedId)
-        {
-            CurrentSoil?.PlantSeed(seedId);
-            CurrentSoil = null;
-            gameObject.SetActive(false);
         }
     }
 }

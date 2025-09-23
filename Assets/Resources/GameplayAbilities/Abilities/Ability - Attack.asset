@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
   m_Name: Ability - Attack
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
-  <Id>k__BackingField: basic:attack
+  <Id>k__BackingField: ability:attack
   <Name>k__BackingField: Attack
+  <Description>k__BackingField: 
   <Effects>k__BackingField:
-  - rid: 331064487920795846
+  - rid: 2098011628653248813
   references:
     version: 2
     RefIds:
-    - rid: 331064487920795846
-      type: {class: DamageExecution, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
+    - rid: 2098011628653248813
+      type: {class: DamageEffectData, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
       data:
         <ExecutionTime>k__BackingField: 0
         <Period>k__BackingField: 1

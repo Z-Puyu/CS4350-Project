@@ -30,7 +30,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         internal static AttributeData From(
-            AttributeTypeDefinition definition, float initValue, AttributeSet root, ModifierMode mode
+            AttributeType definition, float initValue, AttributeSet root, ModifierMode mode
         ) {
             AttributeData data = new AttributeData(initValue, root, mode);
             foreach (IAttributeClampRule rule in definition.ModificationRules) {
@@ -39,10 +39,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             
             data.Value = data.RecomputeValue();
             return data;
-        }
-
-        internal void Clamp() {
-            this.Value = (int)this.ExecuteModificationRules(this.Value);
         }
 
         private double ExecuteModificationRules(double value) {
@@ -55,14 +51,15 @@ namespace GameplayAbilities.Runtime.Attributes {
             return value;
         }
 
-        private int RecomputeValue() {
+        internal int RecomputeValue() {
             double @base = this.ExecuteModificationRules(this.BaseValue);
-            return this.Mode switch {
+            this.Value = this.Mode switch {
                 ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(@base, modify),
                 ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(@base, modify),
                 var _ => throw new ArgumentException("Invalid modifier mode")
             };
             
+            return this.Value;
             double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
         }
 
@@ -71,9 +68,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             if (!this.Modifiers.TryAdd(modifier.Type, modifier)) {
                 this.Modifiers[modifier.Type] += modifier;
             }
-
-            // Apply each modifier sequentially and clamp the value to the range after each modification.
-            this.Value = this.RecomputeValue();
         }
 
         internal void RemoveModifier(Modifier modifier) {
@@ -85,7 +79,6 @@ namespace GameplayAbilities.Runtime.Attributes {
 
             this.ModifierSequence.Remove(node);
             this.Modifiers[modifier.Type] -= modifier;
-            this.Value = this.RecomputeValue();
         }
 
         /// <summary>

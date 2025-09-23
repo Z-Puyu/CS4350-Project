@@ -18,7 +18,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private enum ValueSource { Target, Instigator }
         
         [field: SerializeField, TableColumn("Target")] 
-        public AttributeTypeDefinition TargetAttribute { get; private set; }
+        public AttributeType TargetAttribute { get; private set; }
     
         [field: SerializeField] public Modifier.Operation Method { get; private set; }
         
@@ -33,7 +33,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private ValueSource Source { get; set; } = ValueSource.Instigator;
         
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
-        private AttributeTypeDefinition SourceAttribute { get; set; }
+        private AttributeType SourceAttribute { get; set; }
         
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
         public int DefaultValue { get; private set; }

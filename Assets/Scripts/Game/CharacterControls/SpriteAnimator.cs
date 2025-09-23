@@ -7,6 +7,7 @@ namespace Game.CharacterControls {
     public class SpriteAnimator : MonoBehaviour {
         [field: SerializeField, Required] private Transform RootTransform { get; set; }
         [field: SerializeField, Required] private Movement MovementComponent { get; set; }
+        [field: SerializeField] private int PixelOffset { get; set; }
         
         [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Bool)] 
         private int AnimatorMovementFlag { get; set; } 
@@ -20,6 +21,11 @@ namespace Game.CharacterControls {
         private void Awake() {
             this.Animator = this.GetComponent<Animator>();
             this.SpriteRenderer = this.GetComponent<SpriteRenderer>();
+        }
+
+        private void Start() {
+            float offset = this.PixelOffset / this.SpriteRenderer.sprite.pixelsPerUnit;
+            this.transform.Translate(Vector3.right * offset, Space.Self);
         }
 
         private void Update() {

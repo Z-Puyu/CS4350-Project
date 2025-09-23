@@ -25,7 +25,7 @@ namespace WeaponsSystem {
 
         protected DropdownList<string> GetAttributeOptions() {
             DropdownList<string> list = new DropdownList<string>();
-            foreach (AttributeTypeDefinition resource in AttributeTypeDefinition.GetAllLeaves()) {
+            foreach (AttributeType resource in AttributeType.GetAllLeaves()) {
                 list.Add(resource.Id, resource.Id);
             }
 

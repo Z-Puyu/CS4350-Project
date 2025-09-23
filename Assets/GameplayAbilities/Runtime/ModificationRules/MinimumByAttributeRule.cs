@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.ModificationRules {
     public class MinimumByAttributeRule : IAttributeClampRule {
-        [field: SerializeField, Required] private AttributeTypeDefinition Min { get; set; }
+        [field: SerializeField, Required] private AttributeType Min { get; set; }
 
         public int MaxValueIn(AttributeSet root) {
             return int.MaxValue;

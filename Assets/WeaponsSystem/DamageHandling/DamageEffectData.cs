@@ -6,11 +6,11 @@ using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
-    public sealed class DamageExecution : GameplayEffectData {
+    public sealed class DamageEffectData : GameplayEffectData {
         [field: SerializeField, Table]
         private List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
 
-        [field: SerializeField] private AttributeTypeDefinition TargetAttribute { get; set; }
+        [field: SerializeField] private AttributeType TargetAttribute { get; set; }
 
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();
@@ -28,7 +28,7 @@ namespace WeaponsSystem.DamageHandling {
                     continue;
                 }
                 
-                modifiers.Add(new Modifier(magnitude, Modifier.Operation.Offset, this.TargetAttribute.Id));
+                modifiers.Add(new Modifier(-magnitude, Modifier.Operation.Offset, this.TargetAttribute.Id));
             }
             
             return modifiers;

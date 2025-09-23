@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
-  <ModifierMode>k__BackingField: 0
+  <ModifierMode>k__BackingField: 1
   <DefaultAttributeTable>k__BackingField: {fileID: 0}
 --- !u!114 &5777750948884736783
 MonoBehaviour:
@@ -116,5 +116,5 @@ MonoBehaviour:
   <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
-  <SweepHalfAngle>k__BackingField: 0
-  <MeleeRangeAttribute>k__BackingField: 
+  <SweepHalfAngle>k__BackingField: 60
+  <MeleeRangeAttribute>k__BackingField: MeleeAttackRange

@@ -31,7 +31,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <remarks>
         /// This method should be called once, before any other method of this class.
         /// </remarks>
-        public void Initialise(IEnumerable<KeyValuePair<AttributeTypeDefinition, int>> table = null) {
+        public void Initialise(IEnumerable<KeyValuePair<AttributeType, int>> table = null) {
             if (table == null) {
                 table = this.DefaultAttributeTable;
                 if (table == null) {
@@ -40,7 +40,7 @@ namespace GameplayAbilities.Runtime.Attributes {
                 }
             }
             
-            foreach (KeyValuePair<AttributeTypeDefinition, int> attribute in table) {
+            foreach (KeyValuePair<AttributeType, int> attribute in table) {
                 AttributeData data = AttributeData.From(attribute.Key, attribute.Value, this, this.ModifierMode);
                 this.Attributes.Add(attribute.Key.Id, data);
                 this.OnAttributeChanged?.Invoke(new AttributeChange(attribute.Key.Id, 0, attribute.Value));
@@ -63,9 +63,9 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         private void PostAttributeUpdate(string key, AttributeData data) {
             int oldValue = data.Value;
-            data.Clamp();
-            if (oldValue != data.Value) {
-                this.OnAttributeChanged?.Invoke(new AttributeChange(key, oldValue, data.Value));
+            int newValue = data.RecomputeValue();
+            if (oldValue != newValue) {
+                this.OnAttributeChanged?.Invoke(new AttributeChange(key, oldValue, newValue));
             }
         }
 
@@ -77,7 +77,13 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
         public void AddModifier(Modifier modifier) {
-            this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.AddModifier(modifier));
+            this.Attributes.ForEachWithPrefix(modifier.Target, update);
+            return;
+            
+            void update(string attribute, AttributeData data) {
+                data.AddModifier(modifier);
+                this.PostAttributeUpdate(attribute, data);
+            }
         }
 
         /// <summary>
@@ -86,7 +92,13 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// </summary>
         /// <param name="modifier">The modifier to remove.</param>
         public void RemoveModifier(Modifier modifier) {
-            this.Attributes.ForEachWithPrefix(modifier.Target, (_, data) => data.RemoveModifier(modifier));
+            this.Attributes.ForEachWithPrefix(modifier.Target, update);
+            return;
+            
+            void update(string attribute, AttributeData data) {
+                data.RemoveModifier(modifier);
+                this.PostAttributeUpdate(attribute, data);
+            }
         }
 
         public int GetCurrent(string key) {

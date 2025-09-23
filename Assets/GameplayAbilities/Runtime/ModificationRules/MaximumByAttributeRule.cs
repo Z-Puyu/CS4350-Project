@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameplayAbilities.Runtime.ModificationRules {
     [Serializable]
     public class MaximumByAttributeRule : IAttributeClampRule {
-        [field: SerializeField, Required] private AttributeTypeDefinition Max { get; set; }
+        [field: SerializeField, Required] private AttributeType Max { get; set; }
 
         public int MaxValueIn(AttributeSet root) {
             return root.GetCurrent(this.Max.Id);

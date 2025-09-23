@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem {
@@ -32,6 +30,7 @@ namespace WeaponsSystem {
 
                 if (c.TryGetComponent(out IDamageable damageable) && this.AllowsDamageOn(c.gameObject)) {
                     OnScreenDebugger.Log($"{this.transform.root.gameObject.name} hit {c.transform.root.gameObject.name}");
+                    damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
                     // TODO: Damageable.TakeDamage(damage)
                 }
             }
@@ -48,7 +47,7 @@ namespace WeaponsSystem {
         private void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
             int range = 0;
-            foreach (KeyValuePair<AttributeTypeDefinition, int> data in this.WeaponData.WeaponAttributes) {
+            foreach (KeyValuePair<AttributeType, int> data in this.WeaponData.WeaponAttributes) {
                 if (data.Key.Id == this.Stats.MeleeRangeAttribute) {
                     range = data.Value;
                 }
