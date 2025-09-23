@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
 using Utilities;
@@ -13,6 +15,8 @@ namespace WeaponsSystem.BulletComponents {
         private float distanceTravelled;
         private ObjectPool<Bullet> pool;
         private UnityAction onHit;
+        private Damage damageRecord;
+        [SerializeField, Tag] private List<string> tags = new List<string>();
 
         public void SetTarget(float spd, float rg, Vector3 dir, ObjectPool<Bullet> bulletPool) {
             this.speed = spd * dir;
@@ -32,23 +36,30 @@ namespace WeaponsSystem.BulletComponents {
             this.transform.position += distanceTravelledThisFrame;
         }
 
-        private void OnCollisionEnter2(Collision2D collision) {
-            if (collision.gameObject.CompareTag("Player")) {
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.gameObject.CompareTag("Player")) {
                 return;
             }
 
-            this.DealDamage(collision);
-            this.onHit?.Invoke();
+            if (other.TryGetComponent(out IDamageable damageable)) {
+                this.DealDamage(other,this.tags);
+                this.onHit?.Invoke();
+            }
         }
 
         public void Awake() {
             this.onHit += this.GetComponent<Explosion>().Explode;
             this.onHit += this.GetComponent<Piercer>().Hit;
         }
+        
+        public void SetDamage(Damage damage) {
+            this.damageRecord = damage;
+        }
 
-        private void DealDamage(Collision2D other) {
-            if (other.gameObject.CompareTag("Enemy")) {
-                
+        private void DealDamage(Collider2D other, List<string> tags) {
+            if (tags.Any(other.gameObject.CompareTag)) {
+                other.TryGetComponent(out IDamageable damageable);
+                damageable.HandleDamage(this.damageRecord);
             }
         }
     }

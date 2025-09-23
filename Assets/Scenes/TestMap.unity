@@ -49558,8 +49558,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eba19204354a7f9554bbc1924b9220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
-  <DamageAttributes>k__BackingField: []
-  <AttackModifiers>k__BackingField: []
+  <DamageAttributes>k__BackingField:
+  - Damage.Elemental.Fire
+  - Damage.Elemental.Ice
+  - Damage.Elemental.Lightning
+  - Damage.Physical
+  <AttackModifiers>k__BackingField:
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: {fileID: 0}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 0
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
   <RangeAttribute>k__BackingField: BulletRange

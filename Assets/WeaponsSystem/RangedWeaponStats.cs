@@ -17,5 +17,17 @@ namespace WeaponsSystem {
         
         [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
         public string PierceStrengthAttribute { get; private set; }
+        
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        public string MultitapCountAttribute { get; private set; }
+        
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        public string BulletCountAttribute { get; private set; }
+        
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        public string ExplosionRadiusAttribute { get; private set; }
+        
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        public string BulletSpacingAttribute { get; private set; }
     }
 }
