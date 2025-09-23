@@ -50,14 +50,15 @@ namespace WeaponsSystem.DamageHandling {
             this.IsAttacking = false;       
         }
         
-        public void Equip(IDamageDealer damageDealer) {
+        public bool Equip(IDamageDealer damageDealer) {
             if (damageDealer == this.DamageDealer) {
-                return;           
+                return false;           
             }
             
             this.DamageDealer = damageDealer;
             this.IsAttacking = false;
             this.OnSwitchedGear.Invoke(damageDealer);
+            return true;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem {
@@ -25,6 +26,10 @@ namespace WeaponsSystem {
         public void Switch(int index) {
             if (index < 0 || index >= this.DamageDealers.Count) {
                 Debug.LogError($"Index {index} is out of bounds for damage dealers list.", this);
+                return;
+            }
+
+            if (this.LockedWeapons.Contains(index) || !this.Combatant.Equip(this.DamageDealers[index])) {
                 return;
             }
 
