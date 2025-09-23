@@ -22,7 +22,6 @@ namespace WeaponsSystem {
 
         protected override void Update() {
             base.Update();
-            this.transform.position = this.transform.root.position;
             this.fireIntervalTimer.Tick();
         }
 

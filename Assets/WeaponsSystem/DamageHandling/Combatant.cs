@@ -25,7 +25,6 @@ namespace WeaponsSystem.DamageHandling {
             if (this.DefaultDamageDealer.I != null) {
                 this.Equip(this.DefaultDamageDealer.I);
             }
-            this.DamageDealer.ConnectComboResetEvent(this.Interrupt);
         }
 
         public void StartAttack() {
@@ -59,10 +58,6 @@ namespace WeaponsSystem.DamageHandling {
             this.DamageDealer = damageDealer;
             this.IsAttacking = false;
             this.OnSwitchedGear.Invoke(damageDealer);
-        }
-        
-        public void ComboReset() {
-            
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Utilities;
+using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem.BulletComponents {
     [RequireComponent(typeof(Explosion), typeof(Piercer))]
@@ -31,7 +32,12 @@ namespace WeaponsSystem.BulletComponents {
             this.transform.position += distanceTravelledThisFrame;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision) {
+        private void OnCollisionEnter2(Collision2D collision) {
+            if (collision.gameObject.CompareTag("Player")) {
+                return;
+            }
+
+            this.DealDamage(collision);
             this.onHit?.Invoke();
         }
 
@@ -40,8 +46,10 @@ namespace WeaponsSystem.BulletComponents {
             this.onHit += this.GetComponent<Piercer>().Hit;
         }
 
-        public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
-            
+        private void DealDamage(Collision2D other) {
+            if (other.gameObject.CompareTag("Enemy")) {
+                
+            }
         }
     }
 }
