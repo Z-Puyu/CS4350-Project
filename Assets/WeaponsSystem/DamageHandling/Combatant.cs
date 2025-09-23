@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
@@ -34,7 +33,7 @@ namespace WeaponsSystem.DamageHandling {
             }
             
             this.IsAttacking = true;
-            int combo = this.DamageDealer.Attack();
+            int combo = this.DamageDealer.StartAttack();
             this.OnAttacked.Invoke(combo);
         }
 
@@ -44,6 +43,7 @@ namespace WeaponsSystem.DamageHandling {
 
         public void FinishAttack() {
             this.IsAttacking = false;
+            this.DamageDealer.EndAttack();
         }
 
         public void Interrupt() {

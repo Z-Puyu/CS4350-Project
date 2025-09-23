@@ -34,5 +34,12 @@ namespace Utilities {
             instance.gameObject.SetActive(false);
             this.pool.Enqueue(instance);
         }
+
+        public void Clear() {
+            foreach (T instance in this.pool) {
+                Object.Destroy(instance.gameObject);
+            }
+            this.pool.Clear();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common;
 using SaintsField;
@@ -10,6 +11,7 @@ namespace WeaponsSystem {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField] private List<WeaponComponentData> Components { get; set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
+        private Action onComboReset;
 
         public int CurrentAttackCounter {
             get => this.currentAttackCounter;
@@ -31,30 +33,27 @@ namespace WeaponsSystem {
         private void Start() {
             this.Stats.Initialise(this.WeaponData);
         }
-
-        public abstract int Attack();
-        
-        public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
         
         public virtual bool AllowsDamageOn(GameObject candidate) {
             return true;
         }
 
         //place hold function. Should be adjusted after determining how to handle the attack.
-        protected void StartAttack() {
+        public virtual int StartAttack() {
             this.Stats.ActivateAttackModifiers(this.CurrentAttackCounter);
             this.comboResetTimer.Stop();
             this.comboResetTimer.OnTimerFinished -= this.ResetCombo;
+            return this.CurrentAttackCounter;
         }
-
+        
+        public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
+        
         //place hold function. Should be adjusted after determining how to handle the attack.
-        protected void EndAttack() {
+        public virtual void EndAttack() {
             this.Stats.DeactivateAttackModifiers(this.CurrentAttackCounter);
             this.CurrentAttackCounter += 1;
             this.comboResetTimer.Start();
             this.comboResetTimer.OnTimerFinished += this.ResetCombo;
-            OnScreenDebugger.Log($"AttackCounter {this.CurrentAttackCounter}");
-            OnScreenDebugger.Log("End Attack");
         }
 
         protected virtual void Update() {
@@ -64,7 +63,12 @@ namespace WeaponsSystem {
         private void ResetCombo() {
             this.CurrentAttackCounter = 0;
             this.comboResetTimer.OnTimerFinished -= this.ResetCombo;
+            this.onComboReset?.Invoke();
             OnScreenDebugger.Log("Combo Reset");
+        }
+        
+        public void ConnectComboResetEvent(Action action) {
+            this.onComboReset = action;
         }
     }
 }
