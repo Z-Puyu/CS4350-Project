@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using Common;
 using Events;
 using Game.Enemies;
+using Game.Map;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
 using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
@@ -17,7 +19,8 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-
+        private Vector3Int RespawnPoint { get; set; }
+        
         protected override void Start() {
             if (!this.InitialData) {
                 return;
@@ -30,8 +33,17 @@ namespace Game.Player {
             this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
         }
 
+        [Button]
         public override void HandleDeath() {
-            this.Say("Player died");
+            this.RespawnPoint = GameWorldManager.Main.WorldToCell(this.transform.position);
+            GameWorldManager.Purgatory.gameObject.SetActive(true);
+            ((IMap)GameWorldManager.Purgatory).PlaceObjectAtOrigin(this.gameObject);
+        }
+
+        [Button]
+        public void Resurrect() {
+            GameWorldManager.Main.PlaceObject(this.gameObject, this.RespawnPoint);
+            GameWorldManager.Purgatory.gameObject.SetActive(false);
         }
 
         private void ConfigureInventory() {
