@@ -9,13 +9,10 @@ using WeaponsSystem.DamageHandling;
 namespace WeaponsSystem {
     public sealed class MeleeWeapon : Weapon<MeleeWeaponStats> {
         [field: SerializeField, Required] private Transform AttackOrigin { get; set; }
-        
-        public override int Attack() {
-            int counter = this.CurrentAttackCounter;
-            OnScreenDebugger.Log("Melee Attack");
-            this.StartAttack();
-            this.EndAttack();
-            return counter;
+
+        public override int StartAttack() {
+            OnScreenDebugger.Log($"MeleeAttackSuccessfully: combo {this.CurrentAttackCounter}");
+            return base.StartAttack();
         }
 
         public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
