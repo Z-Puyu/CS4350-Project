@@ -70,5 +70,9 @@ namespace WeaponsSystem {
         public void ConnectComboResetEvent(Action action) {
             this.onComboReset = action;
         }
+
+        public virtual float QueryEndAttack() {
+            return 0;
+        }
     }
 }

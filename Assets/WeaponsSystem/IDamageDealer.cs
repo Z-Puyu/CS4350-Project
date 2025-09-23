@@ -26,6 +26,6 @@ namespace WeaponsSystem {
         
         public void ConnectComboResetEvent(Action action);
         
-        
+        public float QueryEndAttack();
     }
 }

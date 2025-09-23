@@ -49565,9 +49565,22 @@ MonoBehaviour:
   - Damage.Physical
   <AttackModifiers>k__BackingField:
   - <DefaultModifiers>k__BackingField:
-    - <Target>k__BackingField: {fileID: 0}
+    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
       <Type>k__BackingField: 0
-      <Magnitude>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+    - <Target>k__BackingField: {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 15
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 3
+    - <Target>k__BackingField: {fileID: 11400000, guid: 40b333465774e154eadb1f635b8a8715, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+    - <Target>k__BackingField: {fileID: 11400000, guid: 0da81d9df34233e4a858217859a1c6ed, type: 2}
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 1
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
   <RangeAttribute>k__BackingField: BulletRange
@@ -49575,6 +49588,10 @@ MonoBehaviour:
   <BulletSpreadAttribute>k__BackingField: BulletSpread
   <FireIntervalAttribute>k__BackingField: BulletFireInterval
   <PierceStrengthAttribute>k__BackingField: BulletPiercing
+  <MultitapCountAttribute>k__BackingField: BulletMultitapCount
+  <BulletCountAttribute>k__BackingField: BulletCount
+  <ExplosionRadiusAttribute>k__BackingField: BulletExplosionRadius
+  <BulletSpacingAttribute>k__BackingField: BulletSpacing
 --- !u!114 &1688320013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49794,6 +49811,7 @@ MonoBehaviour:
   <Stats>k__BackingField: {fileID: 1688320012}
   bulletPool:
     <Prefab>k__BackingField: {fileID: 8082640687752798569, guid: 09becbbf91443fc41a7e2106ce832cb1, type: 3}
+  spawnMethods: 0000000001000000
 --- !u!114 &1957642025
 MonoBehaviour:
   m_ObjectHideFlags: 0

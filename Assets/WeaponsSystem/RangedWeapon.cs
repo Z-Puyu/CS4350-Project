@@ -13,16 +13,19 @@ namespace WeaponsSystem {
     public enum ProjectileSpawnMethod {
         Spread,
         Parallel,
+        Single,
         Multitap
     }
 
     public class RangedWeapon : Weapon<RangedWeaponStats> {
         [field: SerializeField] private ObjectPool<Bullet> bulletPool;
+        [field: SerializeField] private List<ProjectileSpawnMethod> spawnMethods;
         private Timer fireIntervalTimer;
         private bool canAttack = true;
         private Vector3 outwards;
         private Camera mainCamera;
-        private List<ProjectileSpawnMethod> spawnMethods;
+        private float endTime;
+        
 
         protected override void Awake() {
             base.Awake();
@@ -38,12 +41,12 @@ namespace WeaponsSystem {
             base.Update();
             this.fireIntervalTimer.Tick();
             Vector3 mousePosScreen = Input.mousePosition;
-            Vector3 direction = Vector3.forward;
-            if (this.mainCamera != null) {
-                Vector3 mousePosWorld = this.mainCamera.ScreenToWorldPoint(mousePosScreen);
-                mousePosWorld.z = this.transform.position.z;
-                this.outwards = (mousePosWorld - this.transform.position).normalized;
+            if (this.mainCamera == null) {
+                return;
             }
+            Vector3 mousePosWorld = this.mainCamera.ScreenToWorldPoint(mousePosScreen);
+            mousePosWorld.z = this.transform.position.z;
+            this.outwards = (mousePosWorld - this.transform.position).normalized;
         }
 
         private void SetCanAttack() {
@@ -65,7 +68,11 @@ namespace WeaponsSystem {
                 return;
             }
 
-            this.StartCoroutine(this.SpawnMultitapBullet(this.Stats.GetCurrent(this.Stats.MultitapCountAttribute), 100));
+            int delay = 100;
+            if (this.canAttack) {
+                this.endTime = Time.time + this.Stats.GetCurrent(this.Stats.MultitapCountAttribute) * delay / 1000.0f;
+            }
+            this.StartCoroutine(this.SpawnMultitapBullet(this.Stats.GetCurrent(this.Stats.MultitapCountAttribute), delay, this.spawnMethods[this.CurrentAttackCounter]));
             this.canAttack = false;
             this.fireIntervalTimer.Start();
         }
@@ -97,16 +104,41 @@ namespace WeaponsSystem {
             float interval = spacing / (count - 1.0f);
             float startOffset = -(spacing / 2.0f);
             for (int i = 0; i < count; i += 1) {
-                Debug.Log("SpawnParallelBullet: " + (startOffset + interval * i) * orthogonal);
                 this.SpawnSingleBullet(direction, this.transform.position + (startOffset + interval * i) * orthogonal, this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute), this.Stats.GetCurrent(this.Stats.RangeAttribute));
             }
         }
         
-        private System.Collections.IEnumerator SpawnMultitapBullet(int count, int delay) {
+        private System.Collections.IEnumerator SpawnMultitapBullet(int count, int delay, ProjectileSpawnMethod spawnMethod) {
             for (int i = 0; i < count; i += 1) {
-                this.SpawnSingleBullet(this.outwards, this.transform.position, this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute), this.Stats.GetCurrent(this.Stats.RangeAttribute));
+                switch (spawnMethod) {
+                    case ProjectileSpawnMethod.Spread:
+                        this.SpawnSpreadBullet(
+                            this.outwards, this.Stats.GetCurrent(this.Stats.BulletSpreadAttribute),
+                            this.Stats.GetCurrent(this.Stats.BulletCountAttribute)
+                        );
+                        break;
+                    case ProjectileSpawnMethod.Parallel:
+                        this.SpawnParallelBullet(
+                            this.outwards, this.Stats.GetCurrent(this.Stats.BulletSpacingAttribute),
+                            this.Stats.GetCurrent(this.Stats.BulletCountAttribute)
+                        );
+                        break;
+                    case ProjectileSpawnMethod.Single:
+                    case ProjectileSpawnMethod.Multitap:
+                    default:
+                        this.SpawnSingleBullet(
+                            this.outwards, this.transform.position,
+                            this.Stats.GetCurrent(this.Stats.BulletSpeedAttribute),
+                            this.Stats.GetCurrent(this.Stats.RangeAttribute)
+                        );
+                        break;
+                }
                 yield return new WaitForSeconds(delay / 1000.0f);
             }
+        }
+
+        public override float QueryEndAttack() {
+            return this.endTime - Time.time;
         }
     }
 }
