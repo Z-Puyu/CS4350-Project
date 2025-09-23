@@ -17,6 +17,7 @@ namespace WeaponsSystem {
         public void Update() {
             this.transform.position = this.transform.parent.position;
             this.transform.localScale = new Vector3( Mathf.Sign(this.transform.parent.localScale.x) * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            
             Vector3 mousePosScreen = Input.mousePosition;
             Vector3 mousePosWorld = this.mainCamera.ScreenToWorldPoint(mousePosScreen);
             mousePosWorld.z = this.transform.position.z;
@@ -24,14 +25,9 @@ namespace WeaponsSystem {
             
             this.transform.position += direction * this.offset;
             
-            Debug.Log(Vector3.SignedAngle(Vector3.right, direction, Vector3.forward));
             this.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.right, direction, Vector3.forward));
             
-            if (Math.Abs(this.transform.rotation.z) > Quaternion.AngleAxis(90, Vector3.forward).z) {
-                this.spriteRenderer.flipY = true;
-            } else {
-                this.spriteRenderer.flipY = false;
-            }
+            this.spriteRenderer.flipY = Math.Abs(this.transform.rotation.z) > Quaternion.AngleAxis(90, Vector3.forward).z;
 
         }
     }
