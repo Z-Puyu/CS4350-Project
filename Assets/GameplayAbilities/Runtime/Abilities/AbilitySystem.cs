@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
@@ -14,9 +15,10 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, SaintsHashSet] 
         private SaintsHashSet<Ability> DefaultAbilities { get; set; } = new SaintsHashSet<Ability>();
         
-        private HashSet<IAbility> Abilities { get; } = new HashSet<IAbility>();
+        private HashSet<IAbility> AvailableAbilities { get; } = new HashSet<IAbility>();
+        private Dictionary<IAbility, float> AbilitiesOnCooldown { get; } = new Dictionary<IAbility, float>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
-        private Dictionary<IAbility, int> ActiveAbilities { get; } = new Dictionary<IAbility, int>();
+        private Dictionary<IAbility, AbilityInfo> ActiveAbilities { get; } = new Dictionary<IAbility, AbilityInfo>();
         
         private Dictionary<GameplayEffect, IAbility> ActiveEffects { get; } =
             new Dictionary<GameplayEffect, IAbility>();
@@ -33,8 +35,25 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Start() {
+            this.GameplayEffectCoordinator.OnEffectEnded += this.HandleTerminatedEffect;
             foreach (Ability ability in this.DefaultAbilities) {
                 this.Grant(ability);
+            }
+        }
+
+        private void HandleTerminatedEffect(GameplayEffect effect, IAbility ability) {
+            if (ability == null) {
+                return;
+            }
+            
+            AbilityInfo info = this.ActiveAbilities[ability];
+            int remainingEffects = info.NumberOfEffects - 1;
+            if (remainingEffects > 0) {
+                this.ActiveAbilities[ability] = new AbilityInfo(info.Cooldown, remainingEffects);
+            } else {
+                this.ActiveAbilities.Remove(ability);
+                this.OnEndAbility.Invoke(ability);
+                this.AbilitiesOnCooldown.Add(ability, info.Cooldown);
             }
         }
 
@@ -45,27 +64,6 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
             
             return list;
-        }
-        
-        /// <summary>
-        /// Add a gameplay effect to the attribute set.
-        /// </summary>
-        /// <param name="effect">The gameplay effect.</param>
-        /// <param name="chance">The base probability of this effect being successfully applied.</param>
-        public void AddEffect(GameplayEffect effect, int chance) {
-            if (effect.Commit(this.AttributeSet, chance) == GameplayEffect.Outcome.Success) {
-                this.GameplayEffectCoordinator.Add(effect);
-            }
-        }
-
-        /// <summary>
-        /// Add a gameplay effect to the attribute set.
-        /// </summary>
-        /// <param name="effect">The gameplay effect.</param>
-        public void AddEffect(GameplayEffectData effect) {
-            GameplayEffectExecutionArgs args = this.CreateEffectExecutionArgs().Build();
-            GameplayEffect gameplayEffect = effect.Instantiate(this.AttributeSet, args);
-            this.AddEffect(gameplayEffect, effect.BaseChance);
         }
         
         public void Enable(Perk perk) {
@@ -115,15 +113,15 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            this.Abilities.Add(ability);
+            this.AvailableAbilities.Add(ability);
         }
 
         public void Revoke(IAbility ability) {
-            this.Abilities.Remove(ability);
+            this.AvailableAbilities.Remove(ability);
         }
         
         public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
-            if (!this.Abilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
+            if (!this.AvailableAbilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
                 return;
             }
             
@@ -141,25 +139,9 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
+            this.ActiveAbilities.Add(ability, ability.Info);
             foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
-                this.AddEffect(effect, effect.Data.BaseChance);
-                effect.OnEnded += () => handleEndedEffect(effect);
-            }
-
-            return;
-            
-            void handleEndedEffect(GameplayEffect effect) {
-                if (!this.ActiveEffects.Remove(effect)) {
-                    return;
-                }
-
-                this.ActiveAbilities[ability] -= 1;
-                if (this.ActiveAbilities[ability] > 0) {
-                    return;
-                }
-
-                this.ActiveAbilities.Remove(ability);
-                this.OnEndAbility.Invoke(ability);
+                this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
             }
         }
 

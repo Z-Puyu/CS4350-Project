@@ -15,8 +15,7 @@ namespace WeaponsSystem.DamageHandling {
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();
             foreach (DamageType damage in this.DamageTypes) {
-                int magnitude = args.CallerSuppliedDataValues.GetValueOrDefault(damage.DamageAttribute, 0);
-                if (magnitude == 0) {
+                if (!args.HasData(damage.DamageAttribute, out int magnitude) || magnitude == 0) {
                     continue;
                 }
                 

@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
-    internal class GameplayEffectCoordinator : MonoBehaviour {
+    public class GameplayEffectCoordinator : MonoBehaviour {
         private AttributeSet AttributeSet { get; set; }
         
         private Dictionary<GameplayEffect, Coroutine> ActiveEffects { get; } =
             new Dictionary<GameplayEffect, Coroutine>();
+        
+        private Dictionary<GameplayEffect, IAbility> SourceAbilities { get; } =
+            new Dictionary<GameplayEffect, IAbility>();
+
+        internal event UnityAction<GameplayEffect, IAbility> OnEffectEnded; 
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
@@ -28,7 +35,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 }
 
                 if (elapsed >= duration) {
-                    this.Remove(effect);
+                    this.End(effect);
                 } else {
                     yield return new WaitForSeconds(period);
                     elapsed += period;
@@ -38,40 +45,81 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         private IEnumerator ExecuteContinuously(GameplayEffect effect, float duration) {
             yield return new WaitForSeconds(duration);
-            this.Remove(effect);
+            this.End(effect);
+        }
+        
+        private void AddPeriodicEffect(GameplayEffect effect) {
+            float period = effect.Data.Period;
+            if (effect.Data.Period <= 0) {
+                Debug.LogWarning(
+                    $"Periodic effect {effect.Data} has non-positive period, reverted to 1 second."
+                );
+                
+                period = 1f;
+            }
+                    
+            Coroutine periodicCoroutine = this.StartCoroutine(
+                this.ExecutePeriodically(effect, period, effect.Data.ActualDuration)
+            );
+                    
+            this.ActiveEffects.Add(effect, periodicCoroutine);
+        }
+        
+        private void AddContinuousEffect(GameplayEffect effect) {
+            effect.Apply(this.AttributeSet);
+            switch (effect.Data.ActualDuration) {
+                case > 0: {
+                    Coroutine continuousCoroutine = this.StartCoroutine(
+                        this.ExecuteContinuously(effect, effect.Data.ActualDuration)
+                    );
+                            
+                    this.ActiveEffects.Add(effect, continuousCoroutine);
+                    break;
+                }
+                case < 0:
+                    this.ActiveEffects.Add(effect, null);
+                    break;
+            }
         }
 
-        internal void Add(GameplayEffect effect) {
+        public void Add(GameplayEffect effect, int chance, IAbility ability = null) {
+            if (effect.Commit(this.AttributeSet, chance) != GameplayEffect.Outcome.Success) {
+                this.OnEffectEnded?.Invoke(effect, ability);
+                return;
+            }
+            
+            if (ability != null) {
+                this.SourceAbilities.Add(effect, ability);
+            }
+            
             switch (effect.Data.ExecutionTime) {
                 case GameplayEffectData.Periodicity.Periodic:
-                    if (effect.Data.Period <= 0) {
-                        Debug.LogWarning(
-                            $"Periodic effect {effect.Data} has non-positive period, reverted to 1 second."
-                        );
-                        return;
-                    }
-
-                    Coroutine periodicCoroutine = this.StartCoroutine(
-                        this.ExecutePeriodically(effect, effect.Data.Period, effect.Data.Duration)
-                    );
-                    this.ActiveEffects.Add(effect, periodicCoroutine);
+                    this.AddPeriodicEffect(effect);
                     break;
                 case GameplayEffectData.Periodicity.Continuous:
-                    effect.Apply(this.AttributeSet);
-                    Coroutine continuousCoroutine =
-                            this.StartCoroutine(this.ExecuteContinuously(effect, effect.Data.Duration));
-                    this.ActiveEffects.Add(effect, continuousCoroutine);
+                    this.AddContinuousEffect(effect);
                     break;
                 default:
                     effect.Apply(this.AttributeSet);
+                    this.End(effect);
                     break;
             }
         }
 
-        internal void Remove(GameplayEffect effect) {
+        internal void End(GameplayEffect effect) {
             if (this.ActiveEffects.Remove(effect)) {
-                effect.EndOn(this.AttributeSet);
+                effect.Revert(this.AttributeSet);
             }
+            
+            if (this.SourceAbilities.Remove(effect, out IAbility ability)) {
+                this.OnEffectEnded?.Invoke(effect, ability);
+            } else {
+                this.OnEffectEnded?.Invoke(effect, null);
+            }
+        }
+
+        public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
+            return GameplayEffectExecutionArgs.From(this.AttributeSet);
         }
     }
 }
