@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
+using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
     public abstract class ProjectileEffect : MonoBehaviour, IProjectileEffect {
-        public abstract bool IsEnabledFor(Projectile projectile);
-
         public virtual void TurnOn(Projectile projectile) {
             this.gameObject.SetActive(true);
         }
@@ -13,7 +12,7 @@ namespace WeaponsSystem.Projectiles {
             this.gameObject.SetActive(false);
         }
         
-        public abstract void Execute(Projectile projectile);
-        public abstract IEnumerable<string> GetRequiredAttributes();
+        public abstract void Execute(Projectile projectile, LayerMask mask, IEnumerable<string> tags);
+        public abstract void FetchAttributes(IAttributeReader source);
     }
 }

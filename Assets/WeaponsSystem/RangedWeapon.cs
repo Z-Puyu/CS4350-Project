@@ -81,14 +81,14 @@ namespace WeaponsSystem {
             this.StartCoroutine(
                 this.SpawnMultitapBullet(
                     this.Stats.GetCurrent(this.Stats.MultitapCountAttribute), delay,
-                    this.spawnMethods[this.CurrentAttackCounter]
+                    this.spawnMethods[this.CurrentAttackCounter], mask
                 )
             );
             this.canAttack = false;
             this.fireIntervalTimer.Start();
         }
 
-        private void SpawnSingleBullet(Vector3 direction, Vector3 position) {
+        private void SpawnSingleBullet(Vector3 direction, Vector3 position, LayerMask mask) {
             if (this.ProjectilePool is null) {
                 return;
             }
@@ -96,49 +96,49 @@ namespace WeaponsSystem {
             Damage damage = new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData());
             this.ProjectilePool
                 .GetInstance(position)
-                .WithAttributes(this.Stats)
                 .WithDamage(damage)
                 .OnHit(this.Hit)
-                .Launch(direction, this.ProjectilePool);
+                .Launch(this.Stats, direction, this.ProjectilePool, mask);
         }
 
-        private void SpawnSpreadBullet(Vector3 direction, int spread, int count) {
+        private void SpawnSpreadBullet(Vector3 direction, int spread, int count, LayerMask mask) {
             float startAngle = -spread / 2.0f;
             float angleStep = spread / (count - 1.0f);
             for (int i = 0; i < count; i += 1) {
                 float currentAngle = startAngle + i * angleStep;
                 Vector3 currentDirection = Quaternion.Euler(0, 0, currentAngle) * direction;
-                this.SpawnSingleBullet(currentDirection, this.transform.position);
+                this.SpawnSingleBullet(currentDirection, this.transform.position, mask);
             }
         }
 
-        private void SpawnParallelBullet(Vector3 direction, float spacing, int count) {
+        private void SpawnParallelBullet(Vector3 direction, float spacing, int count, LayerMask mask) {
             Vector3 orthogonal = Vector3.Cross(direction, Vector3.forward).normalized;
             float interval = spacing / (count - 1.0f);
             float startOffset = -(spacing / 2.0f);
             for (int i = 0; i < count; i += 1) {
-                this.SpawnSingleBullet(direction, this.transform.position + (startOffset + interval * i) * orthogonal);
+                Vector3 position = this.transform.position + (startOffset + interval * i) * orthogonal;
+                this.SpawnSingleBullet(direction, position, mask);
             }
         }
 
-        private IEnumerator SpawnMultitapBullet(int count, int delay, ProjectileSpawnMethod spawnMethod) {
+        private IEnumerator SpawnMultitapBullet(int count, int delay, ProjectileSpawnMethod spawnMethod, LayerMask mask) {
             for (int i = 0; i < count; i += 1) {
                 switch (spawnMethod) {
                     case ProjectileSpawnMethod.Spread:
                         this.SpawnSpreadBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.ProjectileSpreadAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute)
+                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask
                         );
                         break;
                     case ProjectileSpawnMethod.Parallel:
                         this.SpawnParallelBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.FireSpacingAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute)
+                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask
                         );
                         break;
                     case ProjectileSpawnMethod.Single or ProjectileSpawnMethod.Multitap:
                     default:
-                        this.SpawnSingleBullet(this.outwards, this.transform.position);
+                        this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
                         break;
                 }
 

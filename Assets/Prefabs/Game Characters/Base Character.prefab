@@ -48,6 +48,7 @@ MonoBehaviour:
   <WeaponData>k__BackingField: {fileID: 0}
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 0}
+  <ParticleEffect>k__BackingField: {fileID: 0}
   <AttackOrigin>k__BackingField: {fileID: 0}
 --- !u!1 &6240872075164439431
 GameObject:
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <MovementComponent>k__BackingField: {fileID: 2716461110618952316}
+  <PixelOffset>k__BackingField: 0
   <AnimatorMovementFlag>k__BackingField: -268154354
   <AnimatorAttackTrigger>k__BackingField: 1080829965
 --- !u!114 &133981862283563124
@@ -532,6 +534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939057112029135286, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      propertyPath: <GameplayEffectCoordinator>k__BackingField
+      value: 
+      objectReference: {fileID: 1678095505910229864}
     - target: {fileID: 8716127750433461528, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
       propertyPath: m_Name
       value: CombatantComponent
@@ -821,6 +827,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+--- !u!114 &1678095505910229864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6512616273767000278, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
+  m_PrefabInstance: {fileID: 5559903773095756734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
 --- !u!4 &6059059717299930962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819073491181274348, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}

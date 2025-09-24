@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651668061083998253}
   - component: {fileID: 1488243617223307318}
+  - component: {fileID: 5939057112029135286}
   m_Layer: 0
   m_Name: CombatantComponent
   m_TagString: Untagged
@@ -44,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
+  <DefaultDamageDealer>k__BackingField:
+    <V>k__BackingField: {fileID: 0}
   <EnemyLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
@@ -54,3 +57,16 @@ MonoBehaviour:
   <OnSwitchedGear>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5939057112029135286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716127750433461528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c753ba19984271a95e496478f0dbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.EffectConsumer
+  <GameplayEffectCoordinator>k__BackingField: {fileID: 0}

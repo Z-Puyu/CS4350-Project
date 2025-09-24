@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
 using Utilities;
@@ -12,32 +13,11 @@ using Object = UnityEngine.Object;
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
     public sealed class Projectile : MonoBehaviour {
-        public enum Motion {
-            Pierce,
-            Deflect,
-            Reflect,
-            Retarget,
-            None
-        }
-
-        [Flags]
-        public enum OnHitReaction {
-            None = 0,
-            Explode = 1
-        }
-
-        private bool IsAlive { get; set; }
-        private List<IProjectileEffect> Effects { get; } = new List<IProjectileEffect>();
-        private TrieDictionary<string, char, int> Attributes { get; } = new TrieDictionary<string, char, int>();
-        
-        public Motion MotionType { get; private set; } = Motion.None;
-        public OnHitReaction SpecialEffects { get; private set; } = OnHitReaction.None;
+        private CapsuleCollider2D Collider { get; set; }
+        private ProjectileInfo Info { get; } = new ProjectileInfo();
         private Action<Vector3> OnHitAction { get; set; } = delegate { };
-        private Vector3 Velocity { get; set; }
-        private float range;
-        private float distanceTravelled;
-        private ObjectPool<Projectile> pool;
-        private Damage Damage { get; set; }
+        
+        private ObjectPool<Projectile> Pool { get; set; }
         
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private string SpeedAttribute { get; set; }
@@ -46,56 +26,33 @@ namespace WeaponsSystem.Projectiles {
         private string RangeAttribute { get; set; }
         
         [field: SerializeField, Tag] private List<string> TargetTags { get; set; } = new List<string>();
-
         [field: SerializeField, MinValue(0)] private float SpeedCoefficient { get; set; } = 1f;
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
         public void Awake() {
-            this.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
+            this.Info.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
+            this.Info.TargetTags.AddRange(this.TargetTags);
         }
 
-        private void Start() {
-            foreach (IProjectileEffect effect in this.Effects.Where(effect => effect.IsEnabledFor(this))) {
-                effect.TurnOn(this);
-            }
-            
-            this.IsAlive = true;
-        }
-
-        private IEnumerable<string> GetRequiredAttributes() {
-            HashSet<string> required = new HashSet<string> { this.SpeedAttribute, this.RangeAttribute };
-            foreach (IProjectileEffect effect in this.GetComponentsInChildren<IProjectileEffect>()) {
-                foreach (string attribute in effect.GetRequiredAttributes()) {
-                    required.Add(attribute);
-                }
-            }
-            
-            return required;
-        }
-
-        public Projectile WithAttributes(IAttributeReader attributes) {
-            foreach (string id in this.GetRequiredAttributes()) {
-                this.Attributes.Add(id, attributes.GetCurrent(id));
-            }
-
-            return this;
+        public void AddEffect(Type type, GameplayEffect effect) {
+            this.Info.GameplayEffects[type] = effect;
         }
 
         public Projectile Targets(params string[] tags) {
             foreach (string t in tags) {
-                if (this.TargetTags.Contains(t)) {
+                if (this.Info.TargetTags.Contains(t)) {
                     continue;
                 }
                 
-                this.TargetTags.Add(t);
+                this.Info.TargetTags.Add(t);
             }
 
             return this;
         }
 
         public Projectile WithDamage(Damage damage) {
-            this.Damage = damage;
+            this.Info.Damage = damage;
             return this;
         }
 
@@ -104,44 +61,49 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
-        public void Launch(Vector3 dir, ObjectPool<Projectile> source) {
-            this.Velocity = dir * (this.Attributes[this.SpeedAttribute] * this.SpeedCoefficient);
-            this.range = this.Attributes[this.RangeAttribute];
-            this.pool = source;
-        }
-
-        public int GetAttribute(string key) {
-            return this.Attributes.TryGetValue(key, out int value) ? value : 0;
+        public void Launch(IAttributeReader source, Vector3 dir, ObjectPool<Projectile> pool, LayerMask mask) {
+            this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
+            this.Info.Range = source.GetCurrent(this.RangeAttribute);
+            this.Info.Effects.ForEach(effect => effect.FetchAttributes(source));
+            IEnumerable<IProjectileEffect> effects =
+                    this.Info.Effects.Where(effect => this.Info.GameplayEffects.ContainsKey(effect.GetType()));
+            foreach (IProjectileEffect effect in effects) {
+                effect.TurnOn(this);
+            }
+            
+            this.Info.IsAlive = true;
+            this.Collider.includeLayers = mask;
+            this.Pool = pool;
         }
 
         private void Destroy() {
-            this.range = 0;
-            this.distanceTravelled = 0;
-            this.Velocity = Vector3.zero;
-            this.Damage = null;
             this.OnHitAction = delegate { };
-            this.Effects.ForEach(effect => effect.TurnOff(this));
-            this.SpecialEffects = OnHitReaction.None;
-            this.MotionType = Motion.None;
-            this.pool.ReturnInstance(this);
+            this.Info.Effects.ForEach(effect => effect.TurnOff(this));
+            this.Info.Reset();
+            this.Collider.includeLayers = 0;
+            this.Pool.ReturnInstance(this);
         }
 
-        public void MarkForDestruction() {
-            this.IsAlive = false;
+        public void Relaunch() {
+            this.Info.IsAlive = true;
         }
         
         private void Hit(IDamageable target) {
             this.OnHitAction(this.transform.position);
-            target.HandleDamage(this.Damage);
-            if (this.Effects.Count == 0) {
-                this.MarkForDestruction();
-            } else {
-                this.Effects.ForEach(effect => effect.Execute(this));
+            target.HandleDamage(this.Info.Damage);
+            this.Info.IsAlive = false;
+            this.Info.Effects.ForEach(effect => effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags));
+            if (!this.Info.IsAlive) {
+                this.Destroy();
             }
+        }
+
+        public GameplayEffect GetEffect(IProjectileEffect effect) {
+            return this.Info.GameplayEffects[effect.GetType()];
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
-            if (this.TargetTags.Count > 0 && !this.TargetTags.Any(other.gameObject.CompareTag)) {
+            if (this.Info.TargetTags.Count > 0 && !this.Info.TargetTags.Any(other.gameObject.CompareTag)) {
                 return;
             }
 
@@ -151,13 +113,13 @@ namespace WeaponsSystem.Projectiles {
         }
 
         private void Update() {
-            if (!this.IsAlive || this.distanceTravelled >= this.range) {
+            if (this.Info.DistanceTravelled >= this.Info.Range) {
                 this.Destroy();
                 return;
             }
 
-            Vector3 distanceTravelledThisFrame = Time.deltaTime * this.Velocity;
-            this.distanceTravelled += distanceTravelledThisFrame.magnitude;
+            Vector3 distanceTravelledThisFrame = Time.deltaTime * this.Info.Velocity;
+            this.Info.DistanceTravelled += distanceTravelledThisFrame.magnitude;
             this.transform.position += distanceTravelledThisFrame;
         }
     }

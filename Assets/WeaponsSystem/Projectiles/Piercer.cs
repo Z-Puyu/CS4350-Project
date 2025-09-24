@@ -14,25 +14,16 @@ namespace WeaponsSystem.Projectiles {
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
 
-        public override bool IsEnabledFor(Projectile projectile) {
-            return projectile.MotionType == Projectile.Motion.Pierce;
-        }
-
-        public override void TurnOn(Projectile projectile) {
-            base.TurnOn(projectile);
-            this.RemainingPierce = projectile.GetAttribute(this.PierceCountAttribute);
-        }
-
-        public override void Execute(Projectile projectile) {
+        public override void Execute(Projectile projectile, LayerMask mask, IEnumerable<string> tags) {
             this.RemainingPierce -= 1;
             OnScreenDebugger.Log($"Remaining Pierce Count: {this.RemainingPierce} times");
-            if (this.RemainingPierce <= 0) {
-                projectile.MarkForDestruction();
+            if (this.RemainingPierce > 0) {
+                projectile.Relaunch();
             }
         }
-        
-        public override IEnumerable<string> GetRequiredAttributes() {
-            return new[] { this.PierceCountAttribute };
+
+        public override void FetchAttributes(IAttributeReader source) {
+            this.RemainingPierce = source.GetCurrent(this.PierceCountAttribute);
         }
     }
 }
