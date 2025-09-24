@@ -76,7 +76,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sword_Attack_1
+  m_Name: Slime_Attack_1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -90,7 +90,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
+  m_Motion: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -138,7 +138,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6c61ca1464b4b3c47a82e260218e09db, type: 2}
+  m_Motion: {fileID: 7400000, guid: 66e60521e62c27b43ac29531470509fb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -151,7 +151,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sword_Attack_3
+  m_Name: Slime_Attack_3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -165,33 +165,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-6624360397895850838
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Base Attack 1
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
+  m_Motion: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -316,7 +290,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 94ee0d7964bb16a488e2deeeec0c2fed, type: 2}
+  m_Motion: {fileID: 7400000, guid: 96c3909205de3f04c9f0595c91177ae8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -328,7 +302,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameCharacterAnimations
+  m_Name: SlimeAnimations
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Is Moving
@@ -381,7 +355,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sword_Attack_2
+  m_Name: Slime_Attack_2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -395,7 +369,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
+  m_Motion: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -422,9 +396,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7158376629178950084}
     m_Position: {x: 780, y: 10, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6624360397895850838}
-    m_Position: {x: 760, y: 310, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -4787058571576114431}
@@ -568,7 +539,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c254a98bdab8c9946a81ab36f80d2b34, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7883a02957d5557489ba5904db51ac5f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -595,7 +566,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cc6ee4e148d53f242abafb578329884f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5d017356073d58b4ca77cac07ff107dd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
