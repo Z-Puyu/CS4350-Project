@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
   m_Name: Projectile Piercing
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: 'BulletPiercing '
-  displayName: Bullet Piercing
+  <Name>k__BackingField: 'Piercing '
+  displayName: Projectile Piercing
   <ModificationRules>k__BackingField:
   - rid: 2098011547707638002
-  <Id>k__BackingField: 'Projectile.BulletPiercing '
+  <Id>k__BackingField: 'Projectile.Piercing '
   <Parent>k__BackingField: {fileID: 11400000, guid: c0e22f0d882ee0e4c8b971744df25953, type: 2}
   <SubTypes>k__BackingField: []
   references:

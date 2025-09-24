@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920212b1539b9ac45beea78592b1f1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Explosion
-  <ExplosionRadiusAttribute>k__BackingField: Damage.Elemental.Ice
+  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
 --- !u!1 &6887705806686609679
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,15 +54,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 292713866018098697}
-  - component: {fileID: 6067668692363780211}
   - component: {fileID: 5455874047220195867}
   - component: {fileID: 7141936666469846693}
-  - component: {fileID: 4191191139553109732}
-  - component: {fileID: 7482041519576121751}
-  - component: {fileID: 3719669408748527567}
+  - component: {fileID: 397347953384542594}
   - component: {fileID: 6170226598646885628}
   m_Layer: 6
-  m_Name: BaseBullet
+  m_Name: BaseProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,52 +81,6 @@ Transform:
   - {fileID: 1351545242768022503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6067668692363780211
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887705806686609679}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
-    newSize: {x: 0.2, y: 0.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
 --- !u!212 &5455874047220195867
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -211,12 +162,12 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4191191139553109732
-CircleCollider2D:
+--- !u!70 &397347953384542594
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -228,7 +179,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -250,32 +201,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.1
---- !u!114 &7482041519576121751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887705806686609679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920212b1539b9ac45beea78592b1f1d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Explosion
-  <ExplosionRadiusAttribute>k__BackingField: 
---- !u!114 &3719669408748527567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887705806686609679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80589217c60b88a4c976983fa53c578b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Piercer
+  m_Size: {x: 0.2, y: 0.2}
+  m_Direction: 0
 --- !u!114 &6170226598646885628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29544a1918a5674795697532d93d495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Projectile
-  <SpeedAttribute>k__BackingField: 
-  <RangeAttribute>k__BackingField: 
+  <SpeedAttribute>k__BackingField: Projectile.Speed
+  <RangeAttribute>k__BackingField: Projectile.Range
   <TargetTags>k__BackingField: []
   <SpeedCoefficient>k__BackingField: 1

@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
   m_Name: Ranged Weapon Attribute
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: 
-  displayName: 
+  <Name>k__BackingField: Ranged
+  displayName: Ranged Weapon Attribute
   <ModificationRules>k__BackingField: []
-  <Id>k__BackingField: 
-  <Parent>k__BackingField: {fileID: 0}
-  <SubTypes>k__BackingField: []
+  <Id>k__BackingField: Weapon.Ranged
+  <Parent>k__BackingField: {fileID: 11400000, guid: 44cc93666c584b741a4407ddb1b94a58, type: 2}
+  <SubTypes>k__BackingField:
+  - {fileID: 11400000, guid: 14a973606b074b74ca8bad220af0368e, type: 2}
+  - {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
+  - {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
+  - {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
+  - {fileID: 11400000, guid: a93b9d40183333343a927204d5dd4419, type: 2}
   references:
     version: 2
     RefIds: []

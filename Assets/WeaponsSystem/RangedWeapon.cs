@@ -40,7 +40,7 @@ namespace WeaponsSystem {
             this.SelfTransform.position = this.SelfTransform.parent.position;
             int fireInterval = this.Stats.GetCurrent(this.Stats.FireIntervalAttribute);
             this.fireIntervalTimer = new Timer(fireInterval / 1000.0f);
-            this.fireIntervalTimer.OnTimerFinished += this.SetCanAttack;
+            this.fireIntervalTimer.OnTimerFinished += () => this.canAttack = true;
         }
 
         protected override void Update() {
@@ -57,10 +57,6 @@ namespace WeaponsSystem {
             this.outwards = (mousePosWorld - position).normalized;
         }
 
-        private void SetCanAttack() {
-            this.canAttack = true;
-        }
-
         public override int StartAttack() {
             if (this.canAttack) {
                 OnScreenDebugger.Log("RangedAttackSuccessfully");
@@ -73,7 +69,7 @@ namespace WeaponsSystem {
         }
 
         public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
-            if (this.ProjectilePool == null) {
+            if (this.ProjectilePool is null) {
                 return;
             }
 
@@ -102,6 +98,7 @@ namespace WeaponsSystem {
                 .GetInstance(position)
                 .WithAttributes(this.Stats)
                 .WithDamage(damage)
+                .OnHit(this.Hit)
                 .Launch(direction, this.ProjectilePool);
         }
 
@@ -130,13 +127,13 @@ namespace WeaponsSystem {
                     case ProjectileSpawnMethod.Spread:
                         this.SpawnSpreadBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.ProjectileSpreadAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCount)
+                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute)
                         );
                         break;
                     case ProjectileSpawnMethod.Parallel:
                         this.SpawnParallelBullet(
-                            this.outwards, this.Stats.GetCurrent(this.Stats.BulletSpacingAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCount)
+                            this.outwards, this.Stats.GetCurrent(this.Stats.FireSpacingAttribute),
+                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute)
                         );
                         break;
                     case ProjectileSpawnMethod.Single or ProjectileSpawnMethod.Multitap:

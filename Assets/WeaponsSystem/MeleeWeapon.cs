@@ -30,9 +30,12 @@ namespace WeaponsSystem {
                     continue;
                 }
 
-                if (c.TryGetComponent(out IDamageable damageable) && this.AllowsDamageOn(c.gameObject)) {
-                    damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
+                if (!c.TryGetComponent(out IDamageable damageable) || !this.AllowsDamageOn(c.gameObject)) {
+                    continue;
                 }
+
+                this.Hit(c.bounds.center);
+                damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
             }
         }
 

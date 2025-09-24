@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
   m_Name: Weapon Attribute
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: 
-  displayName: 
+  <Name>k__BackingField: Weapon
+  displayName: Weapon Attribute
   <ModificationRules>k__BackingField: []
-  <Id>k__BackingField: 
+  <Id>k__BackingField: Weapon
   <Parent>k__BackingField: {fileID: 0}
-  <SubTypes>k__BackingField: []
+  <SubTypes>k__BackingField:
+  - {fileID: 11400000, guid: 2db0172c7dbe0674a95ff5134db09267, type: 2}
+  - {fileID: 11400000, guid: 3014a4cc40c18af4590c5971ed569e0f, type: 2}
+  - {fileID: 11400000, guid: e4aad2996ae1e454eb59485a4b53e35b, type: 2}
+  - {fileID: 11400000, guid: 27e26aefe4ec1484f809c61b9c42bddb, type: 2}
   references:
     version: 2
     RefIds: []

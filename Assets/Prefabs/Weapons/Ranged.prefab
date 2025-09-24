@@ -118,12 +118,9 @@ MonoBehaviour:
   <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
   <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
-  <RangeAttribute>k__BackingField: Projectile.Range
-  <BulletSpeedAttribute>k__BackingField: BulletSpeed
-  <BulletSpreadAttribute>k__BackingField: BulletSpread
-  <FireIntervalAttribute>k__BackingField: BulletFireInterval
-  <PierceStrengthAttribute>k__BackingField: BulletPiercing
-  <MultitapCountAttribute>k__BackingField: 
-  <BulletCountAttribute>k__BackingField: 
-  <ExplosionRadiusAttribute>k__BackingField: 
-  <BulletSpacingAttribute>k__BackingField: 
+  <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread
+  <FireIntervalAttribute>k__BackingField: Weapon.Ranged.FireInterval
+  <MultitapCountAttribute>k__BackingField: Weapon.Ranged.MultitapCount
+  <ProjectileCountAttribute>k__BackingField: Weapon.Ranged.FireMultiplicity
+  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
+  <FireSpacingAttribute>k__BackingField: Weapon.Ranged.FireSpacing

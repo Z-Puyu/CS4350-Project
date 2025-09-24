@@ -552,7 +552,13 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1816691387449555453, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
     - {fileID: 3170095659245539717, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}, insertIndex: 0, addedObject: {fileID: 1957642021}}]
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6749025965523589983, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 794442560}
+    - targetCorrespondingSourceObject: {fileID: 6749025965523589983, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1957642021}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
 --- !u!1001 &593807166
@@ -706,6 +712,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
+--- !u!4 &794442560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
+  m_PrefabInstance: {fileID: 8256393635899768804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &847053562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1264,6 +1275,11 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
+--- !u!4 &1540780401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6749025965523589983, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -1403,33 +1419,30 @@ MonoBehaviour:
   - Damage.Physical
   <AttackModifiers>k__BackingField:
   - <DefaultModifiers>k__BackingField:
-    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
+    - <Target>k__BackingField: {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
       <Type>k__BackingField: 0
       <Magnitude>k__BackingField: 2
     - <Target>k__BackingField: {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
       <Type>k__BackingField: 0
       <Magnitude>k__BackingField: 15
   - <DefaultModifiers>k__BackingField:
-    - <Target>k__BackingField: {fileID: 11400000, guid: fe269b1d17f33d647ad6a3b60efbd099, type: 2}
+    - <Target>k__BackingField: {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
       <Type>k__BackingField: 0
       <Magnitude>k__BackingField: 3
-    - <Target>k__BackingField: {fileID: 11400000, guid: 40b333465774e154eadb1f635b8a8715, type: 2}
+    - <Target>k__BackingField: {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
       <Type>k__BackingField: 0
       <Magnitude>k__BackingField: 2
-    - <Target>k__BackingField: {fileID: 11400000, guid: 0da81d9df34233e4a858217859a1c6ed, type: 2}
+    - <Target>k__BackingField: {fileID: 11400000, guid: a93b9d40183333343a927204d5dd4419, type: 2}
       <Type>k__BackingField: 0
       <Magnitude>k__BackingField: 1
-  <ComboLengthAttribute>k__BackingField: ComboLength
-  <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
-  <RangeAttribute>k__BackingField: BulletRange
-  <BulletSpeedAttribute>k__BackingField: BulletSpeed
-  <BulletSpreadAttribute>k__BackingField: BulletSpread
-  <FireIntervalAttribute>k__BackingField: BulletFireInterval
-  <PierceStrengthAttribute>k__BackingField: BulletPiercing
-  <MultitapCountAttribute>k__BackingField: BulletMultitapCount
-  <BulletCountAttribute>k__BackingField: BulletCount
-  <ExplosionRadiusAttribute>k__BackingField: BulletExplosionRadius
-  <BulletSpacingAttribute>k__BackingField: BulletSpacing
+  <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
+  <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
+  <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread
+  <FireIntervalAttribute>k__BackingField: Weapon.Ranged.FireInterval
+  <MultitapCountAttribute>k__BackingField: Weapon.Ranged.MultitapCount
+  <ProjectileCountAttribute>k__BackingField: Weapon.Ranged.FireMultiplicity
+  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
+  <FireSpacingAttribute>k__BackingField: Weapon.Ranged.FireSpacing
 --- !u!114 &1688320013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,11 +1538,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
---- !u!4 &1849515893 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-  m_PrefabInstance: {fileID: 529274588}
+--- !u!114 &1872981805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8114700547612640779, guid: 72d59523c672d2a4e8c050cb56abbffd, type: 3}
+  m_PrefabInstance: {fileID: 8200168972410955466}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bebe8e01bf04c05a5fd94039e0dffb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Map.GameWorld
 --- !u!1 &1957642020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1688320011}
-  m_Father: {fileID: 1849515893}
+  m_Father: {fileID: 1540780401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957642022
 MonoBehaviour:
@@ -1633,7 +1652,7 @@ SpriteRenderer:
   m_Size: {x: 2.16, y: 0.95}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1957642024
@@ -1651,8 +1670,9 @@ MonoBehaviour:
   <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 1688320012}
-  bulletPool:
-    <Prefab>k__BackingField: {fileID: 8082640687752798569, guid: 09becbbf91443fc41a7e2106ce832cb1, type: 3}
+  <ParticleEffect>k__BackingField: {fileID: 7786676531818901644, guid: 4b40abd80f08eab4aa81aec3544cf8e5, type: 3}
+  <ProjectilePool>k__BackingField:
+    <Prefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
   spawnMethods: 0000000001000000
 --- !u!114 &1957642025
 MonoBehaviour:
@@ -1667,17 +1687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.MouseTracker
   offset: 0.7
---- !u!114 &1872981805 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8114700547612640779, guid: 72d59523c672d2a4e8c050cb56abbffd, type: 3}
-  m_PrefabInstance: {fileID: 8200168972410955466}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bebe8e01bf04c05a5fd94039e0dffb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Map.GameWorld
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2120,7 +2129,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1540780401}
     m_Modifications:
     - target: {fileID: 286698903840859638, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_Name
@@ -2144,15 +2153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 503650084216761073, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2166,6 +2175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2270376434729892677, guid: c73fc935382d4a045ad02d06fbe64383, type: 3}
+      propertyPath: <ParticleEffect>k__BackingField
+      value: 
+      objectReference: {fileID: 7786676531818901644, guid: 4b40abd80f08eab4aa81aec3544cf8e5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2265,7 +2278,6 @@ SceneRoots:
   - {fileID: 8952846475725524284}
   - {fileID: 1713279359534170061}
   - {fileID: 593807166}
-  - {fileID: 8256393635899768804}
   - {fileID: 529274588}
   - {fileID: 1781764269}
   - {fileID: 850556125}

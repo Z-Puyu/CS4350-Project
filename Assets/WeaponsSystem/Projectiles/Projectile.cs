@@ -10,7 +10,7 @@ using WeaponsSystem.DamageHandling;
 using Object = UnityEngine.Object;
 
 namespace WeaponsSystem.Projectiles {
-    [DisallowMultipleComponent]
+    [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
     public sealed class Projectile : MonoBehaviour {
         public enum Motion {
             Pierce,
@@ -27,21 +27,22 @@ namespace WeaponsSystem.Projectiles {
         }
 
         private bool IsAlive { get; set; }
-        private List<IProjectileEffect> Effects { get; } = new();
+        private List<IProjectileEffect> Effects { get; } = new List<IProjectileEffect>();
         private TrieDictionary<string, char, int> Attributes { get; } = new TrieDictionary<string, char, int>();
         
         public Motion MotionType { get; private set; } = Motion.None;
         public OnHitReaction SpecialEffects { get; private set; } = OnHitReaction.None;
+        private Action<Vector3> OnHitAction { get; set; } = delegate { };
         private Vector3 Velocity { get; set; }
         private float range;
         private float distanceTravelled;
         private ObjectPool<Projectile> pool;
         private Damage Damage { get; set; }
         
-        [field: SerializeField, AdvancedDropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private string SpeedAttribute { get; set; }
         
-        [field: SerializeField, AdvancedDropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private string RangeAttribute { get; set; }
         
         [field: SerializeField, Tag] private List<string> TargetTags { get; set; } = new List<string>();
@@ -98,6 +99,11 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
+        public Projectile OnHit(Action<Vector3> action) {
+            this.OnHitAction += action;
+            return this;
+        }
+
         public void Launch(Vector3 dir, ObjectPool<Projectile> source) {
             this.Velocity = dir * (this.Attributes[this.SpeedAttribute] * this.SpeedCoefficient);
             this.range = this.Attributes[this.RangeAttribute];
@@ -113,6 +119,7 @@ namespace WeaponsSystem.Projectiles {
             this.distanceTravelled = 0;
             this.Velocity = Vector3.zero;
             this.Damage = null;
+            this.OnHitAction = delegate { };
             this.Effects.ForEach(effect => effect.TurnOff(this));
             this.SpecialEffects = OnHitReaction.None;
             this.MotionType = Motion.None;
@@ -123,20 +130,23 @@ namespace WeaponsSystem.Projectiles {
             this.IsAlive = false;
         }
         
+        private void Hit(IDamageable target) {
+            this.OnHitAction(this.transform.position);
+            target.HandleDamage(this.Damage);
+            if (this.Effects.Count == 0) {
+                this.MarkForDestruction();
+            } else {
+                this.Effects.ForEach(effect => effect.Execute(this));
+            }
+        }
+        
         private void OnTriggerEnter2D(Collider2D other) {
             if (this.TargetTags.Count > 0 && !this.TargetTags.Any(other.gameObject.CompareTag)) {
                 return;
             }
 
-            if (!other.TryGetComponent(out IDamageable damageable)) {
-                return;
-            }
-
-            damageable.HandleDamage(this.Damage);
-            if (this.Effects.Count == 0) {
-                this.MarkForDestruction();
-            } else {
-                this.Effects.ForEach(effect => effect.Execute(this));
+            if (other.TryGetComponent(out IDamageable damageable)) {
+                this.Hit(damageable);
             }
         }
 

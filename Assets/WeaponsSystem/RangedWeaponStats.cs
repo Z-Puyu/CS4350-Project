@@ -14,12 +14,12 @@ namespace WeaponsSystem {
         public string MultitapCountAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ProjectileCount { get; private set; }
+        public string ProjectileCountAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ExplosionRadiusAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string BulletSpacingAttribute { get; private set; }
+        public string FireSpacingAttribute { get; private set; }
     }
 }
