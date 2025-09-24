@@ -15,7 +15,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         private bool HasNeverExecuted { get; set; } = true;
         internal GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
-        internal event Action OnEnded;
         
         internal GameplayEffect(GameplayEffectData data, GameplayEffectExecutionArgs args) {
             this.Data = data;
@@ -59,7 +58,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         /// Terminates the gameplay effect on the target. This will revert things like temporary buffs.
         /// </summary>
         /// <param name="target">The target on which this gameplay effect has been active.</param>
-        internal void EndOn(AttributeSet target) {
+        internal void Revert(AttributeSet target) {
             if (this.Data.ExecutionTime != GameplayEffectData.Periodicity.Continuous) {
                 return;
             }
@@ -67,9 +66,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(-modifier);
             }
-            
-            this.OnEnded?.Invoke();
-            this.OnEnded = null;
         }
     }
 }

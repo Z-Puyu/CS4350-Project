@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameplayAbilities.Runtime.Abilities;
+using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
@@ -11,8 +12,9 @@ using UnityEngine;
 namespace Game.Items {
     [Serializable]
     public class Consumable : ItemProperty {
-        [field: SerializeReference] private List<GameplayEffectData> Effects { get; set; } = new List<GameplayEffectData>();
-
+        [field: SerializeReference]
+        public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
+        
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
             List<GameplayEffectData> effects = this.Effects.ToList();
@@ -27,10 +29,16 @@ namespace Game.Items {
         public override IItemProperty Instantiate() {
             return new Consumable { Effects = this.Effects.ToList() };
         }
-        
+
         public override void Process(in Item item, GameObject target) {
-            if (target.TryGetComponent(out AbilitySystem system)) {
-                this.Effects.ForEach(system.AddEffect);
+            GameplayEffectCoordinator coordinator = target.GetComponentInChildren<GameplayEffectCoordinator>();
+            if (!coordinator) {
+                return;
+            }
+            
+            GameplayEffectExecutionArgs args = coordinator.CreateEffectExecutionArgs().Build();
+            foreach (GameplayEffectData effect in this.Effects) {
+                coordinator.Add(effect.Instantiate(coordinator.GetComponent<AttributeSet>(), args), 100);
             }
         }
         

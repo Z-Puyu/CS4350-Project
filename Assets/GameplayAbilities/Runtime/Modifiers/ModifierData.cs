@@ -79,7 +79,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 return new Modifier(value, this.Method, this.TargetAttribute.Id);
             }
 
-            if (this.AllowSetByCaller && args.CallerSuppliedDataValues.TryGetValue(this.Label, out int val)) {
+            if (this.AllowSetByCaller && args.HasData(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute.Id);
             }
             

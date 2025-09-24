@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using SaintsField;
@@ -7,18 +6,18 @@ using UnityEngine.Events;
 using Utilities;
 using WeaponsSystem.DamageHandling;
 
-namespace WeaponsSystem.BulletComponents {
+namespace WeaponsSystem.Projectiles {
     [RequireComponent(typeof(Explosion), typeof(Piercer))]
-    public class Bullet : MonoBehaviour {
+    public class Projectile : MonoBehaviour {
         public Vector3 speed;
         public float range;
         private float distanceTravelled;
-        private ObjectPool<Bullet> pool;
+        private ObjectPool<Projectile> pool;
         private UnityAction onHit;
         private Damage damageRecord;
         [SerializeField, Tag] private List<string> tags = new List<string>();
 
-        public void SetTarget(float spd, float rg, Vector3 dir, ObjectPool<Bullet> bulletPool) {
+        public void SetTarget(float spd, float rg, Vector3 dir, ObjectPool<Projectile> bulletPool) {
             this.speed = spd * dir;
             this.range = rg;
             this.pool = bulletPool;
@@ -42,7 +41,7 @@ namespace WeaponsSystem.BulletComponents {
             }
 
             if (other.TryGetComponent(out IDamageable damageable)) {
-                this.DealDamage(other,this.tags);
+                this.DealDamage(other, this.tags);
                 this.onHit?.Invoke();
             }
         }

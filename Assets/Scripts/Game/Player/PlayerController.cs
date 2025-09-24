@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using Common;
 using Events;
 using Game.Enemies;
+using Game.Map;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
 using CharacterController = Game.CharacterControls.CharacterController;
@@ -17,7 +20,7 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-
+        
         protected override void Start() {
             if (!this.InitialData) {
                 return;
@@ -28,10 +31,6 @@ namespace Game.Player {
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
             this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
-        }
-
-        public override void HandleDeath() {
-            this.Say("Player died");
         }
 
         private void ConfigureInventory() {

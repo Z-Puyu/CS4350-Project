@@ -10,6 +10,8 @@ namespace WeaponsSystem {
     public sealed class MeleeWeapon : Weapon<MeleeWeaponStats> {
         [field: SerializeField, Required] private Transform AttackOrigin { get; set; }
 
+        public override float AttackDuration => 0;
+
         public override int StartAttack() {
             OnScreenDebugger.Log($"MeleeAttackSuccessfully: combo {this.CurrentAttackCounter}");
             return base.StartAttack();
@@ -29,9 +31,7 @@ namespace WeaponsSystem {
                 }
 
                 if (c.TryGetComponent(out IDamageable damageable) && this.AllowsDamageOn(c.gameObject)) {
-                    OnScreenDebugger.Log($"{this.transform.root.gameObject.name} hit {c.transform.root.gameObject.name}");
                     damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
-                    // TODO: Damageable.TakeDamage(damage)
                 }
             }
         }

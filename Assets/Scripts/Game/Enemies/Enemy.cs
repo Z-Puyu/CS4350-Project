@@ -34,6 +34,7 @@ namespace Game.Enemies {
         }
 
         public override void HandleDeath() {
+            base.HandleDeath();
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
         }
     }
