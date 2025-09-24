@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using SaintsField;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using Utilities;
 using Timer = Utilities.Timer;
 
 namespace WeaponsSystem.DamageHandling {
@@ -21,7 +18,8 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
-        private Timer attackTimer;
+        
+        private Timer AttackTimer { get; set; }
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
@@ -33,7 +31,7 @@ namespace WeaponsSystem.DamageHandling {
         }
 
         private void Update() {
-            this.attackTimer?.Tick();
+            this.AttackTimer?.Tick();
         }
 
         public void StartAttack() {
@@ -51,12 +49,12 @@ namespace WeaponsSystem.DamageHandling {
         }
 
         public void QueryFinishAttack() {
-            this.attackTimer = new Timer(this.DamageDealer.QueryEndAttack());
-            this.attackTimer.Start();
-            this.attackTimer.OnTimerFinished += this.FinishAttack;
+            this.AttackTimer = new Timer(this.DamageDealer.AttackDuration);
+            this.AttackTimer.OnTimerFinished += this.FinishAttack;
+            this.AttackTimer.Start();
         }
 
-        public void FinishAttack() {
+        private void FinishAttack() {
             this.IsAttacking = false;
             this.DamageDealer.EndAttack();
         }

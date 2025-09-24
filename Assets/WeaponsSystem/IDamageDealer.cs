@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace WeaponsSystem {
     public interface IDamageDealer {
+        public abstract float AttackDuration { get; }
+        
         /// <summary>
         /// Starts an attack.
         /// </summary>
@@ -19,7 +19,7 @@ namespace WeaponsSystem {
         /// You can ignore this if you use trigger colliders.</param>
         /// <param name="forward">The forward direction the damage dealer is facing.</param>
         public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
-        
+
         public void EndAttack();
 
         public bool AllowsDamageOn(GameObject candidate);
@@ -27,9 +27,5 @@ namespace WeaponsSystem {
         public void Enable();
 
         public void Disable();
-        
-        public void ConnectComboResetEvent(Action action);
-        
-        public float QueryEndAttack();
     }
 }

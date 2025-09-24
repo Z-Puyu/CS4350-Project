@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
-using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem {

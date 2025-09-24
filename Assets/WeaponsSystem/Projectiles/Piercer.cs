@@ -1,7 +1,8 @@
 using Common;
 using UnityEngine;
 
-namespace WeaponsSystem.BulletComponents {
+namespace WeaponsSystem.Projectiles {
+    [RequireComponent(typeof(Projectile))]
     public class Piercer : MonoBehaviour {
         [filed: SerializeField] public int PierceCount { get; private set; }
 
