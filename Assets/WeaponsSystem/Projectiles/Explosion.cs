@@ -1,16 +1,27 @@
+using System.Collections.Generic;
 using Common;
+using GameplayAbilities.Runtime.Attributes;
+using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
-    [RequireComponent(typeof(CircleCollider2D))]
-    public class Explosion : MonoBehaviour {
-        public void Explode() {
-            this.GetComponent<CircleCollider2D>().enabled = true;
+    [DisallowMultipleComponent]
+    public sealed class Explosion : ProjectileEffect {
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
+        private string ExplosionRadiusAttribute { get; set; }
+        
+        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        
+        public override bool IsEnabledFor(Projectile projectile) {
+            return projectile.SpecialEffects.HasFlag(Projectile.OnHitReaction.Explode);
+        }
+
+        public override void Execute(Projectile projectile) {
             OnScreenDebugger.Log("Exploded");
         }
 
-        public void UpdateExplosionRadius(float radius) {
-            this.GetComponent<CircleCollider2D>().radius = radius;
+        public override IEnumerable<string> GetRequiredAttributes() {
+            return new[] { this.ExplosionRadiusAttribute };
         }
     }
 }

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
-  m_Name: Bullet Range
+  m_Name: Projectile Piercing
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: BulletRange
-  displayName: Bullet Range
+  <Name>k__BackingField: 'BulletPiercing '
+  displayName: Bullet Piercing
   <ModificationRules>k__BackingField:
-  - rid: 2098011547707637999
-  <Id>k__BackingField: BulletRange
-  <Parent>k__BackingField: {fileID: 0}
+  - rid: 2098011547707638002
+  <Id>k__BackingField: 'Projectile.BulletPiercing '
+  <Parent>k__BackingField: {fileID: 11400000, guid: c0e22f0d882ee0e4c8b971744df25953, type: 2}
   <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 2098011547707637999
+    - rid: 2098011547707638002
       type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
       data:
         <Min>k__BackingField: 0

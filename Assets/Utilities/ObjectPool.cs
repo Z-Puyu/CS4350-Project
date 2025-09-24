@@ -18,7 +18,7 @@ namespace Utilities {
             }
         }
         
-        public T GetInstance() {
+        public T GetInstance(Vector3 position = default, Quaternion rotation = default) {
             if (this.pool.Count == 0) {
                 T instance = Object.Instantiate(this.Prefab);
                 instance.gameObject.SetActive(false);
@@ -27,6 +27,9 @@ namespace Utilities {
             
             T obj = this.pool.Dequeue();
             obj.gameObject.SetActive(true);
+            Transform transform = obj.transform;
+            transform.position = position;
+            transform.rotation = rotation;
             return obj;
         }
 
@@ -39,6 +42,7 @@ namespace Utilities {
             foreach (T instance in this.pool) {
                 Object.Destroy(instance.gameObject);
             }
+            
             this.pool.Clear();
         }
     }
