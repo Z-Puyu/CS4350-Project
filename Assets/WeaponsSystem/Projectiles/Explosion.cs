@@ -26,11 +26,11 @@ namespace WeaponsSystem.Projectiles {
                     continue;
                 }
                 
-                if (!c.TryGetComponent(out ISusceptible susceptible)) {
+                if (!c.TryGetComponent(out IDamageable damageable)) {
                     continue;
                 }
                 
-                susceptible.HandleEffect(projectile.GetEffect(this));
+                damageable.HandleDamage(new Damage(projectile.Owner).WithSpecialData(projectile.GetEffect(this)));
             }
         }
 

@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Common;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -14,6 +16,7 @@ namespace Game.CharacterControls {
     public abstract class CharacterController : MonoBehaviour {
         [field: SerializeField, Required] protected AbilitySystem AbilitySystem { get; private set; }
         [field: SerializeField, Required] protected AttributeSet AttributeSet { get; private set; }
+        [field: SerializeField, Required] protected GameplayEffectCoordinator GameplayEffectCoordinator { get; private set; }
         [field: SerializeField, Required] protected Health Health { get; private set; }
 
         public event UnityAction OnDeath;
@@ -26,18 +29,29 @@ namespace Game.CharacterControls {
                 hitbox.OnHit += this.HandleDamage;
             }
         }
-        
-        protected void HandleDamage(Damage damage) {
+
+        private void HandleDamage(Damage damage) {
             GameObject source = damage.Instigator;
             AbilitySystem instigator = source.GetComponentInChildren<AbilitySystem>();
             if (!instigator) {
                 Debug.LogError($"{source.name} must have an Ability System to attack {this.gameObject.name}!", source);
-            } else {
+                return;
+            } 
+            
+            if (damage.TotalDamage > 0) {
                 this.Say($"{source.name} damaged {this.gameObject.name}!");
                 GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
                                                              .WithUserData(damage.Data)
                                                              .Build();
                 instigator.Use("ability:attack", this.AbilitySystem, args);
+            }
+
+            if (!damage.HasSpecialData(out IEnumerable<GameplayEffect> effects)) {
+                return;
+            }
+
+            foreach (GameplayEffect effect in effects) {
+                this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance);
             }
         }
 

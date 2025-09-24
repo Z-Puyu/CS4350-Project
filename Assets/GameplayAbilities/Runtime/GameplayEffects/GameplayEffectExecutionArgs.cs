@@ -61,6 +61,10 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             }
             
             public Builder WithUserData<T>(IEnumerable<KeyValuePair<string, T>> data) {
+                if (data is null) {
+                    return this;
+                }
+                
                 foreach (KeyValuePair<string, T> pair in data) {
                     this.CallerSuppliedModifierValues[pair.Key] = pair.Value;
                 }

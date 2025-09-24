@@ -29,6 +29,7 @@ namespace WeaponsSystem.Projectiles {
         [field: SerializeField, MinValue(0)] private float SpeedCoefficient { get; set; } = 1f;
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        public GameObject Owner => this.Info.Damage.Instigator;
         
         public void Awake() {
             this.Info.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));

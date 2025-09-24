@@ -12,7 +12,7 @@ namespace WeaponsSystem.DamageHandling {
         public event UnityAction<Damage> OnHit; 
         
         public void HandleDamage(Damage damage) {
-            if (damage.TotalDamage <= 0) {
+            if (damage.TotalDamage <= 0 && damage.SpecialData.Count == 0) {
                 return;
             }
             
