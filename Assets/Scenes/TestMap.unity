@@ -948,6 +948,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1049529676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1049529678}
+  - component: {fileID: 1049529677}
+  m_Layer: 0
+  m_Name: ObjectSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1049529677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049529676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028e45acbef64d06b9c70a72f2b52140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DataStructuresForUnity.Runtime::DataStructuresForUnity.Runtime.GeneralUtils.ObjectSpawner
+  <ShouldNotDestroyOnLoad>k__BackingField: 1
+  <PoolablePrefabs>k__BackingField:
+    _keys: []
+    _values: 
+    _saintsKeys:
+    - value: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
+    _saintsValues:
+    - value: 100
+--- !u!4 &1049529678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049529676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7801, y: 6.30078, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115745164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,8 +1723,7 @@ MonoBehaviour:
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 1688320012}
   <ParticleEffect>k__BackingField: {fileID: 7786676531818901644, guid: 4b40abd80f08eab4aa81aec3544cf8e5, type: 3}
-  <ProjectilePool>k__BackingField:
-    <Prefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
+  <ProjectilePrefab>k__BackingField: {fileID: 0}
   spawnMethods: 0000000001000000
 --- !u!114 &1957642025
 MonoBehaviour:
@@ -2282,3 +2333,4 @@ SceneRoots:
   - {fileID: 1781764269}
   - {fileID: 850556125}
   - {fileID: 8200168972410955466}
+  - {fileID: 1049529678}
