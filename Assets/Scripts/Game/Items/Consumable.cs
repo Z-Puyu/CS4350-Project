@@ -38,7 +38,7 @@ namespace Game.Items {
             
             GameplayEffectExecutionArgs args = coordinator.CreateEffectExecutionArgs().Build();
             foreach (GameplayEffectData effect in this.Effects) {
-                coordinator.Add(effect.Instantiate(coordinator.GetComponent<AttributeSet>(), args), 100);
+                coordinator.Add(effect.Instantiate(args), 100);
             }
         }
         

@@ -59,8 +59,11 @@ namespace WeaponsSystem {
             return this.CurrentAttackCounter;
         }
 
-        protected void Hit(Vector3 at) {
-            ObjectSpawner.Spawn(this.ParticleEffect, at, Quaternion.identity);
+        protected virtual void Hit(Vector3 at) {
+            ObjectSpawner.Pull(
+                this.WeaponData.ParticleEffectOnHit.PoolableId, this.WeaponData.ParticleEffectOnHit, at,
+                Quaternion.identity
+            );
         }
 
         public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);

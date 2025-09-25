@@ -24,7 +24,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         
         public AbilityInfo Info => new AbilityInfo(this.Cooldown, this.Effects.Count);
 
-        public void Start(Vector3 at) {
+        public void StartAbility(Vector3 at) {
             foreach (KeyValuePair<PoolableObject, int> effect in this.SpawnableEffects) {
                 for (int i = 0; i < effect.Value; i += 1) {
                     ObjectSpawner.Pull(effect.Key.PoolableId, effect.Key, at, Quaternion.identity);

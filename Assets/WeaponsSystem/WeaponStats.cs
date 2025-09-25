@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
+using Unity.VisualScripting;
 using UnityEngine;
 using Attribute = GameplayAbilities.Runtime.Attributes.Attribute;
 
@@ -29,7 +31,11 @@ namespace WeaponsSystem {
             this.AttributeSet = this.GetComponent<AttributeSet>();
             this.AttackModifiers.ForEach(attack => attack.Initialise());
         }
-        
+
+        private void OnEnable() {
+            this.AttributeSet = this.GetComponentInParent<AttributeSet>();
+        }
+
         private void HandleAttributeChange(AttributeChange change) {
             if (change.AttributeName != this.ComboLengthAttribute) {
                 return;

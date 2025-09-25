@@ -35,7 +35,9 @@ namespace WeaponsSystem {
                 }
 
                 this.Hit(c.bounds.center);
-                damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
+                Damage damage = new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData())
+                        .WithEffectsOnTarget(this.WeaponData.EffectsOnHit);
+                damageable.HandleDamage(damage);
             }
         }
 

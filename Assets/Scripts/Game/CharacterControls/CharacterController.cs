@@ -18,6 +18,7 @@ namespace Game.CharacterControls {
         [field: SerializeField, Required] protected AttributeSet AttributeSet { get; private set; }
         [field: SerializeField, Required] protected GameplayEffectCoordinator GameplayEffectCoordinator { get; private set; }
         [field: SerializeField, Required] protected Health Health { get; private set; }
+        [field: SerializeField, Required] protected DamageHandler DamageHandler { get; private set; }
 
         public event UnityAction OnDeath;
         
@@ -25,34 +26,6 @@ namespace Game.CharacterControls {
         
         protected virtual void Start() {
             this.ConfigureAttributeSet();
-            foreach (HitBox2D hitbox in this.GetComponentsInChildren<HitBox2D>()) {
-                hitbox.OnHit += this.HandleDamage;
-            }
-        }
-
-        private void HandleDamage(Damage damage) {
-            GameObject source = damage.Instigator;
-            AbilitySystem instigator = source.GetComponentInChildren<AbilitySystem>();
-            if (!instigator) {
-                Debug.LogError($"{source.name} must have an Ability System to attack {this.gameObject.name}!", source);
-                return;
-            } 
-            
-            if (damage.TotalDamage > 0) {
-                this.Say($"{source.name} damaged {this.gameObject.name}!");
-                GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
-                                                             .WithUserData(damage.Data)
-                                                             .Build();
-                instigator.Use("ability:attack", this.AbilitySystem, args);
-            }
-
-            if (!damage.HasSpecialData(out IEnumerable<GameplayEffect> effects)) {
-                return;
-            }
-
-            foreach (GameplayEffect effect in effects) {
-                this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance);
-            }
         }
 
         [Button]

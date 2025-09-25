@@ -49,8 +49,29 @@ MonoBehaviour:
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 7052933144111497264}
   <ParticleEffect>k__BackingField: {fileID: 0}
+  projectileEffect:
+    <Type>k__BackingField:
+      _typeNameAndAssembly: WeaponsSystem.Projectiles.Explosion, Assembly-CSharp
+      _monoScriptGuid: 920212b1539b9ac45beea78592b1f1d3
+    <Effect>k__BackingField:
+      rid: 2098011701865611345
+    <SpawnableObject>k__BackingField: {fileID: 0}
   <ProjectilePrefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
   spawnMethods: 0000000001000000
+  references:
+    version: 2
+    RefIds:
+    - rid: 2098011701865611345
+      type: {class: DamageEffectData, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
+      data:
+        <ExecutionTime>k__BackingField: 0
+        <Period>k__BackingField: 1
+        <Duration>k__BackingField: 1
+        <CanMiss>k__BackingField: 0
+        <BaseChance>k__BackingField: 100
+        <Costs>k__BackingField: []
+        <DamageTypes>k__BackingField: []
+        <TargetAttribute>k__BackingField: {fileID: 0}
 --- !u!1 &6062935445063475738
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +136,24 @@ MonoBehaviour:
   - Damage.Elemental.Fire
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
-  <AttackModifiers>k__BackingField: []
+  <AttackModifiers>k__BackingField:
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: Weapon.Ranged.Spread
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 60
+    - <Target>k__BackingField: Weapon.Ranged.FireMultiplicity
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+  - <DefaultModifiers>k__BackingField:
+    - <Target>k__BackingField: Weapon.Ranged.FireSpacing
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 1
+    - <Target>k__BackingField: Weapon.Ranged.MultitapCount
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
+    - <Target>k__BackingField: Weapon.Ranged.FireMultiplicity
+      <Type>k__BackingField: 0
+      <Magnitude>k__BackingField: 2
   <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
   <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
   <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread

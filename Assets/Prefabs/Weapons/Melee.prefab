@@ -48,6 +48,7 @@ MonoBehaviour:
   <WeaponData>k__BackingField: {fileID: 11400000, guid: e823039187623e34da918e1e3e9fd5df, type: 2}
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 5777750948884736783}
+  <ParticleEffect>k__BackingField: {fileID: 0}
   <AttackOrigin>k__BackingField: {fileID: 503650084216761073}
 --- !u!1 &5690212249861511337
 GameObject:
@@ -95,7 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
   <ModifierMode>k__BackingField: 1
-  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+  <DefinedAttributes>k__BackingField:
+    _keys: []
+    _values: 
+    _saintsKeys: []
+    _saintsValues: []
 --- !u!114 &5777750948884736783
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,39 +2,54 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GameplayAbilities.Runtime.Abilities;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
     public sealed class Damage {
         public GameObject Instigator { get; }
         public IReadOnlyDictionary<string, int> Data { get; }
-        public Dictionary<Type, HashSet<object>> SpecialData { get; } = new Dictionary<Type, HashSet<object>>();
-        public int TotalDamage { get; }
+        public HashSet<IAbility> EffectsOnTarget { get; } = new HashSet<IAbility>();
+        public HashSet<IAbility> EffectsOnSelf { get; } = new HashSet<IAbility>();
 
         public Damage(GameObject instigator) {
             this.Instigator = instigator;
-            this.TotalDamage = 0;       
         }
 
-        public Damage WithSpecialData<T>(T data) {
-            Type type = typeof(T);
-            if (this.SpecialData.TryGetValue(type, out HashSet<object> set)) {
-                set.Add(data);
-            } else {
-                this.SpecialData.Add(type, new HashSet<object> { data });
+        public Damage WithEffectOnTarget(IAbility effect) {
+            if (!this.EffectsOnTarget.Add(effect)) {
+                Debug.LogError("Cannot have duplicate effects in one damage!");
             }
-
+            
+            return this;
+        }
+        
+        public Damage WithEffectsOnTarget(IEnumerable<IAbility> effects) {
+            foreach (IAbility effect in effects) {
+                if (!this.EffectsOnTarget.Add(effect)) {
+                    Debug.LogError("Cannot have duplicate effects in one damage!");
+                }
+            }
+            
             return this;
         }
 
-        public bool HasSpecialData<T>(out IEnumerable<T> data) {
-            if (this.SpecialData.TryGetValue(typeof(T), out HashSet<object> set)) {
-                data = set.Cast<T>();
-                return data.Any();
+        public Damage WithEffectOnSelf(IAbility effect) {
+            if (!this.EffectsOnSelf.Add(effect)) {
+                Debug.LogError("Cannot have duplicate effects in one damage!");
             }
             
-            data = null;       
-            return false;       
+            return this;
+        }
+        
+        public Damage WithEffectsOnSelf(IEnumerable<IAbility> effects) {
+            foreach (IAbility effect in effects) {
+                if (!this.EffectsOnSelf.Add(effect)) {
+                    Debug.LogError("Cannot have duplicate effects in one damage!");
+                }
+            }
+            
+            return this;
         }
         
         /// <summary>
@@ -46,7 +61,6 @@ namespace WeaponsSystem.DamageHandling {
         public Damage(GameObject instigator, IReadOnlyDictionary<string, int> data) {
             this.Instigator = instigator;
             this.Data = data;
-            this.TotalDamage = data.Values.Sum();
         }
 
         /// <summary>
@@ -58,7 +72,6 @@ namespace WeaponsSystem.DamageHandling {
         public Damage(GameObject instigator, IDictionary<string, int> data) {
             this.Instigator = instigator;
             this.Data = new ReadOnlyDictionary<string, int>(data);
-            this.TotalDamage = data.Values.Sum();       
         }
     }
 }

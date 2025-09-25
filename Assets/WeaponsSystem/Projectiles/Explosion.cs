@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
@@ -29,8 +30,18 @@ namespace WeaponsSystem.Projectiles {
                 if (!c.TryGetComponent(out IDamageable damageable)) {
                     continue;
                 }
+
+                Damage damage = new Damage(projectile.Owner);
+                if (projectile.HasEffect<Explosion>(out ProjectileEffectData data)) {
+                    ObjectSpawner.Pull(
+                        data.ParticleAsset.PoolableId, data.ParticleAsset, this.transform.position, Quaternion.identity
+                    );
+                    
+                    damage = damage.WithEffectsOnSelf(data.EffectsOnInstigator)
+                                   .WithEffectsOnTarget(data.EffectsOnTarget);
+                }
                 
-                damageable.HandleDamage(new Damage(projectile.Owner).WithSpecialData(projectile.GetEffect(this)));
+                damageable.HandleDamage(damage);
             }
         }
 

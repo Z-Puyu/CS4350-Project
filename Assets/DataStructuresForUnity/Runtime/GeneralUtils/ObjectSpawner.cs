@@ -104,12 +104,12 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
         }
 
         public static T Spawn<T>(T prefab, Transform parent = null) where T : Component {
-            return Object.Instantiate(prefab, parent, true);
+            return !prefab ? null : Object.Instantiate(prefab, parent, true);
         }
 
         public static T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null)
                 where T : Component {
-            return Object.Instantiate(prefab, position, rotation, parent);
+            return !prefab ? null : Object.Instantiate(prefab, position, rotation, parent);
         }
 
         public static T Spawn<T>(GameObject prefab, Transform parent = null) where T : Component {

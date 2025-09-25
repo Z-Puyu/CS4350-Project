@@ -17,7 +17,7 @@ namespace WeaponsSystem {
 
         public void Initialise() {
             foreach (AttackModifierData data in this.DefaultModifiers) {
-                this.AddModifier(new Modifier(data.Magnitude, data.Type, data.Target.Id));
+                this.AddModifier(new Modifier(data.Magnitude, data.Type, data.Target));
             }
         }
         

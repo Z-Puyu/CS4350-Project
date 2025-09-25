@@ -33,13 +33,18 @@ namespace GameplayAbilities.Runtime.Attributes {
             }
         }
         
-        public static AdvancedDropdownList<string> GetAttributeOptions(this Object obj) {
+        public static AdvancedDropdownList<string> GetAttributeOptions(this object obj) {
             IEnumerable<AdvancedDropdownList<string>> sections =
                     AttributeType.GetAll()
                                  .Where(attribute => attribute.IsRoot)
                                  .Select(attribute => attribute.GetAttributeOptions())
                                  .OrderBy(section => section.displayName);
             return new AdvancedDropdownList<string>("Attributes", sections);
+        }
+        
+        public static DropdownList<string> GetAllAttributes(this object obj) {
+            IEnumerable<string> options = AttributeType.GetAll().Select(attribute => attribute.Id);
+            return new DropdownList<string>(options.Select(id => (id, id)).OrderBy(pair => pair.Item2));
         }
     }
 }
