@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     public interface IAbility {
+        public void Start(Vector3 at);
+        
         /// <summary>
         /// Generate a list of run-time gameplay effects based on the provided execution arguments.
         /// </summary>

@@ -48,8 +48,9 @@ MonoBehaviour:
   <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
   <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 7052933144111497264}
-  bulletPool:
-    <Prefab>k__BackingField: {fileID: 8082640687752798569, guid: 09becbbf91443fc41a7e2106ce832cb1, type: 3}
+  <ParticleEffect>k__BackingField: {fileID: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
+  spawnMethods: 0000000001000000
 --- !u!1 &6062935445063475738
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,10 +116,11 @@ MonoBehaviour:
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
   <AttackModifiers>k__BackingField: []
-  <ComboLengthAttribute>k__BackingField: ComboLength
-  <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
-  <RangeAttribute>k__BackingField: BulletRange
-  <BulletSpeedAttribute>k__BackingField: BulletSpeed
-  <BulletSpreadAttribute>k__BackingField: BulletSpread
-  <FireIntervalAttribute>k__BackingField: BulletFireInterval
-  <PierceStrengthAttribute>k__BackingField: BulletPiercing
+  <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
+  <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
+  <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread
+  <FireIntervalAttribute>k__BackingField: Weapon.Ranged.FireInterval
+  <MultitapCountAttribute>k__BackingField: Weapon.Ranged.MultitapCount
+  <ProjectileCountAttribute>k__BackingField: Weapon.Ranged.FireMultiplicity
+  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
+  <FireSpacingAttribute>k__BackingField: Weapon.Ranged.FireSpacing

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Common;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
 using UnityEngine;
 using Utilities;
@@ -9,6 +11,10 @@ namespace WeaponsSystem {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField] private List<WeaponComponentData> Components { get; set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
+        
+        // Placeholder 
+        [field: SerializeField] private ParticleSystem ParticleEffect { get; set; }
+        
         public abstract float AttackDuration { get; }
         private int currentAttackCounter;
 
@@ -52,7 +58,11 @@ namespace WeaponsSystem {
             this.ComboResetTimer.OnTimerFinished -= this.ResetCombo;
             return this.CurrentAttackCounter;
         }
-        
+
+        protected void Hit(Vector3 at) {
+            ObjectSpawner.Spawn(this.ParticleEffect, at, Quaternion.identity);
+        }
+
         public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
         
         public virtual void EndAttack() {

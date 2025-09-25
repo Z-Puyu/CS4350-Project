@@ -13,7 +13,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
         
         private bool HasNeverExecuted { get; set; } = true;
-        internal GameplayEffectData Data { get; }
+        public GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
         
         internal GameplayEffect(GameplayEffectData data, GameplayEffectExecutionArgs args) {
