@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Common;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
 using Utilities;
@@ -17,7 +18,7 @@ namespace WeaponsSystem {
             Multitap
         }
 
-        [field: SerializeField] private ObjectPool<Projectile> ProjectilePool { get; set; }
+        [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
         [field: SerializeField] private List<ProjectileSpawnMethod> spawnMethods;
         private Timer fireIntervalTimer;
         private bool canAttack = true;
@@ -31,7 +32,6 @@ namespace WeaponsSystem {
         protected override void Awake() {
             base.Awake();
             this.SelfTransform = this.transform;
-            this.ProjectilePool.Initialize(100);
             this.mainCamera = Camera.main;
         }
 
@@ -69,7 +69,7 @@ namespace WeaponsSystem {
         }
 
         public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
-            if (this.ProjectilePool is null) {
+            if (!this.ProjectilePrefab) {
                 return;
             }
 
@@ -89,16 +89,15 @@ namespace WeaponsSystem {
         }
 
         private void SpawnSingleBullet(Vector3 direction, Vector3 position, LayerMask mask) {
-            if (this.ProjectilePool is null) {
+            if (!this.ProjectilePrefab) {
                 return;
             }
 
             Damage damage = new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData());
-            this.ProjectilePool
-                .GetInstance(position)
-                .WithDamage(damage)
-                .OnHit(this.Hit)
-                .Launch(this.Stats, direction, this.ProjectilePool, mask);
+            ObjectSpawner.Pull(this.ProjectilePrefab.PoolableId, this.ProjectilePrefab, position, Quaternion.identity)
+                         .WithDamage(damage)
+                         .OnHit(this.Hit)
+                         .Launch(this.Stats, direction, mask);
         }
 
         private void SpawnSpreadBullet(Vector3 direction, int spread, int count, LayerMask mask) {

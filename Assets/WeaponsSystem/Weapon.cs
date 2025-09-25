@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
 using UnityEngine;
 using Utilities;
@@ -59,7 +60,7 @@ namespace WeaponsSystem {
         }
 
         protected void Hit(Vector3 at) {
-            ObjectSpawner.Spawn(this.ParticleEffect, at);
+            ObjectSpawner.Spawn(this.ParticleEffect, at, Quaternion.identity);
         }
 
         public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);

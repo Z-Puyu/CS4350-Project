@@ -17,10 +17,11 @@ namespace WeaponsSystem.DamageHandling {
         }
 
         public Damage WithSpecialData<T>(T data) {
-            if (this.SpecialData.TryGetValue(typeof(T), out HashSet<object> set)) {
+            Type type = typeof(T);
+            if (this.SpecialData.TryGetValue(type, out HashSet<object> set)) {
                 set.Add(data);
             } else {
-                this.SpecialData.Add(typeof(T), new HashSet<object> { data });
+                this.SpecialData.Add(type, new HashSet<object> { data });
             }
 
             return this;

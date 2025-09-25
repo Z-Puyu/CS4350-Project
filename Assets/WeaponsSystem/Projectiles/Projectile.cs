@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -12,12 +13,11 @@ using Object = UnityEngine.Object;
 
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
-    public sealed class Projectile : MonoBehaviour {
+    public sealed class Projectile : PoolableObject {
         private CapsuleCollider2D Collider { get; set; }
         private ProjectileInfo Info { get; } = new ProjectileInfo();
         private Action<Vector3> OnHitAction { get; set; } = delegate { };
         
-        private ObjectPool<Projectile> Pool { get; set; }
         
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private string SpeedAttribute { get; set; }
@@ -62,7 +62,7 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
-        public void Launch(IAttributeReader source, Vector3 dir, ObjectPool<Projectile> pool, LayerMask mask) {
+        public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
             this.Info.Effects.ForEach(effect => effect.FetchAttributes(source));
@@ -74,15 +74,25 @@ namespace WeaponsSystem.Projectiles {
             
             this.Info.IsAlive = true;
             this.Collider.includeLayers = mask;
-            this.Pool = pool;
         }
 
-        private void Destroy() {
+        public override void Return() {
             this.OnHitAction = delegate { };
             this.Info.Effects.ForEach(effect => effect.TurnOff(this));
             this.Info.Reset();
             this.Collider.includeLayers = 0;
-            this.Pool.ReturnInstance(this);
+            base.Return();
+        }
+
+        public void Relaunch(float rotation, float speedCoefficient = 1f) {
+            this.Info.Velocity = Quaternion.AngleAxis(rotation, Vector3.forward) * 
+                                 this.Info.Velocity * speedCoefficient;
+            this.Info.IsAlive = true;     
+        }
+
+        public void Relaunch(Vector3 dir, float speedCoefficient = 1f) {
+            this.Info.Velocity = dir.normalized * this.Info.Velocity.magnitude * speedCoefficient;
+            this.Info.IsAlive = true;
         }
 
         public void Relaunch() {
@@ -95,7 +105,7 @@ namespace WeaponsSystem.Projectiles {
             this.Info.IsAlive = false;
             this.Info.Effects.ForEach(effect => effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags));
             if (!this.Info.IsAlive) {
-                this.Destroy();
+                this.Return();
             }
         }
 
@@ -115,7 +125,7 @@ namespace WeaponsSystem.Projectiles {
 
         private void Update() {
             if (this.Info.DistanceTravelled >= this.Info.Range) {
-                this.Destroy();
+                this.Return();
                 return;
             }
 
