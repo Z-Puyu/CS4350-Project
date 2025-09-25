@@ -19,22 +19,15 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField, ReadOnly] public string Id { get; private set; }
         [field: SerializeField, ReadOnly] private AttributeType Parent { get; set; }
         
-        [field: SerializeField, OnValueChanged(nameof(this.OnSubtypesChanged))]
+        [field: SerializeField]
         public List<AttributeType> SubTypes { get; private set; } = new List<AttributeType>();
         
         public string DisplayName => string.IsNullOrWhiteSpace(this.displayName) ? this.Name : this.displayName;
         public bool IsCategory => this.SubTypes.Count > 0;
+        public bool IsRoot => !this.Parent;
 
         public bool Includes(string attribute) {
             return this.Id == attribute || this.SubTypes.Any(def => def.Includes(attribute));
-        }
-
-        private void OnSubtypesChanged() {
-            foreach (AttributeType def in this.SubTypes) {
-                if (def) {
-                    def.Parent = this;
-                }
-            }
         }
 
         private void OnValidate() {
@@ -42,6 +35,18 @@ namespace GameplayAbilities.Runtime.Attributes {
                 this.ModificationRules.Clear();
             }
             
+            this.Rename();
+            foreach (AttributeType def in this.SubTypes) {
+                if (!def) {
+                    continue;
+                }
+                
+                def.Parent = this;
+                def.Rename();
+            }
+        }
+
+        private void Rename() {
             LinkedList<string> names = new LinkedList<string>();
             AttributeType curr = this;
             while (curr) {

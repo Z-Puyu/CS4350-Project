@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using GameplayAbilities.Runtime.Attributes;
+using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
-    [RequireComponent(typeof(Projectile))]
-    public abstract class ProjectileEffect : MonoBehaviour {
-        public abstract void Execute();
+    public abstract class ProjectileEffect : MonoBehaviour, IProjectileEffect {
+        public virtual void TurnOn(Projectile projectile) {
+            this.gameObject.SetActive(true);
+        }
+
+        public virtual void TurnOff(Projectile projectile) {
+            this.gameObject.SetActive(false);
+        }
+        
+        public abstract void Execute(Projectile projectile, LayerMask mask, IEnumerable<string> tags);
+        public abstract void FetchAttributes(IAttributeReader source);
     }
 }

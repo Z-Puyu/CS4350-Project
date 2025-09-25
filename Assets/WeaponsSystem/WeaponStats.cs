@@ -12,25 +12,18 @@ namespace WeaponsSystem {
     public abstract class WeaponStats : MonoBehaviour, IAttributeReader {
         private AttributeSet AttributeSet { get; set; }
         
-        [field: SerializeField, Dropdown(nameof(this.GetAttributeOptions))] 
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private List<string> DamageAttributes { get; set; } = new List<string>();
         
         [field: SerializeField] private List<AttackData> AttackModifiers { get; set; } = new List<AttackData>();
         
-        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
+        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ComboLengthAttribute { get; private set; }
         
-        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))] 
+        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))] 
         public string KnockbackStrengthAttribute { get; private set; }
 
-        protected DropdownList<string> GetAttributeOptions() {
-            DropdownList<string> list = new DropdownList<string>();
-            foreach (AttributeType resource in AttributeType.GetAllLeaves()) {
-                list.Add(resource.Id, resource.Id);
-            }
-
-            return list;
-        }
+        protected AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
         protected virtual void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();

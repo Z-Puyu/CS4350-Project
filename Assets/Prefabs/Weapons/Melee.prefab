@@ -114,7 +114,7 @@ MonoBehaviour:
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
   <AttackModifiers>k__BackingField: []
-  <ComboLengthAttribute>k__BackingField: ComboLength
-  <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
+  <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
+  <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
   <SweepHalfAngle>k__BackingField: 60
-  <MeleeRangeAttribute>k__BackingField: MeleeAttackRange
+  <MeleeRangeAttribute>k__BackingField: Weapon.Melee.Range

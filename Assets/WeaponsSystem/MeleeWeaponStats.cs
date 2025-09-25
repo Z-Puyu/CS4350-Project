@@ -6,7 +6,7 @@ namespace WeaponsSystem {
         [field: SerializeField, Required, PropRange(0, 180)] 
         public float SweepHalfAngle { get; private set; }
         
-        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))] 
+        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))] 
         public string MeleeRangeAttribute { get; private set; }
     }
 }

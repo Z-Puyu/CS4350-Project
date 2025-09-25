@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
   m_Name: Melee Attack Range
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: MeleeAttackRange
+  <Name>k__BackingField: Range
   displayName: Melee Attack Range
   <ModificationRules>k__BackingField:
   - rid: 2098011547707638002
-  <Id>k__BackingField: MeleeAttackRange
-  <Parent>k__BackingField: {fileID: 0}
+  <Id>k__BackingField: Weapon.Melee.Range
+  <Parent>k__BackingField: {fileID: 11400000, guid: 27e26aefe4ec1484f809c61b9c42bddb, type: 2}
   <SubTypes>k__BackingField: []
   references:
     version: 2

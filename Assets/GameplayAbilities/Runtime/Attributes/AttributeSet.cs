@@ -17,7 +17,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField] private AttributeTable DefaultAttributeTable { get; set; }
         
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
-            new TrieDictionary<string, char, AttributeData>();
+            new TrieDictionary<string, char, AttributeData>('.');
 
         /// <summary>
         /// Invoked when an attribute is first initialised or when it is modified.

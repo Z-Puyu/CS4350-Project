@@ -125,6 +125,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
+            ability.Start(args.Position);
             this.OnStartAbility.Invoke(ability);
             target.Process(ability, args);
         }
@@ -146,7 +147,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet);
+            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform.position);
         }
     }
 }
