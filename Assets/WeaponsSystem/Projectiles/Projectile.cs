@@ -34,6 +34,7 @@ namespace WeaponsSystem.Projectiles {
         public void Awake() {
             this.Info.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
             this.Info.TargetTags.AddRange(this.TargetTags);
+            this.Collider = this.GetComponent<CapsuleCollider2D>();
         }
 
         public void AddEffect(Type type, GameplayEffect effect) {

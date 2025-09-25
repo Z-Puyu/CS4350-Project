@@ -7,9 +7,9 @@ using Utilities;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
+    [RequireComponent(typeof(ComponentManager))]
     public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
-        [field: SerializeField] private List<WeaponComponentData> Components { get; set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
         
         // Placeholder 

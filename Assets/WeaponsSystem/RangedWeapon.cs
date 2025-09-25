@@ -121,6 +121,11 @@ namespace WeaponsSystem {
         }
 
         private IEnumerator SpawnMultitapBullet(int count, int delay, ProjectileSpawnMethod spawnMethod, LayerMask mask) {
+            if (count == 1) {
+                this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
+                yield break;
+            }
+
             for (int i = 0; i < count; i += 1) {
                 switch (spawnMethod) {
                     case ProjectileSpawnMethod.Spread:

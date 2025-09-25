@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem;
 
 namespace WeaponsSystem.WeaponComponent {
-    [CreateAssetMenu(fileName = "ComponentData", menuName = "Weapons/Components/ComponentData", order = 0)]
+    [Serializable, CreateAssetMenu(fileName = "ComponentData", menuName = "Weapons/Components/ComponentData", order = 0)]
     public class WeaponComponentData : ScriptableObject {
-        [SaintsDictionary] public SaintsDictionary<string, int> effects;
+        [field: SerializeField, Table] public List<ComponentModifierData> modifiers = new List<ComponentModifierData>();
+        [field: SerializeField] private int id;
     }
 }
