@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29544a1918a5674795697532d93d495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Projectile
+  <Visual>k__BackingField: {fileID: 2149154651981169789}
   <ProjectileId>k__BackingField: projectile:default
   <SpeedAttribute>k__BackingField: Weapon.Projectile.Speed
   <RangeAttribute>k__BackingField: Weapon.Projectile.Range

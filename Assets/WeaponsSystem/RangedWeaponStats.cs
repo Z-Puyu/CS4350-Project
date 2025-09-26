@@ -11,18 +11,21 @@ namespace WeaponsSystem {
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ShotsPerAttackAttribute { get; private set; }
-        
-        public ProjectileSpawner.Mode FireMode { get; private set; } = ProjectileSpawner.Mode.Single;
-        
-        public override List<AttackData> ActivateAttackModifiers(int index) {
-            List<AttackData> modifiers = base.ActivateAttackModifiers(index);
-            this.FireMode = modifiers.Count == 0 ? ProjectileSpawner.Mode.Single : modifiers.Last().Mode;
-            return modifiers;
+
+        protected override void Awake() {
+            base.Awake();
+            this.ProjectileMode = ProjectileSpawner.Mode.Single;
         }
 
-        public override List<AttackData> DeactivateAttackModifiers(int index) {
-            this.FireMode = ProjectileSpawner.Mode.Single;
-            return base.DeactivateAttackModifiers(index);
+        protected override void UpdateProjectileMode(int index) {
+            List<AttackData> modifiers = this.AttackModifiers[index];
+            this.ProjectileMode = modifiers.Count == 0 || modifiers.Last().ProjectileMode == ProjectileSpawner.Mode.None
+                    ? ProjectileSpawner.Mode.Single
+                    : modifiers.Last().ProjectileMode;
+        }
+        
+        protected override void RevertProjectileMode(int index) {
+            this.ProjectileMode = ProjectileSpawner.Mode.Single;
         }
     }
 }

@@ -29,6 +29,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             
             while (this.ActiveEffects.ContainsKey(effect) && (duration < 0 || elapsed < duration)) {
                 effect.Apply(this.AttributeSet);
+#if DEBUG
+                Debug.Log($"Applying effect from {this.SourceAbilities[effect]}, elapsed: {elapsed}, duration: {duration}");
+#endif
                 if (duration < 0) {
                     yield return new WaitForSeconds(period);
                     continue;

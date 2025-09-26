@@ -55,7 +55,7 @@ namespace GameplayAbilities.Runtime.Abilities {
             AbilityInfo info = this.ActiveAbilities[ability];
             int remainingEffects = info.NumberOfEffects - 1;
             if (remainingEffects > 0) {
-                this.ActiveAbilities[ability] = new AbilityInfo(info.Cooldown, remainingEffects);
+                this.ActiveAbilities[ability] = new AbilityInfo(info.Id, info.Cooldown, remainingEffects);
             } else {
                 this.ActiveAbilities.Remove(ability);
                 this.OnEndAbility.Invoke(ability);
@@ -133,7 +133,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            ability.StartAbility(args.InstigatorTransform.position, target.transform.position);
+            ability.StartAbility(args.FromTransform, target.transform.position);
             this.OnStartAbility.Invoke(ability);
             target.Process(ability, args);
         }

@@ -5,6 +5,7 @@ using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.DamageHandling;
+using WeaponsSystem.Projectiles;
 
 namespace WeaponsSystem {
     public sealed class MeleeWeapon : Weapon<MeleeWeaponStats> {
@@ -39,6 +40,10 @@ namespace WeaponsSystem {
                 this.Hit(c.bounds.center);
                 Damage damage = new Damage(this.transform.root.gameObject, combatant, this.Stats.ReadDamageData());
                 damageable.HandleDamage(damage);
+            }
+
+            if (this.Stats.ProjectileMode != ProjectileSpawner.Mode.None && this.Stats.ProjectileEffects.Count > 0) {
+                // TODO: Spawn Projectiles
             }
         }
 

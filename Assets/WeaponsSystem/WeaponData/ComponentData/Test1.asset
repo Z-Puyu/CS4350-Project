@@ -12,23 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc5a12e89b640e2892c6c1844f9ce3a, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.WeaponComponentData
-  modifiers:
-  - <ModifierData>k__BackingField:
-      <Target>k__BackingField: {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
-      <Type>k__BackingField: 0
-      <Magnitude>k__BackingField: -2
-    <ComboIndex>k__BackingField: 0
-    <ModifySingleAttack>k__BackingField: 1
-  - <ModifierData>k__BackingField:
-      <Target>k__BackingField: {fileID: 11400000, guid: ace73ce3fbfb17d45a58d01c19cdf380, type: 2}
-      <Type>k__BackingField: 0
-      <Magnitude>k__BackingField: -5
-    <ComboIndex>k__BackingField: 0
-    <ModifySingleAttack>k__BackingField: 0
-  - <ModifierData>k__BackingField:
-      <Target>k__BackingField: {fileID: 11400000, guid: ace73ce3fbfb17d45a58d01c19cdf380, type: 2}
-      <Type>k__BackingField: 0
-      <Magnitude>k__BackingField: 10
-    <ComboIndex>k__BackingField: 1
-    <ModifySingleAttack>k__BackingField: 1
-  id: 0
+  <Name>k__BackingField: 
+  <WeaponModifiers>k__BackingField: []
+  <AttackData>k__BackingField:
+  - <ProjectileMode>k__BackingField: 0
+    <ProjectileEffects>k__BackingField: []
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Weapon.Projectile.ProjectilesPerShot
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 2
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+  <ProjectileEffects>k__BackingField: []

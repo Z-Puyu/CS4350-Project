@@ -7,7 +7,13 @@ using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
     public sealed class ProjectileEffectController : PoolableObject {
-        [field: SerializeField, Required] private ProjectileEffect Effect { get; set; }
+        [field: SerializeField, Required, Expandable, DefaultExpand] 
+        private ProjectileEffect Effect { get; set; }
+        
+        [field: SerializeField] private ParticleSystem ParticlesOnFly { get; set; }
+        [field: SerializeField] private ParticleSystem ParticlesOnHit { get; set; }
+        public bool EndsSilently => this.Effect.EndsSilently;
+        
         private Dictionary<string, int> Attributes { get; } = new Dictionary<string, int>();
         
         public override string PoolableId => this.Effect.Id;
@@ -26,13 +32,35 @@ namespace WeaponsSystem.Projectiles {
             }
             
             this.gameObject.SetActive(true);
+            if (this.ParticlesOnFly) {
+                this.ParticlesOnFly.Play();
+            }
         }
         
-        public void TurnOff(Projectile projectile) {
+        public float TurnOff(Projectile projectile) {
             this.Attributes.Clear();
+            if (this.ParticlesOnFly) {
+                this.ParticlesOnFly.Stop();
+            }
+            
+            if (this.ParticlesOnHit && this.ParticlesOnHit.isPlaying) {
+                return this.ParticlesOnHit.main.loop
+                        ? 1f
+                        : this.ParticlesOnHit.main.duration - this.ParticlesOnHit.time;
+            }
+            
+            return 1f;
         }
-        
+
         public void Execute(Projectile projectile, LayerMask mask, IEnumerable<string> tags) {
+            if (this.ParticlesOnHit) {
+                this.ParticlesOnHit.Play();
+            }
+            
+            if (this.ParticlesOnFly) {
+                this.ParticlesOnFly.Stop();
+            }
+            
             this.Effect.Execute(projectile, mask, tags, this);
         }
     }

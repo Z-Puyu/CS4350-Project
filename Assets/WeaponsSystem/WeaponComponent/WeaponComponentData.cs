@@ -13,9 +13,10 @@ namespace WeaponsSystem.WeaponComponent {
         public List<ModifierData> WeaponModifiers { get; private set; } = new List<ModifierData>();
 
         [field: SerializeField, RichLabel(nameof(this.AttackDataLabels), true)] 
-        public List<AttackData> AttackData { get; set; } = new List<AttackData>(); 
-        
-        [field: SerializeField] private List<ProjectileEffect> ProjectileEffects { get; set; } = new List<ProjectileEffect>();
+        public List<AttackData> AttackData { get; set; } = new List<AttackData>();
+
+        [field: SerializeField]
+        public List<ProjectileEffect> ProjectileEffects { get; private set; } = new List<ProjectileEffect>();
 
         private string AttackDataLabels(AttackData obj, int index) =>
                 obj is null || obj.IsEmpty ? $"Combo index {index}: no modifiers" : $"Combo index {index}";
