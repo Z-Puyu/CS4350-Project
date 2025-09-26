@@ -18,6 +18,9 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
+
+        [field: SerializeField]
+        private UnityEvent<Damage, int> OnHitTarget { get; set; } = new UnityEvent<Damage, int>();
         
         private Timer AttackTimer { get; set; }
         
@@ -45,7 +48,11 @@ namespace WeaponsSystem.DamageHandling {
         }
 
         public void DealDamage(Vector3 forward) {
-            this.DamageDealer.DealDamage(this.EnemyTags, this.EnemyLayerMask, forward);
+            this.DamageDealer.DealDamage(this, this.EnemyTags, this.EnemyLayerMask, forward);
+        }
+
+        public void ReactToHit(Damage data, int damage) {
+            this.OnHitTarget.Invoke(data, damage);
         }
 
         public void QueryFinishAttack() {

@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
-  m_Name: Defence
+  m_Name: Explosion Defence
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
-  <Name>k__BackingField: Defence
-  displayName: Defence
+  <Name>k__BackingField: Explosion
+  displayName: Explosion Defence
   <ModificationRules>k__BackingField: []
-  <Id>k__BackingField: Defence
-  <Parent>k__BackingField: {fileID: 0}
-  <SubTypes>k__BackingField:
-  - {fileID: 11400000, guid: ebf65734603cad845812c35a454c6a2a, type: 2}
-  - {fileID: 11400000, guid: 39ad1d48175a51446aa4828436f664ee, type: 2}
-  - {fileID: 11400000, guid: c303377f34974ab4a9de9e6be3050af0, type: 2}
+  <Id>k__BackingField: Defence.Explosion
+  <Parent>k__BackingField: {fileID: 11400000, guid: c15a15d823d833347be5231c8fdb0cb2, type: 2}
+  <SubTypes>k__BackingField: []
   references:
     version: 2
     RefIds: []

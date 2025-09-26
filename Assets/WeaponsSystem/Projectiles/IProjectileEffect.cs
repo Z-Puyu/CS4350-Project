@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
     public interface IProjectileEffect {
+        public ProjectileEffectType EffectType { get; }
+        
         public void TurnOn(Projectile projectile);
         
         public void TurnOff(Projectile projectile);

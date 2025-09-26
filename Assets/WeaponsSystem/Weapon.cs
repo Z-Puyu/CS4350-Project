@@ -4,6 +4,7 @@ using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
 using UnityEngine;
 using Utilities;
+using WeaponsSystem.DamageHandling;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
@@ -66,7 +67,7 @@ namespace WeaponsSystem {
             );
         }
 
-        public abstract void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
+        public abstract void DealDamage(Combatant combatant, ICollection<string> tags, LayerMask mask, Vector3 forward);
         
         public virtual void EndAttack() {
             this.Stats.DeactivateAttackModifiers(this.CurrentAttackCounter);

@@ -768,64 +768,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[0].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[1].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
       propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Target>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
     - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[0].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: a93b9d40183333343a927204d5dd4419, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[1].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[2].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[0].<Magnitude>k__BackingField
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[1].<Magnitude>k__BackingField
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
       propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Magnitude>k__BackingField
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[0].<Magnitude>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[1].<Magnitude>k__BackingField
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[1].<DefaultModifiers>k__BackingField.Array.data[2].<Magnitude>k__BackingField
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

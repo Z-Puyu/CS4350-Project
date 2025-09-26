@@ -15,6 +15,13 @@ MonoBehaviour:
   <Id>k__BackingField: ability:attack
   <Name>k__BackingField: Attack
   <Description>k__BackingField: 
+  <Cooldown>k__BackingField: 0
+  <SpawnableEffects>k__BackingField:
+    _keys: []
+    _values: 
+    _saintsKeys: []
+    _saintsValues: []
+  <SpawnsEffectAtTarget>k__BackingField: 1
   <Effects>k__BackingField:
   - rid: 2098011628653248813
   references:
@@ -46,4 +53,8 @@ MonoBehaviour:
           <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
+        - <DamageAttribute>k__BackingField: Damage.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Explosion
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        <TargetAttribute>k__BackingField: Health

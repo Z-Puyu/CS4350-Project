@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
     public abstract class ProjectileEffect : MonoBehaviour, IProjectileEffect {
+        [field: SerializeField] private ProjectileEffectType Type { get; set; }
+        protected IDictionary<string, int> Attributes { get; } = new Dictionary<string, int>();
+
+        public ProjectileEffectType EffectType => this.Type;
+
         public virtual void TurnOn(Projectile projectile) {
             this.gameObject.SetActive(true);
         }

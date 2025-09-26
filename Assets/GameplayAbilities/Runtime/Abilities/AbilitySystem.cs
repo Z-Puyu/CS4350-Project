@@ -133,7 +133,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            ability.StartAbility(args.InstigatorTransform.position);
+            ability.StartAbility(args.InstigatorTransform.position, target.transform.position);
             this.OnStartAbility.Invoke(ability);
             target.Process(ability, args);
         }

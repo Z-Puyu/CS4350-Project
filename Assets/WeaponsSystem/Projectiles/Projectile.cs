@@ -30,7 +30,7 @@ namespace WeaponsSystem.Projectiles {
         [field: SerializeField, MinValue(0)] private float SpeedCoefficient { get; set; } = 1f;
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
-        public GameObject Owner => this.Info.Damage.Instigator;
+        public (GameObject root, Combatant combatant) Owner => this.Info.Damage.Instigator;
         
         public void Awake() {
             this.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
@@ -80,15 +80,15 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
-        public bool HasEffect<E>(out ProjectileEffectData data) where E : IProjectileEffect {
-            return this.Info.Effects.TryGetValue(typeof(E), out data);
+        public bool HasEffect(ProjectileEffectType type, out ProjectileEffectData data) {
+            return this.Info.Effects.TryGetValue(type, out data);
         }
 
         public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
             foreach (IProjectileEffect effect in this.Effects) {
-                if (!this.Info.Effects.ContainsKey(effect.GetType())) {
+                if (!this.Info.Effects.ContainsKey(effect.EffectType)) {
                     continue;
                 }
 

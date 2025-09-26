@@ -6,10 +6,10 @@ using UnityEngine;
 namespace WeaponsSystem.DamageHandling {
     [Serializable]
     public struct DamageType {
-        [field: SerializeField, Dropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         public string DamageAttribute { get; private set; }
         
-        [field: SerializeField, TableColumn("Defended by"), Dropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, TableColumn("Defended by"), TreeDropdown(nameof(this.AttributeOptions))] 
         public string DefenceAttribute { get; private set; }
         
         [field: SerializeField] public bool IsPercentageDefence { get; private set; }

@@ -14,17 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
   <Name>k__BackingField: Damage
   displayName: Damage
-  <ModificationRules>k__BackingField:
-  - rid: 4925886386017141020
+  <ModificationRules>k__BackingField: []
   <Id>k__BackingField: Damage
   <Parent>k__BackingField: {fileID: 0}
   <SubTypes>k__BackingField:
   - {fileID: 11400000, guid: c4c97ecc99d54eb4e8d930524427f78a, type: 2}
   - {fileID: 11400000, guid: 87a63c53ecca25742853ed6a133760fe, type: 2}
+  - {fileID: 11400000, guid: ff5cf5cd622824846aa515e2c8960422, type: 2}
   references:
     version: 2
-    RefIds:
-    - rid: 4925886386017141020
-      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
-      data:
-        <Min>k__BackingField: 0
+    RefIds: []

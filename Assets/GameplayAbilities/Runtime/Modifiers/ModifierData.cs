@@ -39,6 +39,9 @@ namespace GameplayAbilities.Runtime.Modifiers {
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
         public int DefaultValue { get; private set; }
         
+        [field: SerializeField, HideIf(nameof(this.UseConstant))] 
+        private float Coefficient { get; set; } = 1f;
+        
         [field: SerializeField, TableColumn("Magnitude"), Tooltip("Used to identify the user-set modifier value.")]
         [field: ShowIf(nameof(this.AllowSetByCaller))]
         public string Label { get; private set; }
@@ -62,10 +65,12 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 case MagnitudeType.AttributeValue:
                     sb.AppendLine($"-Source:{this.Source}");
                     sb.AppendLine($"-SourceAttribute:{this.SourceAttribute}");
+                    sb.AppendLine($"-Coefficient:{this.Coefficient}");
                     break;
                 case MagnitudeType.CallerSupplied:
                     sb.AppendLine($"-DefaultValue:{this.DefaultValue}");
                     sb.AppendLine($"-Label:{this.Label}");
+                    sb.AppendLine($"-Coefficient:{this.Coefficient}");
                     break;
             }
             
@@ -80,11 +85,11 @@ namespace GameplayAbilities.Runtime.Modifiers {
                     var _ => throw new ArgumentException("Invalid value source")
                 };
                 
-                return new Modifier(value, this.Method, this.TargetAttribute);
+                return new Modifier(value, this.Method, this.TargetAttribute) * this.Coefficient;
             }
 
             if (this.AllowSetByCaller && args.HasData(this.Label, out int val)) {
-                return new Modifier(val, this.Method, this.TargetAttribute);
+                return new Modifier(val, this.Method, this.TargetAttribute) * this.Coefficient;
             }
             
             return new Modifier(this.DefaultValue, this.Method, this.TargetAttribute);

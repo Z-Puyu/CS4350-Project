@@ -15,6 +15,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         private bool HasNeverExecuted { get; set; } = true;
         public GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
+        private List<Modifier> Modifiers { get; } = new List<Modifier>();
         
         internal GameplayEffect(GameplayEffectData data, GameplayEffectExecutionArgs args) {
             this.Data = data;

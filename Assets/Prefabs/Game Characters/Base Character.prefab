@@ -545,9 +545,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1094391696314402652}
     m_Modifications:
     - target: {fileID: 3823445334596463994, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
+      propertyPath: <Health>k__BackingField
+      value: 
+      objectReference: {fileID: 4790241432719237903}
+    - target: {fileID: 3823445334596463994, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
       propertyPath: <AbilitySystem>k__BackingField
       value: 
       objectReference: {fileID: 248845586726081989}
+    - target: {fileID: 3823445334596463994, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
+      propertyPath: <GameplayEffectCoordinator>k__BackingField
+      value: 
+      objectReference: {fileID: 1678095505910229864}
     - target: {fileID: 4018122261879922856, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -586,6 +594,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4018122261879922856, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000559023409841959, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
+      propertyPath: <AbilitySystem>k__BackingField
+      value: 
+      objectReference: {fileID: 248845586726081989}
+    - target: {fileID: 6000559023409841959, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
+      propertyPath: <ReflexiveAbilities>k__BackingField.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8156239259430275803, guid: f8eddbb39b29eb9419184a7ea6f4b1d5, type: 3}
@@ -923,6 +939,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+--- !u!114 &4790241432719237903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+  m_PrefabInstance: {fileID: 6984389544512453128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246f51e2f05e4540a333cce7141a4841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.HealthSystem.Health
 --- !u!4 &6886639991460117643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4575599896469915267, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
