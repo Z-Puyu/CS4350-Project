@@ -18,7 +18,6 @@ namespace WeaponsSystem {
             Multitap
         }
 
-        [field: SerializeField] private ProjectileEffectData projectileEffect;
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
         [field: SerializeField] private List<ProjectileSpawnMethod> spawnMethods;
         private Timer fireIntervalTimer;
@@ -131,11 +130,16 @@ namespace WeaponsSystem {
                 this.SpawnSingleBullet(direction, position, mask, targetTags, combatant);
             }
         }
-
+        
         private IEnumerator SpawnMultitapBullet(
             int count, int delay, ProjectileSpawnMethod spawnMethod, LayerMask mask, ICollection<string> targetTags,
             Combatant combatant
         ) {
+            if (count == 1) {
+                this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
+                yield break;
+            }
+            
             for (int i = 0; i < count; i += 1) {
                 switch (spawnMethod) {
                     case ProjectileSpawnMethod.Spread:
