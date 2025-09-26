@@ -84,7 +84,7 @@ namespace WeaponsSystem.Projectiles {
                         this.SpawnSpreadBullet(prefab, source, spread, multiplicity, config, damage, onHit);
                         break;
                     case Mode.Parallel:
-                        int spacing = source.GetCurrent(this.ParallelProjectileSpacingAttribute);
+                        float spacing = source.GetCurrent(this.ParallelProjectileSpacingAttribute) / 1000.0f;
                         multiplicity = source.GetCurrent(this.ProjectilesPerShotAttribute);
                         this.SpawnParallelBullet(prefab, source, spacing, multiplicity, config, damage, onHit);
                         break;

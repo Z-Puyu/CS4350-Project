@@ -124,6 +124,12 @@ namespace GameplayAbilities.Runtime.Abilities {
             this.AvailableAbilities.Add(ability);
         }
 
+        public void Grant(string abilityId) {
+            IAbility ability = PerkDatabase.GetAbility(abilityId);
+            this.Grant(ability);
+            Debug.Log($"Granted ability {abilityId}", this);
+        }
+
         public void Revoke(IAbility ability) {
             this.AvailableAbilities.Remove(ability);
         }
@@ -174,5 +180,6 @@ namespace GameplayAbilities.Runtime.Abilities {
                 }
             }
         }
+        
     }
 }

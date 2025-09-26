@@ -5,6 +5,7 @@ using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace WeaponsSystem.WeaponComponent {
     [DisallowMultipleComponent]
@@ -17,6 +18,13 @@ namespace WeaponsSystem.WeaponComponent {
         private List<Modifier> WeaponModifiers { get; set; } = new List<Modifier>();
         private Dictionary<int, List<AttackData>> ComboModifiers { get; set; } = new Dictionary<int, List<AttackData>>();
         public Bitmask64 ComponentCombination { get; } = 0;
+        
+        [field: SerializeField]
+        private List<AttackData> DefaultAttacks { get; set; }
+        [field: SerializeField]
+        private ComponentSkillTable ComponentSkillTable { get; set; }
+
+        [field: SerializeField] public SkillEvent OnSkillActivatable { get; set; }
 
         public void AddComponent(WeaponComponentData component, int index) {
             if (index > this.Capacity) {
@@ -94,7 +102,21 @@ namespace WeaponsSystem.WeaponComponent {
             }
             
             this.RefreshModifiers();
+            this.ApplyDefaultAttacks();
+            this.ActivateComponentSkills();
             this.ApplyComponentsToStats();
+        }
+
+        private void ApplyDefaultAttacks() {
+            Dictionary<int, List<AttackData>> defaultAttacks = new Dictionary<int, List<AttackData>>();
+            for (int i = 0; i < this.Stats.GetCurrent(this.Stats.ComboLengthAttribute); i += 1) {
+                List<AttackData> list = new List<AttackData> { this.DefaultAttacks[i] };
+                defaultAttacks.Add(i, list);
+            }
+
+            foreach (KeyValuePair<int, List<AttackData>> attack in defaultAttacks) {
+                this.Stats.AddAttackModifier(attack.Key, attack.Value);
+            }
         }
 
         private void RefreshModifiers() {
@@ -131,13 +153,22 @@ namespace WeaponsSystem.WeaponComponent {
             }
         }
 
-        public void ApplyComponentsToStats() {
+        private void ApplyComponentsToStats() {
             foreach (Modifier modifier in this.WeaponModifiers) {
                 this.Stats.AddWeaponModifier(modifier);
             }
 
             foreach (KeyValuePair<int, List<AttackData>> modifier in this.ComboModifiers) {
                 this.Stats.AddAttackModifier(modifier.Key, modifier.Value);
+            }
+        }
+
+        private void ActivateComponentSkills() {
+            foreach (KeyValuePair<HashSet<WeaponComponentData>, string> entry in this.ComponentSkillTable) {
+                if (entry.Key.IsSubsetOf(this.Components)) {
+                    Debug.Log($"Component Manager Activating skill {entry.Value}", this);
+                    this.OnSkillActivatable?.Raise(entry.Value);
+                }
             }
         }
     }
