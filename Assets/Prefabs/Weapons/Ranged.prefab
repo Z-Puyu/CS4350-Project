@@ -47,9 +47,48 @@ MonoBehaviour:
   <Capacity>k__BackingField: 3
   <Stats>k__BackingField: {fileID: 7052933144111497264}
   <Components>k__BackingField:
-  - {fileID: 11400000, guid: eb4ee7c856960354cb789647660799ff, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 8c04cd318d9e88b40a881ee9d57bf8f7, type: 2}
+  - {fileID: 11400000, guid: 7b52b68fc13bfc744a78aae6fe02b173, type: 2}
+  - {fileID: 11400000, guid: dae1fb1ebd8a4e045b3289e874c132f3, type: 2}
+  <DefaultAttacks>k__BackingField:
+  - <Mode>k__BackingField: 1
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Weapon.Projectile.ProjectilesPerShot
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 5
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+    - <TargetAttribute>k__BackingField: Weapon.Projectile.Spread
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: -30
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+  - <Mode>k__BackingField: 2
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Weapon.Ranged.ShotsPerAttack
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 1
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+    - <TargetAttribute>k__BackingField: Weapon.Projectile.ParallelProjectileSpacing
+      <Method>k__BackingField: 1
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 2
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+  <ComponentSkillTable>k__BackingField: {fileID: 11400000, guid: 720ab8e1a93197542b8cb9db10ee4eff, type: 2}
+  <OnSkillActivatable>k__BackingField: {fileID: 11400000, guid: aed5644bd0c8d7541aa0e929356dd4ae, type: 2}
 --- !u!1 &3523569647147976172
 GameObject:
   m_ObjectHideFlags: 0
