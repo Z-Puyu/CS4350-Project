@@ -43,7 +43,7 @@ namespace WeaponsSystem {
             return new ReadOnlyDictionary<string, int>(damages);
         }
 
-        public void ActivateAttackModifiers(int index) {
+        public virtual List<AttackData> ActivateAttackModifiers(int index) {
             if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
                 list = new List<AttackData>();
                 this.AttackModifiers.Add(index, list);
@@ -59,14 +59,17 @@ namespace WeaponsSystem {
                 current.Add(modifier);
                 this.AttributeSet.AddModifier(modifier);
             } 
+            
+            return list;
         }
         
-        public void DeactivateAttackModifiers(int index) {
+        public virtual List<AttackData> DeactivateAttackModifiers(int index) {
             foreach (Modifier modifier in this.ActiveAttackModifiers[index]) {
                 this.AttributeSet.RemoveModifier(modifier);
             }
                 
             this.ActiveAttackModifiers[index].Clear();
+            return this.AttackModifiers[index];
         }
 
         public void Initialise(WeaponData data) {

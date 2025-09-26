@@ -9,15 +9,7 @@ using Timer = Utilities.Timer;
 
 namespace WeaponsSystem {
     public class RangedWeapon : Weapon<RangedWeaponStats> {
-        public enum ProjectileSpawnMethod {
-            Spread,
-            Parallel,
-            Single,
-            Multitap
-        }
-
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
-        [field: SerializeField] private List<ProjectileSpawnMethod> spawnMethods;
         private Timer fireIntervalTimer;
         private bool canAttack = true;
         private Vector3 outwards;
@@ -81,7 +73,7 @@ namespace WeaponsSystem {
             this.StartCoroutine(
                 this.SpawnMultitapBullet(
                     this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute), delay,
-                    this.spawnMethods[this.CurrentAttackCounter], mask, tags, combatant
+                    this.Stats.FireMode, mask, tags, combatant
                 )
             );
             this.canAttack = false;
@@ -130,7 +122,7 @@ namespace WeaponsSystem {
         }
         
         private IEnumerator SpawnMultitapBullet(
-            int count, int delay, ProjectileSpawnMethod spawnMethod, LayerMask mask, ICollection<string> targetTags,
+            int count, int delay, AttackMode mode, LayerMask mask, ICollection<string> targetTags,
             Combatant combatant
         ) {
             if (count == 1) {
@@ -139,20 +131,20 @@ namespace WeaponsSystem {
             }
             
             for (int i = 0; i < count; i += 1) {
-                switch (spawnMethod) {
-                    case ProjectileSpawnMethod.Spread:
+                switch (mode) {
+                    case AttackMode.SpreadProjectile:
                         this.SpawnSpreadBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.ProjectileSpreadAttribute),
                             this.Stats.GetCurrent(this.Stats.ProjectilesPerShotAttribute), mask, targetTags, combatant
                         );
                         break;
-                    case ProjectileSpawnMethod.Parallel:
+                    case AttackMode.ParallelProjectile:
                         this.SpawnParallelBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.ParallelProjectileSpacingAttribute),
                             this.Stats.GetCurrent(this.Stats.ProjectilesPerShotAttribute), mask, targetTags, combatant
                         );
                         break;
-                    case ProjectileSpawnMethod.Single or ProjectileSpawnMethod.Multitap:
+                    case AttackMode.Default or AttackMode.Multitap:
                     default:
                         this.SpawnSingleBullet(this.outwards, this.transform.position, mask, targetTags, combatant);
                         break;

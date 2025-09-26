@@ -1,4 +1,6 @@
-﻿using SaintsField;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem {
@@ -20,5 +22,18 @@ namespace WeaponsSystem {
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ParallelProjectileSpacingAttribute { get; private set; }
+        
+        public AttackMode FireMode { get; private set; } = AttackMode.Default;
+        
+        public override List<AttackData> ActivateAttackModifiers(int index) {
+            List<AttackData> modifiers = base.ActivateAttackModifiers(index);
+            this.FireMode = modifiers.Count == 0 ? AttackMode.Default : modifiers.Last().Mode;
+            return modifiers;
+        }
+
+        public override List<AttackData> DeactivateAttackModifiers(int index) {
+            this.FireMode = AttackMode.Default;
+            return base.DeactivateAttackModifiers(index);
+        }
     }
 }

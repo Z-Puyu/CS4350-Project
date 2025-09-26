@@ -13,8 +13,6 @@ namespace WeaponsSystem.WeaponComponent {
 
         [field: SerializeField, RichLabel(nameof(this.AttackDataLabels), true)] 
         public List<AttackData> AttackData { get; set; } = new List<AttackData>(); 
-        
-        [field: SerializeField] private int id;
 
         private string AttackDataLabels(AttackData obj, int index) =>
                 obj is null || obj.IsEmpty ? $"Combo index {index}: no modifiers" : $"Combo index {index}";
