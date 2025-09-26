@@ -16,8 +16,8 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, MinValue(0)] private int Cooldown { get; set; }
         
         [field: SerializeField, SaintsDictionary("Effect", "Multiplicity")] 
-        internal SaintsDictionary<PoolableObject, int> SpawnableEffects { get; private set; } = 
-            new SaintsDictionary<PoolableObject, int>();
+        public SaintsDictionary<SpawnableAbilityObject, int> SpawnableEffects { get; private set; } = 
+            new SaintsDictionary<SpawnableAbilityObject, int>();
         
         [field: SerializeField] private bool SpawnsEffectAtTarget { get; set; }
         
@@ -25,19 +25,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
         
         public AbilityInfo Info => new AbilityInfo(this.Id, this.Cooldown, this.Effects.Count);
-
-        public void StartAbility(Transform from, Vector3 to) {
-            Vector3 pos = this.SpawnsEffectAtTarget ? to : from.position;
-            foreach (KeyValuePair<PoolableObject, int> effect in this.SpawnableEffects) {
-                for (int i = 0; i < effect.Value; i += 1) {
-                    ObjectSpawner.Pull(effect.Key.PoolableId, effect.Key, pos, Quaternion.identity);
-                }
-            }
-        }
-        
-        public void StartAbility(Transform from, Transform to) {
-            this.StartAbility(from, to.position);
-        }
 
         public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args) {
             return this.Effects.Select(effect => new GameplayEffect(effect, args));

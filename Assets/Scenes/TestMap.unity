@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2506064451029178671, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5044226221105412157, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -523,6 +527,54 @@ PrefabInstance:
       propertyPath: <DefaultAbilities>k__BackingField._saintsList.Array.data[1].value
       value: 
       objectReference: {fileID: 11400000, guid: 63790b98990fb364e9e37c53e2f48979, type: 2}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 529274589}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 529274589}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CeaseAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Visuals.AbilitySpawnController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Visuals.AbilitySpawnController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnEndAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844079821535507021, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <OnStartAbility>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1816691387449555453, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
@@ -534,6 +586,17 @@ PrefabInstance:
       addedObject: {fileID: 42010020}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+--- !u!114 &529274589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6390501629363304527, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba5e6b9a5e449679777edfd99f5e830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Visuals.AbilitySpawnController
 --- !u!1001 &593807166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1683,30 +1746,6 @@ PrefabInstance:
     - target: {fileID: 4621646478990750554, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
       propertyPath: m_Name
       value: ObjectSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsKeys.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsValues.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsKeys.Array.data[1].value
-      value: 
-      objectReference: {fileID: -3443996008781288859, guid: 937ac1b56081595489f7c99bcd84a62c, type: 3}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsKeys.Array.data[2].value
-      value: 
-      objectReference: {fileID: 157229808064098270, guid: eceecd69659dd5e4693718cddc39d0bf, type: 3}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsValues.Array.data[1].value
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5943251758402893194, guid: bf098a064f7607a4884e24c71590f8ba, type: 3}
-      propertyPath: <PoolablePrefabs>k__BackingField._saintsValues.Array.data[2].value
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

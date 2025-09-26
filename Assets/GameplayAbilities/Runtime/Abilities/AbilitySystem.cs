@@ -23,8 +23,8 @@ namespace GameplayAbilities.Runtime.Abilities {
         private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         private AttributeSet AttributeSet { get; set; }
         
-        [field: SerializeField] private UnityEvent<IAbility> OnStartAbility { get; set; }
-        [field: SerializeField] private UnityEvent<IAbility> OnEndAbility { get; set; }
+        [field: SerializeField] private UnityEvent<AbilityData> OnStartAbility { get; set; }
+        [field: SerializeField] private UnityEvent<AbilityData> OnEndAbility { get; set; }
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
@@ -58,7 +58,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 this.ActiveAbilities[ability] = new AbilityInfo(info.Id, info.Cooldown, remainingEffects);
             } else {
                 this.ActiveAbilities.Remove(ability);
-                this.OnEndAbility.Invoke(ability);
+                this.OnEndAbility.Invoke(new AbilityData(ability.Info));
                 if (info.Cooldown > 0) {
                     this.AbilitiesOnCooldown[ability] = info.Cooldown;
                 }
@@ -133,8 +133,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            ability.StartAbility(args.FromTransform, target.transform.position);
-            this.OnStartAbility.Invoke(ability);
+            this.OnStartAbility.Invoke(new AbilityData(ability.Info));
             target.Process(ability, args);
         }
 
