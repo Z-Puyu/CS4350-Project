@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Common;
+using DataStructuresForUnity.Runtime.Bitmasks;
 using DataStructuresForUnity.Runtime.GeneralUtils;
 using SaintsField;
 using UnityEngine;
@@ -8,10 +8,12 @@ using WeaponsSystem.DamageHandling;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
-    [RequireComponent(typeof(ComponentManager))]
     public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
+        [field: SerializeField] private ComponentSet PossibleComponents { get; set; }
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
+        [field: SerializeField, Required] private ComponentManager ComponentManager { get; set; }
+        public Bitmask64 ComponentCombination => this.ComponentManager.ComponentCombination;
         
         // Placeholder 
         [field: SerializeField] private ParticleSystem ParticleEffect { get; set; }
@@ -38,6 +40,16 @@ namespace WeaponsSystem {
 
         protected virtual void Start() {
             this.Stats.Initialise(this.WeaponData);
+            this.ComponentManager.Initialise(this.PossibleComponents);
+            this.ComponentManager.ApplyComponentsToStats();
+        }
+
+        public void AddComponent(WeaponComponentData component, int index) {
+            this.ComponentManager.AddComponent(component, index);
+        }
+        
+        public void RemoveComponent(int index) {
+            this.ComponentManager.RemoveComponent(index);
         }
         
         public virtual bool AllowsDamageOn(GameObject candidate) {

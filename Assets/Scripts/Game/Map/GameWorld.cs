@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Game.Map {
     [DisallowMultipleComponent, RequireComponent(typeof(Grid))]

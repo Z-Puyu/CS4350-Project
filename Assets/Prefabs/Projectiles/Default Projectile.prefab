@@ -166,7 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920212b1539b9ac45beea78592b1f1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Explosion
+  <Type>k__BackingField: {fileID: 0}
   <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
+  <DamageAttributes>k__BackingField: []
 --- !u!1 &6887705806686609679
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Projectile
   <PoolableId>k__BackingField: projectile:default
-  <SpeedAttribute>k__BackingField: Projectile.Speed
-  <RangeAttribute>k__BackingField: Projectile.Range
+  <SpeedAttribute>k__BackingField: Weapon.Ranged.Projectile.Speed
+  <RangeAttribute>k__BackingField: Weapon.Ranged.Projectile.Range
   <TargetTags>k__BackingField: []
   <SpeedCoefficient>k__BackingField: 1

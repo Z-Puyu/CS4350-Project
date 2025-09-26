@@ -2,14 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
-using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
-using Utilities;
 using WeaponsSystem.DamageHandling;
-using Object = UnityEngine.Object;
 
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]

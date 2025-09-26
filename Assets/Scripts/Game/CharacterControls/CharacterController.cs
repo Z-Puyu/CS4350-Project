@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Common;
+﻿using Common;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -9,7 +7,6 @@ using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Events;
-using WeaponsSystem.DamageHandling;
 
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]

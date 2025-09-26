@@ -37,9 +37,17 @@ MonoBehaviour:
         <BaseChance>k__BackingField: 100
         <Costs>k__BackingField: []
         <DamageTypes>k__BackingField:
-        - <DamageAttribute>k__BackingField: Damage.Physical
-          <DefenceAttribute>k__BackingField: Defence.Physical
+        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
+          <DefenceAttribute>k__BackingField: Defence.Physical.Melee
           <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
+          <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
           <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
@@ -51,10 +59,6 @@ MonoBehaviour:
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
           <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
-          <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Explosion
-          <DefenceAttribute>k__BackingField: Defence.Explosion
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         <TargetAttribute>k__BackingField: Health

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;

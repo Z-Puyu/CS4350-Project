@@ -18,9 +18,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         [field: SerializeField]
         private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
         
-        [field: SerializeField, SaintsDictionary("Attribute", "Default Value")]
-        private SaintsDictionary<AttributeType, int> DefinedAttributes { get; set; } =
-            new SaintsDictionary<AttributeType, int>();
+        [field: SerializeField] private AttributeTable DefaultAttributes { get; set; }
         
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
             new TrieDictionary<string, char, AttributeData>('.');
@@ -45,19 +43,22 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// This method should be called once, before any other method of this class.
         /// </remarks>
         public void Initialise(IEnumerable<KeyValuePair<AttributeType, int>> table = null) {
-            if (table is not null) {
-                foreach (KeyValuePair<AttributeType, int> attribute in table) {
-                    init(attribute.Key, attribute.Value);
-                }
-
-                foreach (KeyValuePair<string, AttributeData> data in this.Attributes) {
-                    this.PostAttributeUpdate(data.Key, data.Value);
-                }
+            table ??= this.DefaultAttributes;
+            if (table == null) {
+#if DEBUG
+                Debug.LogError("No attribute table provided and no default attributes set", this);
+#endif
+                return;
+            }
+            
+            foreach (KeyValuePair<AttributeType, int> attribute in table) {
+                init(attribute.Key, attribute.Value);
             }
 
-            foreach (KeyValuePair<AttributeType, int> entry in this.DefinedAttributes) {
-                init(entry.Key, entry.Value);
+            foreach (KeyValuePair<string, AttributeData> data in this.Attributes) {
+                this.PostAttributeUpdate(data.Key, data.Value);
             }
+
 
             return;
 
@@ -72,7 +73,7 @@ namespace GameplayAbilities.Runtime.Attributes {
                 }
             }
         }
-        
+
         public IEnumerator<Attribute> GetEnumerator() {
             foreach (KeyValuePair<string, AttributeData> entry in this.Attributes) {
                 yield return new Attribute(entry.Key, entry.Value.Value);

@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
@@ -8,23 +11,13 @@ namespace WeaponsSystem {
     [Serializable]
     public class AttackData {
         [field: SerializeField, Table]
-        private List<AttackModifierData> DefaultModifiers { get; set; } = new List<AttackModifierData>();
+        private List<ModifierData> Modifiers { get; set; } = new List<ModifierData>();
         
-        private Dictionary<(string, Modifier.Operation), Modifier> Modifiers { get; set; } =
-            new Dictionary<(string, Modifier.Operation), Modifier>();
-
-        public IEnumerable<Modifier> WeaponModifiers => this.Modifiers.Values;
-
-        public void Initialise() {
-            foreach (AttackModifierData data in this.DefaultModifiers) {
-                this.AddModifier(new Modifier(data.Magnitude, data.Type, data.Target));
-            }
-        }
+        public bool IsEmpty => this.Modifiers.Count == 0;
         
-        public void AddModifier(Modifier modifier) {
-            if (!this.Modifiers.TryAdd((modifier.Target, modifier.Type), modifier)) {
-                this.Modifiers[(modifier.Target, modifier.Type)] += modifier;
-            }
+        public IEnumerable<Modifier> GenerateModifiers(IAttributeReader currentAttributes) {
+            GameplayEffectExecutionArgs args = GameplayEffectExecutionArgs.From(currentAttributes, null).Build();
+            return this.Modifiers.Select(m => m.CreateModifier(currentAttributes));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SaintsField;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace WeaponsSystem {
     public sealed class RangedWeaponStats : WeaponStats {
@@ -11,15 +10,15 @@ namespace WeaponsSystem {
         public string FireIntervalAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string MultitapCountAttribute { get; private set; }
+        public string ShotsPerAttackAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ProjectileCountAttribute { get; private set; }
+        public string ProjectilesPerShotAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ExplosionRadiusAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string FireSpacingAttribute { get; private set; }
+        public string ParallelProjectileSpacingAttribute { get; private set; }
     }
 }

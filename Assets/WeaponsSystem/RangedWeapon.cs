@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Common;
 using DataStructuresForUnity.Runtime.GeneralUtils;
-using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
-using Utilities;
 using WeaponsSystem.DamageHandling;
 using WeaponsSystem.Projectiles;
 using Timer = Utilities.Timer;
@@ -77,12 +75,12 @@ namespace WeaponsSystem {
 
             const int delay = 100;
             if (this.canAttack) {
-                this.endTime = Time.time + this.Stats.GetCurrent(this.Stats.MultitapCountAttribute) * delay / 1000.0f;
+                this.endTime = Time.time + this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute) * delay / 1000.0f;
             }
 
             this.StartCoroutine(
                 this.SpawnMultitapBullet(
-                    this.Stats.GetCurrent(this.Stats.MultitapCountAttribute), delay,
+                    this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute), delay,
                     this.spawnMethods[this.CurrentAttackCounter], mask, tags, combatant
                 )
             );
@@ -136,7 +134,7 @@ namespace WeaponsSystem {
             Combatant combatant
         ) {
             if (count == 1) {
-                this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
+                this.SpawnSingleBullet(this.outwards, this.transform.position, mask, targetTags, combatant);
                 yield break;
             }
             
@@ -145,13 +143,13 @@ namespace WeaponsSystem {
                     case ProjectileSpawnMethod.Spread:
                         this.SpawnSpreadBullet(
                             this.outwards, this.Stats.GetCurrent(this.Stats.ProjectileSpreadAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask, targetTags, combatant
+                            this.Stats.GetCurrent(this.Stats.ProjectilesPerShotAttribute), mask, targetTags, combatant
                         );
                         break;
                     case ProjectileSpawnMethod.Parallel:
                         this.SpawnParallelBullet(
-                            this.outwards, this.Stats.GetCurrent(this.Stats.FireSpacingAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask, targetTags, combatant
+                            this.outwards, this.Stats.GetCurrent(this.Stats.ParallelProjectileSpacingAttribute),
+                            this.Stats.GetCurrent(this.Stats.ProjectilesPerShotAttribute), mask, targetTags, combatant
                         );
                         break;
                     case ProjectileSpawnMethod.Single or ProjectileSpawnMethod.Multitap:

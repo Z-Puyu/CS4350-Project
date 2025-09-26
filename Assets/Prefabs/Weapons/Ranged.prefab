@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6767873951734616461}
   - component: {fileID: 6411639340048114452}
+  - component: {fileID: 3915083172028502696}
   m_Layer: 0
   m_Name: Ranged
   m_TagString: Untagged
@@ -46,32 +47,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
   <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
-  <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 7052933144111497264}
   <ParticleEffect>k__BackingField: {fileID: 0}
-  projectileEffect:
-    <Type>k__BackingField:
-      _typeNameAndAssembly: WeaponsSystem.Projectiles.Explosion, Assembly-CSharp
-      _monoScriptGuid: 920212b1539b9ac45beea78592b1f1d3
-    <Effect>k__BackingField:
-      rid: 2098011701865611345
-    <SpawnableObject>k__BackingField: {fileID: 0}
   <ProjectilePrefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
   spawnMethods: 0000000001000000
-  references:
-    version: 2
-    RefIds:
-    - rid: 2098011701865611345
-      type: {class: DamageEffectData, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
-      data:
-        <ExecutionTime>k__BackingField: 0
-        <Period>k__BackingField: 1
-        <Duration>k__BackingField: 1
-        <CanMiss>k__BackingField: 0
-        <BaseChance>k__BackingField: 100
-        <Costs>k__BackingField: []
-        <DamageTypes>k__BackingField: []
-        <TargetAttribute>k__BackingField: {fileID: 0}
+--- !u!114 &3915083172028502696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523569647147976172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9132c69a24344228dc741493f854567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.ComponentManager
+  <Stats>k__BackingField: {fileID: 7052933144111497264}
+  <Components>k__BackingField: []
 --- !u!1 &6062935445063475738
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
   <ModifierMode>k__BackingField: 1
-  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+  <DefaultAttributes>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
 --- !u!114 &7052933144111497264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
   <DamageAttributes>k__BackingField:
-  - Damage.Physical
+  - Damage.Physical.Projectile
   - Damage.Elemental.Fire
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
@@ -158,7 +151,7 @@ MonoBehaviour:
   <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
   <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread
   <FireIntervalAttribute>k__BackingField: Weapon.Ranged.FireInterval
-  <MultitapCountAttribute>k__BackingField: Weapon.Ranged.MultitapCount
-  <ProjectileCountAttribute>k__BackingField: Weapon.Ranged.FireMultiplicity
-  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
-  <FireSpacingAttribute>k__BackingField: Weapon.Ranged.FireSpacing
+  <ShotsPerAttackAttribute>k__BackingField: Weapon.Ranged.ShotsPerAttack
+  <ProjectilesPerShotAttribute>k__BackingField: Weapon.Ranged.ProjectilesPerShot
+  <ExplosionRadiusAttribute>k__BackingField: Weapon.Ranged.Projectile.ExplosionRadius
+  <ParallelProjectileSpacingAttribute>k__BackingField: Weapon.Ranged.ParallelProjectileSpacing
