@@ -18,6 +18,9 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
+
+        [field: SerializeField]
+        private UnityEvent<Damage, int> OnHitTarget { get; set; } = new UnityEvent<Damage, int>();
         
         private Timer AttackTimer { get; set; }
         
@@ -41,11 +44,15 @@ namespace WeaponsSystem.DamageHandling {
             
             this.IsAttacking = true;
             int combo = this.DamageDealer.StartAttack();
-            this.OnAttacked.Invoke(combo);
+            if (combo < 0) {
+                this.IsAttacking = false;
+            } else {
+                this.OnAttacked.Invoke(combo);
+            }
         }
 
         public void DealDamage(Vector3 forward) {
-            this.DamageDealer.DealDamage(this.EnemyTags, this.EnemyLayerMask, forward);
+            this.DamageDealer.DealDamage(this, this.EnemyTags, this.EnemyLayerMask, forward);
         }
 
         public void QueryFinishAttack() {

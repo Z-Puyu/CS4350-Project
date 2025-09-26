@@ -17,8 +17,8 @@ namespace GameplayAbilities.Runtime.Modifiers {
         
         private enum ValueSource { Target, Instigator }
         
-        [field: SerializeField, TableColumn("Target")] 
-        public AttributeType TargetAttribute { get; private set; }
+        [field: SerializeField, TableColumn("Target"), Dropdown(nameof(this.AllAttributeOptions))] 
+        public string TargetAttribute { get; private set; }
     
         [field: SerializeField] public Modifier.Operation Method { get; private set; }
         
@@ -33,14 +33,21 @@ namespace GameplayAbilities.Runtime.Modifiers {
         private ValueSource Source { get; set; } = ValueSource.Instigator;
         
         [field: SerializeField, TableColumn("Magnitude"), ShowIf(nameof(this.UseAttributeValue))]
-        private AttributeType SourceAttribute { get; set; }
+        [field: TreeDropdown(nameof(this.AttributeOptions))]
+        private string SourceAttribute { get; set; }
         
         [field: SerializeField, TableColumn("Magnitude"), HideIf(nameof(this.UseAttributeValue))] 
         public int DefaultValue { get; private set; }
         
+        [field: SerializeField, HideIf(nameof(this.UseConstant))] 
+        private float Coefficient { get; set; } = 1f;
+        
         [field: SerializeField, TableColumn("Magnitude"), Tooltip("Used to identify the user-set modifier value.")]
         [field: ShowIf(nameof(this.AllowSetByCaller))]
         public string Label { get; private set; }
+        
+        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        private DropdownList<string> AllAttributeOptions => this.GetAllAttributes();
 
         private ModifierData() {
             this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
@@ -48,42 +55,57 @@ namespace GameplayAbilities.Runtime.Modifiers {
 
         private string GenerateSortKey() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
-            sb.AppendLine($"_TargetAttribute:{this.TargetAttribute.Id}");
-            sb.AppendLine($"_Method:{this.Method}");
-            sb.AppendLine($"_Form:{this.Form}");
+            sb.AppendLine($"-TargetAttribute:{this.TargetAttribute}");
+            sb.AppendLine($"-Method:{this.Method}");
+            sb.AppendLine($"-Form:{this.Form}");
             switch (this.Form) {
                 case MagnitudeType.Constant:
-                    sb.AppendLine($"_Magnitude:{this.DefaultValue}");
+                    sb.AppendLine($"-Magnitude:{this.DefaultValue}");
                     break;
                 case MagnitudeType.AttributeValue:
-                    sb.AppendLine($"_Source:{this.Source}");
-                    sb.AppendLine($"_SourceAttribute:{this.SourceAttribute.Id}");
+                    sb.AppendLine($"-Source:{this.Source}");
+                    sb.AppendLine($"-SourceAttribute:{this.SourceAttribute}");
+                    sb.AppendLine($"-Coefficient:{this.Coefficient}");
                     break;
                 case MagnitudeType.CallerSupplied:
-                    sb.AppendLine($"_DefaultValue:{this.DefaultValue}");
-                    sb.AppendLine($"_Label:{this.Label}");
+                    sb.AppendLine($"-DefaultValue:{this.DefaultValue}");
+                    sb.AppendLine($"-Label:{this.Label}");
+                    sb.AppendLine($"-Coefficient:{this.Coefficient}");
                     break;
             }
             
             return sb.ToString();
         }
+        
+        public Modifier CreateModifier(IAttributeReader target) {
+            return this.Form switch {
+                MagnitudeType.Constant => new Modifier(this.DefaultValue, this.Method, this.TargetAttribute),
+                MagnitudeType.AttributeValue => new Modifier(
+                    target.GetCurrent(this.SourceAttribute), this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                MagnitudeType.CallerSupplied => new Modifier(
+                    target.GetCurrent(this.Label), this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                var _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
-        public Modifier CreateModifier(AttributeSet target, GameplayEffectExecutionArgs args) {
+        public Modifier CreateModifier(IAttributeReader target, GameplayEffectExecutionArgs args) {
             if (this.UseAttributeValue) {
                 int value = this.Source switch {
-                    ValueSource.Target => target.GetCurrent(this.SourceAttribute.Id),
-                    ValueSource.Instigator => args.Instigator.GetCurrent(this.SourceAttribute.Id),
+                    ValueSource.Target => target.GetCurrent(this.SourceAttribute),
+                    ValueSource.Instigator => args.Instigator.GetCurrent(this.SourceAttribute),
                     var _ => throw new ArgumentException("Invalid value source")
                 };
                 
-                return new Modifier(value, this.Method, this.TargetAttribute.Id);
+                return new Modifier(value, this.Method, this.TargetAttribute) * this.Coefficient;
             }
 
             if (this.AllowSetByCaller && args.HasData(this.Label, out int val)) {
-                return new Modifier(val, this.Method, this.TargetAttribute.Id);
+                return new Modifier(val, this.Method, this.TargetAttribute) * this.Coefficient;
             }
             
-            return new Modifier(this.DefaultValue, this.Method, this.TargetAttribute.Id);
+            return new Modifier(this.DefaultValue, this.Method, this.TargetAttribute);
         }
 
         public int CompareTo(ModifierData other) {

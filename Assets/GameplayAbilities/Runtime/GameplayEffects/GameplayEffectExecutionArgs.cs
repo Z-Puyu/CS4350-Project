@@ -6,21 +6,21 @@ using UnityEngine;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
-        public Vector3 Position { get; }
+        public Transform InstigatorTransform { get; }
         public float Level { get; }
         private IDictionary<string, object> CallerSuppliedDataValues { get; }
 
         private GameplayEffectExecutionArgs(
-            IAttributeReader instigator, Vector3 position, float level, IDictionary<string, object> callerSuppliedDataValues
+            IAttributeReader instigator, Transform transform, float level, IDictionary<string, object> callerSuppliedDataValues
         ) {
             this.Instigator = instigator;
-            this.Position = position;
+            this.InstigatorTransform = transform;
             this.Level = level;
             this.CallerSuppliedDataValues = callerSuppliedDataValues;
         }
         
-        public static Builder From(IAttributeReader instigator, Vector3 position) {
-            return new Builder(instigator, position);
+        public static Builder From(IAttributeReader instigator, Transform at) {
+            return new Builder(instigator, at);
         }
 
         public bool HasData<T>(string label, out T data) {
@@ -37,18 +37,18 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         public sealed class Builder {
             private IAttributeReader Instigator { get; set; }
             private float Level { get; set; } = 1;
-            private Vector3 Position { get; set; } = Vector3.zero;
+            private Transform Transform { get; set; }
 
             private Dictionary<string, object> CallerSuppliedModifierValues { get; set; } =
                 new Dictionary<string, object>();
 
-            internal Builder(IAttributeReader instigator, Vector3 position) {
+            internal Builder(IAttributeReader instigator, Transform transform) {
                 this.Instigator = instigator;
-                this.Position = position;           
+                this.Transform = transform;           
             }
 
-            public Builder At(Vector3 position) {
-                this.Position = position;
+            public Builder At(Transform transform) {
+                this.Transform = transform;
                 return this;           
             }
             
@@ -82,7 +82,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             }
             
             public GameplayEffectExecutionArgs Build() {
-                return new GameplayEffectExecutionArgs(this.Instigator, this.Position, this.Level, this.CallerSuppliedModifierValues);
+                return new GameplayEffectExecutionArgs(this.Instigator, this.Transform, this.Level, this.CallerSuppliedModifierValues);
             }
         }
     }

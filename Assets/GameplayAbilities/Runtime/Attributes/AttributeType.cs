@@ -36,14 +36,6 @@ namespace GameplayAbilities.Runtime.Attributes {
             }
             
             this.Rename();
-            foreach (AttributeType def in this.SubTypes) {
-                if (!def) {
-                    continue;
-                }
-                
-                def.Parent = this;
-                def.Rename();
-            }
         }
 
         private void Rename() {
@@ -55,6 +47,14 @@ namespace GameplayAbilities.Runtime.Attributes {
             }
             
             this.Id = string.Join(".", names);
+            foreach (AttributeType def in this.SubTypes) {
+                if (!def) {
+                    continue;
+                }
+                
+                def.Parent = this;
+                def.Rename();
+            }
         }
 
         public int CompareTo(AttributeType other) {

@@ -17,14 +17,16 @@ namespace WeaponsSystem {
             return base.StartAttack();
         }
 
-        public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
+        public override void DealDamage(
+            Combatant combatant, ICollection<string> tags, LayerMask mask, Vector3 forward
+        ) {
             int range = this.Stats.GetCurrent(this.Stats.MeleeRangeAttribute);
             Collider2D[] colliders = Physics2D.OverlapCircleAll(this.AttackOrigin.position, range, mask);
             foreach (Collider2D c in colliders) {
                 if (tags.Count > 0 && !tags.Any(c.CompareTag)) {
                     continue;
                 }
-                
+
                 float angle = Vector2.Angle(forward, c.transform.position - this.AttackOrigin.position);
                 if (angle > this.Stats.SweepHalfAngle) {
                     continue;
@@ -35,7 +37,8 @@ namespace WeaponsSystem {
                 }
 
                 this.Hit(c.bounds.center);
-                damageable.HandleDamage(new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData()));
+                Damage damage = new Damage(this.transform.root.gameObject, combatant, this.Stats.ReadDamageData());
+                damageable.HandleDamage(damage);
             }
         }
 

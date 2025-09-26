@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DataStructuresForUnity.Runtime.GeneralUtils;
+﻿using DataStructuresForUnity.Runtime.GeneralUtils;
 using UnityEngine;
 
 namespace Game.Map {

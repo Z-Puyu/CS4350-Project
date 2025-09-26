@@ -119,7 +119,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform.position);
+            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
         }
     }
 }

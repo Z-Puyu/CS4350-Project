@@ -2,21 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
-using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
-using Utilities;
 using WeaponsSystem.DamageHandling;
-using Object = UnityEngine.Object;
 
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
     public sealed class Projectile : PoolableObject {
+        [field: SerializeField] private string ProjectileId { get; set; }
         private CapsuleCollider2D Collider { get; set; }
         private ProjectileInfo Info { get; } = new ProjectileInfo();
         private Action<Vector3> OnHitAction { get; set; } = delegate { };
+        private List<ProjectileEffectController> Effects { get; } = new List<ProjectileEffectController>();
         
         
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
@@ -29,16 +27,28 @@ namespace WeaponsSystem.Projectiles {
         [field: SerializeField, MinValue(0)] private float SpeedCoefficient { get; set; } = 1f;
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
-        public GameObject Owner => this.Info.Damage.Instigator;
+        public (GameObject root, Combatant combatant) Owner => this.Info.Damage.Instigator;
+        public override string PoolableId => this.ProjectileId;
         
         public void Awake() {
-            this.Info.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
             this.Info.TargetTags.AddRange(this.TargetTags);
             this.Collider = this.GetComponent<CapsuleCollider2D>();
         }
 
-        public void AddEffect(Type type, GameplayEffect effect) {
-            this.Info.GameplayEffects[type] = effect;
+        public int GetAttribute(string id, int @base) {
+            return this.Info.SourceWeapon.Query(id, @base);
+        }
+        
+        public Projectile Targets(IEnumerable<string> tags) {
+            foreach (string t in tags) {
+                if (this.Info.TargetTags.Contains(t)) {
+                    continue;
+                }
+                
+                this.Info.TargetTags.Add(t);
+            }
+
+            return this;
         }
 
         public Projectile Targets(params string[] tags) {
@@ -48,6 +58,16 @@ namespace WeaponsSystem.Projectiles {
                 }
                 
                 this.Info.TargetTags.Add(t);
+            }
+
+            return this;
+        }
+
+        public Projectile WithEffects(IEnumerable<ProjectileEffect> effects) {
+            foreach (ProjectileEffect effect in effects) {
+                ProjectileEffectController controller =
+                        ObjectSpawner.Pull<ProjectileEffectController>(effect.Id, this.transform);
+                this.Effects.Add(controller);
             }
 
             return this;
@@ -66,10 +86,7 @@ namespace WeaponsSystem.Projectiles {
         public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
-            this.Info.Effects.ForEach(effect => effect.FetchAttributes(source));
-            IEnumerable<IProjectileEffect> effects =
-                    this.Info.Effects.Where(effect => this.Info.GameplayEffects.ContainsKey(effect.GetType()));
-            foreach (IProjectileEffect effect in effects) {
+            foreach (ProjectileEffectController effect in this.Effects) {
                 effect.TurnOn(this);
             }
             
@@ -79,7 +96,7 @@ namespace WeaponsSystem.Projectiles {
 
         public override void Return() {
             this.OnHitAction = delegate { };
-            this.Info.Effects.ForEach(effect => effect.TurnOff(this));
+            this.Effects.ForEach(effect => effect.TurnOff(this));
             this.Info.Reset();
             this.Collider.includeLayers = 0;
             base.Return();
@@ -104,14 +121,10 @@ namespace WeaponsSystem.Projectiles {
             this.OnHitAction(this.transform.position);
             target.HandleDamage(this.Info.Damage);
             this.Info.IsAlive = false;
-            this.Info.Effects.ForEach(effect => effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags));
+            this.Effects.ForEach(effect => effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags));
             if (!this.Info.IsAlive) {
                 this.Return();
             }
-        }
-
-        public GameplayEffect GetEffect(IProjectileEffect effect) {
-            return this.Info.GameplayEffects[effect.GetType()];
         }
         
         private void OnTriggerEnter2D(Collider2D other) {
@@ -125,6 +138,10 @@ namespace WeaponsSystem.Projectiles {
         }
 
         private void Update() {
+            if (!this.Info.IsAlive) {
+                return;
+            }
+            
             if (this.Info.DistanceTravelled >= this.Info.Range) {
                 this.Return();
                 return;
