@@ -4,8 +4,8 @@ using UnityEngine.Serialization;
 
 namespace DataStructuresForUnity.Runtime.GeneralUtils {
     [DisallowMultipleComponent]
-    public class PoolableObject : MonoBehaviour {
-        [field: SerializeField] public string PoolableId { get; private set; }
+    public abstract class PoolableObject : MonoBehaviour {
+        public abstract string PoolableId { get; }
         public event Action OnReturned;
 
         public virtual void Return() {

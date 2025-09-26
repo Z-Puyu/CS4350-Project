@@ -2,37 +2,26 @@
 using System.Linq;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem.Projectiles;
 
 namespace WeaponsSystem {
     public sealed class RangedWeaponStats : WeaponStats {
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ProjectileSpreadAttribute { get; private set; }
-        
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string FireIntervalAttribute { get; private set; }
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ShotsPerAttackAttribute { get; private set; }
         
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ProjectilesPerShotAttribute { get; private set; }
-        
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ExplosionRadiusAttribute { get; private set; }
-        
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
-        public string ParallelProjectileSpacingAttribute { get; private set; }
-        
-        public AttackMode FireMode { get; private set; } = AttackMode.Default;
+        public ProjectileSpawner.Mode FireMode { get; private set; } = ProjectileSpawner.Mode.Single;
         
         public override List<AttackData> ActivateAttackModifiers(int index) {
             List<AttackData> modifiers = base.ActivateAttackModifiers(index);
-            this.FireMode = modifiers.Count == 0 ? AttackMode.Default : modifiers.Last().Mode;
+            this.FireMode = modifiers.Count == 0 ? ProjectileSpawner.Mode.Single : modifiers.Last().Mode;
             return modifiers;
         }
 
         public override List<AttackData> DeactivateAttackModifiers(int index) {
-            this.FireMode = AttackMode.Default;
+            this.FireMode = ProjectileSpawner.Mode.Single;
             return base.DeactivateAttackModifiers(index);
         }
     }

@@ -127,5 +127,9 @@ namespace WeaponsSystem {
         public bool Has(int threshold, string key) {
             return this.AttributeSet.Has(threshold, key);
         }
+
+        public int Query(string key, int @base) {
+            return this.AttributeSet.Query(key, @base);
+        }
     }
 }

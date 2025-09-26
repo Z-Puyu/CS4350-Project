@@ -44,15 +44,15 @@ namespace WeaponsSystem.DamageHandling {
             
             this.IsAttacking = true;
             int combo = this.DamageDealer.StartAttack();
-            this.OnAttacked.Invoke(combo);
+            if (combo < 0) {
+                this.IsAttacking = false;
+            } else {
+                this.OnAttacked.Invoke(combo);
+            }
         }
 
         public void DealDamage(Vector3 forward) {
             this.DamageDealer.DealDamage(this, this.EnemyTags, this.EnemyLayerMask, forward);
-        }
-
-        public void ReactToHit(Damage data, int damage) {
-            this.OnHitTarget.Invoke(data, damage);
         }
 
         public void QueryFinishAttack() {

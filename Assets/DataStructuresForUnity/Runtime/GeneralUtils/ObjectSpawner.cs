@@ -65,6 +65,10 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
             return (T)poolable;
         }
 
+        public static T Pull<T>(string id, Transform parent = null) where T : PoolableObject {
+            return ObjectSpawner.Pull<T>(id, null, parent);
+        }
+
         public static T Pull<T>(string id, T prefab, Vector3 position, Quaternion rotation, Transform parent = null)
                 where T : PoolableObject {
             T poolable = ObjectSpawner.Pull(id, prefab, parent);

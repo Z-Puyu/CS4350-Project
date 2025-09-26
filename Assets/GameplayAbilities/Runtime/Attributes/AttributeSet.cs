@@ -180,7 +180,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             return this.GetCurrent(key) >= threshold;
         }
 
-        private int Query(string key, int @base) {
+        public int Query(string key, int @base) {
             if (!this.Attributes.TryGetValue(key, out AttributeData data)) {
                 return this.Parent ? this.Parent.Query(key, @base) : @base;
             }

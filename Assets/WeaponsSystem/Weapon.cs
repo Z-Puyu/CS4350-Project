@@ -5,14 +5,18 @@ using SaintsField;
 using UnityEngine;
 using Utilities;
 using WeaponsSystem.DamageHandling;
+using WeaponsSystem.Projectiles;
 using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
+    [RequireComponent(typeof(ProjectileSpawner))]
     public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
         [field: SerializeField] private ComponentSet PossibleComponents { get; set; }
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
         [field: SerializeField, Required] private ComponentManager ComponentManager { get; set; }
+        protected ProjectileSpawner ProjectileSpawner { get; private set; }
+        
         public Bitmask64 ComponentCombination => this.ComponentManager.ComponentCombination;
         
         // Placeholder 
@@ -35,13 +39,13 @@ namespace WeaponsSystem {
                 this.Stats = this.GetComponentInChildren<S>();
             }
             
+            this.ProjectileSpawner = this.GetComponent<ProjectileSpawner>();
             this.ComboResetTimer = new Timer(this.WeaponData.ComboResetTime);
         }
 
         protected virtual void Start() {
             this.Stats.Initialise(this.WeaponData);
             this.ComponentManager.Initialise(this.PossibleComponents);
-            this.ComponentManager.ApplyComponentsToStats();
         }
 
         public void AddComponent(WeaponComponentData component, int index) {
@@ -73,6 +77,10 @@ namespace WeaponsSystem {
         }
 
         protected virtual void Hit(Vector3 at) {
+            if (!this.WeaponData.ParticleEffectOnHit) {
+                return;
+            }
+
             ObjectSpawner.Pull(
                 this.WeaponData.ParticleEffectOnHit.PoolableId, this.WeaponData.ParticleEffectOnHit, at,
                 Quaternion.identity

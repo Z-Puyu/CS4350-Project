@@ -3,6 +3,7 @@ using System.Linq;
 using DataStructuresForUnity.Runtime.Bitmasks;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace WeaponsSystem.WeaponComponent {
@@ -12,7 +13,7 @@ namespace WeaponsSystem.WeaponComponent {
         [field: SerializeField] private WeaponStats Stats { get; set; }
         
         private Dictionary<WeaponComponentData, int> PossibleComponents { get; } = new Dictionary<WeaponComponentData, int>();
-        private WeaponComponentData[] Components { get; set; }
+        [field: SerializeField] private WeaponComponentData[] Components { get; set; }
         private List<Modifier> WeaponModifiers { get; set; } = new List<Modifier>();
         private Dictionary<int, List<AttackData>> ComboModifiers { get; set; } = new Dictionary<int, List<AttackData>>();
         public Bitmask64 ComponentCombination { get; } = 0;
@@ -78,19 +79,22 @@ namespace WeaponsSystem.WeaponComponent {
         }
 
         private void Awake() {
-            this.Components = Enumerable.Repeat<WeaponComponentData>(null, this.Capacity).ToArray();
+            // this.Components = Enumerable.Repeat<WeaponComponentData>(null, this.Capacity).ToArray();
         }
 
-        public void Start() {
+        /*public void Start() {
             this.RefreshModifiers();
             this.ApplyComponentsToStats();
-        }
+        }*/
 
         public void Initialise(ComponentSet components) {
             this.PossibleComponents.Clear();
             foreach (WeaponComponentData component in components.Components) {
                 this.PossibleComponents.Add(component, this.PossibleComponents.Count);
             }
+            
+            this.RefreshModifiers();
+            this.ApplyComponentsToStats();
         }
 
         private void RefreshModifiers() {
@@ -104,6 +108,10 @@ namespace WeaponsSystem.WeaponComponent {
             }
             
             foreach (WeaponComponentData component in this.Components) {
+                if (!component) {
+                    continue;
+                }
+                
                 foreach (ModifierData data in component.WeaponModifiers) {
                     this.WeaponModifiers.Add(data.CreateModifier(this.Stats));
                 }

@@ -10,10 +10,11 @@ using WeaponsSystem.DamageHandling;
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
     public sealed class Projectile : PoolableObject {
+        [field: SerializeField] private string ProjectileId { get; set; }
         private CapsuleCollider2D Collider { get; set; }
         private ProjectileInfo Info { get; } = new ProjectileInfo();
         private Action<Vector3> OnHitAction { get; set; } = delegate { };
-        private List<IProjectileEffect> Effects { get; } = new List<IProjectileEffect>();
+        private List<ProjectileEffectController> Effects { get; } = new List<ProjectileEffectController>();
         
         
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
@@ -27,11 +28,15 @@ namespace WeaponsSystem.Projectiles {
         
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         public (GameObject root, Combatant combatant) Owner => this.Info.Damage.Instigator;
+        public override string PoolableId => this.ProjectileId;
         
         public void Awake() {
-            this.Effects.AddRange(this.GetComponentsInChildren<IProjectileEffect>(includeInactive: true));
             this.Info.TargetTags.AddRange(this.TargetTags);
             this.Collider = this.GetComponent<CapsuleCollider2D>();
+        }
+
+        public int GetAttribute(string id, int @base) {
+            return this.Info.SourceWeapon.Query(id, @base);
         }
         
         public Projectile Targets(IEnumerable<string> tags) {
@@ -58,9 +63,11 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
-        public Projectile WithEffects(IEnumerable<ProjectileEffectData> effects) {
-            foreach (ProjectileEffectData effect in effects) {
-                this.Info.AddEffect(effect);
+        public Projectile WithEffects(IEnumerable<ProjectileEffect> effects) {
+            foreach (ProjectileEffect effect in effects) {
+                ProjectileEffectController controller =
+                        ObjectSpawner.Pull<ProjectileEffectController>(effect.Id, this.transform);
+                this.Effects.Add(controller);
             }
 
             return this;
@@ -76,20 +83,11 @@ namespace WeaponsSystem.Projectiles {
             return this;
         }
 
-        public bool HasEffect(ProjectileEffectType type, out ProjectileEffectData data) {
-            return this.Info.Effects.TryGetValue(type, out data);
-        }
-
         public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
-            foreach (IProjectileEffect effect in this.Effects) {
-                if (!this.Info.Effects.ContainsKey(effect.EffectType)) {
-                    continue;
-                }
-
+            foreach (ProjectileEffectController effect in this.Effects) {
                 effect.TurnOn(this);
-                effect.FetchAttributes(source);
             }
             
             this.Info.IsAlive = true;

@@ -13,16 +13,23 @@ MonoBehaviour:
   m_Name: Explosion Component
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.WeaponComponentData
   <Name>k__BackingField: Explosion
-  <WeaponModifiers>k__BackingField: []
+  <WeaponModifiers>k__BackingField:
+  - <TargetAttribute>k__BackingField: Damage.Physical.Explosion
+    <Method>k__BackingField: 1
+    <Form>k__BackingField: 0
+    <Source>k__BackingField: 0
+    <SourceAttribute>k__BackingField: 
+    <DefaultValue>k__BackingField: 10
+    <Coefficient>k__BackingField: 0
+    <Label>k__BackingField: 
   <AttackData>k__BackingField:
-  - <Modifiers>k__BackingField:
-    - <TargetAttribute>k__BackingField: Damage
+  - <Mode>k__BackingField: 0
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Damage.Physical.Explosion
       <Method>k__BackingField: 0
       <Form>k__BackingField: 0
       <Source>k__BackingField: 0
       <SourceAttribute>k__BackingField: 
-      <DefaultValue>k__BackingField: 0
+      <DefaultValue>k__BackingField: 15
       <Coefficient>k__BackingField: 0
       <Label>k__BackingField: 
-  - <Modifiers>k__BackingField: []
-  id: 0

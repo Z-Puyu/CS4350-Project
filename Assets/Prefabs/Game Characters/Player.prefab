@@ -409,6 +409,14 @@ PrefabInstance:
       propertyPath: <CharacterController>k__BackingField
       value: 
       objectReference: {fileID: 5243613514484291101}
+    - target: {fileID: 1362842556525151000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <EnemyTags>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362842556525151000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: '<EnemyTags>k__BackingField.Array.data[0]'
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.y
       value: 1

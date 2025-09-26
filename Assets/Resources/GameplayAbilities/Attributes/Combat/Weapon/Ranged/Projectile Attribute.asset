@@ -15,13 +15,16 @@ MonoBehaviour:
   <Name>k__BackingField: Projectile
   displayName: Projectile Attribute
   <ModificationRules>k__BackingField: []
-  <Id>k__BackingField: Weapon.Ranged.Projectile
-  <Parent>k__BackingField: {fileID: 11400000, guid: 2db0172c7dbe0674a95ff5134db09267, type: 2}
+  <Id>k__BackingField: Weapon.Projectile
+  <Parent>k__BackingField: {fileID: 11400000, guid: 44cc93666c584b741a4407ddb1b94a58, type: 2}
   <SubTypes>k__BackingField:
   - {fileID: 11400000, guid: c9b889d279ee239409025ecb39da3bab, type: 2}
   - {fileID: 11400000, guid: ace73ce3fbfb17d45a58d01c19cdf380, type: 2}
   - {fileID: 11400000, guid: 70c28503298811943bd87ae873a6b306, type: 2}
   - {fileID: 11400000, guid: f2291385336756c499c0d90a0ea1152f, type: 2}
+  - {fileID: 11400000, guid: a93b9d40183333343a927204d5dd4419, type: 2}
+  - {fileID: 11400000, guid: 569789c4bc4dadc4ba4ee741aaf4d4b6, type: 2}
+  - {fileID: 11400000, guid: 7b980cb0e25933c4ea772ca7c8e215ae, type: 2}
   references:
     version: 2
     RefIds: []
