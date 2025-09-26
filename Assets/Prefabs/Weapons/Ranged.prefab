@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2831699757775048524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757277886443470913}
+  - component: {fileID: 1642215743313573861}
+  m_Layer: 0
+  m_Name: Components
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &757277886443470913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831699757775048524}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767873951734616461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642215743313573861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831699757775048524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9132c69a24344228dc741493f854567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.ComponentManager
+  <Capacity>k__BackingField: 3
+  <Stats>k__BackingField: {fileID: 7052933144111497264}
+  <Components>k__BackingField:
+  - {fileID: 11400000, guid: eb4ee7c856960354cb789647660799ff, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3523569647147976172
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6767873951734616461}
   - component: {fileID: 6411639340048114452}
+  - component: {fileID: 8981422174072951667}
   m_Layer: 0
   m_Name: Ranged
   m_TagString: Untagged
@@ -31,6 +82,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1627404563923174993}
+  - {fileID: 757277886443470913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6411639340048114452
@@ -45,12 +97,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b30f89985064990a6fb6fffd6ad3915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
+  <PossibleComponents>k__BackingField: {fileID: 11400000, guid: 82274724dcc77774b9b2ce743ae2c5ad, type: 2}
   <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
-  <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 7052933144111497264}
+  <ComponentManager>k__BackingField: {fileID: 1642215743313573861}
   <ParticleEffect>k__BackingField: {fileID: 0}
   <ProjectilePrefab>k__BackingField: {fileID: 6170226598646885628, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
-  spawnMethods: 0000000001000000
+--- !u!114 &8981422174072951667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523569647147976172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a8ce96be84c188e407c20e32d37fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.ProjectileSpawner
+  <ProjectileSpreadAttribute>k__BackingField: Weapon.Projectile.Spread
+  <ProjectilesPerShotAttribute>k__BackingField: Weapon.Projectile.ProjectilesPerShot
+  <ExplosionRadiusAttribute>k__BackingField: Weapon.Projectile.ExplosionRadius
+  <ParallelProjectileSpacingAttribute>k__BackingField: Weapon.Projectile.ParallelProjectileSpacing
 --- !u!1 &6062935445063475738
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
   <ModifierMode>k__BackingField: 1
-  <DefaultAttributeTable>k__BackingField: {fileID: 0}
+  <DefaultAttributes>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
 --- !u!114 &7052933144111497264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,16 +179,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
   <DamageAttributes>k__BackingField:
-  - Damage.Physical
+  - Damage.Physical.Projectile
   - Damage.Elemental.Fire
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
-  <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
   <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
-  <ProjectileSpreadAttribute>k__BackingField: Weapon.Ranged.Spread
   <FireIntervalAttribute>k__BackingField: Weapon.Ranged.FireInterval
-  <MultitapCountAttribute>k__BackingField: Weapon.Ranged.MultitapCount
-  <ProjectileCountAttribute>k__BackingField: Weapon.Ranged.FireMultiplicity
-  <ExplosionRadiusAttribute>k__BackingField: Projectile.ExplosionRadius
-  <FireSpacingAttribute>k__BackingField: Weapon.Ranged.FireSpacing
+  <ShotsPerAttackAttribute>k__BackingField: Weapon.Ranged.ShotsPerAttack

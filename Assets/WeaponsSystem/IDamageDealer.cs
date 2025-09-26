@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem {
     public interface IDamageDealer {
@@ -14,11 +15,12 @@ namespace WeaponsSystem {
         /// <summary>
         /// Checks for valid targets and deals damage to them.
         /// </summary>
+        /// <param name="combatant">The combatant that is attacking.</param>       
         /// <param name="tags">If non-empty, the target must have one of the tags specified.</param>
         /// <param name="mask">The layer on which the targets are present.
         /// You can ignore this if you use trigger colliders.</param>
         /// <param name="forward">The forward direction the damage dealer is facing.</param>
-        public void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward);
+        public void DealDamage(Combatant combatant, ICollection<string> tags, LayerMask mask, Vector3 forward);
 
         public void EndAttack();
 

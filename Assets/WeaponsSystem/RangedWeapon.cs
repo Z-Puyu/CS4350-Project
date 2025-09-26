@@ -2,24 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Common;
 using DataStructuresForUnity.Runtime.GeneralUtils;
-using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
-using Utilities;
 using WeaponsSystem.DamageHandling;
 using WeaponsSystem.Projectiles;
 using Timer = Utilities.Timer;
 
 namespace WeaponsSystem {
     public class RangedWeapon : Weapon<RangedWeaponStats> {
-        public enum ProjectileSpawnMethod {
-            Spread,
-            Parallel,
-            Single,
-            Multitap
-        }
-
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
-        [field: SerializeField] private List<ProjectileSpawnMethod> spawnMethods;
         private Timer fireIntervalTimer;
         private bool canAttack = true;
         private Vector3 outwards;
@@ -61,93 +51,33 @@ namespace WeaponsSystem {
             if (this.canAttack) {
                 OnScreenDebugger.Log("RangedAttackSuccessfully");
                 return base.StartAttack();
-            } else {
-                OnScreenDebugger.Log("Cannot Attack, still in cooldown");
-            }
-
+            } 
+            
+            OnScreenDebugger.Log("Cannot Attack, still in cooldown");
             return -1;
         }
 
-        public override void DealDamage(ICollection<string> tags, LayerMask mask, Vector3 forward) {
+        public override void DealDamage(
+            Combatant combatant, ICollection<string> tags, LayerMask mask, Vector3 forward
+        ) {
             if (!this.ProjectilePrefab) {
                 return;
             }
 
             const int delay = 100;
             if (this.canAttack) {
-                this.endTime = Time.time + this.Stats.GetCurrent(this.Stats.MultitapCountAttribute) * delay / 1000.0f;
+                this.endTime = Time.time + this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute) * delay / 1000.0f;
             }
 
-            this.StartCoroutine(
-                this.SpawnMultitapBullet(
-                    this.Stats.GetCurrent(this.Stats.MultitapCountAttribute), delay,
-                    this.spawnMethods[this.CurrentAttackCounter], mask
-                )
+            ProjectileConfig config = new ProjectileConfig(
+                this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute), delay, this.Stats.FireMode, mask,
+                tags, this.outwards
             );
+            
+            Damage damage = new Damage(this.transform.root.gameObject, combatant, this.Stats.ReadDamageData());
+            this.StartCoroutine(this.ProjectileSpawner.Spawn(this.ProjectilePrefab, this.Stats, config, damage, this.Hit));
             this.canAttack = false;
             this.fireIntervalTimer.Start();
-        }
-
-        private void SpawnSingleBullet(Vector3 direction, Vector3 position, LayerMask mask) {
-            if (!this.ProjectilePrefab) {
-                return;
-            }
-
-            Damage damage = new Damage(this.transform.root.gameObject, this.Stats.ReadDamageData());
-            ObjectSpawner.Pull(this.ProjectilePrefab.PoolableId, this.ProjectilePrefab, position, Quaternion.identity)
-                         .WithDamage(damage)
-                         .OnHit(this.Hit)
-                         .Launch(this.Stats, direction, mask);
-        }
-
-        private void SpawnSpreadBullet(Vector3 direction, int spread, int count, LayerMask mask) {
-            float startAngle = -spread / 2.0f;
-            float angleStep = spread / (count - 1.0f);
-            for (int i = 0; i < count; i += 1) {
-                float currentAngle = startAngle + i * angleStep;
-                Vector3 currentDirection = Quaternion.Euler(0, 0, currentAngle) * direction;
-                this.SpawnSingleBullet(currentDirection, this.transform.position, mask);
-            }
-        }
-
-        private void SpawnParallelBullet(Vector3 direction, float spacing, int count, LayerMask mask) {
-            Vector3 orthogonal = Vector3.Cross(direction, Vector3.forward).normalized;
-            float interval = spacing / (count - 1.0f);
-            float startOffset = -(spacing / 2.0f);
-            for (int i = 0; i < count; i += 1) {
-                Vector3 position = this.transform.position + (startOffset + interval * i) * orthogonal;
-                this.SpawnSingleBullet(direction, position, mask);
-            }
-        }
-
-        private IEnumerator SpawnMultitapBullet(int count, int delay, ProjectileSpawnMethod spawnMethod, LayerMask mask) {
-            if (count == 1) {
-                this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
-                yield break;
-            }
-
-            for (int i = 0; i < count; i += 1) {
-                switch (spawnMethod) {
-                    case ProjectileSpawnMethod.Spread:
-                        this.SpawnSpreadBullet(
-                            this.outwards, this.Stats.GetCurrent(this.Stats.ProjectileSpreadAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask
-                        );
-                        break;
-                    case ProjectileSpawnMethod.Parallel:
-                        this.SpawnParallelBullet(
-                            this.outwards, this.Stats.GetCurrent(this.Stats.FireSpacingAttribute),
-                            this.Stats.GetCurrent(this.Stats.ProjectileCountAttribute), mask
-                        );
-                        break;
-                    case ProjectileSpawnMethod.Single or ProjectileSpawnMethod.Multitap:
-                    default:
-                        this.SpawnSingleBullet(this.outwards, this.transform.position, mask);
-                        break;
-                }
-
-                yield return new WaitForSeconds(delay / 1000.0f);
-            }
         }
     }
 }

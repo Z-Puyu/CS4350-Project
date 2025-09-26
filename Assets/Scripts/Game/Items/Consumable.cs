@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GameplayAbilities.Runtime.Abilities;
-using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
@@ -38,7 +36,7 @@ namespace Game.Items {
             
             GameplayEffectExecutionArgs args = coordinator.CreateEffectExecutionArgs().Build();
             foreach (GameplayEffectData effect in this.Effects) {
-                coordinator.Add(effect.Instantiate(coordinator.GetComponent<AttributeSet>(), args), 100);
+                coordinator.Add(effect.Instantiate(args), 100);
             }
         }
         

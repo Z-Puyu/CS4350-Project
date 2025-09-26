@@ -19,15 +19,18 @@ namespace GameplayAbilities.Runtime.Abilities {
         internal SaintsDictionary<PoolableObject, int> SpawnableEffects { get; private set; } = 
             new SaintsDictionary<PoolableObject, int>();
         
+        [field: SerializeField] private bool SpawnsEffectAtTarget { get; set; }
+        
         [field: SerializeReference, ReferencePicker] 
         public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
         
         public AbilityInfo Info => new AbilityInfo(this.Cooldown, this.Effects.Count);
 
-        public void Start(Vector3 at) {
+        public void StartAbility(Vector3 instigatorPosition, Vector3 targetPosition) {
+            Vector3 pos = this.SpawnsEffectAtTarget ? targetPosition : instigatorPosition;
             foreach (KeyValuePair<PoolableObject, int> effect in this.SpawnableEffects) {
                 for (int i = 0; i < effect.Value; i += 1) {
-                    ObjectSpawner.Pull(effect.Key.PoolableId, effect.Key, at, Quaternion.identity);
+                    ObjectSpawner.Pull(effect.Key.PoolableId, effect.Key, pos, Quaternion.identity);
                 }
             }
         }

@@ -44,5 +44,9 @@ namespace GameplayAbilities.Runtime.Attributes {
         public bool Has(int threshold, string key) {
             return this.Root.I.Has(threshold, key);
         }
+        
+        public int Query(string key, int @base) {
+            return this.Root.I.Query(key, @base);
+        }
     }
 }

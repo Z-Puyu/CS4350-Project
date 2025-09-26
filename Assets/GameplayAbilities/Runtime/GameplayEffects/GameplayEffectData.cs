@@ -45,9 +45,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
         }
 
-        public virtual DropdownList<string> GetDataLabels() {
-            return new DropdownList<string>();
-        }
+        public abstract DropdownList<string> GetDataLabels();
         
         /// <summary>
         /// Additional logic to execute on the first execution of the gameplay effect.
@@ -91,7 +89,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
         }
 
-        public GameplayEffect Instantiate(AttributeSet target, GameplayEffectExecutionArgs args) {
+        public GameplayEffect Instantiate(GameplayEffectExecutionArgs args) {
             return new GameplayEffect(this, args);
         }
         

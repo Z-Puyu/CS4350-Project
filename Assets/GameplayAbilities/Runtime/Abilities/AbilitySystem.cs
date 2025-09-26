@@ -20,9 +20,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, AbilityInfo> ActiveAbilities { get; } = new Dictionary<IAbility, AbilityInfo>();
         
-        private Dictionary<GameplayEffect, IAbility> ActiveEffects { get; } =
-            new Dictionary<GameplayEffect, IAbility>();
-        
         private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         private AttributeSet AttributeSet { get; set; }
         
@@ -40,6 +37,15 @@ namespace GameplayAbilities.Runtime.Abilities {
                 this.Grant(ability);
             }
         }
+        
+        public bool CanUse(IAbility ability) {
+            return !this.AbilitiesOnCooldown.ContainsKey(ability);
+        }
+        
+        public bool CanUse(string abilityId) {
+            IAbility ability = PerkDatabase.GetAbility(abilityId);
+            return this.CanUse(ability);
+        }
 
         private void HandleTerminatedEffect(GameplayEffect effect, IAbility ability) {
             if (ability == null) {
@@ -53,7 +59,9 @@ namespace GameplayAbilities.Runtime.Abilities {
             } else {
                 this.ActiveAbilities.Remove(ability);
                 this.OnEndAbility.Invoke(ability);
-                this.AbilitiesOnCooldown.Add(ability, info.Cooldown);
+                if (info.Cooldown > 0) {
+                    this.AbilitiesOnCooldown[ability] = info.Cooldown;
+                }
             }
         }
 
@@ -125,7 +133,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            ability.Start(args.Position);
+            ability.StartAbility(args.InstigatorTransform.position, target.transform.position);
             this.OnStartAbility.Invoke(ability);
             target.Process(ability, args);
         }
@@ -141,13 +149,30 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
             this.ActiveAbilities.Add(ability, ability.Info);
+            if (ability.Info.Cooldown > 0) {
+                this.AbilitiesOnCooldown[ability] = ability.Info.Cooldown;
+            }
+            
             foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
                 this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
             }
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform.position);
+            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
+        }
+
+        private void Update() {
+            foreach (IAbility ability in this.AbilitiesOnCooldown.Keys) {
+                if (this.ActiveAbilities.ContainsKey(ability)) {
+                    continue;
+                }
+
+                this.AbilitiesOnCooldown[ability] -= Time.deltaTime;
+                if (this.AbilitiesOnCooldown[ability] <= 0) {
+                    this.AbilitiesOnCooldown.Remove(ability);
+                }
+            }
         }
     }
 }

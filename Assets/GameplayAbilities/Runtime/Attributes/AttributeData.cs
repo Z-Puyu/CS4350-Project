@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using GameplayAbilities.Runtime.ModificationRules;
 using GameplayAbilities.Runtime.Modifiers;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         
         private AttributeSet Root { get; }
         private List<IAttributeClampRule> ModificationRules { get; } = new List<IAttributeClampRule>();
-        private float BaseValue { get; }
+        private double BaseValue { get; }
         private ModifierMode Mode { get; }
         internal int Value { get; private set; }
         
@@ -23,21 +24,21 @@ namespace GameplayAbilities.Runtime.Attributes {
         
         private LinkedList<Modifier> ModifierSequence { get; } = new LinkedList<Modifier>();
 
-        private AttributeData(float value, AttributeSet root, ModifierMode mode) {
+        private AttributeData(double value, AttributeSet root, ModifierMode mode) {
             this.BaseValue = value;
             this.Root = root;
             this.Mode = mode;
         }
 
         internal static AttributeData From(
-            AttributeType definition, float initValue, AttributeSet root, ModifierMode mode
+            AttributeType definition, double initValue, AttributeSet root, ModifierMode mode
         ) {
             AttributeData data = new AttributeData(initValue, root, mode);
             foreach (IAttributeClampRule rule in definition.ModificationRules) {
                 data.ModificationRules.Add(rule);
             }
             
-            data.Value = data.RecomputeValue();
+            data.Value = data.Query(initValue);
             return data;
         }
 
@@ -50,17 +51,20 @@ namespace GameplayAbilities.Runtime.Attributes {
             
             return value;
         }
-
-        internal int RecomputeValue() {
-            double @base = this.ExecuteModificationRules(this.BaseValue);
-            this.Value = this.Mode switch {
+        
+        internal int Query(double @base) {
+            @base = this.ExecuteModificationRules(@base);
+            return this.Mode switch {
                 ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(@base, modify),
                 ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(@base, modify),
                 var _ => throw new ArgumentException("Invalid modifier mode")
             };
             
-            return this.Value;
             double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
+        }
+        
+        internal int RecomputeValue() {
+            return this.Value = this.Query(this.BaseValue);
         }
 
         internal void AddModifier(Modifier modifier) {

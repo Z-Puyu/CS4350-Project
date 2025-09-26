@@ -15,6 +15,13 @@ MonoBehaviour:
   <Id>k__BackingField: ability:attack
   <Name>k__BackingField: Attack
   <Description>k__BackingField: 
+  <Cooldown>k__BackingField: 0
+  <SpawnableEffects>k__BackingField:
+    _keys: []
+    _values: 
+    _saintsKeys: []
+    _saintsValues: []
+  <SpawnsEffectAtTarget>k__BackingField: 1
   <Effects>k__BackingField:
   - rid: 2098011628653248813
   references:
@@ -30,9 +37,17 @@ MonoBehaviour:
         <BaseChance>k__BackingField: 100
         <Costs>k__BackingField: []
         <DamageTypes>k__BackingField:
-        - <DamageAttribute>k__BackingField: Damage.Physical
-          <DefenceAttribute>k__BackingField: Defence.Physical
+        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
+          <DefenceAttribute>k__BackingField: Defence.Physical.Melee
           <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
+          <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
           <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
@@ -46,4 +61,4 @@ MonoBehaviour:
           <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 25bb5e62ca909534291a53ed22b50287, type: 2}
+        <TargetAttribute>k__BackingField: Health
