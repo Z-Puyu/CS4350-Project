@@ -41,7 +41,7 @@ namespace WeaponsSystem.Projectiles {
                          .Launch(source, config.Direction, config.Mask);
         }
 
-        private static void SpawnSpreadBullet(
+        private void SpawnSpreadBullet(
             Projectile prefab, IAttributeReader source, int spread, int multiplicity, ProjectileConfig config,
             Damage damage, Action<Vector3> onHit
         ) {
@@ -50,7 +50,9 @@ namespace WeaponsSystem.Projectiles {
             for (int i = 0; i < multiplicity; i += 1) {
                 float currentAngle = startAngle + i * angleStep;
                 Vector3 currentDirection = Quaternion.Euler(0, 0, currentAngle) * config.Direction;
-                ProjectileSpawner.SpawnSingleBullet(prefab, source, currentDirection, config, damage, onHit);
+                ProjectileConfig newConfig = new ProjectileConfig(
+                    config.Count, config.Interval, config.Mode, config.Mask, config.TargetTags, currentDirection);
+                ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, newConfig, damage, onHit);
             }
         }
 
@@ -70,14 +72,16 @@ namespace WeaponsSystem.Projectiles {
         public IEnumerator Spawn(
             Projectile prefab, IAttributeReader source, ProjectileConfig config, Damage damage, Action<Vector3> onHit
         ) {
+            if (config.Count == 1) {
+                ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, config, damage, onHit);
+                yield break;
+            }
             for (int i = 0; i < config.Count; i += 1) {
                 switch (config.Mode) {
                     case Mode.Spread:
                         int spread = source.GetCurrent(this.ProjectileSpreadAttribute);
                         int multiplicity = source.GetCurrent(this.ProjectilesPerShotAttribute);
-                        ProjectileSpawner.SpawnSpreadBullet(
-                            prefab, source, spread, multiplicity, config, damage, onHit
-                        );
+                        this.SpawnSpreadBullet(prefab, source, spread, multiplicity, config, damage, onHit);
                         break;
                     case Mode.Parallel:
                         int spacing = source.GetCurrent(this.ParallelProjectileSpacingAttribute);

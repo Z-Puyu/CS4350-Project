@@ -447,6 +447,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5243613514484291101, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <DamageHandler>k__BackingField
+      value: 
+      objectReference: {fileID: 1312788187}
+    - target: {fileID: 5243613514484291101, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <GameplayEffectCoordinator>k__BackingField
+      value: 
+      objectReference: {fileID: 1604686479}
     - target: {fileID: 5582658884434323390, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Size.x
       value: 0.75
@@ -681,10 +689,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1540780401}
     m_Modifications:
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: '<Components>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 111a4cb858a90144ea0b0ae595db3d16, type: 2}
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: '<Components>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c04cd318d9e88b40a881ee9d57bf8f7, type: 2}
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: '<Components>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3523569647147976172, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
       propertyPath: m_Name
       value: Ranged
       objectReference: {fileID: 0}
+    - target: {fileID: 6411639340048114452, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: <ParticleEffect>k__BackingField
+      value: 
+      objectReference: {fileID: 1958896322}
     - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.7801
@@ -1145,6 +1169,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1312788187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8449323229725670845, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e1154bc3f4b38a358a687599a7d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
 --- !u!1001 &1453472073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1307,6 +1342,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6749025965523589983, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
   m_PrefabInstance: {fileID: 529274588}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1604686479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7962824818302962912, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -1486,6 +1532,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bebe8e01bf04c05a5fd94039e0dffb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Map.GameWorld
+--- !u!198 &1958896322 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6091649722005540387, guid: 937ac1b56081595489f7c99bcd84a62c, type: 3}
+  m_PrefabInstance: {fileID: 2707925877753626187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0
