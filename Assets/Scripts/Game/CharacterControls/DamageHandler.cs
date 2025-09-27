@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Common;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.GameplayEffects;
