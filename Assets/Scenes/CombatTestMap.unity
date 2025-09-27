@@ -1002,6 +1002,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1190043135416699325, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6133477616579067779, guid: ac0266cd0d141054ea97947d5a29b1ab, type: 3}
     - target: {fileID: 1732525752152892353, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <PixelOffset>k__BackingField
       value: 0
@@ -1050,10 +1054,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5468757192089227282, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUseWeaponSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468757192089227282, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUseCharacterSkill
+      objectReference: {fileID: 0}
     - target: {fileID: 6846403353061881947, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6592777
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7214519
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.047468543
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.07782954
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <TestComponents>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 723c104c39f5c9b4599b7554ea142761, type: 2}
+    - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c5d6048f1569310428ece33f63ca025a, type: 2}
+    - target: {fileID: 8592607854843346343, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <AbilityRoundRobin>k__BackingField
+      value: 
+      objectReference: {fileID: 904005243}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

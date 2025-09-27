@@ -34,11 +34,22 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         private int Duration {
             get {
-                if (this.EffectsOnTarget.Any(effect => effect.ActualDuration < 0)) {
+                if (this.EffectsOnTarget.Any(effect => effect.ActualDuration < 0) ||
+                    this.EffectsOnSelf.Any(effect => effect.ActualDuration < 0)) {
                     return -1;
                 }
+
+                int durationOnTarget = 0;
+                if (this.EffectsOnTarget.Count > 0) {
+                    durationOnTarget = this.EffectsOnTarget.Max(effect => effect.ActualDuration);
+                }
+
+                int durationOnSelf = 0;
+                if (this.EffectsOnSelf.Count > 0) {
+                    durationOnSelf = this.EffectsOnSelf.Max(effect => effect.ActualDuration);
+                }
                 
-                return this.EffectsOnTarget.Max(effect => effect.ActualDuration);
+                return Math.Max(durationOnTarget, durationOnSelf);
             }
         }
 
@@ -64,7 +75,8 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         public void Activate(AbilitySystem instigator, Vector3 position) {
             foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnSelf) {
-                ObjectSpawner.Pull(spawn.PoolableId, spawn, position, Quaternion.identity, instigator.transform);
+                ObjectSpawner.Pull(spawn.PoolableId, spawn, position, Quaternion.identity, instigator.transform)
+                             .Activate(new AbilityData(this.Info, instigator.AttributeSet, position));
             }
             
             if (this.EffectsOnSelf.Count == 0) {

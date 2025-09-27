@@ -20,11 +20,13 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
         
         private IEnumerator AlignToParentAndPlay(int duration) {
-            yield return new WaitForFixedUpdate();
             Transform parent = this.transform.parent;
             if (parent) {
                 BoundingRect parentRect = parent.GetComponentInParent<BoundingRect>();
                 if (parentRect) {
+                    yield return new WaitForFixedUpdate();
+                    this.BoundingRect.ResizeTo(parentRect);
+                    yield return new WaitForFixedUpdate();
                     this.BoundingRect.AlignTo(parentRect, this.Alignment);
                 }
             }

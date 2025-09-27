@@ -71,17 +71,15 @@ namespace Game.Player {
             }
         }
 
-        public void OnSkillOneUsed(InputAction.CallbackContext context) {
-            if (!context.performed) {
-                return;
+        public void OnUseWeaponSkill(InputAction.CallbackContext context) {
+            if (context.performed) {
+                this.AbilityRoundRobin.Use(0);
             } 
-            
-            this.AbilitySystem.Use("ability:healing");
         }
 
-        public void OnUseAbility(InputAction.CallbackContext context) {
+        public void OnUseCharacterSkill(InputAction.CallbackContext context) {
             if (context.performed) {
-                this.AbilityRoundRobin.UseCurrentAbility();
+                this.AbilityRoundRobin.Use(1);
             }
         }
     }

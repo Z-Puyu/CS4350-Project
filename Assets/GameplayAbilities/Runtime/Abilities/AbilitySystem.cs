@@ -158,6 +158,9 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         internal void AddEffect(GameplayEffect effect, IAbility ability) {
             this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
+#if DEBUG
+            Debug.Log($"Added effect {effect} to {this.gameObject.name}", this);
+#endif
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
