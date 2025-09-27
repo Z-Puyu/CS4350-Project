@@ -19,8 +19,10 @@ MonoBehaviour:
   <SpawnableEffects>k__BackingField:
     _keys: []
     _values: 
-    _saintsKeys: []
-    _saintsValues: []
+    _saintsKeys:
+    - value: {fileID: 6170226598646885628, guid: 8fc0b7b0f0199a8458f1239312848e8c, type: 3}
+    _saintsValues:
+    - value: 1
   <SpawnsEffectAtTarget>k__BackingField: 0
   <Effects>k__BackingField: []
   references:

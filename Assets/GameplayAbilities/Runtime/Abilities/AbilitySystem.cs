@@ -120,14 +120,13 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (ability == null) {
                 return;
             }
-            
+            Debug.Log($"Granted ability {ability}", this);
             this.AvailableAbilities.Add(ability);
         }
 
         public void Grant(string abilityId) {
             IAbility ability = PerkDatabase.GetAbility(abilityId);
             this.Grant(ability);
-            Debug.Log($"Granted ability {abilityId}", this);
         }
 
         public void Revoke(IAbility ability) {
@@ -180,6 +179,5 @@ namespace GameplayAbilities.Runtime.Abilities {
                 }
             }
         }
-        
     }
 }
