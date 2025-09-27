@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Game.CharacterControls {
     public class MouseTracker : MonoBehaviour {

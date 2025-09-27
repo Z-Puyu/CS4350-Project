@@ -15,10 +15,35 @@ MonoBehaviour:
   <Id>k__BackingField: ability:healing
   <Name>k__BackingField: Healing
   <Description>k__BackingField: 
+  <Cooldown>k__BackingField: 10
+  <SpawnableEffects>k__BackingField:
+    _keys: []
+    _values: 
+    _saintsKeys:
+    - value: {fileID: -8018059009087396697, guid: eceecd69659dd5e4693718cddc39d0bf, type: 3}
+    _saintsValues:
+    - value: 1
+  <SpawnsEffectAtTarget>k__BackingField: 1
   <Effects>k__BackingField:
-  - rid: -2
+  - rid: 2098011714213118144
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2098011714213118144
+      type: {class: ModifierEffectData, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
+      data:
+        <ExecutionTime>k__BackingField: 1
+        <Period>k__BackingField: 1
+        <Duration>k__BackingField: 10
+        <CanMiss>k__BackingField: 0
+        <BaseChance>k__BackingField: 100
+        <Costs>k__BackingField: []
+        <Modifiers>k__BackingField:
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 0
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: 
+          <DefaultValue>k__BackingField: 1
+          <Coefficient>k__BackingField: 0
+          <Label>k__BackingField: 

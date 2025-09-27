@@ -2,8 +2,6 @@ using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
-using WeaponsSystem;
-using WeaponsSystem.DamageHandling;
 using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Enemies {
@@ -34,6 +32,7 @@ namespace Game.Enemies {
         }
 
         public override void HandleDeath() {
+            base.HandleDeath();
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
         }
     }

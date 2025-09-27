@@ -29,6 +29,7 @@ namespace Utilities {
             if (Time.time <= this.targetTime) {
                 return;
             }
+            
             this.isActive = false;
             this.OnTimerFinished?.Invoke();
         }

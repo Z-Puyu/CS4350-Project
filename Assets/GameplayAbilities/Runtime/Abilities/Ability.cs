@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataStructuresForUnity.Runtime.GeneralUtils;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
@@ -12,10 +14,30 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField] internal string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
+        [field: SerializeField, MinValue(0)] private int Cooldown { get; set; }
+        
+        [field: SerializeField, SaintsDictionary("Effect", "Multiplicity")] 
+        public SaintsDictionary<SpawnableAbilityObject, int> SpawnableEffects { get; private set; } = 
+            new SaintsDictionary<SpawnableAbilityObject, int>();
+        
+        [field: SerializeField] private bool SpawnsEffectAtTarget { get; set; }
         
         [field: SerializeReference, ReferencePicker] 
         public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
-        
+
+        public int Duration {
+            get {
+                if (this.Effects.Any(effect => effect.ActualDuration < 0)) {
+                    return -1;
+                }
+                
+                return this.Effects.Max(effect => effect.ActualDuration);
+            }
+        }
+
+        public int CooldownTime => this.Cooldown + Math.Max(0, this.Duration);
+        public AbilityInfo Info => new AbilityInfo(this.Id, this.CooldownTime, this.Duration);
+
         public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args) {
             return this.Effects.Select(effect => new GameplayEffect(effect, args));
         }

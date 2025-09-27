@@ -25,7 +25,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         [field: SerializeField, HideIf(nameof(this.ExecutionTime), Periodicity.Instant)]
         [field: Tooltip("Set to -1 for infinite duration"), PostFieldRichLabel("<color=grey>s")]
-        public float Duration { get; private set; } = 1f;
+        private int Duration { get; set; } = 1;
         
         [field: SerializeField, Tooltip("Whether this effect can fail to apply")]
         public bool CanMiss { get; private set; }
@@ -35,13 +35,17 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         [field: SerializeField] public List<EffectCommitmentCost> Costs { get; private set; } = new List<EffectCommitmentCost>();
 
+        public int ActualDuration => this.ExecutionTime switch {
+            Periodicity.Instant => 0,
+            Periodicity.Periodic or Periodicity.Continuous => this.Duration,
+            var _ => throw new ArgumentOutOfRangeException()
+        };
+        
         public GameplayEffectData() {
             this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
         }
 
-        public virtual DropdownList<string> GetDataLabels() {
-            return new DropdownList<string>();
-        }
+        public abstract DropdownList<string> GetDataLabels();
         
         /// <summary>
         /// Additional logic to execute on the first execution of the gameplay effect.
@@ -85,7 +89,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
         }
 
-        public GameplayEffect Instantiate(AttributeSet target, GameplayEffectExecutionArgs args) {
+        public GameplayEffect Instantiate(GameplayEffectExecutionArgs args) {
             return new GameplayEffect(this, args);
         }
         

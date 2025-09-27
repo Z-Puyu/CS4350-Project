@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
+using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     public interface IAbility {
@@ -22,5 +23,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// or whether the ability is in cool down. It should not be used to check for costs or probabilistic conditions.
         /// </remarks>
         public bool IsUsable(AttributeSet instigator, AttributeSet target);
+        
+        public abstract AbilityInfo Info { get; }
     }
 }

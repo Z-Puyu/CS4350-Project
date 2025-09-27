@@ -1,12 +1,30 @@
-﻿using SaintsField;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SaintsField;
 using UnityEngine;
+using WeaponsSystem.Projectiles;
 
 namespace WeaponsSystem {
     public sealed class MeleeWeaponStats : WeaponStats {
         [field: SerializeField, Required, PropRange(0, 180)] 
         public float SweepHalfAngle { get; private set; }
         
-        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))] 
+        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))] 
         public string MeleeRangeAttribute { get; private set; }
+
+        protected override void UpdateProjectileMode(int index) {
+            if (this.ProjectileEffects.Count == 0) {
+                this.ProjectileMode = ProjectileSpawner.Mode.None;
+            }
+            
+            List<AttackData> modifiers = this.AttackModifiers[index];
+            this.ProjectileMode = modifiers.Count == 0 || modifiers.Last().ProjectileMode == ProjectileSpawner.Mode.None
+                    ? ProjectileSpawner.Mode.Spread
+                    : modifiers.Last().ProjectileMode;
+        }
+        
+        protected override void RevertProjectileMode(int index) {
+            this.ProjectileMode = ProjectileSpawner.Mode.None;
+        }
     }
 }

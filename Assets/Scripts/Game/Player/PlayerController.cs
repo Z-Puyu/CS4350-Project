@@ -17,7 +17,7 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-
+        
         protected override void Start() {
             if (!this.InitialData) {
                 return;
@@ -28,10 +28,6 @@ namespace Game.Player {
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
             this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
-        }
-
-        public override void HandleDeath() {
-            this.Say("Player died");
         }
 
         private void ConfigureInventory() {

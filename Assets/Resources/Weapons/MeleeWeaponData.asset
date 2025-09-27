@@ -15,3 +15,14 @@ MonoBehaviour:
   <Name>k__BackingField: Melee
   <ComboResetTime>k__BackingField: 3
   <WeaponAttributes>k__BackingField: {fileID: 11400000, guid: 489688b20d31e5142bc1d059fc6515ce, type: 2}
+  <DefaultAttackData>k__BackingField:
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Damage.Physical.Melee
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 10
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+  <ParticleEffectOnHit>k__BackingField: {fileID: 0}

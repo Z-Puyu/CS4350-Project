@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
+using Timer = Utilities.Timer;
 
 namespace WeaponsSystem.DamageHandling {
     /// <summary>
@@ -17,14 +18,29 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<IDamageDealer> OnSwitchedGear { get; set; } = new UnityEvent<IDamageDealer>();
+
+        [field: SerializeField]
+        private UnityEvent<Damage, int> OnHitTarget { get; set; } = new UnityEvent<Damage, int>();
+        
+        private Timer AttackTimer { get; set; }
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
+        private List<string> usableSkills = new List<string>();
+        
+        private void Awake() {
+        }
 
         private void Start() {
             if (this.DefaultDamageDealer.I != null) {
                 this.Equip(this.DefaultDamageDealer.I);
             }
+            //this.usableSkills.Add("ability:morebullet");
+        }
+
+        private void Update() {
+            this.AttackTimer?.Tick();
+            //Debug.Log($"Usable Skills: {this.usableSkills.Count}");
         }
 
         public void StartAttack() {
@@ -34,14 +50,24 @@ namespace WeaponsSystem.DamageHandling {
             
             this.IsAttacking = true;
             int combo = this.DamageDealer.StartAttack();
-            this.OnAttacked.Invoke(combo);
+            if (combo < 0) {
+                this.IsAttacking = false;
+            } else {
+                this.OnAttacked.Invoke(combo);
+            }
         }
 
         public void DealDamage(Vector3 forward) {
-            this.DamageDealer.DealDamage(this.EnemyTags, this.EnemyLayerMask, forward);
+            this.DamageDealer.DealDamage(this, this.EnemyTags, this.EnemyLayerMask, forward);
         }
 
-        public void FinishAttack() {
+        public void QueryFinishAttack() {
+            this.AttackTimer = new Timer(this.DamageDealer.AttackDuration);
+            this.AttackTimer.OnTimerFinished += this.FinishAttack;
+            this.AttackTimer.Start();
+        }
+
+        private void FinishAttack() {
             this.IsAttacking = false;
             this.DamageDealer.EndAttack();
         }
@@ -50,14 +76,31 @@ namespace WeaponsSystem.DamageHandling {
             this.IsAttacking = false;       
         }
         
-        public void Equip(IDamageDealer damageDealer) {
+        public bool Equip(IDamageDealer damageDealer) {
             if (damageDealer == this.DamageDealer) {
-                return;           
+                return false;           
             }
             
             this.DamageDealer = damageDealer;
             this.IsAttacking = false;
             this.OnSwitchedGear.Invoke(damageDealer);
+            return true;
+        }
+        
+        public void AddUsableSkill(string skillId) {
+            this.usableSkills.Add(skillId);
+        }
+        
+        public void RemoveUsableSkill(string skillId) {
+            this.usableSkills.Remove(skillId);
+        }
+
+        public string GetSkillOne() {
+            return this.usableSkills[0];
+        }
+
+        public string GetSkillTwo() {
+            return this.usableSkills[1];
         }
     }
 }

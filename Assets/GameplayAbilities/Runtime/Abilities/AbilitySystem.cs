@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
@@ -14,18 +15,17 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, SaintsHashSet] 
         private SaintsHashSet<Ability> DefaultAbilities { get; set; } = new SaintsHashSet<Ability>();
         
-        private HashSet<IAbility> Abilities { get; } = new HashSet<IAbility>();
+        private HashSet<IAbility> AvailableAbilities { get; } = new HashSet<IAbility>();
+        private Dictionary<IAbility, double> AbilitiesOnCooldown { get; } = new Dictionary<IAbility, double>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
-        private Dictionary<IAbility, int> ActiveAbilities { get; } = new Dictionary<IAbility, int>();
-        
-        private Dictionary<GameplayEffect, IAbility> ActiveEffects { get; } =
-            new Dictionary<GameplayEffect, IAbility>();
+        private Dictionary<IAbility, double> TimedAbilities { get; } = new Dictionary<IAbility, double>();
+        private HashSet<IAbility> IndefiniteAbilities { get; } = new HashSet<IAbility>();
+        private HashSet<IAbility> EndedIndefiniteAbilities { get; } = new HashSet<IAbility>();
         
         private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         private AttributeSet AttributeSet { get; set; }
         
-        [field: SerializeField] private UnityEvent<IAbility> OnStartAbility { get; set; }
-        [field: SerializeField] private UnityEvent<IAbility> OnEndAbility { get; set; }
+        [field: SerializeField] private UnityEvent<AbilityData> OnStartAbility { get; set; }
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
@@ -37,6 +37,15 @@ namespace GameplayAbilities.Runtime.Abilities {
                 this.Grant(ability);
             }
         }
+        
+        public bool CanUse(IAbility ability) {
+            return !this.AbilitiesOnCooldown.ContainsKey(ability);
+        }
+        
+        public bool CanUse(string abilityId) {
+            IAbility ability = PerkDatabase.GetAbility(abilityId);
+            return this.CanUse(ability);
+        }
 
         private DropdownList<string> GetAllAbilities() {
             DropdownList<string> list = new DropdownList<string>();
@@ -45,27 +54,6 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
             
             return list;
-        }
-        
-        /// <summary>
-        /// Add a gameplay effect to the attribute set.
-        /// </summary>
-        /// <param name="effect">The gameplay effect.</param>
-        /// <param name="chance">The base probability of this effect being successfully applied.</param>
-        public void AddEffect(GameplayEffect effect, int chance) {
-            if (effect.Commit(this.AttributeSet, chance) == GameplayEffect.Outcome.Success) {
-                this.GameplayEffectCoordinator.Add(effect);
-            }
-        }
-
-        /// <summary>
-        /// Add a gameplay effect to the attribute set.
-        /// </summary>
-        /// <param name="effect">The gameplay effect.</param>
-        public void AddEffect(GameplayEffectData effect) {
-            GameplayEffectExecutionArgs args = this.CreateEffectExecutionArgs().Build();
-            GameplayEffect gameplayEffect = effect.Instantiate(this.AttributeSet, args);
-            this.AddEffect(gameplayEffect, effect.BaseChance);
         }
         
         public void Enable(Perk perk) {
@@ -114,20 +102,29 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (ability == null) {
                 return;
             }
-            
-            this.Abilities.Add(ability);
+            Debug.Log($"Granted ability {ability}", this);
+            this.AvailableAbilities.Add(ability);
+        }
+
+        public void Grant(string abilityId) {
+            IAbility ability = PerkDatabase.GetAbility(abilityId);
+            this.Grant(ability);
         }
 
         public void Revoke(IAbility ability) {
-            this.Abilities.Remove(ability);
+            this.AvailableAbilities.Remove(ability);
         }
         
         public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
-            if (!this.Abilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
+            if (!this.AvailableAbilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
+                return;
+            }
+
+            if (this.AbilitiesOnCooldown.ContainsKey(ability)) {
                 return;
             }
             
-            this.OnStartAbility.Invoke(ability);
+            this.OnStartAbility.Invoke(new AbilityData(ability.Info, this.AttributeSet));
             target.Process(ability, args);
         }
 
@@ -141,30 +138,65 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
-            foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
-                this.AddEffect(effect, effect.Data.BaseChance);
-                effect.OnEnded += () => handleEndedEffect(effect);
+            AbilityInfo info = ability.Info;
+            if (info.Duration > 0) {
+                this.TimedAbilities.Add(ability, Time.timeAsDouble + info.Duration);
             }
 
-            return;
+            if (ability.Info.Cooldown > 0) {
+                this.AbilitiesOnCooldown[ability] = Time.timeAsDouble + info.DurationPlusCooldown;
+            }
             
-            void handleEndedEffect(GameplayEffect effect) {
-                if (!this.ActiveEffects.Remove(effect)) {
-                    return;
-                }
-
-                this.ActiveAbilities[ability] -= 1;
-                if (this.ActiveAbilities[ability] > 0) {
-                    return;
-                }
-
-                this.ActiveAbilities.Remove(ability);
-                this.OnEndAbility.Invoke(ability);
+            foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
+                this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
             }
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet);
+            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
+        }
+
+        public void End(IAbility ability) {
+            if (!this.IndefiniteAbilities.Remove(ability)) {
+                return;
+            }
+            
+            this.GameplayEffectCoordinator.End(ability);
+            double cooldown = ability.Info.Cooldown;
+            if (cooldown > 0) {
+                this.AbilitiesOnCooldown[ability] = Time.timeAsDouble + cooldown;
+            }
+        }
+        
+        private void UpdateTimedAbilities() {
+            List<IAbility> toEnd = new List<IAbility>();
+            foreach (KeyValuePair<IAbility, double> ability in this.TimedAbilities) {
+                if (ability.Value <= Time.timeAsDouble) {
+                    toEnd.Add(ability.Key);
+                }
+            }
+            
+            foreach (IAbility ability in toEnd) {
+                this.TimedAbilities.Remove(ability);
+            }
+        }
+
+        private void UpdateCooldowns() {
+            List<IAbility> toEnd = new List<IAbility>();
+            foreach (KeyValuePair<IAbility, double> ability in this.AbilitiesOnCooldown) {
+                if (ability.Value <= Time.timeAsDouble) {
+                    toEnd.Add(ability.Key);
+                }
+            }
+            
+            foreach (IAbility ability in toEnd) {
+                this.AbilitiesOnCooldown.Remove(ability);
+            }
+        }
+
+        private void Update() {
+            this.UpdateTimedAbilities();
+            this.UpdateCooldowns();
         }
     }
 }

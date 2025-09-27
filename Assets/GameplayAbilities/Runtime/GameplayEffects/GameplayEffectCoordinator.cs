@@ -1,77 +1,138 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
-    internal class GameplayEffectCoordinator : MonoBehaviour {
+    public class GameplayEffectCoordinator : MonoBehaviour {
         private AttributeSet AttributeSet { get; set; }
         
         private Dictionary<GameplayEffect, Coroutine> ActiveEffects { get; } =
             new Dictionary<GameplayEffect, Coroutine>();
+        
+        private Dictionary<GameplayEffect, IAbility> SourceAbilities { get; } =
+            new Dictionary<GameplayEffect, IAbility>();
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
         }
 
-        private IEnumerator ExecutePeriodically(GameplayEffect effect, float period, float duration) {
-            float elapsed = 0f;
-            yield return new WaitForSeconds(period);
-            elapsed += period;
-            
-            while (this.ActiveEffects.ContainsKey(effect) && (duration < 0 || elapsed < duration)) {
+        private IEnumerator ExecutePeriodically(GameplayEffect effect, float period, double duration) {
+            double elapsed = 0;
+            yield return new WaitForEndOfFrame();
+            while (this.ActiveEffects.ContainsKey(effect)) {
                 effect.Apply(this.AttributeSet);
+#if DEBUG
+                Debug.Log(
+                    $"Applying effect from {this.SourceAbilities[effect]}, elapsed: {elapsed}, duration: {duration}"
+                );
+#endif
                 if (duration < 0) {
                     yield return new WaitForSeconds(period);
                     continue;
                 }
 
                 if (elapsed >= duration) {
-                    this.Remove(effect);
-                } else {
-                    yield return new WaitForSeconds(period);
-                    elapsed += period;
+#if DEBUG
+                    Debug.Log(
+                        $"Effect ended, from {this.SourceAbilities[effect]}, elapsed: {elapsed}, duration: {duration}"
+                    );
+#endif
+                    this.End(effect);
+                    break;
                 }
+                
+                yield return new WaitForSeconds(period);
+                elapsed += period;
             }
         }
         
         private IEnumerator ExecuteContinuously(GameplayEffect effect, float duration) {
             yield return new WaitForSeconds(duration);
-            this.Remove(effect);
+            this.End(effect);
+        }
+        
+        private void AddPeriodicEffect(GameplayEffect effect) {
+            float period = effect.Data.Period;
+            if (effect.Data.Period <= 0) {
+                Debug.LogWarning(
+                    $"Periodic effect {effect.Data} has non-positive period, reverted to 1 second."
+                );
+                
+                period = 1f;
+            }
+                    
+            Coroutine periodicCoroutine = this.StartCoroutine(
+                this.ExecutePeriodically(effect, period, effect.Data.ActualDuration)
+            );
+                    
+            this.ActiveEffects.Add(effect, periodicCoroutine);
+        }
+        
+        private void AddContinuousEffect(GameplayEffect effect) {
+            effect.Apply(this.AttributeSet);
+            switch (effect.Data.ActualDuration) {
+                case > 0: {
+                    Coroutine continuousCoroutine = this.StartCoroutine(
+                        this.ExecuteContinuously(effect, effect.Data.ActualDuration)
+                    );
+                            
+                    this.ActiveEffects.Add(effect, continuousCoroutine);
+                    break;
+                }
+                case < 0:
+                    this.ActiveEffects.Add(effect, null);
+                    break;
+            }
         }
 
-        internal void Add(GameplayEffect effect) {
+        public void Add(GameplayEffect effect, int chance, IAbility ability = null) {
+            if (effect.Commit(this.AttributeSet, chance) != GameplayEffect.Outcome.Success) {
+                return;
+            }
+            
+            if (ability != null) {
+                this.SourceAbilities.Add(effect, ability);
+            }
+            
             switch (effect.Data.ExecutionTime) {
                 case GameplayEffectData.Periodicity.Periodic:
-                    if (effect.Data.Period <= 0) {
-                        Debug.LogWarning(
-                            $"Periodic effect {effect.Data} has non-positive period, reverted to 1 second."
-                        );
-                        return;
-                    }
-
-                    Coroutine periodicCoroutine = this.StartCoroutine(
-                        this.ExecutePeriodically(effect, effect.Data.Period, effect.Data.Duration)
-                    );
-                    this.ActiveEffects.Add(effect, periodicCoroutine);
+                    this.AddPeriodicEffect(effect);
                     break;
                 case GameplayEffectData.Periodicity.Continuous:
-                    effect.Apply(this.AttributeSet);
-                    Coroutine continuousCoroutine =
-                            this.StartCoroutine(this.ExecuteContinuously(effect, effect.Data.Duration));
-                    this.ActiveEffects.Add(effect, continuousCoroutine);
+                    this.AddContinuousEffect(effect);
                     break;
                 default:
                     effect.Apply(this.AttributeSet);
+                    this.End(effect);
                     break;
             }
         }
 
-        internal void Remove(GameplayEffect effect) {
+        internal void End(GameplayEffect effect) {
             if (this.ActiveEffects.Remove(effect)) {
-                effect.EndOn(this.AttributeSet);
+                effect.Revert(this.AttributeSet);
             }
+
+            this.SourceAbilities.Remove(effect);
+        }
+        
+        internal void End(IAbility ability) {
+            List<GameplayEffect> toEnd = new List<GameplayEffect>();
+            foreach (KeyValuePair<GameplayEffect, IAbility> pair in this.SourceAbilities) {
+                if (pair.Value == ability) {
+                    toEnd.Add(pair.Key);
+                }
+            }
+            
+            toEnd.ForEach(this.End);
+        }
+
+        public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
+            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
         }
     }
 }

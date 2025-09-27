@@ -15,3 +15,14 @@ MonoBehaviour:
   <Name>k__BackingField: Ranged
   <ComboResetTime>k__BackingField: 2
   <WeaponAttributes>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
+  <DefaultAttackData>k__BackingField:
+    <Modifiers>k__BackingField:
+    - <TargetAttribute>k__BackingField: Damage.Physical.Projectile
+      <Method>k__BackingField: 0
+      <Form>k__BackingField: 0
+      <Source>k__BackingField: 0
+      <SourceAttribute>k__BackingField: 
+      <DefaultValue>k__BackingField: 5
+      <Coefficient>k__BackingField: 0
+      <Label>k__BackingField: 
+  <ParticleEffectOnHit>k__BackingField: {fileID: 0}
