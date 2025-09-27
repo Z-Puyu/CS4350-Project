@@ -82,9 +82,9 @@ namespace Game.Player {
             if (!context.performed) {
                 return;
             } 
+            
             Debug.Log($"Skill One: {this.Combatant.GetSkillOne()}");
             this.AbilitySystem.Use(this.Combatant.GetSkillOne(), this.AbilitySystem, this.AbilitySystem.CreateEffectExecutionArgs().Build());
-
         }
 
         public void OnUseAbility(InputAction.CallbackContext context) {

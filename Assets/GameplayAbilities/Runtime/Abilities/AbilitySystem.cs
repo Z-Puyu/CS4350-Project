@@ -20,7 +20,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, double> TimedAbilities { get; } = new Dictionary<IAbility, double>();
         private HashSet<IAbility> IndefiniteAbilities { get; } = new HashSet<IAbility>();
-        private HashSet<IAbility> EndedIndefiniteAbilities { get; } = new HashSet<IAbility>();
         
         public GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         public AttributeSet AttributeSet { get; set; }
@@ -118,7 +117,15 @@ namespace GameplayAbilities.Runtime.Abilities {
         public void Use(IAbility ability) {
             ability.Activate(this, this.transform.position);
         }
+        
+        public void Use(string ability) {
+            this.Use(PerkDatabase.GetAbility(ability));
+        }
 
+        public void Use(string ability, Vector3 position) {
+            this.Use(PerkDatabase.GetAbility(ability), position);
+        }
+        
         public void Use(IAbility ability, Vector3 position) {
             ability.Activate(this, position);
         }
@@ -128,6 +135,10 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
                 ability.Invoke(this, target, args);
             }
+        }
+        
+        public void Use(string ability, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
+            this.Use(PerkDatabase.GetAbility(ability), target, args);
         }
 
         internal void Inflict(AbilitySystem target, IAbility ability, IEnumerable<GameplayEffect> effects) {
