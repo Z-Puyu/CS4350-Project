@@ -7,6 +7,7 @@ using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Abilities {
     [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability", order = 0)]
@@ -15,35 +16,65 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField, MinValue(0)] private int Cooldown { get; set; }
+
+        [field: SerializeField] 
+        public List<SpawnableAbilityObject> SpawnableEffectsOnTarget { get; private set; } =
+            new List<SpawnableAbilityObject>();
         
-        [field: SerializeField, SaintsDictionary("Effect", "Multiplicity")] 
-        public SaintsDictionary<SpawnableAbilityObject, int> SpawnableEffects { get; private set; } = 
-            new SaintsDictionary<SpawnableAbilityObject, int>();
-        
-        [field: SerializeField] private bool SpawnsEffectAtTarget { get; set; }
+        [field: SerializeField] 
+        public List<SpawnableAbilityObject> SpawnableEffectsOnSelf { get; private set; } =
+            new List<SpawnableAbilityObject>();
         
         [field: SerializeReference, ReferencePicker] 
-        public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
+        public List<GameplayEffectData> EffectsOnTarget { get; private set; } = new List<GameplayEffectData>();
+        
+        [field: SerializeReference, ReferencePicker] 
+        public List<GameplayEffectData> EffectsOnSelf { get; private set; } = new List<GameplayEffectData>();
 
-        public int Duration {
+        private int Duration {
             get {
-                if (this.Effects.Any(effect => effect.ActualDuration < 0)) {
+                if (this.EffectsOnTarget.Any(effect => effect.ActualDuration < 0)) {
                     return -1;
                 }
                 
-                return this.Effects.Max(effect => effect.ActualDuration);
+                return this.EffectsOnTarget.Max(effect => effect.ActualDuration);
             }
         }
 
-        public int CooldownTime => this.Cooldown + Math.Max(0, this.Duration);
+        private int CooldownTime => this.Cooldown + Math.Max(0, this.Duration);
         public AbilityInfo Info => new AbilityInfo(this.Id, this.CooldownTime, this.Duration);
-
-        public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args) {
-            return this.Effects.Select(effect => new GameplayEffect(effect, args));
-        }
 
         public bool IsUsable(AttributeSet instigator, AttributeSet target) {
             return true;
+        }
+        
+        public void Invoke(AbilitySystem instigator, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
+            foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnTarget) {
+                ObjectSpawner.Pull(spawn.PoolableId, spawn, target.transform);
+            }
+            
+            if (this.EffectsOnTarget.Count == 0) {
+                return;
+            }
+            
+            args ??= instigator.CreateEffectExecutionArgs().Build();
+            instigator.Inflict(target, this, this.EffectsOnTarget.Select(data => data.Instantiate(args)));
+        }
+
+        public void Activate(AbilitySystem instigator, Vector3 position) {
+            foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnSelf) {
+                ObjectSpawner.Pull(spawn.PoolableId, spawn, position, Quaternion.identity, instigator.transform);
+            }
+            
+            if (this.EffectsOnSelf.Count == 0) {
+                return;
+            }
+            
+            GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs().Build();
+            foreach (GameplayEffectData data in this.EffectsOnSelf) {
+                GameplayEffect effect = data.Instantiate(args);
+                instigator.AddEffect(effect, this);
+            }
         }
     }
 }

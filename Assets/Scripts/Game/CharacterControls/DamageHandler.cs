@@ -32,10 +32,9 @@ namespace Game.CharacterControls {
 #endif
             int health = this.Health.Value;
             GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
-                                                         .From(this.transform)
                                                          .WithUserData(damage.Data)
                                                          .Build();
-            instigator.Use(this.DirectAttackAbility, this.AbilitySystem, args);
+            instigator.Use(this.DirectAttackAbility, this.AbilitySystem);
             int damageMagnitude = health - this.Health.Value;
             foreach (Ability effect in this.SpecialAttackAbilities) {
                 instigator.Use(effect, this.AbilitySystem, args);

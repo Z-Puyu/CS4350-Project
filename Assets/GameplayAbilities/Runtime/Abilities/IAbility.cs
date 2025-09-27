@@ -6,13 +6,6 @@ using UnityEngine;
 namespace GameplayAbilities.Runtime.Abilities {
     public interface IAbility {
         /// <summary>
-        /// Generate a list of run-time gameplay effects based on the provided execution arguments.
-        /// </summary>
-        /// <param name="args">The arguments used to invoke the gameplay effects.</param>
-        /// <returns>A list of gameplay effects.</returns>
-        public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args);
-
-        /// <summary>
         /// Checks if the ability can be used by the instigator.
         /// </summary>
         /// <param name="instigator">The actor who will use the ability.</param>
@@ -24,8 +17,21 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// </remarks>
         public bool IsUsable(AttributeSet instigator, AttributeSet target);
 
+        /// <summary>
+        /// Activates the ability at a specific position. This will apply any reflexive effects.
+        /// </summary>
+        /// <param name="instigator">The instigator.</param>
+        /// <param name="position">The position to use the ability at.</param>
         public void Activate(AbilitySystem instigator, Vector3 position);
-        
+
+        /// <summary>
+        /// Invokes the ability on the target. This will apply any direct effects.
+        /// </summary>
+        /// <param name="instigator">The instigator.</param>
+        /// <param name="target">The target.</param>
+        /// <param name="args">The arguments to pass to the ability.</param>
+        public void Invoke(AbilitySystem instigator, AbilitySystem target, GameplayEffectExecutionArgs args = null);
+
         public abstract AbilityInfo Info { get; }
     }
 }

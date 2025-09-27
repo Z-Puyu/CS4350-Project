@@ -6,27 +6,19 @@ using UnityEngine;
 namespace GameplayAbilities.Runtime.GameplayEffects {
     public class GameplayEffectExecutionArgs {
         public IAttributeReader Instigator { get; }
-        public Transform FromTransform { get; }
-        public Transform TargetTransform { get; }
-        private Vector3 ToPosition { get; }
-        public Vector3 TargetPosition => this.TargetTransform ? this.TargetTransform.position : this.ToPosition;
         public float Level { get; }
         private IDictionary<string, object> CallerSuppliedDataValues { get; }
 
         private GameplayEffectExecutionArgs(
-            IAttributeReader instigator, Transform from, Transform target, Vector3 toPosition, float level,
-            IDictionary<string, object> callerSuppliedDataValues
+            IAttributeReader instigator, float level, IDictionary<string, object> callerSuppliedDataValues
         ) {
             this.Instigator = instigator;
-            this.FromTransform = from;
             this.Level = level;
             this.CallerSuppliedDataValues = callerSuppliedDataValues;
-            this.TargetTransform = target;
-            this.ToPosition = toPosition;
         }
 
-        public static Builder From(IAttributeReader instigator, Transform from) {
-            return new Builder(instigator, from);
+        public static Builder From(IAttributeReader instigator) {
+            return new Builder(instigator);
         }
 
         public bool HasData<T>(string label, out T data) {
@@ -43,31 +35,12 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         public sealed class Builder {
             private IAttributeReader Instigator { get; set; }
             private float Level { get; set; } = 1;
-            private Transform FromTransform { get; set; }
-            private Transform TargetTransform { get; set; }
-            private Vector3 ToPosition { get; set; }
 
             private Dictionary<string, object> CallerSuppliedModifierValues { get; set; } =
                 new Dictionary<string, object>();
 
-            internal Builder(IAttributeReader instigator, Transform fromTransform) {
+            internal Builder(IAttributeReader instigator) {
                 this.Instigator = instigator;
-                this.FromTransform = fromTransform;
-            }
-
-            public Builder From(Transform transform) {
-                this.FromTransform = transform;
-                return this;
-            }
-
-            public Builder To(Transform transform) {
-                this.TargetTransform = transform;
-                return this;
-            }
-
-            public Builder To(Vector3 position) {
-                this.ToPosition = position;
-                return this;
             }
 
             public Builder WithLevel(float level) {
@@ -100,10 +73,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             }
 
             public GameplayEffectExecutionArgs Build() {
-                return new GameplayEffectExecutionArgs(
-                    this.Instigator, this.FromTransform, this.TargetTransform, this.ToPosition, this.Level,
-                    this.CallerSuppliedModifierValues
-                );
+                return new GameplayEffectExecutionArgs(this.Instigator, this.Level, this.CallerSuppliedModifierValues);
             }
         }
     }

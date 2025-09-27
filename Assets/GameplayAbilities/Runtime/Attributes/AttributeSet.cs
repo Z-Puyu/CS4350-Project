@@ -29,9 +29,22 @@ namespace GameplayAbilities.Runtime.Attributes {
         public event UnityAction<AttributeChange> OnAttributeChanged;
 
         private void OnEnable() {
+            this.ConnectParent();
+        }
+
+        private void OnTransformParentChanged() {
+            this.ConnectParent();
+        }
+        
+        private void ConnectParent() {
             Transform parent = this.transform.parent;
-            if (parent) {
-                this.Parent = parent.GetComponentInParent<AttributeSet>();
+            if (!parent) {
+                this.Parent = null;
+            }
+
+            AttributeSet parentSet = parent.GetComponentInParent<AttributeSet>();
+            if (parentSet != this.Parent) {
+                this.Parent = parentSet;
             }
         }
 
