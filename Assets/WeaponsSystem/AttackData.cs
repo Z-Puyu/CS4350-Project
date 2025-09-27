@@ -11,7 +11,8 @@ using WeaponsSystem.Projectiles;
 namespace WeaponsSystem {
     [Serializable]
     public class AttackData {
-        [field: SerializeField] public ProjectileSpawner.Mode Mode { get; private set; }
+        [field: SerializeField] public ProjectileSpawner.Mode ProjectileMode { get; private set; }
+        [field: SerializeField] public List<ProjectileEffect> ProjectileEffects { get; private set; }
         
         [field: SerializeField, Table]
         private List<ModifierData> Modifiers { get; set; } = new List<ModifierData>();

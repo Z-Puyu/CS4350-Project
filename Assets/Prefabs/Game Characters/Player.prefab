@@ -317,6 +317,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4421051553658940721}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: <AbilityRoundRobin>k__BackingField
+      value: 
+      objectReference: {fileID: 2769381230260750140}
+    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <InventoryUIManager>k__BackingField
       value: 
       objectReference: {fileID: 7421144149682734100}
@@ -409,6 +413,14 @@ PrefabInstance:
       propertyPath: <CharacterController>k__BackingField
       value: 
       objectReference: {fileID: 5243613514484291101}
+    - target: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <DefaultAbilities>k__BackingField._saintsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <DefaultAbilities>k__BackingField._saintsList.Array.data[1].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 63790b98990fb364e9e37c53e2f48979, type: 2}
     - target: {fileID: 1362842556525151000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <EnemyTags>k__BackingField.Array.size
       value: 1
@@ -566,10 +578,35 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7781984914024726432}
+    - targetCorrespondingSourceObject: {fileID: 7659514198330222099, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2769381230260750140}
     - targetCorrespondingSourceObject: {fileID: 5239161463770742164, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1716905022848342001}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+--- !u!1 &1406362884583260571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7659514198330222099, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 8775378238163232648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2769381230260750140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406362884583260571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8af7282a844f989d45dcd6e7812ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilityRoundRobin
+  <TestAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 63790b98990fb364e9e37c53e2f48979, type: 2}
+  <OnEquippedAbilitiesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2304898303038639166 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -600,9 +637,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerController
   <AbilitySystem>k__BackingField: {fileID: 8844079821535507021}
   <AttributeSet>k__BackingField: {fileID: 8697166239366128196}
-  <GameplayEffectCoordinator>k__BackingField: {fileID: 0}
+  <GameplayEffectCoordinator>k__BackingField: {fileID: 7962824818302962912}
   <Health>k__BackingField: {fileID: 4301556907404887175}
-  <DamageHandler>k__BackingField: {fileID: 0}
+  <DamageHandler>k__BackingField: {fileID: 8449323229725670845}
   broadcastItemCollected: {fileID: 11400000, guid: 0a5d66ab3b80d6945a3073444ef13890, type: 2}
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
   <Inventory>k__BackingField: {fileID: 2304898303038639166}
@@ -751,6 +788,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 558786160095009538}
+        m_TargetAssemblyTypeName: Game.Player.PlayerInputParser, Assembly-CSharp
+        m_MethodName: OnUseAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76d70782-4afb-4b49-940f-56cab2bb2e60
+    m_ActionName: 'Player/UseSkill[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -865,6 +918,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
+--- !u!114 &7962824818302962912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1678095505910229864, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 8775378238163232648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406362884583260571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
+--- !u!114 &8449323229725670845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 903656400975600181, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 8775378238163232648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566100577036392988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e1154bc3f4b38a358a687599a7d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
 --- !u!4 &8572715623323050196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -875,7 +950,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 106646709540062668, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 8775378238163232648}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1406362884583260571}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
@@ -886,7 +961,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 8775378238163232648}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1406362884583260571}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}

@@ -51,7 +51,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                     : Enumerable.Empty<Perk>();
         }
         
-        public static IAbility GetAbility(string id) {
+        public static Ability GetAbility(string id) {
             return Singleton<PerkDatabase>.Instance.Abilities.GetValueOrDefault(id);
         }
 

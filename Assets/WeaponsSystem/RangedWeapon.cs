@@ -70,8 +70,8 @@ namespace WeaponsSystem {
             }
 
             ProjectileConfig config = new ProjectileConfig(
-                this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute), delay, this.Stats.FireMode, mask,
-                tags, this.outwards
+                this.Stats.GetCurrent(this.Stats.ShotsPerAttackAttribute), delay, this.Stats.ProjectileMode, mask,
+                tags, this.outwards, this.Stats.ProjectileEffects.ToArray()
             );
             
             Damage damage = new Damage(this.transform.root.gameObject, combatant, this.Stats.ReadDamageData());

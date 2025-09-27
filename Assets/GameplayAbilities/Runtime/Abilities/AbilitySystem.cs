@@ -16,15 +16,16 @@ namespace GameplayAbilities.Runtime.Abilities {
         private SaintsHashSet<Ability> DefaultAbilities { get; set; } = new SaintsHashSet<Ability>();
         
         private HashSet<IAbility> AvailableAbilities { get; } = new HashSet<IAbility>();
-        private Dictionary<IAbility, float> AbilitiesOnCooldown { get; } = new Dictionary<IAbility, float>();
+        private Dictionary<IAbility, double> AbilitiesOnCooldown { get; } = new Dictionary<IAbility, double>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
-        private Dictionary<IAbility, AbilityInfo> ActiveAbilities { get; } = new Dictionary<IAbility, AbilityInfo>();
+        private Dictionary<IAbility, double> TimedAbilities { get; } = new Dictionary<IAbility, double>();
+        private HashSet<IAbility> IndefiniteAbilities { get; } = new HashSet<IAbility>();
+        private HashSet<IAbility> EndedIndefiniteAbilities { get; } = new HashSet<IAbility>();
         
         private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         private AttributeSet AttributeSet { get; set; }
         
-        [field: SerializeField] private UnityEvent<IAbility> OnStartAbility { get; set; }
-        [field: SerializeField] private UnityEvent<IAbility> OnEndAbility { get; set; }
+        [field: SerializeField] private UnityEvent<AbilityData> OnStartAbility { get; set; }
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
@@ -32,7 +33,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Start() {
-            this.GameplayEffectCoordinator.OnEffectEnded += this.HandleTerminatedEffect;
             foreach (Ability ability in this.DefaultAbilities) {
                 this.Grant(ability);
             }
@@ -45,24 +45,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         public bool CanUse(string abilityId) {
             IAbility ability = PerkDatabase.GetAbility(abilityId);
             return this.CanUse(ability);
-        }
-
-        private void HandleTerminatedEffect(GameplayEffect effect, IAbility ability) {
-            if (ability == null) {
-                return;
-            }
-            
-            AbilityInfo info = this.ActiveAbilities[ability];
-            int remainingEffects = info.NumberOfEffects - 1;
-            if (remainingEffects > 0) {
-                this.ActiveAbilities[ability] = new AbilityInfo(info.Cooldown, remainingEffects);
-            } else {
-                this.ActiveAbilities.Remove(ability);
-                this.OnEndAbility.Invoke(ability);
-                if (info.Cooldown > 0) {
-                    this.AbilitiesOnCooldown[ability] = info.Cooldown;
-                }
-            }
         }
 
         private DropdownList<string> GetAllAbilities() {
@@ -138,9 +120,12 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (!this.AvailableAbilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
                 return;
             }
+
+            if (this.AbilitiesOnCooldown.ContainsKey(ability)) {
+                return;
+            }
             
-            ability.StartAbility(args.InstigatorTransform.position, target.transform.position);
-            this.OnStartAbility.Invoke(ability);
+            this.OnStartAbility.Invoke(new AbilityData(ability.Info));
             target.Process(ability, args);
         }
 
@@ -154,9 +139,13 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
-            this.ActiveAbilities.Add(ability, ability.Info);
+            AbilityInfo info = ability.Info;
+            if (info.Duration > 0) {
+                this.TimedAbilities.Add(ability, Time.timeAsDouble + info.Duration);
+            }
+
             if (ability.Info.Cooldown > 0) {
-                this.AbilitiesOnCooldown[ability] = ability.Info.Cooldown;
+                this.AbilitiesOnCooldown[ability] = Time.timeAsDouble + info.DurationPlusCooldown;
             }
             
             foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
@@ -168,17 +157,47 @@ namespace GameplayAbilities.Runtime.Abilities {
             return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
         }
 
-        private void Update() {
-            foreach (IAbility ability in this.AbilitiesOnCooldown.Keys) {
-                if (this.ActiveAbilities.ContainsKey(ability)) {
-                    continue;
-                }
-
-                this.AbilitiesOnCooldown[ability] -= Time.deltaTime;
-                if (this.AbilitiesOnCooldown[ability] <= 0) {
-                    this.AbilitiesOnCooldown.Remove(ability);
+        public void End(IAbility ability) {
+            if (!this.IndefiniteAbilities.Remove(ability)) {
+                return;
+            }
+            
+            this.GameplayEffectCoordinator.End(ability);
+            double cooldown = ability.Info.Cooldown;
+            if (cooldown > 0) {
+                this.AbilitiesOnCooldown[ability] = Time.timeAsDouble + cooldown;
+            }
+        }
+        
+        private void UpdateTimedAbilities() {
+            List<IAbility> toEnd = new List<IAbility>();
+            foreach (KeyValuePair<IAbility, double> ability in this.TimedAbilities) {
+                if (ability.Value <= Time.timeAsDouble) {
+                    toEnd.Add(ability.Key);
                 }
             }
+            
+            foreach (IAbility ability in toEnd) {
+                this.TimedAbilities.Remove(ability);
+            }
+        }
+
+        private void UpdateCooldowns() {
+            List<IAbility> toEnd = new List<IAbility>();
+            foreach (KeyValuePair<IAbility, double> ability in this.AbilitiesOnCooldown) {
+                if (ability.Value <= Time.timeAsDouble) {
+                    toEnd.Add(ability.Key);
+                }
+            }
+            
+            foreach (IAbility ability in toEnd) {
+                this.AbilitiesOnCooldown.Remove(ability);
+            }
+        }
+
+        private void Update() {
+            this.UpdateTimedAbilities();
+            this.UpdateCooldowns();
         }
         
     }

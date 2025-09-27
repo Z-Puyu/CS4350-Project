@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using Common;
 using Game.CharacterControls;
+using GameplayAbilities.Runtime.Abilities;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -21,9 +22,8 @@ namespace Game.Player {
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
-        [field: SerializeField] private MeleeWeapon MeleeWeapon { get; set; }
-        [field: SerializeField] private RangedWeapon RangedWeapon { get; set; }
-        
+        [field: SerializeField, Required] private AbilityRoundRobin AbilityRoundRobin { get; set; }
+
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
@@ -32,8 +32,6 @@ namespace Game.Player {
             OnScreenDebugger.Log("Interact");
             this.Interactor.Interact();
         }
-        
-        
         
         public void OnToggleInventory(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -74,6 +72,12 @@ namespace Game.Player {
                 this.Movement.MoveIn(input);
             } else if (context.canceled) {
                 this.Movement.Stop();
+            }
+        }
+
+        public void OnUseAbility(InputAction.CallbackContext context) {
+            if (context.performed) {
+                this.AbilityRoundRobin.UseCurrentAbility();
             }
         }
     }

@@ -6,6 +6,7 @@ using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem.Projectiles;
 using Attribute = GameplayAbilities.Runtime.Attributes.Attribute;
 
 namespace WeaponsSystem {
@@ -16,10 +17,10 @@ namespace WeaponsSystem {
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private List<string> DamageAttributes { get; set; } = new List<string>();
         
-        private Dictionary<int, List<AttackData>> AttackModifiers { get; set; } =
+        protected Dictionary<int, List<AttackData>> AttackModifiers { get; } =
             new Dictionary<int, List<AttackData>>();
 
-        private Dictionary<int, List<Modifier>> ActiveAttackModifiers { get; set; } =
+        private Dictionary<int, List<Modifier>> ActiveAttackModifiers { get; } =
             new Dictionary<int, List<Modifier>>();
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
@@ -27,6 +28,9 @@ namespace WeaponsSystem {
         
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))] 
         public string KnockbackStrengthAttribute { get; private set; }
+        
+        public List<ProjectileEffect> ProjectileEffects { get; } = new List<ProjectileEffect>();
+        public ProjectileSpawner.Mode ProjectileMode { get; protected set; } = ProjectileSpawner.Mode.None;
 
         protected AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
@@ -42,8 +46,12 @@ namespace WeaponsSystem {
             
             return new ReadOnlyDictionary<string, int>(damages);
         }
+        
+        protected abstract void UpdateProjectileMode(int index);
+        
+        protected abstract void RevertProjectileMode(int index);
 
-        public virtual List<AttackData> ActivateAttackModifiers(int index) {
+        public void ActivateAttackModifiers(int index) {
             if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
                 list = new List<AttackData>();
                 this.AttackModifiers.Add(index, list);
@@ -60,16 +68,22 @@ namespace WeaponsSystem {
                 this.AttributeSet.AddModifier(modifier);
             } 
             
-            return list;
+            this.ProjectileMode = list.Count == 0 ? ProjectileSpawner.Mode.None : list.Last().ProjectileMode;
+            foreach (AttackData data in list) {
+                this.ProjectileEffects.AddRange(data.ProjectileEffects);
+            }
+            
+            this.UpdateProjectileMode(index);
         }
         
-        public virtual List<AttackData> DeactivateAttackModifiers(int index) {
+        public void DeactivateAttackModifiers(int index) {
             foreach (Modifier modifier in this.ActiveAttackModifiers[index]) {
                 this.AttributeSet.RemoveModifier(modifier);
             }
                 
             this.ActiveAttackModifiers[index].Clear();
-            return this.AttackModifiers[index];
+            this.ProjectileEffects.Clear();
+            this.RevertProjectileMode(index);
         }
 
         public void Initialise(WeaponData data) {
@@ -82,6 +96,14 @@ namespace WeaponsSystem {
 
         public void RemoveWeaponModifier(Modifier modifier) {
             this.AttributeSet.RemoveModifier(modifier);
+        }
+
+        public void AddWeaponProjectileEffect(ProjectileEffect effect) {
+            this.ProjectileEffects.Add(effect);
+        }
+        
+        public void RemoveWeaponProjectileEffect(ProjectileEffect effect) {
+            this.ProjectileEffects.Remove(effect);
         }
 
         public void AddAttackModifier(int index, IEnumerable<AttackData> modifiers) {

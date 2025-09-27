@@ -32,7 +32,7 @@ namespace Game.CharacterControls {
 #endif
             int health = this.Health.Value;
             GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
-                                                         .At(this.transform)
+                                                         .From(this.transform)
                                                          .WithUserData(damage.Data)
                                                          .Build();
             instigator.Use(this.DirectAttackAbility, this.AbilitySystem, args);
