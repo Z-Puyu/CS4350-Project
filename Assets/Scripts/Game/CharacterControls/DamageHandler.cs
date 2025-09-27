@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Common;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.GameplayEffects;
@@ -27,16 +27,16 @@ namespace Game.CharacterControls {
             if (!this.AbilitySystem) {
                 return;
             }
-#if DEBUG
-            OnScreenDebugger.Log($"{source.name} damaged {this.gameObject.name}!");
-#endif
+
             int health = this.Health.Value;
             GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs()
-                                                         .From(this.transform)
                                                          .WithUserData(damage.Data)
                                                          .Build();
             instigator.Use(this.DirectAttackAbility, this.AbilitySystem, args);
             int damageMagnitude = health - this.Health.Value;
+#if DEBUG
+            OnScreenDebugger.Log($"{source.name} caused {damageMagnitude} damage on {this.gameObject.name}");
+#endif
             foreach (Ability effect in this.SpecialAttackAbilities) {
                 instigator.Use(effect, this.AbilitySystem, args);
             }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaponsSystem.WeaponComponent;
 using Timer = Utilities.Timer;
 
 namespace WeaponsSystem.DamageHandling {
@@ -11,7 +12,6 @@ namespace WeaponsSystem.DamageHandling {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class Combatant : MonoBehaviour {
-        [field: SerializeField] private SaintsInterface<Component, IDamageDealer> DefaultDamageDealer { get; set; }
         [field: SerializeField] private LayerMask EnemyLayerMask { get; set; }
         [field: SerializeField, Tag] private List<string> EnemyTags { get; set; } = new List<string>();
         [field: SerializeField] private UnityEvent<int> OnAttacked { get; set; } = new UnityEvent<int>();
@@ -21,26 +21,18 @@ namespace WeaponsSystem.DamageHandling {
 
         [field: SerializeField]
         private UnityEvent<Damage, int> OnHitTarget { get; set; } = new UnityEvent<Damage, int>();
+
+        [field: SerializeField]
+        private UnityEvent<ISet<WeaponComponentData>> OnComponentSetChanged { get; set; } =
+            new UnityEvent<ISet<WeaponComponentData>>();
         
         private Timer AttackTimer { get; set; }
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
-        private List<string> usableSkills = new List<string>();
-        
-        private void Awake() {
-        }
-
-        private void Start() {
-            if (this.DefaultDamageDealer.I != null) {
-                this.Equip(this.DefaultDamageDealer.I);
-            }
-            //this.usableSkills.Add("ability:morebullet");
-        }
 
         private void Update() {
             this.AttackTimer?.Tick();
-            //Debug.Log($"Usable Skills: {this.usableSkills.Count}");
         }
 
         public void StartAttack() {
@@ -86,21 +78,9 @@ namespace WeaponsSystem.DamageHandling {
             this.OnSwitchedGear.Invoke(damageDealer);
             return true;
         }
-        
-        public void AddUsableSkill(string skillId) {
-            this.usableSkills.Add(skillId);
-        }
-        
-        public void RemoveUsableSkill(string skillId) {
-            this.usableSkills.Remove(skillId);
-        }
 
-        public string GetSkillOne() {
-            return this.usableSkills[0];
-        }
-
-        public string GetSkillTwo() {
-            return this.usableSkills[1];
+        public void HandleComponentSetChange(ISet<WeaponComponentData> components) {
+            this.OnComponentSetChanged.Invoke(components);
         }
     }
 }

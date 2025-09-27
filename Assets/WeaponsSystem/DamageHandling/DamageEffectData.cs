@@ -26,7 +26,6 @@ namespace WeaponsSystem.DamageHandling {
 
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();
-            int totalDamage = 0;
             foreach (DamageType damage in this.DamageTypes) {
                 if (!args.HasData(damage.DamageAttribute, out int magnitude) || magnitude == 0) {
                     continue;
@@ -40,7 +39,6 @@ namespace WeaponsSystem.DamageHandling {
                     continue;
                 }
                 
-                totalDamage += magnitude;
                 modifiers.Add(new Modifier(-magnitude, Modifier.Operation.Offset, this.TargetAttribute));
             }
             

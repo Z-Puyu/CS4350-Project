@@ -6,13 +6,14 @@ using UnityEngine;
 
 namespace WeaponsSystem.WeaponComponent {
     [CreateAssetMenu(fileName = "ComponentSkillTable", menuName = "Weapons/Components/Component Skill Table", order = 1)]
-    public class ComponentSkillTable : ScriptableObject, IEnumerable<KeyValuePair<HashSet<WeaponComponentData>, string>> {
-        [field: SerializeField, SaintsDictionary("Component Combination", "Skill Id")]
-        private SaintsDictionary<List<WeaponComponentData>, string> Table { get; set; }
-            = new SaintsDictionary<List<WeaponComponentData>, string>();
+    public class ComponentSkillTable : ScriptableObject, IEnumerable<KeyValuePair<ISet<WeaponComponentData>, string>> {
+        [field: SerializeField, Table]
+        private List<ComponentSkill> Table { get; set; } = new List<ComponentSkill>();
         
-        public IEnumerator<KeyValuePair<HashSet<WeaponComponentData>, string>> GetEnumerator() {
-            return this.Table.Select(kvp => new KeyValuePair<HashSet<WeaponComponentData>, string>(new HashSet<WeaponComponentData>(kvp.Key), kvp.Value)).GetEnumerator();
+        public IEnumerator<KeyValuePair<ISet<WeaponComponentData>, string>> GetEnumerator() {
+            return this.Table.Select(entry =>
+                    new KeyValuePair<ISet<WeaponComponentData>, string>(entry.Components, entry.SkillId)
+            ).GetEnumerator();
         }
         
         IEnumerator IEnumerable.GetEnumerator() {

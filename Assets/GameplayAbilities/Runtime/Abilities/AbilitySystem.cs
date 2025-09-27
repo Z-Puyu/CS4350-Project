@@ -20,10 +20,9 @@ namespace GameplayAbilities.Runtime.Abilities {
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, double> TimedAbilities { get; } = new Dictionary<IAbility, double>();
         private HashSet<IAbility> IndefiniteAbilities { get; } = new HashSet<IAbility>();
-        private HashSet<IAbility> EndedIndefiniteAbilities { get; } = new HashSet<IAbility>();
         
-        private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
-        private AttributeSet AttributeSet { get; set; }
+        public GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
+        public AttributeSet AttributeSet { get; set; }
         
         [field: SerializeField] private UnityEvent<AbilityData> OnStartAbility { get; set; }
 
@@ -114,30 +113,35 @@ namespace GameplayAbilities.Runtime.Abilities {
         public void Revoke(IAbility ability) {
             this.AvailableAbilities.Remove(ability);
         }
+
+        public void Use(IAbility ability) {
+            ability.Activate(this, this.transform.position);
+        }
         
-        public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
-            if (!this.AvailableAbilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
-                return;
-            }
-
-            if (this.AbilitiesOnCooldown.ContainsKey(ability)) {
-                return;
-            }
-            
-            this.OnStartAbility.Invoke(new AbilityData(ability.Info, this.AttributeSet));
-            target.Process(ability, args);
+        public void Use(string ability) {
+            this.Use(PerkDatabase.GetAbility(ability));
         }
 
-        public void Use(string abilityId, AbilitySystem target, GameplayEffectExecutionArgs args) {
-            IAbility ability = PerkDatabase.GetAbility(abilityId);
-            if (ability == null) {
-                Debug.LogError($"Ability {abilityId} not found!", this);
+        public void Use(string ability, Vector3 position) {
+            this.Use(PerkDatabase.GetAbility(ability), position);
+        }
+        
+        public void Use(IAbility ability, Vector3 position) {
+            ability.Activate(this, position);
+        }
+        
+        public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
+            ability.Activate(this, target.transform.position);
+            if (ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
+                ability.Invoke(this, target, args);
             }
-            
-            this.Use(ability, target, args);
+        }
+        
+        public void Use(string ability, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
+            this.Use(PerkDatabase.GetAbility(ability), target, args);
         }
 
-        private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
+        internal void Inflict(AbilitySystem target, IAbility ability, IEnumerable<GameplayEffect> effects) {
             AbilityInfo info = ability.Info;
             if (info.Duration > 0) {
                 this.TimedAbilities.Add(ability, Time.timeAsDouble + info.Duration);
@@ -147,13 +151,20 @@ namespace GameplayAbilities.Runtime.Abilities {
                 this.AbilitiesOnCooldown[ability] = Time.timeAsDouble + info.DurationPlusCooldown;
             }
             
-            foreach (GameplayEffect effect in ability.GenerateEffects(args)) {
-                this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
+            foreach (GameplayEffect effect in effects) {
+                target.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
             }
         }
 
+        internal void AddEffect(GameplayEffect effect, IAbility ability) {
+            this.GameplayEffectCoordinator.Add(effect, effect.Data.BaseChance, ability);
+#if DEBUG
+            Debug.Log($"Added effect {effect} to {this.gameObject.name}", this);
+#endif
+        }
+
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {
-            return GameplayEffectExecutionArgs.From(this.AttributeSet, this.transform);
+            return GameplayEffectExecutionArgs.From(this.AttributeSet);
         }
 
         public void End(IAbility ability) {

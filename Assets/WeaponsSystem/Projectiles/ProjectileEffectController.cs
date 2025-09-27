@@ -6,7 +6,7 @@ using SaintsField;
 using UnityEngine;
 
 namespace WeaponsSystem.Projectiles {
-    public sealed class ProjectileEffectController : PoolableObject {
+    public sealed class ProjectileEffectController : PoolableObject, IActivatable {
         [field: SerializeField, Required, Expandable, DefaultExpand] 
         private ProjectileEffect Effect { get; set; }
         
@@ -28,28 +28,15 @@ namespace WeaponsSystem.Projectiles {
         
         public void TurnOn(Projectile projectile) {
             foreach (AttributeEntry attribute in this.Effect.Attributes) {
-                this.Attributes[attribute.Id] = projectile.GetAttribute(attribute.Id, attribute.Value);
+                int value = projectile.GetAttribute(attribute.Id, attribute.Value);
+                this.Attributes[attribute.Id] = value;
             }
             
-            this.gameObject.SetActive(true);
-            if (this.ParticlesOnFly) {
-                this.ParticlesOnFly.Play();
-            }
+            this.Activate();
         }
         
-        public float TurnOff(Projectile projectile) {
-            this.Attributes.Clear();
-            if (this.ParticlesOnFly) {
-                this.ParticlesOnFly.Stop();
-            }
-            
-            if (this.ParticlesOnHit && this.ParticlesOnHit.isPlaying) {
-                return this.ParticlesOnHit.main.loop
-                        ? 1f
-                        : this.ParticlesOnHit.main.duration - this.ParticlesOnHit.time;
-            }
-            
-            return 1f;
+        public void TurnOff(Projectile projectile) {
+            this.Deactivate();
         }
 
         public void Execute(Projectile projectile, LayerMask mask, IEnumerable<string> tags) {
@@ -62,6 +49,22 @@ namespace WeaponsSystem.Projectiles {
             }
             
             this.Effect.Execute(projectile, mask, tags, this);
+        }
+
+        public bool IsActive => this.ParticlesOnFly.IsAlive() || this.ParticlesOnHit.IsAlive();
+        
+        public void Activate() {
+            this.gameObject.SetActive(true);
+            if (this.ParticlesOnFly) {
+                this.ParticlesOnFly.Play();
+            }
+        }
+        
+        public void Deactivate() {
+            this.Attributes.Clear();
+            if (this.ParticlesOnFly) {
+                this.ParticlesOnFly.Stop();
+            }
         }
     }
 }

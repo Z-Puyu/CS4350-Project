@@ -12,22 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
   m_Name: Ability - Attack
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  <IsObtainable>k__BackingField: 0
   <Id>k__BackingField: ability:attack
   <Name>k__BackingField: Attack
   <Description>k__BackingField: 
   <Cooldown>k__BackingField: 0
-  <SpawnableEffects>k__BackingField:
-    _keys: []
-    _values: 
-    _saintsKeys: []
-    _saintsValues: []
-  <SpawnsEffectAtTarget>k__BackingField: 1
-  <Effects>k__BackingField:
-  - rid: 2098011628653248813
+  <SpawnableEffectsOnTarget>k__BackingField: []
+  <SpawnableEffectsOnSelf>k__BackingField: []
+  <EffectsOnTarget>k__BackingField:
+  - rid: 2098011750220431530
+  <EffectsOnSelf>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 2098011628653248813
+    - rid: 2098011750220431530
       type: {class: DamageEffectData, ns: WeaponsSystem.DamageHandling, asm: Assembly-CSharp}
       data:
         <ExecutionTime>k__BackingField: 0
@@ -37,28 +35,28 @@ MonoBehaviour:
         <BaseChance>k__BackingField: 100
         <Costs>k__BackingField: []
         <DamageTypes>k__BackingField:
-        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
-          <DefenceAttribute>k__BackingField: Defence.Physical.Melee
-          <IsPercentageDefence>k__BackingField: 0
-          <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
-          <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
-          <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
-          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
-          <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
           <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
           <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 0
         - <DamageAttribute>k__BackingField: Damage.Elemental.Ice
           <DefenceAttribute>k__BackingField: Defence.Elemental.Ice
           <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 0
         - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
           <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
           <IsPercentageDefence>k__BackingField: 1
-          <DefenceCoefficient>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 0
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 0
+        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
+          <DefenceAttribute>k__BackingField: Defence.Physical.Melee
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 0
+        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
+          <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 0
         <TargetAttribute>k__BackingField: Health

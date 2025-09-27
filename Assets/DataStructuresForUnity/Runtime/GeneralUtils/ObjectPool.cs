@@ -51,6 +51,7 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
                 return;           
             }
             
+            instance.transform.SetParent(null);
             instance.gameObject.SetActive(false);
             this.pool.Enqueue(instance);
         }

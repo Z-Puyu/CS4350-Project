@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SaintsField.Playa;
 using UnityEngine;
 
-namespace Common {
+namespace DataStructuresForUnity.Runtime.GeneralUtils {
     [DisallowMultipleComponent, RequireComponent(typeof(BoxCollider2D))]
     public sealed class BoundingRect : MonoBehaviour {
         public enum Alignment {

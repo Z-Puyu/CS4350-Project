@@ -11,7 +11,7 @@ using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
-    public sealed class Projectile : SpawnableAbilityObject {
+    public sealed class Projectile : PoolableObject, IActivatable {
         private Transform Transform { get; set; }
         [field: SerializeField] private GameObject Visual { get; set; }
         [field: SerializeField] private string ProjectileId { get; set; }
@@ -41,7 +41,7 @@ namespace WeaponsSystem.Projectiles {
         }
 
         public int GetAttribute(string id, int @base) {
-            return this.Info.SourceWeapon.Query(id, @base);
+            return this.Info.Source.Query(id, @base);
         }
         
         public Projectile Targets(IEnumerable<string> tags) {
@@ -91,16 +91,13 @@ namespace WeaponsSystem.Projectiles {
         public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
-            this.Info.SourceWeapon = source;
+            this.Info.Source = source;
             foreach (ProjectileEffectController effect in this.Effects) {
                 effect.TurnOn(this);
             }
             
-            this.Info.IsAlive = true;
             this.Collider.includeLayers = mask;
-            if (this.Visual) {
-                this.Visual.SetActive(true);
-            }
+            this.Activate();
         }
 
         public void Relaunch(float rotation, float speedCoefficient = 1f) {
@@ -124,36 +121,12 @@ namespace WeaponsSystem.Projectiles {
             this.Info.IsAlive = false;
             this.Effects.ForEach(effect => effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags));
             if (!this.Info.IsAlive) {
-                this.Destroy();
+                this.Deactivate();
             }
         }
 
-        public override void Activate(AbilityData data) {
-            throw new NotImplementedException();
-        }
-
-        public override void Destroy() {
-            if (this.Visual) {
-                this.Visual.SetActive(false);
-            }
-
-            this.OnHitAction = delegate { };
-            float waitingTime = 0;
-            foreach (ProjectileEffectController effect in this.Effects) {
-                if (!effect.EndsSilently) {
-                    effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags);
-                }
-                
-                waitingTime = Mathf.Max(waitingTime, effect.TurnOff(this));
-            }
-            
-            this.Info.Reset();
-            this.Collider.includeLayers = 0;
-            this.StartCoroutine(this.WaitToDestroy(2 * waitingTime));
-        }
-
-        private IEnumerator WaitToDestroy(float seconds) {
-            yield return new WaitForSeconds(seconds);
+        private IEnumerator WaitToDestroy() {
+            yield return new WaitUntil(() => !this.Effects.Any(effect => effect.IsActive));
             this.Return();
         }
 
@@ -178,7 +151,7 @@ namespace WeaponsSystem.Projectiles {
             }
             
             if (this.Info.DistanceTravelled >= this.Info.Range) {
-                this.Destroy();
+                this.Deactivate();
                 return;
             }
 
@@ -186,6 +159,33 @@ namespace WeaponsSystem.Projectiles {
             this.Info.DistanceTravelled += distanceTravelledThisFrame.magnitude;
             this.Transform.position += distanceTravelledThisFrame;
             this.Transform.right = this.Info.Velocity;
+        }
+
+        public bool IsActive => this.Info.IsAlive || this.Effects.Any(effect => effect.IsActive);
+        
+        public void Activate() {
+            this.Info.IsAlive = true;
+            if (this.Visual) {
+                this.Visual.SetActive(true);
+            }
+        }
+        
+        public void Deactivate() {
+            if (this.Visual) {
+                this.Visual.SetActive(false);
+            }
+
+            this.OnHitAction = delegate { };
+            foreach (ProjectileEffectController effect in this.Effects) {
+                if (!effect.EndsSilently) {
+                    effect.Execute(this, this.Collider.includeLayers, this.Info.TargetTags);
+                }
+            }
+            
+            this.Info.Reset();
+            this.Collider.includeLayers = 0;
+            this.Effects.ForEach(effect => effect.TurnOff(this));
+            this.StartCoroutine(this.WaitToDestroy());
         }
     }
 }

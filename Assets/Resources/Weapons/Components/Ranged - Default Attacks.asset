@@ -14,17 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.WeaponComponentData
   <Name>k__BackingField: 
   <WeaponModifiers>k__BackingField: []
-  <AttackData>k__BackingField:
-  - <Mode>k__BackingField: 1
-    <Modifiers>k__BackingField: []
-  - <Mode>k__BackingField: 1
-    <Modifiers>k__BackingField:
-    - <TargetAttribute>k__BackingField: Weapon.Projectile.Speed
-      <Method>k__BackingField: 0
-      <Form>k__BackingField: 0
-      <Source>k__BackingField: 0
-      <SourceAttribute>k__BackingField: 
-      <DefaultValue>k__BackingField: 10
-      <Coefficient>k__BackingField: 0
-      <Label>k__BackingField: 
+  <AttackData>k__BackingField: []
   <ProjectileEffects>k__BackingField: []

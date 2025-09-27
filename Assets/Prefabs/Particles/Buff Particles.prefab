@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 2290204353603558611}
   - component: {fileID: 6561824643473676971}
   - component: {fileID: 1456605235723551151}
-  - component: {fileID: -7453590521177502119}
-  - component: {fileID: 6853435506257097478}
-  - component: {fileID: -8018059009087396697}
+  - component: {fileID: 5136512231970425332}
   m_Layer: 0
   m_Name: Buff Particles
   m_TagString: Untagged
@@ -4839,53 +4837,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!61 &-7453590521177502119
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268827933379700107}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 4, y: 4}
-  m_EdgeRadius: 0
---- !u!114 &6853435506257097478
+--- !u!114 &5136512231970425332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4894,19 +4846,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7268827933379700107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80e22b063414ed184f1c9c02da87a36, type: 3}
+  m_Script: {fileID: 11500000, guid: 2314b7f2d3964599936b4b83142bf9d4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Common.BoundingRect
---- !u!114 &-8018059009087396697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268827933379700107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d70170c1662435eaaddafa168c0b36e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Visuals.UpwardStream
-  <Id>k__BackingField: visual:green-buff
+  m_EditorClassIdentifier: Assembly-CSharp::Visuals.ParticleVisual2D
