@@ -10,6 +10,7 @@ namespace WeaponsSystem.Projectiles {
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
+        [field: SerializeField] public bool EndsSilently { get; private set; }
         
         [field: SerializeField, Table(true, true)]
         public List<AttributeEntry> Attributes { get; set; } = new List<AttributeEntry>();

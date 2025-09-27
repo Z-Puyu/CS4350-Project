@@ -9,9 +9,14 @@ using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem.Projectiles {
     public sealed class ProjectileSpawner : MonoBehaviour {
-        public enum Mode { Single, Spread, Parallel }
-        
-        
+        public enum Mode {
+            None,
+            Single,
+            Spread,
+            Parallel
+        }
+
+
         [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
         public string ProjectileSpreadAttribute { get; private set; }
         
@@ -38,6 +43,7 @@ namespace WeaponsSystem.Projectiles {
                          .WithDamage(damage)
                          .Targets(config.TargetTags)
                          .OnHit(onHit)
+                         .WithEffects(config.Effects)
                          .Launch(source, config.Direction, config.Mask);
         }
 
@@ -76,6 +82,10 @@ namespace WeaponsSystem.Projectiles {
         public IEnumerator Spawn(
             Projectile prefab, IAttributeReader source, ProjectileConfig config, Damage damage, Action<Vector3> onHit
         ) {
+            if (config.Mode == Mode.None) {
+                yield break;
+            }
+            
             for (int i = 0; i < config.Count; i += 1) {
                 switch (config.Mode) {
                     case Mode.Spread:

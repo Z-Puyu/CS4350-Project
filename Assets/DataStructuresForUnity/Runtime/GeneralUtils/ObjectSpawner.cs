@@ -34,9 +34,7 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
             PoolableObject poolable;
             if (spawner.Pools.TryGetValue(type, out Dictionary<string, ObjectPool<PoolableObject>> pools)) {
                 if (pools.TryGetValue(id, out ObjectPool<PoolableObject> pool)) {
-                    poolable = pool.GetInstance();
-                    poolable.transform.SetParent(parent);
-                    return (T)poolable;
+                    return pull(pool);
                 }
 
                 if (!prefab) {
@@ -46,9 +44,7 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
                 pool = new ObjectPool<PoolableObject>();
                 pool.Initialise(prefab);
                 pools.Add(id, pool);
-                poolable = pool.GetInstance();
-                poolable.transform.SetParent(parent);
-                return (T)poolable;
+                return pull(pool);           
             }
 
             if (!prefab) {
@@ -60,9 +56,16 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
             p.Initialise(prefab);
             pools.Add(id, p);
             spawner.Pools.Add(type, pools);
-            poolable = p.GetInstance();
-            poolable.transform.SetParent(parent);
-            return (T)poolable;
+            return pull(p);
+
+            T pull(ObjectPool<PoolableObject> pool) {
+                poolable = pool.GetInstance();
+                Transform t = poolable.transform;
+                t.SetParent(parent);
+                t.localPosition = Vector3.zero;
+                t.localRotation = Quaternion.identity;
+                return (T)poolable;
+            }
         }
 
         public static T Pull<T>(string id, Transform parent = null) where T : PoolableObject {

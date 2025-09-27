@@ -23,7 +23,9 @@ MonoBehaviour:
     <Coefficient>k__BackingField: 0
     <Label>k__BackingField: 
   <AttackData>k__BackingField:
-  - <Mode>k__BackingField: 0
+  - <ProjectileMode>k__BackingField: 1
+    <ProjectileEffects>k__BackingField:
+    - {fileID: 11400000, guid: 96e925ed747499d41970d16ec966947b, type: 2}
     <Modifiers>k__BackingField:
     - <TargetAttribute>k__BackingField: Damage.Physical.Explosion
       <Method>k__BackingField: 0

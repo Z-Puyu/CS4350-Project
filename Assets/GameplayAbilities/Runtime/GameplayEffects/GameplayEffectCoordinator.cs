@@ -16,30 +16,37 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         private Dictionary<GameplayEffect, IAbility> SourceAbilities { get; } =
             new Dictionary<GameplayEffect, IAbility>();
 
-        internal event UnityAction<GameplayEffect, IAbility> OnEffectEnded; 
-
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
         }
 
-        private IEnumerator ExecutePeriodically(GameplayEffect effect, float period, float duration) {
-            float elapsed = 0f;
-            yield return new WaitForSeconds(period);
-            elapsed += period;
-            
-            while (this.ActiveEffects.ContainsKey(effect) && (duration < 0 || elapsed < duration)) {
+        private IEnumerator ExecutePeriodically(GameplayEffect effect, float period, double duration) {
+            double elapsed = 0;
+            yield return new WaitForEndOfFrame();
+            while (this.ActiveEffects.ContainsKey(effect)) {
                 effect.Apply(this.AttributeSet);
+#if DEBUG
+                Debug.Log(
+                    $"Applying effect from {this.SourceAbilities[effect]}, elapsed: {elapsed}, duration: {duration}"
+                );
+#endif
                 if (duration < 0) {
                     yield return new WaitForSeconds(period);
                     continue;
                 }
 
                 if (elapsed >= duration) {
+#if DEBUG
+                    Debug.Log(
+                        $"Effect ended, from {this.SourceAbilities[effect]}, elapsed: {elapsed}, duration: {duration}"
+                    );
+#endif
                     this.End(effect);
-                } else {
-                    yield return new WaitForSeconds(period);
-                    elapsed += period;
+                    break;
                 }
+                
+                yield return new WaitForSeconds(period);
+                elapsed += period;
             }
         }
         
@@ -84,7 +91,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         public void Add(GameplayEffect effect, int chance, IAbility ability = null) {
             if (effect.Commit(this.AttributeSet, chance) != GameplayEffect.Outcome.Success) {
-                this.OnEffectEnded?.Invoke(effect, ability);
                 return;
             }
             
@@ -110,12 +116,19 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             if (this.ActiveEffects.Remove(effect)) {
                 effect.Revert(this.AttributeSet);
             }
-            
-            if (this.SourceAbilities.Remove(effect, out IAbility ability)) {
-                this.OnEffectEnded?.Invoke(effect, ability);
-            } else {
-                this.OnEffectEnded?.Invoke(effect, null);
+
+            this.SourceAbilities.Remove(effect);
+        }
+        
+        internal void End(IAbility ability) {
+            List<GameplayEffect> toEnd = new List<GameplayEffect>();
+            foreach (KeyValuePair<GameplayEffect, IAbility> pair in this.SourceAbilities) {
+                if (pair.Value == ability) {
+                    toEnd.Add(pair.Key);
+                }
             }
+            
+            toEnd.ForEach(this.End);
         }
 
         public GameplayEffectExecutionArgs.Builder CreateEffectExecutionArgs() {

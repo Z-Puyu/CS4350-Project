@@ -7,6 +7,7 @@ using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using Unity.VisualScripting;
 using UnityEngine;
+using WeaponsSystem.Projectiles;
 using UnityEngine.Events;
 using WeaponsSystem.DamageHandling;
 
@@ -18,8 +19,9 @@ namespace WeaponsSystem.WeaponComponent {
         
         private Dictionary<WeaponComponentData, int> PossibleComponents { get; } = new Dictionary<WeaponComponentData, int>();
         [field: SerializeField] private WeaponComponentData[] Components { get; set; }
-        private List<Modifier> WeaponModifiers { get; set; } = new List<Modifier>();
-        private Dictionary<int, List<AttackData>> ComboModifiers { get; set; } = new Dictionary<int, List<AttackData>>();
+        private List<Modifier> WeaponModifiers { get; } = new List<Modifier>();
+        private List<ProjectileEffect> WeaponProjectileEffects { get; } = new List<ProjectileEffect>();
+        private Dictionary<int, List<AttackData>> ComboModifiers { get; } = new Dictionary<int, List<AttackData>>();
         public Bitmask64 ComponentCombination { get; } = 0;
         
         [field: SerializeField]
@@ -115,6 +117,20 @@ namespace WeaponsSystem.WeaponComponent {
             
         }
 
+        private void ClearModifiers() {
+            foreach (Modifier modifier in this.WeaponModifiers) {
+                this.Stats.RemoveWeaponModifier(modifier);
+            }
+
+            this.WeaponModifiers.Clear();
+            foreach (KeyValuePair<int, List<AttackData>> modifier in this.ComboModifiers) {
+                this.Stats.RemoveAttackModifier(modifier.Key, modifier.Value);    
+            }
+
+            this.WeaponProjectileEffects.Clear();
+            }
+        }
+
         private void ApplyDefaultAttacks() {
             Dictionary<int, List<AttackData>> defaultAttacks = new Dictionary<int, List<AttackData>>();
             for (int i = 0; i < this.DefaultAttacks.Count; i += 1) {
@@ -128,15 +144,7 @@ namespace WeaponsSystem.WeaponComponent {
         }
 
         private void RefreshModifiers() {
-            foreach (Modifier modifier in this.WeaponModifiers) {
-                this.Stats.RemoveWeaponModifier(modifier);
-            }
-            
-            this.WeaponModifiers.Clear();
-            foreach (KeyValuePair<int, List<AttackData>> modifier in this.ComboModifiers) {
-                this.Stats.RemoveAttackModifier(modifier.Key, modifier.Value);    
-            }
-            
+            this.ClearModifiers();
             foreach (WeaponComponentData component in this.Components) {
                 if (!component) {
                     continue;
@@ -144,6 +152,10 @@ namespace WeaponsSystem.WeaponComponent {
                 
                 foreach (ModifierData data in component.WeaponModifiers) {
                     this.WeaponModifiers.Add(data.CreateModifier(this.Stats));
+                }
+
+                foreach (ProjectileEffect effect in component.ProjectileEffects) {
+                    this.WeaponProjectileEffects.Add(effect);
                 }
 
                 for (int i = 0; i < component.AttackData.Count; i += 1) {

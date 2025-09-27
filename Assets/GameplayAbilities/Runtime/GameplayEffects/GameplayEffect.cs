@@ -42,7 +42,8 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 this.HasNeverExecuted = false;
             }
 
-            return this.Data.Run(target, this.Args).Select(modifier => modifier * this.Args.Level);
+            this.Modifiers.AddRange(this.Data.Run(target, this.Args).Select(modifier => modifier * this.Args.Level));
+            return this.Modifiers;
         }
 
         /// <summary>
@@ -50,9 +51,17 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         /// </summary>
         /// <param name="target">The target game object.</param>
         internal void Apply(AttributeSet target) {
+            if (!this.ShouldApply()) {
+                return;
+            }
+            
             foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(modifier);
             }
+        }
+
+        private bool ShouldApply() {
+            return this.Data.ExecutionTime == GameplayEffectData.Periodicity.Periodic || this.Modifiers.Count == 0;
         }
 
         /// <summary>
@@ -64,9 +73,11 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 return;
             }
             
-            foreach (Modifier modifier in this.Execute(target)) {
+            foreach (Modifier modifier in this.Modifiers) {
                 target.AddModifier(-modifier);
             }
+            
+            this.Modifiers.Clear();
         }
     }
 }
