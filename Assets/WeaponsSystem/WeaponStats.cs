@@ -111,6 +111,7 @@ namespace WeaponsSystem {
                 this.AttackModifiers.Add(index, modifiers.ToList());
             } else {
                 list.AddRange(modifiers);
+                Debug.Log($"Added {modifiers} modifiers to attack {index}");
             }
         }
 
