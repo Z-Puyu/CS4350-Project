@@ -32,13 +32,13 @@ namespace WeaponsSystem.BulletComponents {
             this.transform.position += distanceTravelledThisFrame;
         }
 
-        private void OnCollisionEnter2(Collision2D collision) {
+        private void OnCollisionEnter2D(Collision2D collision) {
             if (collision.gameObject.CompareTag("Player")) {
                 return;
             }
 
-            this.DealDamage(collision);
-            this.onHit?.Invoke();
+            DealDamage(collision);
+            onHit?.Invoke();
         }
 
         public void Awake() {
