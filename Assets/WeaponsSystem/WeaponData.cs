@@ -4,6 +4,7 @@ using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
+using WeaponsSystem.WeaponComponent;
 
 namespace WeaponsSystem {
     [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapons/WeaponData", order = 0)]
@@ -14,5 +15,8 @@ namespace WeaponsSystem {
         
         [field: SerializeField, RequireType(typeof(PoolableObject))] 
         public PoolableObject ParticleEffectOnHit { get; private set; }
+        
+        [field: SerializeField] public ComponentSet PossibleComponents { get; set; }
+        [field: SerializeField] public List<AttackData> DefaultAttacks { get; private set; }
     }
 }

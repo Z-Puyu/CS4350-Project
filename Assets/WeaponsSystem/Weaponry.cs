@@ -31,9 +31,9 @@ namespace WeaponsSystem {
                 return;
             }
 
-            this.DamageDealers[this.CurrentActiveIndex].Disable();
+            this.DamageDealers[this.CurrentActiveIndex].Disable(this.Combatant);
             this.CurrentActiveIndex = index;
-            this.DamageDealers[this.CurrentActiveIndex].Enable();
+            this.DamageDealers[this.CurrentActiveIndex].Enable(this.Combatant);
         }
         
         public void Lock(int index) {

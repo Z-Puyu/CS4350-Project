@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Bitmasks;
 using DataStructuresForUnity.Runtime.GeneralUtils;
+using GameplayAbilities.Runtime.Abilities;
 using SaintsField;
 using UnityEngine;
 using Utilities;
@@ -11,16 +12,10 @@ using WeaponsSystem.WeaponComponent;
 namespace WeaponsSystem {
     [RequireComponent(typeof(ProjectileSpawner))]
     public abstract class Weapon<S> : MonoBehaviour, IDamageDealer where S : WeaponStats {
-        [field: SerializeField] private ComponentSet PossibleComponents { get; set; }
         [field: SerializeField] protected WeaponData WeaponData { get; private set; }
         [field: SerializeField, Required] protected S Stats { get; private set; }
         [field: SerializeField, Required] private ComponentManager ComponentManager { get; set; }
         protected ProjectileSpawner ProjectileSpawner { get; private set; }
-        
-        public Bitmask64 ComponentCombination => this.ComponentManager.ComponentCombination;
-        
-        // Placeholder 
-        [field: SerializeField] private ParticleSystem ParticleEffect { get; set; }
         
         public abstract float AttackDuration { get; }
         private int currentAttackCounter;
@@ -45,7 +40,6 @@ namespace WeaponsSystem {
 
         protected virtual void Start() {
             this.Stats.Initialise(this.WeaponData);
-            this.ComponentManager.Initialise(this.PossibleComponents);
         }
 
         public void AddComponent(WeaponComponentData component, int index) {
@@ -60,11 +54,12 @@ namespace WeaponsSystem {
             return true;
         }
 
-        public void Enable() {
+        public void Enable(Combatant combatant) {
             this.gameObject.SetActive(true);
+            this.ComponentManager.Initialise(combatant, this.WeaponData);
         }
         
-        public void Disable() {
+        public void Disable(Combatant combatant) {
             this.CurrentAttackCounter = 0;
             this.gameObject.SetActive(false);
         }

@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 namespace GameplayAbilities.Runtime.Abilities {
     [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability", order = 0)]
     public class Ability : ScriptableObject, IAbility {
+        [field: SerializeField] internal bool IsObtainable { get; private set; } = true;
         [field: SerializeField] internal string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }

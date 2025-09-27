@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,7 +6,6 @@ using DataStructuresForUnity.Runtime.Bitmasks;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
-using Unity.VisualScripting;
 using UnityEngine;
 using WeaponsSystem.Projectiles;
 using UnityEngine.Events;
@@ -16,21 +16,21 @@ namespace WeaponsSystem.WeaponComponent {
     public sealed class ComponentManager : MonoBehaviour {
         [field: SerializeField, MinValue(1)] private int Capacity { get; set; } = 3;
         [field: SerializeField] private WeaponStats Stats { get; set; }
+        private List<AttackData> DefaultAttacks { get; } = new List<AttackData>();
+
+        [field: SerializeField]
+        private List<WeaponComponentData> TestComponents { get; set; } = new List<WeaponComponentData>();
         
-        private Dictionary<WeaponComponentData, int> PossibleComponents { get; } = new Dictionary<WeaponComponentData, int>();
-        [field: SerializeField] private WeaponComponentData[] Components { get; set; }
+        private WeaponComponentData[] Components { get; set; }
+        private HashSet<WeaponComponentData> PossibleComponents { get; } = new HashSet<WeaponComponentData>();
         private List<Modifier> WeaponModifiers { get; } = new List<Modifier>();
         private List<ProjectileEffect> WeaponProjectileEffects { get; } = new List<ProjectileEffect>();
         private Dictionary<int, List<AttackData>> ComboModifiers { get; } = new Dictionary<int, List<AttackData>>();
-        public Bitmask64 ComponentCombination { get; } = 0;
-        
-        [field: SerializeField]
-        private List<AttackData> DefaultAttacks { get; set; }
-        [field: SerializeField]
-        private ComponentSkillTable ComponentSkillTable { get; set; }
-        [field: SerializeField] private AbilitySystem AbilitySystem { get; set; }
-        [field: SerializeField] private Combatant Combatant { get; set; }
-        private UnityAction<string> OnSkillActivatable { get; set; }
+        private event UnityAction<ISet<WeaponComponentData>> OnComponentSetChanged;
+
+        private void Awake() {
+            this.Components = new WeaponComponentData[this.Capacity];
+        }
 
         public void AddComponent(WeaponComponentData component, int index) {
             if (index > this.Capacity) {
@@ -40,15 +40,15 @@ namespace WeaponsSystem.WeaponComponent {
                 return;
             }
 
-            if (!component || !this.PossibleComponents.TryGetValue(component, out int id)) {
+            if (!component || !this.PossibleComponents.Contains(component)) {
 #if DEBUG
                 Debug.LogError($"Component {component.Name} is not allowed", this);
 #endif
                 return;
             }
-
-            this.ComponentCombination.Set(id);
+            
             this.Components[index] = component;
+            this.OnComponentSetChanged?.Invoke(this.Components.Distinct().Where(c => c).ToHashSet());
             this.RefreshModifiers();
         }
 
@@ -61,11 +61,8 @@ namespace WeaponsSystem.WeaponComponent {
             }
 
             WeaponComponentData component = this.Components[index];
-            if (component) {
-                this.ComponentCombination.Unset(this.PossibleComponents[component]);
-            }
-
             this.Components[index] = null;
+            this.OnComponentSetChanged?.Invoke(this.Components.Distinct().Where(c => c).ToHashSet());
             this.RefreshModifiers();
             return component;
         }
@@ -92,29 +89,33 @@ namespace WeaponsSystem.WeaponComponent {
             return false;
         }
 
-        private void Awake() {
-            // this.Components = Enumerable.Repeat<WeaponComponentData>(null, this.Capacity).ToArray();
+        private void ResetDefaults() {
+            this.OnComponentSetChanged = null;
+            this.PossibleComponents.Clear();
+            this.Components = new WeaponComponentData[this.Capacity];
+            this.DefaultAttacks.Clear();
+            this.WeaponModifiers.Clear();
+            this.ComboModifiers.Clear();
+            this.WeaponProjectileEffects.Clear();
         }
 
-        /*public void Start() {
-            this.RefreshModifiers();
-            this.ApplyComponentsToStats();
-        }*/
-
-        public void Initialise(ComponentSet components) {
-            this.PossibleComponents.Clear();
-            foreach (WeaponComponentData component in components.Components) {
-                this.PossibleComponents.Add(component, this.PossibleComponents.Count);
+        public void Initialise(Combatant combatant, WeaponData data) {
+            this.ResetDefaults();
+            this.OnComponentSetChanged += combatant.HandleComponentSetChange;
+            foreach (WeaponComponentData component in data.PossibleComponents) {
+                this.PossibleComponents.Add(component);
             }
+
+#if DEBUG
+            foreach (WeaponComponentData component in this.TestComponents) {
+                this.AddComponent(component, this.TestComponents.IndexOf(component));
+            }
+#endif
             
-            this.OnSkillActivatable += this.AbilitySystem.Grant; 
-            this.OnSkillActivatable += this.Combatant.AddUsableSkill;
+            this.DefaultAttacks.AddRange(data.DefaultAttacks);
             this.RefreshModifiers();
             this.ApplyDefaultAttacks();
             this.ApplyComponentsToStats();
-            
-            this.StartCoroutine(this.DelayedActivateSkills(2.0f));
-            
         }
 
         private void ClearModifiers() {
@@ -131,14 +132,8 @@ namespace WeaponsSystem.WeaponComponent {
         }
 
         private void ApplyDefaultAttacks() {
-            Dictionary<int, List<AttackData>> defaultAttacks = new Dictionary<int, List<AttackData>>();
             for (int i = 0; i < this.DefaultAttacks.Count; i += 1) {
-                List<AttackData> list = new List<AttackData> { this.DefaultAttacks[i] };
-                defaultAttacks.Add(i, list);
-            }
-
-            foreach (KeyValuePair<int, List<AttackData>> attack in defaultAttacks) {
-                this.Stats.AddAttackModifier(attack.Key, attack.Value);
+                this.Stats.AddAttackModifier(i, new List<AttackData> { this.DefaultAttacks[i] });
             }
         }
 
@@ -182,18 +177,20 @@ namespace WeaponsSystem.WeaponComponent {
             }
         }
 
-        private void ActivateComponentSkills() {
-            foreach (KeyValuePair<HashSet<WeaponComponentData>, string> entry in this.ComponentSkillTable) {
-                if (entry.Key.IsSubsetOf(this.Components)) {
-                    Debug.Log($"Component Manager Activating skill {entry.Value}", this);
-                    this.OnSkillActivatable?.Invoke(entry.Value);
+        /*private void ActivateComponentSkills() {
+            foreach (KeyValuePair<ISet<WeaponComponentData>, string> entry in this.ComponentSkillTable) {
+                if (!entry.Key.IsSubsetOf(this.Components)) {
+                    continue;
                 }
+
+                Debug.Log($"Component Manager Activating skill {entry.Value}", this);
+                this.OnComponentSetChanged?.Invoke(entry.Key);
             }
         }
 
         private IEnumerator DelayedActivateSkills(float delay) {
             yield return new WaitForSeconds(delay);
             this.ActivateComponentSkills();
-        }
+        }*/
     }
 }

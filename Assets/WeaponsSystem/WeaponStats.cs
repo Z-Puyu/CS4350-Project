@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,7 +38,7 @@ namespace WeaponsSystem {
         protected virtual void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
         }
-        
+
         public IReadOnlyDictionary<string, int> ReadDamageData() {
             Dictionary<string, int> damages = new Dictionary<string, int>();
             foreach (string attribute in this.DamageAttributes) {

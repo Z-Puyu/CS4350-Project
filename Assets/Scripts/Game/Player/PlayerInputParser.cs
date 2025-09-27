@@ -34,8 +34,6 @@ namespace Game.Player {
             this.Interactor.Interact();
         }
         
-        
-        
         public void OnToggleInventory(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
@@ -62,11 +60,6 @@ namespace Game.Player {
             
             OnScreenDebugger.Log("Attack");
             this.Combatant.StartAttack();
-            //this.MeleeWeapon.gameObject.SetActive(true);
-            //this.RangedWeapon.gameObject.SetActive(true);
-            
-            //this.MeleeWeapon.Attack();
-            //this.RangedWeapon.Attack();
         }
 
         public void OnMove(InputAction.CallbackContext context) {
@@ -83,8 +76,7 @@ namespace Game.Player {
                 return;
             } 
             
-            Debug.Log($"Skill One: {this.Combatant.GetSkillOne()}");
-            this.AbilitySystem.Use(this.Combatant.GetSkillOne(), this.AbilitySystem, this.AbilitySystem.CreateEffectExecutionArgs().Build());
+            this.AbilitySystem.Use("ability:healing");
         }
 
         public void OnUseAbility(InputAction.CallbackContext context) {

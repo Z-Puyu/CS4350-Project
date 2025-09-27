@@ -26,8 +26,8 @@ namespace WeaponsSystem {
 
         public bool AllowsDamageOn(GameObject candidate);
 
-        public void Enable();
+        public void Enable(Combatant combatant);
 
-        public void Disable();
+        public void Disable(Combatant combatant);
     }
 }

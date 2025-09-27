@@ -115,5 +115,9 @@ namespace GameplayAbilities.Runtime.Abilities {
 #endif
             this.AbilitySystem.Use(this.Focus, target);
         }
+
+        public void Use(int index) {
+            this.AbilitySystem.Use(this.AbilityList[index % this.AbilityList.Count].ability);
+        }
     }
 }
