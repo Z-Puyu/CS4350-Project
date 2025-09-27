@@ -61,7 +61,7 @@ namespace WeaponsSystem.Projectiles {
                 float currentAngle = startAngle + i * angleStep;
                 Vector3 currentDirection = Quaternion.Euler(0, 0, currentAngle) * config.Direction;
                 ProjectileConfig newConfig = new ProjectileConfig(
-                    config.Count, config.Interval, config.Mode, config.Mask, config.TargetTags, currentDirection);
+                    config.Count, config.Interval, config.Mode, config.Mask, config.TargetTags, currentDirection, config.Effects);
                 ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, newConfig, damage, onHit);
             }
         }

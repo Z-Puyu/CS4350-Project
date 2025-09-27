@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 503650084216761073}
   - component: {fileID: 2270376434729892677}
+  - component: {fileID: 1619120422167565463}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Untagged
@@ -45,11 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f7462bafb94e4f83be2ed1e4786554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeapon
+  <PossibleComponents>k__BackingField: {fileID: 11400000, guid: 3e238b61fff1af84ba1f74a8283b5d3b, type: 2}
   <WeaponData>k__BackingField: {fileID: 11400000, guid: e823039187623e34da918e1e3e9fd5df, type: 2}
-  <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 5777750948884736783}
+  <ComponentManager>k__BackingField: {fileID: 0}
   <ParticleEffect>k__BackingField: {fileID: 0}
   <AttackOrigin>k__BackingField: {fileID: 503650084216761073}
+--- !u!114 &1619120422167565463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286698903840859638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a8ce96be84c188e407c20e32d37fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.ProjectileSpawner
+  <ProjectileSpreadAttribute>k__BackingField: 
+  <ProjectilesPerShotAttribute>k__BackingField: 
+  <ExplosionRadiusAttribute>k__BackingField: 
+  <ParallelProjectileSpacingAttribute>k__BackingField: 
 --- !u!1 &5690212249861511337
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,11 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
   <ModifierMode>k__BackingField: 1
-  <DefinedAttributes>k__BackingField:
-    _keys: []
-    _values: 
-    _saintsKeys: []
-    _saintsValues: []
+  <DefaultAttributes>k__BackingField: {fileID: 0}
 --- !u!114 &5777750948884736783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +132,6 @@ MonoBehaviour:
   - Damage.Elemental.Fire
   - Damage.Elemental.Ice
   - Damage.Elemental.Lightning
-  <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
   <KnockbackStrengthAttribute>k__BackingField: Weapon.KnockbackStrength
   <SweepHalfAngle>k__BackingField: 60

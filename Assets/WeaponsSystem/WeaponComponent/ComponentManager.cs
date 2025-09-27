@@ -128,7 +128,6 @@ namespace WeaponsSystem.WeaponComponent {
             }
 
             this.WeaponProjectileEffects.Clear();
-            }
         }
 
         private void ApplyDefaultAttacks() {

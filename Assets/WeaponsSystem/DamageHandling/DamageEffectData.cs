@@ -34,7 +34,7 @@ namespace WeaponsSystem.DamageHandling {
                 
                 int defence = target.GetCurrent(damage.DefenceAttribute);
                 magnitude = damage.IsPercentageDefence
-                        ? Mathf.RoundToInt(magnitude * defence * damage.DefenceCoefficient / 100.0f)
+                        ? Mathf.RoundToInt(magnitude * (1 - defence * damage.DefenceCoefficient / 100.0f))
                         : magnitude - defence * damage.DefenceCoefficient;
                 if (magnitude <= 0) {
                     continue;
