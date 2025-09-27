@@ -1,6 +1,6 @@
 ﻿namespace DataStructuresForUnity.Runtime.GeneralUtils {
-    public interface ISpawnable {
-        public void Activate();
+    public interface ISpawnable<T> {
+        public void Activate(T args);
         
         public void Destroy();
     }

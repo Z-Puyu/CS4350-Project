@@ -25,24 +25,13 @@ namespace Visuals {
                         effect.Key.PoolableId, effect.Key, this.transform
                     );
                         
-                    spawn.Activate();
+                    spawn.Activate(data.Info);
                     if (this.SpawnedEffects.TryGetValue(id, out List<SpawnableAbilityObject> list)) {
                         list.Add(spawn);
                     } else {
                         this.SpawnedEffects.Add(id, new List<SpawnableAbilityObject> { spawn });
                     }
                 }
-            }
-        }
-
-        public void CeaseAbility(AbilityData data) {
-            string id = data.Info.Id;
-            if (!this.SpawnedEffects.TryGetValue(id, out List<SpawnableAbilityObject> list)) {
-                return;
-            }
-
-            foreach (SpawnableAbilityObject spawned in list) {
-                spawned.Destroy();
             }
         }
     }

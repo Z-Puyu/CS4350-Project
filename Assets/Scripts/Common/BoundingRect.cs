@@ -59,8 +59,7 @@ namespace Common {
         public void ResizeTo(BoundingRect other) {
             this.ResizeTo(other.Width, other.Height);
         }
-
-        [Button]
+        
         public void AlignTo(BoundingRect other, Alignment alignment = Alignment.Centre) {
             Vector3 translation = alignment switch {
                 Alignment.Centre => other.Centre - this.Centre,

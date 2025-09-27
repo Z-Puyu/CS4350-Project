@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
@@ -23,8 +24,19 @@ namespace GameplayAbilities.Runtime.Abilities {
         
         [field: SerializeReference, ReferencePicker] 
         public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
-        
-        public AbilityInfo Info => new AbilityInfo(this.Id, this.Cooldown, this.Effects.Count);
+
+        public int Duration {
+            get {
+                if (this.Effects.Any(effect => effect.ActualDuration < 0)) {
+                    return -1;
+                }
+                
+                return this.Effects.Max(effect => effect.ActualDuration);
+            }
+        }
+
+        public int CooldownTime => this.Cooldown + Math.Max(0, this.Duration);
+        public AbilityInfo Info => new AbilityInfo(this.Id, this.CooldownTime, this.Duration);
 
         public IEnumerable<GameplayEffect> GenerateEffects(GameplayEffectExecutionArgs args) {
             return this.Effects.Select(effect => new GameplayEffect(effect, args));

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Visuals {
     [RequireComponent(typeof(ParticleSystem), typeof(BoundingRect))]
-    public abstract class ParticleVisual2D : SpawnableAbilityObject, ISpawnable {
+    public abstract class ParticleVisual2D : SpawnableAbilityObject {
         [field: SerializeField] private string Id { get; set; }
         protected ParticleSystem ParticleSystem { get; set; }
         protected BoundingRect BoundingRect { get; set; }
@@ -32,7 +32,7 @@ namespace Visuals {
             base.Return();
         }
 
-        public override void Activate() {
+        public override void Activate(AbilityInfo info) {
             Transform parent = this.transform.parent;
             if (parent) {
                 this.ParentRect = this.transform.parent.GetComponentInParent<BoundingRect>();
@@ -40,9 +40,26 @@ namespace Visuals {
             
             this.BoundingRect.ResizeTo(this.ParentRect);
         }
-        
-        public override void Destroy() {
+
+        protected IEnumerator AlignToParentAndPlay(BoundingRect.Alignment alignment, AbilityInfo info) {
+            yield return new WaitForFixedUpdate();
+            this.BoundingRect.AlignTo(this.ParentRect, alignment);
+            this.ParticleSystem.Play();
+            yield return new WaitForSeconds(info.Duration);
+            yield return this.WaitToDestroy();
+        }
+
+        private IEnumerator WaitToDestroy() {
+            if (this.ParticleSystem.main.loop) {
+                this.ParticleSystem.Stop();
+            }
+            
+            yield return new WaitUntil(() => !this.ParticleSystem.IsAlive());
             this.Return();
+        }
+
+        public override void Destroy() {
+            this.StartCoroutine(this.WaitToDestroy());
         }
     }
 }
