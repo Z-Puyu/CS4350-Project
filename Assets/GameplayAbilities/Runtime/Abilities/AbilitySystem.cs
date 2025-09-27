@@ -125,7 +125,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            this.OnStartAbility.Invoke(new AbilityData(ability.Info));
+            this.OnStartAbility.Invoke(new AbilityData(ability.Info, this.AttributeSet));
             target.Process(ability, args);
         }
 

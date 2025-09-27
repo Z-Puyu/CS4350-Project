@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Visuals {
     public sealed class UpwardStream : ParticleVisual2D {
-        public override void Activate(AbilityInfo info) {
+        public override void Activate(AbilityData info) {
             base.Activate(info);
             this.StartCoroutine(this.AlignToParentAndPlay(BoundingRect.Alignment.Bottom, info));
         }
