@@ -51,15 +51,17 @@ namespace WeaponsSystem.Projectiles {
             Projectile prefab, IAttributeReader source, int spread, int multiplicity, ProjectileConfig config,
             Damage damage, Action<Vector3> onHit
         ) {
+            if (multiplicity == 1) {
+                ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, config, damage, onHit);
+                return;
+            }
             float startAngle = -spread / 2.0f;
             float angleStep = spread / (multiplicity - 1.0f);
             for (int i = 0; i < multiplicity; i += 1) {
                 float currentAngle = startAngle + i * angleStep;
                 Vector3 currentDirection = Quaternion.Euler(0, 0, currentAngle) * config.Direction;
                 ProjectileConfig newConfig = new ProjectileConfig(
-                    config.Count, config.Interval, config.Mode, config.Mask, config.TargetTags, currentDirection,
-                    config.Effects
-                );
+                    config.Count, config.Interval, config.Mode, config.Mask, config.TargetTags, currentDirection, config.Effects);
                 ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, newConfig, damage, onHit);
             }
         }

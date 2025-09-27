@@ -26,15 +26,21 @@ namespace WeaponsSystem.DamageHandling {
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
+        private List<string> usableSkills = new List<string>();
+        
+        private void Awake() {
+        }
 
         private void Start() {
             if (this.DefaultDamageDealer.I != null) {
                 this.Equip(this.DefaultDamageDealer.I);
             }
+            //this.usableSkills.Add("ability:morebullet");
         }
 
         private void Update() {
             this.AttackTimer?.Tick();
+            //Debug.Log($"Usable Skills: {this.usableSkills.Count}");
         }
 
         public void StartAttack() {
@@ -79,6 +85,22 @@ namespace WeaponsSystem.DamageHandling {
             this.IsAttacking = false;
             this.OnSwitchedGear.Invoke(damageDealer);
             return true;
+        }
+        
+        public void AddUsableSkill(string skillId) {
+            this.usableSkills.Add(skillId);
+        }
+        
+        public void RemoveUsableSkill(string skillId) {
+            this.usableSkills.Remove(skillId);
+        }
+
+        public string GetSkillOne() {
+            return this.usableSkills[0];
+        }
+
+        public string GetSkillTwo() {
+            return this.usableSkills[1];
         }
     }
 }

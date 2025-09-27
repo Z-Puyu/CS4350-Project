@@ -23,7 +23,8 @@ namespace Game.Player {
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityRoundRobin AbilityRoundRobin { get; set; }
-
+        [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
+        
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
@@ -32,6 +33,8 @@ namespace Game.Player {
             OnScreenDebugger.Log("Interact");
             this.Interactor.Interact();
         }
+        
+        
         
         public void OnToggleInventory(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -73,6 +76,15 @@ namespace Game.Player {
             } else if (context.canceled) {
                 this.Movement.Stop();
             }
+        }
+
+        public void OnSkillOneUsed(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            } 
+            Debug.Log($"Skill One: {this.Combatant.GetSkillOne()}");
+            this.AbilitySystem.Use(this.Combatant.GetSkillOne(), this.AbilitySystem, this.AbilitySystem.CreateEffectExecutionArgs().Build());
+
         }
 
         public void OnUseAbility(InputAction.CallbackContext context) {

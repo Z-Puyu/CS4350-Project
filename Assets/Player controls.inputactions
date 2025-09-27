@@ -79,9 +79,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseSkill",
+                    "name": "UseSkillOne",
                     "type": "Button",
-                    "id": "76d70782-4afb-4b49-940f-56cab2bb2e60",
+                    "id": "4ef308ba-d96a-41a1-abe0-ebe8df1d7a71",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSkillTwo",
+                    "type": "Button",
+                    "id": "d6d1192e-c2c5-4750-812f-899a0d3bc921",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -355,12 +364,23 @@
                 },
                 {
                     "name": "",
-                    "id": "97bcdd38-478e-4d9e-8ded-21d93bbc8a8b",
-                    "path": "<Keyboard>/r",
+                    "id": "c310007e-ade6-4fd1-9f45-39682b5aa66c",
+                    "path": "<Keyboard>/#(Q)",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "UseSkill",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "UseSkillOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b47024f-abcf-4635-b594-cd9f8614823c",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "UseSkillTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

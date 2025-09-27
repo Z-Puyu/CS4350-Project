@@ -22,15 +22,5 @@ MonoBehaviour:
     <DefaultValue>k__BackingField: 1
     <Coefficient>k__BackingField: 0
     <Label>k__BackingField: 
-  <AttackData>k__BackingField:
-  - <Mode>k__BackingField: 1
-    <Modifiers>k__BackingField:
-    - <TargetAttribute>k__BackingField: Weapon.Projectile.ProjectilesPerShot
-      <Method>k__BackingField: 0
-      <Form>k__BackingField: 0
-      <Source>k__BackingField: 0
-      <SourceAttribute>k__BackingField: 
-      <DefaultValue>k__BackingField: 1
-      <Coefficient>k__BackingField: 0
-      <Label>k__BackingField: 
+  <AttackData>k__BackingField: []
   <ProjectileEffects>k__BackingField: []
