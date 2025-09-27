@@ -28,7 +28,8 @@ namespace WeaponsSystem.Projectiles {
         
         public void TurnOn(Projectile projectile) {
             foreach (AttributeEntry attribute in this.Effect.Attributes) {
-                this.Attributes[attribute.Id] = projectile.GetAttribute(attribute.Id, attribute.Value);
+                int value = projectile.GetAttribute(attribute.Id, attribute.Value);
+                this.Attributes[attribute.Id] = value;
             }
             
             this.Activate();

@@ -113,9 +113,8 @@ namespace WeaponsSystem.WeaponComponent {
 #endif
             
             this.DefaultAttacks.AddRange(data.DefaultAttacks);
-            this.RefreshModifiers();
             this.ApplyDefaultAttacks();
-            this.ApplyComponentsToStats();
+            this.RefreshModifiers();
         }
 
         private void ClearModifiers() {
@@ -128,6 +127,7 @@ namespace WeaponsSystem.WeaponComponent {
                 this.Stats.RemoveAttackModifier(modifier.Key, modifier.Value);    
             }
 
+            this.ComboModifiers.Clear();
             this.WeaponProjectileEffects.Clear();
         }
 
@@ -165,6 +165,8 @@ namespace WeaponsSystem.WeaponComponent {
                     }
                 }
             }
+            
+            this.ApplyComponentsToStats();
         }
 
         private void ApplyComponentsToStats() {

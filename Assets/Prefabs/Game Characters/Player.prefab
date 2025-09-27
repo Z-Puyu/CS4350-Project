@@ -642,6 +642,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 1869055113085185054, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
+      propertyPath: <Root>k__BackingField
+      value: 
+      objectReference: {fileID: 571178239294957684}
+    - target: {fileID: 1869055113085185054, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
+      propertyPath: <Root>k__BackingField.<V>k__BackingField
+      value: 
+      objectReference: {fileID: 571178239294957684}
     - target: {fileID: 5016020523102747829, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -970,6 +978,14 @@ PrefabInstance:
       propertyPath: '<Components>k__BackingField.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 723c104c39f5c9b4599b7554ea142761, type: 2}
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: <TestComponents>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: da991fd96e1e6204d94a1ad89f649a9d, type: 2}
     - target: {fileID: 3523569647147976172, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
       propertyPath: m_Name
       value: Ranged

@@ -27,7 +27,6 @@ namespace Game.Player {
             this.ConfigureInventory();
             Enemy.OnDeath += this.HandleEnemyDeath;
             this.GetComponentInChildren<Interactor>().OnInteract += obj => this.Say("Interacted with " + obj.name);
-            this.GetComponentInChildren<Combatant>().Equip(this.GetComponentInChildren<IDamageDealer>());
         }
 
         private void ConfigureInventory() {

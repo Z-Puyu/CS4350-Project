@@ -17,7 +17,7 @@ namespace WeaponsSystem {
         [field: SerializeField, Table]
         private List<ModifierData> Modifiers { get; set; } = new List<ModifierData>();
         
-        public bool IsEmpty => this.Modifiers.Count == 0;
+        public bool IsEmpty => this.Modifiers.Count == 0 && this.ProjectileEffects.Count == 0;
         
         public IEnumerable<Modifier> GenerateModifiers(IAttributeReader currentAttributes) {
             return this.Modifiers.Select(m => m.CreateModifier(currentAttributes));

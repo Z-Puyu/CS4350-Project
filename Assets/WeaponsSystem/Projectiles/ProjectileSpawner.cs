@@ -55,6 +55,7 @@ namespace WeaponsSystem.Projectiles {
                 ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, config, damage, onHit);
                 return;
             }
+            
             float startAngle = -spread / 2.0f;
             float angleStep = spread / (multiplicity - 1.0f);
             for (int i = 0; i < multiplicity; i += 1) {

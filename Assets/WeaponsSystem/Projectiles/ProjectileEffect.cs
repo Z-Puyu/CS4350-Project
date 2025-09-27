@@ -27,7 +27,7 @@ namespace WeaponsSystem.Projectiles {
             this.Attributes.RemoveAll(attribute => !this.RequiredAttributes.Contains(attribute.Id));
             foreach (string id in this.RequiredAttributes) {
                 if (this.Attributes.All(attribute => attribute.Id != id)) {
-                    this.Attributes.Add(new AttributeEntry(id, 0, true));
+                    this.Attributes.Add(new AttributeEntry(id, 0));
                 }
             }
         }

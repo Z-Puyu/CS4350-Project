@@ -41,7 +41,7 @@ namespace WeaponsSystem.Projectiles {
         }
 
         public int GetAttribute(string id, int @base) {
-            return this.Info.SourceWeapon.Query(id, @base);
+            return this.Info.Source.Query(id, @base);
         }
         
         public Projectile Targets(IEnumerable<string> tags) {
@@ -91,7 +91,7 @@ namespace WeaponsSystem.Projectiles {
         public void Launch(IAttributeReader source, Vector3 dir, LayerMask mask) {
             this.Info.Velocity = dir * (source.GetCurrent(this.SpeedAttribute) * this.SpeedCoefficient);
             this.Info.Range = source.GetCurrent(this.RangeAttribute);
-            this.Info.SourceWeapon = source;
+            this.Info.Source = source;
             foreach (ProjectileEffectController effect in this.Effects) {
                 effect.TurnOn(this);
             }
@@ -184,6 +184,7 @@ namespace WeaponsSystem.Projectiles {
             
             this.Info.Reset();
             this.Collider.includeLayers = 0;
+            this.Effects.ForEach(effect => effect.TurnOff(this));
             this.StartCoroutine(this.WaitToDestroy());
         }
     }

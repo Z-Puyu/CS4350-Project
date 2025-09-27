@@ -12,7 +12,6 @@ namespace WeaponsSystem.DamageHandling {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class Combatant : MonoBehaviour {
-        [field: SerializeField] private SaintsInterface<Component, IDamageDealer> DefaultDamageDealer { get; set; }
         [field: SerializeField] private LayerMask EnemyLayerMask { get; set; }
         [field: SerializeField, Tag] private List<string> EnemyTags { get; set; } = new List<string>();
         [field: SerializeField] private UnityEvent<int> OnAttacked { get; set; } = new UnityEvent<int>();
@@ -31,12 +30,6 @@ namespace WeaponsSystem.DamageHandling {
         
         private IDamageDealer DamageDealer { get; set; }
         private bool IsAttacking { get; set; }
-
-        private void Start() {
-            if (this.DefaultDamageDealer.I != null) {
-                this.Equip(this.DefaultDamageDealer.I);
-            }
-        }
 
         private void Update() {
             this.AttackTimer?.Tick();
