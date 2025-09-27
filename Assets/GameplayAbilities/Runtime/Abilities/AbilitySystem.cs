@@ -115,6 +115,20 @@ namespace GameplayAbilities.Runtime.Abilities {
         public void Revoke(IAbility ability) {
             this.AvailableAbilities.Remove(ability);
         }
+
+        public void Use(IAbility ability) {
+            ability.Activate(this, this.transform.position);
+        }
+
+        public void Use(IAbility ability, Vector3 position) {
+            ability.Activate(this, position);
+        }
+
+        /*public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
+            args ??= this.CreateEffectExecutionArgs().To(target.transform).Build();
+            ability.Activate(this, args.TargetPosition);
+            target.Process(ability, args);
+        }
         
         public void Use(IAbility ability, AbilitySystem target, GameplayEffectExecutionArgs args) {
             if (!this.AvailableAbilities.Contains(ability) || !ability.IsUsable(this.AttributeSet, target.AttributeSet)) {
@@ -125,8 +139,7 @@ namespace GameplayAbilities.Runtime.Abilities {
                 return;
             }
             
-            this.OnStartAbility.Invoke(new AbilityData(ability.Info, this.AttributeSet));
-            target.Process(ability, args);
+            this.OnStartAbility.Invoke(new AbilityData(ability.Info, this.AttributeSet, Vector2.zero));
         }
 
         public void Use(string abilityId, AbilitySystem target, GameplayEffectExecutionArgs args) {
@@ -136,7 +149,7 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
             
             this.Use(ability, target, args);
-        }
+        }*/
 
         private void Process(IAbility ability, GameplayEffectExecutionArgs args) {
             AbilityInfo info = ability.Info;

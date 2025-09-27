@@ -23,6 +23,8 @@ namespace GameplayAbilities.Runtime.Abilities {
         /// or whether the ability is in cool down. It should not be used to check for costs or probabilistic conditions.
         /// </remarks>
         public bool IsUsable(AttributeSet instigator, AttributeSet target);
+
+        public void Activate(AbilitySystem instigator, Vector3 position);
         
         public abstract AbilityInfo Info { get; }
     }
