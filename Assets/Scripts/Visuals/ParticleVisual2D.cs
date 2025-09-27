@@ -32,7 +32,7 @@ namespace Visuals {
             base.Return();
         }
 
-        public override void Activate(AbilityInfo info) {
+        public override void Activate(AbilityData info) {
             Transform parent = this.transform.parent;
             if (parent) {
                 this.ParentRect = this.transform.parent.GetComponentInParent<BoundingRect>();
@@ -41,11 +41,11 @@ namespace Visuals {
             this.BoundingRect.ResizeTo(this.ParentRect);
         }
 
-        protected IEnumerator AlignToParentAndPlay(BoundingRect.Alignment alignment, AbilityInfo info) {
+        protected IEnumerator AlignToParentAndPlay(BoundingRect.Alignment alignment, AbilityData info) {
             yield return new WaitForFixedUpdate();
             this.BoundingRect.AlignTo(this.ParentRect, alignment);
             this.ParticleSystem.Play();
-            yield return new WaitForSeconds(info.Duration);
+            yield return new WaitForSeconds(info.Info.Duration);
             yield return this.WaitToDestroy();
         }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
@@ -10,7 +11,7 @@ using WeaponsSystem.DamageHandling;
 
 namespace WeaponsSystem.Projectiles {
     [DisallowMultipleComponent, RequireComponent(typeof(CapsuleCollider2D))]
-    public sealed class Projectile : PoolableObject {
+    public sealed class Projectile : SpawnableAbilityObject {
         private Transform Transform { get; set; }
         [field: SerializeField] private GameObject Visual { get; set; }
         [field: SerializeField] private string ProjectileId { get; set; }
@@ -127,7 +128,11 @@ namespace WeaponsSystem.Projectiles {
             }
         }
 
-        private void Destroy() {
+        public override void Activate(AbilityData data) {
+            throw new NotImplementedException();
+        }
+
+        public override void Destroy() {
             if (this.Visual) {
                 this.Visual.SetActive(false);
             }

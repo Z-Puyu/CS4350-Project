@@ -25,7 +25,7 @@ namespace Visuals {
                         effect.Key.PoolableId, effect.Key, this.transform
                     );
                         
-                    spawn.Activate(data.Info);
+                    spawn.Activate(data);
                     if (this.SpawnedEffects.TryGetValue(id, out List<SpawnableAbilityObject> list)) {
                         list.Add(spawn);
                     } else {
