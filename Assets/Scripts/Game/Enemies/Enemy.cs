@@ -1,3 +1,4 @@
+using Events;
 using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Game.Enemies {
         [field: SerializeField] private EnemyData Data { get; set; }
         [field: SerializeField, Required] private Animator Animator { get; set; }
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventWithDataSO broadcastEnemyDiedData;
         private GameObject LastAttacker { get; set; }
 
         protected override void ConfigureAttributeSet() {
@@ -34,6 +36,8 @@ namespace Game.Enemies {
         }
 
         public override void HandleDeath() {
+            base.HandleDeath();
+            broadcastEnemyDiedData.TriggerEvent(this, Data);
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
         }
     }
