@@ -518,17 +518,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 840edd05652e70d4584ebf07c9cfe428, type: 3}
---- !u!114 &593807167 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9165372363646319589, guid: 840edd05652e70d4584ebf07c9cfe428, type: 3}
-  m_PrefabInstance: {fileID: 593807166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f889a91ab5c9b74abee8891f5e31444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NotebookManagerUI
 --- !u!1 &691792762
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +723,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2065031566030823522, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
   m_PrefabInstance: {fileID: 1287541240}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1630456017}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e8af7282a844f989d45dcd6e7812ee9, type: 3}
@@ -1113,7 +1102,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7844099157631093675, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1630456018}
   m_SourcePrefab: {fileID: 100100000, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
 --- !u!1001 &1453472073
 PrefabInstance:
@@ -1277,6 +1269,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4413985620595658814, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
   m_PrefabInstance: {fileID: 1781764269}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1630456017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7844099157631093675, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 1287541240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1630456018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630456017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d981eef12ef4363b3306c7eb1a0a6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.AbilityCaster
+  <EquippedAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 8a0a748b9b31c8e4d883cfe434adee7b, type: 2}
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -1342,6 +1353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
   plantedSeedId: 
   pickUpPrefab: {fileID: 0}
+  growthBar: {fileID: 0}
+  baseGrowthSpeed: 0.01
+  wetGrowthMultiplier: 3
 --- !u!95 &1679046102
 Animator:
   serializedVersion: 7
@@ -1788,7 +1802,7 @@ PrefabInstance:
     - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: objectiveUIManager
       value: 
-      objectReference: {fileID: 593807167}
+      objectReference: {fileID: 0}
     - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: allRequirements.Array.size
       value: 0
@@ -2141,6 +2155,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
