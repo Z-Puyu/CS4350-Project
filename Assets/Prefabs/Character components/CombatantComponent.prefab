@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
-  <DefaultDamageDealer>k__BackingField:
-    <V>k__BackingField: {fileID: 0}
   <EnemyLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64

@@ -1,6 +1,5 @@
 using System;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,12 +19,6 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         
         private void Start() {
             this.Root.OnAttributeChanged += this.HandleAttributeChange;
-        }
-
-        public void Refill() {
-            int amount = this.MaxValue - this.Value;
-            Modifier modifier = new Modifier(amount, Modifier.Operation.Offset, this.HealthAttribute.Id);
-            this.Root.AddModifier(modifier);
         }
 
         private void HandleAttributeChange(AttributeChange change) {

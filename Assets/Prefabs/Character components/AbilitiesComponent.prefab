@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
-  <ModifierMode>k__BackingField: 0
-  <DefaultAttributes>k__BackingField: {fileID: 11400000, guid: 5d1ec23ab96c4484ea8bdf23327bf972, type: 2}
+  <DefaultAttributeTable>k__BackingField: {fileID: 11400000, guid: 899297931f90b9c4eb4a82149d727832, type: 2}
 --- !u!114 &5646577939156915835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
-  <DefaultAbilities>k__BackingField:
-    _saintsList: []
   <OnStartAbility>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnEndAbility>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6512616273767000278

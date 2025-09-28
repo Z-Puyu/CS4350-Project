@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
-using WeaponsSystem.Projectiles;
 using Attribute = GameplayAbilities.Runtime.Attributes.Attribute;
 
 namespace WeaponsSystem {
@@ -15,30 +12,41 @@ namespace WeaponsSystem {
     public abstract class WeaponStats : MonoBehaviour, IAttributeReader {
         private AttributeSet AttributeSet { get; set; }
         
-        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, Dropdown(nameof(this.GetAttributeOptions))] 
         private List<string> DamageAttributes { get; set; } = new List<string>();
         
-        protected Dictionary<int, List<AttackData>> AttackModifiers { get; } =
-            new Dictionary<int, List<AttackData>>();
-
-        private Dictionary<int, List<Modifier>> ActiveAttackModifiers { get; } =
-            new Dictionary<int, List<Modifier>>();
+        [field: SerializeField] private List<AttackData> AttackModifiers { get; set; } = new List<AttackData>();
         
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))]
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))]
         public string ComboLengthAttribute { get; private set; }
         
-        [field: SerializeField, Required, TreeDropdown(nameof(this.AttributeOptions))] 
+        [field: SerializeField, Required, Dropdown(nameof(this.GetAttributeOptions))] 
         public string KnockbackStrengthAttribute { get; private set; }
-        
-        public List<ProjectileEffect> ProjectileEffects { get; } = new List<ProjectileEffect>();
-        public ProjectileSpawner.Mode ProjectileMode { get; protected set; } = ProjectileSpawner.Mode.None;
 
-        protected AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        protected DropdownList<string> GetAttributeOptions() {
+            DropdownList<string> list = new DropdownList<string>();
+            foreach (AttributeType resource in AttributeType.GetAllLeaves()) {
+                list.Add(resource.Id, resource.Id);
+            }
+
+            return list;
+        }
         
         protected virtual void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
+            this.AttackModifiers.ForEach(attack => attack.Initialise());
         }
+        
+        private void HandleAttributeChange(AttributeChange change) {
+            if (change.AttributeName != this.ComboLengthAttribute) {
+                return;
+            }
 
+            while (this.AttackModifiers.Count < change.CurrentValue) {
+                this.AttackModifiers.Add(new AttackData());
+            }
+        }
+        
         public IReadOnlyDictionary<string, int> ReadDamageData() {
             Dictionary<string, int> damages = new Dictionary<string, int>();
             foreach (string attribute in this.DamageAttributes) {
@@ -47,47 +55,29 @@ namespace WeaponsSystem {
             
             return new ReadOnlyDictionary<string, int>(damages);
         }
-        
-        protected abstract void UpdateProjectileMode(int index);
-        
-        protected abstract void RevertProjectileMode(int index);
 
         public void ActivateAttackModifiers(int index) {
-            if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
-                list = new List<AttackData>();
-                this.AttackModifiers.Add(index, list);
+            if (this.AttackModifiers.Count > index) {
+                foreach (Modifier modifier in this.AttackModifiers[index].WeaponModifiers) {
+                    this.AttributeSet.AddModifier(modifier);
+                }
+            } else {
+                Debug.LogError($"Index {index} is out of bounds for attack modifiers list.", this);
             }
-            
-            if (!this.ActiveAttackModifiers.TryGetValue(index, out List<Modifier> current)) {
-                current = new List<Modifier>();
-                this.ActiveAttackModifiers.Add(index, current);
-            }
-            
-            IEnumerable<Modifier> modifiers = list.SelectMany(modifier => modifier.GenerateModifiers(this));
-            foreach (Modifier modifier in modifiers) {
-                current.Add(modifier);
-                this.AttributeSet.AddModifier(modifier);
-            } 
-            
-            this.ProjectileMode = list.Count == 0 ? ProjectileSpawner.Mode.None : list.Last().ProjectileMode;
-            foreach (AttackData data in list) {
-                this.ProjectileEffects.AddRange(data.ProjectileEffects);
-            }
-            
-            this.UpdateProjectileMode(index);
         }
         
         public void DeactivateAttackModifiers(int index) {
-            foreach (Modifier modifier in this.ActiveAttackModifiers[index]) {
-                this.AttributeSet.RemoveModifier(modifier);
+            if (this.AttackModifiers.Count > index) {
+                foreach (Modifier modifier in this.AttackModifiers[index].WeaponModifiers) {
+                    this.AttributeSet.AddModifier(-modifier);
+                }
+            } else {
+                Debug.LogError($"Index {index} is out of bounds for attack modifiers list.", this);
             }
-                
-            this.ActiveAttackModifiers[index].Clear();
-            this.ProjectileEffects.Clear();
-            this.RevertProjectileMode(index);
         }
 
         public void Initialise(WeaponData data) {
+            this.AttributeSet.OnAttributeChanged += this.HandleAttributeChange;
             this.AttributeSet.Initialise(data.WeaponAttributes);
         }
 
@@ -95,32 +85,12 @@ namespace WeaponsSystem {
             this.AttributeSet.AddModifier(modifier);
         }
 
-        public void RemoveWeaponModifier(Modifier modifier) {
-            this.AttributeSet.RemoveModifier(modifier);
-        }
-
-        public void AddWeaponProjectileEffect(ProjectileEffect effect) {
-            this.ProjectileEffects.Add(effect);
-        }
-        
-        public void RemoveWeaponProjectileEffect(ProjectileEffect effect) {
-            this.ProjectileEffects.Remove(effect);
-        }
-
-        public void AddAttackModifier(int index, IEnumerable<AttackData> modifiers) {
-            if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
-                this.AttackModifiers.Add(index, modifiers.ToList());
+        public void AddAttackModifier(Modifier modifier, int index) {
+            if (this.AttackModifiers.Count > index) {
+                this.AttackModifiers[index].AddModifier(modifier);
             } else {
-                list.AddRange(modifiers);
+                Debug.LogError($"Index {index} is out of bounds for attack modifiers list.", this);
             }
-        }
-
-        public void RemoveAttackModifier(int index, ICollection<AttackData> removed) {
-            if (!this.AttackModifiers.ContainsKey(index)) {
-                return;
-            }
-            
-            this.AttackModifiers[index].RemoveAll(removed.Contains);
         }
 
         public IEnumerator<Attribute> GetEnumerator() {
@@ -149,10 +119,6 @@ namespace WeaponsSystem {
         
         public bool Has(int threshold, string key) {
             return this.AttributeSet.Has(threshold, key);
-        }
-
-        public int Query(string key, int @base) {
-            return this.AttributeSet.Query(key, @base);
         }
     }
 }

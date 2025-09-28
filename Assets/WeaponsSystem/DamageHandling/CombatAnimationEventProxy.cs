@@ -16,7 +16,7 @@ namespace WeaponsSystem.DamageHandling {
         }
 
         public void OnAttackEndEvent() {
-            this.Combatant.QueryFinishAttack();
+            this.Combatant.FinishAttack();
         }
 
         public void OnDeathEvent() {
