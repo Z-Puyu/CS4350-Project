@@ -486,7 +486,7 @@ PrefabInstance:
     - target: {fileID: 764672961468432258, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 682521540}
+      objectReference: {fileID: 0}
     - target: {fileID: 764672961468432258, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -584,17 +584,22 @@ PrefabInstance:
     - {fileID: 1816691387449555453, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
     - {fileID: 3170095659245539717, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      insertIndex: 0
+    - targetCorrespondingSourceObject: {fileID: 2933533461722758226, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1957642021}
-    - targetCorrespondingSourceObject: {fileID: 8572715623323050196, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 695760478637877988, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 462388411}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
 --- !u!4 &529274589 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8572715623323050196, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 695760478637877988, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &529274590 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2933533461722758226, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
   m_PrefabInstance: {fileID: 529274588}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &582951389 stripped
@@ -11814,17 +11819,79 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &682521540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7719629455372461200, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-  m_PrefabInstance: {fileID: 529274588}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
+--- !u!1001 &791508410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: '<Components>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: da991fd96e1e6204d94a1ad89f649a9d, type: 2}
+    - target: {fileID: 3523569647147976172, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_Name
+      value: Ranged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411639340048114452, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: <ParticleEffect>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.7801
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.30078
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Target>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
+    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
+      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Magnitude>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
 --- !u!1 &801469302
 GameObject:
   m_ObjectHideFlags: 0
@@ -31544,79 +31611,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1001 &791508410
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1540780401}
-    m_Modifications:
-    - target: {fileID: 1642215743313573861, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <Components>k__BackingField.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: da991fd96e1e6204d94a1ad89f649a9d, type: 2}
-    - target: {fileID: 3523569647147976172, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_Name
-      value: Ranged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6411639340048114452, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <ParticleEffect>k__BackingField
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.7801
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.30078
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6767873951734616461, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Target>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 5e92ec484d7a1da47ad8d8f1cc29e473, type: 2}
-    - target: {fileID: 7052933144111497264, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
-      propertyPath: <AttackModifiers>k__BackingField.Array.data[0].<DefaultModifiers>k__BackingField.Array.data[2].<Magnitude>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3b581e7759ed7af4790037f5ab5adc00, type: 3}
 --- !u!1001 &847053562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49691,14 +49685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeaponStats
   <DamageAttributes>k__BackingField: []
-  <AttackModifiers>k__BackingField: []
   <ComboLengthAttribute>k__BackingField: ComboLength
   <KnockbackStrengthAttribute>k__BackingField: KnockbackStrength
-  <RangeAttribute>k__BackingField: BulletRange
-  <BulletSpeedAttribute>k__BackingField: BulletSpeed
-  <BulletSpreadAttribute>k__BackingField: BulletSpread
   <FireIntervalAttribute>k__BackingField: BulletFireInterval
-  <PierceStrengthAttribute>k__BackingField: BulletPiercing
+  <ShotsPerAttackAttribute>k__BackingField: 
 --- !u!114 &1688320013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49712,7 +49702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
   <ModifierMode>k__BackingField: 0
-  <DefaultAttributeTable>k__BackingField: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
+  <DefaultAttributes>k__BackingField: {fileID: 0}
 --- !u!1001 &1781764269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49823,7 +49813,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 7618011101641598167, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}, insertIndex: -1, addedObject: {fileID: 1819105541}}]
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7618011101641598167, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1819105541}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
 --- !u!114 &1781764270 stripped
@@ -49927,11 +49920,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1849515893 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6334788055842371170, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-  m_PrefabInstance: {fileID: 529274588}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957642020
 GameObject:
   m_ObjectHideFlags: 0
@@ -49945,6 +49933,7 @@ GameObject:
   - component: {fileID: 1957642023}
   - component: {fileID: 1957642022}
   - component: {fileID: 1957642025}
+  - component: {fileID: 1957642026}
   m_Layer: 6
   m_Name: Ranged
   m_TagString: Untagged
@@ -49966,7 +49955,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1688320011}
-  m_Father: {fileID: 1849515893}
+  m_Father: {fileID: 529274590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957642022
 MonoBehaviour:
@@ -50051,10 +50040,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.RangedWeapon
   <WeaponData>k__BackingField: {fileID: 11400000, guid: c1b7071f8fc588b4cade53f8c899c71f, type: 2}
-  <Components>k__BackingField: []
   <Stats>k__BackingField: {fileID: 1688320012}
-  bulletPool:
-    <Prefab>k__BackingField: {fileID: 1567454968318030837, guid: d98ecb77e2255f6419e54f4daea6c6c9, type: 3}
+  <ComponentManager>k__BackingField: {fileID: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 0}
 --- !u!114 &1957642025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50068,6 +50056,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.MouseTracker
   offset: 0.7
+--- !u!114 &1957642026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957642020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a8ce96be84c188e407c20e32d37fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.ProjectileSpawner
+  <ProjectileSpreadAttribute>k__BackingField: 
+  <ProjectilesPerShotAttribute>k__BackingField: 
+  <ExplosionRadiusAttribute>k__BackingField: 
+  <ParallelProjectileSpacingAttribute>k__BackingField: 
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63947,3 +63951,4 @@ SceneRoots:
   - {fileID: 529274588}
   - {fileID: 1781764269}
   - {fileID: 5998935241412154909}
+  - {fileID: 791508410}
