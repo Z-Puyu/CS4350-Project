@@ -39,14 +39,23 @@ namespace WeaponsSystem.WeaponComponent {
 #endif
                 return;
             }
+            
+            if (!component) {
+#if DEBUG
+                Debug.LogError($"Component is null", this);
+#endif
+                return;
+            }
 
-            if (!component || !this.PossibleComponents.Contains(component)) {
+            if (!this.PossibleComponents.Contains(component)) {
 #if DEBUG
                 Debug.LogError($"Component {component.Name} is not allowed", this);
 #endif
                 return;
             }
-            
+
+
+
             this.Components[index] = component;
             this.OnComponentSetChanged?.Invoke(this.Components.Distinct().Where(c => c).ToHashSet());
             this.RefreshModifiers();
@@ -102,8 +111,10 @@ namespace WeaponsSystem.WeaponComponent {
         public void Initialise(Combatant combatant, WeaponData data) {
             this.ResetDefaults();
             this.OnComponentSetChanged += combatant.HandleComponentSetChange;
-            foreach (WeaponComponentData component in data.PossibleComponents) {
-                this.PossibleComponents.Add(component);
+            if (data.PossibleComponents) {
+                foreach (WeaponComponentData component in data.PossibleComponents) {
+                    this.PossibleComponents.Add(component);
+                }
             }
 
 #if DEBUG
@@ -154,7 +165,7 @@ namespace WeaponsSystem.WeaponComponent {
 
                 for (int i = 0; i < component.AttackData.Count; i += 1) {
                     AttackData data = component.AttackData[i];
-                    if (data is null || data.IsEmpty) {
+                    if (data is null) {
                         continue;
                     }
                     

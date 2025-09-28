@@ -1002,6 +1002,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571178239294957684, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <DefaultAttributes>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 899297931f90b9c4eb4a82149d727832, type: 2}
     - target: {fileID: 1190043135416699325, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1010,6 +1014,10 @@ PrefabInstance:
       propertyPath: <PixelOffset>k__BackingField
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2065031566030823522, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: '<TestAbilities>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1036679b5e9e5bc4a873cdd23955ffcf, type: 2}
     - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
@@ -1084,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <TestComponents>k__BackingField.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: '<TestComponents>k__BackingField.Array.data[0]'
@@ -1093,7 +1101,11 @@ PrefabInstance:
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: '<TestComponents>k__BackingField.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: c5d6048f1569310428ece33f63ca025a, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a893bf846d11bc449f93a49980c7710, type: 2}
     - target: {fileID: 8592607854843346343, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
