@@ -23,8 +23,10 @@ MonoBehaviour:
     <Coefficient>k__BackingField: 0
     <Label>k__BackingField: 
   <AttackData>k__BackingField:
-  - <Mode>k__BackingField: 1
+  - <ProjectileMode>k__BackingField: 2
+    <ProjectileEffects>k__BackingField: []
     <Modifiers>k__BackingField: []
-  - <Mode>k__BackingField: 2
+  - <ProjectileMode>k__BackingField: 0
+    <ProjectileEffects>k__BackingField: []
     <Modifiers>k__BackingField: []
   <ProjectileEffects>k__BackingField: []

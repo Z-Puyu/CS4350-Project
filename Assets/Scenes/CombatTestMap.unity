@@ -1084,16 +1084,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <TestComponents>k__BackingField.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: '<TestComponents>k__BackingField.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 723c104c39f5c9b4599b7554ea142761, type: 2}
+      objectReference: {fileID: 11400000, guid: da991fd96e1e6204d94a1ad89f649a9d, type: 2}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: '<TestComponents>k__BackingField.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: c5d6048f1569310428ece33f63ca025a, type: 2}
+    - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 723c104c39f5c9b4599b7554ea142761, type: 2}
     - target: {fileID: 8592607854843346343, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
