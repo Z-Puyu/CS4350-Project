@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
+  m_Name: Projectile Explosion Radius
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
+  <Name>k__BackingField: ExplosionRadius
+  displayName: Projectile Explosion Radius
+  <ModificationRules>k__BackingField:
+  - rid: 2098011547707638002
+  <Id>k__BackingField: Projectile.ExplosionRadius
+  <Parent>k__BackingField: {fileID: 11400000, guid: c0e22f0d882ee0e4c8b971744df25953, type: 2}
+  <SubTypes>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2098011547707638002
+      type: {class: MinimumByConstantRule, ns: GameplayAbilities.Runtime.ModificationRules, asm: GameplayAbilities.Runtime}
+      data:
+        <Min>k__BackingField: 1
