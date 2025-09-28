@@ -45,7 +45,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
         public double Modify(double value) {
             return this.Type switch {
                 Operation.Shift or Operation.Offset => value + this.Magnitude,
-                Operation.Multiply => value * Math.Max(100 + this.Magnitude, 0) / 100.0f,
+                Operation.Multiply => value * Math.Min(100 + this.Magnitude, 0) / 100.0f,
                 var _ => value
             };
         }

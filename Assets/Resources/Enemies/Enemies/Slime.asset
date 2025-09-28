@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.EnemyData
   <Id>k__BackingField: enemy:slime
   <Name>k__BackingField: Slime
-  <EnemyExpObject>k__BackingField: {fileID: 11400000, guid: e1c1252c4b2c5a643977cbd82254bf3e, type: 2}
+  <Experience>k__BackingField: 5
   <Animations>k__BackingField: {fileID: 22100000, guid: 35f6ecaa54c14fc43a88cd8a816a334a, type: 2}
   <Attributes>k__BackingField: {fileID: 11400000, guid: 5d1ec23ab96c4484ea8bdf23327bf972, type: 2}
   <LootTable>k__BackingField: {fileID: 11400000, guid: 56e8cd9bbec06fb4f9db1a9d966edb13, type: 2}

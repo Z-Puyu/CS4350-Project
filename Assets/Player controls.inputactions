@@ -77,24 +77,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "UseWeaponSkill",
-                    "type": "Button",
-                    "id": "4ef308ba-d96a-41a1-abe0-ebe8df1d7a71",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UseCharacterSkill",
-                    "type": "Button",
-                    "id": "d6d1192e-c2c5-4750-812f-899a0d3bc921",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -359,28 +341,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "OpenInventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c310007e-ade6-4fd1-9f45-39682b5aa66c",
-                    "path": "<Keyboard>/#(Q)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "UseWeaponSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3b47024f-abcf-4635-b594-cd9f8614823c",
-                    "path": "<Keyboard>/#(E)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "UseCharacterSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

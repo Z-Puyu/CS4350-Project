@@ -16,9 +16,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
 
         public override DropdownList<string> GetDataLabels() {
-            DropdownList<string> labels = new DropdownList<string>();
+            DropdownList<string> labels = base.GetDataLabels();
             foreach (ModifierData modifier in this.Modifiers.Where(m => m.AllowSetByCaller)) {
-                labels.Add(modifier.TargetAttribute, modifier.Label);
+                labels.Add(modifier.TargetAttribute.Id, modifier.Label);
             }
 
             return labels;
