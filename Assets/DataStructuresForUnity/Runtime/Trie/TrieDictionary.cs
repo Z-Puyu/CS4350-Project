@@ -107,9 +107,13 @@ namespace DataStructuresForUnity.Runtime.Trie {
         public void Add(KeyValuePair<K, V> item) {
             this.Add(item.Key, item.Value);
         }
-
+        
         public void Add(K item) {
-            throw new NotImplementedException();
+            if (item is null) {
+                throw new ArgumentNullException(nameof(item));
+            }
+            
+            this.Add(item, default);
         }
 
         /// <summary>
@@ -121,11 +125,11 @@ namespace DataStructuresForUnity.Runtime.Trie {
         }
 
         public bool Contains(K item) {
-            throw new NotImplementedException();
+            return item is not null && this.ContainsKey(item);
         }
 
         public void CopyTo(K[] array, int arrayIndex) {
-            throw new NotImplementedException();
+            this.Keys.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
