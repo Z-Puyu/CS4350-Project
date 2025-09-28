@@ -8,7 +8,7 @@ namespace Map.Objectives.Objective_UI
 {
     public class MapUnlockRequirementPanel : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI objectiveText;
+        [SerializeField] private TextMeshProUGUI objectiveTitle;
         [SerializeField] private ObjectiveText objectiveTextPrefab;
         [SerializeField] private Transform spawnContent;
         [SerializeField] private MapUnlockRequirementSO unlockRequirementSo;
@@ -30,7 +30,7 @@ namespace Map.Objectives.Objective_UI
             }
             this.unlockRequirementSo = unlockRequirementSo;
             panelImage.sprite = possibleBackground[Random.Range(0, possibleBackground.Count - 1)];
-            this.unlockRequirementSo.SetTitle(objectiveText);
+            this.unlockRequirementSo.SetTitle(objectiveTitle);
             this.unlockRequirementSo.SpawnObjectiveText(objectiveTextPrefab.gameObject, spawnContent, spawnedObjectiveText);
         }
 

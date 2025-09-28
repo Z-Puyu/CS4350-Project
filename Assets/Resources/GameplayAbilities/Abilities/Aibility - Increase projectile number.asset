@@ -36,7 +36,7 @@ MonoBehaviour:
         <BaseChance>k__BackingField: 100
         <Costs>k__BackingField: []
         <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: Weapon.Ranged.ShotsPerAttack
+        - <TargetAttribute>k__BackingField: Weapon.Projectile.ProjectilesPerShot
           <Method>k__BackingField: 0
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0

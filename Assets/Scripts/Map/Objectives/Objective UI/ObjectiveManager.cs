@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Events;
+using Game.Enemies;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Inventory;
 using SaintsField;
@@ -33,12 +34,15 @@ namespace Map.Objectives.Objective_UI
             UpdateIncompleteObjectivesText();
         }
         
-        public void AddEnemyToObjective()
+        public void AddEnemyToObjective(Component component, object enemy)
         {
-            foreach (var objective in new List<KillEnemiesObjective>(allKillEnemiesObjectives))
+            EnemyData enemyToKill = (EnemyData)((object[])enemy)[0];
+             foreach (var objective in new List<KillEnemiesObjective>(allKillEnemiesObjectives))
             {
                 objective.AddProgress(
-                    this
+                    this,
+                    allKillEnemiesObjectives,
+                    enemyToKill
                     );
             }
         }
