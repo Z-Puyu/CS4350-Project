@@ -61,8 +61,14 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
         
         public void Invoke(AbilitySystem instigator, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
+            Transform targetTransform = target.transform;
+            AbilityData abilityData = new AbilityData(
+                this.Info, instigator.AttributeSet, targetTransform.position, targetTransform, instigator.transform
+            );
+            
             foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnTarget) {
-                ObjectSpawner.Pull(spawn.PoolableId, spawn, target.transform);
+                ObjectSpawner.Pull(spawn.PoolableId, spawn, target.transform)
+                             .Activate(abilityData);
             }
             
             if (this.EffectsOnTarget.Count == 0) {
@@ -74,9 +80,13 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public void Activate(AbilitySystem instigator, Vector3 position) {
+            AbilityData abilityData = new AbilityData(
+                this.Info, instigator.AttributeSet, position, null, instigator.transform
+            );
+            
             foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnSelf) {
                 ObjectSpawner.Pull(spawn.PoolableId, spawn, position, Quaternion.identity, instigator.transform)
-                             .Activate(new AbilityData(this.Info, instigator.AttributeSet, position));
+                             .Activate(abilityData);
             }
             
             if (this.EffectsOnSelf.Count == 0) {

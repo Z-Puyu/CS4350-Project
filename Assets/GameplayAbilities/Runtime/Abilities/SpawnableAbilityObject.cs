@@ -12,14 +12,16 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField] private string Id { get; set; }
         [field: SerializeField] private BoundingRect.Alignment Alignment { get; set; }
         
+        private AbilityData Data { get; set; }
         public override string PoolableId => this.Id;
+        private bool IsActive => this.Objects.TrueForAll(obj => obj.IsActive);
         
-        private void Awake() {
+        protected virtual void Awake() {
             this.GetComponentsInChildren(this.Objects);
             this.BoundingRect = this.GetComponent<BoundingRect>();
         }
         
-        private IEnumerator AlignToParentAndPlay(int duration) {
+        private IEnumerator AlignToParentAndPlay(AbilityData data) {
             Transform parent = this.transform.parent;
             if (parent) {
                 BoundingRect parentRect = parent.GetComponentInParent<BoundingRect>();
@@ -35,18 +37,30 @@ namespace GameplayAbilities.Runtime.Abilities {
                 obj.Activate();
             }
             
-            yield return new WaitForSeconds(duration);
+            this.OnJustActivated(data);
+            yield return new WaitForSeconds(data.Info.Duration);
             this.Objects.ForEach(obj => obj.Deactivate());
             yield return new WaitUntil(() => this.Objects.TrueForAll(obj => !obj.IsActive));
             this.Destroy();
         }
 
+        public virtual void OnJustActivated(AbilityData data) { }
+
         public void Activate(AbilityData data) {
-            this.StartCoroutine(this.AlignToParentAndPlay(data.Info.Duration));
+            this.Data = data;
+            this.StartCoroutine(this.AlignToParentAndPlay(data));
         }
+        
+        public virtual void OnActive(AbilityData data) { }
 
         public void Destroy() {
             this.Return();
+        }
+
+        private void Update() {
+            if (this.IsActive) {
+                this.OnActive(this.Data);
+            }
         }
     }
 }

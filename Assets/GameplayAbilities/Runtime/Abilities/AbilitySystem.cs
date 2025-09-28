@@ -15,7 +15,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, SaintsHashSet] 
         private SaintsHashSet<Ability> DefaultAbilities { get; set; } = new SaintsHashSet<Ability>();
         
-        private HashSet<IAbility> AvailableAbilities { get; } = new HashSet<IAbility>();
+        public HashSet<IAbility> AvailableAbilities { get; } = new HashSet<IAbility>();
         private Dictionary<IAbility, double> AbilitiesOnCooldown { get; } = new Dictionary<IAbility, double>();
         private HashSet<Perk> Perks { get; } = new HashSet<Perk>();
         private Dictionary<IAbility, double> TimedAbilities { get; } = new Dictionary<IAbility, double>();
@@ -44,15 +44,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         public bool CanUse(string abilityId) {
             IAbility ability = PerkDatabase.GetAbility(abilityId);
             return this.CanUse(ability);
-        }
-
-        private DropdownList<string> GetAllAbilities() {
-            DropdownList<string> list = new DropdownList<string>();
-            foreach (string id in PerkDatabase.GetAllAbilityIds()) {
-                list.Add(id, id);
-            }
-            
-            return list;
         }
         
         public void Enable(Perk perk) {
@@ -101,7 +92,9 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (ability == null) {
                 return;
             }
+#if DEBUG
             Debug.Log($"Granted ability {ability}", this);
+#endif
             this.AvailableAbilities.Add(ability);
         }
 
