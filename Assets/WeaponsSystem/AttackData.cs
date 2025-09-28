@@ -7,6 +7,7 @@ using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.Projectiles;
+using ProjectileEffect = WeaponsSystem.Projectiles.ProjectileEffect;
 
 namespace WeaponsSystem {
     [Serializable]
