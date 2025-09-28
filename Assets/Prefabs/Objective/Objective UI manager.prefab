@@ -508,10 +508,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726269395886427591}
+  - component: {fileID: 4219240095574729833}
   - component: {fileID: 684506545020124574}
   - component: {fileID: 6752052621451526161}
   - component: {fileID: 2417868443670286696}
-  - component: {fileID: 9165372363646319589}
   m_Layer: 5
   m_Name: Objective UI manager
   m_TagString: Untagged
@@ -539,6 +539,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &4219240095574729833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462728935264146703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d48920c672759418965715cef2569b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.Objective_UI.ObjectiveUIManager
+  mapUnlockRequirementPanelPrefab: {fileID: 3907044409382160337, guid: 8151de286e489654c8d86b4ef0aa791a, type: 3}
+  spawnContent: {fileID: 8087959024409291333}
+  backdrop: {fileID: 1145590973832935214}
+  spawnedPanels: []
 --- !u!223 &684506545020124574
 Canvas:
   m_ObjectHideFlags: 0
@@ -602,22 +618,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &9165372363646319589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462728935264146703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f889a91ab5c9b74abee8891f5e31444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NotebookManagerUI
-  mapUnlockRequirementPanelPrefab: {fileID: 7658145357466385980, guid: 8151de286e489654c8d86b4ef0aa791a, type: 3}
-  spawnContent: {fileID: 8087959024409291333}
-  backdrop: {fileID: 1145590973832935214}
-  spawnedPanels: []
 --- !u!1 &7678977287551770346
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9165372363646319589}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveUIManager,
           Assembly-CSharp
         m_MethodName: Reset
