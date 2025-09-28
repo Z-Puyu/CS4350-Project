@@ -70,6 +70,10 @@ namespace WeaponsSystem.Projectiles {
             Projectile prefab, IAttributeReader source, float spacing, int multiplicity, ProjectileConfig config,
             Damage damage, Action<Vector3> onHit
         ) {
+            if (multiplicity == 1) {
+                ProjectileSpawner.SpawnSingleBullet(prefab, source, this.transform.position, config, damage, onHit);
+                return;
+            }
             Vector3 orthogonal = Vector3.Cross(config.Direction, Vector3.forward).normalized;
             float interval = spacing / (multiplicity - 1.0f);
             float startOffset = -(spacing / 2.0f);
