@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9064610046622730796}
-  - component: {fileID: 7561960970058781470}
+  - component: {fileID: 1879264311129708636}
   - component: {fileID: 6009840848037014978}
   - component: {fileID: 300008697755524074}
   - component: {fileID: 2790443000819973777}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7561960970058781470
+--- !u!114 &1879264311129708636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,16 +46,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3020849860333577498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287559f9790f6d24594b6fa1da1a0c5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4adc4498cac57354fb6054981e4591a8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveManager
+  m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.Objective_UI.ObjectiveManager
   chosenRequirement: {fileID: 0}
   objectiveUIManager: {fileID: 0}
   allKillEnemiesObjectives: []
   allCollectItesmObjectives: []
-  allRequirements:
-  - {fileID: 11400000, guid: c386f2459a737a14abbfa5f68c055f80, type: 2}
-  - {fileID: 11400000, guid: 08bdb15f13261f44b81932f032c4a959, type: 2}
+  allRequirements: []
   objectiveToRequirement:
     _keys: []
     _values: []
@@ -111,8 +109,8 @@ MonoBehaviour:
   responseOnTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561960970058781470}
-        m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
+      - m_Target: {fileID: 1879264311129708636}
+        m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
         m_MethodName: AddItemToObjective
         m_Mode: 0
         m_Arguments:
@@ -139,8 +137,8 @@ MonoBehaviour:
   responseOnTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561960970058781470}
-        m_TargetAssemblyTypeName: Objectives.ObjectiveManager, Assembly-CSharp
+      - m_Target: {fileID: 1879264311129708636}
+        m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
         m_MethodName: AddObjectives
         m_Mode: 0
         m_Arguments:
@@ -167,7 +165,7 @@ MonoBehaviour:
   responseOnTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561960970058781470}
+      - m_Target: {fileID: 1879264311129708636}
         m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
         m_MethodName: OpenNotebook
         m_Mode: 1
@@ -195,7 +193,7 @@ MonoBehaviour:
   responseOnTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561960970058781470}
+      - m_Target: {fileID: 1879264311129708636}
         m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.ObjectiveManager, Assembly-CSharp
         m_MethodName: SetChosenUnlockedRequirementSO
         m_Mode: 0

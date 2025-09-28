@@ -118,9 +118,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8777659534837143215}
   - component: {fileID: 7210078940568825871}
+  - component: {fileID: 3907044409382160337}
   - component: {fileID: 8798586742260990276}
   - component: {fileID: 8014397952931346649}
-  - component: {fileID: 7658145357466385980}
   - component: {fileID: 2755882112900846574}
   m_Layer: 5
   m_Name: Map unlock requirement panel
@@ -158,6 +158,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4732185345490178495}
   m_CullTransparentMesh: 1
+--- !u!114 &3907044409382160337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732185345490178495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be19ae6816b42d498e2b98c6585f2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.Objective_UI.MapUnlockRequirementPanel
+  objectiveTitle: {fileID: 6535748497778931959}
+  objectiveTextPrefab: {fileID: 6540132230983011005, guid: 80618facb9dc0914095c3bafb584c690, type: 3}
+  spawnContent: {fileID: 9092219655572015078}
+  unlockRequirementSo: {fileID: 0}
+  spawnedObjectiveText: []
+  panelImage: {fileID: 8798586742260990276}
+  possibleBackground:
+  - {fileID: 6769764643635554444, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
+  - {fileID: -471732454, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
+  - {fileID: -1546677174, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
+  - {fileID: -1059996475, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
+  - {fileID: 87947406, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
+  broadcastUnlockRequiremet: {fileID: 11400000, guid: 8a8d0bb9e1e1b9a46a273f661ca11c32, type: 2}
 --- !u!114 &8798586742260990276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,31 +233,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &7658145357466385980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732185345490178495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfad3bdf2cbe42eca2ebaa25b4625950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.Objective_UI.ObjectivePanel
-  objectiveText: {fileID: 6535748497778931959}
-  objectiveTextPrefab: {fileID: 2767119474180104267, guid: 80618facb9dc0914095c3bafb584c690, type: 3}
-  spawnContent: {fileID: 9092219655572015078}
-  unlockRequirementSo: {fileID: 0}
-  spawnedObjectiveText: []
-  panelImage: {fileID: 8798586742260990276}
-  possibleBackground:
-  - {fileID: 6769764643635554444, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
-  - {fileID: -471732454, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
-  - {fileID: -1546677174, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
-  - {fileID: -1059996475, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
-  - {fileID: 87947406, guid: ab9e50d5eb76d5f4e82e522cf398107e, type: 3}
-  broadcastUnlockRequiremet: {fileID: 11400000, guid: 8a8d0bb9e1e1b9a46a273f661ca11c32, type: 2}
 --- !u!114 &2755882112900846574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7658145357466385980}
+      - m_Target: {fileID: 3907044409382160337}
         m_TargetAssemblyTypeName: Map.Objectives.Objective_UI.MapUnlockRequirementPanel,
           Assembly-CSharp
         m_MethodName: BroadcastUnlockRequirement
