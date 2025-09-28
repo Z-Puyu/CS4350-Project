@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
+  m_Name: Ability - Drain Health
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  <IsObtainable>k__BackingField: 1
+  <Id>k__BackingField: ability:drain-health
+  <Name>k__BackingField: Drain Health
+  <Description>k__BackingField: 
+  <Cooldown>k__BackingField: 0
+  <SpawnableEffectsOnTarget>k__BackingField: []
+  <SpawnableEffectsOnSelf>k__BackingField: []
+  <EffectsOnTarget>k__BackingField:
+  - rid: 2098011750220431531
+  <EffectsOnSelf>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2098011750220431531
+      type: {class: ModifierEffectData, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
+      data:
+        <ExecutionTime>k__BackingField: 0
+        <Period>k__BackingField: 1
+        <Duration>k__BackingField: 1
+        <CanMiss>k__BackingField: 0
+        <BaseChance>k__BackingField: 100
+        <Costs>k__BackingField: []
+        <Modifiers>k__BackingField:
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 2
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: 
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 0.1
+          <Label>k__BackingField: Damage

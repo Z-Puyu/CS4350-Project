@@ -18,12 +18,18 @@ MonoBehaviour:
   <Description>k__BackingField: Seed 1
   <CustomIcon>k__BackingField: {fileID: -7339077949192003494, guid: 7ca3942dc433d4afab9dd24ad0e80f2a, type: 3}
   <Properties>k__BackingField:
-  - rid: 1194328517264015437
+  - rid: 4925886426016907350
+  - rid: 1194328451850961089
   references:
     version: 2
     RefIds:
-    - rid: 1194328517264015437
-      type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
+    - rid: 1194328451850961089
+      type: {class: Consumable, ns: Game.Items, asm: Assembly-CSharp}
       data:
-        <GrowthDuration>k__BackingField: 0
-        <WateringRequirement>k__BackingField: 0
+        <Effects>k__BackingField: []
+    - rid: 4925886426016907350
+      type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
+      data:
+        <Price>k__BackingField: 50
+        <HasDifferentPriceForSale>k__BackingField: 0
+        <Worth>k__BackingField: 0

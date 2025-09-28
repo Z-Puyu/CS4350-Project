@@ -40,5 +40,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <param name="key">The key of the attribute.</param>
         /// <returns><c>true</c> if the owner has sufficient amount of attribute for the given key.</returns>
         public bool Has(int threshold, string key);
+        
+        public int Query(string key, int @base);
     }
 }
