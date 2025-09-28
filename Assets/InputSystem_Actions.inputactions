@@ -95,15 +95,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Skill1",
-                    "type": "Button",
-                    "id": "cd2db0aa-9b86-415a-a570-7938ce55119e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -500,17 +491,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "082a10c9-6150-4639-9293-e2e26f16ed34",
-                    "path": "<Keyboard>/#(Q)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

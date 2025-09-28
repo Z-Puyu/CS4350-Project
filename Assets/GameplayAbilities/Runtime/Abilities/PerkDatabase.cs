@@ -12,7 +12,6 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, ResourceFolder] 
         private string AbilityDataFolder { get; set; }
 
-        private List<string> ObtainableAbilities { get; } = new List<string>();
         private Dictionary<string, Ability> Abilities { get; } = new Dictionary<string, Ability>();
         private Dictionary<Perk, List<Perk>> Perks { get; } = new Dictionary<Perk, List<Perk>>();
         
@@ -20,12 +19,8 @@ namespace GameplayAbilities.Runtime.Abilities {
             foreach (Ability data in Resources.LoadAll<Ability>(this.AbilityDataFolder)) {
                 if (!this.Abilities.TryAdd(data.Id, data)) {
                     Debug.LogError($"Duplicate ability ID {data.Id}!");
-                } else if (data.IsObtainable) {
-                    this.ObtainableAbilities.Add(data.Id);
                 }
             }
-            
-            this.ObtainableAbilities.Sort();
         }
 
         private void LoadPerks() {
@@ -56,18 +51,12 @@ namespace GameplayAbilities.Runtime.Abilities {
                     : Enumerable.Empty<Perk>();
         }
         
-        public static Ability GetAbility(string id) {
+        public static IAbility GetAbility(string id) {
             return Singleton<PerkDatabase>.Instance.Abilities.GetValueOrDefault(id);
         }
 
         public static IEnumerable<string> GetAllAbilityIds() {
             return Resources.LoadAll<Ability>(Singleton<PerkDatabase>.Instance.AbilityDataFolder)
-                            .Select(a => a.Id);
-        }
-        
-        public static IEnumerable<string> GetAllObtainableAbilityIds() {
-            return Resources.LoadAll<Ability>(Singleton<PerkDatabase>.Instance.AbilityDataFolder)
-                            .Where(a => a.IsObtainable)
                             .Select(a => a.Id);
         }
     }

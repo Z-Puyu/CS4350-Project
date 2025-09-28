@@ -13,9 +13,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
         
         private bool HasNeverExecuted { get; set; } = true;
-        public GameplayEffectData Data { get; }
+        internal GameplayEffectData Data { get; }
         private GameplayEffectExecutionArgs Args { get; }
-        private List<Modifier> Modifiers { get; } = new List<Modifier>();
+        internal event Action OnEnded;
         
         internal GameplayEffect(GameplayEffectData data, GameplayEffectExecutionArgs args) {
             this.Data = data;
@@ -42,8 +42,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 this.HasNeverExecuted = false;
             }
 
-            this.Modifiers.AddRange(this.Data.Run(target, this.Args).Select(modifier => modifier * this.Args.Level));
-            return this.Modifiers;
+            return this.Data.Run(target, this.Args).Select(modifier => modifier * this.Args.Level);
         }
 
         /// <summary>
@@ -51,33 +50,26 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         /// </summary>
         /// <param name="target">The target game object.</param>
         internal void Apply(AttributeSet target) {
-            if (!this.ShouldApply()) {
-                return;
-            }
-            
             foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(modifier);
             }
-        }
-
-        private bool ShouldApply() {
-            return this.Data.ExecutionTime == GameplayEffectData.Periodicity.Periodic || this.Modifiers.Count == 0;
         }
 
         /// <summary>
         /// Terminates the gameplay effect on the target. This will revert things like temporary buffs.
         /// </summary>
         /// <param name="target">The target on which this gameplay effect has been active.</param>
-        internal void Revert(AttributeSet target) {
+        internal void EndOn(AttributeSet target) {
             if (this.Data.ExecutionTime != GameplayEffectData.Periodicity.Continuous) {
                 return;
             }
             
-            foreach (Modifier modifier in this.Modifiers) {
+            foreach (Modifier modifier in this.Execute(target)) {
                 target.AddModifier(-modifier);
             }
             
-            this.Modifiers.Clear();
+            this.OnEnded?.Invoke();
+            this.OnEnded = null;
         }
     }
 }

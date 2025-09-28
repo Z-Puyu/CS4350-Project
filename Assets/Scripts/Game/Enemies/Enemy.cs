@@ -3,6 +3,8 @@ using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaponsSystem;
+using WeaponsSystem.DamageHandling;
 using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Enemies {
