@@ -39,14 +39,23 @@ namespace WeaponsSystem.WeaponComponent {
 #endif
                 return;
             }
+            
+            if (!component) {
+#if DEBUG
+                Debug.LogError($"Component is null", this);
+#endif
+                return;
+            }
 
-            if (!component || !this.PossibleComponents.Contains(component)) {
+            if (!this.PossibleComponents.Contains(component)) {
 #if DEBUG
                 Debug.LogError($"Component {component.Name} is not allowed", this);
 #endif
                 return;
             }
-            
+
+
+
             this.Components[index] = component;
             this.OnComponentSetChanged?.Invoke(this.Components.Distinct().Where(c => c).ToHashSet());
             this.RefreshModifiers();
