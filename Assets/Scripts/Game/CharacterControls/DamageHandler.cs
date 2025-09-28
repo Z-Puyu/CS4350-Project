@@ -10,7 +10,7 @@ using WeaponsSystem.DamageHandling;
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]
     public sealed class DamageHandler : MonoBehaviour {
-        [field: SerializeField] private AbilitySystem AbilitySystem { get; set; }
+        /*[field: SerializeField] private AbilitySystem AbilitySystem { get; set; }
         [field: SerializeField, Required] private Ability DirectAttackAbility { get; set; }
         [field: SerializeField] private List<Ability> SpecialAttackAbilities { get; set; }
         [field: SerializeField] private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
@@ -40,6 +40,6 @@ namespace Game.CharacterControls {
             foreach (Ability effect in this.SpecialAttackAbilities) {
                 instigator.Use(effect, this.AbilitySystem, args);
             }
-        }
+        }*/
     }
 }

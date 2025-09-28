@@ -90,18 +90,18 @@ namespace GameplayAbilities.Runtime.Modifiers {
             };
         }
 
-        public Modifier CreateModifier(IAttributeReader target, GameplayEffectExecutionArgs args) {
+        public Modifier CreateModifier(IAttributeReader target, IDataReader<string, int> source) {
             if (this.UseAttributeValue) {
                 int value = this.Source switch {
                     ValueSource.Target => target.GetCurrent(this.SourceAttribute),
-                    ValueSource.Instigator => args.Instigator.GetCurrent(this.SourceAttribute),
+                    ValueSource.Instigator => source.HasValue(this.SourceAttribute, out int v) ? v : 0,
                     var _ => throw new ArgumentException("Invalid value source")
                 };
                 
                 return new Modifier(value, this.Method, this.TargetAttribute) * this.Coefficient;
             }
 
-            if (this.AllowSetByCaller && args.HasData(this.Label, out int val)) {
+            if (this.AllowSetByCaller && source.HasValue(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute) * this.Coefficient;
             }
             

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be30b1a66d5a436caab3964829aadfb1, type: 3}
+  m_Name: New Ability
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.Ability
+  Effects:
+  - rid: 2098011774059282511
+  references:
+    version: 2
+    RefIds:
+    - rid: 2098011774059282511
+      type: {class: PeriodicAbilityEffect, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
+      data:
+        <Duration>k__BackingField: 10
+        <Period>k__BackingField: 1
+        <Effect>k__BackingField:
+          rid: 2098011774059282512
+    - rid: 2098011774059282512
+      type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
+      data:
+        <Modifiers>k__BackingField:
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 0
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: 
+          <DefaultValue>k__BackingField: 1
+          <Coefficient>k__BackingField: 0
+          <Label>k__BackingField: 

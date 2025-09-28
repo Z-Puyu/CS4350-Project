@@ -53,9 +53,7 @@ namespace WeaponsSystem.WeaponComponent {
 #endif
                 return;
             }
-
-
-
+            
             this.Components[index] = component;
             this.OnComponentSetChanged?.Invoke(this.Components.Distinct().Where(c => c).ToHashSet());
             this.RefreshModifiers();

@@ -15,9 +15,6 @@ namespace GameplayAbilities.Runtime.Attributes {
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
         private IAttributeReader Parent { get; set; }
         
-        [field: SerializeField]
-        private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
-        
         [field: SerializeField] private AttributeTable DefaultAttributes { get; set; }
         
         private TrieDictionary<string, char, AttributeData> Attributes { get; } =
@@ -77,7 +74,7 @@ namespace GameplayAbilities.Runtime.Attributes {
 
             void init(AttributeType attribute, int value) {
                 if (!attribute.IsCategory && !this.Attributes.ContainsKey(attribute.Id)) {
-                    AttributeData data = AttributeData.From(attribute, value, this, this.ModifierMode);
+                    AttributeData data = AttributeData.From(attribute, value, this);
                     this.Attributes.Add(attribute.Id, data);
                 } else {
                     foreach (AttributeType child in attribute.SubTypes) {

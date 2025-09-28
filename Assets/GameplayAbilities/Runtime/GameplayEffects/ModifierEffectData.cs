@@ -12,7 +12,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         private List<ModifierData> Modifiers { get; set; } = new List<ModifierData>();
         
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
-            return this.Modifiers.Select(modifier => modifier.CreateModifier(target, args));
+            return this.Modifiers.Select(modifier => modifier.CreateModifier(target));
         }
 
         public override DropdownList<string> GetDataLabels() {

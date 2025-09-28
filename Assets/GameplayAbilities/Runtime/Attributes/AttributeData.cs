@@ -8,12 +8,9 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeData {
-        internal enum ModifierMode { ByPriority, ByTimeOrder }
-        
         private AttributeSet Root { get; }
         private List<IAttributeClampRule> ModificationRules { get; } = new List<IAttributeClampRule>();
         private double BaseValue { get; }
-        private ModifierMode Mode { get; }
         internal int Value { get; private set; }
         
         internal int MaxValue => Math.Min(int.MaxValue, (int)this.ExecuteModificationRules(int.MaxValue));
@@ -21,19 +18,14 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         private SortedList<Modifier.Operation, Modifier> Modifiers { get; } =
             new SortedList<Modifier.Operation, Modifier>();
-        
-        private LinkedList<Modifier> ModifierSequence { get; } = new LinkedList<Modifier>();
 
-        private AttributeData(double value, AttributeSet root, ModifierMode mode) {
+        private AttributeData(double value, AttributeSet root) {
             this.BaseValue = value;
             this.Root = root;
-            this.Mode = mode;
         }
 
-        internal static AttributeData From(
-            AttributeType definition, double initValue, AttributeSet root, ModifierMode mode
-        ) {
-            AttributeData data = new AttributeData(initValue, root, mode);
+        internal static AttributeData From(AttributeType definition, double initValue, AttributeSet root) {
+            AttributeData data = new AttributeData(initValue, root);
             foreach (IAttributeClampRule rule in definition.ModificationRules) {
                 data.ModificationRules.Add(rule);
             }
@@ -54,11 +46,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         
         internal int Query(double @base) {
             @base = this.ExecuteModificationRules(@base);
-            return this.Mode switch {
-                ModifierMode.ByPriority => (int)this.Modifiers.Values.Aggregate(@base, modify),
-                ModifierMode.ByTimeOrder => (int)this.ModifierSequence.Aggregate(@base, modify),
-                var _ => throw new ArgumentException("Invalid modifier mode")
-            };
+            return (int)this.Modifiers.Values.Aggregate(@base, modify);
             
             double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
         }
@@ -68,20 +56,12 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         internal void AddModifier(Modifier modifier) {
-            this.ModifierSequence.AddLast(modifier);
             if (!this.Modifiers.TryAdd(modifier.Type, modifier)) {
                 this.Modifiers[modifier.Type] += modifier;
             }
         }
 
         internal void RemoveModifier(Modifier modifier) {
-            LinkedListNode<Modifier> node = this.ModifierSequence.FindLast(modifier);
-            if (node is null) {
-                Debug.LogError($"Modifier {modifier} not found!");
-                return;
-            }
-
-            this.ModifierSequence.Remove(node);
             this.Modifiers[modifier.Type] -= modifier;
         }
 
@@ -92,13 +72,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <returns>The projected value of this attribute after applying the given modifier.</returns>
         internal int Project(Modifier modifier) {
             double value = this.BaseValue;
-            IEnumerable<Modifier> modifiers = this.Mode switch {
-                ModifierMode.ByPriority => this.Modifiers.Values,
-                ModifierMode.ByTimeOrder => this.ModifierSequence,
-                var _ => throw new ArgumentException("Invalid modifier mode")
-            };
-            
-            foreach (Modifier m in modifiers) {
+            foreach (Modifier m in this.Modifiers.Values) {
                 double modified = m.Type == modifier.Type ? (m + modifier).Modify(value) : m.Modify(value);
                 value = this.ExecuteModificationRules(modified);
             }
