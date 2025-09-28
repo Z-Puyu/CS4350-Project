@@ -47,11 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f7462bafb94e4f83be2ed1e4786554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.MeleeWeapon
-  <PossibleComponents>k__BackingField: {fileID: 11400000, guid: 3e238b61fff1af84ba1f74a8283b5d3b, type: 2}
   <WeaponData>k__BackingField: {fileID: 11400000, guid: e823039187623e34da918e1e3e9fd5df, type: 2}
   <Stats>k__BackingField: {fileID: 5777750948884736783}
-  <ComponentManager>k__BackingField: {fileID: 0}
-  <ParticleEffect>k__BackingField: {fileID: 0}
+  <ComponentManager>k__BackingField: {fileID: 5671877064702940101}
   <AttackOrigin>k__BackingField: {fileID: 503650084216761073}
 --- !u!114 &1619120422167565463
 MonoBehaviour:
@@ -115,23 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.ComponentManager
   <Capacity>k__BackingField: 3
   <Stats>k__BackingField: {fileID: 5777750948884736783}
-  <Components>k__BackingField:
-  - {fileID: 11400000, guid: eb4ee7c856960354cb789647660799ff, type: 2}
-  - {fileID: 11400000, guid: 9363a9ae0c93c714598cc9663019e750, type: 2}
-  - {fileID: 11400000, guid: 87b7fad9fa1f1884a9d7fb948eb7fb63, type: 2}
-  <DefaultAttacks>k__BackingField:
-  - <ProjectileMode>k__BackingField: 0
-    <ProjectileEffects>k__BackingField: []
-    <Modifiers>k__BackingField: []
-  - <ProjectileMode>k__BackingField: 0
-    <ProjectileEffects>k__BackingField: []
-    <Modifiers>k__BackingField: []
-  - <ProjectileMode>k__BackingField: 0
-    <ProjectileEffects>k__BackingField: []
-    <Modifiers>k__BackingField: []
-  <ComponentSkillTable>k__BackingField: {fileID: 11400000, guid: 0fd32c0dd3f29a74a87c140852f1aaa9, type: 2}
-  <AbilitySystem>k__BackingField: {fileID: 0}
-  <Combatant>k__BackingField: {fileID: 0}
+  <TestComponents>k__BackingField: []
 --- !u!1 &5690212249861511337
 GameObject:
   m_ObjectHideFlags: 0
