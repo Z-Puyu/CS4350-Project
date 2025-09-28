@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Game.Enemies;
+using UnityEngine;
 using Map.Objectives.Objective_UI;
 
 namespace Map.Objectives
@@ -7,16 +9,20 @@ namespace Map.Objectives
 	[CreateAssetMenu(fileName = "Kill enemies objective", menuName = "Objectives/Kill enemies objective")]
     public class KillEnemiesObjective : Objective
     {
-        //private EnemySO enemySO;
+        public EnemyData enemyToKill;
 		public int enemyToKillAmount;
-		private int currentKillCounter;
+		[SerializeField] private int currentKillCounter;
 
-		public void AddProgress(ObjectiveManager objectiveManager) {
-			currentKillCounter += 1;
-			if (currentKillCounter == enemyToKillAmount)
+		public void AddProgress(ObjectiveManager objectiveManager, List<KillEnemiesObjective> allKillEnemiesObjectives, EnemyData enemyData) {
+			if (enemyData == enemyToKill) 
 			{
-				objectiveManager.HandleDeletion(this);
-			}
+				currentKillCounter += 1;
+				if (currentKillCounter == enemyToKillAmount)
+				{
+					allKillEnemiesObjectives.Remove(this);
+					objectiveManager.HandleDeletion(this);
+				}
+			}	
  		}
 
 	    public override bool IsComplete()
