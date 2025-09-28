@@ -113,12 +113,22 @@ public class SoilPlantInteraction : MonoBehaviour
     #region Trigger Handling
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerIsOver = true;
+        if (other.transform.root.CompareTag("Player"))
+        {
+            playerIsOver = true;
+        }
+
+        Debug.Log($"Player is over soil: {playerIsOver}");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) playerIsOver = false;
+        if (other.transform.root.CompareTag("Player"))
+        {
+            playerIsOver = false;
+        }
+
+        Debug.Log($"Player is over soil: {playerIsOver}");
     }
     #endregion
 
