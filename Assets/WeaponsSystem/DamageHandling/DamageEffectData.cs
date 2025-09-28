@@ -10,25 +10,36 @@ namespace WeaponsSystem.DamageHandling {
         [field: SerializeField, Table]
         private List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
 
-        [field: SerializeField] private AttributeType TargetAttribute { get; set; }
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
+        private string TargetAttribute { get; set; }
+        
+        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+
+        public override DropdownList<string> GetDataLabels() {
+            DropdownList<string> labels = new DropdownList<string>();
+            foreach (DamageType damage in this.DamageTypes) {
+                labels.Add(damage.DamageAttribute, damage.DamageAttribute);
+            }
+            
+            return labels;
+        }
 
         public override IEnumerable<Modifier> Run(AttributeSet target, GameplayEffectExecutionArgs args) {
             List<Modifier> modifiers = new List<Modifier>();
             foreach (DamageType damage in this.DamageTypes) {
-                int magnitude = args.CallerSuppliedDataValues.GetValueOrDefault(damage.DamageAttribute, 0);
-                if (magnitude == 0) {
+                if (!args.HasData(damage.DamageAttribute, out int magnitude) || magnitude == 0) {
                     continue;
                 }
                 
                 int defence = target.GetCurrent(damage.DefenceAttribute);
                 magnitude = damage.IsPercentageDefence
-                        ? Mathf.RoundToInt(magnitude * defence * damage.DefenceCoefficient / 100.0f)
+                        ? Mathf.RoundToInt(magnitude * (1 - defence * damage.DefenceCoefficient / 100.0f))
                         : magnitude - defence * damage.DefenceCoefficient;
                 if (magnitude <= 0) {
                     continue;
                 }
                 
-                modifiers.Add(new Modifier(-magnitude, Modifier.Operation.Offset, this.TargetAttribute.Id));
+                modifiers.Add(new Modifier(-magnitude, Modifier.Operation.Offset, this.TargetAttribute));
             }
             
             return modifiers;

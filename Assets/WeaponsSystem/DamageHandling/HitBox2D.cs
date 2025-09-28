@@ -11,10 +11,6 @@ namespace WeaponsSystem.DamageHandling {
         public event UnityAction<Damage> OnHit; 
         
         public void HandleDamage(Damage damage) {
-            if (damage.TotalDamage <= 0) {
-                return;
-            }
-            
             this.OnHit?.Invoke(damage);
             this.OnHitEvent.Invoke(damage);
         }

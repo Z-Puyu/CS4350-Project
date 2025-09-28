@@ -1,10 +1,10 @@
 namespace GameplayAbilities.Runtime.Attributes {
     public readonly struct Attribute {
-        public string Name { get; }
+        public string Id { get; }
         public int Value { get; }
         
-        public Attribute(string name, int value) {
-            this.Name = name;
+        public Attribute(string id, int value) {
+            this.Id = id;
             this.Value = value;
         }
     }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03678e50ed651f44f9981e54e753dfd8, type: 3}
+  m_Name: Elemental Resistance
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeType
+  <Name>k__BackingField: Elemental
+  displayName: Elemental Resistance
+  <ModificationRules>k__BackingField: []
+  <Id>k__BackingField: Defence.Elemental
+  <Parent>k__BackingField: {fileID: 11400000, guid: c15a15d823d833347be5231c8fdb0cb2, type: 2}
+  <SubTypes>k__BackingField:
+  - {fileID: 11400000, guid: 95276008f26fe764bb0c94c4da23e34b, type: 2}
+  - {fileID: 11400000, guid: 20703378fa029cc49a472458a4c4c1b9, type: 2}
+  - {fileID: 11400000, guid: 2f7588f7ff700e7499300b48476d5cf1, type: 2}
+  references:
+    version: 2
+    RefIds: []
