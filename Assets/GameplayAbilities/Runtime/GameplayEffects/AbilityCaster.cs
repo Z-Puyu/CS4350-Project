@@ -44,7 +44,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             }
             
             ability.Activate(this, this.AbilityTargeter);
-            ability.Use(this.AttributeSet, target);
+            ability.Execute(this.AttributeSet, target);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         }
         
         public bool HasValue(string key, out int value) {
-            int attributeValue = this.InstigatorAttributes.GetCurrent(key);
-            return this.CallerSuppliedDataValues.TryGetValue(key, out value);
+            value = this.InstigatorAttributes.GetCurrent(key);
+            return value != 0 || this.CallerSuppliedDataValues.TryGetValue(key, out value);
         }
 
         public IDataReader<string, int> With(string key, int value) {

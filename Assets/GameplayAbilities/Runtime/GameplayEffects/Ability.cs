@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability")]
-    public class Ability : ScriptableObject {
+    public class Ability : ScriptableObject, IAbility {
         [field: SerializeField] internal bool IsObtainable { get; private set; } = true;
         [field: SerializeField] private string Id { get; set; }
         [field: SerializeField] private string Name { get; set; }
@@ -16,13 +16,13 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         [field: SerializeReference] public TargetingStrategy TargetingStrategy { get; set; }
 
         [field: SerializeReference]
-        private List<IEffect<AbilityEffectData, AttributeSet>> Effects { get; set; } =
-            new List<IEffect<AbilityEffectData, AttributeSet>>();
+        private List<IEffect<IDataReader<string, int>, AttributeSet>> Effects { get; set; } =
+            new List<IEffect<IDataReader<string, int>, AttributeSet>>();
         
         public double Duration => this.Effects.Count > 0 ? this.Effects.Max(effect => effect.EffectDuration) : 0;
         public double MinTimeUntilNextUse => this.Cooldown + this.Duration;
         
-        public void Use(IAttributeReader instigator, AttributeSet target) {
+        public void Execute(IAttributeReader instigator, AttributeSet target) {
             foreach (IEffect<AbilityEffectData, AttributeSet> effect in this.Effects) {
                 effect.Apply(new AbilityEffectData(instigator), target).Start();
             }

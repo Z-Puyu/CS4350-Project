@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public sealed class ModifierEffect : IEffect<AbilityEffectData, AttributeSet> {
+    public sealed class ModifierEffect : IEffect<IDataReader<string, int>, AttributeSet> {
         private readonly struct Instance : IRunnableEffect {
             private AttributeSet Target { get; }
             private IEnumerable<Modifier> Modifiers { get; }
@@ -38,7 +38,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         public double EffectDuration => 0;
 
-        public IRunnableEffect Apply(AbilityEffectData source, AttributeSet target) {
+        public IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet target) {
             return new Instance(target, this.Modifiers.Select(modifier => modifier.CreateModifier(target, source)));
         }
     }

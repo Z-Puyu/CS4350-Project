@@ -7,7 +7,7 @@ using SaintsField;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
-    public class ContinuousAbilityEffect : ContinuousEffect<AbilityEffectData, AttributeSet> {
+    public class ContinuousAbilityEffect : ContinuousEffect<IDataReader<string, int>, AttributeSet> {
         private class Instance : IRunnableEffect {
             private AttributeSet Target { get; }
             private IRunnableEffect InnerEffect { get; }
@@ -45,7 +45,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             }
         }
         
-        public override IRunnableEffect Apply(AbilityEffectData source, AttributeSet target) {
+        public override IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet target) {
             return new Instance(this.Effect.Apply(source, target), target, this.Duration);
         }
     }

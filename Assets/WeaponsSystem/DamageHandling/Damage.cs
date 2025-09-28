@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
-    public sealed class Damage {
+    public sealed class Damage : IAbility {
         public (GameObject root, Combatant combatant) Instigator { get; set; }
         public IReadOnlyDictionary<string, int> Data { get; }
+        
+        private IEffect<IDataReader<string, int>, AttributeSet> effect;
 
         public Damage(GameObject instigator, Combatant combatant) {
             this.Instigator = (instigator, combatant);
@@ -33,6 +37,10 @@ namespace WeaponsSystem.DamageHandling {
         public Damage(GameObject instigator, Combatant combatant, IDictionary<string, int> data) {
             this.Instigator = (instigator, combatant);
             this.Data = new ReadOnlyDictionary<string, int>(data);
+        }
+
+        public void Execute(IAttributeReader instigator, AttributeSet target) {
+            this.effect.Apply(new AbilityEffectData(instigator), target);
         }
     }
 }
