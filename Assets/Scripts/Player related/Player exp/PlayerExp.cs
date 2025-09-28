@@ -1,3 +1,4 @@
+using Game.Enemies;
 using UnityEngine;
 
 namespace Player_related.Player_exp
@@ -6,6 +7,12 @@ namespace Player_related.Player_exp
     {
         [SerializeField] private int combatExp;
         [SerializeField] private int farmingExp;
+
+        public void AddCombatExpFromEnemyData(Component component, object eD)
+        {
+            EnemyData enemyData = (EnemyData)((object[])eD)[0];
+            enemyData.EnemyExpObject.AddExp(this);
+        }
         
         public void AddFarmingExp(int exp)
         {

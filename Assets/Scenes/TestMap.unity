@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462388411}
   - component: {fileID: 462388412}
+  - component: {fileID: 462388413}
   m_Layer: 0
   m_Name: ExperienceComponent
   m_TagString: Untagged
@@ -331,6 +332,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_exp.PlayerExp
   combatExp: 0
   farmingExp: 0
+--- !u!114 &462388413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462388410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: fe13c1f2cd49c39438aa705da02dace0, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 462388412}
+        m_TargetAssemblyTypeName: Player_related.Player_exp.PlayerExp, Assembly-CSharp
+        m_MethodName: AddCombatExpFromEnemyData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &528699412
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +631,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2933533461722758226, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
   m_PrefabInstance: {fileID: 529274588}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &529274591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 728940743072872333, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e1154bc3f4b38a358a687599a7d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
+--- !u!114 &529274592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1287488481613252304, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
 --- !u!4 &582951389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7618011101641598167, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
@@ -49468,8 +49519,9 @@ GameObject:
   - component: {fileID: 1505743562}
   - component: {fileID: 1505743561}
   - component: {fileID: 1505743563}
+  - component: {fileID: 1505743564}
   m_Layer: 0
-  m_Name: CinemachineCamera
+  m_Name: Game camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49552,6 +49604,20 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
+--- !u!114 &1505743564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505743559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5f9f8b2678c5040bdeda8e67a81516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCameraManager
+  player: {fileID: 0}
+  virtualCamera: {fileID: 1505743561}
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -49617,6 +49683,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
   plantedSeedId: 
   pickUpPrefab: {fileID: 0}
+  growthBar: {fileID: 0}
+  baseGrowthSpeed: 0.01
+  wetGrowthMultiplier: 3
 --- !u!95 &1679046102
 Animator:
   serializedVersion: 7
@@ -49717,7 +49786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -49767,6 +49836,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 686dfcf9ba458774796663fdb77f8112, type: 2}
+    - target: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: broadcastEnemyDiedData
+      value: 
+      objectReference: {fileID: 11400000, guid: fe13c1f2cd49c39438aa705da02dace0, type: 2}
+    - target: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <DamageHandler>k__BackingField
+      value: 
+      objectReference: {fileID: 529274591}
+    - target: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <GameplayEffectCoordinator>k__BackingField
+      value: 
+      objectReference: {fileID: 529274592}
     - target: {fileID: 8037451341097817067, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: m_Layer
       value: 7
