@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -9,13 +10,21 @@ public class SoilPlantInteraction : MonoBehaviour
 {
     public enum PlantStage { Planted, Seedling, Grown, Wilting, Wilted }
 
+    [Header("Plant Info")]
     [SerializeField] private string plantedSeedId; // which seed type (from inventory)
     [SerializeField] private PickUp2D pickUpPrefab;
+    
+    [Header("Growth Settings")]
+    [SerializeField] private Image growthBar;
+    [SerializeField] private float baseGrowthSpeed = 0.01f;   // per second when dry
+    [SerializeField] private float wetGrowthMultiplier = 3f;  // speed multiplier when wet
+
     private PlantStage currentStage = PlantStage.Planted;
     private bool hasPlant = false;
     private bool isWatered = false;
     private int waterCount = 0;
     private bool playerIsOver = false;
+    private float growthProgress = 0f;
 
     private Animator animator;
 
@@ -29,104 +38,122 @@ public class SoilPlantInteraction : MonoBehaviour
 
     void Update()
     {
+        HandleInput();
+        UpdateGrowth();
+    }
+
+    #region Input Handling
+    void HandleInput()
+    {
+        if (!playerIsOver) return;
+
         if (Input.GetKeyDown(KeyCode.C))
         {
-            OnScreenDebugger.Log("C key pressed");
-
-            if (playerIsOver)
+            if (hasPlant && (currentStage >= PlantStage.Grown))
             {
-                if (hasPlant && (currentStage == PlantStage.Grown || currentStage == PlantStage.Wilting))
-                {
-                    OnScreenDebugger.Log("Plant is ready → harvesting");
-                    HarvestPlant();
-                }
-                else if (!hasPlant)
-                {
-                    OnScreenDebugger.Log("Player is over soil → opening inventory");
-                    OpenInventoryForSeed();
-                }
-                else
-                {
-                    OnScreenDebugger.Log("Seed planted, do nothing.");
-                }
+                HarvestPlant();
             }
-            else
+            else if (!hasPlant)
             {
-                OnScreenDebugger.Log("Player is NOT over soil → cannot interact");
+                OpenInventoryForSeed();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && playerIsOver)
+        if (Input.GetKeyDown(KeyCode.V) && hasPlant)
         {
-            OnScreenDebugger.Log("V key pressed → watering plant");
             WaterPlant();
         }
     }
+    #endregion
 
+    #region Growth System
+    void UpdateGrowth()
+    {
+        if (!hasPlant) 
+        {
+            growthBar.fillAmount = 0f;
+            return;
+        }
+
+        // Increase growth progress
+        float growthThisFrame = baseGrowthSpeed * Time.deltaTime;
+        if (isWatered) growthThisFrame *= wetGrowthMultiplier;
+
+        growthProgress += growthThisFrame;
+        growthProgress = Mathf.Clamp01(growthProgress);
+
+        // Update progress bar
+        growthBar.fillAmount = growthProgress;
+        UpdateGrowthBarColor();
+
+        // Automatically update plant stage
+        UpdatePlantStageByProgress();
+    }
+
+    void UpdatePlantStageByProgress()
+    {
+        if (growthProgress < 0.25f) currentStage = PlantStage.Planted;
+        else if (growthProgress < 0.50f) currentStage = PlantStage.Seedling;
+        else if (growthProgress < 0.75f) currentStage = PlantStage.Grown;
+        else if (growthProgress < 1f) currentStage = PlantStage.Wilting;
+        else currentStage = PlantStage.Wilted;
+
+        // Update animation
+        PlayPlantAnimation(isWatered ? "wet" : "dry");
+    }
+
+    void UpdateGrowthBarColor()
+    {
+        if (growthProgress < 0.5f) growthBar.color = Color.green;
+        else if (growthProgress < 0.75f) growthBar.color = new Color(0.6f, 0f, 0.6f); // purple
+        else growthBar.color = Color.red;
+    }
+    #endregion
+
+    #region Trigger Handling
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Make sure your player GameObject has the tag "Player"
-        {
-            playerIsOver = true;
-            OnScreenDebugger.Log("Player entered soil tile");
-        }
+        if (other.CompareTag("Player")) playerIsOver = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerIsOver = false;
-            OnScreenDebugger.Log("Player left soil tile");
-        }
+        if (other.CompareTag("Player")) playerIsOver = false;
     }
+    #endregion
 
-    // -----------------------
+    #region Planting & Watering
     void OpenInventoryForSeed()
     {
-        Debug.Log("Opening inventory to choose a seed...");
         InventoryUIManager.Instance.OpenForSeedSelection(this);
     }
 
-    // Called by Inventory when a seed is chosen
     public void PlantSeed(string seedId)
     {
         plantedSeedId = seedId;
         hasPlant = true;
         currentStage = PlantStage.Planted;
+        growthProgress = 0f;
         isWatered = false;
         waterCount = 0;
 
         PlayPlantAnimation("dry");
-        Debug.Log($"Planted {seedId} in soil!");
     }
 
-    // -----------------------
     void WaterPlant()
     {
-        if (hasPlant && currentStage != PlantStage.Wilted)
-        {
-            if (!isWatered)
-            {
-                waterCount++;
-                StartCoroutine(PlayPlantWateringThenWet());
+        if (!hasPlant || currentStage == PlantStage.Wilted) return;
 
-                if (waterCount >= 2)
-                {
-                    waterCount = 0;
-                    StartCoroutine(AgePlantAfterDelay(5f));
-                }
-            }
-            else
-            {
-                Debug.Log("Already watered. Wait until it dries out.");
-            }
+        if (!isWatered)
+        {
+            isWatered = true;
+            waterCount++;
+            StartCoroutine(PlayPlantWateringThenWet());
         }
     }
 
     IEnumerator PlayPlantWateringThenWet()
     {
-        isWatered = true;
         PlayPlantAnimation("watering");
         yield return new WaitForSeconds(4f);
 
@@ -137,60 +164,47 @@ public class SoilPlantInteraction : MonoBehaviour
         if (hasPlant && currentStage != PlantStage.Wilted)
             PlayPlantAnimation("dry");
     }
+    #endregion
 
-    IEnumerator AgePlantAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (hasPlant && isWatered)
-            AgePlant();
-    }
-
+    #region Harvest
     void HarvestPlant()
     {
-        if (!hasPlant || currentStage < PlantStage.Grown)
-        {
-            Debug.Log("Plant not ready to harvest.");
-            return;
-        }
+        if (!hasPlant || currentStage < PlantStage.Grown) return;
 
         HarvestEvent?.Invoke();
 
-        Debug.Log($"Harvesting {plantedSeedId} at stage {currentStage}...");
-
-        // Determine drop counts based on stage
-        int cropCount = 1; // always drop 1 crop
+        // Determine drop counts
+        int cropCount = 1;
         int seedCount = 0;
-        string dropItemId;
+        string dropItemId = plantedSeedId;
 
         switch (currentStage)
         {
             case PlantStage.Grown:
                 dropItemId = plantedSeedId.Replace("seed", "crop");
                 DropItem(dropItemId, cropCount);
-                seedCount = UnityEngine.Random.Range(1, 3); // 1-2 seeds
+                seedCount = Random.Range(1, 3);
                 break;
             case PlantStage.Wilting:
                 dropItemId = plantedSeedId.Replace("seed", "wilting");
                 DropItem(dropItemId, cropCount);
-                seedCount = UnityEngine.Random.Range(0, 2); // 0-1 seeds
+                seedCount = Random.Range(0, 2);
                 break;
             case PlantStage.Wilted:
-                seedCount = UnityEngine.Random.Range(0, 2); // 0-1 seeds
-                cropCount = 0; // maybe nothing if fully wilted
+                seedCount = Random.Range(0, 2);
+                cropCount = 0;
                 break;
         }
 
-        // Drop seeds
-        if (seedCount > 0)
-            DropItem(plantedSeedId, seedCount);
+        if (seedCount > 0) DropItem(plantedSeedId, seedCount);
 
         // Reset plant
         plantedSeedId = null;
         hasPlant = false;
         currentStage = PlantStage.Planted;
         isWatered = false;
+        growthProgress = 0f;
 
-        // Play harvest animation
         if (animator != null)
         {
             animator.SetTrigger("Harvest");
@@ -200,15 +214,10 @@ public class SoilPlantInteraction : MonoBehaviour
 
     private void DropItem(string itemId, int count)
     {
-        Debug.Log($"Dropping {count} {itemId}...");
-
         if (count <= 0 || pickUpPrefab == null) return;
 
         if (!ItemDatabase.TryGet(itemId, out ItemData itemData))
-        {
-            Debug.LogWarning($"Item {itemId} not found in database.");
             return;
-        }
 
         Item item = Item.From(itemData);
 
@@ -218,20 +227,15 @@ public class SoilPlantInteraction : MonoBehaviour
             Object.Instantiate(pickUpPrefab, position, Quaternion.identity).With(1, item.Key);
         }
     }
+    #endregion
 
-    void AgePlant()
-    {
-        if (currentStage == PlantStage.Planted) currentStage = PlantStage.Seedling;
-        else if (currentStage == PlantStage.Seedling) currentStage = PlantStage.Grown;
-        else if (currentStage == PlantStage.Grown) currentStage = PlantStage.Wilting;
-        else if (currentStage == PlantStage.Wilting) currentStage = PlantStage.Wilted;
-
-        PlayPlantAnimation(isWatered ? "wet" : "dry");
-    }
-
+    #region Animation
     void PlayPlantAnimation(string condition)
     {
+        if (string.IsNullOrEmpty(plantedSeedId) || animator == null) return;
+
         string animName = $"{plantedSeedId}_{currentStage.ToString().ToLower()}_{condition}";
         animator.Play(animName, 0);
     }
+    #endregion
 }
