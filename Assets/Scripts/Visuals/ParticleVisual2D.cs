@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common;
@@ -7,59 +7,36 @@ using GameplayAbilities.Runtime.Abilities;
 using UnityEngine;
 
 namespace Visuals {
-    [RequireComponent(typeof(ParticleSystem), typeof(BoundingRect))]
-    public abstract class ParticleVisual2D : SpawnableAbilityObject {
-        [field: SerializeField] private string Id { get; set; }
-        protected ParticleSystem ParticleSystem { get; set; }
-        protected BoundingRect BoundingRect { get; set; }
-        protected BoundingRect ParentRect { get; set; }
-
-        public override string PoolableId => this.Id;
+    [RequireComponent(typeof(ParticleSystem))]
+    public class ParticleVisual2D : MonoBehaviour, IActivatable {
+        private ParticleSystem ParticleSystem { get; set; }
+        public bool IsActive { get; private set; }
 
         protected virtual void Awake() {
             this.ParticleSystem = this.GetComponent<ParticleSystem>();
-            this.BoundingRect = this.GetComponent<BoundingRect>();
         }
 
-        public override void Return() {
-            this.ParticleSystem.Stop();
-            this.StartCoroutine(this.WaitAndReturn());
-        }
-
-        private IEnumerator WaitAndReturn() {
-            yield return new WaitForSeconds(this.ParticleSystem.main.duration - this.ParticleSystem.time);
-            yield return new WaitUntil(() => !this.ParticleSystem.IsAlive());
-            base.Return();
-        }
-
-        public override void Activate(AbilityData info) {
-            Transform parent = this.transform.parent;
-            if (parent) {
-                this.ParentRect = this.transform.parent.GetComponentInParent<BoundingRect>();
-            }
-            
-            this.BoundingRect.ResizeTo(this.ParentRect);
-        }
-
-        protected IEnumerator AlignToParentAndPlay(BoundingRect.Alignment alignment, AbilityData info) {
+        private IEnumerator Play() {
             yield return new WaitForFixedUpdate();
-            this.BoundingRect.AlignTo(this.ParentRect, alignment);
+            this.IsActive = true;
             this.ParticleSystem.Play();
-            yield return new WaitForSeconds(info.Info.Duration);
-            yield return this.WaitToDestroy();
         }
 
-        private IEnumerator WaitToDestroy() {
+        private IEnumerator Stop() {
             if (this.ParticleSystem.main.loop) {
                 this.ParticleSystem.Stop();
-            }
+            } 
             
             yield return new WaitUntil(() => !this.ParticleSystem.IsAlive());
-            this.Return();
+            this.IsActive = false;
         }
 
-        public override void Destroy() {
-            this.StartCoroutine(this.WaitToDestroy());
+        public void Activate() {
+            this.StartCoroutine(this.Play());
+        }
+        
+        public void Deactivate() {
+            this.StartCoroutine(this.Stop());
         }
     }
 }

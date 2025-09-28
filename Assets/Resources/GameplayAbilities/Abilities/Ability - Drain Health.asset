@@ -12,22 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
   m_Name: Ability - Drain Health
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  <IsObtainable>k__BackingField: 1
   <Id>k__BackingField: ability:drain-health
   <Name>k__BackingField: Drain Health
   <Description>k__BackingField: 
   <Cooldown>k__BackingField: 0
-  <SpawnableEffects>k__BackingField:
-    _keys: []
-    _values: 
-    _saintsKeys: []
-    _saintsValues: []
-  <SpawnsEffectAtTarget>k__BackingField: 0
-  <Effects>k__BackingField:
-  - rid: 2098011714213118031
+  <SpawnableEffectsOnTarget>k__BackingField: []
+  <SpawnableEffectsOnSelf>k__BackingField: []
+  <EffectsOnTarget>k__BackingField:
+  - rid: 2098011750220431531
+  <EffectsOnSelf>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 2098011714213118031
+    - rid: 2098011750220431531
       type: {class: ModifierEffectData, ns: GameplayAbilities.Runtime.GameplayEffects, asm: GameplayAbilities.Runtime}
       data:
         <ExecutionTime>k__BackingField: 0

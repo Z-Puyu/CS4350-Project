@@ -12,7 +12,7 @@ namespace WeaponsSystem.Projectiles {
         public float DistanceTravelled { get; set; }    
         public Damage Damage { get; set; }
         public List<string> TargetTags { get; } = new List<string>();
-        public IAttributeReader SourceWeapon { get; set; }
+        public IAttributeReader Source { get; set; }
 
         public void Reset() {
             this.IsAlive = false;
@@ -20,7 +20,7 @@ namespace WeaponsSystem.Projectiles {
             this.Range = 0f;
             this.DistanceTravelled = 0f;
             this.Damage = null;
-            this.SourceWeapon = null; 
+            this.Source = null; 
             this.TargetTags.Clear();
         }
     }

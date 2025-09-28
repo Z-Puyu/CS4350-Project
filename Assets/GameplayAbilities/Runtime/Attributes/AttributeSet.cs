@@ -13,7 +13,7 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
-        private AttributeSet Parent { get; set; }
+        private IAttributeReader Parent { get; set; }
         
         [field: SerializeField]
         private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
@@ -29,9 +29,22 @@ namespace GameplayAbilities.Runtime.Attributes {
         public event UnityAction<AttributeChange> OnAttributeChanged;
 
         private void OnEnable() {
+            this.ConnectParent();
+        }
+
+        private void OnTransformParentChanged() {
+            this.ConnectParent();
+        }
+        
+        private void ConnectParent() {
             Transform parent = this.transform.parent;
-            if (parent) {
-                this.Parent = parent.GetComponentInParent<AttributeSet>();
+            if (!parent) {
+                this.Parent = null;
+            }
+
+            IAttributeReader parentSet = parent.GetComponentInParent<IAttributeReader>();
+            if (parentSet != this.Parent) {
+                this.Parent = parentSet;
             }
         }
 
@@ -138,7 +151,7 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public int GetCurrent(string key) {
             if (this.Attributes.TryGetValue(key, out AttributeData data)) {
-                return this.Parent ? this.Parent.Query(key, data.Value) : data.Value;
+                return this.Parent != null ? this.Parent.Query(key, data.Value) : data.Value;
             }
 #if DEBUG
             Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
@@ -182,11 +195,11 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public int Query(string key, int @base) {
             if (!this.Attributes.TryGetValue(key, out AttributeData data)) {
-                return this.Parent ? this.Parent.Query(key, @base) : @base;
+                return this.Parent != null ? this.Parent.Query(key, @base) : @base;
             }
 
             int value = data.Query(@base);
-            return this.Parent ? this.Parent.Query(key, value) : value;
+            return this.Parent != null ? this.Parent.Query(key, value) : value;
         }
     }
 }

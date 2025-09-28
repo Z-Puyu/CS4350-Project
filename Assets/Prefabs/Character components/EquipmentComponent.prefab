@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5016020523102747829}
   - component: {fileID: 7879952351976035149}
+  - component: {fileID: 1869055113085185054}
   m_Layer: 0
   m_Name: EquipmentComponent
   m_TagString: Untagged
@@ -45,3 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Weaponry
   <Combatant>k__BackingField: {fileID: 0}
+--- !u!114 &1869055113085185054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414808331050453653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ccfd5b48ef4c02ad6420baaa7fa3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeReader
+  <Root>k__BackingField:
+    <V>k__BackingField: {fileID: 0}

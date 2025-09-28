@@ -11,12 +11,10 @@ namespace WeaponsSystem.WeaponComponent {
 
         public void OnEnable() {
             this.skillEvent.onSkillActivatable.AddListener(this.abilitySystem.Grant);
-            this.skillEvent.onSkillActivatable.AddListener(this.combatant.AddUsableSkill);
         }
 
         public void OnDisable() {
             this.skillEvent.onSkillActivatable.RemoveListener(this.abilitySystem.Grant);
-            this.skillEvent.onSkillActivatable.RemoveListener(this.combatant.AddUsableSkill);
         }
     }
 }

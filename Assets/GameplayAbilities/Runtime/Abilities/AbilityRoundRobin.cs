@@ -102,8 +102,7 @@ namespace GameplayAbilities.Runtime.Abilities {
 #if DEBUG
             Debug.Log($"Using {this.Focus.Info.Id}", this);
 #endif
-            GameplayEffectExecutionArgs args = this.AbilitySystem.CreateEffectExecutionArgs().Build();
-            this.AbilitySystem.Use(this.Focus, this.AbilitySystem, args);
+            this.AbilitySystem.Use(this.Focus);
         }
 
         public void UseCurrentAbility(Vector3 target) {
@@ -114,20 +113,11 @@ namespace GameplayAbilities.Runtime.Abilities {
 #if DEBUG
             Debug.Log($"Using {this.Focus.Info.Id}", this);
 #endif
-            GameplayEffectExecutionArgs args = this.AbilitySystem.CreateEffectExecutionArgs().Build();
-            this.AbilitySystem.Use(this.Focus, this.AbilitySystem, args);
+            this.AbilitySystem.Use(this.Focus, target);
         }
 
-        public void UseCurrentAbility(Transform target) {
-            if (this.Focus == null) {
-                return;
-            }
-
-#if DEBUG
-            Debug.Log($"Using {this.Focus.Info.Id}", this);
-#endif
-            GameplayEffectExecutionArgs args = this.AbilitySystem.CreateEffectExecutionArgs().Build();
-            this.AbilitySystem.Use(this.Focus, this.AbilitySystem, args);
+        public void Use(int index) {
+            this.AbilitySystem.Use(this.AbilityList[index % this.AbilityList.Count].ability);
         }
     }
 }

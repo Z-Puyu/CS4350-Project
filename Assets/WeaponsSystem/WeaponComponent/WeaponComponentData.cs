@@ -19,6 +19,6 @@ namespace WeaponsSystem.WeaponComponent {
         public List<ProjectileEffect> ProjectileEffects { get; private set; } = new List<ProjectileEffect>();
 
         private string AttackDataLabels(AttackData obj, int index) =>
-                obj is null || obj.IsEmpty ? $"Combo index {index}: no modifiers" : $"Combo index {index}";
+                obj is null ? $"Combo index {index}: no modifiers" : $"Combo index {index}";
     }
 }

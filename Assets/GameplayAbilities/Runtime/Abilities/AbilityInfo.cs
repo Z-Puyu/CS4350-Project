@@ -1,4 +1,4 @@
-﻿namespace GameplayAbilities.Runtime.Abilities {
+namespace GameplayAbilities.Runtime.Abilities {
     public readonly struct AbilityInfo {
         public string Id { get; }
         public int DurationPlusCooldown { get; }
