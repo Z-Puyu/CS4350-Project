@@ -1,7 +1,7 @@
 ﻿using System;
 using GameplayAbilities.Runtime.Abilities;
 using UnityEngine;
-using Ability = GameplayAbilities.Runtime.GameplayEffects.Ability;
+using Ability = GameplayAbilities.Runtime.Abilities.Ability;
 
 namespace GameplayAbilities.Runtime.Targeting {
     [DisallowMultipleComponent, RequireComponent(typeof(AbilitySystem))]

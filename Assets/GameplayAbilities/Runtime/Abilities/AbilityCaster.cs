@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using GameplayAbilities.Runtime.Abilities;
+﻿using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Targeting;
 using SaintsField.Playa;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet), typeof(AbilitySystem), typeof(AbilityTargeter))]
     public sealed class AbilityCaster : MonoBehaviour {
         private AttributeSet AttributeSet { get; set; }

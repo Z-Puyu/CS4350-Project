@@ -7,35 +7,34 @@ using GameplayAbilities.Runtime.Modifiers;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
-    internal class AttributeData {
+    internal class AttributeSetNode {
         private AttributeSet Root { get; }
-        private List<IAttributeClampRule> ModificationRules { get; } = new List<IAttributeClampRule>();
-        private double BaseValue { get; }
-        internal int Value { get; private set; }
+        private List<IAttributeClampRule> ClampRules { get; }
         
-        internal int MaxValue => Math.Min(int.MaxValue, (int)this.ExecuteModificationRules(int.MaxValue));
-        internal int MinValue => Math.Max(int.MinValue, (int)this.ExecuteModificationRules(int.MinValue));
-
         private SortedList<Modifier.Operation, Modifier> Modifiers { get; } =
             new SortedList<Modifier.Operation, Modifier>();
+        
+        internal IEnumerable<Modifier> CurrentModifiers => this.Modifiers.Values;
+        
+        private int @base;
+        internal int BaseValue { get => this.@base; set => this.@base = (int)this.Clamp(value); }
+        internal int Value { get; private set; }
+        
+        internal int MaxValue => Math.Min(int.MaxValue, (int)this.Clamp(int.MaxValue));
+        internal int MinValue => Math.Max(int.MinValue, (int)this.Clamp(int.MinValue));
 
-        private AttributeData(double value, AttributeSet root) {
+        private AttributeSetNode(int value, AttributeSet root, List<IAttributeClampRule> clampRules) {
             this.BaseValue = value;
             this.Root = root;
+            this.ClampRules = clampRules;
         }
 
-        internal static AttributeData From(AttributeType definition, double initValue, AttributeSet root) {
-            AttributeData data = new AttributeData(initValue, root);
-            foreach (IAttributeClampRule rule in definition.ModificationRules) {
-                data.ModificationRules.Add(rule);
-            }
-            
-            data.Value = data.Query(initValue);
-            return data;
+        internal static AttributeSetNode From(AttributeType definition, AttributeSet root) {
+            return new AttributeSetNode(0, root, definition.ModificationRules);
         }
 
-        private double ExecuteModificationRules(double value) {
-            foreach (IAttributeClampRule rule in this.ModificationRules) {
+        private double Clamp(double value) {
+            foreach (IAttributeClampRule rule in this.ClampRules) {
                 int min = rule.MinValueIn(this.Root);
                 int max = rule.MaxValueIn(this.Root);
                 value = Math.Clamp(value, min, max);
@@ -44,15 +43,15 @@ namespace GameplayAbilities.Runtime.Attributes {
             return value;
         }
         
-        internal int Query(double @base) {
-            @base = this.ExecuteModificationRules(@base);
-            return (int)this.Modifiers.Values.Aggregate(@base, modify);
+        internal int EvaluateWithBase(double baseValue) {
+            baseValue = this.Clamp(baseValue);
+            return (int)this.Modifiers.Values.Aggregate(baseValue, modify);
             
-            double modify(double value, Modifier m) => this.ExecuteModificationRules(m.Modify(value));
+            double modify(double value, Modifier m) => this.Clamp(m.Modify(value));
         }
         
         internal int RecomputeValue() {
-            return this.Value = this.Query(this.BaseValue);
+            return this.Value = this.EvaluateWithBase(this.BaseValue);
         }
 
         internal void AddModifier(Modifier modifier) {
@@ -74,10 +73,19 @@ namespace GameplayAbilities.Runtime.Attributes {
             double value = this.BaseValue;
             foreach (Modifier m in this.Modifiers.Values) {
                 double modified = m.Type == modifier.Type ? (m + modifier).Modify(value) : m.Modify(value);
-                value = this.ExecuteModificationRules(modified);
+                value = this.Clamp(modified);
             }
 
             return (int)value;
+        }
+
+        internal AttributeSetNode Clone() {
+            AttributeSetNode clone = new AttributeSetNode(this.BaseValue, this.Root, this.ClampRules);
+            foreach (Modifier modifier in this.Modifiers.Values) {
+                clone.AddModifier(modifier);
+            }
+            
+            return clone;
         }
     }
 }

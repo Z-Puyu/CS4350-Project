@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     public class AbilityEffectData : IDataReader<string, int> {
         private IAttributeReader InstigatorAttributes { get; }
         private IDictionary<string, int> CallerSuppliedDataValues { get; } = new Dictionary<string, int>();

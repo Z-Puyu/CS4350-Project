@@ -1,6 +1,6 @@
 ﻿using GameplayAbilities.Runtime.Attributes;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     public interface IAbility {
         public bool IsFeasible(IAttributeReader instigator, AttributeSet target);
         

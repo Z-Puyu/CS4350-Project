@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Targeting;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability")]
     public class Ability : ScriptableObject, IAbility {
         [field: SerializeField] internal bool IsObtainable { get; private set; } = true;
-        [field: SerializeField] private string Id { get; set; }
-        [field: SerializeField] private string Name { get; set; }
-        [field: SerializeField] private string Description { get; set; }
+        [field: SerializeField] public string Id { get; private set; }
+        [field: SerializeField] public string Name { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField, MinValue(0)] private double Cooldown { get; set; }
         [field: SerializeField] private List<AbilityCost> Costs { get; set; } = new List<AbilityCost>();
         [field: SerializeReference] public TargetingStrategy TargetingStrategy { get; set; }

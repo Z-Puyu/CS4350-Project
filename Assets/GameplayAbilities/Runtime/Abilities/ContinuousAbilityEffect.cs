@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
-using SaintsField;
+using GameplayAbilities.Runtime.GameplayEffects;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     public class ContinuousAbilityEffect : ContinuousEffect<IDataReader<string, int>, AttributeSet> {
         private class Instance : IRunnableEffect {
             private AttributeSet Target { get; }

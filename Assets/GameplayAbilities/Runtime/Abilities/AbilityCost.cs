@@ -5,7 +5,7 @@ using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Abilities {
     [Serializable]
     public class AbilityCost {
         private enum AffordabilityPolicy {
