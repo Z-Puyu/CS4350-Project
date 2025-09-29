@@ -36,7 +36,7 @@ namespace GameplayAbilities.Runtime.Projectiles {
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
         public override IRunnableEffect Apply(IDataReader<string, int> source, Projectile projectile) {
-            return new Instance(projectile, source.HasValue(this.DurabilityAttribute, out var durability) ? durability : 1);
+            return new Instance(projectile, source.HasValue(this.DurabilityAttribute, out int durability) ? durability : 1);
         }
 
         protected override void HandleHit(
