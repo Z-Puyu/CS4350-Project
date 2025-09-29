@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataStructuresForUnity.Runtime.GeneralUtils;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Projectiles {
     [RequireComponent(typeof(CapsuleCollider2D))]
-    public class Projectile2D : Projectile {
+    public class AbilityProjectile2D : AbilityProjectile {
         private void OnTriggerEnter2D(Collider2D other) {
             if (!this.IsValidTarget(other)) {
                 return;

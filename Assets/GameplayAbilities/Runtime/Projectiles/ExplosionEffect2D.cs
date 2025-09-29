@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GameplayAbilities.Runtime.GameplayEffects;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Projectiles {
     public sealed class ExplosionEffect2D : ProjectileEffect {
@@ -9,7 +6,7 @@ namespace GameplayAbilities.Runtime.Projectiles {
         [field: SerializeField] private LayerMask LayerMask { get; set; }
 
         protected override void HandleHit(
-            Vector3 position, GameObject obj, Projectile projectile, IDataReader<string, int> sender
+            Vector3 position, GameObject obj, AbilityProjectile projectile, IDataReader<string, int> sender
         ) {
             int radius = projectile.GetAttribute(this.ExplosionRadiusAttribute);
 #if DEBUG

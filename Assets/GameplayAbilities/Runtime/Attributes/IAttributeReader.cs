@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Modifiers;
+using GameplayEffects.Runtime;
 
 namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
     /// An interface for anything that can read attribute values from an owning game object.
     /// </summary>
-    public interface IAttributeReader : IEnumerable<Attribute> {
+    public interface IAttributeReader : IEnumerable<Attribute>, IDataReader<string, int> {
         internal abstract bool IsTopLevel { get; }
         
         /// <summary>

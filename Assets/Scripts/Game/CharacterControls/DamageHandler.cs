@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Common;
 using GameplayAbilities.Runtime.Abilities;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.HealthSystem;
 using SaintsField;
 using UnityEngine;

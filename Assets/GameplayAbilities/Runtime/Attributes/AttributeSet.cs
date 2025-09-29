@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.Trie;
 using GameplayAbilities.Runtime.Modifiers;
-using SaintsField;
+using GameplayEffects.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -210,6 +209,27 @@ namespace GameplayAbilities.Runtime.Attributes {
             Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
 #endif
             return @base;
+        }
+
+        public void Set(string key, int value) {
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
+                node.BaseValue = value;
+                this.PostAttributeUpdate(key, node);
+            } else {
+#if DEBUG
+                Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
+#endif
+            }
+        }
+
+        bool IDataReader<string, int>.HasValue(string key, out int value) {
+            value = this.GetCurrent(key);
+            return this.Attributes.ContainsKey(key);
+        }
+        
+        IDataReader<string, int> IDataReader<string, int>.With(string key, int value) {
+            this.Set(key, value);
+            return this;
         }
     }
 }

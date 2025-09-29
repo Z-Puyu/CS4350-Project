@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
+using GameplayEffects.Runtime;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayAbilities.Runtime.Modifiers {
     [Serializable]
     public sealed class ModifierEffect : IEffect<IDataReader<string, int>, AttributeSet> {
         private readonly struct Instance : IRunnableEffect {
@@ -38,8 +38,8 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         public double EffectDuration => 0;
 
-        public IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet target) {
-            return new Instance(target, this.Modifiers.Select(modifier => modifier.CreateModifier(target, source)));
+        public IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet projectile) {
+            return new Instance(projectile, this.Modifiers.Select(modifier => modifier.CreateModifier(projectile, source)));
         }
     }
 }

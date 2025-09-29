@@ -18,6 +18,6 @@ namespace WeaponsSystem {
         public PoolableObject ParticleEffectOnHit { get; private set; }
         
         [field: SerializeField] public ComponentSet PossibleComponents { get; set; }
-        [field: SerializeField] public List<AttackData> DefaultAttacks { get; private set; }
+        [field: SerializeField] public List<AttributeBasedAttack> DefaultAttacks { get; private set; }
     }
 }

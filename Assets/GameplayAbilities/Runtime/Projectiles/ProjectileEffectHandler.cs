@@ -1,7 +1,4 @@
 ﻿using System;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
-using SaintsField;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Projectiles {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayEffects.Runtime {
     public interface IDataReader<K, V> {
         public bool HasValue(K key, out V value);
         public IDataReader<K, V> With(K key, V value);

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Modifiers;
+using GameplayEffects.Runtime;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.Projectiles;
@@ -12,14 +13,14 @@ using Attribute = GameplayAbilities.Runtime.Attributes.Attribute;
 
 namespace WeaponsSystem {
     [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
-    public abstract class WeaponStats : MonoBehaviour, IAttributeReader {
+    public abstract class WeaponStats : MonoBehaviour, IDataReader<string, int> {
         private AttributeSet AttributeSet { get; set; }
         
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         private List<string> DamageAttributes { get; set; } = new List<string>();
         
-        protected Dictionary<int, List<AttackData>> AttackModifiers { get; } =
-            new Dictionary<int, List<AttackData>>();
+        protected Dictionary<int, List<AttributeBasedAttack>> AttackModifiers { get; } =
+            new Dictionary<int, List<AttributeBasedAttack>>();
 
         private Dictionary<int, List<Modifier>> ActiveAttackModifiers { get; } =
             new Dictionary<int, List<Modifier>>();
@@ -53,8 +54,8 @@ namespace WeaponsSystem {
         protected abstract void RevertProjectileMode(int index);
 
         public void ActivateAttackModifiers(int index) {
-            if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
-                list = new List<AttackData>();
+            if (!this.AttackModifiers.TryGetValue(index, out List<AttributeBasedAttack> list)) {
+                list = new List<AttributeBasedAttack>();
                 this.AttackModifiers.Add(index, list);
             }
             
@@ -70,7 +71,7 @@ namespace WeaponsSystem {
             } 
             
             this.ProjectileMode = list.Count == 0 ? ProjectileSpawner.Mode.None : list.Last().ProjectileMode;
-            foreach (AttackData data in list) {
+            foreach (AttributeBasedAttack data in list) {
                 this.ProjectileEffects.AddRange(data.ProjectileEffects);
             }
             
@@ -107,52 +108,38 @@ namespace WeaponsSystem {
             this.ProjectileEffects.Remove(effect);
         }
 
-        public void AddAttackModifier(int index, IEnumerable<AttackData> modifiers) {
-            if (!this.AttackModifiers.TryGetValue(index, out List<AttackData> list)) {
+        public void AddAttackModifier(int index, IEnumerable<AttributeBasedAttack> modifiers) {
+            if (!this.AttackModifiers.TryGetValue(index, out List<AttributeBasedAttack> list)) {
                 this.AttackModifiers.Add(index, modifiers.ToList());
             } else {
                 list.AddRange(modifiers);
             }
         }
 
-        public void RemoveAttackModifier(int index, ICollection<AttackData> removed) {
+        public void RemoveAttackModifier(int index, ICollection<AttributeBasedAttack> removed) {
             if (!this.AttackModifiers.ContainsKey(index)) {
                 return;
             }
-            
+
             this.AttackModifiers[index].RemoveAll(removed.Contains);
         }
 
-        public IEnumerator<Attribute> GetEnumerator() {
-            return this.AttributeSet.GetEnumerator();
+        public void AddModifier(Modifier modifier) {
+            this.AttributeSet.AddModifier(modifier);
+        }
+        
+        public void RemoveModifier(Modifier modifier) {
+            this.AttributeSet.RemoveModifier(modifier);
         }
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return this.GetEnumerator();
+        bool IDataReader<string, int>.HasValue(string key, out int value) {
+            value = this.AttributeSet.GetCurrent(key);
+            return this.AttributeSet.Has(value, key);
         }
         
-        public int GetCurrent(string key) {
-            return this.AttributeSet.GetCurrent(key);
-        }
-        
-        public int GetMax(string key) {
-            return this.AttributeSet.GetMax(key);
-        }
-        
-        public int GetMin(string key) {
-            return this.AttributeSet.GetMin(key);
-        }
-        
-        public Attribute GetAttribute(string key) {
-            return this.AttributeSet.GetAttribute(key);
-        }
-        
-        public bool Has(int threshold, string key) {
-            return this.AttributeSet.Has(threshold, key);
-        }
-
-        public int Query(string key, int @base) {
-            return this.AttributeSet.Query(key, @base);
+        IDataReader<string, int> IDataReader<string, int>.With(string key, int value) {
+            this.AttributeSet.Set(key, value);
+            return this;
         }
     }
 }

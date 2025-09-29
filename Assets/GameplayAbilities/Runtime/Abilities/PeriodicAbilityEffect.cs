@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayEffects.Runtime;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
@@ -65,8 +65,8 @@ namespace GameplayAbilities.Runtime.Abilities {
             }
         }
         
-        public override IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet target) {
-            return new Instance(this.Effect.Apply(source, target), target, this.Duration, this.Period);
+        public override IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet projectile) {
+            return new Instance(this.Effect.Apply(source, projectile), projectile, this.Duration, this.Period);
         }
     }
 }

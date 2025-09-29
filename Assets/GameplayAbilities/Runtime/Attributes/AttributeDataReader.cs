@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayEffects.Runtime;
 
-namespace GameplayAbilities.Runtime.Abilities {
-    public class AbilityEffectData : IDataReader<string, int> {
+namespace GameplayAbilities.Runtime.Attributes {
+    public class AttributeDataReader : IDataReader<string, int> {
         private IAttributeReader InstigatorAttributes { get; }
         private IDictionary<string, int> CallerSuppliedDataValues { get; } = new Dictionary<string, int>();
         
-        public AbilityEffectData(IAttributeReader instigatorAttributes) {
+        public AttributeDataReader(IAttributeReader instigatorAttributes) {
             this.InstigatorAttributes = instigatorAttributes;
         }
         

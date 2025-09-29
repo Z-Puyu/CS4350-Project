@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Modifiers;
+using GameplayEffects.Runtime;
 using SaintsField;
-using SaintsField.Playa;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
@@ -57,6 +57,21 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public int Query(string key, int @base) {
             return this.Root.Query(key, @base);
+        }
+
+        bool IDataReader<string, int>.HasValue(string key, out int value) {
+            value = this.Root.GetCurrent(key);
+            return this.Root.Has(int.MinValue, key);
+        }
+        
+        IDataReader<string, int> IDataReader<string, int>.With(string key, int value) {
+            if (this.Root.Has(int.MinValue, key)) {
+                
+            }
+#if DEBUG
+            Debug.LogError($"Cannot modify attributes on {this.name}", this);
+#endif
+            return this;
         }
     }
 }

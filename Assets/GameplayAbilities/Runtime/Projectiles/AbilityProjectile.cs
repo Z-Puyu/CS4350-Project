@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataStructuresForUnity.Runtime.GeneralUtils;
 using DataStructuresForUnity.Runtime.ObjectPooling;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Projectiles {
     [DisallowMultipleComponent]
-    public abstract class Projectile : PoolableObject {
+    public abstract class AbilityProjectile : PoolableObject {
         [field: SerializeField] private string Id { get; set; }
         private IAbility Ability { get; set; }
         private IAttributeReader Sender { get; set; }
@@ -27,6 +25,52 @@ namespace GameplayAbilities.Runtime.Projectiles {
         protected void Awake() {
             this.Transform = this.transform;
         }
+
+        #region Builder Methods
+
+        public AbilityProjectile Targeting(IEnumerable<string> tags) {
+            foreach (string t in tags) {
+                if (this.TargetTags.Contains(t)) {
+                    continue;
+                }
+                
+                this.TargetTags.Add(t);
+            }
+
+            return this;
+        }
+
+        public AbilityProjectile Targeting(params string[] tags) {
+            foreach (string t in tags) {
+                if (this.TargetTags.Contains(t)) {
+                    continue;
+                }
+                
+                this.TargetTags.Add(t);
+            }
+
+            return this;
+        }
+
+        public AbilityProjectile WithEffects(IEnumerable<ProjectileEffect> effects) {
+            foreach (ProjectileEffect effect in effects) {
+                effect.Apply()
+            }
+
+            return this;
+        }
+
+        public AbilityProjectile WithDamage(Damage damage) {
+            this.Info.Damage = damage;
+            return this;
+        }
+
+        public AbilityProjectile WhenHit(Action<Vector3, GameObject> action) {
+            this.OnHit += action;
+            return this;
+        }
+
+        #endregion
 
         public override void Initialise(Action<PoolableObject> onReturn) {
             base.Initialise(onReturn);

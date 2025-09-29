@@ -16,7 +16,7 @@ namespace WeaponsSystem.WeaponComponent {
     public sealed class ComponentManager : MonoBehaviour {
         [field: SerializeField, MinValue(1)] private int Capacity { get; set; } = 3;
         [field: SerializeField] private WeaponStats Stats { get; set; }
-        private List<AttackData> DefaultAttacks { get; } = new List<AttackData>();
+        private List<AttributeBasedAttack> DefaultAttacks { get; } = new List<AttributeBasedAttack>();
 
         [field: SerializeField]
         private List<WeaponComponentData> TestComponents { get; set; } = new List<WeaponComponentData>();
@@ -25,7 +25,7 @@ namespace WeaponsSystem.WeaponComponent {
         private HashSet<WeaponComponentData> PossibleComponents { get; } = new HashSet<WeaponComponentData>();
         private List<Modifier> WeaponModifiers { get; } = new List<Modifier>();
         private List<ProjectileEffect> WeaponProjectileEffects { get; } = new List<ProjectileEffect>();
-        private Dictionary<int, List<AttackData>> ComboModifiers { get; } = new Dictionary<int, List<AttackData>>();
+        private Dictionary<int, List<AttributeBasedAttack>> ComboModifiers { get; } = new Dictionary<int, List<AttributeBasedAttack>>();
         private event UnityAction<ISet<WeaponComponentData>> OnComponentSetChanged;
 
         private void Awake() {
@@ -132,7 +132,7 @@ namespace WeaponsSystem.WeaponComponent {
             }
 
             this.WeaponModifiers.Clear();
-            foreach (KeyValuePair<int, List<AttackData>> modifier in this.ComboModifiers) {
+            foreach (KeyValuePair<int, List<AttributeBasedAttack>> modifier in this.ComboModifiers) {
                 this.Stats.RemoveAttackModifier(modifier.Key, modifier.Value);    
             }
 
@@ -142,7 +142,7 @@ namespace WeaponsSystem.WeaponComponent {
 
         private void ApplyDefaultAttacks() {
             for (int i = 0; i < this.DefaultAttacks.Count; i += 1) {
-                this.Stats.AddAttackModifier(i, new List<AttackData> { this.DefaultAttacks[i] });
+                this.Stats.AddAttackModifier(i, new List<AttributeBasedAttack> { this.DefaultAttacks[i] });
             }
         }
 
@@ -162,15 +162,15 @@ namespace WeaponsSystem.WeaponComponent {
                 }
 
                 for (int i = 0; i < component.AttackData.Count; i += 1) {
-                    AttackData data = component.AttackData[i];
+                    AttributeBasedAttack data = component.AttackData[i];
                     if (data is null) {
                         continue;
                     }
                     
-                    if (this.ComboModifiers.TryGetValue(i, out List<AttackData> list)) {
+                    if (this.ComboModifiers.TryGetValue(i, out List<AttributeBasedAttack> list)) {
                         list.Add(data);
                     } else {
-                        this.ComboModifiers.Add(i, new List<AttackData> { data });
+                        this.ComboModifiers.Add(i, new List<AttributeBasedAttack> { data });
                     }
                 }
             }
@@ -183,7 +183,7 @@ namespace WeaponsSystem.WeaponComponent {
                 this.Stats.AddWeaponModifier(modifier);
             }
 
-            foreach (KeyValuePair<int, List<AttackData>> modifier in this.ComboModifiers) {
+            foreach (KeyValuePair<int, List<AttributeBasedAttack>> modifier in this.ComboModifiers) {
                 this.Stats.AddAttackModifier(modifier.Key, modifier.Value);
             }
         }

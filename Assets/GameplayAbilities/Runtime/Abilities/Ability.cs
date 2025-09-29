@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.Targeting;
+using GameplayEffects.Runtime;
 using SaintsField;
 using UnityEngine;
 
@@ -29,11 +29,16 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public void Execute(IAttributeReader instigator, AttributeSet target) {
-            foreach (IEffect<AbilityEffectData, AttributeSet> effect in this.Effects) {
-                effect.Apply(new AbilityEffectData(instigator), target).Start();
+            foreach (IEffect<AttributeDataReader, AttributeSet> effect in this.Effects) {
+                effect.Apply(new AttributeDataReader(instigator), target).Start();
             }
         }
 
+        /// <summary>
+        /// Starts targeting for the ability.
+        /// </summary>
+        /// <param name="caster">The caster.</param>
+        /// <param name="targeter">The targeter component.</param>
         public void Activate(AbilityCaster caster, AbilityTargeter targeter) {
             this.TargetingStrategy.Start(caster, this, targeter);
         }

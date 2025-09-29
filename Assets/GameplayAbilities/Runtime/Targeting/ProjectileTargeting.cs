@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace GameplayAbilities.Runtime.Targeting {
+﻿namespace GameplayAbilities.Runtime.Targeting {
     public class ProjectileTargeting : TargetingStrategy {
         protected override void BeginTargeting() { }
 

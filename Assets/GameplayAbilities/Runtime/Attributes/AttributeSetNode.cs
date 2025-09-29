@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using GameplayAbilities.Runtime.ModificationRules;
 using GameplayAbilities.Runtime.Modifiers;
-using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeSetNode {

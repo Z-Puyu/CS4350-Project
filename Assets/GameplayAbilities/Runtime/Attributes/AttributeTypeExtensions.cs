@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using log4net.Filter;
 using SaintsField;
-using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
     public static class AttributeTypeExtensions {

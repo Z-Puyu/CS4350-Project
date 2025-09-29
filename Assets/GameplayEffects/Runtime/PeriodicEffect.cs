@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
-using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayEffects.Runtime {
     [Serializable]
     public abstract class PeriodicEffect<S, T> : IEffect<S, T> {
         [field: SerializeField] protected double Duration { get; private set; }
@@ -19,6 +14,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             return this.Duration >= 0 && elapsedTime >= this.Duration;
         }
         
-        public abstract IRunnableEffect Apply(S source, T target);
+        public abstract IRunnableEffect Apply(S source, T projectile);
     }
 }

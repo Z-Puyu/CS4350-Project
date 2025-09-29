@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.Modifiers;
 using SaintsField;
 using UnityEngine;
 
-namespace GameplayAbilities.Runtime.GameplayEffects {
+namespace GameplayEffects.Runtime {
     [Serializable]
     public abstract class ContinuousEffect<S, T> : IEffect<S, T> {
         [field: SerializeField, MinValue(0)] protected float Duration { get; private set; }
@@ -14,6 +10,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
 
         public double EffectDuration => this.Duration;
         
-        public abstract IRunnableEffect Apply(S source, T target);
+        public abstract IRunnableEffect Apply(S source, T projectile);
     }
 }

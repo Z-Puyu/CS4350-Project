@@ -18,7 +18,7 @@ namespace WeaponsSystem {
         }
 
         protected override void UpdateProjectileMode(int index) {
-            List<AttackData> modifiers = this.AttackModifiers[index];
+            List<AttributeBasedAttack> modifiers = this.AttackModifiers[index];
             this.ProjectileMode = modifiers.Count == 0 || modifiers.Last().ProjectileMode == ProjectileSpawner.Mode.None
                     ? ProjectileSpawner.Mode.Single
                     : modifiers.Last().ProjectileMode;

@@ -1,11 +1,10 @@
 using System;
 using System.Text;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayEffects.Runtime;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Modifiers {
     [Serializable]
@@ -85,6 +84,19 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 ) * this.Coefficient,
                 MagnitudeType.CallerSupplied => new Modifier(
                     target.GetCurrent(this.Label), this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                var _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+        
+        public Modifier CreateModifier(IDataReader<string, int> target) {
+            return this.Form switch {
+                MagnitudeType.Constant => new Modifier(this.DefaultValue, this.Method, this.TargetAttribute),
+                MagnitudeType.AttributeValue => new Modifier(
+                    target.HasValue(this.SourceAttribute, out int value) ? value : 0, this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                MagnitudeType.CallerSupplied => new Modifier(
+                    target.HasValue(this.Label, out int value) ? value : 0, this.Method, this.TargetAttribute
                 ) * this.Coefficient,
                 var _ => throw new ArgumentOutOfRangeException()
             };

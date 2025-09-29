@@ -1,5 +1,4 @@
-﻿using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+﻿using GameplayEffects.Runtime;
 
 namespace GameplayAbilities.Runtime.Projectiles {
     public interface IProjectileEffectHandler {

@@ -13,12 +13,12 @@ namespace WeaponsSystem.WeaponComponent {
         public List<ModifierData> WeaponModifiers { get; private set; } = new List<ModifierData>();
 
         [field: SerializeField, RichLabel(nameof(this.AttackDataLabels), true)] 
-        public List<AttackData> AttackData { get; set; } = new List<AttackData>();
+        public List<AttributeBasedAttack> AttackData { get; set; } = new List<AttributeBasedAttack>();
 
         [field: SerializeField]
         public List<ProjectileEffect> ProjectileEffects { get; private set; } = new List<ProjectileEffect>();
 
-        private string AttackDataLabels(AttackData obj, int index) =>
+        private string AttackDataLabels(AttributeBasedAttack obj, int index) =>
                 obj is null ? $"Combo index {index}: no modifiers" : $"Combo index {index}";
     }
 }

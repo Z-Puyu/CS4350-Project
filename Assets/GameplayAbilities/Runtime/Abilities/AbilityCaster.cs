@@ -41,8 +41,29 @@ namespace GameplayAbilities.Runtime.Abilities {
                 target = this.AttributeSet;
             }
             
-            ability.Activate(this, this.AbilityTargeter);
             ability.Execute(this.AttributeSet, target);
+        }
+
+        public void Ready(int index) {
+            if (index < 0 || index >= this.EquippedAbilities.Count) {
+#if DEBUG
+                Debug.LogError($"Index {index} out of bounds!", this);
+#endif
+                return;
+            }
+
+            if (!this.EquippedAbilities[index]) {
+#if DEBUG
+                Debug.LogError($"No ability at index {index}!", this);
+#endif
+                return;
+            }
+            
+            this.Ready(this.EquippedAbilities[index]);
+        }
+
+        public void Ready(Ability ability) {
+            ability.Activate(this, this.AbilityTargeter);
         }
     }
 }

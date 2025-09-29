@@ -1,4 +1,3 @@
-using System;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;

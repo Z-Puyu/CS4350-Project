@@ -32,10 +32,10 @@ namespace DataStructuresForUnity.Runtime.ObjectPooling {
                 instance = Object.Instantiate(this.Prefab);
             }
             
-            instance.Initialise(this.Push);
             Transform transform = instance.transform;
             transform.position = position;
             transform.rotation = rotation;
+            instance.Initialise(this.Push);
             instance.gameObject.SetActive(true);
             return instance;
         }
@@ -45,8 +45,8 @@ namespace DataStructuresForUnity.Runtime.ObjectPooling {
                 instance = Object.Instantiate(this.Prefab);
             }
             
-            instance.Initialise(this.Push);
             instance.transform.SetParent(parent, false);
+            instance.Initialise(this.Push);
             instance.gameObject.SetActive(true);
             return instance;
         }
@@ -56,11 +56,11 @@ namespace DataStructuresForUnity.Runtime.ObjectPooling {
                 instance = Object.Instantiate(this.Prefab);
             }
             
-            instance.Initialise(this.Push);
             Transform transform = instance.transform;
             transform.position = position;
             transform.rotation = rotation;
             instance.transform.SetParent(parent, true);
+            instance.Initialise(this.Push);
             instance.gameObject.SetActive(true);
             return instance;
         }

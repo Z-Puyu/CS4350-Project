@@ -22,7 +22,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
-        [field: SerializeField, Required] private AbilityRoundRobin AbilityRoundRobin { get; set; }
+        [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         
         public void OnInteract(InputAction.CallbackContext context) {
@@ -73,13 +73,13 @@ namespace Game.Player {
 
         public void OnUseWeaponSkill(InputAction.CallbackContext context) {
             if (context.performed) {
-                this.AbilityRoundRobin.Use(0);
+                this.AbilityCaster.Ready(0);
             } 
         }
 
         public void OnUseCharacterSkill(InputAction.CallbackContext context) {
             if (context.performed) {
-                this.AbilityRoundRobin.Use(1);
+                this.AbilityCaster.Ready(1);
             }
         }
     }

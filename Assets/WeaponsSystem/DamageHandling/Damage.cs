@@ -1,47 +1,24 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayEffects.Runtime;
 using UnityEngine;
 
 namespace WeaponsSystem.DamageHandling {
+    [Serializable]
     public sealed class Damage : IAbility {
-        public (GameObject root, Combatant combatant) Instigator { get; set; }
-        public IReadOnlyDictionary<string, int> Data { get; }
-        
-        private IEffect<IDataReader<string, int>, AttributeSet> effect;
+        [field: SerializeReference]
+        private List<IEffect<IDataReader<string, int>, AttributeSet>> Effects { get; set; } =
+            new List<IEffect<IDataReader<string, int>, AttributeSet>>();
 
-        public Damage(GameObject instigator, Combatant combatant) {
-            this.Instigator = (instigator, combatant);
-        }
-        
-        /// <summary>
-        /// Creates a new Damage object.
-        /// </summary>
-        /// <param name="instigator">The source of the damage. Should be the root game object.</param>
-        /// <param name="combatant">The combatant component.</param>
-        /// <param name="data">The damage data. The keys are IDs of damage attributes
-        /// and the values are the magnitudes.</param>
-        public Damage(GameObject instigator, Combatant combatant, IReadOnlyDictionary<string, int> data) {
-            this.Instigator = (instigator, combatant);
-            this.Data = data;
-        }
-
-        /// <summary>
-        /// Creates a new Damage object.
-        /// </summary>
-        /// <param name="instigator">The source of the damage. Should be the root game object.</param>
-        /// <param name="combatant">The combatant component.</param>
-        /// <param name="data">The damage data. The keys are IDs of damage attributes
-        /// and the values are the magnitudes.</param>
-        public Damage(GameObject instigator, Combatant combatant, IDictionary<string, int> data) {
-            this.Instigator = (instigator, combatant);
-            this.Data = new ReadOnlyDictionary<string, int>(data);
+        public bool IsFeasible(IAttributeReader instigator, AttributeSet target) {
+            return true;
         }
 
         public void Execute(IAttributeReader instigator, AttributeSet target) {
-            this.effect.Apply(new AbilityEffectData(instigator), target);
+            this.Effects.ForEach(effect => effect.Apply(instigator, target).Start());
         }
     }
 }

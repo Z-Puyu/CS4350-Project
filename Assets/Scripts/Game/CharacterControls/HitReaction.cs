@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Abilities;
-using GameplayAbilities.Runtime.GameplayEffects;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.DamageHandling;

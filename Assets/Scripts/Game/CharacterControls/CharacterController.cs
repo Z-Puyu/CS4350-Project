@@ -1,7 +1,6 @@
 using Common;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.HealthSystem;
 using SaintsField;
 using SaintsField.Playa;
@@ -13,7 +12,6 @@ namespace Game.CharacterControls {
     public abstract class CharacterController : MonoBehaviour {
         [field: SerializeField, Required] protected AbilitySystem AbilitySystem { get; private set; }
         [field: SerializeField, Required] protected AttributeSet AttributeSet { get; private set; }
-        [field: SerializeField, Required] protected GameplayEffectCoordinator GameplayEffectCoordinator { get; private set; }
         [field: SerializeField, Required] protected Health Health { get; private set; }
         [field: SerializeField, Required] protected DamageHandler DamageHandler { get; private set; }
 

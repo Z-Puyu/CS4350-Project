@@ -1,5 +1,4 @@
 ﻿using GameplayAbilities.Runtime.Abilities;
-using GameplayAbilities.Runtime.GameplayEffects;
 
 namespace GameplayAbilities.Runtime.Targeting {
     public abstract class TargetingStrategy {
