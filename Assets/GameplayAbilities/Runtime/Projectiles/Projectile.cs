@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.ObjectPooling;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using UnityEngine;
@@ -22,20 +23,20 @@ namespace GameplayAbilities.Runtime.Projectiles {
         
         public event Action<Vector3, GameObject> OnHit;
         
-        public override string PoolableId => this.Id;
-        
         protected void Awake() {
             this.Transform = this.transform;
         }
-        
-        public void Activate() {
+
+        public override void Initialise(Action<PoolableObject> onReturn) {
+            base.Initialise(onReturn);
             this.IsAlive = true;
             this.LaunchPoint = this.Transform.position;
         }
         
-        public void Deactivate() {
+        public override void Return() {
             this.OnHit = null;
-            this.Return();
+            this.StopAllCoroutines();
+            base.Return();
         }
         
         public int GetAttribute(string key) {

@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using DataStructuresForUnity.Runtime.ObjectPooling;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace DataStructuresForUnity.Runtime.GeneralUtils {
-    [Serializable]
+    [Serializable, Obsolete]
     public class ObjectPool<T> : IPool<T> where T : PoolableObject {
         [field: SerializeField] public T Prefab { get; private set; }
         private Queue<T> pool = new Queue<T>();
@@ -41,7 +42,7 @@ namespace DataStructuresForUnity.Runtime.GeneralUtils {
             Transform transform = obj.transform;
             transform.position = position;
             transform.rotation = rotation;
-            obj.OnReturned += () => this.ReturnInstance(obj);
+            // obj.OnReturned += () => this.ReturnInstance(obj);
             return obj;
         }
 

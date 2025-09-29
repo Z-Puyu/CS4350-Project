@@ -20,7 +20,7 @@ namespace GameplayAbilities.Runtime.Projectiles {
         protected override void OnUpdate() {
             float distance = Vector3.Distance(this.transform.position, this.LaunchPoint);
             if (distance >= this.Range) {
-                this.Deactivate();
+                this.Return();
                 return;
             }
             

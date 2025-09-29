@@ -7,10 +7,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
     [Serializable]
-    public class EffectCommitmentCost : IComparable<EffectCommitmentCost>, IEquatable<EffectCommitmentCost> {
-        private Lazy<string> CachedSortKey { get; }
-        internal string SortKey => this.CachedSortKey.Value;
-        
+    public class AbilityCost {
         private enum AffordabilityPolicy {
             [RichLabel("Have Strictly More")] HaveStrictlyMore,
             [RichLabel("Have Enough")] HaveEnough,
@@ -20,9 +17,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             [RichLabel("Not at Maximum")] HaveRoomForMore 
         }
         
-        [field: SerializeField, ValidateInput(nameof(this.IsValidAttribute))]
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         [field: LayoutStart("Numerical", ELayout.Horizontal)]
-        private AttributeType Attribute { get; set; }
+        private string Attribute { get; set; }
         
         [field: SerializeField, MinValue(0)] 
         private int Value { get; set; }
@@ -33,21 +30,12 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         [field: SerializeField, RichLabel("Affordable If")]
         [field: Dropdown(nameof(this.GetAffordabilityOptions))]
         private AffordabilityPolicy Affordability { get; set; }
-
-        private EffectCommitmentCost() {
-            this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
-        }
-
-        private string GenerateSortKey() {
-            int value = this.WillAddInsteadOfUse ? this.Value : -this.Value;
-            return $"{this.GetType().FullName}_Attribute:{this.Attribute.Id}" + 
-                   $"_Value:{value}_Affordability:{this.Affordability}";
-        }
+        
+        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
 
         internal bool IsAffordable(IAttributeReader source) {
-            string attribute = this.Attribute.Id;
             if (this.WillAddInsteadOfUse) {
-                int roomUntilLimit = source.GetMax(attribute) - source.GetCurrent(attribute);
+                int roomUntilLimit = source.GetMax(this.Attribute) - source.GetCurrent(this.Attribute);
                 return roomUntilLimit > 0 && this.Affordability switch {
                     AffordabilityPolicy.WillNotHitLimit => roomUntilLimit > this.Value,
                     AffordabilityPolicy.WillNotOverflow => roomUntilLimit >= this.Value,
@@ -56,7 +44,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                 };
             }
 
-            int distFromMin = source.GetCurrent(attribute) - source.GetMin(attribute);
+            int distFromMin = source.GetCurrent(this.Attribute) - source.GetMin(this.Attribute);
             return distFromMin > 0 && this.Affordability switch {
                 AffordabilityPolicy.HaveStrictlyMore => distFromMin > this.Value,
                 AffordabilityPolicy.HaveEnough => distFromMin >= this.Value,
@@ -71,7 +59,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         /// <param name="consumer">The actor that will consume the cost to commit an effect.</param>
         internal void Commit(AttributeSet consumer) {
             int value = this.WillAddInsteadOfUse ? this.Value : -this.Value;
-            consumer.AddModifier(new Modifier(value, Modifier.Operation.Offset, this.Attribute.Id));
+            consumer.AddModifier(new Modifier(value, Modifier.Operation.Offset, this.Attribute));
         }
 
         private DropdownList<AffordabilityPolicy> GetAffordabilityOptions() {
@@ -100,28 +88,6 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
                         AffordabilityPolicy.HaveStrictlyMore,
                 var _ => this.Affordability
             };
-        }
-
-        private string IsValidAttribute() {
-            return this.Attribute && !this.Attribute.IsCategory
-                    ? null
-                    : "Attribute type must be a leaf type without subtypes!";
-        }
-
-        public int CompareTo(EffectCommitmentCost other) {
-            if (other is null) {
-                return 1;
-            }
-            
-            return object.ReferenceEquals(this, other) ? 0 : string.CompareOrdinal(this.ToString(), other.ToString());
-        }
-
-        public bool Equals(EffectCommitmentCost other) {
-            return this.CompareTo(other) == 0;
-        }
-
-        public sealed override int GetHashCode() {
-            return this.SortKey.GetHashCode();
         }
     }
 }

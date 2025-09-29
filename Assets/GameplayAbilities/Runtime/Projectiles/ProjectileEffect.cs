@@ -1,5 +1,6 @@
 ﻿using System;
 using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.ObjectPooling;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.GameplayEffects;
 using UnityEngine;
@@ -8,25 +9,25 @@ namespace GameplayAbilities.Runtime.Projectiles {
     [Serializable]
     public abstract class ProjectileEffect : IEffect<IDataReader<string, int>, Projectile> {
         private readonly struct Instance : IRunnableEffect {
-            private Projectile Target { get; }
+            private Projectile Projectile { get; }
             private Action<Vector3, GameObject, Projectile, IDataReader<string, int>> OnHit { get; }
             private IDataReader<string, int> Sender { get; }
 
             public Instance(
-                Projectile target, Action<Vector3, GameObject, Projectile, IDataReader<string, int>> onHit,
+                Projectile projectile, Action<Vector3, GameObject, Projectile, IDataReader<string, int>> onHit,
                 IDataReader<string, int> sender
             ) {
-                this.Target = target;
+                this.Projectile = projectile;
                 this.OnHit = onHit;
                 this.Sender = sender;
             }
 
             public void Start() {
-                this.Target.OnHit += this.HandleHit;
+                this.Projectile.OnHit += this.HandleHit;
             }
 
             public void Stop() {
-                this.Target.OnHit -= this.HandleHit;
+                this.Projectile.OnHit -= this.HandleHit;
             }
 
             public void Cancel() {
@@ -34,7 +35,7 @@ namespace GameplayAbilities.Runtime.Projectiles {
             }
 
             private void HandleHit(Vector3 position, GameObject target) {
-                this.OnHit(position, target, this.Target, this.Sender);
+                this.OnHit(position, target, this.Projectile, this.Sender);
             }
         }
 
@@ -49,11 +50,9 @@ namespace GameplayAbilities.Runtime.Projectiles {
 
         public void Trigger(Vector3 position, GameObject obj, Projectile projectile, IDataReader<string, int> sender) {
             if (!obj) {
-                ObjectSpawner.Pull(this.SpawnOnHit.PoolableId, this.SpawnOnHit, position, Quaternion.identity);
+                ObjectPools<PoolableObject>.Get(this.SpawnOnHit, position, projectile.transform);
             } else {
-                ObjectSpawner.Pull(
-                    this.SpawnOnHit.PoolableId, this.SpawnOnHit, position, Quaternion.identity, obj.transform
-                );
+                ObjectPools<PoolableObject>.Get(this.SpawnOnHit, position, obj.transform);
             }
 
             this.HandleHit(position, obj, projectile, sender);

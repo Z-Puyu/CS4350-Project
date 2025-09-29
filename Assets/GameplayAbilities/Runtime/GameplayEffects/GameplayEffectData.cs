@@ -33,7 +33,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         [field: SerializeField, PropRange(0, 100), ShowIf(nameof(this.CanMiss))] 
         public int BaseChance { get; private set; } = 100;
         
-        [field: SerializeField] public List<EffectCommitmentCost> Costs { get; private set; } = new List<EffectCommitmentCost>();
+        [field: SerializeField] public List<AbilityCost> Costs { get; private set; } = new List<AbilityCost>();
 
         public int ActualDuration => this.ExecutionTime switch {
             Periodicity.Instant => 0,
@@ -108,9 +108,9 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
             
             sb.Append($"-CanMiss:{this.CanMiss}");
             sb.Append($"-BaseChance: {this.BaseChance}%");
-            List<EffectCommitmentCost> costs = this.Costs.ToList();
+            List<AbilityCost> costs = this.Costs.ToList();
             costs.Sort();
-            foreach (EffectCommitmentCost cost in costs) {
+            foreach (AbilityCost cost in costs) {
                 sb.Append($"-Cost:{cost.SortKey}");
             }
 

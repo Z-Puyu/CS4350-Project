@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameplayAbilities.Runtime.Abilities;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.GameplayEffects {
-    [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet))]
+    [DisallowMultipleComponent, RequireComponent(typeof(AttributeSet)), Obsolete]
     public class GameplayEffectCoordinator : MonoBehaviour {
         private AttributeSet AttributeSet { get; set; }
         

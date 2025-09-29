@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.ObjectPooling;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;

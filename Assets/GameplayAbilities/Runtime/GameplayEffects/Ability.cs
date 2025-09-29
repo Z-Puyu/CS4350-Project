@@ -13,6 +13,7 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         [field: SerializeField] private string Name { get; set; }
         [field: SerializeField] private string Description { get; set; }
         [field: SerializeField, MinValue(0)] private double Cooldown { get; set; }
+        [field: SerializeField] private List<AbilityCost> Costs { get; set; } = new List<AbilityCost>();
         [field: SerializeReference] public TargetingStrategy TargetingStrategy { get; set; }
 
         [field: SerializeReference]
@@ -21,7 +22,11 @@ namespace GameplayAbilities.Runtime.GameplayEffects {
         
         public double Duration => this.Effects.Count > 0 ? this.Effects.Max(effect => effect.EffectDuration) : 0;
         public double MinTimeUntilNextUse => this.Cooldown + this.Duration;
-        
+
+        public bool IsFeasible(IAttributeReader instigator, AttributeSet target) {
+            return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
+        }
+
         public void Execute(IAttributeReader instigator, AttributeSet target) {
             foreach (IEffect<AbilityEffectData, AttributeSet> effect in this.Effects) {
                 effect.Apply(new AbilityEffectData(instigator), target).Start();
