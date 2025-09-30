@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &141129118 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8102893227414733448, guid: 6dae6e6d874ae124abfbd36ecdaddc23, type: 3}
-  m_PrefabInstance: {fileID: 559986427}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1366b16b5d804c25bd8f559ed50a6d73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy
 --- !u!1 &169930784
 GameObject:
   m_ObjectHideFlags: 0
@@ -75351,6 +75340,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
+--- !u!114 &1366367258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8102893227414733448, guid: 6dae6e6d874ae124abfbd36ecdaddc23, type: 3}
+  m_PrefabInstance: {fileID: 559986427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1366b16b5d804c25bd8f559ed50a6d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy
 --- !u!1001 &1399528262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75623,8 +75623,8 @@ MonoBehaviour:
         _keys: []
         _values: 
         _saintsKeys:
-        - value: {fileID: 141129118}
         - value: {fileID: 1781764270}
+        - value: {fileID: 1366367258}
         _saintsValues:
         - value: 5
         - value: 10
