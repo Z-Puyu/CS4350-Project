@@ -10,6 +10,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons.Runtime;
 using WeaponsSystem;
 using WeaponsSystem.DamageHandling;
 

@@ -2,11 +2,11 @@
 using UnityEngine;
 
 namespace DataStructuresForUnity.Runtime.ObjectPooling {
-    public abstract class PoolableObject : MonoBehaviour, IPoolable<PoolableObject> {
-        public event Action<PoolableObject> OnReturn;
+    public abstract class PoolableObject<T> : MonoBehaviour, IPoolable<T> where T : PoolableObject<T> {
+        public event Action<T> OnReturn;
         private bool IsPooled { get; set; }
         
-        public virtual void Initialise(Action<PoolableObject> onReturn) {
+        public virtual void Initialise(Action<T> onReturn) {
             if (this.IsPooled) {
 #if DEBUG
                 Debug.LogError("Object is already pooled", this.gameObject);
@@ -18,7 +18,7 @@ namespace DataStructuresForUnity.Runtime.ObjectPooling {
         }
         
         public virtual void Return() {
-            this.OnReturn?.Invoke(this);
+            this.OnReturn?.Invoke((T)this);
             this.OnReturn = null;
             this.IsPooled = false;
         }

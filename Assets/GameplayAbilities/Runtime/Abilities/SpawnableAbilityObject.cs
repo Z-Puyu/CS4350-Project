@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using DataStructuresForUnity.Runtime.GeneralUtils;
 using DataStructuresForUnity.Runtime.ObjectPooling;
+using DataStructuresForUnity.Runtime.Utilities;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     [RequireComponent(typeof(BoundingRect))]
-    public class SpawnableAbilityObject : PoolableObject, ISpawnable<AbilityData> {
-        private List<IActivatable> Objects { get; } = new List<IActivatable>();
+    public class SpawnableAbilityObject : PoolableObject {
+        /*private List<IActivatable> Objects { get; } = new List<IActivatable>();
         private BoundingRect BoundingRect { get; set; }
         [field: SerializeField] private string Id { get; set; }
         [field: SerializeField] private BoundingRect.Alignment Alignment { get; set; }
         
         private AbilityData Data { get; set; }
-        public override string PoolableId => this.Id;
+        public string PoolableId => this.Id;
         private bool IsActive => this.Objects.TrueForAll(obj => obj.IsActive);
         
         protected virtual void Awake() {
@@ -61,6 +61,6 @@ namespace GameplayAbilities.Runtime.Abilities {
             if (this.IsActive) {
                 this.OnActive(this.Data);
             }
-        }
+        }*/
     }
 }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.Trie;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Modifiers;
 using GameplayEffects.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
@@ -16,8 +18,8 @@ namespace GameplayAbilities.Runtime.Attributes {
         private IAttributeReader Parent { get; set; }
         
         [field: SerializeField] private AttributeTable DefaultAttributes { get; set; }
-        [field: SerializeField] private bool IsTopLevel { get; set; }
-        bool IAttributeReader.IsTopLevel => this.IsTopLevel;
+        [field: SerializeField] private bool IsRoot { get; set; }
+        public bool IsTopLevel => this.IsRoot;
 
         private TrieDictionary<string, char, AttributeSetNode> Attributes { get; } =
             new TrieDictionary<string, char, AttributeSetNode>('.');
@@ -42,7 +44,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
         
         private void ConnectParent() {
-            if (this.IsTopLevel) {
+            if (this.IsRoot) {
                 this.Parent = null;
                 return;
             }
@@ -57,7 +59,7 @@ namespace GameplayAbilities.Runtime.Attributes {
                 this.Parent = parentSet;
             }
             
-            this.IsTopLevel = parentSet == null;
+            this.IsRoot = parentSet == null;
         }
 
         /// <summary>
@@ -159,7 +161,7 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public int GetCurrent(string key) {
             if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
-                return this.IsTopLevel ? node.Value : this.CollapseNode(key).RecomputeValue();
+                return this.IsRoot ? node.Value : this.CollapseNode(key).RecomputeValue();
             }
 #if DEBUG
             Debug.LogWarning($"Trying to access non-existing attribute {key}", this);
@@ -195,7 +197,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             return this.GetCurrent(key) >= threshold;
         }
 
-        IEnumerable<Modifier> IAttributeReader.GetModifiers(string key) {
+        public IEnumerable<Modifier> GetModifiers(string key) {
             return this.Attributes.TryGetValue(key, out AttributeSetNode node)
                     ? node.CurrentModifiers
                     : Enumerable.Empty<Modifier>();
@@ -203,7 +205,7 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public int Query(string key, int @base) {
             if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
-                return this.IsTopLevel ? node.EvaluateWithBase(@base) : this.CollapseNode(key).EvaluateWithBase(@base);
+                return this.IsRoot ? node.EvaluateWithBase(@base) : this.CollapseNode(key).EvaluateWithBase(@base);
             }
 #if DEBUG
             Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 

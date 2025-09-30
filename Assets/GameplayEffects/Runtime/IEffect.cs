@@ -8,10 +8,4 @@
         public double EffectDuration { get; }
         public IRunnableEffect Apply(S source, T projectile);
     }
-
-    public interface IRunnableEffect {
-        public void Start();
-        public void Stop();
-        public void Cancel();
-    }
 }

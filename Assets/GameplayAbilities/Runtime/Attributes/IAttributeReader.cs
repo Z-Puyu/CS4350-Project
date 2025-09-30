@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Modifiers;
 using GameplayEffects.Runtime;
 
@@ -7,7 +8,7 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// An interface for anything that can read attribute values from an owning game object.
     /// </summary>
     public interface IAttributeReader : IEnumerable<Attribute>, IDataReader<string, int> {
-        internal abstract bool IsTopLevel { get; }
+        public abstract bool IsTopLevel { get; }
         
         /// <summary>
         /// Get the current value of an attribute.
@@ -45,7 +46,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// <returns><c>true</c> if the owner has sufficient amount of attribute for the given key.</returns>
         public bool Has(int threshold, string key);
         
-        internal abstract IEnumerable<Modifier> GetModifiers(string key);
+        public abstract IEnumerable<Modifier> GetModifiers(string key);
         
         public int Query(string key, int @base);
     }

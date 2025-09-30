@@ -4,13 +4,12 @@ using Common;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
+using Weapons.Runtime;
 using WeaponsSystem.DamageHandling;
 using WeaponsSystem.Projectiles;
 
 namespace WeaponsSystem {
-    public sealed class MeleeWeapon : Weapon<MeleeWeaponStats> {
-        [field: SerializeField, Required] private Transform AttackOrigin { get; set; }
-
+    public sealed class MeleeWeapon : Weapon {
         public override float AttackDuration => 0;
 
         public override int StartAttack() {

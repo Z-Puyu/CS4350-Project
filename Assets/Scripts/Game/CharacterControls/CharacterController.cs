@@ -6,6 +6,7 @@ using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaponsSystem.DamageHandling;
 
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]

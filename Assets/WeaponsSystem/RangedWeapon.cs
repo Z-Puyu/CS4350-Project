@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Common;
-using DataStructuresForUnity.Runtime.GeneralUtils;
 using UnityEngine;
+using Weapons.Runtime;
 using WeaponsSystem.DamageHandling;
 using WeaponsSystem.Projectiles;
-using Timer = Utilities.Timer;
+using Timer = DataStructuresForUnity.Runtime.Utilities.Timer;
 
 namespace WeaponsSystem {
-    public class RangedWeapon : Weapon<RangedWeaponStats> {
+    public class RangedWeapon : Weapon<RangedWeaponAttributeStats> {
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
         private Timer fireIntervalTimer;
         private bool canAttack = true;

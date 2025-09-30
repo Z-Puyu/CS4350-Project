@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Projectiles.Runtime {
     [DisallowMultipleComponent]
-    public abstract class Projectile : PoolableObject {
+    public abstract class Projectile : PoolableObject<Projectile> {
         private Transform Transform { get; set; }
         protected Vector3 LaunchPoint { get; private set; }
         protected Vector3 Direction { get; set; }
@@ -59,6 +59,21 @@ namespace Projectiles.Runtime {
             return this;
         }
 
+        public void Launch(Vector3 direction, float speed, double range) {
+            this.Direction = direction;
+            this.Speed = speed;
+            this.Range = range;
+            this.LaunchPoint = this.transform.position;
+        }
+        
+        public void Launch(Vector3 from, Vector3 direction, float speed, double range) {
+            this.Direction = direction;
+            this.Speed = speed;
+            this.Range = range;
+            this.transform.position = from;
+            this.LaunchPoint = from;
+        }
+
         public Projectile Relaunch() {
             this.IsAlive = true;
             return this;
@@ -75,12 +90,12 @@ namespace Projectiles.Runtime {
 
         #endregion
 
-        public override void Initialise(Action<PoolableObject> onReturn) {
+        public override void Initialise(Action<Projectile> onReturn) {
             base.Initialise(onReturn);
             this.IsAlive = true;
             this.LaunchPoint = this.Transform.position;
         }
-        
+
         public override void Return() {
             this.StopAllCoroutines();
             this.Controllers.ForEach(controller => controller.ReleaseControl());

@@ -6,7 +6,7 @@ namespace GameplayAbilities.Runtime.Abilities {
     public sealed class Siphon : SpawnableAbilityObject {
         private List<ParticleSystem> Particles { get; } = new List<ParticleSystem>();
         
-        protected override void Awake() {
+        /*protected override void Awake() {
             base.Awake();
             this.GetComponentsInChildren(this.Particles);
         }
@@ -21,6 +21,6 @@ namespace GameplayAbilities.Runtime.Abilities {
                     
                 }
             }
-        }
+        }*/
     }
 }

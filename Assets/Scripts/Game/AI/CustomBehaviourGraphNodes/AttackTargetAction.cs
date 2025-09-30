@@ -2,6 +2,7 @@ using System;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
+using Weapons.Runtime;
 using WeaponsSystem.DamageHandling;
 using Action = Unity.Behavior.Action;
 

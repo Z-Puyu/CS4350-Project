@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayEffects.Runtime;
 
 namespace GameplayAbilities.Runtime.Attributes {

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using DataStructuresForUnity.Runtime.GeneralUtils;
 using DataStructuresForUnity.Runtime.ObjectPooling;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
-using WeaponsSystem.WeaponComponent;
+using WeaponsSystem.Attacks;
+using WeaponsSystem.WeaponComponents;
 
 namespace WeaponsSystem {
     [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapons/WeaponData", order = 0)]
