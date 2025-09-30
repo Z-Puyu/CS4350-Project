@@ -17,12 +17,6 @@ TextureImporter:
   - first:
       213: -8482504279100773738
     second: slime_attack_56x32_4
-  - first:
-      213: -361652872233953650
-    second: slime_attack_56x32_5
-  - first:
-      213: 3201664561671010428
-    second: slime_attack_56x32_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -107,19 +101,6 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -244,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8272553ae544e1d4abcff90d76e7d05c
+    spriteID: 0b382fc0e79034542a0eb251d9fdc3bc
     internalID: 0
     vertices: []
     indices: 
