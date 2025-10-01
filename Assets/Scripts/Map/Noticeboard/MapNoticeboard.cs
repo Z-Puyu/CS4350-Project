@@ -1,29 +1,23 @@
-using Events;
-using InteractionSystem.Runtime;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Events;
+using InteractionSystem.Runtime;
 
-namespace Map.Noticeboard
+namespace Map
 {
     public sealed class MapNoticeboard : Interactable
     {
         public MapUnlockRequirementSO mapUnlockRequirementSO;
         public TilemapCollider2D mapTileCollider2D;
         public CrossObjectEventWithDataSO broadcastNoticeboardUnlockRequirement;
-        public Canvas promptCanvas;
         private bool isInteracted = false;
-
-        void Start()
-        {
-            this.promptCanvas.gameObject.SetActive(false);
-        }
 
         public void Interact()
         {
-            if (!this.isInteracted)
+            if (!isInteracted)
             {
-                this.isInteracted = true;
-                this.broadcastNoticeboardUnlockRequirement.TriggerEvent(this, this.mapUnlockRequirementSO);
+                isInteracted = true;
+                broadcastNoticeboardUnlockRequirement.TriggerEvent(this, mapUnlockRequirementSO);
             }
         }
         

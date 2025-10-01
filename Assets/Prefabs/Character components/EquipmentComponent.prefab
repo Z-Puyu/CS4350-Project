@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Weaponry
   <Combatant>k__BackingField: {fileID: 0}
+  broadcastWeaponSwitch: {fileID: 11400000, guid: 4b4533c8faf329843b9cac25965704cf, type: 2}
 --- !u!114 &1869055113085185054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,5 +59,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ccfd5b48ef4c02ad6420baaa7fa3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeReader
-  <Root>k__BackingField:
-    <V>k__BackingField: {fileID: 0}
+  <Root>k__BackingField: {fileID: 0}
