@@ -10,13 +10,7 @@ namespace Map
         public MapUnlockRequirementSO mapUnlockRequirementSO;
         public TilemapCollider2D mapTileCollider2D;
         public CrossObjectEventWithDataSO broadcastNoticeboardUnlockRequirement;
-        public Canvas promptCanvas;
         private bool isInteracted = false;
-
-        void Start()
-        {
-            promptCanvas.gameObject.SetActive(false);
-        }
 
         public void Interact()
         {

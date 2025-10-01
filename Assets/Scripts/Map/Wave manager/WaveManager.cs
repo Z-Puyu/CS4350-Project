@@ -9,7 +9,9 @@ namespace Map.Wave_manager
     public class WaveManager : MonoBehaviour
     {
         [SerializeField] private int wave;
+        [SerializeField] private WaveUIManager waveUIManager;
         [SerializeField] private SaintsDictionary<int, SaintsDictionary<Enemy, int>> waveToEnemySpawner;
+        [SerializeField] private SaintsDictionary<Enemy, int> killCounter = new SaintsDictionary<Enemy, int>();
         [SerializeField] private RegionBorder.RegionBorder initialMap;
         [SerializeField] private RegionBorder.RegionBorder currentMap;
         [SerializeField] private float minX;
@@ -21,6 +23,7 @@ namespace Map.Wave_manager
         {
             SetBoundary(initialMap);
             currentMap = initialMap;
+            StartWave();
         }
 
         public void SetCurrentRegion(RegionBorder.RegionBorder regionBorder)
@@ -38,7 +41,7 @@ namespace Map.Wave_manager
             maxY = coordinateList[3];
         }
 
-        public void SpawnEnemy()
+        void SpawnEnemy()
         {
             Vector2 topLeft = new Vector2(minX, maxY);
             Vector2 bottomLeft = new Vector2(minX, minY);
@@ -56,6 +59,14 @@ namespace Map.Wave_manager
                 {
                     if (counter[i] > 0)
                     {
+                        if (killCounter.ContainsKey(allEnemyDataForThisWave[i]))
+                        {
+                            killCounter[allEnemyDataForThisWave[i]] += 1;
+                        }
+                        else
+                        {
+                            killCounter[allEnemyDataForThisWave[i]] = 1;
+                        }
                         isEnemyStillSpawning = true;
                         Instantiate(allEnemyDataForThisWave[i], spawnPoints[spawnIndex], Quaternion.identity);
                         counter[i] -= 1;
@@ -68,17 +79,31 @@ namespace Map.Wave_manager
                     break;
                 }
             }
-            
         }
 
-        public void ClearWave()
+        public void CheckIfWaveCleared(Component component, object enemyData)
         {
-            wave += 1;
+            Enemy enemy = (Enemy)component;
+            if (!killCounter.ContainsKey(enemy))
+            {
+                return;
+            }
+            killCounter[enemy] -= 1;
+            if (killCounter[enemy] == 0)
+            {
+                killCounter.Remove(enemy);
+            }
+
+            if (killCounter.Count == 0)
+            {
+                wave += 1;
+                StartWave();
+            }
         }
 
         public void StartWave()
         {
-            SpawnEnemy();
+            waveUIManager.StartCountdown(() => SpawnEnemy());
         }
     }   
 }

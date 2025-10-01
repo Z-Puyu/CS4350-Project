@@ -9,10 +9,10 @@ public class PlayerBattleUIManager : MonoBehaviour
     [SaintsDictionary("index", "weapon type")]
     public SaintsDictionary<int, Sprite> weaponIndexToWeaponIcon;
 
-    public void UpdatePlayerHealth(Component component, object nothingHere)
+    public void UpdatePlayerHealth(Component component, object r)
     {
-        PlayerStats playerStats = (PlayerStats)component;
-        playerStats.UpdateHealthBar(healthBar);
+        float ratio = (float)((object[])r)[0];
+        healthBar.value = ratio;
     }
 
     public void UpdateWeaponIcon(Component component, object index)
