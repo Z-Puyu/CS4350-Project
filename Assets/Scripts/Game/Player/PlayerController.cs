@@ -7,8 +7,8 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
-using WeaponsSystem;
-using WeaponsSystem.DamageHandling;
+//using WeaponsSystem;
+//using WeaponsSystem.DamageHandling;
 using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Player {

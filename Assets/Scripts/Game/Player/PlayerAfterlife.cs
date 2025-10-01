@@ -5,12 +5,12 @@ using GameplayAbilities.Runtime.HealthSystem;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
-using WeaponsSystem;
+// using WeaponsSystem;
 
 namespace Game.Player {
     [DisallowMultipleComponent, RequireComponent(typeof(PlayerController))]
     public sealed class PlayerAfterlife : MonoBehaviour {
-        private PlayerController Player { get; set; }
+        /*private PlayerController Player { get; set; }
         [field: SerializeField, Required] private Health Health { get; set; }
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         private Vector3Int RespawnPoint { get; set; }
@@ -51,6 +51,6 @@ namespace Game.Player {
             GameWorldManager.Purgatory.gameObject.SetActive(false);
             this.Weaponry.UnlockAll();
             this.Health.Refill();
-        }
+        }*/
     }
 }

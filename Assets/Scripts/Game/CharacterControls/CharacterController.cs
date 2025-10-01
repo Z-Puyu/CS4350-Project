@@ -6,7 +6,8 @@ using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
 using UnityEngine.Events;
-using WeaponsSystem.DamageHandling;
+//using WeaponsSystem.DamageHandling;
+//using WeaponsSystem.DamageHandlingSystem;
 
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]
@@ -14,7 +15,7 @@ namespace Game.CharacterControls {
         [field: SerializeField, Required] protected AbilitySystem AbilitySystem { get; private set; }
         [field: SerializeField, Required] protected AttributeSet AttributeSet { get; private set; }
         [field: SerializeField, Required] protected Health Health { get; private set; }
-        [field: SerializeField, Required] protected DamageHandler DamageHandler { get; private set; }
+        // [field: SerializeField, Required] protected DamageHandler DamageHandler { get; private set; }
 
         public event UnityAction OnDeath;
         

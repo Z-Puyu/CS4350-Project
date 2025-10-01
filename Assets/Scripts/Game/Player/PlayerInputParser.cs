@@ -10,9 +10,8 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapons.Runtime;
-using WeaponsSystem;
-using WeaponsSystem.DamageHandling;
+//using WeaponsSystem;
+//using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
@@ -22,7 +21,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
-        [field: SerializeField, Required] private Combatant Combatant { get; set; }
+        //[field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         
@@ -60,7 +59,7 @@ namespace Game.Player {
             }
             
             OnScreenDebugger.Log("Attack");
-            this.Combatant.StartAttack();
+            //this.Combatant.StartAttack();
         }
 
         public void OnMove(InputAction.CallbackContext context) {

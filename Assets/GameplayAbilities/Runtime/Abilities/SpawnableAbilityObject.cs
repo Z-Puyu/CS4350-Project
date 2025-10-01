@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Abilities {
     [RequireComponent(typeof(BoundingRect))]
-    public class SpawnableAbilityObject : PoolableObject {
+    public class SpawnableAbilityObject : PoolableObject<SpawnableAbilityObject> {
         /*private List<IActivatable> Objects { get; } = new List<IActivatable>();
         private BoundingRect BoundingRect { get; set; }
         [field: SerializeField] private string Id { get; set; }

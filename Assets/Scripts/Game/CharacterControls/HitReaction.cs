@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GameplayAbilities.Runtime.Abilities;
 using SaintsField;
 using UnityEngine;
-using WeaponsSystem.DamageHandling;
+//using WeaponsSystem.DamageHandling;
 
 namespace Game.CharacterControls {
     [DisallowMultipleComponent]
