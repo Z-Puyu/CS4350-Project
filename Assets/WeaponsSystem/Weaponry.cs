@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Events;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.DamageHandling;
@@ -7,6 +8,7 @@ namespace WeaponsSystem {
     [DisallowMultipleComponent]
     public sealed class Weaponry : MonoBehaviour {
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventWithDataSO broadcastWeaponSwitch;
         private List<IDamageDealer> DamageDealers { get; } = new List<IDamageDealer>();
         private int CurrentActiveIndex { get; set; }
         private HashSet<int> LockedWeapons { get; } = new HashSet<int>();
@@ -30,6 +32,8 @@ namespace WeaponsSystem {
             if (this.LockedWeapons.Contains(index) || !this.Combatant.Equip(this.DamageDealers[index])) {
                 return;
             }
+            
+            broadcastWeaponSwitch.TriggerEvent(this, index);
 
             this.DamageDealers[this.CurrentActiveIndex].Disable(this.Combatant);
             this.CurrentActiveIndex = index;

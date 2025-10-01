@@ -518,17 +518,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 840edd05652e70d4584ebf07c9cfe428, type: 3}
---- !u!114 &593807167 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9165372363646319589, guid: 840edd05652e70d4584ebf07c9cfe428, type: 3}
-  m_PrefabInstance: {fileID: 593807166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f889a91ab5c9b74abee8891f5e31444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NotebookManagerUI
 --- !u!1 &691792762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1177,7 @@ GameObject:
   - component: {fileID: 1505743562}
   - component: {fileID: 1505743561}
   - component: {fileID: 1505743563}
+  - component: {fileID: 1505743564}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1272,6 +1262,20 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
+--- !u!114 &1505743564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505743559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9541bcb4a94e24c8cd4739b11998b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCameraManager
+  player: {fileID: 0}
+  virtualCamera: {fileID: 1505743561}
 --- !u!4 &1552171145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413985620595658814, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
@@ -1342,6 +1346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
   plantedSeedId: 
   pickUpPrefab: {fileID: 0}
+  growthBar: {fileID: 0}
+  baseGrowthSpeed: 0.01
+  wetGrowthMultiplier: 3
 --- !u!95 &1679046102
 Animator:
   serializedVersion: 7
@@ -1788,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: objectiveUIManager
       value: 
-      objectReference: {fileID: 593807167}
+      objectReference: {fileID: 0}
     - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: allRequirements.Array.size
       value: 0

@@ -11,7 +11,7 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         [field: SerializeField, Required] private AttributeSet Root { get; set; }
         [field: SerializeField] private AttributeType HealthAttribute { get; set; }
         [field: SerializeField] private UnityEvent OnDeathEvent { get; set; } = new UnityEvent();
-
+        
         public int Value => this.Root.GetCurrent(this.HealthAttribute.Id);
         public int MaxValue => this.Root.GetMax(this.HealthAttribute.Id);
         public int MinValue => this.Root.GetMin(this.HealthAttribute.Id);
@@ -32,6 +32,7 @@ namespace GameplayAbilities.Runtime.HealthSystem {
             if (change.AttributeName != this.HealthAttribute.Id) {
                 return;
             }
+            
             
             this.OnHealthChanged?.Invoke((change.OldValue, change.CurrentValue));
             if (change.CurrentValue <= 0) {

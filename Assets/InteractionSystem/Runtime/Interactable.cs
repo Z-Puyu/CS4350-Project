@@ -25,6 +25,11 @@ namespace InteractionSystem.Runtime {
         private bool IsActive { get; set; }
         private Interactor Interactor { get; set; }
 
+        void Start()
+        {
+            PromptWidget.SetActive(false);
+        }
+
         private void OnDisable() {
             if (this.Interactor) {
                 this.Interactor.Forget(this);

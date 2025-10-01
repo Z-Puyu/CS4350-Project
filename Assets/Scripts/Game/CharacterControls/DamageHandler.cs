@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common;
+using Events;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.GameplayEffects;
 using GameplayAbilities.Runtime.HealthSystem;
@@ -15,7 +16,8 @@ namespace Game.CharacterControls {
         [field: SerializeField] private List<Ability> SpecialAttackAbilities { get; set; }
         [field: SerializeField] private GameplayEffectCoordinator GameplayEffectCoordinator { get; set; }
         [field: SerializeField] private Health Health { get; set; }
-        
+        [field: SerializeField] private CrossObjectEventWithDataSO broadcastHealth;
+
         public void HandleDamage(Damage damage) {
             GameObject source = damage.Instigator.root;
             AbilitySystem instigator = source.GetComponentInChildren<AbilitySystem>();
@@ -34,6 +36,7 @@ namespace Game.CharacterControls {
                                                          .Build();
             instigator.Use(this.DirectAttackAbility, this.AbilitySystem, args);
             int damageMagnitude = health - this.Health.Value;
+            broadcastHealth.TriggerEvent(this, ((float) Health.Value)/((float) this.Health.MaxValue));
 #if DEBUG
             OnScreenDebugger.Log($"{source.name} caused {damageMagnitude} damage on {this.gameObject.name}");
 #endif
