@@ -1,6 +1,8 @@
 using UnityEngine.Tilemaps;
 
-public abstract class CustomTile : Tile
-{
-    //public virtual void MovePlayerToThisTile(PlayerExploration playerExploration, Vector3 pos) { }
+namespace Custom_tiles {
+    public abstract class CustomTile : Tile
+    {
+        //public virtual void MovePlayerToThisTile(PlayerExploration playerExploration, Vector3 pos) { }
+    }
 }

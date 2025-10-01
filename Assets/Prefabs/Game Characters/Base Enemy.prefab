@@ -214,8 +214,80 @@ PrefabInstance:
         Assembly-CSharp]]'
       objectReference: {fileID: 0}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029582]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.AI.ProximitySensor2D,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029583]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.AI.VisualSensor2D,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029584]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.CharacterControls.Movement,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029585]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.Runtime.Combat.Combatant,
+        WeaponsSystem.Runtime]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029592]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.AI.ProximitySensor2D,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029593]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.AI.VisualSensor2D,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029594]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Game.CharacterControls.Movement,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'managedReferences[5580717539960029595]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.Runtime.Combat.Combatant,
+        WeaponsSystem.Runtime]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: managedReferences[2098011628653249159].Name
       value: Combatant Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029582].Name
+      value: Proximity Sensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029583].Name
+      value: Eyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029584].Name
+      value: Movement Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029585].Name
+      value: Combatant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029592].Name
+      value: Proximity Sensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029593].Name
+      value: Eyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029594].Name
+      value: Movement Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029595].Name
+      value: Combatant
       objectReference: {fileID: 0}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
@@ -238,12 +310,52 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9132942257771108106}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
-      propertyPath: managedReferences[2098011628653249159].m_Value
+      propertyPath: managedReferences[5580717539960029582].m_Value
       value: 
-      objectReference: {fileID: 5324871527755499118}
+      objectReference: {fileID: 5638443512459741195}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029583].m_Value
+      value: 
+      objectReference: {fileID: 5961531644000587027}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029584].m_Value
+      value: 
+      objectReference: {fileID: 9132942257771108106}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029585].m_Value
+      value: 
+      objectReference: {fileID: 6133044208504822538}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029592].m_Value
+      value: 
+      objectReference: {fileID: 5638443512459741195}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029593].m_Value
+      value: 
+      objectReference: {fileID: 5961531644000587027}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029594].m_Value
+      value: 
+      objectReference: {fileID: 9132942257771108106}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029595].m_Value
+      value: 
+      objectReference: {fileID: 6133044208504822538}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[1]'
+      value: 5580717539960029594
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[2]'
+      value: 5580717539960029593
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[3]'
+      value: 5580717539960029592
+      objectReference: {fileID: 0}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[4]'
-      value: 2098011628653249159
+      value: 5580717539960029595
       objectReference: {fileID: 0}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: managedReferences[2098011628653249159].GUID.m_Value0
@@ -252,6 +364,78 @@ PrefabInstance:
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: managedReferences[2098011628653249159].GUID.m_Value1
       value: 630183425924546471
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029582].GUID.m_Value0
+      value: 10626818198717831329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029582].GUID.m_Value1
+      value: 2151040624895713845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029583].GUID.m_Value0
+      value: 11838069106145965217
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029583].GUID.m_Value1
+      value: 12619654095831421374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029584].GUID.m_Value0
+      value: 1051146860267340531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029584].GUID.m_Value1
+      value: 7084680460358946999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029585].GUID.m_Value0
+      value: 11616426016086816732
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029585].GUID.m_Value1
+      value: 13821624082070869602
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029592].GUID.m_Value0
+      value: 10626818198717831329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029592].GUID.m_Value1
+      value: 2151040624895713845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029593].GUID.m_Value0
+      value: 11838069106145965217
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029593].GUID.m_Value1
+      value: 12619654095831421374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029594].GUID.m_Value0
+      value: 1051146860267340531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029594].GUID.m_Value1
+      value: 7084680460358946999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029595].GUID.m_Value0
+      value: 11616426016086816732
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: managedReferences[5580717539960029595].GUID.m_Value1
+      value: 13821624082070869602
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258392003824001828, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: <TargetVariable>k__BackingField.m_Value0
+      value: 5676630422803003713
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258392003824001828, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: <TargetVariable>k__BackingField.m_Value1
+      value: 2516846631476092314
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -584,6 +768,14 @@ PrefabInstance:
       propertyPath: <CharacterController>k__BackingField
       value: 
       objectReference: {fileID: 8038510861533440685}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <EnemyTags>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: '<EnemyTags>k__BackingField.Array.data[0]'
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
       value: 1.75
@@ -676,6 +868,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.09273133
       objectReference: {fileID: 0}
+    - target: {fileID: 5081366553144432299, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <GameCharacterController>k__BackingField
+      value: 
+      objectReference: {fileID: 8038510861533440685}
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Name
       value: Base Enemy
@@ -683,6 +879,10 @@ PrefabInstance:
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615670882161919381, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <AnimatorDeathFlag>k__BackingField
+      value: 1293411866
       objectReference: {fileID: 0}
     - target: {fileID: 9132015508175136310, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Layer
@@ -738,9 +938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy
   <AbilitySystem>k__BackingField: {fileID: 6374959461441310899}
   <AttributeSet>k__BackingField: {fileID: 6518563513476792506}
-  <GameplayEffectCoordinator>k__BackingField: {fileID: 0}
   <Health>k__BackingField: {fileID: 1834705921085040249}
-  <DamageHandler>k__BackingField: {fileID: 0}
   <Data>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 7805846891793197291}
   broadcastEnemyDiedData: {fileID: 11400000, guid: fe13c1f2cd49c39438aa705da02dace0, type: 2}
@@ -783,22 +981,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246f51e2f05e4540a333cce7141a4841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.HealthSystem.Health
---- !u!114 &5324871527755499118 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1362842556525151000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-  m_PrefabInstance: {fileID: 6560746732366513526}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
 --- !u!4 &6069861738717102634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6133044208504822538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 6560746732366513526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512824a96433481b8ad83a29e71e2b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Combat.Combatant
 --- !u!114 &6374959461441310899 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}

@@ -16,6 +16,7 @@ namespace GameplayAbilities.Runtime.Attributes {
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
         private IAttributeReader Parent { get; set; }
+        IAttributeReader IAttributeReader.Parent => this.Parent;
         
         [field: SerializeField] private AttributeTable DefaultAttributes { get; set; }
         [field: SerializeField] private bool IsRoot { get; set; }
@@ -89,7 +90,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             return;
             
             void init(AttributeType attribute, int value) {
-                if (!attribute.IsCategory && !this.Attributes.ContainsKey(attribute.Id)) {
+                if (!attribute.IsCategory && this.Attributes.ContainsKey(attribute.Id)) {
                     this.Attributes[attribute.Id].BaseValue = value;
                 } else {
                     foreach (AttributeType child in attribute.SubTypes) {
@@ -154,6 +155,8 @@ namespace GameplayAbilities.Runtime.Attributes {
                 foreach (Modifier modifier in current.GetModifiers(key)) {
                     node.AddModifier(modifier);
                 }
+                
+                current = current.Parent;
             }
             
             return node;

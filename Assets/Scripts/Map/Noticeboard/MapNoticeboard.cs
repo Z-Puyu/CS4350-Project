@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.Tilemaps;
 using Events;
 using InteractionSystem.Runtime;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
-namespace Map
+namespace Map.Noticeboard
 {
     public sealed class MapNoticeboard : Interactable
     {
@@ -15,15 +15,15 @@ namespace Map
 
         void Start()
         {
-            promptCanvas.gameObject.SetActive(false);
+            this.promptCanvas.gameObject.SetActive(false);
         }
 
         public void Interact()
         {
-            if (!isInteracted)
+            if (!this.isInteracted)
             {
-                isInteracted = true;
-                broadcastNoticeboardUnlockRequirement.TriggerEvent(this, mapUnlockRequirementSO);
+                this.isInteracted = true;
+                this.broadcastNoticeboardUnlockRequirement.TriggerEvent(this, this.mapUnlockRequirementSO);
             }
         }
         

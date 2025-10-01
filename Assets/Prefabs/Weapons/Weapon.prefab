@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2703695990898270200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572242216743587167}
+  - component: {fileID: 2943639609564163612}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572242216743587167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703695990898270200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.88446, y: -1.76998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7683666744179157751}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2943639609564163612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703695990898270200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a023b7c16e4f2ea222009324d760ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Weapons.Weapon
+  <Stats>k__BackingField: {fileID: 4761771488511066827}
+  <WeaponControllers>k__BackingField:
+  - rid: 5580717538616803637
+  - rid: 5580717538616803638
+  - rid: 5580717538616803639
+  references:
+    version: 2
+    RefIds:
+    - rid: 5580717538616803637
+      type: {class: WeaponComponentController, ns: WeaponsSystem.Runtime.WeaponComponents, asm: WeaponsSystem.Runtime}
+      data:
+        <PossibleComponents>k__BackingField:
+          _saintsList: []
+    - rid: 5580717538616803638
+      type: {class: WeaponAttackController, ns: WeaponsSystem.Runtime.Attacks, asm: WeaponsSystem.Runtime}
+      data:
+        <AttackStrategies>k__BackingField: []
+        <AttackableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 64
+        <IncludeTags>k__BackingField: []
+        <ExcludeTags>k__BackingField: []
+    - rid: 5580717538616803639
+      type: {class: WeaponComboController, ns: WeaponsSystem.Runtime.Weapons, asm: WeaponsSystem.Runtime}
+      data:
+        <ComboResetTime>k__BackingField: 3
+        <ComboLengthAttribute>k__BackingField: Weapon.ComboLength
+--- !u!1 &8481264489350212546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7683666744179157751}
+  - component: {fileID: 4761771488511066827}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7683666744179157751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8481264489350212546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 572242216743587167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4761771488511066827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8481264489350212546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  <DefaultAttributes>k__BackingField: {fileID: 0}
+  <IsRoot>k__BackingField: 0

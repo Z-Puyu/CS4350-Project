@@ -9,6 +9,7 @@ namespace GameplayAbilities.Runtime.Attributes {
     /// </summary>
     public interface IAttributeReader : IEnumerable<Attribute>, IDataReader<string, int> {
         public abstract bool IsTopLevel { get; }
+        public abstract IAttributeReader Parent { get; }
         
         /// <summary>
         /// Get the current value of an attribute.

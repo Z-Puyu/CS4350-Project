@@ -7,7 +7,7 @@ using GameplayAbilities.Runtime.Modifiers;
 namespace GameplayAbilities.Runtime.Attributes {
     internal class AttributeSetNode {
         private AttributeSet Root { get; }
-        private List<IAttributeClampRule> ClampRules { get; }
+        private List<IAttributeClampRule> ClampRules { get; } = new List<IAttributeClampRule>();
         
         private SortedList<Modifier.Operation, Modifier> Modifiers { get; } =
             new SortedList<Modifier.Operation, Modifier>();
@@ -24,7 +24,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         private AttributeSetNode(int value, AttributeSet root, List<IAttributeClampRule> clampRules) {
             this.BaseValue = value;
             this.Root = root;
-            this.ClampRules = clampRules;
+            this.ClampRules.AddRange(clampRules);
         }
 
         internal static AttributeSetNode From(AttributeType definition, AttributeSet root) {

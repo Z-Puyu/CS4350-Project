@@ -65,6 +65,15 @@ namespace SaintsField.Editor.Playa.Renderer.BaseRenderer
 
         protected PreCheckResult GetPreCheckResult(SaintsFieldWithInfo fieldWithInfo, bool isImGui)
         {
+            if (fieldWithInfo.PlayaAttributes == null)
+            {
+                return new PreCheckResult
+                {
+                    IsShown = true,
+                    ArraySize = (-1, -1),
+                };
+            }
+
             List<ToggleCheckInfo> preCheckInternalInfos = new List<ToggleCheckInfo>(fieldWithInfo.PlayaAttributes.Count);
             (int, int) arraySize = (-1, -1);
             foreach (IPlayaAttribute playaAttribute in fieldWithInfo.PlayaAttributes)
@@ -213,7 +222,7 @@ namespace SaintsField.Editor.Playa.Renderer.BaseRenderer
             object target = fieldWithInfo.Targets[0];
 
             // types.Reverse();
-            foreach (Type eachType in ReflectUtils.GetSelfAndBaseTypes(target))
+            foreach (Type eachType in ReflectUtils.GetSelfAndBaseTypesFromInstance(target))
             {
                 (ReflectUtils.GetPropType getPropType, object fieldOrMethodInfo) =
                     ReflectUtils.GetProp(eachType, by);

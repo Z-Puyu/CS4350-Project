@@ -1,54 +1,57 @@
+using LeanTween.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TestingSceneSwitching : MonoBehaviour {
+namespace LeanTween.Testing {
+	public class TestingSceneSwitching : MonoBehaviour {
 
-	public GameObject cube;
+		public GameObject cube;
 
-	private static int sceneIter = 0;
+		private static int sceneIter = 0;
 
-	private int tweenCompleteCnt;
+		private int tweenCompleteCnt;
 
-	// Use this for initialization
-	void Start () {
-		LeanTest.expected = 6;
+		// Use this for initialization
+		void Start () {
+			LeanTest.expected = 6;
 		
-		// Start a couple of tweens and make sure they complete
-		tweenCompleteCnt = 0;
+			// Start a couple of tweens and make sure they complete
+			this.tweenCompleteCnt = 0;
 
-		LeanTween.scale(cube, new Vector3(3f,3f,3f), 0.1f).setDelay(0.1f).setOnComplete( ()=>{
-			tweenCompleteCnt++;
-		});
-
-		LeanTween.move(cube, new Vector3(3f,3f,3f), 0.1f).setOnComplete( ()=>{
-			tweenCompleteCnt++;
-		});
-
-		LeanTween.delayedCall(cube, 0.1f, ()=>{
-			tweenCompleteCnt++;
-		});
-
-		// Schedule a couple of tweens, make sure some only half complete than switch scenes
-
-		LeanTween.delayedCall(cube, 1f, ()=>{
-			LeanTween.scale(cube, new Vector3(3f,3f,3f), 1f).setDelay(0.1f).setOnComplete( ()=>{
-
+			Framework.LeanTween.scale(this.cube, new Vector3(3f,3f,3f), 0.1f).setDelay(0.1f).setOnComplete( ()=>{
+				this.tweenCompleteCnt++;
 			});
 
-			LeanTween.move(cube, new Vector3(3f,3f,3f), 1f).setOnComplete( ()=>{
-
+			Framework.LeanTween.move(this.cube, new Vector3(3f,3f,3f), 0.1f).setOnComplete( ()=>{
+				this.tweenCompleteCnt++;
 			});
-		});
 
-		// Load next scene
-		LeanTween.delayedCall(cube, 0.5f, ()=>{
-			LeanTest.expect( tweenCompleteCnt==3, "Scheduled tweens completed:"+sceneIter);
-			if(sceneIter<5){
-				sceneIter++;
-				SceneManager.LoadScene(0);
-			}
-		});
+			Framework.LeanTween.delayedCall(this.cube, 0.1f, ()=>{
+				this.tweenCompleteCnt++;
+			});
+
+			// Schedule a couple of tweens, make sure some only half complete than switch scenes
+
+			Framework.LeanTween.delayedCall(this.cube, 1f, ()=>{
+				Framework.LeanTween.scale(this.cube, new Vector3(3f,3f,3f), 1f).setDelay(0.1f).setOnComplete( ()=>{
+
+				});
+
+				Framework.LeanTween.move(this.cube, new Vector3(3f,3f,3f), 1f).setOnComplete( ()=>{
+
+				});
+			});
+
+			// Load next scene
+			Framework.LeanTween.delayedCall(this.cube, 0.5f, ()=>{
+				LeanTest.expect( this.tweenCompleteCnt==3, "Scheduled tweens completed:"+TestingSceneSwitching.sceneIter);
+				if(TestingSceneSwitching.sceneIter<5){
+					TestingSceneSwitching.sceneIter++;
+					SceneManager.LoadScene(0);
+				}
+			});
+		}
+	
+	
 	}
-	
-	
 }

@@ -1,12 +1,12 @@
 using Events;
+using Game.CharacterControls;
 using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
-using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Enemies {
-    public class Enemy : CharacterController {
+    public class Enemy : GameCharacterController {
         public static event UnityAction<EnemyDeathEvent> OnDeath; 
         
         [field: SerializeField] private EnemyData Data { get; set; }

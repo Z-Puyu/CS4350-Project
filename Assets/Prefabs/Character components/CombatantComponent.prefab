@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5065657347276024828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3659946853556413534}
+  m_Layer: 0
+  m_Name: Attack Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3659946853556413534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065657347276024828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651668061083998253}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8716127750433461528
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651668061083998253}
-  - component: {fileID: 1488243617223307318}
+  - component: {fileID: 602920400809192786}
+  - component: {fileID: 5701356540397893857}
   m_Layer: 0
   m_Name: CombatantComponent
   m_TagString: Untagged
@@ -29,10 +61,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3659946853556413534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1488243617223307318
+--- !u!114 &602920400809192786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +74,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8716127750433461528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27d96da36d74e78afdc1af887287fc2, type: 3}
+  m_Script: {fileID: 11500000, guid: 512824a96433481b8ad83a29e71e2b28, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.Combatant
-  <DefaultDamageDealer>k__BackingField:
-    <V>k__BackingField: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Combat.Combatant
+  <Owner>k__BackingField: {fileID: 0}
+  <AttackOrigin>k__BackingField: {fileID: 3659946853556413534}
   <EnemyLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
@@ -56,3 +89,61 @@ MonoBehaviour:
   <OnSwitchedGear>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  <OnHitTarget>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnComponentSetChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5701356540397893857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716127750433461528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b564a5dd3e044d80acc7243d8ad4f226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
+  <DamageAbility>k__BackingField:
+    rid: 5580717541616517197
+  <AttributeSet>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5580717541616517197
+      type: {class: DamageAbility, ns: WeaponsSystem.Runtime.DamageHandling, asm: WeaponsSystem.Runtime}
+      data:
+        <Effect>k__BackingField:
+          rid: 5580717541616517198
+    - rid: 5580717541616517198
+      type: {class: DamageEffect, ns: GameplayAbilities.Runtime.HealthSystem, asm: GameplayAbilities.Runtime}
+      data:
+        <DamageTypes>k__BackingField:
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Ice
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Ice
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
+          <DefenceAttribute>k__BackingField: Defence.Physical.Melee
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
+          <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        <TargetAttribute>k__BackingField: Health

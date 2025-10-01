@@ -1,6 +1,7 @@
+using LeanTween.Framework;
 using UnityEngine;
 
-namespace DentedPixel.LTExamples{
+namespace LeanTween.Examples.Scripts{
 
 public class PathBezier : MonoBehaviour {
 
@@ -11,15 +12,15 @@ public class PathBezier : MonoBehaviour {
 
 	void OnEnable(){
 		// create the path
-		cr = new LTBezierPath( new Vector3[] {trans[0].position, trans[2].position, trans[1].position, trans[3].position, trans[3].position, trans[5].position, trans[4].position, trans[6].position} );
+		this.cr = new LTBezierPath( new Vector3[] {this.trans[0].position, this.trans[2].position, this.trans[1].position, this.trans[3].position, this.trans[3].position, this.trans[5].position, this.trans[4].position, this.trans[6].position} );
 	}
 
 	void Start () {
-		avatar1 = GameObject.Find("Avatar1");
+		this.avatar1 = GameObject.Find("Avatar1");
 
 		// Tween automatically
-		LTDescr descr = LeanTween.move(avatar1, cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
-		Debug.Log("length of path 1:"+cr.length);
+		LTDescr descr = Framework.LeanTween.move(this.avatar1, this.cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
+		Debug.Log("length of path 1:"+this.cr.length);
 		Debug.Log("length of path 2:"+descr.optional.path.length);
 	}
 	
@@ -28,18 +29,18 @@ public class PathBezier : MonoBehaviour {
 		// Or Update Manually
 		//cr.place2d( sprite1.transform, iter );
 
-		iter += Time.deltaTime*0.07f;
-		if(iter>1.0f)
-			iter = 0.0f;
+		this.iter += Time.deltaTime*0.07f;
+		if(this.iter>1.0f)
+			this.iter = 0.0f;
 	}
 
 	void OnDrawGizmos(){
 		// Debug.Log("drwaing");
-		if(cr!=null)
-			OnEnable();
+		if(this.cr!=null)
+			this.OnEnable();
 		Gizmos.color = Color.red;
-		if(cr!=null)
-			cr.gizmoDraw(); // To Visualize the path, use this method
+		if(this.cr!=null)
+			this.cr.gizmoDraw(); // To Visualize the path, use this method
 	}
 }
 

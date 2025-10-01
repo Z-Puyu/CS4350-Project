@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Common;
 using Events;
+using Game.CharacterControls;
 using Game.Enemies;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -9,11 +10,10 @@ using SaintsField;
 using UnityEngine;
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
-using CharacterController = Game.CharacterControls.CharacterController;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerController : CharacterController, ICollector {
+    public sealed class PlayerController : GameCharacterController, ICollector {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }

@@ -41,6 +41,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         bool IAttributeReader.IsTopLevel => true;
+        public IAttributeReader Parent => null;
 
         int IAttributeReader.GetCurrent(string key) {
             return this.Attributes.TryGetValue(key, out int value) ? value : 0;

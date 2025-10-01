@@ -101,14 +101,14 @@ GameObject:
   - component: {fileID: 292713866018098697}
   - component: {fileID: 7141936666469846693}
   - component: {fileID: 397347953384542594}
-  - component: {fileID: 6170226598646885628}
+  - component: {fileID: 1150010722743438404}
   m_Layer: 6
   m_Name: Default Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &292713866018098697
 Transform:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.2, y: 0.2}
   m_Direction: 0
---- !u!114 &6170226598646885628
+--- !u!114 &1150010722743438404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,12 +198,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6887705806686609679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29544a1918a5674795697532d93d495, type: 3}
+  m_Script: {fileID: 11500000, guid: dc009f755afe4be38a3d98f1d25dceb4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Projectiles.Projectile
-  <Visual>k__BackingField: {fileID: 2149154651981169789}
-  <ProjectileId>k__BackingField: projectile:default
-  <SpeedAttribute>k__BackingField: Weapon.Projectile.Speed
-  <RangeAttribute>k__BackingField: Weapon.Projectile.Range
-  <TargetTags>k__BackingField: []
-  <SpeedCoefficient>k__BackingField: 1
+  m_EditorClassIdentifier: Projectiles.Runtime::Projectiles.Runtime.Projectile2D
+  <Controllers>k__BackingField:
+  - rid: 5580717538616803652
+  references:
+    version: 2
+    RefIds:
+    - rid: 5580717538616803652
+      type: {class: ProjectileDurabilityController, ns: Projectiles.Runtime, asm: Projectiles.Runtime}
+      data:
+        <Durability>k__BackingField: 1

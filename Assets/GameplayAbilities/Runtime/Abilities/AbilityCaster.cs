@@ -17,6 +17,10 @@ namespace GameplayAbilities.Runtime.Abilities {
             this.AbilitySystem = this.GetComponent<AbilitySystem>();
         }
 
+        public void Equip(Ability ability, int index) {
+            this.EquippedAbilities[index] = ability;
+        }
+
         [Button("Test Cast")]
         public void Cast(int index, AttributeSet target = null) {
             if (index < 0 || index >= this.EquippedAbilities.Count) {

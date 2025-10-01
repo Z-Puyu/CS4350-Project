@@ -1,37 +1,39 @@
 using System;
+using Events;
 using UnityEngine;
 using UnityEngine.UI;
-using Events;
 
-[Obsolete]
-public class PlayerStats : MonoBehaviour
-{
-    private int currentHealth;
-    [SerializeField]
-    private int maxHealth;
-    public CrossObjectEventWithDataSO broadcastHealth;
-    public CrossObjectEventSO broadcastPlayerDie;
-
-    void Start()
+namespace Player_related.Player {
+    [Obsolete]
+    public class PlayerStats : MonoBehaviour
     {
-        currentHealth = maxHealth;
-        broadcastHealth.TriggerEvent(this);
-    }
+        private int currentHealth;
+        [SerializeField]
+        private int maxHealth;
+        public CrossObjectEventWithDataSO broadcastHealth;
+        public CrossObjectEventSO broadcastPlayerDie;
 
-    public void UpdateHealthBar(Slider slider)
-    {
-        slider.value = ((float)currentHealth) / ((float)maxHealth);
-    }
-
-    public void ReceiveDamage(int damage)
-    {
-        currentHealth -= damage;
-        broadcastHealth.TriggerEvent(this);
-        if (currentHealth == 0)
+        void Start()
         {
-            broadcastPlayerDie.TriggerEvent();
-            Destroy(gameObject);
+            this.currentHealth = this.maxHealth;
+            this.broadcastHealth.TriggerEvent(this);
         }
-    }
 
+        public void UpdateHealthBar(Slider slider)
+        {
+            slider.value = ((float)this.currentHealth) / ((float)this.maxHealth);
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            this.currentHealth -= damage;
+            this.broadcastHealth.TriggerEvent(this);
+            if (this.currentHealth == 0)
+            {
+                this.broadcastPlayerDie.TriggerEvent();
+                Destroy(this.gameObject);
+            }
+        }
+
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
  * A Pooling System for GameObjects
 */
 
-namespace DentedPixel
+namespace LeanTween.Testing.Scripts
 {
     public class LeanPool : object
     {
@@ -17,61 +17,61 @@ namespace DentedPixel
 
         public GameObject[] init(GameObject prefab, int count, Transform parent = null, bool retrieveOldestItems = true)
         {
-            array = new GameObject[count];
+            this.array = new GameObject[count];
 
             if (retrieveOldestItems)
-                oldestItems = new Queue<GameObject>();
+                this.oldestItems = new Queue<GameObject>();
 
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < this.array.Length; i++)
             {
                 GameObject go = GameObject.Instantiate(prefab, parent);
                 go.SetActive(false);
 
-                array[i] = go;
+                this.array[i] = go;
             }
 
-            return array;
+            return this.array;
         }
 
         public void init(GameObject[] array, bool retrieveOldestItems = true){
             this.array = array;
 
             if (retrieveOldestItems)
-                oldestItems = new Queue<GameObject>();
+                this.oldestItems = new Queue<GameObject>();
         }
 
         public void giveup(GameObject go)
         {
             go.SetActive(false);
-            oldestItems.Enqueue(go);
+            this.oldestItems.Enqueue(go);
         }
 
         public GameObject retrieve()
         {
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < this.array.Length; i++)
             {
-                retrieveIndex++;
-                if (retrieveIndex >= array.Length)
-                    retrieveIndex = 0;
+                this.retrieveIndex++;
+                if (this.retrieveIndex >= this.array.Length)
+                    this.retrieveIndex = 0;
 
-                if (array[retrieveIndex].activeSelf == false)
+                if (this.array[this.retrieveIndex].activeSelf == false)
                 {
-                    GameObject returnObj = array[retrieveIndex];
+                    GameObject returnObj = this.array[this.retrieveIndex];
                     returnObj.SetActive(true);
 
-                    if (oldestItems != null)
+                    if (this.oldestItems != null)
                     {
-                        oldestItems.Enqueue(returnObj);
+                        this.oldestItems.Enqueue(returnObj);
                     }
 
                     return returnObj;
                 }
             }
 
-            if (oldestItems != null)
+            if (this.oldestItems != null)
             {
-                GameObject go = oldestItems.Dequeue();
-                oldestItems.Enqueue(go);// put at the end of the queue again
+                GameObject go = this.oldestItems.Dequeue();
+                this.oldestItems.Enqueue(go);// put at the end of the queue again
 
                 return go;
             }

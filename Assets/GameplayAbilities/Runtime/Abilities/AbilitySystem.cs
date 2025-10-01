@@ -72,6 +72,12 @@ namespace GameplayAbilities.Runtime.Abilities {
             this.AvailableAbilities.Add(ability);
         }
 
+        public Ability Grant(string id) {
+            Ability ability = PerkDatabase.GetAbility(id);
+            this.Grant(ability);
+            return ability;
+        }
+
         public void Revoke(IAbility ability) {
             this.AvailableAbilities.Remove(ability);
         }

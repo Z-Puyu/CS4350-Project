@@ -1,31 +1,34 @@
+using LeanTween.Framework;
 using UnityEngine;
 
-public class TestingIssue : MonoBehaviour {
+namespace LeanTween.Testing {
+	public class TestingIssue : MonoBehaviour {
 
-	LTDescr lt,ff;
-	int id,fid;
+		LTDescr lt,ff;
+		int id,fid;
 
-	void Start () {
-		LeanTween.init();
+		void Start () {
+			Framework.LeanTween.init();
 		
-		lt = LeanTween.move(gameObject,100*Vector3.one,2);
-		id = lt.id;
-		LeanTween.pause(id);
+			this.lt = Framework.LeanTween.move(this.gameObject,100*Vector3.one,2);
+			this.id = this.lt.id;
+			Framework.LeanTween.pause(this.id);
 
-		ff = LeanTween.move(gameObject,Vector3.zero,2);
-		fid = ff.id;
-		LeanTween.pause(fid);
-	}
-
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.A))
-		{
-			// Debug.Log("id:"+id);
-			LeanTween.resume(id);
+			this.ff = Framework.LeanTween.move(this.gameObject,Vector3.zero,2);
+			this.fid = this.ff.id;
+			Framework.LeanTween.pause(this.fid);
 		}
-		if(Input.GetKeyDown(KeyCode.D))
-		{
-			LeanTween.resume(fid);
+
+		void Update () {
+			if(Input.GetKeyDown(KeyCode.A))
+			{
+				// Debug.Log("id:"+id);
+				Framework.LeanTween.resume(this.id);
+			}
+			if(Input.GetKeyDown(KeyCode.D))
+			{
+				Framework.LeanTween.resume(this.fid);
+			}
 		}
 	}
 }

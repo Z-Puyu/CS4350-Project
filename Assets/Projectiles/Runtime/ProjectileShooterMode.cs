@@ -3,6 +3,7 @@
         None,
         Single,
         Spread,
-        Parallel
+        Parallel,
+        Default
     }
 }

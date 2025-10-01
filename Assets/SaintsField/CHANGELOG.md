@@ -1,5 +1,53 @@
 # Changelog
 
+## 4.32.2 ##
+
+1.  UI Toolkit: allow custom serialization for `long`/`ulong` enum type in struct/class [#289](github.com/TylerTemp/SaintsField/issues/289)
+2.  Fix code analysis can not recognize if you write multiple field variable in one line [#308](github.com/TylerTemp/SaintsField/issues/308)
+3.  IMGUI: fix auto validator won't open [#313](https://github.com/TylerTemp/SaintsField/issues/313)
+4.  IMGUI: fix incorrect ShowIf/HideIf height and display logic [#309](github.com/TylerTemp/SaintsField/issues/309)
+5.  Fix dll lfs [#310](https://github.com/TylerTemp/SaintsField/issues/310)
+
+## 4.32.1 ##
+
+1.  UI Toolkit: `long`/`ulong` enum type now support:
+    *   works with other attributes now
+    *   list now have a item count like a normal list
+    *   right click context menu now works
+    *   prefab changing indicator is working now
+2.  Fix code analysis not parsing marcos in source code
+3.  Code analysis now skip targets which are not in `Assets` folder
+
+## 4.32.0 ##
+
+**WE ARE FINALLY HERE!** Again...
+
+UI Toolkit: You can now serialize a long/ulong type of `enum`, which is not supported by Unity. Please read "Extended Serialization" section for more info.
+## 4.31.0 ##
+
+**WE ARE FINALLY HERE!**
+
+If the project has `Microsoft.CodeAnalysis.CSharp`, use it to ensure the fields (properties, methods)' order as defined in code. This can greatly reduce the confusion when you have a mixed order of fields/properties/methods with `LayoutStart`
+
+## 4.30.3 ##
+
+1.  UI Toolkit: fix `Button` return value duplicated rendering when nested with list - struct - list - struct
+2.  UI Toolkit: fix `Button` didn't show the returned value if the function has no parameters
+3.  IMGUI: fix auto getters error when an element is removed from list [#304](https://github.com/TylerTemp/SaintsField/issues/304)
+
+## 4.30.2 ##
+
+1.  UI Toolkit: fix label in wrong location for `enum` type [#298](https://github.com/TylerTemp/SaintsField/issues/298)
+2.  IMGUI: fix `Expandable` can not process when target is `null` [#297](https://github.com/TylerTemp/SaintsField/issues/297)
+3.  UI Toolkit: fix `ShowInInspector` display flags `enum` as normal enum
+4.  UI Toolkit: fix `SaintsDictionary` failed to flatten if the target is a class/struct [#301](https://github.com/TylerTemp/SaintsField/issues/301)
+5.  UI Toolkit: General improvements to the FlagsDropdownElement implementation to be closer to the Unity implementation for display by [@Zallist](https://github.com/Zallist) on [pr#299](https://github.com/TylerTemp/SaintsField/pull/299)
+    *   fix: `FlagsDropdownElement` not showing the actual name for NOTHING or EVERYTHING set in the flags enum if set by the developer
+    *   fix: `FlagsDropdownElement` should have a cap on its width via flexShrink
+    *   fix: `FlagsDropdownElement` did not attempt to collapse down flags that were contained within higher flags (up,down,vertical,left,right,horizontal should be collapsed to just vertical,horizontal)
+    *   fix: `FlagsDropdownElement` did not use a tooltip if everything got too long
+    *   fix: `FlagsDropdownElement` did not showing EVERYTHING if the enum value was -1 since CachedValue was instantiated to -1, now it's a nullable int
+
 ## 4.30.1 ##
 
 UI Toolkit: fix `enum` type label didn't take a new line in horizontal layout [#296](https://github.com/TylerTemp/SaintsField/issues/296)

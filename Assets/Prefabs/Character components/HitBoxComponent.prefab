@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4905482573666499099}
-  - component: {fileID: 4571564496476161087}
   - component: {fileID: 7117215594839900670}
+  - component: {fileID: 7970523528237082117}
   m_Layer: 6
   m_Name: HitBoxComponent
   m_TagString: Untagged
@@ -33,22 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4571564496476161087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5615915680876793758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f516ac6cad2d420d847bd5dfc4e05c5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.HitBox2D
-  <Collider>k__BackingField: {fileID: 7117215594839900670}
-  <OnHitEvent>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &7117215594839900670
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -95,3 +79,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &7970523528237082117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615915680876793758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa90ca91dc340528db9fb341985caa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Weapons.HitBox2D
+  <OnHitEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <DamageMultiplier>k__BackingField: 0

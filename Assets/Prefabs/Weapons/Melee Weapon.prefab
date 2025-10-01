@@ -1,0 +1,419 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6249343043957310029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703695990898270200, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_Name
+      value: Melee Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803416]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803417]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803418]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803421]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803422]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803640]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717539960029588]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717539960029589]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.Attacks.MeleeAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803417].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803418].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<SweepHalfAngle>k__BackingField
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803417].<MeleeRangeAttribute>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803418].<MeleeRangeAttribute>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<MeleeRangeAttribute>k__BackingField
+      value: Weapon.Melee.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803417].<AttackAttributes>k__BackingField.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803418].<AttackAttributes>k__BackingField.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.data[0]'
+      value: 5580717538616803416
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.data[1]'
+      value: 5580717538616803421
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.data[2]'
+      value: 5580717538616803422
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.data[0]'
+      value: 5580717538616803640
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.data[1]'
+      value: 5580717539960029588
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.data[2]'
+      value: 5580717539960029589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803421].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029588].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029589].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761771488511066827, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: <DefaultAttributes>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 489688b20d31e5142bc1d059fc6515ce, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}

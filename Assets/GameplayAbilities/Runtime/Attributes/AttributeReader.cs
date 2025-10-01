@@ -13,6 +13,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         private AttributeSet Root { get; set; }
         
         bool IAttributeReader.IsTopLevel => false;
+        public IAttributeReader Parent => this.Root;
 
         private void Awake() {
             if (!this.Root) {

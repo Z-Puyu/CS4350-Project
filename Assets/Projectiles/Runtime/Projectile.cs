@@ -28,6 +28,14 @@ namespace Projectiles.Runtime {
             this.Controllers.ForEach(controller => this.ControllersByType.Add(controller.GetType(), controller));
         }
 
+        private void OnEnable() {
+            this.Controllers.ForEach(controller => controller.Possess(this));
+        }
+
+        private void OnDisable() {
+            this.Controllers.ForEach(controller => controller.ReleaseControl());
+        }
+
         #region Builder Methods
 
         public Projectile Targeting(IEnumerable<string> tags) {
@@ -60,10 +68,7 @@ namespace Projectiles.Runtime {
         }
 
         public void Launch(Vector3 direction, float speed, double range) {
-            this.Direction = direction;
-            this.Speed = speed;
-            this.Range = range;
-            this.LaunchPoint = this.transform.position;
+            this.Launch(this.transform.position, direction, speed, range);       
         }
         
         public void Launch(Vector3 from, Vector3 direction, float speed, double range) {
@@ -72,6 +77,7 @@ namespace Projectiles.Runtime {
             this.Range = range;
             this.transform.position = from;
             this.LaunchPoint = from;
+            this.IsAlive = true;       
         }
 
         public Projectile Relaunch() {
@@ -90,21 +96,14 @@ namespace Projectiles.Runtime {
 
         #endregion
 
-        public override void Initialise(Action<Projectile> onReturn) {
-            base.Initialise(onReturn);
-            this.IsAlive = true;
-            this.LaunchPoint = this.Transform.position;
-        }
-
         public override void Return() {
             this.StopAllCoroutines();
-            this.Controllers.ForEach(controller => controller.ReleaseControl());
-            this.OnHit = null;
             this.TargetTags.Clear();
             this.Speed = 0;
             this.Range = 0;
             this.Direction = Vector3.zero;
             this.LaunchPoint = Vector3.zero;
+            this.OnHit = null;
             base.Return();
         }
         
@@ -132,12 +131,16 @@ namespace Projectiles.Runtime {
                 this.Return();
             }
         }
-        
-        /// <summary>
-        /// Process the impact of the projectile.
-        /// </summary>
-        /// <param name="target">The target hit by the projectile. It is guaranteed to be a valid target.</param>
-        protected abstract void Impact(GameObject target);
+
+        protected void Impact(GameObject target) {
+            this.IsAlive = false;
+            Vector3 position = target.transform.position;
+            this.Controllers.ForEach(controller => controller.ProcessHit(position, target));
+            this.OnHit?.Invoke(position, target);
+            if (!this.IsAlive) {
+                this.Return();
+            }       
+        }
 
         private void Travel(float deltaTime) {
             this.Transform.position += this.Direction * (deltaTime * this.Speed);

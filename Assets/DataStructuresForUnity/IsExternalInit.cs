@@ -1,3 +1,3 @@
-namespace System.Runtime.CompilerServices {
+namespace DataStructuresForUnity {
     internal static partial class IsExternalInit { }
 }
