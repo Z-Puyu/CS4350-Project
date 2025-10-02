@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7805846891793197291, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9af2ba525d24e2141b4f50fb371adb67, type: 2}
     - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <Data>k__BackingField
       value: 
