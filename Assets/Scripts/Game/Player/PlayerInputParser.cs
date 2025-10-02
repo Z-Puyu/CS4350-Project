@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Common;
+using Events;
 using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
-using Map.Objectives.Objective_UI;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
@@ -31,7 +31,7 @@ namespace Game.Player
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
-        [field: SerializeField, Required] private ObjectiveManager ObjectiveManager { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
@@ -81,6 +81,13 @@ namespace Game.Player
             }
         }
 
+        public void OnOpenObjective(InputAction.CallbackContext context)
+        {
+            if (context.performed) {
+                broadcastOpenNotebook.TriggerEvent();
+            }
+        }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -117,14 +124,6 @@ namespace Game.Player
                 }
                 
                 this.AbilityCaster.Ready(1);
-            }
-        }
-
-        public void OnOpenObjective(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                ObjectiveManager.OpenNotebook();
             }
         }
     }
