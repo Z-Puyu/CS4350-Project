@@ -1,11 +1,11 @@
 using System;
 using System.Text;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayEffects.Runtime;
 using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Modifiers {
     [Serializable]
@@ -89,19 +89,32 @@ namespace GameplayAbilities.Runtime.Modifiers {
                 var _ => throw new ArgumentOutOfRangeException()
             };
         }
+        
+        public Modifier CreateModifier(IDataReader<string, int> target) {
+            return this.Form switch {
+                MagnitudeType.Constant => new Modifier(this.DefaultValue, this.Method, this.TargetAttribute),
+                MagnitudeType.AttributeValue => new Modifier(
+                    target.HasValue(this.SourceAttribute, out int value) ? value : 0, this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                MagnitudeType.CallerSupplied => new Modifier(
+                    target.HasValue(this.Label, out int value) ? value : 0, this.Method, this.TargetAttribute
+                ) * this.Coefficient,
+                var _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
-        public Modifier CreateModifier(IAttributeReader target, GameplayEffectExecutionArgs args) {
+        public Modifier CreateModifier(IAttributeReader target, IDataReader<string, int> source) {
             if (this.UseAttributeValue) {
                 int value = this.Source switch {
                     ValueSource.Target => target.GetCurrent(this.SourceAttribute),
-                    ValueSource.Instigator => args.Instigator.GetCurrent(this.SourceAttribute),
+                    ValueSource.Instigator => source.HasValue(this.SourceAttribute, out int v) ? v : 0,
                     var _ => throw new ArgumentException("Invalid value source")
                 };
                 
                 return new Modifier(value, this.Method, this.TargetAttribute) * this.Coefficient;
             }
 
-            if (this.AllowSetByCaller && args.HasData(this.Label, out int val)) {
+            if (this.AllowSetByCaller && source.HasValue(this.Label, out int val)) {
                 return new Modifier(val, this.Method, this.TargetAttribute) * this.Coefficient;
             }
             

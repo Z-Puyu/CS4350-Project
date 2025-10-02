@@ -3,6 +3,7 @@ using System.Text;
 using Common;
 using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
+using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -10,8 +11,10 @@ using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using WeaponsSystem;
-using WeaponsSystem.DamageHandling;
+using WeaponsSystem.Runtime.Combat;
+
+//using WeaponsSystem;
+//using WeaponsSystem.DamageHandling;
 
 namespace Game.Player {
     [DisallowMultipleComponent]
@@ -22,7 +25,8 @@ namespace Game.Player {
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
-        [field: SerializeField, Required] private AbilityRoundRobin AbilityRoundRobin { get; set; }
+        [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
+        [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         
         public void OnInteract(InputAction.CallbackContext context) {
@@ -59,7 +63,11 @@ namespace Game.Player {
             }
             
             OnScreenDebugger.Log("Attack");
-            this.Combatant.StartAttack();
+            if (this.AbilityTargeter.IsTargting) {
+                this.AbilityTargeter.Confirm();
+            } else {
+                this.Combatant.StartAttack();
+            }
         }
 
         public void OnMove(InputAction.CallbackContext context) {
@@ -73,13 +81,27 @@ namespace Game.Player {
 
         public void OnUseWeaponSkill(InputAction.CallbackContext context) {
             if (context.performed) {
-                this.AbilityRoundRobin.Use(0);
+#if DEBUG
+                Debug.Log("Use weapon skill");
+#endif
+                if (this.AbilityCaster.ReadiedSkillIndex == 0) {
+                    this.AbilityTargeter.Cancel();
+                }
+                
+                this.AbilityCaster.Ready(0);
             } 
         }
 
         public void OnUseCharacterSkill(InputAction.CallbackContext context) {
             if (context.performed) {
-                this.AbilityRoundRobin.Use(1);
+#if DEBUG
+                Debug.Log("Use character skill");
+#endif
+                if (this.AbilityCaster.ReadiedSkillIndex == 1) {
+                    this.AbilityTargeter.Cancel();
+                }
+                
+                this.AbilityCaster.Ready(1);
             }
         }
     }

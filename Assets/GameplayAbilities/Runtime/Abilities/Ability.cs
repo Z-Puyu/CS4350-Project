@@ -1,94 +1,47 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Attributes;
-using GameplayAbilities.Runtime.GameplayEffects;
+using GameplayAbilities.Runtime.Targeting;
+using GameplayEffects.Runtime;
 using SaintsField;
-using SaintsField.Playa;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Abilities {
-    [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability", order = 0)]
+    [CreateAssetMenu(fileName = "New Ability", menuName = "Gameplay Abilities/Ability")]
     public class Ability : ScriptableObject, IAbility {
         [field: SerializeField] internal bool IsObtainable { get; private set; } = true;
-        [field: SerializeField] internal string Id { get; private set; }
+        [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
-        [field: SerializeField, MinValue(0)] private int Cooldown { get; set; }
+        [field: SerializeField, MinValue(0)] private double Cooldown { get; set; }
+        [field: SerializeField] private List<AbilityCost> Costs { get; set; } = new List<AbilityCost>();
+        [field: SerializeReference] public TargetingStrategy TargetingStrategy { get; set; }
 
-        [field: SerializeField] 
-        public List<SpawnableAbilityObject> SpawnableEffectsOnTarget { get; private set; } =
-            new List<SpawnableAbilityObject>();
+        [field: SerializeReference]
+        private List<IEffect<IDataReader<string, int>, AttributeSet>> Effects { get; set; } =
+            new List<IEffect<IDataReader<string, int>, AttributeSet>>();
         
-        [field: SerializeField] 
-        public List<SpawnableAbilityObject> SpawnableEffectsOnSelf { get; private set; } =
-            new List<SpawnableAbilityObject>();
-        
-        [field: SerializeReference, ReferencePicker] 
-        public List<GameplayEffectData> EffectsOnTarget { get; private set; } = new List<GameplayEffectData>();
-        
-        [field: SerializeReference, ReferencePicker] 
-        public List<GameplayEffectData> EffectsOnSelf { get; private set; } = new List<GameplayEffectData>();
+        public double Duration => this.Effects.Count > 0 ? this.Effects.Max(effect => effect.EffectDuration) : 0;
+        public double MinTimeUntilNextUse => this.Cooldown + this.Duration;
 
-        private int Duration {
-            get {
-                if (this.EffectsOnTarget.Any(effect => effect.ActualDuration < 0) ||
-                    this.EffectsOnSelf.Any(effect => effect.ActualDuration < 0)) {
-                    return -1;
-                }
+        public bool IsFeasible(IAttributeReader instigator, AttributeSet target) {
+            return this.Costs.TrueForAll(cost => cost.IsAffordable(instigator));
+        }
 
-                int durationOnTarget = 0;
-                if (this.EffectsOnTarget.Count > 0) {
-                    durationOnTarget = this.EffectsOnTarget.Max(effect => effect.ActualDuration);
-                }
-
-                int durationOnSelf = 0;
-                if (this.EffectsOnSelf.Count > 0) {
-                    durationOnSelf = this.EffectsOnSelf.Max(effect => effect.ActualDuration);
-                }
-                
-                return Math.Max(durationOnTarget, durationOnSelf);
+        public void Execute(IAttributeReader instigator, AttributeSet target) {
+            foreach (IEffect<AttributeDataReader, AttributeSet> effect in this.Effects) {
+                effect.Apply(new AttributeDataReader(instigator), target).Start();
             }
         }
 
-        private int CooldownTime => this.Cooldown + Math.Max(0, this.Duration);
-        public AbilityInfo Info => new AbilityInfo(this.Id, this.CooldownTime, this.Duration);
-
-        public bool IsUsable(AttributeSet instigator, AttributeSet target) {
-            return true;
-        }
-        
-        public void Invoke(AbilitySystem instigator, AbilitySystem target, GameplayEffectExecutionArgs args = null) {
-            foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnTarget) {
-                ObjectSpawner.Pull(spawn.PoolableId, spawn, target.transform);
-            }
-            
-            if (this.EffectsOnTarget.Count == 0) {
-                return;
-            }
-            
-            args ??= instigator.CreateEffectExecutionArgs().Build();
-            instigator.Inflict(target, this, this.EffectsOnTarget.Select(data => data.Instantiate(args)));
-        }
-
-        public void Activate(AbilitySystem instigator, Vector3 position) {
-            foreach (SpawnableAbilityObject spawn in this.SpawnableEffectsOnSelf) {
-                ObjectSpawner.Pull(spawn.PoolableId, spawn, position, Quaternion.identity, instigator.transform)
-                             .Activate(new AbilityData(this.Info, instigator.AttributeSet, position));
-            }
-            
-            if (this.EffectsOnSelf.Count == 0) {
-                return;
-            }
-            
-            GameplayEffectExecutionArgs args = instigator.CreateEffectExecutionArgs().Build();
-            foreach (GameplayEffectData data in this.EffectsOnSelf) {
-                GameplayEffect effect = data.Instantiate(args);
-                instigator.AddEffect(effect, this);
-            }
+        /// <summary>
+        /// Starts targeting for the ability.
+        /// </summary>
+        /// <param name="caster">The caster.</param>
+        /// <param name="targeter">The targeter component.</param>
+        public void Activate(AbilityCaster caster, AbilityTargeter targeter) {
+            this.TargetingStrategy.Start(caster, this, targeter);
         }
     }
 }
-

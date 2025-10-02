@@ -115,7 +115,6 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
                         {
                             return;
                         }
-
                         VisualElement r = UIToolkitValueEdit(
                             paraContainer.Children().FirstOrDefault(),
                             parameterInfo.Name,
@@ -132,7 +131,9 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
                                 }
                             },
                             false,
-                            true
+                            InAnyHorizontalLayout,
+                            Array.Empty<Attribute>(),
+                            false
                         ).result;
                         // ReSharper disable once InvertIf
                         if (r != null)
@@ -186,13 +187,15 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
                     object returnValue = returnValues[0];
                     VisualElement r = UIToolkitValueEdit(
                         _returnValueContainer.Children().FirstOrDefault(),
-                        "",
+                        "<color=green>[return]</color>",
                         methodInfo.ReturnType,
                         returnValue,
                         null,
-                        newValue => { },
+                        _ => { },
                         false,
-                        true
+                        InAnyHorizontalLayout,
+                        ReflectCache.GetCustomAttributes(FieldWithInfo.MethodInfo),
+                        false
                     ).result;
                     if (r != null)
                     {
@@ -205,7 +208,6 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
                         {
                             _returnContainer.style.display = DisplayStyle.Flex;
                         }
-
                         _returnValueContainer.Add(r);
                     }
                 }
@@ -322,7 +324,7 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
             _onSearchFieldUIToolkit.AddListener(Search);
             buttonElement.RegisterCallback<DetachFromPanelEvent>(_ => _onSearchFieldUIToolkit.RemoveListener(Search));
 
-            if (!hasParameters)
+            if (!hasParameters && !hasReturnValue)
             {
                 return (buttonElement, needUpdate);
             }
@@ -361,7 +363,6 @@ namespace SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer
                 // returnValueContainer.SetEnabled(false);
                 root.Add(_returnContainer);
             }
-
 
             return (root, needUpdate);
 

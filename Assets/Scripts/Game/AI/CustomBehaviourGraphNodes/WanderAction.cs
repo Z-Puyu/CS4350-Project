@@ -32,9 +32,8 @@ namespace Game.AI.CustomBehaviourGraphNodes {
             }
             
             Vector3 position = this.Agent.Value.transform.position;
-            return Vector3.Distance(position, this.StartPosition) >= this.WanderDistance
-                    ? Status.Success
-                    : Status.Running;
+            float distance = Vector3.Distance(position, this.StartPosition);
+            return distance >= this.WanderDistance ? Status.Success : Status.Running;
         }
 
         protected override void OnEnd() {

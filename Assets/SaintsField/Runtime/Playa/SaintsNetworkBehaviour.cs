@@ -5,7 +5,6 @@ namespace SaintsField.Playa
 {
     public class SaintsNetworkBehaviour: NetworkBehaviour
     {
-
     }
 }
 #endif

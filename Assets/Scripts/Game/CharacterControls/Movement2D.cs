@@ -45,7 +45,19 @@ namespace Game.CharacterControls {
             return displacement;
         }
 
+        public override void MoveTo(Vector3 location) {
+            base.MoveTo(location);
+            Vector2 movement = this.CastUntilBlocked(this.CurrentVelocity);
+            if (movement == Vector2.zero) {
+                this.Stop();
+            }
+        }
+
         protected override void Move() {
+            if (!this.IsMoving) {
+                return;           
+            }
+            
             if (this.RootRigidBody) {
                 Vector2 displacement = this.CurrentVelocity;
                 Vector2 movement = this.CastUntilBlocked(displacement);

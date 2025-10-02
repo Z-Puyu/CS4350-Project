@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using DataStructuresForUnity.Runtime.Utilities;
 using SaintsField;
 using TMPro;
 using UnityEngine;
 
 namespace Common {
-    public sealed class OnScreenDebugger : DataStructuresForUnity.Runtime.GeneralUtils.Singleton<OnScreenDebugger> {
+    public sealed class OnScreenDebugger : Singleton<OnScreenDebugger> {
         Queue<string> Messages { get; set; } = new Queue<string>();
 
         [field: SerializeField, PostFieldRichLabel("s")]
@@ -30,7 +31,7 @@ namespace Common {
         }
 
         public static void Log(string message) {
-            OnScreenDebugger instance = DataStructuresForUnity.Runtime.GeneralUtils.Singleton<OnScreenDebugger>.Instance;
+            OnScreenDebugger instance = Singleton<OnScreenDebugger>.Instance;
             instance.Messages.Enqueue(message);
             if (instance.Messages.Count == 1) {
                 instance.NextUpdateTime = Time.time + instance.UpdateInterval;

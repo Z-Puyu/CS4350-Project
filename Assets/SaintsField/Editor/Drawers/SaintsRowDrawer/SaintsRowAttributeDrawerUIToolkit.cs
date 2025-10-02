@@ -3,12 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using SaintsField.Editor.Drawers.EnumFlagsDrawers.EnumToggleButtonsDrawer;
+using SaintsField.Editor.Drawers.TreeDropdownDrawer;
 using SaintsField.Editor.Playa;
+using SaintsField.Editor.Playa.Utils;
 using SaintsField.Editor.UIToolkitElements;
 using SaintsField.Editor.Utils;
 using SaintsField.Interfaces;
 using SaintsField.Playa;
+using SaintsField.SaintsSerialization;
+using SaintsField.Utils;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -158,7 +164,7 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
             root.AddToClassList(SaintsRowClass);
             root.AddToClassList(ClassAllowDisable);
 
-            FillElement(root, property, info, inHorizontalLayout, makeRenderer, doTweenPlayRecorder);
+            FillElement(root, label, property, info, inHorizontalLayout, makeRenderer, doTweenPlayRecorder);
 
             // ReSharper disable once InvertIf
             if (property.propertyType == SerializedPropertyType.ManagedReference)
@@ -189,7 +195,7 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
 
                             SerializedProperty newProp = property.serializedObject.FindProperty(propPath);
 
-                            FillElement(root, newProp, info, inHorizontalLayout, makeRenderer, doTweenPlayRecorder);
+                            FillElement(root, label, newProp, info, inHorizontalLayout, makeRenderer, doTweenPlayRecorder);
                         }
                         // Debug.Log(property.managedReferenceId);
                     })
@@ -220,8 +226,25 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
         //         : ((FieldInfo) member).FieldType;
         // }
 
-        private static void FillElement(VisualElement root, SerializedProperty property, MemberInfo info, bool inHorizontalLayout, IMakeRenderer makeRenderer, IDOTweenPlayRecorder doTweenPlayRecorder)
+        private static void FillElement(VisualElement root, string label, SerializedProperty property, MemberInfo info, bool inHorizontalLayout, IMakeRenderer makeRenderer, IDOTweenPlayRecorder doTweenPlayRecorder)
         {
+            // Debug.Log(info.Name);
+            // Debug.Log(info.DeclaringType);
+            // Debug.Log(info.ReflectedType);
+
+            SaintsSerializedActualAttribute saintsSerializedActual = ReflectCache.GetCustomAttributes<SaintsSerializedActualAttribute>(info).FirstOrDefault();
+            // Debug.Log($"{saintsSerializedActual?.Path}/{saintsSerializedActual?.PathType}");
+            if (saintsSerializedActual != null)
+            {
+                if (label.EndsWith("__Saints Serialized__"))
+                {
+                    label = label[..^"__Saints Serialized__".Length];
+                }
+                VisualElement renderSerializedActual = RenderSerializedActual(saintsSerializedActual, label, property, info, saintsSerializedActual.ElementType, SerializedUtils.GetFieldInfoAndDirectParent(property).parent);
+                root.Add(renderSerializedActual);
+                return;
+            }
+
             // Debug.Log($"{property.propertyPath}: {inHorizontalLayout}");
             object value = null;
             if (property.propertyType == SerializedPropertyType.ManagedReference)
@@ -267,7 +290,7 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
                 .ToDictionary(each => each.name, each => each.property);
 
             IReadOnlyList<ISaintsRenderer> renderer =
-                SaintsEditor.HelperGetRenderers(serializedFieldNames, null, property.serializedObject, makeRenderer, new []{value});
+                SaintsEditor.HelperGetRenderers(serializedFieldNames, property.serializedObject, makeRenderer, new []{value});
 
              VisualElement bodyElement = new VisualElement();
 
@@ -303,6 +326,143 @@ namespace SaintsField.Editor.Drawers.SaintsRowDrawer
             bodyElement.RegisterCallback<AttachToPanelEvent>(_ => SaintsEditor.AddInstance(doTweenPlayRecorder));
             bodyElement.RegisterCallback<DetachFromPanelEvent>(_ => SaintsEditor.RemoveInstance(doTweenPlayRecorder));
 #endif
+        }
+
+        private static VisualElement RenderSerializedActual(SaintsSerializedActualAttribute saintsSerializedActual,
+            string label, SerializedProperty property, MemberInfo serInfo, Type targetType, object parent)
+        {
+            SaintsPropertyType propertyType = (SaintsPropertyType)property.FindPropertyRelative(nameof(SaintsSerializedProperty.propertyType)).intValue;
+
+            switch (propertyType)
+            {
+                case SaintsPropertyType.EnumLong:
+#if UNITY_2022_1_OR_NEWER
+                case SaintsPropertyType.EnumULong:
+#endif
+                {
+                    // Attribute[] attributes = PointedTargetAttributes(saintsSerializedActual.Name, property.serializedObject.targetObject.GetType());
+                    Attribute[] attributes = ReflectCache.GetCustomAttributes(serInfo);
+
+#if SAINTSFIELD_DEBUG && SAINTSFIELD_SERIALIZED_DEBUG
+                    Debug.Log($"saintsrow serInfo={serInfo.Name} attrs = {string.Join(", ", attributes.Select(a => a.GetType().Name))}");
+#endif
+                    EnumToggleButtonsAttribute enumToggle = null;
+                    FlagsTreeDropdownAttribute flagsTreeDropdownAttribute = null;
+                    FlagsDropdownAttribute flagsDropdownAttribute = null;
+                    foreach (Attribute attribute in attributes)
+                    {
+                        switch (attribute)
+                        {
+                            case EnumToggleButtonsAttribute et:
+                                enumToggle = et;
+                                break;
+                            case FlagsTreeDropdownAttribute ftd:
+                                flagsTreeDropdownAttribute = ftd;
+                                break;
+                            case FlagsDropdownAttribute fd:
+                                flagsDropdownAttribute = fd;
+                                break;
+                        }
+                    }
+                    if (enumToggle != null)
+                    {
+                        return EnumToggleButtonsAttributeDrawer.RenderSerializedActual(enumToggle, label, property, serInfo, targetType, parent);
+                    }
+                    return TreeDropdownAttributeDrawer.RenderSerializedActual((ISaintsAttribute)flagsTreeDropdownAttribute ?? flagsDropdownAttribute, label, property, targetType);
+                    // return null;
+                }
+                case SaintsPropertyType.Undefined:
+                default:
+                    return null;
+            }
+        }
+
+        // private static Attribute[] PointedTargetAttributes(IReadOnlyList<SaintsSerializedPath> paths, Type serObjType)
+        // private static Attribute[] PointedTargetAttributes(string name, Type containerType)
+        // {
+        //     MemberInfo[] targetMemberInfos = containerType.GetMember(
+        //         name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly);
+        //     // ReSharper disable once InvertIf
+        //     if (targetMemberInfos.Length == 0)
+        //     {
+        //         Debug.LogWarning($"failed to find {name} on type {containerType}");
+        //         return Array.Empty<Attribute>();
+        //     }
+        //
+        //     return ReflectCache.GetCustomAttributes(targetMemberInfos[0]);
+        //
+        //     // Type accType = serObjType;
+        //     // MemberInfo targetMemberInfo = null;
+        //     // foreach (SaintsSerializedPath path in paths)
+        //     // {
+        //     //     bool pathIsProperty = path.IsProperty;
+        //     //     if (pathIsProperty)
+        //     //     {
+        //     //         PropertyInfo propertyInfo = accType.GetProperty(
+        //     //             path.Name,
+        //     //             BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+        //     //         if (propertyInfo == null)
+        //     //         {
+        //     //             Debug.LogWarning($"Failed to get attributes of {path.Name} under {serObjType}, chain: {string.Join("->", paths.Select(p => p.Name))}");
+        //     //             return Array.Empty<Attribute>();
+        //     //         }
+        //     //
+        //     //         targetMemberInfo = propertyInfo;
+        //     //         accType = GetElementType(propertyInfo.PropertyType);
+        //     //     }
+        //     //     else
+        //     //     {
+        //     //         FieldInfo fieldInfo = accType.GetField(
+        //     //             path.Name,
+        //     //             BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+        //     //         if (fieldInfo == null)
+        //     //         {
+        //     //             Debug.LogWarning($"Failed to get attributes of {path.Name} under {serObjType}, chain: {string.Join("->", paths.Select(p => p.Name))}");
+        //     //             return Array.Empty<Attribute>();
+        //     //         }
+        //     //
+        //     //         targetMemberInfo = fieldInfo;
+        //     //         accType = GetElementType(fieldInfo.FieldType);
+        //     //     }
+        //     //     // MemberInfo[] members = accType.GetMember(
+        //     //     //     path.Name,
+        //     //     //     BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+        //     //     // Type memberElementType = null;
+        //     //     // foreach (MemberInfo memberInfo in members)
+        //     //     // {
+        //     //     //     switch (memberInfo.MemberType)
+        //     //     //     {
+        //     //     //         case MemberTypes.Field:
+        //     //     //     }
+        //     //     // }
+        //     // }
+        //     //
+        //     // // ReSharper disable once InvertIf
+        //     // if (targetMemberInfo == null)
+        //     // {
+        //     //     Debug.LogWarning($"Failed to get attributes of {serObjType}, chain: {string.Join("->", paths.Select(p => p.Name))}");
+        //     //     return Array.Empty<Attribute>();
+        //     // }
+        //
+        //     // return ReflectCache.GetCustomAttributes(targetMemberInfo);
+        // }
+
+        private static Type GetElementType(Type rawType)
+        {
+            if (rawType.IsArray)
+            {
+                return rawType.GetElementType();
+            }
+
+            Type listType = SaintsEditorUtils.GetList(rawType);
+            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (listType == null)
+            {
+                return rawType;
+            }
+
+            return listType.GetGenericArguments()[0];
         }
     }
 }

@@ -1,10 +1,9 @@
-using System;
 using Events;
 using Map.RegionBorder;
 using Map.Wave_manager;
 using UnityEngine;
 
-namespace Player
+namespace Player_related.Player_region_border_detector
 {
     public class PlayerRegionBorderDetector : MonoBehaviour
     {
@@ -15,7 +14,7 @@ namespace Player
             RegionBorder regionBorder = other.gameObject.GetComponent<RegionBorder>();
             if (regionBorder != null)
             {
-                waveManager.SetCurrentRegion(regionBorder);
+                this.waveManager.SetCurrentRegion(regionBorder);
             }
         }
     }   
