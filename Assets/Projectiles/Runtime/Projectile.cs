@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataStructuresForUnity.Runtime.ObjectPooling;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Projectiles.Runtime {
     [DisallowMultipleComponent]
@@ -14,7 +16,10 @@ namespace Projectiles.Runtime {
         protected double Range { get; set; }
         private List<string> TargetTags { get; } = new List<string>();
         private bool IsAlive { get; set; }
-
+        [field: SerializeField] private GameObject Visual { get;set; }
+        [field: SerializeField] private ParticleSystem FlyParticles { get; set; }
+        [field: SerializeField] private ParticleSystem DisintegrationParticles { get; set; }
+        
         [field: SerializeReference]
         private List<IProjectileController> Controllers { get; set; } = new List<IProjectileController>();
 
@@ -29,10 +34,12 @@ namespace Projectiles.Runtime {
         }
 
         private void OnEnable() {
+            this.Visual.SetActive(true);
             this.Controllers.ForEach(controller => controller.Possess(this));
         }
 
         private void OnDisable() {
+            this.Visual.SetActive(false);
             this.Controllers.ForEach(controller => controller.ReleaseControl());
         }
 
@@ -82,7 +89,10 @@ namespace Projectiles.Runtime {
             this.Range = range;
             this.transform.position = from;
             this.LaunchPoint = from;
-            this.IsAlive = true;       
+            this.IsAlive = true;
+            if (this.FlyParticles) {
+                this.FlyParticles.Play();
+            }
         }
 
         public Projectile Relaunch() {
@@ -137,19 +147,30 @@ namespace Projectiles.Runtime {
             
             this.Controllers.ForEach(controller => controller.ProcessHit(position, target));
             if (!this.IsAlive) {
-                this.Return();
+                this.StartCoroutine(this.Destroy());
             }       
         }
-        
-        /*protected void Impact(GameObject target) {
-            this.IsAlive = false;
-            Vector3 position = target.transform.position;
-            this.Controllers.ForEach(controller => controller.ProcessHit(position, target));
-            this.OnHit?.Invoke(position, target);
-            if (!this.IsAlive) {
-                this.Return();
-            }       
-        }*/
+
+        private IEnumerator Destroy() {
+            this.Visual.SetActive(false);
+            if (this.FlyParticles) {
+                this.FlyParticles.Stop();
+            }
+
+            if (this.DisintegrationParticles) {
+                this.DisintegrationParticles.Play();
+            }
+            
+            yield return new WaitUntil(hasFinishedAllVisualEffects);
+            this.Return();
+            yield break;
+
+            bool hasFinishedAllVisualEffects() {
+                return (!this.FlyParticles || !this.FlyParticles.IsAlive()) &&
+                       (!this.DisintegrationParticles || !this.DisintegrationParticles.IsAlive()) &&
+                       this.Controllers.TrueForAll(controller => controller.IsIdle);
+            }
+        }
 
         private void Travel(float deltaTime) {
             this.Transform.position += this.Direction * (deltaTime * this.Speed);

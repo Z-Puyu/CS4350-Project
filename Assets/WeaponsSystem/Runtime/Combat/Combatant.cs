@@ -63,8 +63,13 @@ namespace WeaponsSystem.Runtime.Combat {
         }
 
         public void PerformAttack(Vector3 forward) {
-            Vector3 direction = (this.AttackOrigin.position - this.Owner.transform.position).normalized;
-            this.Weapon.Attack(this.Owner, this.EnemyTags, this.EnemyLayerMask, this.AttackOrigin.position, direction);
+            if (!this.IsAttacking) {
+                return;
+            }
+            
+            Vector3 pos = this.AttackOrigin.position;
+            Vector3 direction = (pos - this.Owner.transform.position).normalized;
+            this.Weapon.Attack(this.Owner, this.EnemyTags, this.EnemyLayerMask, pos, direction);
         }
 
         public void QueryFinishAttack() {

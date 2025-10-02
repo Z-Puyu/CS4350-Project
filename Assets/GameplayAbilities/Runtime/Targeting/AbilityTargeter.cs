@@ -24,11 +24,17 @@ namespace GameplayAbilities.Runtime.Targeting {
             this.TargetingStrategy?.Update();
         }
 
+        public void Cancel() {
+            this.TargetingStrategy?.Cancel();
+            this.TargetingStrategy = null;
+        }
+
         public void Confirm() {
 #if DEBUG
             Debug.Log("Confirm target");
 #endif
-            this.TargetingStrategy?.ConfirmTarget();
+            this.TargetingStrategy?.Confirm();
+            this.TargetingStrategy = null;
         }
     }
 }

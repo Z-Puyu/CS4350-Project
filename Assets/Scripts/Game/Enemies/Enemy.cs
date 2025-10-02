@@ -4,6 +4,8 @@ using ModularItemsAndInventory.Runtime.LootContainers;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaponsSystem.Runtime.DamageHandling;
+using WeaponsSystem.Runtime.Weapons;
 
 namespace Game.Enemies {
     public class Enemy : GameCharacterController {
@@ -17,6 +19,10 @@ namespace Game.Enemies {
 
         protected override void ConfigureAttributeSet() {
             this.AttributeSet.Initialise(this.Data.Attributes);
+        }
+
+        public void RememberAttacker(Damage damage) {
+            this.LastAttacker = damage.Instigator;
         }
 
         protected override void Start() {

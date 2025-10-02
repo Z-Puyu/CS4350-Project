@@ -10,11 +10,6 @@ namespace GameplayAbilities.Runtime.Targeting {
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
         [field: SerializeField, MinValue(1)] private float Speed { get; set; }
         [field: SerializeField, MinValue(1)] private float Range { get; set; }
-        private AbilityTargeter Targeter { get; set; }
-
-        protected override void BeginTargeting(AbilityTargeter targeter) {
-            this.Targeter = targeter;
-        }
 
         protected void HandleProjectileHit(Vector3 hitPoint, GameObject hitObject) {
 #if DEBUG
@@ -25,15 +20,11 @@ namespace GameplayAbilities.Runtime.Targeting {
             }
         }
 
-        protected override void UpdateTargeting() { }
-
-        protected override void CancelTargeting() { }
-
         protected virtual Projectile ConfigureProjectileControllers(Projectile projectile) {
             return projectile;
         }
 
-        public override void ConfirmTarget() {
+        protected override void ConfirmTarget() {
             Vector3 origin = this.Targeter.ProjectileOrigin;
             Vector3 centre = this.Targeter.transform.position;
             this.ConfigureProjectileControllers(ObjectPools<Projectile>.Get(this.ProjectilePrefab))

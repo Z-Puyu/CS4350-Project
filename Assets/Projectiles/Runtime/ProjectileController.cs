@@ -11,6 +11,9 @@ namespace Projectiles.Runtime {
             remove => this.OnHit -= value;
         }
 
+        protected virtual bool IsIdle => true;
+        bool IProjectileController.IsIdle => this.IsIdle;
+
         public virtual void Possess(Projectile projectile) {
             this.Projectile = projectile;
         }

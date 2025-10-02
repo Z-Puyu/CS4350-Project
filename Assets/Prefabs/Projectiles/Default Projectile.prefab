@@ -201,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc009f755afe4be38a3d98f1d25dceb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Projectiles.Runtime::Projectiles.Runtime.Projectile2D
+  <Visual>k__BackingField: {fileID: 2149154651981169789}
+  <FlyParticles>k__BackingField: {fileID: 0}
+  <DisintegrationParticles>k__BackingField: {fileID: 0}
   <Controllers>k__BackingField:
   - rid: 5580717538616803652
   references:

@@ -15,6 +15,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField, MinValue(1)] private int AbilitySlots { get; set; }
         [field: SerializeField] private Ability TestCharacterAbility { get; set; }
         private List<Ability> EquippedAbilities { get; } = new List<Ability>();
+        public int ReadiedSkillIndex { get; set; }
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
@@ -84,6 +85,11 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         public void Ready(Ability ability) {
             ability.Activate(this, this.AbilityTargeter);
+            this.ReadiedSkillIndex = this.EquippedAbilities.IndexOf(ability);
+        }
+        
+        public void CancelCast(int index) {
+            if (index < 0 || index >= this.AbilitySlots) {}
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace GameplayAbilities.Runtime.Targeting {
     public abstract class TargetingStrategy {
+        protected AbilityTargeter Targeter { get; set; }
         protected AbilityCaster Caster { get; set; }
         protected Ability Ability { get; set; }
         protected bool IsTargeting { get; set; }
@@ -9,12 +10,13 @@ namespace GameplayAbilities.Runtime.Targeting {
         public void Start(AbilityCaster caster, Ability ability, AbilityTargeter targeter) {
             this.Ability = ability;
             this.IsTargeting = true;
+            this.Targeter = targeter;
             targeter.TargetingStrategy = this;
             this.Caster = caster;
-            this.BeginTargeting(targeter);
+            this.BeginTargeting();
         }
         
-        protected abstract void BeginTargeting(AbilityTargeter targeter);
+        protected virtual void BeginTargeting() { }
 
         public void Update() {
             if (this.IsTargeting) {
@@ -22,7 +24,7 @@ namespace GameplayAbilities.Runtime.Targeting {
             }
         }
 
-        protected abstract void UpdateTargeting();
+        protected virtual void UpdateTargeting() { }
 
         public void Cancel() {
             if (!this.IsTargeting) {
@@ -33,8 +35,13 @@ namespace GameplayAbilities.Runtime.Targeting {
             this.CancelTargeting();
         }
         
-        protected abstract void CancelTargeting();
+        protected virtual void CancelTargeting() { }
 
-        public abstract void ConfirmTarget();
+        public void Confirm() {
+            this.ConfirmTarget();
+            this.Targeter.TargetingStrategy = null;
+        }
+
+        protected abstract void ConfirmTarget();
     }
 }

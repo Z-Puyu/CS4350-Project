@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Projectiles.Runtime {
     public interface IProjectileController {
-        public event Action<Vector3, GameObject> OnHit; 
-        
+        public event Action<Vector3, GameObject> OnHit;
+        bool IsIdle { get; }
+
         public void Possess(Projectile projectile);
         public void ReleaseControl();
         public void Update();

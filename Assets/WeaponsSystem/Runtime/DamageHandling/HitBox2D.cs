@@ -1,9 +1,9 @@
 using SaintsField;
 using UnityEngine;
 using UnityEngine.Events;
-using WeaponsSystem.Runtime.DamageHandling;
+using WeaponsSystem.Runtime.Weapons;
 
-namespace WeaponsSystem.Runtime.Weapons {
+namespace WeaponsSystem.Runtime.DamageHandling {
     [DisallowMultipleComponent]
     public sealed class HitBox2D : MonoBehaviour, IDamageable {
         [field: SerializeField] private UnityEvent<Damage> OnHitEvent { get; set; } = new UnityEvent<Damage>();

@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Attack Origin
       objectReference: {fileID: 0}
+    - target: {fileID: 5528408610186830643, guid: f1401b4b09d46d544b212310c3d35120, type: 3}
+      propertyPath: offset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7579686257471348130, guid: f1401b4b09d46d544b212310c3d35120, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

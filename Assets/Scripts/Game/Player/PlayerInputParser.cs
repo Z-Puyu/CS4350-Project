@@ -65,9 +65,9 @@ namespace Game.Player {
             OnScreenDebugger.Log("Attack");
             if (this.AbilityTargeter.IsTargting) {
                 this.AbilityTargeter.Confirm();
+            } else {
+                this.Combatant.StartAttack();
             }
-
-            this.Combatant.StartAttack();
         }
 
         public void OnMove(InputAction.CallbackContext context) {
@@ -84,6 +84,10 @@ namespace Game.Player {
 #if DEBUG
                 Debug.Log("Use weapon skill");
 #endif
+                if (this.AbilityCaster.ReadiedSkillIndex == 0) {
+                    this.AbilityTargeter.Cancel();
+                }
+                
                 this.AbilityCaster.Ready(0);
             } 
         }
@@ -93,6 +97,10 @@ namespace Game.Player {
 #if DEBUG
                 Debug.Log("Use character skill");
 #endif
+                if (this.AbilityCaster.ReadiedSkillIndex == 1) {
+                    this.AbilityTargeter.Cancel();
+                }
+                
                 this.AbilityCaster.Ready(1);
             }
         }
