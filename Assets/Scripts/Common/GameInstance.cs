@@ -1,4 +1,4 @@
-using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.Utilities;
 using Game.Player;
 using SaintsField;
 using UnityEngine;

@@ -1,10 +1,11 @@
 using Unity.Behavior;
 
-[BlackboardEnum]
-public enum AgentState
-{
-    Idle,
-	Alert,
-	Cautious,
-	Aggressive
+namespace Game.AI.CustomBehaviourGraphNodes {
+	[BlackboardEnum]
+	public enum AgentState {
+		Idle,
+		Alert,
+		Cautious,
+		Aggressive
+	}
 }

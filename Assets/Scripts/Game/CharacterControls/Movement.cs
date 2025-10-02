@@ -15,8 +15,9 @@ namespace Game.CharacterControls {
             this.TargetDirection = (target.transform.position - this.RootTransform.position).normalized;
         }
         
-        public void MoveTo(Vector3 location) {
+        public virtual void MoveTo(Vector3 location) {
             this.TargetDirection = (location - this.RootTransform.position).normalized;
+            this.CurrentVelocity = this.TargetDirection * (this.Speed * Time.fixedDeltaTime);
         }
 
         public void MoveIn(Vector3 direction) {
@@ -25,9 +26,14 @@ namespace Game.CharacterControls {
         
         public void Stop() {
             this.TargetDirection = Vector3.zero;
+            this.CurrentVelocity = Vector3.zero;       
         }
 
         protected virtual void Move() {
+            if (!this.IsMoving) {
+                return;           
+            }
+            
             this.RootTransform.position += this.CurrentVelocity;
         }
         

@@ -408,11 +408,11 @@ namespace DataStructuresForUnity.Runtime.Trie {
             }
             
             T[] array = prefix.ToArray();
-            if (this.HasSeparator && array[^1].Equals(this.Separator)) {
+            if (array.Length == 0 || this.HasSeparator && array[^1].Equals(this.Separator)) {
                 entry = null;
                 return false;
             }
-            
+
             entry = this.Root;
             foreach (T element in array) {
                 if (this.HasSeparator && EqualityComparer<T>.Default.Equals(element, this.Separator)) {

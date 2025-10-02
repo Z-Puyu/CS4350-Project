@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DataStructuresForUnity.Runtime.Utilities;
+using GameplayAbilities.Runtime.Modifiers;
+using GameplayEffects.Runtime;
 using SaintsField;
-using SaintsField.Playa;
 using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Attributes {
@@ -9,6 +11,9 @@ namespace GameplayAbilities.Runtime.Attributes {
     public class AttributeReader : MonoBehaviour, IAttributeReader {
         [field: SerializeField, InfoBox("If unset, will fetch from the first parent with an IAttributeReader.")]
         private AttributeSet Root { get; set; }
+        
+        bool IAttributeReader.IsTopLevel => false;
+        public IAttributeReader Parent => this.Root;
 
         private void Awake() {
             if (!this.Root) {
@@ -27,7 +32,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         IEnumerator IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
-        
+
         public int GetCurrent(string key) {
             return this.Root.GetCurrent(key);
         }
@@ -47,9 +52,28 @@ namespace GameplayAbilities.Runtime.Attributes {
         public bool Has(int threshold, string key) {
             return this.Root.Has(threshold, key);
         }
-        
+
+        IEnumerable<Modifier> IAttributeReader.GetModifiers(string key) {
+            return ((IAttributeReader)this.Root).GetModifiers(key);
+        }
+
         public int Query(string key, int @base) {
             return this.Root.Query(key, @base);
+        }
+
+        bool IDataReader<string, int>.HasValue(string key, out int value) {
+            value = this.Root.GetCurrent(key);
+            return this.Root.Has(int.MinValue, key);
+        }
+        
+        IDataReader<string, int> IDataReader<string, int>.With(string key, int value) {
+            if (this.Root.Has(int.MinValue, key)) {
+                
+            }
+#if DEBUG
+            Debug.LogError($"Cannot modify attributes on {this.name}", this);
+#endif
+            return this;
         }
     }
 }

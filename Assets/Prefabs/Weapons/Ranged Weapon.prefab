@@ -1,0 +1,339 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1325981494388223380
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572242216743587167, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703695990898270200, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: m_Name
+      value: Ranged Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803629]'
+      value: Assembly-CSharp WeaponsSystem.Attacks.ProjectileAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803641]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.Attacks.ProjectileAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717539960029590]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.Attacks.ProjectileAttackStrategy2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717541616517210]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.WeaponComponents.WeaponComponentController
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: '<WeaponControllers>k__BackingField.Array.data[0]'
+      value: 5580717541616517210
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<RangeAttribute>k__BackingField
+      value: Weapon.Projectile.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<SpeedAttribute>k__BackingField
+      value: Weapon.Projectile.Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<RangeAttribute>k__BackingField
+      value: Weapon.Projectile.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<SpeedAttribute>k__BackingField
+      value: Weapon.Projectile.Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<RangeAttribute>k__BackingField
+      value: Weapon.Projectile.Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<SpeedAttribute>k__BackingField
+      value: Weapon.Projectile.Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ProjectilePrefab>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ProjectilePrefab>k__BackingField
+      value: 
+      objectReference: {fileID: 1150010722743438404, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ProjectilePrefab>k__BackingField
+      value: 
+      objectReference: {fileID: 1150010722743438404, guid: 28eadd9fdbac2a24fb18cf40b1923af5, type: 3}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ShotsPerAttackAttribute>k__BackingField
+      value: Weapon.Ranged.ShotsPerAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ShotsPerAttackAttribute>k__BackingField
+      value: Weapon.Ranged.ShotsPerAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ShotsPerAttackAttribute>k__BackingField
+      value: Weapon.Ranged.ShotsPerAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ExplosionRadiusAttribute>k__BackingField
+      value: Weapon.Projectile.ExplosionRadius
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ExplosionRadiusAttribute>k__BackingField
+      value: Weapon.Projectile.ExplosionRadius
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ExplosionRadiusAttribute>k__BackingField
+      value: Weapon.Projectile.ExplosionRadius
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ProjectileSpreadAttribute>k__BackingField
+      value: Weapon.Projectile.Spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ProjectileSpreadAttribute>k__BackingField
+      value: Weapon.Projectile.Spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ProjectileSpreadAttribute>k__BackingField
+      value: Weapon.Projectile.Spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ProjectilesPerShotAttribute>k__BackingField
+      value: Weapon.Projectile.ProjectilesPerShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ProjectilesPerShotAttribute>k__BackingField
+      value: Weapon.Projectile.ProjectilesPerShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ProjectilesPerShotAttribute>k__BackingField
+      value: Weapon.Projectile.ProjectilesPerShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<IntervalBetweenShotsAttribute>k__BackingField
+      value: Weapon.Ranged.FireInterval
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<IntervalBetweenShotsAttribute>k__BackingField
+      value: Weapon.Ranged.FireInterval
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<IntervalBetweenShotsAttribute>k__BackingField
+      value: Weapon.Ranged.FireInterval
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.data[0]'
+      value: 5580717538616803629
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803414].<AttackStrategies>k__BackingField.Array.data[1]'
+      value: 5580717538616803629
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.data[0]'
+      value: 5580717538616803641
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5580717538616803638].<AttackStrategies>k__BackingField.Array.data[1]'
+      value: 5580717539960029590
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<ParallelProjectileSpacingAttribute>k__BackingField
+      value: Weapon.Projectile.ParallelProjectileSpacing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<ParallelProjectileSpacingAttribute>k__BackingField
+      value: Weapon.Projectile.ParallelProjectileSpacing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<ParallelProjectileSpacingAttribute>k__BackingField
+      value: Weapon.Projectile.ParallelProjectileSpacing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717541616517210].<PossibleComponents>k__BackingField._saintsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
+      value: Damage.Elemental.Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[1].<Id>k__BackingField
+      value: Damage.Elemental.Ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[2].<Id>k__BackingField
+      value: Damage.Elemental.Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
+      value: Damage.Physical.Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717541616517210].<PossibleComponents>k__BackingField._saintsList.Array.data[0].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 7219c48179bf5fc4eaf9f63a802e39de, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717541616517210].<PossibleComponents>k__BackingField._saintsList.Array.data[1].value
+      value: 
+      objectReference: {fileID: 11400000, guid: eedbef10c7566c64daa9212974e64432, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803641].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[1].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[2].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717539960029590].<AttackAttributes>k__BackingField.Array.data[3].<Coefficient>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761771488511066827, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: <DefaultAttributes>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 65c4b2e11bfeebe48b6c71d08c458966, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}

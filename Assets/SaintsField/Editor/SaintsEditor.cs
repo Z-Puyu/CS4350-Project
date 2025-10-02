@@ -9,20 +9,25 @@ using SaintsField.Editor.Playa;
 using SaintsField.Editor.Playa.Renderer;
 using SaintsField.Editor.Playa.Renderer.BaseRenderer;
 using SaintsField.Editor.Playa.Renderer.ButtonFakeRenderer;
+using SaintsField.Editor.Playa.Renderer.EmptyFakeRenderer;
 using SaintsField.Editor.Playa.Renderer.MethodBindFakeRenderer;
+using SaintsField.Editor.Playa.Renderer.PlayaFullWidthRichLabelFakeRenderer;
 using SaintsField.Editor.Playa.Renderer.PlayaInfoBoxFakeRenderer;
 using SaintsField.Editor.Playa.Renderer.PlayaSeparatorSemiRenderer;
 using SaintsField.Editor.Playa.Renderer.RealTimeCalculatorFakeRenderer;
 using SaintsField.Editor.Playa.Renderer.SpecialRenderer.ListDrawerSettings;
 using SaintsField.Editor.Playa.Renderer.SpecialRenderer.Table;
 using SaintsField.Editor.Playa.RendererGroup;
+using SaintsField.Editor.Playa.Utils;
 using SaintsField.Editor.Utils;
-using SaintsField.SaintsSerialization;
 using SaintsField.Playa;
+using SaintsField.SaintsSerialization;
 using SaintsField.Utils;
 using UnityEditor;
 using UnityEngine;
-using PlayaFullWidthRichLabelRenderer = SaintsField.Editor.Playa.Renderer.PlayaFullWidthRichLabelFakeRenderer.PlayaFullWidthRichLabelRenderer;
+// using Microsoft.CodeAnalysis;
+// using Microsoft.CodeAnalysis.CSharp;
+// using Microsoft.CodeAnalysis.CSharp.Syntax;
 #if DOTWEEN && !SAINTSFIELD_DOTWEEN_DISABLED
 using DG.DOTweenEditor;
 #endif
@@ -81,156 +86,60 @@ namespace SaintsField.Editor
         public static IReadOnlyList<ISaintsRenderer> Setup(ICollection<string> skipSerializedFields, SerializedObject serializedObject, IMakeRenderer makeRenderer,
             IReadOnlyList<object> targets)
         {
-            // HashSet<string> brokenFields = new HashSet<string>();
-            SerializedProperty saintsSerializedProp = serializedObject.FindProperty(Util.SerializedFieldName);
-            if (saintsSerializedProp != null)
-            {
-                #region Setup Serialization
-                if (targets.Count != 0 && !targets.All(RuntimeUtil.IsNull))
-                {
-                    bool changed = false;
-
-                    object target = targets[0];
-                    List<Type> types = ReflectUtils.GetSelfAndBaseTypes(target);
-                    types.Reverse();
-                    foreach (Type systemType in types)
-                    {
-                        const BindingFlags reflectFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly;
-
-                        foreach (MemberInfo memberInfo in systemType.GetMembers(reflectFlags))
-                        {
-                            bool foundIsField = memberInfo.MemberType == MemberTypes.Field;
-                            bool isProperty = memberInfo.MemberType == MemberTypes.Property;
-                            if (!foundIsField && !isProperty)
-                            {
-                                continue;
-                            }
-
-                            SaintsSerializedAttribute[] prop = ReflectCache.GetCustomAttributes<SaintsSerializedAttribute>(memberInfo);
-                            if (prop.Length == 0)
-                            {
-                                continue;
-                            }
-
-                            Type foundType;
-                            if (foundIsField)
-                            {
-                                foundType = ((FieldInfo)memberInfo).FieldType;
-                            }
-                            else
-                            {
-                                foundType = ((PropertyInfo)memberInfo).PropertyType;
-                            }
-
-                            bool isList = false;
-                            if(foundType.IsGenericType)
-                            {
-                                Type templateType = ReflectUtils.GetGenBaseTypes(foundType).Last();
-                                isList = templateType.IsGenericType && templateType.GetGenericTypeDefinition() == typeof(List<>);
-                            }
-
-                            CollectionType collectionType;
-                            Type elementType;
-                            if (foundType.IsArray)
-                            {
-                                collectionType = CollectionType.Array;
-                                elementType = ReflectUtils.GetElementType(foundType);
-                            }
-                            else if (isList)
-                            {
-                                collectionType = CollectionType.List;
-                                elementType = ReflectUtils.GetElementType(foundType);
-                            }
-                            else
-                            {
-                                collectionType = CollectionType.Default;
-                                elementType = foundType;
-                            }
-
-                            if (!elementType.IsEnum)
-                            {
-                                continue;
-                            }
-
-                            Type enumUnderType = elementType.GetEnumUnderlyingType();
-                            bool enumUnderLong = enumUnderType == typeof(long);
-                            bool enumUnderUong = enumUnderType == typeof(ulong);
-
-                            if (!enumUnderLong &&
-                                !enumUnderUong)
-                            {
-                                continue;
-                            }
-
-                            // find the target
-                            SerializedProperty foundSaintsSerializedProp = null;
-                            for (int index = 0; index < saintsSerializedProp.arraySize; index++)
-                            {
-                                SerializedProperty checkSaintsSerialzedProp =
-                                    saintsSerializedProp.GetArrayElementAtIndex(index);
-                                if (checkSaintsSerialzedProp.FindPropertyRelative(nameof(SaintsSerializedProperty.name))
-                                        .stringValue == memberInfo.Name)
-                                {
-                                    foundSaintsSerializedProp = checkSaintsSerialzedProp;
-                                    break;
-                                }
-                            }
-
-                            if (foundSaintsSerializedProp == null)
-                            {
-                                // add one
-                                int newIndex = saintsSerializedProp.arraySize;
-                                saintsSerializedProp.arraySize++;
-                                changed = true;
-                                foundSaintsSerializedProp = saintsSerializedProp.GetArrayElementAtIndex(newIndex);
-                                foundSaintsSerializedProp.FindPropertyRelative(nameof(SaintsSerializedProperty.name))
-                                    .stringValue = memberInfo.Name;
-                            }
-
-                            // Update the information
-                            SerializedProperty propertyTypeProp =
-                                foundSaintsSerializedProp.FindPropertyRelative(nameof(SaintsSerializedProperty.propertyType));
-                            SerializedProperty isPropertyProp =
-                                foundSaintsSerializedProp.FindPropertyRelative(nameof(SaintsSerializedProperty.isProperty));
-                            SerializedProperty collectionTypeProp =
-                                foundSaintsSerializedProp.FindPropertyRelative(nameof(SaintsSerializedProperty.collectionType));
-                            SaintsPropertyType propertyType = enumUnderLong
-                                ? SaintsPropertyType.EnumLong
-                                : SaintsPropertyType.EnumULong;
-                            if (propertyTypeProp.intValue != (int)propertyType)
-                            {
-                                propertyTypeProp.intValue = (int)propertyType;
-                                changed = true;
-                            }
-                            if (isPropertyProp.boolValue != !foundIsField)
-                            {
-                                isPropertyProp.boolValue = !foundIsField;
-                                changed = true;
-                            }
-
-                            // ReSharper disable once InvertIf
-                            if (collectionTypeProp.intValue != (int)collectionType)
-                            {
-                                collectionTypeProp.intValue = (int)collectionType;
-                                changed = true;
-                            }
-                        }
-                    }
-
-                    if (changed)
-                    {
-                        serializedObject.ApplyModifiedProperties();
-                    }
-                }
-                #endregion
-            }
+            string[] serFields = GetSerializedProperties(serializedObject).ToArray();
+// #if SAINTSFIELD_SERIALIZED && SAINTSFIELD_NEWTONSOFT_JSON
+//             (string filePath, IReadOnlyList<SerializedInfo> serializedInfos) = SaintsEditorUtils.GetSaintsSerialized(targets[0].GetType());
+//             if (serializedInfos != null)
+//             {
+//                 // Debug.Log(filePath.Replace("\\", "/"));
+//                 string fileContent = System.IO.File.ReadAllText($"Assets/{filePath}");
+//                 string fileMd5 = SaintsEditorUtils.CreateMD5(fileContent);
+//                 // DateTime lastWriteTime = System.IO.File.GetLastWriteTime($"Assets/{filePath}");
+//                 // Debug.Log($"{lastWriteTime:yyyyMMdd-HHmmss-ffff}/{filePath}");
+//                 // // string lastWriteTimeString = lastWriteTime.ToString("yyyyMMdd-HHmmss-ffff");
+//                 // string lastWriteTimeString = "";
+//
+//                 // const string serFolder = "Temp/SaintsField";
+//                 string tempFile = $"Temp/SaintsField/{filePath}.{fileMd5}.json";
+//                 string tempFolder = System.IO.Path.GetDirectoryName(tempFile);
+//                 if (!System.IO.Directory.Exists(tempFolder))
+//                 {
+//                     // ReSharper disable once AssignNullToNotNullAttribute
+//                     System.IO.Directory.CreateDirectory(tempFolder);
+//                 }
+//
+//                 if (serializedInfos.Count == 0)
+//                 {
+//                     System.IO.File.WriteAllText(tempFile, "[]");
+//                 }
+//                 else
+//                 {
+//                     // string tempFile = $"{serFolder}/{filePath}.json";
+//                     // Debug.Log(tempFile);
+//                     string oldContent = System.IO.File.Exists(tempFile)
+//                         ? System.IO.File.ReadAllText(tempFile)
+//                         : null;
+//                     string newContent = Newtonsoft.Json.JsonConvert.SerializeObject(serializedInfos,
+//                         Newtonsoft.Json.Formatting.Indented);
+//                     if (oldContent != newContent)
+//                     {
+//                         System.IO.File.WriteAllText(tempFile, newContent);
+// #if SAINTSFIELD_DEBUG
+//                         Debug.Log($"Force Re-Import {filePath}");
+// #endif
+//                         AssetDatabase.ImportAsset("Assets/" + filePath, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+//                     }
+//                 }
+//             }
+// #endif
 
             // Debug.Log($"serializableFields={string.Join(",", serializableFields)}");
-            Dictionary<string, SerializedProperty> serializedPropertyDict = GetSerializedProperties(serializedObject)
+            Dictionary<string, SerializedProperty> serializedPropertyDict = serFields
                 .Where(each => !skipSerializedFields.Contains(each))
                 .ToDictionary(each => each, serializedObject.FindProperty);
             // Debug.Log($"serializedPropertyDict.Count={serializedPropertyDict.Count}");
-            return HelperGetRenderers(serializedPropertyDict, saintsSerializedProp, serializedObject, makeRenderer, targets);
+            // return HelperGetRenderers(serializedPropertyDict, saintsSerializedProp, serializedObject, makeRenderer, targets);
+            return HelperGetRenderers(serializedPropertyDict, serializedObject, makeRenderer, targets);
         }
 
         public static IEnumerable<ISaintsRenderer> GetClassStructRenderer(Type objectType, IEnumerable<IPlayaClassAttribute> playaClassAttributes, SerializedObject serializedObject, IReadOnlyList<object> targets)
@@ -283,7 +192,6 @@ namespace SaintsField.Editor
 
         public static IEnumerable<SaintsFieldWithInfo> HelperGetSaintsFieldWithInfo(
             IReadOnlyDictionary<string, SerializedProperty> serializedPropertyDict,
-            SerializedProperty saintsSerializedProp,
             IReadOnlyList<object> targets)
         {
             List<SaintsFieldWithInfo> fieldWithInfos = new List<SaintsFieldWithInfo>();
@@ -304,7 +212,7 @@ namespace SaintsField.Editor
             else
             {
                 object target = targets[0];
-                types = ReflectUtils.GetSelfAndBaseTypes(target);
+                types = ReflectUtils.GetSelfAndBaseTypesFromInstance(target);
                 types.Reverse();
                 // base type -> this type
                 // a later field should override current in different depth
@@ -318,16 +226,46 @@ namespace SaintsField.Editor
                     List<SaintsFieldWithInfo> thisDepthInfos = new List<SaintsFieldWithInfo>();
                     List<string> memberDepthIds = new List<string>();
 
-                    foreach (MemberInfo memberInfo in systemType
-                                 .GetMembers(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic |
-                                             BindingFlags.Public | BindingFlags.DeclaredOnly)
-                                 .OrderBy(memberInfo =>
-                                     memberInfo
-                                         .MetadataToken)) // this is still not the correct order, but... a bit better
+                    IReadOnlyList<CodeAnalysisUtils.MemberContainer> codeAnalysisMembers = ScriptInfoUtils.GetMembersCorrectOrder(systemType);
+                    List<MemberInfo> memberLis = systemType
+                        .GetMembers(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic |
+                                    BindingFlags.Public | BindingFlags.DeclaredOnly)
+                        // this is still not the correct order, but... a bit better
+                        .OrderBy(memberInfo => memberInfo.MetadataToken)
+                        .ToList();
+
+                    memberLis.Sort((a, b) => MemberLisCompare(a, b, codeAnalysisMembers));
+
+                    Dictionary<MemberInfo, IPlayaAttribute[]> memberInfoToPlaya =
+                        new Dictionary<MemberInfo, IPlayaAttribute[]>();
+                    Dictionary<string, MemberInfo> saintsSerializedActualNameToMemberInfo =
+                        new Dictionary<string, MemberInfo>();
+
+                    foreach (MemberInfo memberInfo in memberLis)
+                    {
+                        IPlayaAttribute[] playaAttributes = ReflectCache.GetCustomAttributes<IPlayaAttribute>(memberInfo);
+                        SaintsSerializedActualAttribute saintsSerializedActualAttribute =
+                            playaAttributes.OfType<SaintsSerializedActualAttribute>().FirstOrDefault();
+                        if (saintsSerializedActualAttribute == null)
+                        {
+                            memberInfoToPlaya[memberInfo] = playaAttributes;
+                        }
+                        else
+                        {
+                            saintsSerializedActualNameToMemberInfo[saintsSerializedActualAttribute.Name] = memberInfo;
+
+                            pendingSerializedProperties.Remove(memberInfo.Name);
+                            pendingSerializedProperties.Remove(RuntimeUtil.GetAutoPropertyName(memberInfo.Name));
+                        }
+                    }
+
+                    foreach (KeyValuePair<MemberInfo, IPlayaAttribute[]> kv in memberInfoToPlaya)
                     {
                         // Debug.Log(memberInfo.Name);
-                        IReadOnlyList<IPlayaAttribute> playaAttributes =
-                            ReflectCache.GetCustomAttributes<IPlayaAttribute>(memberInfo);
+                        MemberInfo memberInfo = kv.Key;
+                        IReadOnlyList<IPlayaAttribute> playaAttributes = kv.Value;
+                        // IReadOnlyList<IPlayaAttribute> playaAttributes =
+                        //     ReflectCache.GetCustomAttributes<IPlayaAttribute>(memberInfo);
 
                         // ISaintsLayoutBase[] layoutBases = GetLayoutBases(playaAttributes.OfType<ISaintsLayoutBase>()).ToArray();
 
@@ -377,26 +315,89 @@ namespace SaintsField.Editor
 
                                 else if (playaAttributes.Count > 0)
                                 {
-                                    OrderedAttribute orderProp =
-                                        playaAttributes.OfType<OrderedAttribute>().FirstOrDefault();
-                                    int order = orderProp?.Order ?? int.MinValue;
-                                    thisDepthInfos.Add(new SaintsFieldWithInfo
+                                    SaintsSerializedAttribute saintsSerializedAttribute = null;
+                                    OrderedAttribute orderProp = null;
+                                    foreach (IPlayaAttribute playa in playaAttributes)
                                     {
-                                        PlayaAttributes = playaAttributes,
-                                        // PlayaAttributesQueue = playaAttributes,
-                                        // LayoutBases = layoutBases,
-                                        Targets = targets,
+                                        switch (playa)
+                                        {
+                                            case OrderedAttribute oa:
+                                                orderProp = oa;
+                                                break;
+                                            case SaintsSerializedAttribute ssa:
+                                                saintsSerializedAttribute = ssa;
+                                                break;
+                                        }
+                                        if(saintsSerializedAttribute != null && orderProp != null)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    int order = orderProp?.Order ?? int.MinValue;
 
-                                        RenderType = SaintsRenderType.NonSerializedField,
-                                        // memberType = nonSerFieldInfo.MemberType,
-                                        MemberId = fieldInfo.Name,
-                                        FieldInfo = fieldInfo,
-                                        InherentDepth = inherentDepth,
-                                        Order = order,
+                                    if(saintsSerializedAttribute == null)
+                                    {
+                                        thisDepthInfos.Add(new SaintsFieldWithInfo
+                                        {
+                                            PlayaAttributes = playaAttributes,
+                                            // PlayaAttributesQueue = playaAttributes,
+                                            // LayoutBases = layoutBases,
+                                            Targets = targets,
 
-                                        SaintsSerializedProp = saintsSerializedProp,
-                                        // serializable = false,
-                                    });
+                                            RenderType = SaintsRenderType.NonSerializedField,
+                                            // memberType = nonSerFieldInfo.MemberType,
+                                            MemberId = fieldInfo.Name,
+                                            FieldInfo = fieldInfo,
+                                            InherentDepth = inherentDepth,
+                                            Order = order,
+                                            // serializable = false,
+                                        });
+                                    }
+                                    else
+                                    {
+                                        string thisName = fieldInfo.Name;
+                                        if (thisName.StartsWith("<") && thisName.EndsWith(">k__BackingField"))
+                                        {
+                                            thisName = thisName.Substring(1,
+                                                thisName.Length - 1 - ">k__BackingField".Length);
+                                        }
+
+                                        if (!saintsSerializedActualNameToMemberInfo.TryGetValue(thisName, out MemberInfo serInfo))
+                                        {
+                                            Debug.LogWarning($"failed to find serialized actual field for {fieldInfo.Name}");
+                                            continue;
+                                        }
+
+                                        // Attribute[] injectedAttrs = ReflectCache
+                                        //     .GetCustomAttributes(fieldInfo)
+                                        //     .Where(each => each is not NonSerializedAttribute
+                                        //                    && each is not HideInInspector
+                                        //                    && each is not SaintsSerializedAttribute)
+                                        //     .Prepend(ReflectCache.GetCustomAttributes<SaintsSerializedActualAttribute>(serInfo).First())
+                                        //     .ToArray();
+
+#if SAINTSFIELD_DEBUG && SAINTSFIELD_SERIALIZED_DEBUG
+                                        Debug.Log($"wrap {fieldInfo.Name} to {serInfo.Name}");
+#endif
+
+                                        thisDepthInfos.Add(new SaintsFieldWithInfo
+                                        {
+                                            PlayaAttributes = playaAttributes,
+                                            // PlayaAttributesQueue = playaAttributes,
+                                            // LayoutBases = layoutBases,
+                                            Targets = targets,
+
+                                            RenderType = SaintsRenderType.SerializedField,
+                                            // memberType = nonSerFieldInfo.MemberType,
+                                            MemberId = serInfo.Name,
+                                            FieldInfo = (FieldInfo)serInfo,
+                                            InherentDepth = inherentDepth,
+                                            Order = order,
+                                            // serializable = false,
+
+                                            SerializedProperty = serializedPropertyDict[serInfo.Name],
+                                        });
+                                    }
                                     memberDepthIds.Add(fieldInfo.Name);
                                 }
 
@@ -524,6 +525,90 @@ namespace SaintsField.Editor
                 .Select(each => each.value);
         }
 
+        private static int MemberLisCompare(MemberInfo a, MemberInfo b,IReadOnlyList<CodeAnalysisUtils.MemberContainer> codeAnalysisMembers)
+        {
+            int length = codeAnalysisMembers.Count;
+            if (length == 0)
+            {
+                return 0;  // keep order
+            }
+
+            int aIndex = FindMemberIndex(a, codeAnalysisMembers);
+            int bIndex = FindMemberIndex(b, codeAnalysisMembers);
+            if (aIndex == bIndex)
+            {
+                return 0;
+            }
+            if (aIndex == -1)
+            {
+                return 1;
+            }
+            if (bIndex == -1)
+            {
+                return -1;
+            }
+
+            return aIndex - bIndex;
+        }
+
+        private static int FindMemberIndex(MemberInfo memberInfo,
+            IReadOnlyList<CodeAnalysisUtils.MemberContainer> codeAnalysisMembers)
+        {
+            for (int index = 0; index < codeAnalysisMembers.Count; index++)
+            {
+                CodeAnalysisUtils.MemberContainer memberContainer = codeAnalysisMembers[index];
+
+                if (memberContainer.Name != memberInfo.Name && RuntimeUtil.GetAutoPropertyName(memberContainer.Name) != memberInfo.Name)
+                {
+                    continue;
+                }
+
+                if(memberInfo.MemberType != MemberTypes.Method)  // field or property, just name is enough
+                {
+                    return index;
+                }
+
+                if (memberContainer.Type != CodeAnalysisUtils.MemberType.Method)
+                {
+                    continue;
+                }
+
+                MethodInfo methodInfo = (MethodInfo)memberInfo;
+
+                string methodInfoReturnTypeString = ReflectUtils.StringifyType(methodInfo.ReturnType);
+                if (methodInfoReturnTypeString != memberContainer.ReturnType)
+                {
+                    continue;
+                }
+
+                if (methodInfo.GetParameters().Length != memberContainer.Arguments.Count)
+                {
+                    continue;
+                }
+
+                bool allMatch = true;
+                ParameterInfo[] parameterInfos = methodInfo.GetParameters();
+                for (int paramIndex = 0; paramIndex < parameterInfos.Length; paramIndex++)
+                {
+                    string methodInfoParamTypeString = ReflectUtils.StringifyType(parameterInfos[paramIndex].ParameterType);
+                    string containerParamTypeString = memberContainer.Arguments[paramIndex];
+                    // Debug.Log($"[{paramIndex}] methodInfoParamTypeString={methodInfoParamTypeString}, containerParamTypeString={containerParamTypeString}");
+                    if(methodInfoParamTypeString != containerParamTypeString)
+                    {
+                        allMatch = false;
+                        break;
+                    }
+                }
+
+                if(allMatch)
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
+
         // private static IEnumerable<IPlayaAttribute> WrapPlayaAttributes(IPlayaAttribute[] getCustomAttributes)
         // {
         //     foreach (IPlayaAttribute playaAttribute in getCustomAttributes)
@@ -568,12 +653,11 @@ namespace SaintsField.Editor
 
         public static IReadOnlyList<ISaintsRenderer> HelperGetRenderers(
             IReadOnlyDictionary<string, SerializedProperty> serializedPropertyDict,
-            SerializedProperty saintsSerializedProp,
             SerializedObject serializedObject,
             IMakeRenderer makeRenderer,
             IReadOnlyList<object> targets)
         {
-            IReadOnlyList<SaintsFieldWithInfo> fieldWithInfosSorted = HelperGetSaintsFieldWithInfo(serializedPropertyDict, saintsSerializedProp, targets).ToArray();
+            IReadOnlyList<SaintsFieldWithInfo> fieldWithInfosSorted = HelperGetSaintsFieldWithInfo(serializedPropertyDict, targets).ToArray();
 
             // let's handle some HeaderGUI here... not a good idea but...
             bool anyChange = false;
@@ -701,6 +785,7 @@ namespace SaintsField.Editor
 
                 foreach (SaintsFieldWithRenderer rendererInfo in playaAndRenderers)
                 {
+                    // Debug.Log(rendererInfo);
                     switch (rendererInfo.Playa)
                     {
                         case ISaintsLayoutToggle layoutToggle:
@@ -941,6 +1026,11 @@ namespace SaintsField.Editor
                 Playa = playa;
                 Renderer = renderer;
             }
+
+            public override string ToString()
+            {
+                return $"{Renderer}:{Playa}";
+            }
         }
 
         private static IEnumerable<SaintsFieldWithRenderer> GetPlayaAndRenderer(SaintsFieldWithInfo fieldWithInfo, SerializedObject serializedObject, IMakeRenderer makeRenderer)
@@ -1017,7 +1107,6 @@ namespace SaintsField.Editor
                         break;
                     case LayoutCloseHereAttribute _:  // [Layout(".", keepGrouping: false), LayoutEnd(".")]
                     {
-                        // yield return new SaintsFieldWithRenderer(fieldWithInfo, new LayoutAttribute(".", keepGrouping: false), null);
                         postRenderer.Add(new SaintsFieldWithRenderer(new LayoutEndAttribute("."), null));
                     }
                         break;
@@ -1243,6 +1332,10 @@ namespace SaintsField.Editor
                         else if(playaAttribute is ShowInInspectorAttribute _)
                         {
                             yield return new RealTimeCalculatorRenderer(serializedObject, fieldWithInfo);
+                        }
+                        else if (playaAttribute is LayoutAttribute)
+                        {
+                            yield return new EmptyRenderer();
                         }
                     }
                     yield break;

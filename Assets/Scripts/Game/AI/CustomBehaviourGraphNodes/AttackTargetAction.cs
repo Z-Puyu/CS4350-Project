@@ -2,7 +2,8 @@ using System;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
-using WeaponsSystem.DamageHandling;
+using WeaponsSystem.Runtime.Combat;
+//using WeaponsSystem.DamageHandling;
 using Action = Unity.Behavior.Action;
 
 namespace Game.AI.CustomBehaviourGraphNodes {

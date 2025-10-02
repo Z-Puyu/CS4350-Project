@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SaintsField.Editor.ColorPalette;
+#if !SAINTSFIELD_I2_LOC
 using SaintsField.Editor.I2Setup;
+#endif
 using SaintsField.Utils;
 using UnityEditor;
 #if UNITY_2023_1_OR_NEWER
@@ -15,14 +17,19 @@ namespace SaintsField.Editor.Utils
 {
     public static class SaintsMenu
     {
+        const string MENU_ROOT =
+#if SAINTSFIELD_DEBUG
+            "Saints/"
+#else
+            "Window/Saints/"
+#endif
+        ;
+
+
 
         #region Config
 
-#if SAINTSFIELD_DEBUG
-        [MenuItem("Saints/Create or Edit SaintsField Config")]
-#else
-        [MenuItem("Window/Saints/Create or Edit SaintsField Config")]
-#endif
+        [MenuItem(MENU_ROOT + "Create or Edit SaintsField Config")]
         public static void CreateOrEditSaintsFieldConfig()
         {
             SaintsFieldConfig saintsFieldConfig;
@@ -284,6 +291,89 @@ namespace SaintsField.Editor.Utils
         }
 
         #endregion
+
+        #region Code Analysis
+
+#if SAINTSFIELD_CODE_ANALYSIS
+
+#if SAINTSFIELD_DEBUG
+        [MenuItem("Saints/Disable Code Analysis...")]
+#else
+        [MenuItem("Window/Saints/Disable Code Analysis...")]
+#endif
+        public static void DisableCodeAnalysis()
+        {
+            RemoveCompileDefine("SAINTSFIELD_CODE_ANALYSIS");
+        }
+#else
+
+#if SAINTSFIELD_DEBUG
+        [MenuItem("Saints/Enable Code Analysis...")]
+#else
+        [MenuItem("Window/Saints/Enable Code Analysis...")]
+#endif
+        public static void EnableCodeAnalysis()
+        {
+            if(EditorUtility.DisplayDialog("Enable Code Analysis",
+                   "Are you sure you have Microsoft.CodeAnalysis.CSharp installed in your project?",
+                   "Yes, Enable Analysis",
+                   "Cancel"))
+            {
+                AddCompileDefine("SAINTSFIELD_CODE_ANALYSIS");
+            }
+        }
+#endif
+
+
+        #endregion
+
+
+        #region Enable Extended Serialization
+
+#if SAINTSFIELD_SERIALIZED
+
+        [MenuItem(MENU_ROOT + "Extended Serialization/Disable This Feature")]
+        public static void DisableExtendedSerialization()
+        {
+            RemoveCompileDefine("SAINTSFIELD_SERIALIZED");
+        }
+
+        #region SAINTSFIELD_SERIALIZED_DEBUG
+#if SAINTSFIELD_SERIALIZED_DEBUG
+
+        [MenuItem(MENU_ROOT + "Extended Serialization/Disable Debug")]
+        public static void DisableExtendedSerializationDebug()
+        {
+            RemoveCompileDefine("SAINTSFIELD_SERIALIZED_DEBUG");
+        }
+#else
+
+        [MenuItem(MENU_ROOT + "Extended Serialization/Enable Debug")]
+        public static void EnableExtendedSerializationDebug()
+        {
+            AddCompileDefine("SAINTSFIELD_SERIALIZED_DEBUG");
+        }
+
+#endif
+        #endregion
+
+#else
+        [MenuItem(MENU_ROOT + "Enable Extended Serialization")]
+        public static void EnableExtendedSerialization()
+        {
+            AddCompileDefine("SAINTSFIELD_SERIALIZED");
+        }
+#endif
+
+        #endregion
+
+#if SAINTSFIELD_DEBUG
+        [MenuItem(MENU_ROOT + "IMGUI Debugger" )]
+        public static void OpenIMGUIDebugger()
+        {
+            EditorWindow.GetWindow(Type.GetType("UnityEditor.GUIViewDebuggerWindow,UnityEditor")).Show();
+        }
+#endif
 
         // ReSharper disable once UnusedMember.Local
         public static void AddCompileDefine(string newDefineCompileConstant, IEnumerable<BuildTargetGroup> targetGroups = null)

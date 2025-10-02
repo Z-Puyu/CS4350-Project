@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1819073491181274348}
   - component: {fileID: 5499561002961962610}
   - component: {fileID: 5646577939156915835}
-  - component: {fileID: 6512616273767000278}
+  - component: {fileID: 1784984592132118046}
+  - component: {fileID: 607179737066380813}
   m_Layer: 0
   m_Name: AbilitiesComponent
   m_TagString: Untagged
@@ -46,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
-  <ModifierMode>k__BackingField: 0
   <DefaultAttributes>k__BackingField: {fileID: 11400000, guid: 5d1ec23ab96c4484ea8bdf23327bf972, type: 2}
+  <IsRoot>k__BackingField: 0
 --- !u!114 &5646577939156915835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,12 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
-  <DefaultAbilities>k__BackingField:
-    _saintsList: []
-  <OnStartAbility>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6512616273767000278
+--- !u!114 &1784984592132118046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,6 +70,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2838587810476369325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3438307d9dc241fe880f4cf7c5bf4ec6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Targeting.AbilityTargeter
+--- !u!114 &607179737066380813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838587810476369325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d981eef12ef4363b3306c7eb1a0a6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilityCaster
+  <EquippedAbilities>k__BackingField: []

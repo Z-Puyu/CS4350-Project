@@ -1,11 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DataStructuresForUnity.Runtime.Trie;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Modifiers;
-using SaintsField;
+using GameplayEffects.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace GameplayAbilities.Runtime.Attributes {
     /// <summary>
@@ -14,19 +16,25 @@ namespace GameplayAbilities.Runtime.Attributes {
     [DisallowMultipleComponent]
     public sealed class AttributeSet : MonoBehaviour, IAttributeReader {
         private IAttributeReader Parent { get; set; }
-        
-        [field: SerializeField]
-        private AttributeData.ModifierMode ModifierMode { get; set; } = AttributeData.ModifierMode.ByPriority;
+        IAttributeReader IAttributeReader.Parent => this.Parent;
         
         [field: SerializeField] private AttributeTable DefaultAttributes { get; set; }
-        
-        private TrieDictionary<string, char, AttributeData> Attributes { get; } =
-            new TrieDictionary<string, char, AttributeData>('.');
+        [field: SerializeField] private bool IsRoot { get; set; }
+        public bool IsTopLevel => this.IsRoot;
+
+        private TrieDictionary<string, char, AttributeSetNode> Attributes { get; } =
+            new TrieDictionary<string, char, AttributeSetNode>('.');
 
         /// <summary>
         /// Invoked when an attribute is first initialised or when it is modified.
         /// </summary>
         public event UnityAction<AttributeChange> OnAttributeChanged;
+        
+        private void Awake() {
+            foreach (AttributeType type in AttributeType.GetAllLeaves()) {
+                this.Attributes.Add(type.Id, AttributeSetNode.From(type, this));
+            }
+        }
 
         private void OnEnable() {
             this.ConnectParent();
@@ -37,6 +45,11 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
         
         private void ConnectParent() {
+            if (this.IsRoot) {
+                this.Parent = null;
+                return;
+            }
+            
             Transform parent = this.transform.parent;
             if (!parent) {
                 this.Parent = null;
@@ -46,6 +59,8 @@ namespace GameplayAbilities.Runtime.Attributes {
             if (parentSet != this.Parent) {
                 this.Parent = parentSet;
             }
+            
+            this.IsRoot = parentSet == null;
         }
 
         /// <summary>
@@ -59,7 +74,7 @@ namespace GameplayAbilities.Runtime.Attributes {
             table ??= this.DefaultAttributes;
             if (table == null) {
 #if DEBUG
-                Debug.LogError("No attribute table provided and no default attributes set", this);
+                Debug.LogWarning("No attribute table provided and no default attributes set", this);
 #endif
                 return;
             }
@@ -68,17 +83,15 @@ namespace GameplayAbilities.Runtime.Attributes {
                 init(attribute.Key, attribute.Value);
             }
 
-            foreach (KeyValuePair<string, AttributeData> data in this.Attributes) {
+            foreach (KeyValuePair<string, AttributeSetNode> data in this.Attributes) {
                 this.PostAttributeUpdate(data.Key, data.Value);
             }
-
-
+            
             return;
-
+            
             void init(AttributeType attribute, int value) {
-                if (!attribute.IsCategory && !this.Attributes.ContainsKey(attribute.Id)) {
-                    AttributeData data = AttributeData.From(attribute, value, this, this.ModifierMode);
-                    this.Attributes.Add(attribute.Id, data);
+                if (!attribute.IsCategory && this.Attributes.ContainsKey(attribute.Id)) {
+                    this.Attributes[attribute.Id].BaseValue = value;
                 } else {
                     foreach (AttributeType child in attribute.SubTypes) {
                         init(child, value);
@@ -88,18 +101,16 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         public IEnumerator<Attribute> GetEnumerator() {
-            foreach (KeyValuePair<string, AttributeData> entry in this.Attributes) {
-                yield return new Attribute(entry.Key, entry.Value.Value);
-            }
+            return this.Attributes.Keys.Select(key => this.GetAttribute(key)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 
-        private void PostAttributeUpdate(string key, AttributeData data) {
-            int oldValue = data.Value;
-            int newValue = data.RecomputeValue();
+        private void PostAttributeUpdate(string key, AttributeSetNode node) {
+            int oldValue = node.Value;
+            int newValue = node.RecomputeValue();
             if (oldValue != newValue) {
                 this.OnAttributeChanged?.Invoke(new AttributeChange(key, oldValue, newValue));
             }
@@ -113,18 +124,12 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// You cannot "remove" a modifier because modifiers are value types so you just need to add a negated modifier.
         /// </remarks>
         public void AddModifier(Modifier modifier) {
-#if DEBUG
-            if (!this.Attributes.ContainsKey(modifier.Target)) {
-                Debug.LogWarning($"Trying to add modifier to non-existing attribute {modifier.Target}", this);
-                return;
-            }
-#endif
             this.Attributes.ForEachWithPrefix(modifier.Target, update);
             return;
 
-            void update(string attribute, AttributeData data) {
-                data.AddModifier(modifier);
-                this.PostAttributeUpdate(attribute, data);
+            void update(string attribute, AttributeSetNode node) {
+                node.AddModifier(modifier);
+                this.PostAttributeUpdate(attribute, node);
             }
         }
 
@@ -134,33 +139,41 @@ namespace GameplayAbilities.Runtime.Attributes {
         /// </summary>
         /// <param name="modifier">The modifier to remove.</param>
         public void RemoveModifier(Modifier modifier) {
-#if DEBUG
-            if (!this.Attributes.ContainsKey(modifier.Target)) {
-                Debug.LogWarning($"Trying to remove modifier from non-existing attribute {modifier.Target}", this);
-                return;
-            }
-#endif
             this.Attributes.ForEachWithPrefix(modifier.Target, update);
             return;
             
-            void update(string attribute, AttributeData data) {
-                data.RemoveModifier(modifier);
-                this.PostAttributeUpdate(attribute, data);
+            void update(string attribute, AttributeSetNode node) {
+                node.RemoveModifier(modifier);
+                this.PostAttributeUpdate(attribute, node);
             }
         }
 
+        private AttributeSetNode CollapseNode(string key) {
+            AttributeSetNode node = this.Attributes[key].Clone();
+            IAttributeReader current = this.Parent;
+            while (!current.IsTopLevel) {
+                foreach (Modifier modifier in current.GetModifiers(key)) {
+                    node.AddModifier(modifier);
+                }
+                
+                current = current.Parent;
+            }
+            
+            return node;
+        }
+
         public int GetCurrent(string key) {
-            if (this.Attributes.TryGetValue(key, out AttributeData data)) {
-                return this.Parent != null ? this.Parent.Query(key, data.Value) : data.Value;
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
+                return this.IsRoot ? node.Value : this.CollapseNode(key).RecomputeValue();
             }
 #if DEBUG
-            Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
+            Debug.LogWarning($"Trying to access non-existing attribute {key}", this);
 #endif
             return 0;
         }
 
         public int GetMax(string key) {
-            if (this.Attributes.TryGetValue(key, out AttributeData data)) {
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode data)) {
                 return data.MaxValue;
             }
 #if DEBUG
@@ -170,7 +183,7 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         public int GetMin(string key) {
-            if (this.Attributes.TryGetValue(key, out AttributeData data)) {
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode data)) {
                 return data.MinValue;
             }
 #if DEBUG
@@ -180,26 +193,48 @@ namespace GameplayAbilities.Runtime.Attributes {
         }
 
         public Attribute GetAttribute(string key) {
-            if (this.Attributes.TryGetValue(key, out AttributeData data)) {
-                return new Attribute(key, data.Value);
-            }
-#if DEBUG
-            Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
-#endif
-            return new Attribute(key, 0);
+            return new Attribute(key, this.GetCurrent(key), this.GetMin(key), this.GetMax(key));
         }
 
         public bool Has(int threshold, string key) {
             return this.GetCurrent(key) >= threshold;
         }
 
-        public int Query(string key, int @base) {
-            if (!this.Attributes.TryGetValue(key, out AttributeData data)) {
-                return this.Parent != null ? this.Parent.Query(key, @base) : @base;
-            }
+        public IEnumerable<Modifier> GetModifiers(string key) {
+            return this.Attributes.TryGetValue(key, out AttributeSetNode node)
+                    ? node.CurrentModifiers
+                    : Enumerable.Empty<Modifier>();
+        }
 
-            int value = data.Query(@base);
-            return this.Parent != null ? this.Parent.Query(key, value) : value;
+        public int Query(string key, int @base) {
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
+                return this.IsRoot ? node.EvaluateWithBase(@base) : this.CollapseNode(key).EvaluateWithBase(@base);
+            }
+#if DEBUG
+            Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
+#endif
+            return @base;
+        }
+
+        public void Set(string key, int value) {
+            if (this.Attributes.TryGetValue(key, out AttributeSetNode node)) {
+                node.BaseValue = value;
+                this.PostAttributeUpdate(key, node);
+            } else {
+#if DEBUG
+                Debug.LogWarning($"Trying to access non-existing attribute {key}", this); 
+#endif
+            }
+        }
+
+        bool IDataReader<string, int>.HasValue(string key, out int value) {
+            value = this.GetCurrent(key);
+            return this.Attributes.ContainsKey(key);
+        }
+        
+        IDataReader<string, int> IDataReader<string, int>.With(string key, int value) {
+            this.Set(key, value);
+            return this;
         }
     }
 }

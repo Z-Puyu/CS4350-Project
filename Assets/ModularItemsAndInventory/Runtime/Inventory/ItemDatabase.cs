@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.Utilities;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
 using UnityEngine;

@@ -1,34 +1,37 @@
+using LeanTween.Framework;
 using UnityEngine;
 
-public class PathSpline2d : MonoBehaviour {
+namespace LeanTween.Examples.Scripts {
+	public class PathSpline2d : MonoBehaviour {
 
-	public Transform[] cubes;
+		public Transform[] cubes;
 
-	public GameObject dude1;
-	public GameObject dude2;
+		public GameObject dude1;
+		public GameObject dude2;
 
-	private LTSpline visualizePath;
+		private LTSpline visualizePath;
 
-	void Start () {
-		Vector3[] path = new Vector3[] {
-			cubes[0].position,
-			cubes[1].position,
-			cubes[2].position,
-			cubes[3].position,
-			cubes[4].position
-		};
+		void Start () {
+			Vector3[] path = new Vector3[] {
+				this.cubes[0].position,
+				this.cubes[1].position,
+				this.cubes[2].position,
+				this.cubes[3].position,
+				this.cubes[4].position
+			};
 
-		visualizePath = new LTSpline( path );
-		// move
-		LeanTween.moveSpline(dude1, path, 10f).setOrientToPath2d(true).setSpeed(2f);
+			this.visualizePath = new LTSpline( path );
+			// move
+			Framework.LeanTween.moveSpline(this.dude1, path, 10f).setOrientToPath2d(true).setSpeed(2f);
 
-		// move Local
-		LeanTween.moveSplineLocal(dude2, path, 10f).setOrientToPath2d(true).setSpeed(2f);
-	}
+			// move Local
+			Framework.LeanTween.moveSplineLocal(this.dude2, path, 10f).setOrientToPath2d(true).setSpeed(2f);
+		}
 
-	void OnDrawGizmos(){
-		Gizmos.color = Color.red;
-		if(visualizePath!=null)
-			visualizePath.gizmoDraw();
+		void OnDrawGizmos(){
+			Gizmos.color = Color.red;
+			if(this.visualizePath!=null)
+				this.visualizePath.gizmoDraw();
+		}
 	}
 }

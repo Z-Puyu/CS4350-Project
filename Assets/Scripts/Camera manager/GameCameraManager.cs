@@ -1,14 +1,16 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class GameCameraManager : MonoBehaviour
-{
-    [SerializeField] private GameObject player;
-    [SerializeField] private CinemachineCamera virtualCamera;
-    
-    void Awake()
+namespace Camera_manager {
+    public class GameCameraManager : MonoBehaviour
     {
-        player = GameObject.Find("Player");
-        virtualCamera.Follow = player.transform;
+        [SerializeField] private GameObject player;
+        [SerializeField] private CinemachineCamera virtualCamera;
+    
+        void Awake()
+        {
+            this.player = GameObject.Find("Player");
+            this.virtualCamera.Follow = this.player.transform;
+        }
     }
 }

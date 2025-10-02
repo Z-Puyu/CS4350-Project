@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GameplayAbilities.Runtime.GameplayEffects;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
 using UnityEngine;
 
 namespace Game.Items {
-    [Serializable]
+    /*[Serializable]
     public class Consumable : ItemProperty {
         [field: SerializeReference]
         public List<GameplayEffectData> Effects { get; private set; } = new List<GameplayEffectData>();
@@ -47,6 +46,6 @@ namespace Game.Items {
             }
             
             return sb.ToString();
-        }
-    }
+        }/
+    }*/
 }

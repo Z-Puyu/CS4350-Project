@@ -9,22 +9,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21396b74357c48dea736649904267e4a, type: 3}
+  m_Script: {fileID: 11500000, guid: be30b1a66d5a436caab3964829aadfb1, type: 3}
   m_Name: Ability - Fireball
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Ability
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.Ability
+  <IsObtainable>k__BackingField: 1
   <Id>k__BackingField: ability:fireball
   <Name>k__BackingField: Fireball
   <Description>k__BackingField: 
-  <Cooldown>k__BackingField: 0
-  <SpawnableEffects>k__BackingField:
-    _keys: []
-    _values: 
-    _saintsKeys:
-    - value: {fileID: 6170226598646885628, guid: 8fc0b7b0f0199a8458f1239312848e8c, type: 3}
-    _saintsValues:
-    - value: 1
-  <SpawnsEffectAtTarget>k__BackingField: 0
-  <Effects>k__BackingField: []
+  <Cooldown>k__BackingField: 10
+  <Costs>k__BackingField: []
+  <TargetingStrategy>k__BackingField:
+    rid: 2446550859284480073
+  <Effects>k__BackingField:
+  - rid: 2446550857979265098
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2446550857979265098
+      type: {class: DamageEffect, ns: GameplayAbilities.Runtime.HealthSystem, asm: GameplayAbilities.Runtime}
+      data:
+        <DamageTypes>k__BackingField:
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefaultValue>k__BackingField: 10
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefaultValue>k__BackingField: 5
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        <TargetAttribute>k__BackingField: Health
+    - rid: 2446550859284480073
+      type: {class: ProjectileAreaTargeting, ns: GameplayAbilities.Runtime.Targeting, asm: GameplayAbilities.Runtime}
+      data:
+        <ProjectilePrefab>k__BackingField: {fileID: 5408122639006472464, guid: 96ecac2fd7db4044cbf915726f8f10fd, type: 3}
+        <Speed>k__BackingField: 5
+        <Range>k__BackingField: 5
+        <AffectedLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 64
+        <AreaShape>k__BackingField: 0
+        <Radius>k__BackingField: 3
+        <Dimensions>k__BackingField: {x: 0, y: 0}

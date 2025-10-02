@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public class ComponentSwapperManager : MonoBehaviour
-{
-    private bool isSwappingMode;
-
-    void Start()
+namespace Weapon_system_page {
+    public class ComponentSwapperManager : MonoBehaviour
     {
-        isSwappingMode = false;
+        private bool isSwappingMode;
+
+        void Start()
+        {
+            this.isSwappingMode = false;
+        }
     }
 }

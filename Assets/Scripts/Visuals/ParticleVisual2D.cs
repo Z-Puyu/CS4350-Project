@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common;
-using DataStructuresForUnity.Runtime.GeneralUtils;
+using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Abilities;
 using UnityEngine;
 
