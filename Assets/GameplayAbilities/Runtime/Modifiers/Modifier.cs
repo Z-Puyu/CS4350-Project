@@ -65,6 +65,14 @@ namespace GameplayAbilities.Runtime.Modifiers {
             return new Modifier(-m.Magnitude, m.Type, m.Target);
         }
 
+        public static Modifier operator +(Modifier m, int k) {
+            return new Modifier(m.Magnitude + k, m.Type, m.Target);
+        }
+
+        public static Modifier operator -(Modifier m, int k) {
+            return new Modifier(m.Magnitude - k, m.Type, m.Target);
+        }
+
         /// <summary>
         /// Adds two modifiers of the same type and target.
         /// </summary>

@@ -2,6 +2,7 @@
 using DataStructuresForUnity.Runtime.Utilities;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
+using GameplayAbilities.Runtime.Targeting;
 using GameplayEffects.Runtime;
 using UnityEngine;
 
@@ -17,5 +18,9 @@ namespace WeaponsSystem.Runtime.DamageHandling {
         public void Execute(IAttributeReader instigator, AttributeSet target) {
             this.Effect.Apply(instigator, target).Start();
         }
+
+        public void Activate(AbilityCaster caster, AbilityTargeter targeter) { }
+        
+        public void Delegate(GameObject carrier, AbilityCaster caster, AbilityTargeter targeter) { }
     }
 }

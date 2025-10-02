@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.ObjectPooling;
+using GameplayAbilities.Runtime.Abilities;
 using Projectiles.Runtime;
 using SaintsField;
 using UnityEngine;
@@ -89,7 +91,7 @@ namespace WeaponsSystem.Runtime.Attacks {
             }
         }
 
-        private IEnumerator Shoot(AttackContext context, int count, float interval) {
+        private IEnumerator Shoot(AttackContext context, int count, float interval, HashSet<IAbility> attachedAbilities) {
             int speed = context.WeaponStats.GetCurrent(this.SpeedAttribute);
             int range = context.WeaponStats.GetCurrent(this.RangeAttribute);
             for (int i = 0; i < count; i += 1) {
@@ -112,10 +114,10 @@ namespace WeaponsSystem.Runtime.Attacks {
             }
         }
 
-        public override float Execute(ref AttackContext context) {
+        public override float Execute(ref AttackContext context, HashSet<IAbility> attachedAbilities) {
             int count = Math.Max(1, context.WeaponStats.GetCurrent(this.ShotsPerAttackAttribute));
             float interval = context.WeaponStats.GetCurrent(this.IntervalBetweenShotsAttribute) / 1000.0f;
-            context.Owner.StartCoroutine(this.Shoot(context, count, interval));
+            context.Owner.StartCoroutine(this.Shoot(context, count, interval, attachedAbilities));
             return interval * (count - 1);
         }
     }

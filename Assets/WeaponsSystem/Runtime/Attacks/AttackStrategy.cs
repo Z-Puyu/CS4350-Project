@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using SaintsField;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace WeaponsSystem.Runtime.Attacks {
         
         protected AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
-        public abstract float Execute(ref AttackContext context);
+        public abstract float Execute(ref AttackContext context, HashSet<IAbility> attachedAbilities);
         
         public virtual bool AllowsDamageOn(GameObject target, GameObject instigator) {
             if (!target || !instigator) {

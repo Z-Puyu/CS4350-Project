@@ -38,17 +38,17 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         }
         
         [field: SerializeField, Table]
-        private List<DamageType> DamageTypes { get; set; } = new List<DamageType>();
+        private List<DamageData> DamageDatas { get; set; } = new List<DamageData>();
 
-        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
-        private string TargetAttribute { get; set; }
+        /*[field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
+        private string TargetAttribute { get; set; }*/
         
-        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        //private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         public double EffectDuration => 0;
         
-        public IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet projectile) {
+        public IRunnableEffect Apply(IDataReader<string, int> source, AttributeSet target) {
             return new Instance(
-                projectile, source, this.DamageTypes.Select(dmg => dmg.ToModifier(source, this.TargetAttribute))
+                target, source, this.DamageDatas.Select(dmg => dmg.CreateModifier(target, source))
             );
         }
     }

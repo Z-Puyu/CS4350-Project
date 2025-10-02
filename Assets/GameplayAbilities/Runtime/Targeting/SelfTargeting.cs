@@ -1,4 +1,6 @@
-﻿namespace GameplayAbilities.Runtime.Targeting {
+﻿using UnityEngine;
+
+namespace GameplayAbilities.Runtime.Targeting {
     public class SelfTargeting : TargetingStrategy {
         protected override void BeginTargeting() {
             this.ConfirmTarget();

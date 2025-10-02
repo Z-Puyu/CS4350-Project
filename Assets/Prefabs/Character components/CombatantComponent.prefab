@@ -90,32 +90,73 @@ MonoBehaviour:
     - rid: 5580717541616517198
       type: {class: DamageEffect, ns: GameplayAbilities.Runtime.HealthSystem, asm: GameplayAbilities.Runtime}
       data:
-        <DamageTypes>k__BackingField:
-        - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+        <DamageDatas>k__BackingField:
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Elemental.Ice
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Elemental.Ice
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Elemental.Ice
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Elemental.Lightning
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Elemental.Lightning
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Elemental.Lightning
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Physical.Melee
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Physical.Melee
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Physical.Melee
           <IsPercentageDefence>k__BackingField: 0
           <DefenceCoefficient>k__BackingField: 1
-        - <DamageAttribute>k__BackingField: Damage.Physical.Projectile
+        - <TargetAttribute>k__BackingField: Health
+          <Method>k__BackingField: 2
+          <Form>k__BackingField: 1
+          <Source>k__BackingField: 1
+          <SourceAttribute>k__BackingField: Damage.Physical.Projectile
+          <DefaultValue>k__BackingField: 0
+          <Coefficient>k__BackingField: 1
+          <Label>k__BackingField: 
           <DefenceAttribute>k__BackingField: Defence.Physical.Projectile
           <IsPercentageDefence>k__BackingField: 0
           <DefenceCoefficient>k__BackingField: 1
-        <TargetAttribute>k__BackingField: Health
 --- !u!1001 &6627832159106546172
 PrefabInstance:
   m_ObjectHideFlags: 0

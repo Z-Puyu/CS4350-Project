@@ -16,7 +16,8 @@ namespace Projectiles.Runtime {
         protected double Range { get; set; }
         private List<string> TargetTags { get; } = new List<string>();
         private bool IsAlive { get; set; }
-        [field: SerializeField] private GameObject Visual { get;set; }
+        private bool IsAttachment { get; set; }
+        [field: SerializeField] private GameObject Visual { get; set; }
         [field: SerializeField] private ParticleSystem FlyParticles { get; set; }
         [field: SerializeField] private ParticleSystem DisintegrationParticles { get; set; }
         
@@ -90,6 +91,15 @@ namespace Projectiles.Runtime {
             this.transform.position = from;
             this.LaunchPoint = from;
             this.IsAlive = true;
+            if (this.FlyParticles) {
+                this.FlyParticles.Play();
+            }
+        }
+
+        public void AttachTo(GameObject carrier) {
+            this.IsAlive = true;
+            this.IsAttachment = true;
+            this.transform.SetParent(carrier.transform);
             if (this.FlyParticles) {
                 this.FlyParticles.Play();
             }

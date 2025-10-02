@@ -18,7 +18,7 @@ namespace WeaponsSystem.Runtime.Attacks {
         public AttackContext(
             GameObject instigator, Weapon owner, LayerMask attackableLayers, List<string> attackableTags,
             Vector3 attackPoint, Vector3 attackDirection, AttributeSet weaponStats,
-            ProjectileShooterMode projectileMode = ProjectileShooterMode.None
+            ProjectileShooterMode projectileMode = ProjectileShooterMode.Single
         ) {
             this.Instigator = instigator;
             this.Owner = owner;

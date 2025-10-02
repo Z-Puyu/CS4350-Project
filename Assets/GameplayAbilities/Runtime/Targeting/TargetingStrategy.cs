@@ -1,4 +1,5 @@
 ﻿using GameplayAbilities.Runtime.Abilities;
+using UnityEngine;
 
 namespace GameplayAbilities.Runtime.Targeting {
     public abstract class TargetingStrategy {
@@ -6,6 +7,7 @@ namespace GameplayAbilities.Runtime.Targeting {
         protected AbilityCaster Caster { get; set; }
         protected Ability Ability { get; set; }
         protected bool IsTargeting { get; set; }
+        protected GameObject AbilityCarrier { get; set; }
 
         public void Start(AbilityCaster caster, Ability ability, AbilityTargeter targeter) {
             this.Ability = ability;
@@ -43,5 +45,9 @@ namespace GameplayAbilities.Runtime.Targeting {
         }
 
         protected abstract void ConfirmTarget();
+
+        public void DelegateTo(GameObject carrier) {
+            this.AbilityCarrier = carrier;
+        }
     }
 }

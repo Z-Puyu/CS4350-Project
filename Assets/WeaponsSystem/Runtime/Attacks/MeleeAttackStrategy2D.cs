@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using GameplayAbilities.Runtime.Abilities;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.Runtime.Weapons;
@@ -12,7 +14,7 @@ namespace WeaponsSystem.Runtime.Attacks {
         [field: SerializeField, PropRange(0, 180)] 
         private int SweepHalfAngle { get; set; } = 60;
         
-        public override float Execute(ref AttackContext context) {
+        public override float Execute(ref AttackContext context, HashSet<IAbility> attachedAbilities) {
             int range = context.WeaponStats.GetCurrent(this.MeleeRangeAttribute);
             Collider2D[] colliders = Physics2D.OverlapCircleAll(context.AttackPoint, range, context.AttackableLayers);
             foreach (Collider2D c in colliders) {
@@ -31,6 +33,13 @@ namespace WeaponsSystem.Runtime.Attacks {
                 }
 
                 damageable.HandleDamage(this.DealDamage(context));
+                if (!c.TryGetComponent(out IAbilityTarget target)) {
+                    continue;
+                }
+
+                foreach (IAbility ability in attachedAbilities) {
+                    target.Receive(ability, context.WeaponStats);
+                }
             }
             
             return 0f;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GameplayAbilities.Runtime.Abilities;
 using UnityEngine;
 using WeaponsSystem.Runtime.Weapons;
 
@@ -11,6 +12,11 @@ namespace WeaponsSystem.Runtime.Attacks {
         [field: SerializeField] private LayerMask AttackableLayers { get; set; }
         [field: SerializeField] private List<string> IncludeTags { get; set; } = new List<string>();
         [field: SerializeField] private List<string> ExcludeTags { get; set; } = new List<string>();
+        private HashSet<IAbility> AttachedAbilities { get; } = new HashSet<IAbility>();
+
+        public void Attach(IAbility ability) {
+            this.AttachedAbilities.Add(ability);
+        }
         
         public override void UpdateOnAttack(ref AttackAction action) {
             int index = this.Weapon.CurrentComboIndex;
@@ -22,12 +28,14 @@ namespace WeaponsSystem.Runtime.Attacks {
             }
             
             AttackContext context = this.ContextOf(ref action);
-            this.Weapon.AttackDuration = this.AttackStrategies[index].Execute(ref context);
+            this.Weapon.AttackDuration = this.AttackStrategies[index].Execute(ref context, this.AttachedAbilities);
         }
 
-        public override void UpdatePostAttack() { }
+        public override void UpdatePostAttack() {
+            this.AttachedAbilities.Clear();
+        }
 
-        private AttackContext ContextOf(ref AttackAction action) {
+        protected virtual AttackContext ContextOf(ref AttackAction action) {
             List<string> attackableTags = action.AttackableTags
                                                 .Except(this.ExcludeTags)
                                                 .Concat(this.IncludeTags)
@@ -35,8 +43,7 @@ namespace WeaponsSystem.Runtime.Attacks {
                                                 .ToList();
             LayerMask mask = action.AttackableLayers & this.AttackableLayers;
             return new AttackContext(
-                action.Instigator, this.Weapon, mask, attackableTags, action.AttackPoint, action.Forward, this.Stats,
-                this.Weapon.ProjectileMode
+                action.Instigator, this.Weapon, mask, attackableTags, action.AttackPoint, action.Forward, this.Stats
             );
         }
     }

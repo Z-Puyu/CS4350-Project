@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Targeting;
 using SaintsField;
@@ -87,9 +88,14 @@ namespace GameplayAbilities.Runtime.Abilities {
             ability.Activate(this, this.AbilityTargeter);
             this.ReadiedSkillIndex = this.EquippedAbilities.IndexOf(ability);
         }
-        
-        public void CancelCast(int index) {
-            if (index < 0 || index >= this.AbilitySlots) {}
+
+        public void ReleaseAbilitiesToCarriers(IEnumerable<IAbility> abilities, IEnumerable<GameObject> carriers) {
+            IEnumerable<GameObject> gameObjects = carriers.ToArray();
+            foreach (IAbility ability in abilities) {
+                foreach (GameObject carrier in gameObjects) {
+                    ability.Delegate(carrier, this, this.AbilityTargeter);
+                }
+            }
         }
     }
 }

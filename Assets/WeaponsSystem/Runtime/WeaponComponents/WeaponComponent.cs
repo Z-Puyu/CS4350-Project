@@ -1,22 +1,37 @@
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Utilities;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayEffects.Runtime;
 using Projectiles.Runtime;
 using SaintsField;
+using SaintsField.Playa;
 using UnityEngine;
+using WeaponsSystem.Runtime.Attacks;
 using WeaponsSystem.Runtime.Weapons;
 
 namespace WeaponsSystem.Runtime.WeaponComponents {
     [CreateAssetMenu(fileName = "New Weapon Component", menuName = "Weapons/Components/Weapon Component")]
     public class WeaponComponent : ScriptableObject {
-        [field: SerializeField] List<ProjectileShooterMode> ProjectileModesOnAttack { get; set; } = new List<ProjectileShooterMode>();
-        [field: SerializeField] ProjectileShooterMode ProjectileModeOnWeapon { get; set; } = ProjectileShooterMode.Default;
+        private enum ProjectileConfig { None, OnWeapon, OnAttack }
+        
+        [field: SerializeField] private ProjectileConfig ChangeProjectileMode { get; set; } = ProjectileConfig.None;
+
+        [field: SerializeField, SaintsDictionary, ShowIf(nameof(this.ChangeProjectileMode), ProjectileConfig.OnAttack)]
+        private SaintsDictionary<int, ProjectileShooterMode> ProjectileModesOnAttack { get; set; } =
+            new SaintsDictionary<int, ProjectileShooterMode>();
+        
+        [field: SerializeField, ShowIf(nameof(this.ChangeProjectileMode), ProjectileConfig.OnWeapon)] 
+        private ProjectileShooterMode ProjectileModeOnWeapon { get; set; } = ProjectileShooterMode.Single;
+        
         [field: SerializeReference] private IEffect<IDataReader<string, int>, AttributeSet> EffectOnWeapon { get; set; }
 
         [field: SerializeReference]
         private List<IEffect<IDataReader<string, int>, AttributeSet>> EffectsOnAttack { get; set; } =
             new List<IEffect<IDataReader<string, int>, AttributeSet>>();
+
+        [field: SerializeField, SaintsDictionary]
+        private SaintsDictionary<int, Ability> AttachedAbilities { get; set; } = new SaintsDictionary<int, Ability>();
         
         private IRunnableEffect EffectOnWeaponInstance { get; set; }
         private List<IRunnableEffect> EffectsOnAttackInstance { get; set; } = new List<IRunnableEffect>();
@@ -39,15 +54,32 @@ namespace WeaponsSystem.Runtime.WeaponComponents {
             this.EffectOnWeaponInstance = null;
         }
 
+        private void ToggleProjectileMode(Weapon weapon, int index) {
+            switch (this.ChangeProjectileMode) {
+                case ProjectileConfig.OnWeapon
+                        when weapon.HasController(out WeaponProjectileAttackController controller):
+                    controller.ProjectileMode = this.ProjectileModeOnWeapon;
+                    break;
+                case ProjectileConfig.OnAttack
+                        when weapon.HasController(out WeaponProjectileAttackController controller) &&
+                             this.ProjectileModesOnAttack.TryGetValue(index, out ProjectileShooterMode mode):
+                    controller.ProjectileMode = mode;
+                    break;
+            }
+        }
+
+        private void AttachAbilities(Weapon weapon, int index) {
+            if (this.AttachedAbilities.TryGetValue(index, out Ability ability) &&
+                weapon.HasController(out WeaponAttackController controller)) {
+                controller.Attach(ability);
+            }
+        }
+
         public void PreprocessAttack(Weapon weapon, AttributeSet stats) {
             int index = weapon.CurrentComboIndex;
-            if (this.ProjectileModeOnWeapon != ProjectileShooterMode.None) {
-                weapon.ProjectileMode = this.ProjectileModeOnWeapon;
-            } else if (index >= 0 && index < this.ProjectileModesOnAttack.Count) {
-                weapon.ProjectileMode = this.ProjectileModesOnAttack[index];
-            }
-            
-            if (index < 0 || index >= this.EffectsOnAttack.Count || this.EffectsOnAttack[index] == null) {
+            this.ToggleProjectileMode(weapon, index);
+            this.AttachAbilities(weapon, index);
+            if (this.EffectsOnAttack[index] is null) {
                 return;
             }
             
@@ -57,7 +89,6 @@ namespace WeaponsSystem.Runtime.WeaponComponents {
         }
 
         public void PostprocessAttack(Weapon weapon, AttributeSet stats) {
-            weapon.ProjectileMode = ProjectileShooterMode.Default;
             this.EffectsOnAttackInstance.ForEach(effect => effect.Cancel());
             this.EffectsOnAttackInstance.Clear();
         }

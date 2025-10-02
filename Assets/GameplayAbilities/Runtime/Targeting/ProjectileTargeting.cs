@@ -27,10 +27,15 @@ namespace GameplayAbilities.Runtime.Targeting {
         protected override void ConfirmTarget() {
             Vector3 origin = this.Targeter.ProjectileOrigin;
             Vector3 centre = this.Targeter.transform.position;
-            this.ConfigureProjectileControllers(ObjectPools<Projectile>.Get(this.ProjectilePrefab))
-                .Targeting(this.Targeter.AbilityTargets)
-                .WhenHit(this.HandleProjectileHit)
-                .Launch(origin, origin - centre, this.Speed, this.Range);
+            Projectile projectile = 
+                    this.ConfigureProjectileControllers(ObjectPools<Projectile>.Get(this.ProjectilePrefab))
+                        .Targeting(this.Targeter.AbilityTargets)
+                        .WhenHit(this.HandleProjectileHit);
+            if (!this.AbilityCarrier) {
+                projectile.AttachTo(this.AbilityCarrier);
+            } else {
+                projectile.Launch(origin, origin - centre, this.Speed, this.Range);
+            }
         }
     }
 }

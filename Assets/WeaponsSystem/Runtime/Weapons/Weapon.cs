@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Utilities;
+using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Attributes;
 using Projectiles.Runtime;
 using SaintsField;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaponsSystem.Runtime.Attacks;
 using WeaponsSystem.Runtime.WeaponComponents;
 
@@ -17,22 +19,25 @@ namespace WeaponsSystem.Runtime.Weapons {
         private List<IWeaponController> WeaponControllers { get; set; } = new List<IWeaponController>();
         
         [field: SerializeField] private List<WeaponComponent> TestComponents { get; set; } = new List<WeaponComponent>();
+
+        [field: SerializeField]
+        private UnityEvent<HashSet<IAbility>, IEnumerable<GameObject>> OnAbilitiesReleased { get; set; } =
+            new UnityEvent<HashSet<IAbility>, IEnumerable<GameObject>>();
+
+        private Dictionary<Type, IWeaponController> WeaponControllersByType { get; } =
+            new Dictionary<Type, IWeaponController>();
         
         public int CurrentComboIndex { get; private set; }
         public float AttackDuration { get; set; }
         public int ComponentCapacity { get; private set; } = 3;
-        private ProjectileShooterMode projectileMode = ProjectileShooterMode.Default;
-        public ProjectileShooterMode PreviousProjectileMode { get; private set; }
-
-        public ProjectileShooterMode ProjectileMode {
-            get => this.projectileMode;
-            set {
-                this.PreviousProjectileMode = this.projectileMode;
-                this.projectileMode = value;
-            }
-        }
 
         private Timer ComboResetTimer { get; set; }
+
+        private void Awake() {
+            foreach (IWeaponController controller in this.WeaponControllers) {
+                this.WeaponControllersByType[controller.GetType()] = controller;
+            }
+        }
 
         private void Start() {
             this.Stats.Initialise();
@@ -47,6 +52,24 @@ namespace WeaponsSystem.Runtime.Weapons {
                 }
             }
             // this.WeaponControllers.ForEach(controller => controller.Possess(this, this.Stats));
+        }
+
+        public bool HasController<C>(out IWeaponController controller) where C : IWeaponController {
+            return this.WeaponControllersByType.TryGetValue(typeof(C), out controller);
+        }
+
+        public bool HasController<C>(out C controller) where C : IWeaponController {
+            if (this.HasController<C>(out IWeaponController c)) {
+                controller = (C)c;
+                return true;
+            }
+            
+            controller = default;
+            return false;
+        }
+
+        public void ReleaseAbilities(HashSet<IAbility> abilities, IEnumerable<GameObject> carriers) {
+            this.OnAbilitiesReleased.Invoke(abilities, carriers);
         }
 
         public void NextCombo(int comboLength) {

@@ -43,5 +43,11 @@ namespace GameplayAbilities.Runtime.Abilities {
         public void Activate(AbilityCaster caster, AbilityTargeter targeter) {
             this.TargetingStrategy.Start(caster, this, targeter);
         }
+
+        public void Delegate(GameObject carrier, AbilityCaster caster, AbilityTargeter targeter) {
+            this.TargetingStrategy.DelegateTo(carrier);
+            this.Activate(caster, targeter);
+            this.TargetingStrategy.Confirm();
+        }
     }
 }

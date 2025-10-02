@@ -46,14 +46,14 @@ namespace GameplayAbilities.Runtime.Modifiers {
         [field: ShowIf(nameof(this.AllowSetByCaller))]
         public string Label { get; private set; }
         
-        private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
+        protected AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         private DropdownList<string> AllAttributeOptions => this.GetAllAttributes();
 
-        private ModifierData() {
+        protected ModifierData() {
             this.CachedSortKey = new Lazy<string>(this.GenerateSortKey);
         }
 
-        private string GenerateSortKey() {
+        protected virtual string GenerateSortKey() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
             sb.AppendLine($"-TargetAttribute:{this.TargetAttribute}");
             sb.AppendLine($"-Method:{this.Method}");
@@ -77,7 +77,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
             return sb.ToString();
         }
         
-        public Modifier CreateModifier(IAttributeReader target) {
+        public virtual Modifier CreateModifier(IAttributeReader target) {
             return this.Form switch {
                 MagnitudeType.Constant => new Modifier(this.DefaultValue, this.Method, this.TargetAttribute),
                 MagnitudeType.AttributeValue => new Modifier(
@@ -90,7 +90,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
             };
         }
         
-        public Modifier CreateModifier(IDataReader<string, int> target) {
+        public virtual Modifier CreateModifier(IDataReader<string, int> target) {
             return this.Form switch {
                 MagnitudeType.Constant => new Modifier(this.DefaultValue, this.Method, this.TargetAttribute),
                 MagnitudeType.AttributeValue => new Modifier(
@@ -103,7 +103,7 @@ namespace GameplayAbilities.Runtime.Modifiers {
             };
         }
 
-        public Modifier CreateModifier(IAttributeReader target, IDataReader<string, int> source) {
+        public virtual Modifier CreateModifier(IAttributeReader target, IDataReader<string, int> source) {
             if (this.UseAttributeValue) {
                 int value = this.Source switch {
                     ValueSource.Target => target.GetCurrent(this.SourceAttribute),
