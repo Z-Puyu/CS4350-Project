@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchMelee",
+                    "name": "SwitchFirstWeapon",
                     "type": "Button",
                     "id": "2121c436-9f57-4177-a07a-95c5d62ca6f2",
                     "expectedControlType": "",
@@ -52,7 +52,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchRanged",
+                    "name": "SwitchSecondWeapon",
                     "type": "Button",
                     "id": "a6084afc-e2fe-4668-ba9f-0f20e839c166",
                     "expectedControlType": "",
@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchPlaceable",
+                    "name": "SwitchThirdWeapon",
                     "type": "Button",
                     "id": "56f65e68-73f4-4b7e-ab4c-43e14504b6b4",
                     "expectedControlType": "",
@@ -325,7 +325,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchMelee",
+                    "action": "SwitchFirstWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -336,7 +336,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchRanged",
+                    "action": "SwitchSecondWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -347,7 +347,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchPlaceable",
+                    "action": "SwitchThirdWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
