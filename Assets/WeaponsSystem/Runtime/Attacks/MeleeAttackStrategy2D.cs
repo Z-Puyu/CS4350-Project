@@ -36,10 +36,8 @@ namespace WeaponsSystem.Runtime.Attacks {
                 if (!c.TryGetComponent(out IAbilityTarget target)) {
                     continue;
                 }
-
-                foreach (IAbility ability in attachedAbilities) {
-                    target.Receive(ability, context.WeaponStats);
-                }
+                
+                // Todo
             }
             
             return 0f;
