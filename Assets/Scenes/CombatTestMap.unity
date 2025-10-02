@@ -518,50 +518,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 840edd05652e70d4584ebf07c9cfe428, type: 3}
---- !u!1 &691792762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 691792763}
-  - component: {fileID: 691792764}
-  m_Layer: 6
-  m_Name: ComponentsSlime
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &691792763
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691792762}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1658937050}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &691792764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691792762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9132c69a24344228dc741493f854567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.ComponentManager
 --- !u!1001 &847053562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1254,11 +1210,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameCameraManager
   player: {fileID: 0}
   virtualCamera: {fileID: 1505743561}
---- !u!4 &1658937050 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8669884023360301704, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
-  m_PrefabInstance: {fileID: 1781764269}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1679046095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
@@ -1384,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 2611257424792945034, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <ComponentManager>k__BackingField
       value: 
-      objectReference: {fileID: 691792764}
+      objectReference: {fileID: 0}
     - target: {fileID: 2611257424792945034, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <PossibleComponents>k__BackingField
       value: 
@@ -1467,10 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8669884023360301704, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 691792763}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
 --- !u!114 &1872981805 stripped
