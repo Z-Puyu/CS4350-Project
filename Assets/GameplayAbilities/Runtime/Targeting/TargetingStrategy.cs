@@ -49,5 +49,7 @@ namespace GameplayAbilities.Runtime.Targeting {
         public void DelegateTo(GameObject carrier) {
             this.AbilityCarrier = carrier;
         }
+        
+        public abstract void TargetExplicitly(GameObject explicitTarget);
     }
 }
