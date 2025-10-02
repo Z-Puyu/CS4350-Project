@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenObjective",
+                    "type": "Button",
+                    "id": "05cf0ef7-3acc-4c3a-93ee-79f655dcb502",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -381,6 +390,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "UseCharacterSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "231fe74c-e0db-4fad-bec7-589f95362e88",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "OpenObjective",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
