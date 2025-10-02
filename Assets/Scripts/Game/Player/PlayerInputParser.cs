@@ -13,6 +13,7 @@ using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using WeaponsSystem.Runtime.Combat;
+using WeaponsSystem.Runtime.Equipments;
 
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
@@ -31,6 +32,7 @@ namespace Game.Player
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
+        [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private ObjectiveManager ObjectiveManager { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context)
@@ -119,6 +121,29 @@ namespace Game.Player
                 this.AbilityCaster.Ready(1);
             }
         }
+        
+        public void OnSwitchToFirst(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+            
+            this.Weaponry.Switch(0);
+        }
+
+        public void OnSwitchToSecond(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+            
+            this.Weaponry.Switch(1);
+        }
+
+        public void OnSwitchToThird(InputAction.CallbackContext context) {
+            if (!context.performed) {
+                return;
+            }
+
+            this.Weaponry.Switch(2);
 
         public void OnOpenObjective(InputAction.CallbackContext context)
         {

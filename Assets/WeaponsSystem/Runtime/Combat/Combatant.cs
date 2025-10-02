@@ -93,6 +93,7 @@ namespace WeaponsSystem.Runtime.Combat {
             }
             
             this.Weapon = weapon;
+            Debug.Log($"Equipped {weapon.name}");
             this.IsAttacking = false;
             weapon.gameObject.SetActive(true);
             this.OnSwitchedGear.Invoke(weapon);
