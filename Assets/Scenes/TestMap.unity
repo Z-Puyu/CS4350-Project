@@ -1267,9 +1267,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <ObjectiveManager>k__BackingField
+      value: 
+      objectReference: {fileID: 1507122443}
+    - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
       objectReference: {fileID: 543647139}
+    - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <ObjectiveUIManager>k__BackingField
+      value: 
+      objectReference: {fileID: 593807167}
     - target: {fileID: 2332018648897565291, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -78066,6 +78074,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameCameraManager
   player: {fileID: 2093088696}
   virtualCamera: {fileID: 1505743561}
+--- !u!114 &1507122443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1879264311129708636, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+  m_PrefabInstance: {fileID: 1713279359534170061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4adc4498cac57354fb6054981e4591a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.Objectives.Objective_UI.ObjectiveManager
 --- !u!1 &1526864224
 GameObject:
   m_ObjectHideFlags: 0
