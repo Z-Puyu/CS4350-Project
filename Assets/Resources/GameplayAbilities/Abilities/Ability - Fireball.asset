@@ -42,7 +42,7 @@ MonoBehaviour:
       type: {class: ProjectileAreaTargeting, ns: GameplayAbilities.Runtime.Targeting, asm: GameplayAbilities.Runtime}
       data:
         <ProjectilePrefab>k__BackingField: {fileID: 5408122639006472464, guid: 96ecac2fd7db4044cbf915726f8f10fd, type: 3}
-        <Speed>k__BackingField: 3
+        <Speed>k__BackingField: 5
         <Range>k__BackingField: 5
         <AffectedLayers>k__BackingField:
           serializedVersion: 2

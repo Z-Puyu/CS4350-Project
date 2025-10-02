@@ -30,7 +30,7 @@ namespace GameplayAbilities.Runtime.Targeting {
             this.ConfigureProjectileControllers(ObjectPools<Projectile>.Get(this.ProjectilePrefab))
                 .Targeting(this.Targeter.AbilityTargets)
                 .WhenHit(this.HandleProjectileHit)
-                .Launch(origin, origin - centre, this.Range, this.Speed);
+                .Launch(origin, origin - centre, this.Speed, this.Range);
         }
     }
 }

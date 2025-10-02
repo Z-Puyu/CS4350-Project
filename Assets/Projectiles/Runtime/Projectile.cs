@@ -84,7 +84,7 @@ namespace Projectiles.Runtime {
         }
         
         public void Launch(Vector3 from, Vector3 direction, float speed, double range) {
-            this.Direction = direction;
+            this.Direction = direction.normalized;
             this.Speed = speed;
             this.Range = range;
             this.transform.position = from;
@@ -101,7 +101,7 @@ namespace Projectiles.Runtime {
         }
 
         public Projectile Relaunch(Vector3 direction, Vector3 relaunchPoint, float speed, double range) {
-            this.Direction = direction;
+            this.Direction = direction.normalized;
             this.Speed = speed;
             this.Range = range;
             this.IsAlive = true;
@@ -178,7 +178,7 @@ namespace Projectiles.Runtime {
         }
         
 
-        protected void Update() {
+        protected void FixedUpdate() {
             if (!this.IsAlive) {
                 return;
             }
@@ -192,8 +192,8 @@ namespace Projectiles.Runtime {
             foreach (IProjectileController controller in this.Controllers) {
                 controller.Update();
             }
-            
-            this.Travel(Time.deltaTime);
+
+            this.Travel(Time.fixedDeltaTime);
         }
     }
 }
