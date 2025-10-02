@@ -12,6 +12,7 @@ namespace Map.Objectives.Objective_UI
         
         public void OpenUI()
         {
+            Reset();
             backdrop.SetActive(true);    
         }
         

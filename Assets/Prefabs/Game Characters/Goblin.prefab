@@ -12,6 +12,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8102893227414733448}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2251277018689857734}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayDeathAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.Enemies.Enemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1989158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20970497
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0013486668
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0013486296
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5555274264340799859, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -48,6 +92,10 @@ PrefabInstance:
       propertyPath: <Data>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: afac34c5eb072f2468ab040d5952fe34, type: 2}
+    - target: {fileID: 8051744311941367104, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8443594316671374492, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -88,8 +136,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8051744311941367104, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+--- !u!114 &2251277018689857734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 55136081064673507, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 2305215722531891237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.CombatAnimationController
+--- !u!114 &8102893227414733448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 2305215722531891237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1366b16b5d804c25bd8f559ed50a6d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Enemy

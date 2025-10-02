@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Common;
+using Events;
 using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
-using Map.Objectives.Objective_UI;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
@@ -33,7 +33,7 @@ namespace Game.Player
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
-        [field: SerializeField, Required] private ObjectiveManager ObjectiveManager { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
@@ -80,6 +80,13 @@ namespace Game.Player
                 this.AbilityTargeter.Confirm();
             } else {
                 this.Combatant.StartAttack();
+            }
+        }
+
+        public void OnOpenObjective(InputAction.CallbackContext context)
+        {
+            if (context.performed) {
+                broadcastOpenNotebook.TriggerEvent();
             }
         }
 
@@ -138,12 +145,15 @@ namespace Game.Player
             this.Weaponry.Switch(1);
         }
 
-        public void OnSwitchToThird(InputAction.CallbackContext context) {
-            if (!context.performed) {
+        public void OnSwitchToThird(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
                 return;
             }
 
             this.Weaponry.Switch(2);
+        }
 
         public void OnOpenObjective(InputAction.CallbackContext context)
         {

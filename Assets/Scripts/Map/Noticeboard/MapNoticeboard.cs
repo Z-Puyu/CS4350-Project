@@ -8,7 +8,6 @@ namespace Map
     public sealed class MapNoticeboard : Interactable
     {
         public MapUnlockRequirementSO mapUnlockRequirementSO;
-        public TilemapCollider2D mapTileCollider2D;
         public CrossObjectEventWithDataSO broadcastNoticeboardUnlockRequirement;
         private bool isInteracted = false;
 

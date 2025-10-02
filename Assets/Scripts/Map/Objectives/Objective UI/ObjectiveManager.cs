@@ -18,6 +18,7 @@ namespace Map.Objectives.Objective_UI
         [SerializeField] private SaintsDictionary<Objective, MapUnlockRequirementSO> objectiveToRequirement;
         [SerializeField] private SaintsDictionary<MapUnlockRequirementSO, int> taskCounterForRequirement;
         [SerializeField] private CrossObjectEventWithDataSO broacastNumberOfIncompleteObjectives;
+        [SerializeField] private CrossObjectEventWithDataSO broadcastRegionUnlocked;
         
         public void OpenNotebook()
         {
@@ -71,6 +72,7 @@ namespace Map.Objectives.Objective_UI
             {
                 taskCounterForRequirement.Remove(mapRequirementSO);
                 allRequirements.Remove(mapRequirementSO);
+                broadcastRegionUnlocked.TriggerEvent(this, mapRequirementSO);
                 if (chosenRequirement == mapRequirementSO)
                 {
                     if (allRequirements.Count > 0)

@@ -46,7 +46,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3324175696564490730}
-  - component: {fileID: 3797095984724131894}
   - component: {fileID: 4284936676752762451}
   m_Layer: 3
   m_Name: Base Character
@@ -72,52 +71,6 @@ Transform:
   - {fileID: 1094391696314402652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3797095984724131894
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454949747492492771}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.42}
-    newSize: {x: 1.5, y: 1.42}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 1.42}
-  m_EdgeRadius: 0
 --- !u!50 &4284936676752762451
 Rigidbody2D:
   serializedVersion: 5
@@ -295,7 +248,7 @@ MonoBehaviour:
   <AnimatorComboCounter>k__BackingField: -2064768384
   <AnimatorAttackTrigger>k__BackingField: 1080829965
   <AnimatorTakeDamageTrigger>k__BackingField: -1276966713
-  <AnimatorDeathFlag>k__BackingField: 0
+  <AnimatorDeathString>k__BackingField: 
 --- !u!114 &5081366553144432299
 MonoBehaviour:
   m_ObjectHideFlags: 0
