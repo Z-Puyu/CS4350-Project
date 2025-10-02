@@ -9,6 +9,10 @@ namespace WeaponsSystem.Runtime.WeaponComponents {
         [field: SerializeField] private AbilityCaster AbilityCaster { get; set; }
 
         public void Test(ISet<WeaponComponent> components) {
+            if (!this.SkillTable) {
+                return;
+            }
+            
             foreach (KeyValuePair<ISet<WeaponComponent>, string> entry in this.SkillTable) {
                 if (!entry.Key.IsSubsetOf(components)) {
                     continue;

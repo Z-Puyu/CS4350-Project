@@ -504,6 +504,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: <RootRigidBody>k__BackingField
+      value: 
+      objectReference: {fileID: 4284936676752762451}
+    - target: {fileID: 954693451658437000, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: <RootTransform>k__BackingField
       value: 
       objectReference: {fileID: 3324175696564490730}
