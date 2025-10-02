@@ -18,11 +18,9 @@ using WeaponsSystem.Runtime.Equipments;
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
 
-namespace Game.Player
-{
+namespace Game.Player {
     [DisallowMultipleComponent]
-    public sealed class PlayerInputParser : MonoBehaviour
-    {
+    public sealed class PlayerInputParser : MonoBehaviour {
         [field: SerializeField, Required] private Interactor Interactor { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
@@ -35,10 +33,8 @@ namespace Game.Player
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
 
-        public void OnInteract(InputAction.CallbackContext context)
-        {
-            if (!context.performed)
-            {
+        public void OnInteract(InputAction.CallbackContext context) {
+            if (!context.performed) {
                 return;
             }
 
@@ -46,17 +42,14 @@ namespace Game.Player
             this.Interactor.Interact();
         }
 
-        public void OnToggleInventory(InputAction.CallbackContext context)
-        {
-            if (!context.performed)
-            {
+        public void OnToggleInventory(InputAction.CallbackContext context) {
+            if (!context.performed) {
                 return;
             }
 
             // Logging inventory items
             StringBuilder sb = new StringBuilder("Inventory:\n");
-            foreach (KeyValuePair<ItemKey, int> item in this.Inventory)
-            {
+            foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
                 sb.AppendLine($"{item.Key.Id}: {item.Value}");
             }
 
@@ -68,10 +61,8 @@ namespace Game.Player
             this.InventoryUIManager.gameObject.SetActive(!isInventoryActive);
         }
 
-        public void OnAttack(InputAction.CallbackContext context)
-        {
-            if (!context.performed)
-            {
+        public void OnAttack(InputAction.CallbackContext context) {
+            if (!context.performed) {
                 return;
             }
 
@@ -96,9 +87,7 @@ namespace Game.Player
             {
                 Vector2 input = context.ReadValue<Vector2>();
                 this.Movement.MoveIn(input);
-            }
-            else if (context.canceled)
-            {
+            } else if (context.canceled) {
                 this.Movement.Stop();
             }
         }
@@ -111,9 +100,9 @@ namespace Game.Player
                 if (this.AbilityCaster.ReadiedSkillIndex == 0) {
                     this.AbilityTargeter.Cancel();
                 }
-                
+
                 this.AbilityCaster.Ready(0);
-            } 
+            }
         }
 
         public void OnUseCharacterSkill(InputAction.CallbackContext context) {
@@ -124,16 +113,16 @@ namespace Game.Player
                 if (this.AbilityCaster.ReadiedSkillIndex == 1) {
                     this.AbilityTargeter.Cancel();
                 }
-                
+
                 this.AbilityCaster.Ready(1);
             }
         }
-        
+
         public void OnSwitchToFirst(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
             }
-            
+
             this.Weaponry.Switch(0);
         }
 
@@ -141,7 +130,7 @@ namespace Game.Player
             if (!context.performed) {
                 return;
             }
-            
+
             this.Weaponry.Switch(1);
         }
 
@@ -155,11 +144,9 @@ namespace Game.Player
             this.Weaponry.Switch(2);
         }
 
-        public void OnOpenObjective(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                ObjectiveManager.OpenNotebook();
+        public void OnOpenObjective(InputAction.CallbackContext context) {
+            if (context.performed) { 
+                this.ObjectiveManager.OpenNotebook();
             }
         }
     }

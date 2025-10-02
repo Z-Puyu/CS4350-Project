@@ -20,6 +20,8 @@ namespace Skill_tree_related.Skill_tree_UI {
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
     
+        
+        
         void Start()
         {
             this.UpdateExp();
@@ -27,9 +29,9 @@ namespace Skill_tree_related.Skill_tree_UI {
 
         public void SetSkillInformation(Component component, object skill)
         {
-            Perk broasdcastedSkill = (Perk)((object[])skill)[0];
-            this.titleText.text = broasdcastedSkill.Name;
-            this.descriptionText.text = broasdcastedSkill.Description;
+            Perk broadcastedSkill = (Perk)((object[])skill)[0];
+            this.titleText.text = broadcastedSkill.Name;
+            this.descriptionText.text = broadcastedSkill.Description;
         }
 
         public void UpdateExp()
