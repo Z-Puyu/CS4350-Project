@@ -17,6 +17,11 @@ namespace Game.Enemies {
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
         private GameObject LastAttacker { get; set; }
 
+        public string getEnemyId()
+        {
+            return Data.Id;
+        }
+
         protected override void ConfigureAttributeSet() {
             this.AttributeSet.Initialise(this.Data.Attributes);
         }
@@ -40,8 +45,8 @@ namespace Game.Enemies {
         }
 
         public override void HandleDeath() {
-            base.HandleDeath(); 
             broadcastEnemyDiedData.TriggerEvent(this, Data);
+            base.HandleDeath(); 
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
         }
     }

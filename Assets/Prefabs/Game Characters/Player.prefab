@@ -430,19 +430,19 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 092525025e8da824db4823adedad387f, type: 2}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
-      value: 0.81761765
+      value: 0.26971304
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.y
-      value: 0.8534428
+      value: 0.26424026
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.x
-      value: -0.045595527
+      value: -0.020195365
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.073278606
+      value: -0.028850555
       objectReference: {fileID: 0}
     - target: {fileID: 4991569239397768627, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <AbilitySlots>k__BackingField
@@ -838,6 +838,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d6d1192e-c2c5-4750-812f-899a0d3bc921
     m_ActionName: 'Player/UseSkillTwo[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2076975899314662873}
+        m_TargetAssemblyTypeName: Game.Player.PlayerInputParser, Assembly-CSharp
+        m_MethodName: OnOpenObjective
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 05cf0ef7-3acc-4c3a-93ee-79f655dcb502
+    m_ActionName: 'Player/OpenObjective[/Keyboard/o]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -1165,6 +1181,10 @@ PrefabInstance:
       propertyPath: <InventoryUIManager>k__BackingField
       value: 
       objectReference: {fileID: 5804928491059888873}
+    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: <broadcastOpenNotebook>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c18ca7095603885429344b34773ef14d, type: 2}
     - target: {fileID: 5874751560248157011, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

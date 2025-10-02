@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Common;
+using Events;
 using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
-using Map.Objectives.Objective_UI;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
@@ -31,7 +31,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
-        [field: SerializeField, Required] private ObjectiveManager ObjectiveManager { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
 
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -74,8 +74,17 @@ namespace Game.Player {
             }
         }
 
-        public void OnMove(InputAction.CallbackContext context) {
+        public void OnOpenObjective(InputAction.CallbackContext context)
+        {
             if (context.performed) {
+                broadcastOpenNotebook.TriggerEvent();
+            }
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
                 Vector2 input = context.ReadValue<Vector2>();
                 this.Movement.MoveIn(input);
             } else if (context.canceled) {
@@ -125,8 +134,10 @@ namespace Game.Player {
             this.Weaponry.Switch(1);
         }
 
-        public void OnSwitchToThird(InputAction.CallbackContext context) {
-            if (!context.performed) {
+        public void OnSwitchToThird(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
                 return;
             }
 

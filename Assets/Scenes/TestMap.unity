@@ -308,6 +308,8 @@ GameObject:
   m_Component:
   - component: {fileID: 169930786}
   - component: {fileID: 169930785}
+  - component: {fileID: 169930787}
+  - component: {fileID: 169930788}
   m_Layer: 0
   m_Name: Map grid
   m_TagString: Untagged
@@ -349,6 +351,61 @@ Transform:
   - {fileID: 668524971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169930787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169930784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706e1301b1ab0b542a88f8fac67519d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.Map_manager.MapManager
+  mapRequirementToRegion:
+    _keys: []
+    _values: []
+    _saintsKeys:
+    - value: {fileID: 11400000, guid: c386f2459a737a14abbfa5f68c055f80, type: 2}
+    - value: {fileID: 11400000, guid: 08bdb15f13261f44b81932f032c4a959, type: 2}
+    - value: {fileID: 11400000, guid: abf04d73c2c54c2488fc1bf7a1b03e85, type: 2}
+    - value: {fileID: 11400000, guid: 1cc3be3c745a14743b15bd7694930770, type: 2}
+    - value: {fileID: 11400000, guid: e4e708f908800cf4d9e2a0262529e3db, type: 2}
+    _saintsValues:
+    - value: {fileID: 801469306}
+    - value: {fileID: 961728427}
+    - value: {fileID: 2076822391}
+    - value: {fileID: 640227770}
+    - value: {fileID: 1863486581}
+--- !u!114 &169930788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169930784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: a7d355f72ec6f924b928045c1f18f36b, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 169930787}
+        m_TargetAssemblyTypeName: Map.Map_manager.MapManager, Assembly-CSharp
+        m_MethodName: RequirementCompleted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &185927228
 GameObject:
   m_ObjectHideFlags: 0
@@ -28871,7 +28928,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640227766}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -58677,7 +58734,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -76818,7 +76875,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -78212,6 +78269,9 @@ MonoBehaviour:
     _saintsKeys:
     - value: 0
     - value: 1
+    - value: 2
+    - value: 3
+    - value: 4
     _saintsValues:
     - value:
         _keys: []
@@ -78231,6 +78291,33 @@ MonoBehaviour:
         _saintsValues:
         - value: 2
         - value: 2
+    - value:
+        _keys: []
+        _values: 
+        _saintsKeys:
+        - value: {fileID: 8102893227414733448, guid: 6dae6e6d874ae124abfbd36ecdaddc23, type: 3}
+        - value: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+        _saintsValues:
+        - value: 4
+        - value: 4
+    - value:
+        _keys: []
+        _values: 
+        _saintsKeys:
+        - value: {fileID: 8102893227414733448, guid: 6dae6e6d874ae124abfbd36ecdaddc23, type: 3}
+        - value: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+        _saintsValues:
+        - value: 8
+        - value: 8
+    - value:
+        _keys: []
+        _values: 
+        _saintsKeys:
+        - value: {fileID: 8102893227414733448, guid: 6dae6e6d874ae124abfbd36ecdaddc23, type: 3}
+        - value: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+        _saintsValues:
+        - value: 16
+        - value: 16
   killCounter:
     _keys: []
     _values: 
@@ -78891,6 +78978,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2021208426}
+    - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1781764270}
@@ -78899,8 +78990,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayDeathAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: HandleDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1444000228261337197, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -102766,7 +102865,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -103265,6 +103364,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f25133c21cbbe7c43992f67ff2d5ac98, type: 3}
+--- !u!114 &2021208426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 990739309749812983, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+  m_PrefabInstance: {fileID: 1781764269}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.CombatAnimationController
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124157,7 +124267,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -138142,14 +138252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objective manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
-      propertyPath: objectiveUIManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
-      propertyPath: allRequirements.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9064610046622730796, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 327.73413
@@ -138190,8 +138292,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7561960970058781470, guid: 5999dabbc2635e34eb8a3c157919a87f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
