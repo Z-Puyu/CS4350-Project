@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Projectiles.Runtime {
     public abstract class ProjectileController : IProjectileController {
         protected Projectile Projectile { get; set; }
+        private event Action<Vector3, GameObject> OnHit;
+        
+        event Action<Vector3, GameObject> IProjectileController.OnHit {
+            add => this.OnHit += value;
+            remove => this.OnHit -= value;
+        }
 
         public virtual void Possess(Projectile projectile) {
             this.Projectile = projectile;
@@ -13,6 +20,11 @@ namespace Projectiles.Runtime {
         }
         
         public abstract void Update();
-        public abstract void ProcessHit(Vector3 position, GameObject target);
+
+        public virtual void ProcessHit(Vector3 position, GameObject target) {
+            this.OnHit?.Invoke(position, target);
+        }
+        
+        public abstract void Start();
     }
 }

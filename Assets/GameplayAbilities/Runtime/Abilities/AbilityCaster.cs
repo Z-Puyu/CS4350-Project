@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameplayAbilities.Runtime.Attributes;
 using GameplayAbilities.Runtime.Targeting;
+using SaintsField;
 using SaintsField.Playa;
 using UnityEngine;
 
@@ -10,11 +12,25 @@ namespace GameplayAbilities.Runtime.Abilities {
         private AttributeSet AttributeSet { get; set; }
         private AbilitySystem AbilitySystem { get; set; }
         private AbilityTargeter AbilityTargeter { get; set; }
-        [field: SerializeField] private List<Ability> EquippedAbilities { get; set; } = new List<Ability>();
+        [field: SerializeField, MinValue(1)] private int AbilitySlots { get; set; }
+        [field: SerializeField] private Ability TestCharacterAbility { get; set; }
+        private List<Ability> EquippedAbilities { get; } = new List<Ability>();
 
         private void Awake() {
             this.AttributeSet = this.GetComponent<AttributeSet>();
             this.AbilitySystem = this.GetComponent<AbilitySystem>();
+            this.AbilityTargeter = this.GetComponent<AbilityTargeter>();
+            for (int i = 0; i < this.AbilitySlots; i += 1) {
+                this.EquippedAbilities.Add(null);
+            }
+        }
+
+        private void Start() {
+#if DEBUG
+            if (this.TestCharacterAbility) {
+                this.Equip(this.TestCharacterAbility, 1);
+            }
+#endif
         }
 
         public void Equip(Ability ability, int index) {
@@ -23,7 +39,7 @@ namespace GameplayAbilities.Runtime.Abilities {
 
         [Button("Test Cast")]
         public void Cast(int index, AttributeSet target = null) {
-            if (index < 0 || index >= this.EquippedAbilities.Count) {
+            if (index < 0 || index >= this.AbilitySlots) {
 #if DEBUG
                 Debug.LogError($"Index {index} out of bounds!", this);
 #endif
@@ -49,7 +65,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         }
 
         public void Ready(int index) {
-            if (index < 0 || index >= this.EquippedAbilities.Count) {
+            if (index < 0 || index >= this.AbilitySlots) {
 #if DEBUG
                 Debug.LogError($"Index {index} out of bounds!", this);
 #endif

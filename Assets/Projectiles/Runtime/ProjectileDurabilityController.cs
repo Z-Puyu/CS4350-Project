@@ -5,7 +5,9 @@ namespace Projectiles.Runtime {
     [Serializable]
     public class ProjectileDurabilityController : ProjectileController {
         [field: SerializeField] public int Durability { private get; set; }
-        
+
+        public override void Start() { }
+
         public override void Possess(Projectile projectile) {
             base.Possess(projectile);
             projectile.OnHit += this.ProcessHit;

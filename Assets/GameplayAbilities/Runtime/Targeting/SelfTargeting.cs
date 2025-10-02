@@ -1,6 +1,6 @@
 ﻿namespace GameplayAbilities.Runtime.Targeting {
     public class SelfTargeting : TargetingStrategy {
-        protected override void BeginTargeting() {
+        protected override void BeginTargeting(AbilityTargeter targeter) {
             this.ConfirmTarget();
         }
 
@@ -8,7 +8,7 @@
         
         protected override void CancelTargeting() { }
 
-        protected override void ConfirmTarget() {
+        public override void ConfirmTarget() {
             this.Caster.Cast(this.Ability);
             this.IsTargeting = false;
             this.Ability = null;

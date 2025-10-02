@@ -62,6 +62,11 @@ namespace Projectiles.Runtime {
             return this;
         }
 
+        public Projectile WhenHit<C>(Action<Vector3, GameObject> action) where C : class, IProjectileController, new() {
+            this.GetController<C>().OnHit += action;
+            return this;
+        }
+
         public Projectile WhenHit(Action<Vector3, GameObject> action) {
             this.OnHit += action;
             return this;
@@ -106,8 +111,8 @@ namespace Projectiles.Runtime {
             this.OnHit = null;
             base.Return();
         }
-        
-        public C GetController<C>() where C : class, IProjectileController, new() {
+
+        public IProjectileController GetController<C>() where C : class, IProjectileController, new() {
             Type type = typeof(C);
             if (this.ControllersByType.TryGetValue(type, out IProjectileController controller)) {
                 return controller as C;
@@ -116,23 +121,27 @@ namespace Projectiles.Runtime {
             controller = new C();
             this.ControllersByType.Add(type, controller);
             this.Controllers.Add(controller);
-            return controller as C;
+            return controller;
         }
 
         public virtual bool IsValidTarget(GameObject candidate) {
             return this.TargetTags.Count == 0 || this.TargetTags.Any(candidate.CompareTag);
         }
 
-        protected void Hit(GameObject target) {
+        protected void Impact(GameObject target) {
             this.IsAlive = false;
-            this.Impact(target);
-            this.OnHit?.Invoke(target.transform.position, target);
+            Vector3 position = target ? target.transform.position : this.Transform.position;
+            if (target) {
+                this.OnHit?.Invoke(position, target);
+            }
+            
+            this.Controllers.ForEach(controller => controller.ProcessHit(position, target));
             if (!this.IsAlive) {
                 this.Return();
-            }
+            }       
         }
-
-        protected void Impact(GameObject target) {
+        
+        /*protected void Impact(GameObject target) {
             this.IsAlive = false;
             Vector3 position = target.transform.position;
             this.Controllers.ForEach(controller => controller.ProcessHit(position, target));
@@ -140,7 +149,7 @@ namespace Projectiles.Runtime {
             if (!this.IsAlive) {
                 this.Return();
             }       
-        }
+        }*/
 
         private void Travel(float deltaTime) {
             this.Transform.position += this.Direction * (deltaTime * this.Speed);
@@ -155,7 +164,7 @@ namespace Projectiles.Runtime {
             
             float distance = Vector3.Distance(this.Transform.position, this.LaunchPoint);
             if (distance >= this.Range) {
-                this.Return();
+                this.Impact(null);
                 return;
             }
 

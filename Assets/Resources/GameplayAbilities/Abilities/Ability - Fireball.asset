@@ -19,11 +19,34 @@ MonoBehaviour:
   <Cooldown>k__BackingField: 10
   <Costs>k__BackingField: []
   <TargetingStrategy>k__BackingField:
-    rid: 5580717538616803646
-  <Effects>k__BackingField: []
+    rid: 2446550859284480073
+  <Effects>k__BackingField:
+  - rid: 2446550857979265098
   references:
     version: 2
     RefIds:
-    - rid: 5580717538616803646
-      type: {class: ProjectileTargeting, ns: GameplayAbilities.Runtime.Targeting, asm: GameplayAbilities.Runtime}
-      data: 
+    - rid: 2446550857979265098
+      type: {class: DamageEffect, ns: GameplayAbilities.Runtime.HealthSystem, asm: GameplayAbilities.Runtime}
+      data:
+        <DamageTypes>k__BackingField:
+        - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
+          <IsPercentageDefence>k__BackingField: 1
+          <DefenceCoefficient>k__BackingField: 1
+        - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
+          <IsPercentageDefence>k__BackingField: 0
+          <DefenceCoefficient>k__BackingField: 1
+        <TargetAttribute>k__BackingField: Health
+    - rid: 2446550859284480073
+      type: {class: ProjectileAreaTargeting, ns: GameplayAbilities.Runtime.Targeting, asm: GameplayAbilities.Runtime}
+      data:
+        <ProjectilePrefab>k__BackingField: {fileID: 5408122639006472464, guid: 96ecac2fd7db4044cbf915726f8f10fd, type: 3}
+        <Speed>k__BackingField: 3
+        <Range>k__BackingField: 5
+        <AffectedLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 64
+        <AreaShape>k__BackingField: 0
+        <Radius>k__BackingField: 3
+        <Dimensions>k__BackingField: {x: 0, y: 0}

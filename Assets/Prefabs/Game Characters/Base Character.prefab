@@ -295,7 +295,7 @@ MonoBehaviour:
   <AnimatorComboCounter>k__BackingField: -2064768384
   <AnimatorAttackTrigger>k__BackingField: 1080829965
   <AnimatorTakeDamageTrigger>k__BackingField: -1276966713
-  <AnimatorDeathTrigger>k__BackingField: 20298039
+  <AnimatorDeathFlag>k__BackingField: 0
 --- !u!114 &5081366553144432299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +582,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1094391696314402652}
     m_Modifications:
+    - target: {fileID: 1679399189504455574, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
+      propertyPath: <AttributeSet>k__BackingField
+      value: 
+      objectReference: {fileID: 106646709540062668}
     - target: {fileID: 4571564496476161087, guid: 6eeebd4c5324b2c42bf064221e71a2fc, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
       value: 2

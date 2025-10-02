@@ -548,7 +548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1552171145}
+  m_Father: {fileID: 1658937050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &691792764
 MonoBehaviour:
@@ -562,9 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9132c69a24344228dc741493f854567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.WeaponComponent.ComponentManager
-  <Capacity>k__BackingField: 3
-  <Stats>k__BackingField: {fileID: 0}
-  <TestComponents>k__BackingField: []
 --- !u!1001 &847053562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,17 +715,6 @@ Transform:
   - {fileID: 1049529678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &904005243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2065031566030823522, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-  m_PrefabInstance: {fileID: 1287541240}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e8af7282a844f989d45dcd6e7812ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilityRoundRobin
 --- !u!1 &1044281863
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +984,11 @@ PrefabInstance:
     - target: {fileID: 1190043135416699325, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6133477616579067779, guid: ac0266cd0d141054ea97947d5a29b1ab, type: 3}
+      objectReference: {fileID: 434025369, guid: 97075d46cac0e9c4da8496d2b8d7a6ce, type: 3}
+    - target: {fileID: 1190043135416699325, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1732525752152892353, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <PixelOffset>k__BackingField
       value: 0
@@ -1010,7 +1000,11 @@ PrefabInstance:
     - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
-      objectReference: {fileID: 904005243}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2559735022781802254, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: offset
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2933533461722758226, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.45
@@ -1063,22 +1057,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      propertyPath: m_Size.x
-      value: 0.6592777
-      objectReference: {fileID: 0}
-    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      propertyPath: m_Size.y
-      value: 0.7214519
-      objectReference: {fileID: 0}
-    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.047468543
-      objectReference: {fileID: 0}
-    - target: {fileID: 7063334422102083262, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.07782954
-      objectReference: {fileID: 0}
     - target: {fileID: 8366311815569552949, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <TestComponents>k__BackingField.Array.size
       value: 3
@@ -1098,7 +1076,7 @@ PrefabInstance:
     - target: {fileID: 8592607854843346343, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <AbilityRoundRobin>k__BackingField
       value: 
-      objectReference: {fileID: 904005243}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1276,9 +1254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameCameraManager
   player: {fileID: 0}
   virtualCamera: {fileID: 1505743561}
---- !u!4 &1552171145 stripped
+--- !u!4 &1658937050 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4413985620595658814, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8669884023360301704, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
   m_PrefabInstance: {fileID: 1781764269}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1679046095 stripped
@@ -1371,17 +1349,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1748696991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4699945201319956490, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
-  m_PrefabInstance: {fileID: 1781764269}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
 --- !u!1001 &1781764269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1396,6 +1363,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145272352180186753, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384250488758544081, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: <AbilitySlots>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1452992770186646763, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
@@ -1441,11 +1412,11 @@ PrefabInstance:
     - target: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <DamageHandler>k__BackingField
       value: 
-      objectReference: {fileID: 1929025334}
+      objectReference: {fileID: 0}
     - target: {fileID: 7129962198781924537, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <GameplayEffectCoordinator>k__BackingField
       value: 
-      objectReference: {fileID: 1748696991}
+      objectReference: {fileID: 0}
     - target: {fileID: 7751331009461735872, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: '<DamageAttributes>k__BackingField.Array.data[0]'
       value: Damage.Physical.Melee
@@ -1497,7 +1468,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4413985620595658814, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 8669884023360301704, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       insertIndex: -1
       addedObject: {fileID: 691792763}
     m_AddedComponents: []
@@ -1513,17 +1484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bebe8e01bf04c05a5fd94039e0dffb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Map.GameWorld
---- !u!114 &1929025334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6555599554902204759, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
-  m_PrefabInstance: {fileID: 1781764269}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 520e1154bc3f4b38a358a687599a7d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
 --- !u!1001 &2057058207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2148,6 +2108,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445380644281399416, guid: b78413e239c92490f9839534499b8d94, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

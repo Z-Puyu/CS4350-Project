@@ -3,6 +3,7 @@ using System.Text;
 using Common;
 using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
+using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
@@ -25,6 +26,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
+        [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         
         public void OnInteract(InputAction.CallbackContext context) {
@@ -61,6 +63,10 @@ namespace Game.Player {
             }
             
             OnScreenDebugger.Log("Attack");
+            if (this.AbilityTargeter.IsTargting) {
+                this.AbilityTargeter.Confirm();
+            }
+
             this.Combatant.StartAttack();
         }
 
@@ -75,12 +81,18 @@ namespace Game.Player {
 
         public void OnUseWeaponSkill(InputAction.CallbackContext context) {
             if (context.performed) {
+#if DEBUG
+                Debug.Log("Use weapon skill");
+#endif
                 this.AbilityCaster.Ready(0);
             } 
         }
 
         public void OnUseCharacterSkill(InputAction.CallbackContext context) {
             if (context.performed) {
+#if DEBUG
+                Debug.Log("Use character skill");
+#endif
                 this.AbilityCaster.Ready(1);
             }
         }

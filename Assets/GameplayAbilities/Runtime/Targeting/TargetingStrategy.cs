@@ -11,10 +11,10 @@ namespace GameplayAbilities.Runtime.Targeting {
             this.IsTargeting = true;
             targeter.TargetingStrategy = this;
             this.Caster = caster;
-            this.BeginTargeting();
+            this.BeginTargeting(targeter);
         }
         
-        protected abstract void BeginTargeting();
+        protected abstract void BeginTargeting(AbilityTargeter targeter);
 
         public void Update() {
             if (this.IsTargeting) {
@@ -35,6 +35,6 @@ namespace GameplayAbilities.Runtime.Targeting {
         
         protected abstract void CancelTargeting();
 
-        protected abstract void ConfirmTarget();
+        public abstract void ConfirmTarget();
     }
 }
