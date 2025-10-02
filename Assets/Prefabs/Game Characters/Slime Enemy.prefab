@@ -8,19 +8,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55136081064673507, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <AnimatorDeathString>k__BackingField
+      value: Die
+      objectReference: {fileID: 0}
     - target: {fileID: 187148960694751381, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Name
       value: Slime Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2283088148956866434, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: 'managedReferences[2098011628653249157]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
-        Assembly-CSharp]]'
+      propertyPath: managedReferences[2098011628653249157]
+      value: Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
+        Assembly-CSharp]]
       objectReference: {fileID: 0}
     - target: {fileID: 2283088148956866434, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: 'managedReferences[2098011628653249158]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
-        Assembly-CSharp]]'
+      propertyPath: managedReferences[2098011628653249158]
+      value: Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
+        Assembly-CSharp]]
       objectReference: {fileID: 0}
     - target: {fileID: 2283088148956866434, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: managedReferences[2098011628653249157].Name
@@ -82,6 +86,14 @@ PrefabInstance:
       propertyPath: <AbilitySystem>k__BackingField
       value: 
       objectReference: {fileID: 6126115971468127911}
+    - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <DamageHandler>k__BackingField
+      value: 
+      objectReference: {fileID: 6555599554902204759}
+    - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <GameplayEffectCoordinator>k__BackingField
+      value: 
+      objectReference: {fileID: 4699945201319956490}
     - target: {fileID: 8051744311941367104, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Size.x
       value: 0.9740964
@@ -150,6 +162,17 @@ PrefabInstance:
       addedObject: {fileID: 2678915251472060687}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+--- !u!114 &4699945201319956490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5496008498791034398, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46649be285d54a5e831e8889da765a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.GameplayEffects.GameplayEffectCoordinator
 --- !u!4 &5104026819878441057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5451911396686442101, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
@@ -166,6 +189,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
+--- !u!114 &6555599554902204759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6306757817276194627, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e1154bc3f4b38a358a687599a7d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.DamageHandling.DamageHandler
 --- !u!114 &7129962198781924537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
