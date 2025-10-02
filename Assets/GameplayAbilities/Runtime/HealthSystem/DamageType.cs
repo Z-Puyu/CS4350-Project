@@ -12,6 +12,8 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
         public string DamageAttribute { get; private set; }
         
+        [field: SerializeField, MinValue(0)] private int DefaultValue { get; set; }
+        
         [field: SerializeField, TableColumn("Defended by"), TreeDropdown(nameof(this.AttributeOptions))] 
         public string DefenceAttribute { get; private set; }
         
@@ -21,7 +23,11 @@ namespace GameplayAbilities.Runtime.HealthSystem {
         private AdvancedDropdownList<string> AttributeOptions => this.GetAttributeOptions();
         
         public Modifier ToModifier(IDataReader<string, int> target, string targetAttribute) {
-            int rawDamage = target.HasValue(this.DamageAttribute, out int damageValue) ? damageValue : 0;
+            int rawDamage = this.DefaultValue;
+            if (target.HasValue(this.DamageAttribute, out int damageValue) && damageValue > 0) {
+                rawDamage = damageValue;
+            }
+            
             if (rawDamage <= 0) {
                 return Modifier.Empty;
             }

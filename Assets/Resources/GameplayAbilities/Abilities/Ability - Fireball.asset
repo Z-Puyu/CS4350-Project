@@ -30,10 +30,12 @@ MonoBehaviour:
       data:
         <DamageTypes>k__BackingField:
         - <DamageAttribute>k__BackingField: Damage.Physical.Explosion
+          <DefaultValue>k__BackingField: 10
           <DefenceAttribute>k__BackingField: Defence.Physical.Explosion
           <IsPercentageDefence>k__BackingField: 1
           <DefenceCoefficient>k__BackingField: 1
         - <DamageAttribute>k__BackingField: Damage.Elemental.Fire
+          <DefaultValue>k__BackingField: 5
           <DefenceAttribute>k__BackingField: Defence.Elemental.Fire
           <IsPercentageDefence>k__BackingField: 0
           <DefenceCoefficient>k__BackingField: 1
