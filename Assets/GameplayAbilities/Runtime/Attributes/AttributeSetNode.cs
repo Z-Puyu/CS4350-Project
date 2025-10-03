@@ -15,7 +15,15 @@ namespace GameplayAbilities.Runtime.Attributes {
         internal IEnumerable<Modifier> CurrentModifiers => this.Modifiers.Values;
         
         private int @base;
-        internal int BaseValue { get => this.@base; set => this.@base = (int)this.Clamp(value); }
+
+        internal int BaseValue {
+            get => this.@base;
+            set {
+                this.@base = (int)this.Clamp(value);
+                this.Value = this.RecomputeValue();
+            }
+        }
+
         internal int Value { get; private set; }
         
         internal int MaxValue => Math.Min(int.MaxValue, (int)this.Clamp(int.MaxValue));

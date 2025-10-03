@@ -1400,10 +1400,6 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6615670882161919381, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: <AnimatorDeathFlag>k__BackingField
-      value: 1293411866
-      objectReference: {fileID: 0}
-    - target: {fileID: 6615670882161919381, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <AnimatorDeathString>k__BackingField
       value: Die
       objectReference: {fileID: 0}

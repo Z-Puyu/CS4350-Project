@@ -178,8 +178,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -374179137
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -202,7 +202,7 @@ Animator:
   m_GameObject: {fileID: 6561529514998742695}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5d0e76d4ccb3c5a46b16b4c0ea36bf0f, type: 2}
+  m_Controller: {fileID: 9100000, guid: aa9d43e74696c124895a4bef85c5432f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   <AnimatorComboCounter>k__BackingField: -2064768384
   <AnimatorAttackTrigger>k__BackingField: 1080829965
   <AnimatorTakeDamageTrigger>k__BackingField: -1276966713
-  <AnimatorDeathString>k__BackingField: 
+  <AnimatorDeathFlag>k__BackingField: 20298039
 --- !u!114 &5081366553144432299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +264,7 @@ MonoBehaviour:
   <Combatant>k__BackingField: {fileID: 1013458702745771644}
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <GameCharacterController>k__BackingField: {fileID: 0}
+  <AnimatorDeathFlag>k__BackingField: 20298039
 --- !u!1001 &454449849331479342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,6 +508,14 @@ PrefabInstance:
     - target: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
       propertyPath: m_Name
       value: MovementComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935170786534029363, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607048075476731620, guid: 69c6439351f10be48ba834e25c5413fd, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -1008,6 +1008,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4400004367686232200, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400004367686232200, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5468757192089227282, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1462,6 +1470,14 @@ PrefabInstance:
     - target: {fileID: 4340425703431839089, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: m_Name
       value: AbilitiesComponentSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886114510981750421, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886114510981750421, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6272009206712680110, guid: 095091665f5e9bb48be4e6f609cbf199, type: 3}
       propertyPath: <DefaultAttributes>k__BackingField

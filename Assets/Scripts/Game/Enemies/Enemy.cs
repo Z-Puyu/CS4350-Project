@@ -17,8 +17,7 @@ namespace Game.Enemies {
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
         private GameObject LastAttacker { get; set; }
 
-        public string getEnemyId()
-        {
+        public string getEnemyId() {
             return Data.Id;
         }
 

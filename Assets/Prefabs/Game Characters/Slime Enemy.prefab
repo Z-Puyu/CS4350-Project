@@ -50,19 +50,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Size.x
-      value: 0.28656614
+      value: 0.97107005
       objectReference: {fileID: 0}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Size.y
-      value: 0.22378382
+      value: 0.7869612
       objectReference: {fileID: 0}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Offset.x
-      value: -0.35671693
+      value: -0.0017044544
       objectReference: {fileID: 0}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.03709857
+      value: -0.09507269
       objectReference: {fileID: 0}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_IsTrigger
@@ -138,10 +138,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7805846891793197291, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 686dfcf9ba458774796663fdb77f8112, type: 2}
     - target: {fileID: 8038510861533440685, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <Data>k__BackingField
       value: 

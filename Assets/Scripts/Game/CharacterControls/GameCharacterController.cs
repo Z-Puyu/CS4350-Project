@@ -33,7 +33,7 @@ namespace Game.CharacterControls {
         /// <summary>
         /// Destroy the character. Call this after the death animation is complete.
         /// </summary>
-        public void Bury() {
+        public virtual void Bury() {
             Object.Destroy(this.gameObject);
         }
         

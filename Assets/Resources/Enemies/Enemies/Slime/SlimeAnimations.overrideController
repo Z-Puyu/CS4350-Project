@@ -7,15 +7,19 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SlimeAnimations
-  m_Controller: {fileID: 9100000, guid: 686dfcf9ba458774796663fdb77f8112, type: 2}
+  m_Controller: {fileID: 9100000, guid: aa9d43e74696c124895a4bef85c5432f, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 66e60521e62c27b43ac29531470509fb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b8d3160a80455b7418577bf2efb476da, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e39107a6f0449924fbe7832ee28c665b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 81aa05fa73ec13145adc842db0446136, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6c61ca1464b4b3c47a82e260218e09db, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 66e60521e62c27b43ac29531470509fb, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 7883a02957d5557489ba5904db51ac5f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c254a98bdab8c9946a81ab36f80d2b34, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 7883a02957d5557489ba5904db51ac5f, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 5d017356073d58b4ca77cac07ff107dd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cc6ee4e148d53f242abafb578329884f, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 5d017356073d58b4ca77cac07ff107dd, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 96c3909205de3f04c9f0595c91177ae8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 94ee0d7964bb16a488e2deeeec0c2fed, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 96c3909205de3f04c9f0595c91177ae8, type: 2}

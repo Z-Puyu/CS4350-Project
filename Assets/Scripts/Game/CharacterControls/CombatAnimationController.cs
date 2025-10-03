@@ -18,8 +18,8 @@ namespace Game.CharacterControls {
         [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Trigger)]
         private int AnimatorTakeDamageTrigger { get; set; }
         
-        [field: SerializeField]
-        private string AnimatorDeathString { get; set; }
+        [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Bool)]
+        private int AnimatorDeathFlag { get; set; }
         
         private Animator GetAnimator() {
             return this.Animator ? this.Animator : this.Animator = this.GetComponent<Animator>();
@@ -36,7 +36,7 @@ namespace Game.CharacterControls {
         }
         
         public void PlayDeathAnimation() {
-            this.Animator.SetBool(this.AnimatorDeathString, true);
+            this.Animator.SetBool(this.AnimatorDeathFlag, true);
             this.ResetCombo();
         }
 
