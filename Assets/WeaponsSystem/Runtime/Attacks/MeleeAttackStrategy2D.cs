@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SaintsField;
 using UnityEngine;
 using WeaponsSystem.Runtime.Weapons;
@@ -19,10 +20,21 @@ namespace WeaponsSystem.Runtime.Attacks {
                 if (this.AttackAttributes.Count > 0 && !context.AttackableTags.Any(c.CompareTag)) {
                     continue;
                 }
-                
-                float angle = Vector2.Angle(context.AttackDirection, c.transform.position - context.AttackPoint);
+
+                float angle = Vector2.Angle(context.AttackDirection, c.transform.position - context.Instigator.transform.position);
                 if (angle > this.SweepHalfAngle) {
-                    continue;
+                    float[] angles = {
+                        Vector2.Angle(context.AttackDirection, c.bounds.max - context.Instigator.transform.position),
+                        Vector2.Angle(context.AttackDirection, c.bounds.center + new Vector3(-c.bounds.extents.x, c.bounds.extents.y) - context.Instigator.transform.position),
+                        Vector2.Angle(context.AttackDirection, c.bounds.min - context.Instigator.transform.position),
+                        Vector2.Angle(context.AttackDirection, c.bounds.center + new Vector3(c.bounds.extents.x, -c.bounds.extents.y) - context.Instigator.transform.position)
+                    };
+
+                    angle = angles.Min();
+                    
+                    if (angle > this.SweepHalfAngle) {
+                        continue;
+                    }
                 }
 
                 if (!c.TryGetComponent(out IDamageable damageable) ||

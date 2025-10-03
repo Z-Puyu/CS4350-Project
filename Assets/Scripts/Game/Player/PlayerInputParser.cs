@@ -143,11 +143,5 @@ namespace Game.Player {
 
             this.Weaponry.Switch(2);
         }
-
-        public void OnOpenObjective(InputAction.CallbackContext context) {
-            if (context.performed) { 
-                this.ObjectiveManager.OpenNotebook();
-            }
-        }
     }
 }
