@@ -11,6 +11,11 @@ namespace Map.Objectives
         public ItemData itemToCollect;
         public int itemToCollectAmount;
         [SerializeField] private int currentItemCounter;
+        
+        void OnEnable()
+        {
+            currentItemCounter = 0;
+        }
 
         public void AddProgress(ObjectiveManager objectiveManager, ItemData itemToCollect, List<CollectItemObjective> allCollectItesmObjectives) {
             if (this.itemToCollect == itemToCollect)

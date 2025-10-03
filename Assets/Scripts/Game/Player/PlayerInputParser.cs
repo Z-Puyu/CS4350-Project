@@ -32,7 +32,9 @@ namespace Game.Player {
         [field: SerializeField, Required] private AbilitySystem AbilitySystem { get; set; }
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
 
+        
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
@@ -89,6 +91,14 @@ namespace Game.Player {
                 this.Movement.MoveIn(input);
             } else if (context.canceled) {
                 this.Movement.Stop();
+            }
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                broadcastPauseGame.TriggerEvent();
             }
         }
 
