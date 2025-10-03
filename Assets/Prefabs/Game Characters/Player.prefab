@@ -454,25 +454,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 3990052932965461405, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 092525025e8da824db4823adedad387f, type: 2}
+    - target: {fileID: 4612340495738067154, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
-      value: 0.26971304
+      value: 0.7580514
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.y
-      value: 0.26424026
+      value: 0.8395808
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.x
-      value: -0.020195365
+      value: -0.048260927
       objectReference: {fileID: 0}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.028850555
+      value: -0.08357799
       objectReference: {fileID: 0}
     - target: {fileID: 4991569239397768627, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <AbilitySlots>k__BackingField
@@ -482,6 +482,10 @@ PrefabInstance:
       propertyPath: <TestCharacterAbility>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 8a0a748b9b31c8e4d883cfe434adee7b, type: 2}
+    - target: {fileID: 5081366553144432299, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <GameCharacterController>k__BackingField
+      value: 
+      objectReference: {fileID: 6098219082917576461}
     - target: {fileID: 6191663342645319072, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <Reticle>k__BackingField
       value: 
@@ -494,11 +498,23 @@ PrefabInstance:
       propertyPath: '<AbilityTargets>k__BackingField.Array.data[0]'
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6240872075164439431, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444949571640104869, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -517,6 +533,18 @@ PrefabInstance:
     - target: {fileID: 7246810979461065478, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Offset.y
       value: -0.07963288
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659514198330222099, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849829060772088775, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429420582280456109, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9132015508175136310, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_TagString
@@ -1041,6 +1069,10 @@ PrefabInstance:
     - target: {fileID: 1414808331050453653, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
       propertyPath: m_Name
       value: EquipmentComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414808331050453653, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1869055113085185054, guid: a36e6c0fc153cbd459f290441fb079ba, type: 3}
       propertyPath: <Root>k__BackingField
@@ -1648,6 +1680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractorComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 7656328867919505419, guid: ebe5e1845aa13ab4ba5737bed7e1afa4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1742,6 +1778,10 @@ PrefabInstance:
     - target: {fileID: 4034291805902291817, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: m_Name
       value: InputParserComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034291805902291817, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Animator>k__BackingField
@@ -1856,6 +1896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExperienceComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 653218376440492187, guid: 5749f4d23503a364abc7e35ff23d19bd, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6590544859605995081, guid: 5749f4d23503a364abc7e35ff23d19bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.34937
@@ -1917,6 +1961,10 @@ PrefabInstance:
     - target: {fileID: 2140932478822027776, guid: f1401b4b09d46d544b212310c3d35120, type: 3}
       propertyPath: m_Name
       value: Reticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2140932478822027776, guid: f1401b4b09d46d544b212310c3d35120, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7579686257471348130, guid: f1401b4b09d46d544b212310c3d35120, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2019,6 +2067,10 @@ PrefabInstance:
     - target: {fileID: 3766136428158662372, guid: 774df4237b4593e4fad9f2fd2bd19fd9, type: 3}
       propertyPath: m_Name
       value: PlayerRegionBorderComponentDetector
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766136428158662372, guid: 774df4237b4593e4fad9f2fd2bd19fd9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

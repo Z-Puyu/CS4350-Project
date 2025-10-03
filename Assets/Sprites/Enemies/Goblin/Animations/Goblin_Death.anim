@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Take Damage
+  m_Name: Goblin_Death
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -42,15 +42,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -8476862047871394270, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+      value: {fileID: 531695244332568456, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
     - time: 0.083333336
-      value: {fileID: -8525957339405957108, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+      value: {fileID: 8848669199739288785, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
     - time: 0.16666667
-      value: {fileID: -3326218557253660648, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+      value: {fileID: 977499307322572412, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
     - time: 0.25
-      value: {fileID: 814750625104640059, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+      value: {fileID: 2925928286726112321, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
     - time: 0.33333334
-      value: {fileID: 814750625104640059, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+      value: {fileID: 8127830415446125379, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - time: 0.41666666
+      value: {fileID: 247127197932174627, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - time: 0.5
+      value: {fileID: 247127197932174627, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -82,17 +86,19 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -8476862047871394270, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
-    - {fileID: -8525957339405957108, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
-    - {fileID: -3326218557253660648, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
-    - {fileID: 814750625104640059, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
-    - {fileID: 814750625104640059, guid: d3364b0fa283c0742947f76621db4fbd, type: 3}
+    - {fileID: 531695244332568456, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 8848669199739288785, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 977499307322572412, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 2925928286726112321, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 8127830415446125379, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 247127197932174627, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
+    - {fileID: 247127197932174627, guid: 1a690be37164b2a4db59caaf1b4253f8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -132,4 +138,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: OnDeathEvent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

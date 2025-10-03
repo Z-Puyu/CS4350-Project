@@ -3,6 +3,7 @@ using Common;
 using Events;
 using Game.CharacterControls;
 using Game.Enemies;
+using Game.Map;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
@@ -52,6 +53,17 @@ namespace Game.Player {
             OnScreenDebugger.Log("Current Inventory:");
             foreach (KeyValuePair<ItemKey, int> pair in this.Inventory) {
                 OnScreenDebugger.Log($"{pair.Key.Id}: {pair.Value}");
+            }
+        }
+
+        public override void Bury() {
+            if (GameWorldManager.IsInPurgatory) {
+                base.Bury();
+            } else {
+                this.Health.Refill();
+                GameWorldManager.Purgatory.gameObject.SetActive(true);
+                GameWorldManager.Purgatory.PlaceObject(this.gameObject, GameWorldManager.Purgatory.Origin);
+                GameWorldManager.Main.gameObject.SetActive(false);
             }
         }
     }
