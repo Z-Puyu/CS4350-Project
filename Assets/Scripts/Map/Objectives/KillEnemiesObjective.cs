@@ -13,11 +13,16 @@ namespace Map.Objectives
 		public int enemyToKillAmount;
 		[SerializeField] private int currentKillCounter;
 
+		void OnEnable()
+		{
+			currentKillCounter = 0;
+		}
+
 		public void AddProgress(ObjectiveManager objectiveManager, List<KillEnemiesObjective> allKillEnemiesObjectives, EnemyData enemyData) {
 			if (enemyData == enemyToKill) 
 			{
 				currentKillCounter += 1;
-				if (currentKillCounter == enemyToKillAmount)
+				if (currentKillCounter >= enemyToKillAmount)
 				{
 					allKillEnemiesObjectives.Remove(this);
 					objectiveManager.HandleDeletion(this);

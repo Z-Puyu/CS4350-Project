@@ -44,4 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3105d5510e724088be8a3fc57aeffa21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput.PlayerInputParser
+  <Interactor>k__BackingField: {fileID: 0}
   <Inventory>k__BackingField: {fileID: 0}
+  <InventoryUIManager>k__BackingField: {fileID: 0}
+  <Movement>k__BackingField: {fileID: 0}
+  <Animator>k__BackingField: {fileID: 0}
+  <Combatant>k__BackingField: {fileID: 0}
+  <AbilityCaster>k__BackingField: {fileID: 0}
+  <AbilityTargeter>k__BackingField: {fileID: 0}
+  <AbilitySystem>k__BackingField: {fileID: 0}
+  <Weaponry>k__BackingField: {fileID: 0}
+  <broadcastOpenNotebook>k__BackingField: {fileID: 11400000, guid: c18ca7095603885429344b34773ef14d, type: 2}
+  <broadcastPauseGame>k__BackingField: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}

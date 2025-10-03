@@ -104,6 +104,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenSkillPage",
+                    "type": "Button",
+                    "id": "88024b3d-5073-4405-8e49-568709a66c60",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnPauseGame",
+                    "type": "Button",
+                    "id": "af1169d2-82f0-4fc3-8218-558e50b20fe7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -401,6 +419,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "OpenObjective",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70d2175f-4e97-4586-9c54-9aa1928d2b21",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenSkillPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ac30f36-0599-4327-a6eb-9eb57fa3aa24",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnPauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

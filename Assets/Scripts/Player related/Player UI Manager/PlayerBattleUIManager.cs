@@ -1,3 +1,4 @@
+using GameplayAbilities.Runtime.HealthSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using SaintsField;
@@ -5,14 +6,14 @@ using SaintsField;
 public class PlayerBattleUIManager : MonoBehaviour
 {
     public Slider healthBar;
+    public Health health;
     public Image weaponIconImage;
     [SaintsDictionary("index", "weapon type")]
     public SaintsDictionary<int, Sprite> weaponIndexToWeaponIcon;
 
-    public void UpdatePlayerHealth(Component component, object r)
+    public void UpdateHealth()
     {
-        float ratio = (float)((object[])r)[0];
-        healthBar.value = ratio;
+        healthBar.value = (float)health.Value/(float)health.MaxValue;
     }
 
     public void UpdateWeaponIcon(Component component, object index)
