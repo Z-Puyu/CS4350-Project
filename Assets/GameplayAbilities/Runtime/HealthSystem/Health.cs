@@ -34,6 +34,9 @@ namespace GameplayAbilities.Runtime.HealthSystem {
             
             
             this.OnHealthChanged?.Invoke((change.OldValue, change.CurrentValue));
+#if DEBUG
+            Debug.Log($"{this.transform.root.name}: Health changed from {change.OldValue} to {change.CurrentValue}", this);
+#endif
             if (change.CurrentValue <= 0) {
                 this.OnDeathEvent.Invoke();
             }
