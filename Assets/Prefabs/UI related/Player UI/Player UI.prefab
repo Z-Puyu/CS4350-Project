@@ -288,7 +288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.36, y: -0.5536}
+  m_AnchoredPosition: {x: 1.36, y: -0.5536}
   m_SizeDelta: {x: -2.72, y: -4.1818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2076144066630428169
@@ -324,7 +324,7 @@ RectTransform:
   m_Father: {fileID: 396206175391160145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1395829132, guid: 533b503ad0e472546bef8b11b61cdab1, type: 3}
+  m_Sprite: {fileID: -1395829132, guid: a028491140b1d7347973a813b51da4f6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2546718422318084813}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -989,7 +989,6 @@ GameObject:
   - component: {fileID: 3198426439021343551}
   - component: {fileID: 2964447069335560441}
   - component: {fileID: 1142045542944250577}
-  - component: {fileID: 8048471066524367533}
   - component: {fileID: 2075937850055422755}
   - component: {fileID: 7254836273019098096}
   m_Layer: 5
@@ -1083,34 +1082,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8048471066524367533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675886182559523284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: bb97dabafb8e36e43b3b42c245d51efa, type: 2}
-  responseOnTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2075937850055422755}
-        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
-        m_MethodName: UpdatePlayerHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2075937850055422755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1931879580185459968}
+  health: {fileID: 0}
   weaponIconImage: {fileID: 2292360942812908300}
   weaponIndexToWeaponIcon:
     _keys: 

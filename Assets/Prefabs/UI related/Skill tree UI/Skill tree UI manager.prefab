@@ -791,8 +791,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 697117671865941032}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -951,6 +951,7 @@ GameObject:
   - component: {fileID: 5717596419886803232}
   - component: {fileID: 3131344438020925069}
   - component: {fileID: 1722806328721480586}
+  - component: {fileID: 8488523074149851707}
   m_Layer: 5
   m_Name: Skill tree UI manager
   m_TagString: Untagged
@@ -999,7 +1000,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7262895646627295623
 MonoBehaviour:
@@ -1059,6 +1060,7 @@ MonoBehaviour:
   currentFarmingExp: 0
   maxCombatExp: 1000
   maxFarmingExp: 1000
+  backdropPanel: {fileID: 697117671865941032}
   titleText: {fileID: 7972450825930947045}
   descriptionText: {fileID: 3355103382599588735}
 --- !u!114 &1722806328721480586
@@ -1081,6 +1083,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SkillTreeUIManager, Assembly-CSharp
         m_MethodName: SetSkillInformation
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8488523074149851707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268543998957134746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d94409401e4265409ace005f91296b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventListener
+  gameEvent: {fileID: 11400000, guid: 37794aad09831ef43a14f34f6fd948b7, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3131344438020925069}
+        m_TargetAssemblyTypeName: Skill_tree_related.Skill_tree_UI.SkillTreeUIManager,
+          Assembly-CSharp
+        m_MethodName: OpenBackdropPanek
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1143,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.4
+      value: 232.7
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -208.4
+      value: -171
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1301,7 +1332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -297.9
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1477,6 +1508,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2276149760415298461, guid: 797754d1234e773468c2f7f7137d48b8, type: 3}
+      propertyPath: m_margin.z
+      value: 69.680244
+      objectReference: {fileID: 0}
     - target: {fileID: 4094142411287398847, guid: 797754d1234e773468c2f7f7137d48b8, type: 3}
       propertyPath: m_Name
       value: Skill tree UI object
@@ -1533,6 +1568,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6331607281645994664, guid: 797754d1234e773468c2f7f7137d48b8, type: 3}
+      propertyPath: m_margin.x
+      value: 64.12347
+      objectReference: {fileID: 0}
     - target: {fileID: 8317728941970464905, guid: 797754d1234e773468c2f7f7137d48b8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1582,6 +1621,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815008214667679791}
     m_Modifications:
+    - target: {fileID: 834978031855904258, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 83cfbab4eb4145e4d99fc832ac5ff36c, type: 2}
     - target: {fileID: 857468018971192372, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1662,6 +1705,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8470156769520220503, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 83cfbab4eb4145e4d99fc832ac5ff36c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1730,7 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -182.6
+      value: -156.1
       objectReference: {fileID: 0}
     - target: {fileID: 8109325782103794914, guid: 15144433e3edf534a9218c5d893e1787, type: 3}
       propertyPath: m_LocalPosition.z

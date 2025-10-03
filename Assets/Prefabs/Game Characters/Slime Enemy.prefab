@@ -118,6 +118,14 @@ PrefabInstance:
       propertyPath: <CharacterController>k__BackingField
       value: 
       objectReference: {fileID: 7129962198781924537}
+    - target: {fileID: 6688861567839838337, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688861567839838337, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7805846891793197291, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Controller
       value: 
@@ -202,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.07455498
       objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 5672507766704322158}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -226,6 +238,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5451911396686442101, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
   m_PrefabInstance: {fileID: 971706449435426324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5672507766704322158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4883302895828846714, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac505bd395b2c2d4e83715805b6df6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.EnemyUIManager
 --- !u!114 &6126115971468127911 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6374959461441310899, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}

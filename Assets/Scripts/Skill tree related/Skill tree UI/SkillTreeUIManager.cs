@@ -1,5 +1,6 @@
 using GameplayAbilities.Runtime.Abilities;
 using TMPro;
+using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,14 +17,15 @@ namespace Skill_tree_related.Skill_tree_UI {
         private int maxCombatExp;
         [SerializeField]
         private int maxFarmingExp;
+        [SerializeField]
+        private GameObject backdropPanel;
         [Header("Skill tab")]
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
-    
         
-        
-        void Start()
+        public void OpenBackdropPanel()
         {
+            backdropPanel.SetActive(true);
             this.UpdateExp();
         }
 
