@@ -29,27 +29,46 @@ namespace Game.CharacterControls {
         }
 
         private void Update() {
-            // Movement Animation
+            // // Movement Animation
+            // this.Animator.SetBool(this.AnimatorMovementFlag, this.MovementComponent.IsMoving);
+            // int xScale = this.MovementComponent.TargetDirection.x switch {
+            //     // Flip based on the horizontal direction
+            //     < 0 => -1,
+            //     > 0 => 1,
+            //     var _ => Math.Sign(this.RootTransform.localScale.x)
+            // };
+            //
+            // if (xScale == Math.Sign(this.RootTransform.localScale.x)) {
+            //     return;
+            // }
+            //
+            // Vector3 scale = this.RootTransform.localScale;
+            // this.RootTransform.localScale = new Vector3(xScale * Math.Abs(scale.x), scale.y, scale.z);
+            // /*this.SpriteRenderer.flipX = this.MovementComponent.TargetDirection.x switch {
+            //     // Flip based on the horizontal direction
+            //     < 0 => true,
+            //     > 0 => false,
+            //     var _ => this.SpriteRenderer.flipX
+            // };*/
+            
+            // Movement Animation (still driven by keyboard movement)
             this.Animator.SetBool(this.AnimatorMovementFlag, this.MovementComponent.IsMoving);
-            int xScale = this.MovementComponent.TargetDirection.x switch {
-                // Flip based on the horizontal direction
+
+            // --- Always face the mouse ---
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float dx = mouseWorld.x - this.RootTransform.position.x;
+
+            int xScale = dx switch {
                 < 0 => -1,
                 > 0 => 1,
-                var _ => Math.Sign(this.RootTransform.localScale.x)
+                _ => Math.Sign(this.RootTransform.localScale.x)
             };
 
-            if (xScale == Math.Sign(this.RootTransform.localScale.x)) {
-                return;
+            // Apply flip only if needed
+            if (xScale != Math.Sign(this.RootTransform.localScale.x)) {
+                Vector3 scale = this.RootTransform.localScale;
+                this.RootTransform.localScale = new Vector3(xScale * Math.Abs(scale.x), scale.y, scale.z);
             }
-            
-            Vector3 scale = this.RootTransform.localScale;
-            this.RootTransform.localScale = new Vector3(xScale * Math.Abs(scale.x), scale.y, scale.z);
-            /*this.SpriteRenderer.flipX = this.MovementComponent.TargetDirection.x switch {
-                // Flip based on the horizontal direction
-                < 0 => true,
-                > 0 => false,
-                var _ => this.SpriteRenderer.flipX
-            };*/
         }
     }
 }
