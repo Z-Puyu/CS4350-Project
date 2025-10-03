@@ -1,8 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=b7c188242865abc44a74ebeba45581e0&amp;type=3#MainMenuStyle" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; background-image: none; background-color: rgb(233, 205, 171);">
+    <Style src="project://database/Assets/Sprites/UI/Test%20UI/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=b7c188242865abc44a74ebeba45581e0&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-image: none; background-color: rgb(233, 205, 171); padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px; position: relative; top: auto; left: auto; right: auto; bottom: auto;">
         <ui:Label text="Farming Survival" name="Header" class="header" />
         <ui:Button text="Start" name="StartButton" class="button" />
-        <ui:Button text="Settings" name="SettingsButton" class="button" />
+        <ui:Button text="Guide" name="GuideButton" class="button" />
+        <ui:Button text="Quit" name="QuitButton" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=-4706772820784091233&amp;guid=5faddf85691868e4bb5b6234945a4948&amp;type=3#Pixel UI pack 1_93&quot;); color: rgb(255, 255, 255);" />
     </ui:VisualElement>
 </ui:UXML>

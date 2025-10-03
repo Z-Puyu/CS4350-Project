@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="GuidePanelRoot" style="position: relative; top: auto; left: auto; right: auto; bottom: auto; background-color: rgba(233, 205, 171, 0.95); flex-direction: column; justify-content: flex-start; align-items: center; padding: 50px; flex-grow: 1;">
+        <ui:Label text="Guide" name="GuideTitle" style="font-size: 32px; unity-text-align: middle-center; margin-bottom: 20px;" />
+        <ui:Label name="GuideContent" text="Move around with WASD&#10;&#10;Toggle inventory with I&#10;&#10;Interact with objects using F&#10;&#10;Open quest notebook with O&#10;&#10;To unlock objectives: find noticeboards on the map → quests are added to your notebook. Completing a quest unlocks new regions to explore&#10;&#10;Plant a seed on a plot of land with C&#10;&#10;Combat: click on enemies with the mouse" style="font-size: 18px; unity-text-align: upper-left; white-space: pre-wrap;" />
+        <ui:VisualElement style="flex-grow: 1;" />
+        <ui:Button name="CloseGuideButton" text="Close" style="font-size: 26px; width: 100px; height: 50px;" />
+        <ui:Label text="Early alpha version – may contain bugs" name="Disclaimer" style="font-size: 14px; unity-text-align: middle-center; color: gray; margin-top: 20px;" />
+    </ui:VisualElement>
+</ui:UXML>

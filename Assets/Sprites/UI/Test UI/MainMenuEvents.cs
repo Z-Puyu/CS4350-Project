@@ -1,47 +1,64 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Sprites.UI.Test_UI {
+namespace Sprites.UI.Test_UI
+{
     public class MainMenuEvents : MonoBehaviour
     {
-        private UIDocument _document;
-        private Button _button;
-        private AudioSource _audio;
+        [SerializeField] private VisualTreeAsset mainMenuAsset;
+        [SerializeField] private VisualTreeAsset guidePanelAsset;
+        [SerializeField] private AudioSource buttonAudio;
 
-        private List<Button> _menuButtons = new List<Button>();
+        private UIDocument _uiDocument;
+        private VisualElement _root;
 
         private void Awake()
         {
-            this._document = this.GetComponent<UIDocument>();
-            this._audio = this.GetComponent<AudioSource>();
-            this._button = this._document.rootVisualElement.Q<Button>("StartButton");
-            this._button.RegisterCallback<ClickEvent>(this.OnPlayGameClick);
-        
-            this._menuButtons = this._document.rootVisualElement.Query<Button>().ToList();
-            foreach (var btn in this._menuButtons)
+            _uiDocument = GetComponent<UIDocument>();
+            _root = _uiDocument.rootVisualElement;
+
+            // Show main menu by default
+            ShowMainMenu();
+        }
+
+        private void ShowMainMenu()
+        {
+            _root.Clear();
+            var mainMenu = mainMenuAsset.CloneTree();
+            _root.Add(mainMenu);
+
+            var startButton = mainMenu.Q<Button>("StartButton");
+            var guideButton = mainMenu.Q<Button>("GuideButton");
+            var quitButton  = mainMenu.Q<Button>("QuitButton");
+
+            startButton.clicked += () => Debug.Log("Start Game");
+            guideButton.clicked += ShowGuidePanel;
+            quitButton.clicked  += () =>
             {
-                btn.RegisterCallback<ClickEvent>(this.OnAllButtonClick);
-            }
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+            };
+
+            // optional: play sound for all buttons
+            foreach (var btn in mainMenu.Query<Button>().ToList())
+                btn.clicked += () => buttonAudio?.Play();
         }
 
-        private void OnDisable()
+        private void ShowGuidePanel()
         {
-            this._button.UnregisterCallback<ClickEvent>(this.OnPlayGameClick);
-            foreach (var btn in this._menuButtons)
-            {
-                btn.UnregisterCallback<ClickEvent>(this.OnAllButtonClick);
-            }
-        }
+            _root.Clear();
+            var guidePanel = guidePanelAsset.CloneTree();
+            _root.Add(guidePanel);
 
-        private void OnPlayGameClick(ClickEvent evt)
-        {
-            Debug.Log("Pressed Start Button !");
-        }
+            var closeButton = guidePanel.Q<Button>("CloseGuideButton");
+            closeButton.clicked += ShowMainMenu;
 
-        private void OnAllButtonClick(ClickEvent evt)
-        {
-            this._audio.Play();
+            // optional: play sound for all buttons
+            foreach (var btn in guidePanel.Query<Button>().ToList())
+                btn.clicked += () => buttonAudio?.Play();
         }
     }
 }
