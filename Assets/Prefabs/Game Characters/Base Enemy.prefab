@@ -894,6 +894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6069861738717102634}
     m_Modifications:
+    - target: {fileID: 2754932744002129096, guid: dbb88f9c1838d7247a3f161ec6836111, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 247
+      objectReference: {fileID: 0}
     - target: {fileID: 3005578315058639883, guid: dbb88f9c1838d7247a3f161ec6836111, type: 3}
       propertyPath: m_Name
       value: ProximitySensorComponent
@@ -1155,6 +1159,10 @@ PrefabInstance:
     - target: {fileID: 6098776442584836961, guid: ec32efa95b42b754faa4492c8c0c96d5, type: 3}
       propertyPath: m_Radius
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098776442584836961, guid: ec32efa95b42b754faa4492c8c0c96d5, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 247
       objectReference: {fileID: 0}
     - target: {fileID: 6570116257129108386, guid: ec32efa95b42b754faa4492c8c0c96d5, type: 3}
       propertyPath: m_Name
