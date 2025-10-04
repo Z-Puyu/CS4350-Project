@@ -10,7 +10,7 @@ public class PlayerBattleUIManager : MonoBehaviour
     public Image weaponIconImage;
     [SaintsDictionary("index", "weapon type")]
     public SaintsDictionary<int, Sprite> weaponIndexToWeaponIcon;
-
+    
     public void UpdateHealth()
     {
         healthBar.value = (float)health.Value/(float)health.MaxValue;
