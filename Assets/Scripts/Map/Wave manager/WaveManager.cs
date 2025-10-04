@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Events;
 using Game.Enemies;
 using UnityEngine;
 using SaintsField;
@@ -18,6 +19,8 @@ namespace Map.Wave_manager
         [SerializeField] private float minY;
         [SerializeField] private float maxX;
         [SerializeField] private float maxY;
+        [SerializeField] private CrossObjectEventWithDataSO setNewRandomTargetEnemy;
+        private List<Enemy> allSpawnedEnemies = new List<Enemy>();
         
         void Start()
         {
@@ -68,7 +71,8 @@ namespace Map.Wave_manager
                             killCounter[allEnemyDataForThisWave[i].getEnemyId()] = 1;
                         }
                         isEnemyStillSpawning = true;
-                        Instantiate(allEnemyDataForThisWave[i], spawnPoints[spawnIndex], Quaternion.identity);
+                        Enemy spawnedEnemy = Instantiate(allEnemyDataForThisWave[i], spawnPoints[spawnIndex], Quaternion.identity);
+                        allSpawnedEnemies.Add(spawnedEnemy);
                         counter[i] -= 1;
                         spawnIndex++;
                         spawnIndex %= 4;   
@@ -79,6 +83,7 @@ namespace Map.Wave_manager
                     break;
                 }
             }
+            GetNewTargetEnemy();
         }
 
         public void CheckIfWaveCleared(Component component, object enemyData)
@@ -88,7 +93,9 @@ namespace Map.Wave_manager
             {
                 return;
             }
+            allSpawnedEnemies.Remove(enemy);
             killCounter[enemy.getEnemyId()] -= 1;
+            GetNewTargetEnemy();
             if (killCounter[enemy.getEnemyId()] == 0)
             {
                 killCounter.Remove(enemy.getEnemyId());
@@ -99,6 +106,11 @@ namespace Map.Wave_manager
                 wave += 1;
                 StartWave();
             }
+        }
+
+        public void GetNewTargetEnemy()
+        {
+            if (allSpawnedEnemies.Count - 1 >= 0) setNewRandomTargetEnemy.TriggerEvent(allSpawnedEnemies[Random.Range(0, allSpawnedEnemies.Count - 1)]);
         }
 
         public void StartWave()
