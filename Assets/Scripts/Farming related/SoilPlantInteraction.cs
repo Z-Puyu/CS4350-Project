@@ -59,7 +59,7 @@ namespace Farming_related {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.V) && this.hasPlant)
+            if (Input.GetKeyDown(KeyCode.F) && this.hasPlant)
             {
                 this.WaterPlant();
             }
