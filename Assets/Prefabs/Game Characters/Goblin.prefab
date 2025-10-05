@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: <AttackOrigin>k__BackingField
       value: 
       objectReference: {fileID: 2309837366893237591}
+    - target: {fileID: 6518563513476792506, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <DefaultAttributes>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b7e1b6db9e8eeb242b9fa33e3d19a4b7, type: 2}
     - target: {fileID: 6688861567839838337, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

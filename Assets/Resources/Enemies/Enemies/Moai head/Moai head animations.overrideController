@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Moai head animations
+  m_Controller: {fileID: 9100000, guid: aa9d43e74696c124895a4bef85c5432f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b8d3160a80455b7418577bf2efb476da, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a53d6195f83cf4e489f6848ff9ec7f87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f265756753365e4187215e460e1cd05, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a53d6195f83cf4e489f6848ff9ec7f87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e39107a6f0449924fbe7832ee28c665b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a53d6195f83cf4e489f6848ff9ec7f87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6c61ca1464b4b3c47a82e260218e09db, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0850f6e9f218e3f43aa8cec451badf7e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c254a98bdab8c9946a81ab36f80d2b34, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8de4c6cc00b4f2c48a20e0f3f0eaa7a6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cc6ee4e148d53f242abafb578329884f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1f901cea4be00e14dae99265ed32351d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 94ee0d7964bb16a488e2deeeec0c2fed, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d9358b70d46976d42ae7c5afb28c203e, type: 2}
