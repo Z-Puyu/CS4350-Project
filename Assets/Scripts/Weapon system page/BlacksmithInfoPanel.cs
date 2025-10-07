@@ -13,6 +13,7 @@ namespace Weapon_system_page {
         public int minHeightWithActiveBuffPanel;
         private LayoutElement layoutElement;
         private Animator animator;
+        private Animator overallAnimator;
 
         void Start()
         {
