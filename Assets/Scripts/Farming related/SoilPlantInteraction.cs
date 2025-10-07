@@ -4,11 +4,17 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Farming_related {
     public class SoilPlantInteraction : MonoBehaviour
     {
         public enum PlantStage { Planted, Seedling, Grown, Wilting, Wilted }
+
+        [Header("UI")]
+        [SerializeField] private GameObject promptUI; // assign your floating TMP prefab here
+        [SerializeField] private TMP_Text promptText;
+        [SerializeField] private float promptDistance = 2f; // distance at which popup appears
 
         [Header("Plant Info")]
         [SerializeField] private string plantedSeedId; // which seed type (from inventory)
@@ -22,91 +28,118 @@ namespace Farming_related {
         private PlantStage currentStage = PlantStage.Planted;
         private bool hasPlant = false;
         private bool isWatered = false;
+        private int requiredWaterings = 0;
+        private int currentWaterings = 0;
         private int waterCount = 0;
         private bool playerIsOver = false;
         private float growthProgress = 0f;
 
         private Animator animator;
+        private Transform player;
 
         public delegate void OnHarvest();
         public event OnHarvest HarvestEvent;
 
-        void Awake()
+        void Awake() => this.animator = GetComponent<Animator>();
+        void Start()
         {
-            this.animator = this.GetComponent<Animator>();
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (promptUI != null) promptUI.SetActive(false);
         }
 
         void Update()
         {
-            this.HandleInput();
-            this.UpdateGrowth();
+            HandleInput();
+            UpdateGrowth();
+
+            if (player != null)
+                this.UpdatePrompt();
         }
 
         #region Input Handling
         void HandleInput()
         {
-            if (!this.playerIsOver) return;
+            if (!playerIsOver) return;
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                if (this.hasPlant && (this.currentStage >= PlantStage.Grown))
-                {
-                    this.HarvestPlant();
-                }
-                else if (!this.hasPlant)
-                {
-                    this.OpenInventoryForSeed();
-                }
+                if (hasPlant && currentStage >= PlantStage.Grown)
+                    HarvestPlant();
+                else if (!hasPlant)
+                    OpenInventoryForSeed();
             }
 
-            if (Input.GetKeyDown(KeyCode.F) && this.hasPlant)
-            {
-                this.WaterPlant();
-            }
+            if (Input.GetKeyDown(KeyCode.F) && hasPlant)
+                WaterPlant();
         }
         #endregion
 
         #region Growth System
         void UpdateGrowth()
         {
-            if (!this.hasPlant) 
+            if (!hasPlant)
             {
-                this.growthBar.fillAmount = 0f;
+                growthBar.fillAmount = 0f;
                 return;
             }
 
-            // Increase growth progress
-            float growthThisFrame = this.baseGrowthSpeed * Time.deltaTime;
-            if (this.isWatered) growthThisFrame *= this.wetGrowthMultiplier;
+            // Determine if watering should block growth (only for Planted and Seedling)
+            bool stageRequiresWatering = (currentStage == PlantStage.Planted || currentStage == PlantStage.Seedling)
+                                        && requiredWaterings > 0;
 
-            this.growthProgress += growthThisFrame;
-            this.growthProgress = Mathf.Clamp01(this.growthProgress);
+            if (stageRequiresWatering)
+            {
+                // Calculate how much of this stage can be grown based on watering
+                float stageStart = currentStage == PlantStage.Planted ? 0f : 0.25f;
+                float stageEnd = currentStage == PlantStage.Planted ? 0.25f : 0.5f;
 
-            // Update progress bar
-            this.growthBar.fillAmount = this.growthProgress;
-            this.UpdateGrowthBarColor();
+                float wateringRatio = Mathf.Clamp01((float)currentWaterings / requiredWaterings);
+                float stageCap = Mathf.Lerp(stageStart, stageEnd, wateringRatio);
 
-            // Automatically update plant stage
-            this.UpdatePlantStageByProgress();
+                if (growthProgress >= stageCap)
+                {
+                    growthBar.color = Color.cyan; // waiting for more watering
+                    growthBar.fillAmount = growthProgress;
+                    return; // stop growth for this frame
+                }
+            }
+
+            // Normal growth
+            float growthThisFrame = baseGrowthSpeed * Time.deltaTime;
+            if (isWatered) growthThisFrame *= wetGrowthMultiplier;
+
+            growthProgress += growthThisFrame;
+            growthProgress = Mathf.Clamp01(growthProgress);
+
+            growthBar.fillAmount = growthProgress;
+            UpdateGrowthBarColor();
+
+            // Update stage after applying watering check
+            PlantStage previousStage = currentStage;
+            UpdatePlantStageByProgress();
+
+            // Reset waterings when advancing a stage that still requires watering
+            if (currentStage != previousStage && currentStage <= PlantStage.Seedling)
+            {
+                currentWaterings = 0;
+            }
         }
-
         void UpdatePlantStageByProgress()
         {
-            if (this.growthProgress < 0.25f) this.currentStage = PlantStage.Planted;
-            else if (this.growthProgress < 0.50f) this.currentStage = PlantStage.Seedling;
-            else if (this.growthProgress < 0.75f) this.currentStage = PlantStage.Grown;
-            else if (this.growthProgress < 1f) this.currentStage = PlantStage.Wilting;
-            else this.currentStage = PlantStage.Wilted;
+            if (growthProgress < 0.25f) currentStage = PlantStage.Planted;
+            else if (growthProgress < 0.50f) currentStage = PlantStage.Seedling;
+            else if (growthProgress < 0.75f) currentStage = PlantStage.Grown;
+            else if (growthProgress < 1f) currentStage = PlantStage.Wilting;
+            else currentStage = PlantStage.Wilted;
 
-            // Update animation
-            this.PlayPlantAnimation(this.isWatered ? "wet" : "dry");
+            PlayPlantAnimation(isWatered ? "wet" : "dry");
         }
 
         void UpdateGrowthBarColor()
         {
-            if (this.growthProgress < 0.5f) this.growthBar.color = Color.green;
-            else if (this.growthProgress < 0.75f) this.growthBar.color = new Color(0.6f, 0f, 0.6f); // purple
-            else this.growthBar.color = Color.red;
+            if (growthProgress < 0.5f) growthBar.color = Color.green;
+            else if (growthProgress < 0.75f) growthBar.color = new Color(0.6f, 0f, 0.6f); // purple
+            else growthBar.color = Color.red;
         }
         #endregion
 
@@ -118,17 +151,55 @@ namespace Farming_related {
                 this.playerIsOver = true;
             }
 
-            Debug.Log($"Player is over soil: {this.playerIsOver}");
+            Debug.Log($"Player is over soil: {playerIsOver}");
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.transform.root.CompareTag("Player"))
+                playerIsOver = false;
+                if (promptUI != null) promptUI.SetActive(false);
+
+            Debug.Log($"Player is over soil: {playerIsOver}");
+        }
+        #endregion
+
+        #region Prompt System
+        private void UpdatePrompt()
+        {
+            if (promptUI == null || promptText == null || player == null) return;
+
+            // Calculate distance to player
+            float distance = Vector3.Distance(player.position, transform.position);
+            if (distance > promptDistance)
             {
-                this.playerIsOver = false;
+                if (promptUI.activeSelf) promptUI.SetActive(false);
+                return;
             }
 
-            Debug.Log($"Player is over soil: {this.playerIsOver}");
+            // Show prompt
+            if (!promptUI.activeSelf) promptUI.SetActive(true);
+
+            // Position prompt above soil
+            Vector3 targetPos = transform.position + Vector3.up * 1.5f;
+            promptUI.transform.position = targetPos;
+
+            // Set text based on plant state
+            if (!hasPlant)
+            {
+                promptText.text = "Press <b>C</b> to Plant";
+            }
+            else if (currentStage >= PlantStage.Grown)
+            {
+                string text = "Press <b>C</b> to Harvest";
+                if (!isWatered && currentStage <= PlantStage.Wilted)
+                    text += "\nPress <b>F</b> to Water";
+                promptText.text = text;
+            }
+            else
+            {
+                promptText.text = !isWatered ? "Press <b>F</b> to Water" : "";
+            }
         }
         #endregion
 
@@ -140,64 +211,102 @@ namespace Farming_related {
 
         public void PlantSeed(string seedId)
         {
-            this.plantedSeedId = seedId;
-            this.hasPlant = true;
-            this.currentStage = PlantStage.Planted;
-            this.growthProgress = 0f;
-            this.isWatered = false;
-            this.waterCount = 0;
+            plantedSeedId = seedId;
+            hasPlant = true;
+            currentStage = PlantStage.Planted;
+            growthProgress = 0f;
+            isWatered = false;
+            waterCount = 0;
+            currentWaterings = 0;
 
-            this.PlayPlantAnimation("dry");
+            if (ItemDatabase.TryGet(seedId, out ItemData itemData))
+            {
+                Game.Items.Plantable plantable = null;
+
+                if (itemData.Properties != null)
+                {
+                    foreach (var prop in itemData.Properties)
+                    {
+                        if (prop is Game.Items.Plantable p)
+                        {
+                            plantable = p;
+                            break;
+                        }
+                    }
+                }
+                
+                if (plantable != null)
+                {
+                    float duration = Mathf.Max(1f, plantable.GrowthDuration);
+                    this.baseGrowthSpeed = 1f / duration;
+                    this.requiredWaterings = plantable.WateringRequirement;
+
+                    Debug.Log($"🌱 Planted {seedId}: duration = {duration}s, requires {this.requiredWaterings} waterings.");
+                }
+                else
+                {
+                    Debug.LogWarning($"Seed {seedId} has no Plantable property.");
+                    this.requiredWaterings = 0;
+                    this.baseGrowthSpeed = 1f / 60f;
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Seed item {seedId} not found in database.");
+            }
+
+            PlayPlantAnimation("dry");
         }
 
         void WaterPlant()
         {
-            if (!this.hasPlant || this.currentStage == PlantStage.Wilted) return;
+            if (!hasPlant) return;
+            if (isWatered) return;
 
-            if (!this.isWatered)
-            {
-                this.isWatered = true;
-                this.waterCount++;
-                this.StartCoroutine(this.PlayPlantWateringThenWet());
-            }
+            isWatered = true;
+            waterCount++;
+            currentWaterings++;
+
+            Debug.Log($"💧 Watered {plantedSeedId} ({currentWaterings}/{requiredWaterings})");
+
+            StartCoroutine(PlayPlantWateringThenWet());
         }
 
         IEnumerator PlayPlantWateringThenWet()
         {
-            this.PlayPlantAnimation("watering");
+            PlayPlantAnimation("watering");
             yield return new WaitForSeconds(4f);
 
-            this.PlayPlantAnimation("wet");
+            PlayPlantAnimation("wet");
             yield return new WaitForSeconds(10f);
 
-            this.isWatered = false;
-            if (this.hasPlant && this.currentStage != PlantStage.Wilted)
-                this.PlayPlantAnimation("dry");
+            isWatered = false;
+            if (hasPlant && currentStage != PlantStage.Wilted)
+                PlayPlantAnimation("dry");
         }
         #endregion
 
         #region Harvest
         void HarvestPlant()
         {
-            if (!this.hasPlant || this.currentStage < PlantStage.Grown) return;
+            if (!hasPlant || currentStage < PlantStage.Grown) return;
 
-            this.HarvestEvent?.Invoke();
+            HarvestEvent?.Invoke();
 
-            // Determine drop counts
             int cropCount = 1;
             int seedCount = 0;
-            string dropItemId = this.plantedSeedId;
+            string dropItemId = plantedSeedId;
 
-            switch (this.currentStage)
+            switch (currentStage)
             {
                 case PlantStage.Grown:
-                    dropItemId = this.plantedSeedId.Replace("seed", "crop");
-                    this.DropItem(dropItemId, cropCount);
+                    dropItemId = plantedSeedId.Replace("seed", "crop");
+                    DropItem(dropItemId, cropCount);
                     seedCount = Random.Range(1, 3);
                     break;
                 case PlantStage.Wilting:
-                    dropItemId = this.plantedSeedId.Replace("seed", "wilting");
-                    this.DropItem(dropItemId, cropCount);
+                    dropItemId = plantedSeedId.Replace("seed", "wilting");
+                    DropItem(dropItemId, cropCount);
                     seedCount = Random.Range(0, 2);
                     break;
                 case PlantStage.Wilted:
@@ -206,35 +315,33 @@ namespace Farming_related {
                     break;
             }
 
-            if (seedCount > 0) this.DropItem(this.plantedSeedId, seedCount);
+            if (seedCount > 0) DropItem(plantedSeedId, seedCount);
 
             // Reset plant
-            this.plantedSeedId = null;
-            this.hasPlant = false;
-            this.currentStage = PlantStage.Planted;
-            this.isWatered = false;
-            this.growthProgress = 0f;
+            plantedSeedId = null;
+            hasPlant = false;
+            currentStage = PlantStage.Planted;
+            isWatered = false;
+            growthProgress = 0f;
 
-            if (this.animator != null)
+            if (animator != null)
             {
-                this.animator.SetTrigger("Harvest");
-                this.animator.Play("dry_dirt", 0);
+                animator.SetTrigger("Harvest");
+                animator.Play("dry_dirt", 0);
             }
         }
 
         private void DropItem(string itemId, int count)
         {
-            if (count <= 0 || this.pickUpPrefab == null) return;
-
-            if (!ItemDatabase.TryGet(itemId, out ItemData itemData))
-                return;
+            if (count <= 0 || pickUpPrefab == null) return;
+            if (!ItemDatabase.TryGet(itemId, out ItemData itemData)) return;
 
             Item item = Item.From(itemData);
 
             for (int i = 0; i < count; i++)
             {
-                Vector3 position = this.transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-                Object.Instantiate(this.pickUpPrefab, position, Quaternion.identity).With(1, item.Key);
+                Vector3 position = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                Object.Instantiate(pickUpPrefab, position, Quaternion.identity).With(1, item.Key);
             }
         }
         #endregion
@@ -242,10 +349,10 @@ namespace Farming_related {
         #region Animation
         void PlayPlantAnimation(string condition)
         {
-            if (string.IsNullOrEmpty(this.plantedSeedId) || this.animator == null) return;
+            if (string.IsNullOrEmpty(plantedSeedId) || animator == null) return;
 
-            string animName = $"{this.plantedSeedId}_{this.currentStage.ToString().ToLower()}_{condition}";
-            this.animator.Play(animName, 0);
+            string animName = $"{plantedSeedId}_{currentStage.ToString().ToLower()}_{condition}";
+            animator.Play(animName, 0);
         }
         #endregion
     }
