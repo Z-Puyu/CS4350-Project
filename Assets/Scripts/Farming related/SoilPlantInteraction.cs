@@ -4,11 +4,17 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Farming_related {
     public class SoilPlantInteraction : MonoBehaviour
     {
         public enum PlantStage { Planted, Seedling, Grown, Wilting, Wilted }
+
+        [Header("UI")]
+        [SerializeField] private GameObject promptUI; // assign your floating TMP prefab here
+        [SerializeField] private TMP_Text promptText;
+        [SerializeField] private float promptDistance = 2f; // distance at which popup appears
 
         [Header("Plant Info")]
         [SerializeField] private string plantedSeedId; // which seed type (from inventory)
@@ -29,16 +35,25 @@ namespace Farming_related {
         private float growthProgress = 0f;
 
         private Animator animator;
+        private Transform player;
 
         public delegate void OnHarvest();
         public event OnHarvest HarvestEvent;
 
         void Awake() => this.animator = GetComponent<Animator>();
+        void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (promptUI != null) promptUI.SetActive(false);
+        }
 
         void Update()
         {
             HandleInput();
             UpdateGrowth();
+
+            if (player != null)
+                this.UpdatePrompt();
         }
 
         #region Input Handling
@@ -62,27 +77,34 @@ namespace Farming_related {
         #region Growth System
         void UpdateGrowth()
         {
-            if (!hasPlant) 
+            if (!hasPlant)
             {
                 growthBar.fillAmount = 0f;
                 return;
             }
 
-            // --- Partial growth unlock based on watering progress ---
-            if (requiredWaterings > 0)
-            {
-                float wateringRatio = Mathf.Clamp01((float)currentWaterings / requiredWaterings);
-                float growthCap = wateringRatio; // 0.0 to 1.0 range (each watering unlocks a portion)
+            // Determine if watering should block growth (only for Planted and Seedling)
+            bool stageRequiresWatering = (currentStage == PlantStage.Planted || currentStage == PlantStage.Seedling)
+                                        && requiredWaterings > 0;
 
-                // Prevent growth beyond unlocked portion
-                if (growthProgress >= growthCap)
+            if (stageRequiresWatering)
+            {
+                // Calculate how much of this stage can be grown based on watering
+                float stageStart = currentStage == PlantStage.Planted ? 0f : 0.25f;
+                float stageEnd = currentStage == PlantStage.Planted ? 0.25f : 0.5f;
+
+                float wateringRatio = Mathf.Clamp01((float)currentWaterings / requiredWaterings);
+                float stageCap = Mathf.Lerp(stageStart, stageEnd, wateringRatio);
+
+                if (growthProgress >= stageCap)
                 {
                     growthBar.color = Color.cyan; // waiting for more watering
-                    return;
+                    growthBar.fillAmount = growthProgress;
+                    return; // stop growth for this frame
                 }
             }
 
-            // --- Normal growth ---
+            // Normal growth
             float growthThisFrame = baseGrowthSpeed * Time.deltaTime;
             if (isWatered) growthThisFrame *= wetGrowthMultiplier;
 
@@ -91,9 +113,17 @@ namespace Farming_related {
 
             growthBar.fillAmount = growthProgress;
             UpdateGrowthBarColor();
-            UpdatePlantStageByProgress();
-        }
 
+            // Update stage after applying watering check
+            PlantStage previousStage = currentStage;
+            UpdatePlantStageByProgress();
+
+            // Reset waterings when advancing a stage that still requires watering
+            if (currentStage != previousStage && currentStage <= PlantStage.Seedling)
+            {
+                currentWaterings = 0;
+            }
+        }
         void UpdatePlantStageByProgress()
         {
             if (growthProgress < 0.25f) currentStage = PlantStage.Planted;
@@ -117,7 +147,9 @@ namespace Farming_related {
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.transform.root.CompareTag("Player"))
-                playerIsOver = true;
+            {
+                this.playerIsOver = true;
+            }
 
             Debug.Log($"Player is over soil: {playerIsOver}");
         }
@@ -126,8 +158,48 @@ namespace Farming_related {
         {
             if (other.transform.root.CompareTag("Player"))
                 playerIsOver = false;
+                if (promptUI != null) promptUI.SetActive(false);
 
             Debug.Log($"Player is over soil: {playerIsOver}");
+        }
+        #endregion
+
+        #region Prompt System
+        private void UpdatePrompt()
+        {
+            if (promptUI == null || promptText == null || player == null) return;
+
+            // Calculate distance to player
+            float distance = Vector3.Distance(player.position, transform.position);
+            if (distance > promptDistance)
+            {
+                if (promptUI.activeSelf) promptUI.SetActive(false);
+                return;
+            }
+
+            // Show prompt
+            if (!promptUI.activeSelf) promptUI.SetActive(true);
+
+            // Position prompt above soil
+            Vector3 targetPos = transform.position + Vector3.up * 1.5f;
+            promptUI.transform.position = targetPos;
+
+            // Set text based on plant state
+            if (!hasPlant)
+            {
+                promptText.text = "Press <b>C</b> to Plant";
+            }
+            else if (currentStage >= PlantStage.Grown)
+            {
+                string text = "Press <b>C</b> to Harvest";
+                if (!isWatered && currentStage <= PlantStage.Wilted)
+                    text += "\nPress <b>F</b> to Water";
+                promptText.text = text;
+            }
+            else
+            {
+                promptText.text = !isWatered ? "Press <b>F</b> to Water" : "";
+            }
         }
         #endregion
 
@@ -188,7 +260,7 @@ namespace Farming_related {
 
         void WaterPlant()
         {
-            if (!hasPlant || currentStage == PlantStage.Wilted) return;
+            if (!hasPlant) return;
             if (isWatered) return;
 
             isWatered = true;
