@@ -152,14 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72f330ad1532452fad119697602b653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoilPlantInteraction
-  promptUI: {fileID: 6555165813574563203}
-  promptText: {fileID: 1068496743054970636}
+  promptUI: {fileID: 0}
+  promptText: {fileID: 0}
   promptDistance: 2
   plantedSeedId: 
   pickUpPrefab: {fileID: 2017890848062158450, guid: 238bd134cbe99854296b818ac15943ef, type: 3}
   growthBar: {fileID: 814880945834560318}
   baseGrowthSpeed: 0.01
   wetGrowthMultiplier: 3
+  broadcastFarmingExpObject: {fileID: 11400000, guid: 46ddefcd11c362144919ac5872016a9c, type: 2}
 --- !u!95 &3613456250255259280
 Animator:
   serializedVersion: 7

@@ -2,6 +2,7 @@
 using System.Text;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
+using Player_related.Player_exp;
 using UnityEngine;
 
 namespace Game.Items {
@@ -9,6 +10,7 @@ namespace Game.Items {
     public sealed class Plantable : ItemProperty {
         [field: SerializeField] public int GrowthDuration { get; private set; }
         [field: SerializeField] public int WateringRequirement { get; private set; }
+        [field: SerializeField] public FarmingExpObject FarmingExpObject { get; private set; }
         
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
@@ -20,7 +22,8 @@ namespace Game.Items {
         public override IItemProperty Instantiate() {
             return new Plantable {
                 GrowthDuration = this.GrowthDuration, 
-                WateringRequirement = this.WateringRequirement
+                WateringRequirement = this.WateringRequirement,
+                FarmingExpObject = this.FarmingExpObject
             };
         }
 
