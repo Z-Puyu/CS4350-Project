@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: b1c864b9d1028e04aad44fe894f88517
+guid: 40af9125681cbfc4eb66baddfd3b07fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4386963445526368828
-    second: farmer_base_attack_3_0
+      213: 1428567856943131391
+    second: Farmer_48_damage_0
   - first:
-      213: 6733204545929252563
-    second: farmer_base_attack_3_1
+      213: -4612533012572671157
+    second: Farmer_48_damage_1
   - first:
-      213: -270497180413102163
-    second: farmer_base_attack_3_2
+      213: 6535228533228366129
+    second: Farmer_48_damage_2
   - first:
-      213: 2422062149710087573
-    second: farmer_base_attack_3_3
-  - first:
-      213: 6095103695838354874
-    second: farmer_base_attack_3_4
-  - first:
-      213: -5041898669419720299
-    second: farmer_base_attack_3_5
+      213: 890186713240814287
+    second: Farmer_48_damage_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: farmer_base_attack_3_0
+      name: Farmer_48_damage_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cde6ca4dff5e13c0800000000000000
-      internalID: -4386963445526368828
+      spriteID: ffae2a2a5ea43d310800000000000000
+      internalID: 1428567856943131391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_base_attack_3_1
+      name: Farmer_48_damage_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,42 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3de88284cd5217d50800000000000000
-      internalID: 6733204545929252563
+      spriteID: b43f7dec9adfcffb0800000000000000
+      internalID: -4612533012572671157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_base_attack_3_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da77bb06f300f3cf0800000000000000
-      internalID: -270497180413102163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: farmer_base_attack_3_3
+      name: Farmer_48_damage_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 595836941b4ec9120800000000000000
-      internalID: 2422062149710087573
+      spriteID: 139e211d9bbc1ba50800000000000000
+      internalID: 6535228533228366129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_base_attack_3_4
+      name: Farmer_48_damage_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,30 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: abd9d93a488269450800000000000000
-      internalID: 6095103695838354874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: farmer_base_attack_3_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 59119bf8fd3970ab0800000000000000
-      internalID: -5041898669419720299
+      spriteID: fc2cd7a69149a5c00800000000000000
+      internalID: 890186713240814287
       vertices: []
       indices: 
       edges: []
@@ -250,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: da7d55c0699a2c847a971a0f0cc6e3a6
+    spriteID: 35c97c79d96fdc14e91fa63ac4c8a2a4
     internalID: 0
     vertices: []
     indices: 
@@ -260,14 +210,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      farmer_base_attack_3_0: -4386963445526368828
-      farmer_base_attack_3_1: 6733204545929252563
-      farmer_base_attack_3_2: -270497180413102163
-      farmer_base_attack_3_3: 2422062149710087573
-      farmer_base_attack_3_4: 6095103695838354874
-      farmer_base_attack_3_5: -5041898669419720299
+      Farmer_48_damage_0: 1428567856943131391
+      Farmer_48_damage_1: -4612533012572671157
+      Farmer_48_damage_2: 6535228533228366129
+      Farmer_48_damage_3: 890186713240814287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
