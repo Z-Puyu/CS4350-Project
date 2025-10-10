@@ -1363,6 +1363,10 @@ PrefabInstance:
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1817184119057417501, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: <WeaponSprite>k__BackingField
+      value: 
+      objectReference: {fileID: 2107241326}
     - target: {fileID: 2076975899314662873, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <ObjectiveManager>k__BackingField
       value: 
@@ -124487,7 +124491,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5587124563336528128, guid: 644d81407248e9845a7c98960e2c78f6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124495,12 +124499,17 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2093088696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6846403353061881947, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 529274588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2107241326 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3608475066451000008, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
   m_PrefabInstance: {fileID: 529274588}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117791501
@@ -138097,11 +138106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8949ac8766db4c1cab1160471de9fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoilPromptController
-  promptUI: {fileID: 2120749055}
-  promptText: {fileID: 967460301}
-  activationDistance: 2
-  player: {fileID: 0}
-  state: 0
 --- !u!1001 &149554331139186374
 PrefabInstance:
   m_ObjectHideFlags: 0

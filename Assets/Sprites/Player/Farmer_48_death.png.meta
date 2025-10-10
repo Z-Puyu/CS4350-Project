@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: dcb780946683bbf4ca22965d1fcb9657
+guid: 69833fd7095f9a14cb3f4dfffc67f7d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5972289519579645230
-    second: farmer_take_damage_0
+      213: -1633562053967231112
+    second: Farmer_48_death_0
   - first:
-      213: 102830076493052390
-    second: farmer_take_damage_1
+      213: 8616375565810543089
+    second: Farmer_48_death_1
   - first:
-      213: -8772996919916648277
-    second: farmer_take_damage_2
+      213: -4086237206641938411
+    second: Farmer_48_death_2
   - first:
-      213: -4277161305818044262
-    second: farmer_take_damage_3
+      213: -8291288183495523410
+    second: Farmer_48_death_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: farmer_take_damage_0
+      name: Farmer_48_death_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e25455eeca5d1e250800000000000000
-      internalID: 5972289519579645230
+      spriteID: 877c9b687fb6459e0800000000000000
+      internalID: -1633562053967231112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_take_damage_1
+      name: Farmer_48_death_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,42 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e93895e8635d6100800000000000000
-      internalID: 102830076493052390
+      spriteID: 1f92e73fce3839770800000000000000
+      internalID: 8616375565810543089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: farmer_take_damage_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba8a5cc58cd004680800000000000000
-      internalID: -8772996919916648277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: farmer_take_damage_3
+      name: Farmer_48_death_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +168,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a986ba7247874a4c0800000000000000
-      internalID: -4277161305818044262
+      spriteID: 5107f1e09e4ca47c0800000000000000
+      internalID: -4086237206641938411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Farmer_48_death_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea30b54835d6fec80800000000000000
+      internalID: -8291288183495523410
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4337b8a966e191f498bb8292b0e3a07f
+    spriteID: 5d73dee62e11f384dafe48d581ada93b
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +210,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      farmer_take_damage_0: 5972289519579645230
-      farmer_take_damage_1: 102830076493052390
-      farmer_take_damage_2: -8772996919916648277
-      farmer_take_damage_3: -4277161305818044262
+      Farmer_48_death_0: -1633562053967231112
+      Farmer_48_death_1: 8616375565810543089
+      Farmer_48_death_2: -4086237206641938411
+      Farmer_48_death_3: -8291288183495523410
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

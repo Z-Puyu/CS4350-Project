@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Utilities;
 using SaintsField;
 using UnityEngine;
@@ -34,6 +35,11 @@ namespace WeaponsSystem.Runtime.Combat {
         
         private Weapon Weapon { get; set; }
         private bool IsAttacking { get; set; }
+        
+        [field: SerializeField] private float swingAngle = 180f;
+        [field: SerializeField] private float swingDuration = 0.25f;
+        private Coroutine swingRoutine;
+        private bool isSwinging = false;
 
         private void Awake() {
             if (!this.Owner) {
@@ -43,6 +49,12 @@ namespace WeaponsSystem.Runtime.Combat {
 
         private void Update() {
             this.AttackTimer?.Tick();
+        }
+        
+        private void LateUpdate()
+        {
+            if (!isSwinging) // only aim at mouse when not swinging
+                AimWeaponAtMouse();
         }
 
         public void StartAttack() {
@@ -59,6 +71,9 @@ namespace WeaponsSystem.Runtime.Combat {
                 this.IsAttacking = false;
             } else {
                 this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+                // Start swing
+                if (swingRoutine != null) StopCoroutine(swingRoutine);
+                swingRoutine = StartCoroutine(SwingWeapon());
             }
         }
 
@@ -102,6 +117,74 @@ namespace WeaponsSystem.Runtime.Combat {
 
         public void HandleComponentSetChange(ISet<WeaponComponent> components) {
             this.OnComponentSetChanged.Invoke(components);
+        }
+        
+        private void AimWeaponAtMouse() {
+            if (!AttackOrigin) return;
+
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 direction = mouseWorld - AttackOrigin.position;
+            direction.z = 0f;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            // If sprite points UP and hilt is pivot, subtract 90 degrees
+            float finalAngle = angle - 90f;
+
+            // If facing left (mouse on left side), rotate an extra 180° so the tip still faces the cursor
+            if (angle > 90f || angle < -90f)
+            {
+                finalAngle += 180f;
+            }
+
+            AttackOrigin.rotation = Quaternion.Euler(0f, 0f, finalAngle);
+        }
+        
+        private Quaternion GetMouseRotation()
+        {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 direction = mouseWorld - AttackOrigin.position;
+            direction.z = 0f;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float finalAngle = angle - 90f;
+            if (angle > 90f || angle < -90f) finalAngle += 180f;
+            return Quaternion.Euler(0f, 0f, finalAngle);
+        }
+        
+        private IEnumerator SwingWeapon()
+        {
+            if (!AttackOrigin || !Owner.transform) yield break;
+
+            isSwinging = true;
+
+            // Freeze mouse rotation at the moment attack starts
+            Quaternion mouseRotAtStart = GetMouseRotation();
+
+            // Swing arc start and end relative to mouse direction
+            float halfSwing = swingAngle / 2f;
+            float t = 0f;
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime / swingDuration;
+
+                // Calculate current swing angle
+                float currentAngle = Mathf.Lerp(-halfSwing, halfSwing, t);
+
+                // Set AttackOrigin position at character center
+                AttackOrigin.position = Owner.transform.position;
+
+                // Compute rotation for this frame
+                Quaternion swingRot = mouseRotAtStart * Quaternion.Euler(0f, 0f, currentAngle);
+
+                // Rotate AttackOrigin around character center
+                AttackOrigin.RotateAround(Owner.transform.position, Vector3.forward, currentAngle);
+
+                yield return null;
+            }
+
+            // Swing finished — return control to mouse
+            isSwinging = false;
         }
     }
 }
