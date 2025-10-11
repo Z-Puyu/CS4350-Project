@@ -1,7 +1,9 @@
 using System.Collections;
+using Events;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using Player_related.Player_exp;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -25,11 +27,15 @@ namespace Farming_related {
         [SerializeField] private float baseGrowthSpeed = 0.01f;   // per second when dry
         [SerializeField] private float wetGrowthMultiplier = 3f;  // speed multiplier when wet
 
+        [Header("Harvest event")]
+        [SerializeField] private CrossObjectEventWithDataSO broadcastFarmingExpObject;
+        
         private PlantStage currentStage = PlantStage.Planted;
         private bool hasPlant = false;
         private bool isWatered = false;
         private int requiredWaterings = 0;
         private int currentWaterings = 0;
+        private FarmingExpObject farmingExpObject;
         private int waterCount = 0;
         private bool playerIsOver = false;
         private float growthProgress = 0f;
@@ -240,6 +246,7 @@ namespace Farming_related {
                     float duration = Mathf.Max(1f, plantable.GrowthDuration);
                     this.baseGrowthSpeed = 1f / duration;
                     this.requiredWaterings = plantable.WateringRequirement;
+                    farmingExpObject = plantable.FarmingExpObject;
 
                     Debug.Log($"🌱 Planted {seedId}: duration = {duration}s, requires {this.requiredWaterings} waterings.");
                 }
@@ -303,11 +310,13 @@ namespace Farming_related {
                     dropItemId = plantedSeedId.Replace("seed", "crop");
                     DropItem(dropItemId, cropCount);
                     seedCount = Random.Range(1, 3);
+                    broadcastFarmingExpObject.TriggerEvent(this, farmingExpObject);
                     break;
                 case PlantStage.Wilting:
                     dropItemId = plantedSeedId.Replace("seed", "wilting");
                     DropItem(dropItemId, cropCount);
                     seedCount = Random.Range(0, 2);
+                    broadcastFarmingExpObject.TriggerEvent(this, farmingExpObject);
                     break;
                 case PlantStage.Wilted:
                     seedCount = Random.Range(0, 2);

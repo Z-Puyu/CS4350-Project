@@ -14,6 +14,12 @@ namespace Player_related.Player_exp
             enemyData.EnemyExpObject.AddExp(this);
         }
         
+        public void AddFarmingExpFromHarvesting(Component component, object fEO)
+        {
+            FarmingExpObject farmingExpObject = (FarmingExpObject)((object[])fEO)[0];
+            farmingExpObject.AddExp(this);
+        }
+        
         public void AddFarmingExp(int exp)
         {
             farmingExp += exp;
