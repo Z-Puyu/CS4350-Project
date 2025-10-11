@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e311b0403b1e0b45ba5451a19ca3ebe, type: 3}
     - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_Size.x
       value: 0.97107005
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2128187844818850781, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: onAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: cc9171bad5e447a4c87cc3a9c91d448d, type: 3}
     - target: {fileID: 2283088148956866434, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: 'managedReferences[2098011628653249157]'
       value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
@@ -102,6 +110,30 @@ PrefabInstance:
       propertyPath: managedReferences[2098011628653249158].GUID.m_Value1
       value: 630183425924546471
       objectReference: {fileID: 0}
+    - target: {fileID: 3103484687931798473, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: dieSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e311b0403b1e0b45ba5451a19ca3ebe, type: 3}
+    - target: {fileID: 3103484687931798473, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: attackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: cc9171bad5e447a4c87cc3a9c91d448d, type: 3}
+    - target: {fileID: 3103484687931798473, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: damagedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: c40b4666391cc4a4ab90973c0df82298, type: 3}
+    - target: {fileID: 4213432807947018704, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: dieSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e311b0403b1e0b45ba5451a19ca3ebe, type: 3}
+    - target: {fileID: 4213432807947018704, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: attackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: cc9171bad5e447a4c87cc3a9c91d448d, type: 3}
+    - target: {fileID: 4213432807947018704, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: damagedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: c40b4666391cc4a4ab90973c0df82298, type: 3}
     - target: {fileID: 5012655444641614607, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <PixelOffset>k__BackingField
       value: 12
@@ -222,6 +254,10 @@ PrefabInstance:
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 5672507766704322158}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: c40b4666391cc4a4ab90973c0df82298, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1949538959748963748, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}

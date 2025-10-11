@@ -17,7 +17,8 @@ namespace WeaponsSystem.Runtime.Weapons {
         private List<IWeaponController> WeaponControllers { get; set; } = new List<IWeaponController>();
         
         [field: SerializeField] private List<WeaponComponent> TestComponents { get; set; } = new List<WeaponComponent>();
-        
+        [field: SerializeField] private List<AudioClip> attackSoundEffects { get; set; } = new List<AudioClip>();
+
         public int CurrentComboIndex { get; private set; }
         public float AttackDuration { get; set; }
         public int ComponentCapacity { get; private set; } = 3;
