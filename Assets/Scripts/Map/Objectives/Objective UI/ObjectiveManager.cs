@@ -78,10 +78,10 @@ namespace Map.Objectives.Objective_UI
                     if (allRequirements.Count > 0)
                     {
                         chosenRequirement = allRequirements[0];
-                        UpdateIncompleteObjectivesText();
                     }
                 }
              }
+            UpdateIncompleteObjectivesText();
         }
         
         public void AddObjectives(Component component, object requirementsSo)
@@ -97,13 +97,20 @@ namespace Map.Objectives.Objective_UI
             if (chosenRequirement == null)
             {
                 chosenRequirement = mapUnlockRequirementSo;
-                UpdateIncompleteObjectivesText();
             }
+            UpdateIncompleteObjectivesText();
         }
 
         private void UpdateIncompleteObjectivesText()
         {
-            broacastNumberOfIncompleteObjectives.TriggerEvent(this, chosenRequirement.GetNumberOfIncompleteObjectives());
+            if (chosenRequirement == null)
+            {
+                broacastNumberOfIncompleteObjectives.TriggerEvent(this, 0);
+            }
+            else
+            {
+                broacastNumberOfIncompleteObjectives.TriggerEvent(this, chosenRequirement.GetNumberOfIncompleteObjectives());
+            }
         }
     }   
 }

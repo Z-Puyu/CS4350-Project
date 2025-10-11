@@ -264,6 +264,12 @@ MonoBehaviour:
   <Combatant>k__BackingField: {fileID: 1013458702745771644}
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <GameCharacterController>k__BackingField: {fileID: 0}
+  onAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   <AnimatorDeathFlag>k__BackingField: 20298039
 --- !u!1001 &454449849331479342
 PrefabInstance:

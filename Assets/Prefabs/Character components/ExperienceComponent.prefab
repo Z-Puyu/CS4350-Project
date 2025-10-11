@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7970756188403626673}
   m_Layer: 0
   m_Name: ExperienceComponent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653218376440492187}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.34937, y: -0.44177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,6 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_exp.PlayerExp
   combatExp: 0
   farmingExp: 0
+  combatExpLevel: 0
+  farmingExpLevel: 0
+  combatSkillPoint: 0
+  farmingSkillPoint: 0
+  onCombatLevelUp: {fileID: 11400000, guid: f3f2bf3812339e2428368128a6859431, type: 2}
+  onFarmingLevelUp: {fileID: 11400000, guid: 60bfabf9203f0714290fe713d0e53483, type: 2}
 --- !u!114 &3246876447459483331
 MonoBehaviour:
   m_ObjectHideFlags: 0

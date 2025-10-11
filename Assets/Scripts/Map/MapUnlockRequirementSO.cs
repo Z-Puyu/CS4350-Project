@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Map.Objectives;
 using Map.Objectives.Objective_UI;
+using Player_related.Player_things_to_note_ui_manager;
 using UnityEngine;
 using SaintsField;
 using TMPro;
@@ -33,6 +34,11 @@ namespace Map
                 count += (!objective.IsComplete() ? 1 : 0);
             }
             return count;
+        }
+
+        public void SpawnTextWhenObjectiveIsCleared(PlayerThingsToNoteUIManager playerThingsToNoteUIManager)
+        {
+            playerThingsToNoteUIManager.SpawnText("Cleared all objective requirements for " + title);
         }
         
         public void SpawnObjectiveText(GameObject objectiveTextPrefab, Transform content, List<GameObject> spawnedObjectiveText)
