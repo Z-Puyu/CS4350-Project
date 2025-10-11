@@ -750,6 +750,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 9107343614210813009, guid: 276e583069659d94193437674186c3d7, type: 3}
+      propertyPath: <attackSoundEffects>k__BackingField.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107343614210813009, guid: 276e583069659d94193437674186c3d7, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1630a25f8f8080a428ac68b2a244f6d8, type: 3}
+    - target: {fileID: 9107343614210813009, guid: 276e583069659d94193437674186c3d7, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1630a25f8f8080a428ac68b2a244f6d8, type: 3}
+    - target: {fileID: 9107343614210813009, guid: 276e583069659d94193437674186c3d7, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1630a25f8f8080a428ac68b2a244f6d8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1123,6 +1139,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8597468583972307978}
+    - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4773193763297969301}
     - targetCorrespondingSourceObject: {fileID: 6059059717299930962, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 436479014481287583}
@@ -1956,6 +1975,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75af2d910dc4ad0b1b048737ab37d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: InteractionSystem.Runtime::InteractionSystem.Runtime.Interactor2D
+--- !u!1001 &3762461078115707571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 695760478637877988}
+    m_Modifications:
+    - target: {fileID: 736240514574214, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_Name
+      value: PlayerSFXComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.76215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11089
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 736240514574214, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 297791233232504866}
+  m_SourcePrefab: {fileID: 100100000, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+--- !u!1 &3761754673129114933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 736240514574214, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+  m_PrefabInstance: {fileID: 3762461078115707571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &297791233232504866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3761754673129114933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613f682a6649224cbd0b98eb1518962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.SFX_trigger.SFXTrigger
+  broadcastSFX: {fileID: 11400000, guid: ca773dcc569465d478ada4e9978bd8ee, type: 2}
+--- !u!4 &4773193763297969301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8505954008679951910, guid: 2ae18a1b73788fd45b96fa933b9496fc, type: 3}
+  m_PrefabInstance: {fileID: 3762461078115707571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4852457948149313199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2133,6 +2235,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4233169812787233672, guid: 6f051ad10422dfe4b843bdfda85c46a4, type: 3}
+      propertyPath: <attackSoundEffects>k__BackingField.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233169812787233672, guid: 6f051ad10422dfe4b843bdfda85c46a4, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fba0f337fc844a4389ca1a1f4b99819, type: 3}
+    - target: {fileID: 4233169812787233672, guid: 6f051ad10422dfe4b843bdfda85c46a4, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fba0f337fc844a4389ca1a1f4b99819, type: 3}
+    - target: {fileID: 4233169812787233672, guid: 6f051ad10422dfe4b843bdfda85c46a4, type: 3}
+      propertyPath: '<attackSoundEffects>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fba0f337fc844a4389ca1a1f4b99819, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
