@@ -122,6 +122,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenQuickSwap",
+                    "type": "Button",
+                    "id": "cde109fd-2fae-40af-b3cb-19b1fa10de74",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.5)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OnScrollQuickSwap",
+                    "type": "Value",
+                    "id": "af57275c-f382-472f-a1ca-91f5cfba813f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -441,6 +459,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OnPauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8d1dfc2-9d36-4c48-97e2-7bcc259ffdaa",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenQuickSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2159d7cd-aee7-4dfb-8a6b-c05589133a2d",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnScrollQuickSwap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

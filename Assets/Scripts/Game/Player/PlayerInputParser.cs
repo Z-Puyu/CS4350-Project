@@ -9,6 +9,7 @@ using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using Player_related.Player_quick_swap;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,7 +34,8 @@ namespace Game.Player {
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
-
+        [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        private bool isQuickSwap = false;
         
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -152,6 +154,29 @@ namespace Game.Player {
             }
 
             this.Weaponry.Switch(2);
+        }
+        
+        public void OnQuickSwapPage(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                isQuickSwap = true;
+                PlayerQuickSwapUIManager.EnableBackdrop();
+            }
+            else if (context.canceled)
+            {
+                isQuickSwap = false;
+                PlayerQuickSwapUIManager.StartClosingBackdrop();
+            }
+        }
+        
+        public void OnToggleQuickSwap(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                Vector2 scrollDir = context.ReadValue<Vector2>();
+                PlayerQuickSwapUIManager.ToggleSelection(scrollDir.y);
+            }
         }
     }
 }

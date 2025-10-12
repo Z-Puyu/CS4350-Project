@@ -1637,10 +1637,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1745364797013465661, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 1817184119057417501, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: <WeaponSprite>k__BackingField
       value: 
@@ -78722,7 +78718,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2134395045
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1435935970
@@ -139770,6 +139766,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4142463236741321250, guid: 89eb762c0648ada48939be4515333cd0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856837166515930864, guid: 89eb762c0648ada48939be4515333cd0, type: 3}
+      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
