@@ -627,6 +627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Compoennt Creation Page
       objectReference: {fileID: 0}
+    - target: {fileID: 4458320704078714143, guid: ba42d5dc5b6fe00448d9a300e1033562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.426788
+      objectReference: {fileID: 0}
     - target: {fileID: 4676554767876673751, guid: ba42d5dc5b6fe00448d9a300e1033562, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -845,7 +849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9074936191813247034, guid: ba42d5dc5b6fe00448d9a300e1033562, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: -0.000039530874
       objectReference: {fileID: 0}
     - target: {fileID: 9129655452370072715, guid: ba42d5dc5b6fe00448d9a300e1033562, type: 3}
       propertyPath: m_AnchorMax.y
