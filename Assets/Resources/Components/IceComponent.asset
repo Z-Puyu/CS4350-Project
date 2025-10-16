@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
+  m_Name: IceComponent
+  m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
+  Id: ice_hild
+  itemName: Ice hild
+  Description: A ice hild
+  icon: {fileID: 0}
+  price: 100
+  craftingMaterials: []
+  rarity: Rare
+  levelRequirement: 1
+  <ProjectileModesOnAttack>k__BackingField: 
+  <ProjectileModeOnWeapon>k__BackingField: 4
+  <EffectOnWeapon>k__BackingField:
+    rid: -2
+  <EffectsOnAttack>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
