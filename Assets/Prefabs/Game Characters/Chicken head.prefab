@@ -639,6 +639,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: dieSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 525e6ed0f03be9e42828dd2a966b6848, type: 3}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: attackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8da5a92a4044c064e9c797be9af039da, type: 3}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: damagedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b19ca235ca5aa9145bb20075a5a2849a, type: 3}
     - target: {fileID: 7451947533484182453, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
       propertyPath: m_Name
       value: EnemySFXComponent

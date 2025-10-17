@@ -26,7 +26,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
-        [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
+        [field: SerializeField, Required] private FarmerSpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
@@ -35,6 +35,9 @@ namespace Game.Player {
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        
+        [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
+        
         private bool isQuickSwap = false;
         
         public void OnInteract(InputAction.CallbackContext context) {
@@ -177,6 +180,40 @@ namespace Game.Player {
                 Vector2 scrollDir = context.ReadValue<Vector2>();
                 PlayerQuickSwapUIManager.ToggleSelection(scrollDir.y);
             }
+        }
+        
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            const int dashCost = 20;
+
+            // Check stamina
+            if (!Stamina.HasEnough(dashCost))
+            {
+                OnScreenDebugger.Log("Not enough stamina to dash.");
+                return;
+            }
+
+            // Consume stamina
+            Stamina.Consume(dashCost);
+
+            // Determine dash direction
+            Vector2 dir = Movement.GetLastMoveDirection();
+            if (dir == Vector2.zero)
+                dir = Movement.GetFacingDirection();
+
+            // Store dash direction for animation
+            Animator.LastDashDirection = dir;
+
+            // Execute dash
+            Movement.Dash(dir);
+
+            // Trigger dash animation via parameterless wrapper
+            Animator.PlayDashAnimation();
+
+            OnScreenDebugger.Log("DASH executed!");
         }
     }
 }
