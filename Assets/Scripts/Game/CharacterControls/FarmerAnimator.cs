@@ -29,11 +29,20 @@ namespace Game.CharacterControls {
         
         [field: SerializeField, Required] private Transform WeaponSprite { get; set; }
         
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Float)]
+        private int AnimatorDashX { get; set; }
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Float)]
+        private int AnimatorDashY { get; set; }
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Trigger)]
+        private int AnimatorDashTrigger { get; set; }
+        
         private Animator Animator { get; set; }
         private SpriteRenderer SpriteRenderer { get; set; }
         
         private Vector2 lastInput;
         private bool useMouseForFacing = false;
+        
+        public Vector2 LastDashDirection { get; set; }
 
         private void Awake() {
             this.Animator = this.GetComponent<Animator>();
@@ -98,6 +107,20 @@ namespace Game.CharacterControls {
                 Vector3 scale = this.RootTransform.localScale;
                 this.RootTransform.localScale = new Vector3(xScale * Mathf.Abs(scale.x), scale.y, scale.z);
             }
+        }
+        
+        public void PlayDashAnimation()
+        {
+            // Normalize direction to prevent weird blend values
+            Vector2 normDir = LastDashDirection.normalized;
+
+            this.Animator.SetFloat(this.AnimatorDashX, normDir.x);
+            this.Animator.SetFloat(this.AnimatorDashY, normDir.y);
+            this.Animator.SetTrigger(this.AnimatorDashTrigger);
+
+#if DEBUG
+            Debug.Log($"Dash animation triggered: ({normDir.x:F2}, {normDir.y:F2})", this);
+#endif
         }
 
         private void LookAndBlendByKeyboard() {

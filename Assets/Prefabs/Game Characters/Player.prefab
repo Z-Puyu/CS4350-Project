@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.312, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3443178849217862556}
@@ -78,10 +78,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -8011190685330998913, guid: 4ef70777b8144b840a7e07f32f1e152f, type: 3}
+  m_SortingLayerID: -374179137
+  m_SortingLayer: 1
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 8646904918158339430, guid: 213829e55071bee408912f32f7875612, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,6 +127,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpEffect
   timeToDisplay: 6
+--- !u!1 &2129046701743827392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2219352477770279731}
+  - component: {fileID: 7896945243682354547}
+  m_Layer: 0
+  m_Name: StaminaComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2219352477770279731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129046701743827392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695760478637877988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7896945243682354547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129046701743827392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc151896233042258f4952f10b2a8dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.StaminaSystem.Stamina
+  <Root>k__BackingField: {fileID: 571178239294957684}
+  <StaminaAttribute>k__BackingField: {fileID: 11400000, guid: c51475cc2f289fd42b9876382221a659, type: 2}
+  <OnStaminaDepleted>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6744392639426056991}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <RegenRatePerSecond>k__BackingField: 10
+  <RegenDelay>k__BackingField: 1.5
 --- !u!1 &2720038900767561035
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +417,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.308, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3443178849217862556}
@@ -403,10 +466,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -7728042432274326723, guid: c903c57d2ee404044a0d2d58c477610c, type: 3}
+  m_SortingLayerID: -374179137
+  m_SortingLayer: 1
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -4405512841256319670, guid: 5c058c90b63ed124e8d98ce9962f420d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1143,6 +1206,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4773193763297969301}
+    - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2219352477770279731}
     - targetCorrespondingSourceObject: {fileID: 6059059717299930962, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 436479014481287583}
@@ -1201,17 +1267,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 475086927482219960}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1732525752152892353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2205906151554961017, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-  m_PrefabInstance: {fileID: 475086927482219960}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6744392639426056991}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
 --- !u!114 &2532456718422081476 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2716461110618952316, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1303,6 +1358,9 @@ MonoBehaviour:
   <AnimatorLastMoveX>k__BackingField: 1639835794
   <AnimatorLastMoveY>k__BackingField: 381343748
   <WeaponSprite>k__BackingField: {fileID: 3608475066451000008}
+  <AnimatorDashX>k__BackingField: 1994946450
+  <AnimatorDashY>k__BackingField: 32458500
+  <AnimatorDashTrigger>k__BackingField: 995914302
 --- !u!1 &6846403353061881947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1400,7 +1458,19 @@ MonoBehaviour:
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/f]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2076975899314662873}
+        m_TargetAssemblyTypeName: Game.Player.PlayerInputParser, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
     m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
   - m_PersistentCalls:
@@ -2456,9 +2526,13 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: <Stamina>k__BackingField
+      value: 
+      objectReference: {fileID: 7896945243682354547}
+    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Animator>k__BackingField
       value: 
-      objectReference: {fileID: 1732525752152892353}
+      objectReference: {fileID: 1817184119057417501}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <Movement>k__BackingField
       value: 
