@@ -10,16 +10,22 @@ namespace Inventory_related.Inventory_UI_Manager
         private readonly VisualElement _iconElement;
         private readonly Label _quantityLabel;
         private readonly InventoryUIManager _uiManager;
+        private readonly VisualElement _quickSwapIndicator;
         
         private ItemKey _itemKey;
         private ItemData _itemData;
 
-        public SlotUI(VisualElement root, InventoryUIManager uiManager)
+        public SlotUI(VisualElement root, InventoryUIManager uiManager, bool isInQuickSwap)
         {
             _uiManager = uiManager;
             
             _iconElement = root.Q<VisualElement>("ItemIcon");
             _quantityLabel = root.Q<Label>("ItemQuantity");
+            _quickSwapIndicator = root.Q<VisualElement>("QuickSwapIndicatorIcon");
+            if (!isInQuickSwap)
+            {
+                _quickSwapIndicator.style.visibility = Visibility.Hidden;
+            }
             
             // Register click
             root.RegisterCallback<ClickEvent>(OnClick);
@@ -39,7 +45,11 @@ namespace Inventory_related.Inventory_UI_Manager
             _quantityLabel.text = quantity.ToString();
             Debug.Log($"SetData is Called with: key = {itemKey} & quantity = {quantity} & itemData = {_itemData}");
         }
-        
+
+        public void HandleItemForQuickSwap(bool isInQuickSwap)
+        {
+            _quickSwapIndicator.style.visibility = isInQuickSwap ? Visibility.Visible : Visibility.Hidden;
+        }
         
         private void OnClick(ClickEvent evt)
         {

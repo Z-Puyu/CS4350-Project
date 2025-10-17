@@ -178,5 +178,13 @@ namespace Game.Player {
                 PlayerQuickSwapUIManager.ToggleSelection(scrollDir.y);
             }
         }
+        
+        public void OnToggleQuickConsume(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                PlayerQuickSwapUIManager.UseItem();
+            }
+        }
     }
 }
