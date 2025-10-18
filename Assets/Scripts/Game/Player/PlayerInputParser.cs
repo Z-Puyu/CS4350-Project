@@ -39,6 +39,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
         
         private bool isQuickSwap = false;
+        private Vector2 currentMoveInput = Vector2.zero; // store the latest WASD input
         
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -92,10 +93,13 @@ namespace Game.Player {
         {
             if (context.performed)
             {
-                Vector2 input = context.ReadValue<Vector2>();
-                this.Movement.MoveIn(input);
-            } else if (context.canceled) {
-                this.Movement.Stop();
+                currentMoveInput = context.ReadValue<Vector2>();
+                Movement.MoveIn(currentMoveInput);
+            }
+            else if (context.canceled)
+            {
+                currentMoveInput = Vector2.zero;
+                Movement.Stop();
             }
         }
 
@@ -189,31 +193,24 @@ namespace Game.Player {
 
             const int dashCost = 20;
 
-            // Check stamina
             if (!Stamina.HasEnough(dashCost))
             {
                 OnScreenDebugger.Log("Not enough stamina to dash.");
                 return;
             }
 
-            // Consume stamina
             Stamina.Consume(dashCost);
 
-            // Determine dash direction
-            Vector2 dir = Movement.GetLastMoveDirection();
-            if (dir == Vector2.zero)
-                dir = Movement.GetFacingDirection();
+            // Dash in the direction of current input (WASD)
+            Vector2 dashDir = currentMoveInput.sqrMagnitude > 0.01f 
+                ? currentMoveInput 
+                : Movement.GetLastMoveDirection();
 
-            // Store dash direction for animation
-            Animator.LastDashDirection = dir;
-
-            // Execute dash
-            Movement.Dash(dir);
-
-            // Trigger dash animation via parameterless wrapper
+            Animator.LastDashDirection = dashDir;
+            Movement.Dash(dashDir);
             Animator.PlayDashAnimation();
 
-            OnScreenDebugger.Log("DASH executed!");
+            OnScreenDebugger.Log("DASH executed (keyboard-based)!");
         }
     }
 }
