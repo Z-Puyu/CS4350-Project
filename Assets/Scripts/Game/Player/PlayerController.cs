@@ -18,12 +18,15 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
+        [field: SerializeField] public bool HasAutoReplant { get; private set; } = false;
         
-        protected override void Start() {
-            if (!this.InitialData) {
+        protected override void Start()
+        {
+            if (!this.InitialData)
+            {
                 return;
             }
-            
+
             base.Start();
             this.ConfigureInventory();
             Enemy.OnDeath += this.HandleEnemyDeath;
