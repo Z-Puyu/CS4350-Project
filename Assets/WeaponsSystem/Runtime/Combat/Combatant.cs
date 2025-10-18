@@ -50,12 +50,6 @@ namespace WeaponsSystem.Runtime.Combat {
         private void Update() {
             this.AttackTimer?.Tick();
         }
-        
-        private void LateUpdate()
-        {
-            if (!isSwinging) // only aim at mouse when not swinging
-                AimWeaponAtMouse();
-        }
 
         public void StartAttack() {
             if (!this.Weapon) {
@@ -119,72 +113,40 @@ namespace WeaponsSystem.Runtime.Combat {
             this.OnComponentSetChanged.Invoke(components);
         }
         
-        private void AimWeaponAtMouse() {
-            if (!AttackOrigin) return;
-
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 direction = mouseWorld - AttackOrigin.position;
-            direction.z = 0f;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            // If sprite points UP and hilt is pivot, subtract 90 degrees
-            float finalAngle = angle - 90f;
-
-            // If facing left (mouse on left side), rotate an extra 180° so the tip still faces the cursor
-            if (angle > 90f || angle < -90f)
-            {
-                finalAngle += 180f;
-            }
-
-            AttackOrigin.rotation = Quaternion.Euler(0f, 0f, finalAngle);
-        }
-        
-        private Quaternion GetMouseRotation()
-        {
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 direction = mouseWorld - AttackOrigin.position;
-            direction.z = 0f;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            float finalAngle = angle - 90f;
-            if (angle > 90f || angle < -90f) finalAngle += 180f;
-            return Quaternion.Euler(0f, 0f, finalAngle);
-        }
-        
         private IEnumerator SwingWeapon()
         {
             if (!AttackOrigin || !Owner.transform) yield break;
 
             isSwinging = true;
 
-            // Freeze mouse rotation at the moment attack starts
-            Quaternion mouseRotAtStart = GetMouseRotation();
+            // Capture starting direction (from player to AttackOrigin)
+            Vector3 pivot = Owner.transform.position;
+            Vector3 startDirection = (AttackOrigin.position - pivot).normalized;
+            float radius = Vector3.Distance(pivot, AttackOrigin.position);
 
-            // Swing arc start and end relative to mouse direction
+            // Capture starting rotation so we can swing relative to it
+            Quaternion startRotation = AttackOrigin.rotation;
             float halfSwing = swingAngle / 2f;
             float t = 0f;
 
             while (t < 1f)
             {
                 t += Time.deltaTime / swingDuration;
-
-                // Calculate current swing angle
                 float currentAngle = Mathf.Lerp(-halfSwing, halfSwing, t);
 
-                // Set AttackOrigin position at character center
-                AttackOrigin.position = Owner.transform.position;
+                // Compute new rotated direction around player
+                Quaternion rot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+                Vector3 newDir = rot * startDirection;
 
-                // Compute rotation for this frame
-                Quaternion swingRot = mouseRotAtStart * Quaternion.Euler(0f, 0f, currentAngle);
-
-                // Rotate AttackOrigin around character center
-                AttackOrigin.RotateAround(Owner.transform.position, Vector3.forward, currentAngle);
+                // Update position & rotation
+                AttackOrigin.position = pivot + newDir * radius;
+                AttackOrigin.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg - 90f);
 
                 yield return null;
             }
 
-            // Swing finished — return control to mouse
             isSwinging = false;
         }
+
     }
 }
