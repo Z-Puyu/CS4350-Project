@@ -42,6 +42,7 @@ namespace Farming_related {
 
         private Animator animator;
         private Transform player;
+        private PlayerController playerController;
 
         public delegate void OnHarvest();
         public event OnHarvest HarvestEvent;
@@ -50,6 +51,8 @@ namespace Farming_related {
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            playerController = FindObjectOfType<PlayerController>();
+
             if (promptUI != null) promptUI.SetActive(false);
         }
 
@@ -104,6 +107,13 @@ namespace Farming_related {
 
                 if (growthProgress >= stageCap)
                 {
+                    if (isWatered)
+                    {
+                        isWatered = false;
+                        StopAllCoroutines(); // stop watering coroutine if running
+                        PlayPlantAnimation("dry");
+                    }
+
                     growthBar.color = Color.cyan; // waiting for more watering
                     growthBar.fillAmount = growthProgress;
                     return; // stop growth for this frame
@@ -327,17 +337,54 @@ namespace Farming_related {
             if (seedCount > 0) DropItem(plantedSeedId, seedCount);
 
             // Reset plant
+            string harvestedSeedId = plantedSeedId;
             plantedSeedId = null;
             hasPlant = false;
             currentStage = PlantStage.Planted;
             isWatered = false;
             growthProgress = 0f;
+            StopAllCoroutines(); 
 
             if (animator != null)
             {
                 animator.SetTrigger("Harvest");
                 animator.Play("dry_dirt", 0);
             }
+
+            Debug.Log($"Player has auto replant: {playerController.HasAutoReplant}");
+            if (playerController != null && playerController.HasAutoReplant)
+                TryAutoReplant(harvestedSeedId);
+        }
+
+        private void TryAutoReplant(string seedId)
+        {
+            if (string.IsNullOrEmpty(seedId) || playerController == null) return;
+
+            Inventory inventory = playerController.GetComponent<PlayerController>().GetComponentInChildren<Inventory>();
+            if (inventory == null)
+            {
+                Debug.LogWarning("⚠️ Player inventory not found for auto replant.");
+                return;
+            }
+
+            if (ItemDatabase.TryGet(seedId, out ItemData data))
+            {
+                ItemKey seedKey = ItemKey.From(data);
+
+                if (inventory.Count(seedKey) > 0)
+                {
+                    // Consume 1 seed and replant
+                    inventory.Remove(seedKey);
+                    Debug.Log($"🌱 Auto replanted {seedId} from inventory.");
+                    PlantSeed(seedId);
+                }
+                else
+                {
+                    Debug.Log($"⚠️ Auto replant failed — no {seedId} left in inventory.");
+                }
+            }
+
+            
         }
 
         private void DropItem(string itemId, int count)
