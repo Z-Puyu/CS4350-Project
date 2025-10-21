@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.HealthSystem {
     [DisallowMultipleComponent]
-    public sealed class Health : MonoBehaviour {
+    public class Health : MonoBehaviour {
         [field: SerializeField, Required] private AttributeSet Root { get; set; }
         [field: SerializeField] private AttributeType HealthAttribute { get; set; }
         [field: SerializeField] private UnityEvent OnDeathEvent { get; set; } = new UnityEvent();
