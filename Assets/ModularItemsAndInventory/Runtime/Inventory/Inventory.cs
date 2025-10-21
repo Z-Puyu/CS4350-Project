@@ -95,7 +95,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="id">The item ID.</param>
         /// <returns>The count of items with the ID.</returns>
-        public int Count(string id) {
+        public int Count(string id)
+        {
             return this.UniqueItems.GetValueOrDefault(id, 0);
         }
 
@@ -153,8 +154,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 this.UniqueItems[item.Id] = currQty;
             } else {
                 currQty = quantity;
-                this.Items.Add(type, new Dictionary<ItemKey, int> { { item, quantity } });
-                this.UniqueItems.Add(item.Id, 1);
+                this.Items.Add(type, new Dictionary<ItemKey, int> { { item, currQty } });
+                this.UniqueItems.Add(item.Id, currQty);
             }
 
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, oldQty, currQty, OperationType.AddItem));
@@ -280,6 +281,10 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         
         public void UseItem(int index)
         {
+            if (index >= quickSwapItems.Count)
+            {
+                return;
+            }
             string quickSwapItemId = quickSwapItems[index];
             ItemData item;
             ItemDatabase.TryGet(quickSwapItemId, out item);

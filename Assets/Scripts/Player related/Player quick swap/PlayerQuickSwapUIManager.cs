@@ -33,6 +33,10 @@ namespace Player_related.Player_quick_swap
         public void UpdateQuickswapIcon()
         {
             int index = 0;
+            foreach (QuickSwapIcon icon in allQuickSwapIcons)
+            {
+                icon.HideIcon();
+            }
             foreach (string id in player_inventory.GetQuickSwapItems())
             {
                 ItemData itemData;
