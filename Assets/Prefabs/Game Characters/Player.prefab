@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3977834798771952007
+--- !u!1 &4314263034823983887
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3142445802842594223}
-  - component: {fileID: 8874084625110485873}
-  - component: {fileID: 5804928491059888873}
+  - component: {fileID: 5340205345432882912}
+  - component: {fileID: 2526590131007667173}
+  - component: {fileID: 3227091727185411073}
   m_Layer: 5
-  m_Name: InventoryUIManager
+  m_Name: BlacksmithUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3142445802842594223
+--- !u!4 &5340205345432882912
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3977834798771952007}
+  m_GameObject: {fileID: 4314263034823983887}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127567362339336635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8874084625110485873
+--- !u!114 &2526590131007667173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3977834798771952007}
+  m_GameObject: {fileID: 4314263034823983887}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -56,21 +56,22 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &5804928491059888873
+--- !u!114 &3227091727185411073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3977834798771952007}
+  m_GameObject: {fileID: 4314263034823983887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da06682de3ac464489a94bcbfe07b79, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c25f4d2bd612994c99aa8d332c0e4b3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager.InventoryUIManager
-  uiDocument: {fileID: 8874084625110485873}
-  slotTemplate: {fileID: 9197481963319205126, guid: 8e9ff177de52b764e9ba196a121a989a, type: 3}
-  inventory: {fileID: 6963433376467322382}
+  m_EditorClassIdentifier: Assembly-CSharp::Blacksmith_related.Blacksmith_UI_Manager.BlacksmithUIManager
+  uiDocument: {fileID: 2526590131007667173}
+  slotTemplate: {fileID: 0}
+  playerInventory: {fileID: 0}
+  shopInventory: {fileID: 0}
   seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
 --- !u!1 &8537138761219603683
 GameObject:
@@ -191,7 +192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3142445802842594223}
+  - {fileID: 5340205345432882912}
   - {fileID: 853389654264226462}
   - {fileID: 8726377236501616500}
   m_Father: {fileID: 2933533461722758226}
@@ -1851,10 +1852,6 @@ PrefabInstance:
       propertyPath: <AbilityTargeter>k__BackingField
       value: 
       objectReference: {fileID: 6015379781161121816}
-    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
-      propertyPath: <InventoryUIManager>k__BackingField
-      value: 
-      objectReference: {fileID: 5804928491059888873}
     - target: {fileID: 5874751560248157011, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
