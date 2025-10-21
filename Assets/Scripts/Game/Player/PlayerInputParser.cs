@@ -26,7 +26,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
-        [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
+        [field: SerializeField, Required] private FarmerSpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
@@ -35,7 +35,11 @@ namespace Game.Player {
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        
+        [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
+        
         private bool isQuickSwap = false;
+        private Vector2 currentMoveInput = Vector2.zero; // store the latest WASD input
         
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -89,10 +93,13 @@ namespace Game.Player {
         {
             if (context.performed)
             {
-                Vector2 input = context.ReadValue<Vector2>();
-                this.Movement.MoveIn(input);
-            } else if (context.canceled) {
-                this.Movement.Stop();
+                currentMoveInput = context.ReadValue<Vector2>();
+                Movement.MoveIn(currentMoveInput);
+            }
+            else if (context.canceled)
+            {
+                currentMoveInput = Vector2.zero;
+                Movement.Stop();
             }
         }
 
@@ -179,12 +186,40 @@ namespace Game.Player {
             }
         }
         
+
         public void OnToggleQuickConsume(InputAction.CallbackContext context)
         {
             if (context.performed && isQuickSwap)
             {
                 PlayerQuickSwapUIManager.UseItem();
             }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            const int dashCost = 20;
+
+            if (!Stamina.HasEnough(dashCost))
+            {
+                OnScreenDebugger.Log("Not enough stamina to dash.");
+                return;
+            }
+
+            Stamina.Consume(dashCost);
+
+            // Dash in the direction of current input (WASD)
+            Vector2 dashDir = currentMoveInput.sqrMagnitude > 0.01f 
+                ? currentMoveInput 
+                : Movement.GetLastMoveDirection();
+
+            Animator.LastDashDirection = dashDir;
+            Movement.Dash(dashDir);
+            Animator.PlayDashAnimation();
+
+            OnScreenDebugger.Log("DASH executed (keyboard-based)!");
         }
     }
 }

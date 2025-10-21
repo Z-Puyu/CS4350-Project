@@ -29,11 +29,20 @@ namespace Game.CharacterControls {
         
         [field: SerializeField, Required] private Transform WeaponSprite { get; set; }
         
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Float)]
+        private int AnimatorDashX { get; set; }
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Float)]
+        private int AnimatorDashY { get; set; }
+        [field: SerializeField, AnimatorParam(AnimatorControllerParameterType.Trigger)]
+        private int AnimatorDashTrigger { get; set; }
+        
         private Animator Animator { get; set; }
         private SpriteRenderer SpriteRenderer { get; set; }
         
         private Vector2 lastInput;
         private bool useMouseForFacing = false;
+        
+        public Vector2 LastDashDirection { get; set; }
 
         private void Awake() {
             this.Animator = this.GetComponent<Animator>();
@@ -51,31 +60,29 @@ namespace Game.CharacterControls {
             // --- Movement flag ---
             bool isMoving = this.MovementComponent.IsMoving;
             this.Animator.SetBool(this.AnimatorMovementFlag, isMoving);
-
-            // Call the desired facing/blend function
-            // LookAndBlendByKeyboard();
+            
             LookAndBlendByMouse();
         }
         
-        private void LateUpdate() {
-            if (WeaponSprite == null || RootTransform == null)
-                return;
-
-            // --- 1. Calculate direction toward mouse ---
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorld.z = WeaponSprite.position.z;
-            Vector3 dir = (mouseWorld - WeaponSprite.position).normalized;
-
-            // --- 2. Calculate base angle ---
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            // --- 3. Mirror angle if character is flipped ---
-            if (RootTransform.localScale.x < 0f) {
-                angle = 180f - angle; // mirror horizontally
-            }
-
-            WeaponSprite.rotation = Quaternion.Euler(0f, 0f, angle);
-        }
+        // private void LateUpdate() {
+        //     if (WeaponSprite == null || RootTransform == null)
+        //         return;
+        //
+        //     // --- 1. Calculate direction toward mouse ---
+        //     Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     mouseWorld.z = WeaponSprite.position.z;
+        //     Vector3 dir = (mouseWorld - WeaponSprite.position).normalized;
+        //
+        //     // --- 2. Calculate base angle ---
+        //     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //
+        //     // --- 3. Mirror angle if character is flipped ---
+        //     if (RootTransform.localScale.x < 0f) {
+        //         angle = 180f - angle; // mirror horizontally
+        //     }
+        //
+        //     WeaponSprite.rotation = Quaternion.Euler(0f, 0f, angle);
+        // }
         
         private void LookAndBlendByMouse() {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -99,26 +106,19 @@ namespace Game.CharacterControls {
                 this.RootTransform.localScale = new Vector3(xScale * Mathf.Abs(scale.x), scale.y, scale.z);
             }
         }
+        
+        public void PlayDashAnimation()
+        {
+            // Normalize direction to prevent weird blend values
+            Vector2 normDir = LastDashDirection.normalized;
 
-        private void LookAndBlendByKeyboard() {
-            Vector2 moveDir = lastInput.normalized;
+            this.Animator.SetFloat(this.AnimatorDashX, normDir.x);
+            this.Animator.SetFloat(this.AnimatorDashY, normDir.y);
+            this.Animator.SetTrigger(this.AnimatorDashTrigger);
 
-            // Blend tree parameters
-            this.Animator.SetFloat(this.AnimatorMoveX, moveDir.x);
-            this.Animator.SetFloat(this.AnimatorMoveY, moveDir.y);
-
-            // Last move for idle
-            if (this.MovementComponent.IsMoving) {
-                this.Animator.SetFloat(this.AnimatorLastMoveX, moveDir.x);
-                this.Animator.SetFloat(this.AnimatorLastMoveY, moveDir.y);
-            }
-
-            // Flip sprite
-            if (Mathf.Abs(moveDir.x) > 0.01f) {
-                int xScale = moveDir.x < 0 ? -1 : 1;
-                Vector3 scale = this.RootTransform.localScale;
-                this.RootTransform.localScale = new Vector3(xScale * Mathf.Abs(scale.x), scale.y, scale.z);
-            }
+#if DEBUG
+            Debug.Log($"Dash animation triggered: ({normDir.x:F2}, {normDir.y:F2})", this);
+#endif
         }
     }
 }
