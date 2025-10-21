@@ -856,10 +856,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 133981862283563124, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: <CharacterController>k__BackingField
-      value: 
-      objectReference: {fileID: 6098219082917576461}
     - target: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <DefaultAbilities>k__BackingField._saintsList.Array.size
       value: 2
@@ -1107,7 +1103,7 @@ PrefabInstance:
     - target: {fileID: 5081366553144432299, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <GameCharacterController>k__BackingField
       value: 
-      objectReference: {fileID: 6098219082917576461}
+      objectReference: {fileID: 3621371745394555795}
     - target: {fileID: 6191663342645319072, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <Reticle>k__BackingField
       value: 
@@ -1251,19 +1247,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6098219082917576461}
-    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5468757192089227282}
-    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8531905391244548913}
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4878217836532923939}
     - targetCorrespondingSourceObject: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: 3
       addedObject: {fileID: 1817184119057417501}
+    - targetCorrespondingSourceObject: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3621371745394555795}
+    - targetCorrespondingSourceObject: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4053618067046395165}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
 --- !u!114 &424405669693175933 stripped
 MonoBehaviour:
@@ -1397,18 +1393,13 @@ MonoBehaviour:
   <AnimatorDashX>k__BackingField: 1994946450
   <AnimatorDashY>k__BackingField: 32458500
   <AnimatorDashTrigger>k__BackingField: 995914302
---- !u!1 &6846403353061881947 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-  m_PrefabInstance: {fileID: 475086927482219960}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6098219082917576461
+--- !u!114 &3621371745394555795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6846403353061881947}
+  m_GameObject: {fileID: 6744392639426056991}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14534d284d0a4c01890ede28643e7754, type: 3}
@@ -1420,6 +1411,23 @@ MonoBehaviour:
   broadcastItemCollected: {fileID: 11400000, guid: 0a5d66ab3b80d6945a3073444ef13890, type: 2}
   <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
   <Inventory>k__BackingField: {fileID: 6963433376467322382}
+--- !u!114 &4053618067046395165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744392639426056991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df87531e2826461eb317ca90a7be77ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Player.PlayerAfterlife
+--- !u!1 &6846403353061881947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 475086927482219960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5468757192089227282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,18 +1755,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8531905391244548913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6846403353061881947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df87531e2826461eb317ca90a7be77ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Player.PlayerAfterlife
 --- !u!61 &4878217836532923939
 BoxCollider2D:
   m_ObjectHideFlags: 0
