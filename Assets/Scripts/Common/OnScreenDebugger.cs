@@ -36,8 +36,11 @@ namespace Common {
             if (instance.Messages.Count == 1) {
                 instance.NextUpdateTime = Time.time + instance.UpdateInterval;
             }
-            
-            instance.TextBox.text = string.Join('\n', instance.Messages);
+
+            if (instance.TextBox != null)
+            {
+                instance.TextBox.text = string.Join('\n', instance.Messages);   
+            }
         }
 
         private void LateUpdate() {

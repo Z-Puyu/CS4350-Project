@@ -59,7 +59,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1713595205271290530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c18dcbfc7fd0048909e2c5ad6d0f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_quick_swap.PlayerQuickSwapUIManager
+  player_inventory: {fileID: 0}
   backdrop: {fileID: 7359979358717282663}
   allQuickSwapIcons:
   - {fileID: 7805941761373931612}
@@ -145,6 +146,7 @@ MonoBehaviour:
   - {fileID: 3883164259114489949}
   - {fileID: 612777924633655171}
   - {fileID: 1679661477344141}
+  broadcastItemToUse: {fileID: 11400000, guid: bf709b8e8132c5649b8c947e52c937a2, type: 2}
 --- !u!1 &7359979358717282663
 GameObject:
   m_ObjectHideFlags: 0

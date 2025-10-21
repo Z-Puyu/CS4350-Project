@@ -12,6 +12,7 @@ namespace Game.CharacterControls {
         [field: SerializeField, MinValue(0.01f)] private float DashDistance { get; set; } = 4f;
         [field: SerializeField, MinValue(0.01f)] private float DashDuration { get; set; } = 0.18f;
         [field: SerializeField, MinValue(0f)] private float DashCooldown { get; set; } = 0.8f;
+        [field: SerializeField] private TrailRenderer DashTrail { get; set; }
 
         public Vector3 TargetDirection { get; private set; }
         protected Vector3 CurrentVelocity { get; set; }
@@ -77,12 +78,19 @@ namespace Game.CharacterControls {
             Vector3 start = RootTransform.position;
             Vector3 end = start + dir * DashDistance;
 
-            float elapsed = 0f;
-            // Optionally disable normal movement while dashing:
+            // Disable normal movement during dash
             Vector3 previousTarget = this.TargetDirection;
             this.TargetDirection = Vector3.zero;
             this.CurrentVelocity = Vector3.zero;
 
+            // Start trail
+            if (DashTrail)
+            {
+                DashTrail.Clear();
+                DashTrail.emitting = true;
+            }
+
+            float elapsed = 0f;
             while (elapsed < DashDuration)
             {
                 RootTransform.position = Vector3.Lerp(start, end, elapsed / DashDuration);
@@ -92,7 +100,13 @@ namespace Game.CharacterControls {
 
             RootTransform.position = end;
 
-            // restore movement target (it can be overridden by subsequent input)
+            // Stop trail
+            if (DashTrail)
+            {
+                DashTrail.emitting = false;
+            }
+
+            // Restore normal movement
             this.TargetDirection = previousTarget;
             isDashing = false;
         }

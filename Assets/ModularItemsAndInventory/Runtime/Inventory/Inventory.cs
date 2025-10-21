@@ -46,7 +46,10 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         
         private Dictionary<string, int> UniqueItems { get; set; } = new Dictionary<string, int>();
 
+        [field: SerializeField] private List<string> quickSwapItems = new List<string>();
+        
         public event UnityAction<ItemOperation> OnInventoryChanged;
+        public UnityEvent OnQuickSwapConsumption;
 
         /// <summary>
         /// Provides indexer access to retrieve items of a specific type definition stored in the inventory.
@@ -92,7 +95,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="id">The item ID.</param>
         /// <returns>The count of items with the ID.</returns>
-        public int Count(string id) {
+        public int Count(string id)
+        {
             return this.UniqueItems.GetValueOrDefault(id, 0);
         }
 
@@ -150,8 +154,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 this.UniqueItems[item.Id] = currQty;
             } else {
                 currQty = quantity;
-                this.Items.Add(type, new Dictionary<ItemKey, int> { { item, quantity } });
-                this.UniqueItems.Add(item.Id, 1);
+                this.Items.Add(type, new Dictionary<ItemKey, int> { { item, currQty } });
+                this.UniqueItems.Add(item.Id, currQty);
             }
 
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, oldQty, currQty, OperationType.AddItem));
@@ -216,6 +220,10 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
             int remaining = record[item] = count - quantity;
             if (remaining <= 0) {
                 record.Remove(item);
+                if (quickSwapItems.Contains(item.Id))
+                {
+                    quickSwapItems.Remove(item.Id);
+                }
             }
 
             this.UniqueItems[item.Id] -= quantity;
@@ -248,6 +256,40 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
         IEnumerator IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
+        }
+
+        public bool HandleItemForQuickSwap(string id)
+        {
+            if (isInQuickSwap(id))
+            {
+                quickSwapItems.Remove(id);
+                return false;
+            }
+            quickSwapItems.Add(id); 
+            return true;
+        }
+
+        public bool isInQuickSwap(string id)
+        {
+            return quickSwapItems.Contains(id);
+        }  
+
+        public List<string> GetQuickSwapItems()
+        {
+            return quickSwapItems;
+        }
+        
+        public void UseItem(int index)
+        {
+            if (index >= quickSwapItems.Count)
+            {
+                return;
+            }
+            string quickSwapItemId = quickSwapItems[index];
+            ItemData item;
+            ItemDatabase.TryGet(quickSwapItemId, out item);
+            Remove(1, ItemKey.From(item));
+            OnQuickSwapConsumption?.Invoke();
         }
     }
 }

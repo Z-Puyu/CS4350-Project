@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Common;
@@ -186,6 +187,15 @@ namespace Game.Player {
             }
         }
         
+
+        public void OnToggleQuickConsume(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                PlayerQuickSwapUIManager.UseItem();
+            }
+        }
+
         public void OnDash(InputAction.CallbackContext context)
         {
             if (!context.performed)
@@ -201,16 +211,15 @@ namespace Game.Player {
 
             Stamina.Consume(dashCost);
 
-            // Dash in the direction of current input (WASD)
+            // Dash direction
             Vector2 dashDir = currentMoveInput.sqrMagnitude > 0.01f 
                 ? currentMoveInput 
                 : Movement.GetLastMoveDirection();
 
             Animator.LastDashDirection = dashDir;
-            Movement.Dash(dashDir);
-            Animator.PlayDashAnimation();
 
-            OnScreenDebugger.Log("DASH executed (keyboard-based)!");
+            // Start dash
+            Movement.Dash(dashDir);
         }
     }
 }

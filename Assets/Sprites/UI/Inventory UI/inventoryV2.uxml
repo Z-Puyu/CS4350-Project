@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="SlotV2" src="project://database/Assets/Sprites/UI/Inventory%20UI/InventoryV2/SlotV2.uxml?fileID=9197481963319205126&amp;guid=8e9ff177de52b764e9ba196a121a989a&amp;type=3#SlotV2" />
-    <Style src="project://database/Assets/Sprites/UI/Inventory%20UI/InventoryV2/InventoryV2.uss?fileID=7433441132597879392&amp;guid=be27a82377594af47958bae6c213bb21&amp;type=3#InventoryV2" />
+    <ui:Template name="SlotV2" src="project://database/Assets/Sprites/UI/Inventory%20UI/SlotV2.uxml?fileID=9197481963319205126&amp;guid=8e9ff177de52b764e9ba196a121a989a&amp;type=3#SlotV2" />
+    <Style src="project://database/Assets/Sprites/UI/Inventory%20UI/InventoryV2.uss?fileID=7433441132597879392&amp;guid=be27a82377594af47958bae6c213bb21&amp;type=3#InventoryV2" />
     <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; background-color: rgba(176, 112, 60, 0.67);">
         <ui:VisualElement name="TabContainer" style="flex-grow: 0; background-color: rgb(89, 57, 31); border-left-color: rgb(255, 184, 69); border-right-color: rgb(255, 184, 69); border-top-color: rgb(255, 184, 69); border-bottom-color: rgb(255, 184, 69); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
             <ui:Button text="All items" name="AllTab" class="tab" />
@@ -24,9 +24,14 @@
                     <ui:VisualElement name="ItemIcon" style="flex-grow: 0; width: 350px; height: 350px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/Farming/animations/seed_1/grown/dry/seed_1_grown_dry-Sheet.png?fileID=-1937354148560845212&amp;guid=23089efb5264648eba5bd9c33a0982b6&amp;type=3#seed_1_grown_dry-Sheet_0&quot;); margin-bottom: 50px;" />
                     <ui:Label text="Item name is here" name="ItemName" style="font-size: 50px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 600px; -unity-text-align: middle-center; align-self: center; margin-bottom: 20px;" />
                     <ui:Label text="This is where the Item Description will appear..." name="ItemDescription" style="font-size: 30px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 300px; -unity-text-align: upper-left; align-self: center; margin-bottom: 50px;" />
-                    <ui:VisualElement name="ActionButtons" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center; justify-content: space-between; align-content: auto;">
-                        <ui:Button text="Use Item" name="UseButton" class="itemButton" />
-                        <ui:Button text="Drop Item" name="DropButton" class="itemButton" />
+                    <ui:VisualElement name="ButtonsArea" style="flex-grow: 1; flex-direction: column; align-self: center; align-items: center; justify-content: center; align-content: center; flex-wrap: nowrap; margin-top: 0;">
+                        <ui:VisualElement name="ActionButtons" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center; justify-content: space-between; align-content: auto;">
+                            <ui:Button text="Use Item" name="UseButton" class="itemButton" />
+                            <ui:Button text="Drop Item" name="DropButton" class="itemButton" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="ActionButtonsBottom" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center; justify-content: space-between; align-content: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                            <ui:Button text="Quick equip" name="QuickEquipButton" class="itemButton" style="justify-content: flex-start; flex-wrap: nowrap; visibility: visible; align-content: flex-start; align-self: center; flex-direction: column; background-position-y: center; background-position-x: center; -unity-background-scale-mode: stretch-to-fill;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
