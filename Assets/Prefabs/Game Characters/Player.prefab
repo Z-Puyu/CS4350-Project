@@ -1156,6 +1156,34 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.07963288
       objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1835835483282201204}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateQuickswapIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player_related.Player_quick_swap.PlayerQuickSwapUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364736450214849462, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: OnQuickSwapConsumption.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7659514198330222099, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -1698,6 +1726,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: af57275c-f382-472f-a1ca-91f5cfba813f
     m_ActionName: Player/OnScrollQuickSwap
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2076975899314662873}
+        m_TargetAssemblyTypeName: Game.Player.PlayerInputParser, Assembly-CSharp
+        m_MethodName: OnToggleQuickConsume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f78e2d47-baca-46d2-9e2e-a48cba7c6a03
+    m_ActionName: 'Player/UseItemDuringQuickSwap[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -2396,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4676484651197885537, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
+      propertyPath: player_inventory
+      value: 
+      objectReference: {fileID: 6963433376467322382}
     - target: {fileID: 6161798701671171656, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
       propertyPath: m_Name
       value: Quick swap slot 1

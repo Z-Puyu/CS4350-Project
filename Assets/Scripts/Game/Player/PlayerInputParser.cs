@@ -186,6 +186,15 @@ namespace Game.Player {
             }
         }
         
+
+        public void OnToggleQuickConsume(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                PlayerQuickSwapUIManager.UseItem();
+            }
+        }
+
         public void OnDash(InputAction.CallbackContext context)
         {
             if (!context.performed)
