@@ -40,6 +40,8 @@ namespace WeaponsSystem.Runtime.Combat {
         [field: SerializeField] private float swingDuration = 0.25f;
         private Coroutine swingRoutine;
         private bool isSwinging = false;
+        
+        [field: SerializeField] private TrailRenderer SwingTrail { get; set; }
 
         private void Awake() {
             if (!this.Owner) {
@@ -61,10 +63,18 @@ namespace WeaponsSystem.Runtime.Combat {
             }
             
             this.IsAttacking = true;
+            
+            if (SwingTrail)
+            { 
+                SwingTrail.Clear();
+                SwingTrail.emitting = true;   // Start emitting
+            }
+            
             if (this.Weapon.CurrentComboIndex < 0) {
                 this.IsAttacking = false;
             } else {
                 this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+                
                 // Start swing
                 if (swingRoutine != null) StopCoroutine(swingRoutine);
                 swingRoutine = StartCoroutine(SwingWeapon());
@@ -144,7 +154,12 @@ namespace WeaponsSystem.Runtime.Combat {
 
                 yield return null;
             }
-
+            
+            if (SwingTrail)
+            { 
+                SwingTrail.emitting = false;
+            }
+            
             isSwinging = false;
         }
 
