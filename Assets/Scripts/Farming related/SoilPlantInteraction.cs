@@ -7,6 +7,7 @@ using Player_related.Player_exp;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Game.Player;
 
 namespace Farming_related {
     public class SoilPlantInteraction : MonoBehaviour
@@ -358,33 +359,60 @@ namespace Farming_related {
 
         private void TryAutoReplant(string seedId)
         {
-            if (string.IsNullOrEmpty(seedId) || playerController == null) return;
+            Debug.Log("Attempting auto replant...");
 
-            Inventory inventory = playerController.GetComponent<PlayerController>().GetComponentInChildren<Inventory>();
-            if (inventory == null)
+            if (string.IsNullOrEmpty(seedId) || playerController == null)
             {
-                Debug.LogWarning("⚠️ Player inventory not found for auto replant.");
+                Debug.LogWarning("⚠️ Cannot auto replant due to missing seedId or playerController.");
                 return;
             }
+
+            // Strict lookup: only use the Inventory located under the Player root.
+            Inventory inventory = null;
+            Transform root = playerController.transform.root;
+            if (root != null)
+            {
+                inventory = root.GetComponentInChildren<Inventory>(true);
+            }
+
+            if (inventory == null)
+            {
+                Debug.LogWarning("⚠️ Player inventory not found under Player root — auto replant cancelled.");
+                return;
+            }
+
+            Debug.Log($"Using Inventory '{inventory.gameObject.name}' for auto replant. Checking inventory for seed {seedId}...");
 
             if (ItemDatabase.TryGet(seedId, out ItemData data))
             {
                 ItemKey seedKey = ItemKey.From(data);
 
-                if (inventory.Count(seedKey) > 0)
+                int count = inventory.Count(seedKey);
+                Debug.Log($"[Replant] seedKey='{seedKey}', seedId='{seedId}', count={count}");
+                if (count > 0)
                 {
-                    // Consume 1 seed and replant
                     inventory.Remove(seedKey);
-                    Debug.Log($"🌱 Auto replanted {seedId} from inventory.");
+                    Debug.Log($"🌱 Auto replanted {seedId} from inventory (removed key '{seedKey}').");
                     PlantSeed(seedId);
                 }
                 else
                 {
-                    Debug.Log($"⚠️ Auto replant failed — no {seedId} left in inventory.");
+                    Debug.LogWarning($"⚠️ Auto replant failed — no item for key '{seedKey}' in this inventory.");
+                    // dump inventory contents for diagnosis using the public enumerator
+                    Debug.Log("Inventory contents:");
+                    foreach (var kv in inventory) // inventory implements IEnumerable<KeyValuePair<ItemKey,int>>
+                    {
+                        ItemKey key = kv.Key;
+                        int qty = kv.Value;
+                        Debug.Log($" - id='{key.Id}', qty={qty}");
+                    }
                 }
+                // ...existing code...
             }
-
-            
+            else
+            {
+                Debug.LogWarning($"Seed item {seedId} not found in database for auto replant.");
+            }   
         }
 
         private void DropItem(string itemId, int count)
