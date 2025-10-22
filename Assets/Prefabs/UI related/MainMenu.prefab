@@ -69,6 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf89e40d753cee439d67403e0035c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuEvents
+  mainMenuAsset: {fileID: 0}
+  guidePanelAsset: {fileID: 0}
+  buttonAudio: {fileID: 0}
 --- !u!82 &2448751976264611938
 AudioSource:
   m_ObjectHideFlags: 0

@@ -30,9 +30,11 @@ namespace ModularItemsAndInventory.Runtime.Items {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (this.Count <= 0 || !other.TryGetComponent(out ICollector collector)) {
+                Debug.Log("[PickUp2D] Did not find ICollector component.", this);
                 return;
             }
 
+            Debug.Log("[PickUp2D] Found collector, calling Collect()", this);
             collector.Collect(this.Count, this.Item);
             Object.Destroy(this.gameObject);
         }

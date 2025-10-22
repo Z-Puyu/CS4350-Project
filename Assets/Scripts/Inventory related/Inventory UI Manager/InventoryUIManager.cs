@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Farming_related;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
@@ -30,6 +31,9 @@ namespace Inventory_related.Inventory_UI_Manager
         // Buttons
         private Button _useButton;
         private Button _dropButton;
+        private Button _quickEquipButton;
+
+        private Dictionary<string, SlotUI> mappedIdToSlotUI = new Dictionary<string, SlotUI>();
 
         private void Awake()
         {
@@ -49,6 +53,7 @@ namespace Inventory_related.Inventory_UI_Manager
             
             _useButton = _root.Q<Button>("UseButton");
             _dropButton = _root.Q<Button>("DropButton");
+            _quickEquipButton =  _root.Q<Button>("QuickEquipButton");
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
@@ -56,6 +61,7 @@ namespace Inventory_related.Inventory_UI_Manager
             // Register button actions
             _useButton.clicked += OnUseButtonClicked;
             _dropButton.clicked += OnDropButtonClicked;
+            _quickEquipButton.clicked += OnQuickEquipButtonClicked;
 
             // Listen to inventory changes
             inventory.OnInventoryChanged += HandleInventoryChanged;
@@ -66,6 +72,7 @@ namespace Inventory_related.Inventory_UI_Manager
 
         private void OnDisable()
         {
+            mappedIdToSlotUI.Clear();
             inventory.OnInventoryChanged -= HandleInventoryChanged;
         }
 
@@ -80,6 +87,14 @@ namespace Inventory_related.Inventory_UI_Manager
             _currentItemKey = itemKey;
             _itemDescription.text = itemData.Description;
             _itemName.text = itemData.Name;
+            if (inventory.isInQuickSwap(itemData.Id))
+            {
+                _quickEquipButton.text = "Quick unequip";
+            }
+            else
+            {
+                _quickEquipButton.text = "Quick equip";
+            }
         }
 
         private void RefreshInventoryUI()
@@ -90,8 +105,9 @@ namespace Inventory_related.Inventory_UI_Manager
             {
                 var slotElement = slotTemplate.CloneTree();
                 _grid.Add(slotElement);
-
-                var slotUI = new SlotUI(slotElement, this);
+                
+                var slotUI = new SlotUI(slotElement, this, inventory.isInQuickSwap(kvp.Key.Id));
+                mappedIdToSlotUI[kvp.Key.Id] = slotUI;
                 slotUI.SetData(kvp.Key, kvp.Value);
             }
         }
@@ -129,13 +145,20 @@ namespace Inventory_related.Inventory_UI_Manager
                 Debug.Log($"Use item: {itemData.Name} (not a seed, or no soil selected)");
             }
         }
-
-
+        
         private void OnDropButtonClicked()
         {
             if (!_currentItemKey.HasValue) return;
 
             Debug.Log($"Drop item: {_currentItemKey}");
+        }
+
+        private void OnQuickEquipButtonClicked()
+        {
+            if (!_currentItemKey.HasValue) return;
+            
+            bool isInQuickSwap = inventory.HandleItemForQuickSwap(_currentItemKey.Value.Id);
+            mappedIdToSlotUI[_currentItemKey.Value.Id].HandleItemForQuickSwap(isInQuickSwap);
         }
 
         public void OpenForSeedSelection(SoilPlantInteraction soil)

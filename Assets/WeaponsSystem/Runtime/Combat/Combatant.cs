@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DataStructuresForUnity.Runtime.Utilities;
 using SaintsField;
 using UnityEngine;
@@ -34,6 +35,13 @@ namespace WeaponsSystem.Runtime.Combat {
         
         private Weapon Weapon { get; set; }
         private bool IsAttacking { get; set; }
+        
+        [field: SerializeField] private float swingAngle = 180f;
+        [field: SerializeField] private float swingDuration = 0.25f;
+        private Coroutine swingRoutine;
+        private bool isSwinging = false;
+        
+        [field: SerializeField] private TrailRenderer SwingTrail { get; set; }
 
         private void Awake() {
             if (!this.Owner) {
@@ -55,10 +63,21 @@ namespace WeaponsSystem.Runtime.Combat {
             }
             
             this.IsAttacking = true;
+            
+            if (SwingTrail)
+            { 
+                SwingTrail.Clear();
+                SwingTrail.emitting = true;   // Start emitting
+            }
+            
             if (this.Weapon.CurrentComboIndex < 0) {
                 this.IsAttacking = false;
             } else {
                 this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+                
+                // Start swing
+                if (swingRoutine != null) StopCoroutine(swingRoutine);
+                swingRoutine = StartCoroutine(SwingWeapon());
             }
         }
 
@@ -103,5 +122,46 @@ namespace WeaponsSystem.Runtime.Combat {
         public void HandleComponentSetChange(ISet<WeaponComponent> components) {
             this.OnComponentSetChanged.Invoke(components);
         }
+        
+        private IEnumerator SwingWeapon()
+        {
+            if (!AttackOrigin || !Owner.transform) yield break;
+
+            isSwinging = true;
+
+            // Capture starting direction (from player to AttackOrigin)
+            Vector3 pivot = Owner.transform.position;
+            Vector3 startDirection = (AttackOrigin.position - pivot).normalized;
+            float radius = Vector3.Distance(pivot, AttackOrigin.position);
+
+            // Capture starting rotation so we can swing relative to it
+            Quaternion startRotation = AttackOrigin.rotation;
+            float halfSwing = swingAngle / 2f;
+            float t = 0f;
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime / swingDuration;
+                float currentAngle = Mathf.Lerp(-halfSwing, halfSwing, t);
+
+                // Compute new rotated direction around player
+                Quaternion rot = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+                Vector3 newDir = rot * startDirection;
+
+                // Update position & rotation
+                AttackOrigin.position = pivot + newDir * radius;
+                AttackOrigin.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg - 90f);
+
+                yield return null;
+            }
+            
+            if (SwingTrail)
+            { 
+                SwingTrail.emitting = false;
+            }
+            
+            isSwinging = false;
+        }
+
     }
 }

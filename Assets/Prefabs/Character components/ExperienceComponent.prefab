@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6590544859605995081}
   - component: {fileID: 4404123815808696982}
   - component: {fileID: 3246876447459483331}
+  - component: {fileID: 7970756188403626673}
   m_Layer: 0
   m_Name: ExperienceComponent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653218376440492187}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.34937, y: -0.44177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,6 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_exp.PlayerExp
   combatExp: 0
   farmingExp: 0
+  combatExpLevel: 0
+  farmingExpLevel: 0
+  combatSkillPoint: 0
+  farmingSkillPoint: 0
+  onCombatLevelUp: {fileID: 11400000, guid: f3f2bf3812339e2428368128a6859431, type: 2}
+  onFarmingLevelUp: {fileID: 11400000, guid: 60bfabf9203f0714290fe713d0e53483, type: 2}
 --- !u!114 &3246876447459483331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +73,34 @@ MonoBehaviour:
       - m_Target: {fileID: 4404123815808696982}
         m_TargetAssemblyTypeName: Player_related.Player_exp.PlayerExp, Assembly-CSharp
         m_MethodName: AddCombatExpFromEnemyData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7970756188403626673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653218376440492187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 46ddefcd11c362144919ac5872016a9c, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4404123815808696982}
+        m_TargetAssemblyTypeName: Player_related.Player_exp.PlayerExp, Assembly-CSharp
+        m_MethodName: AddFarmingExpFromHarvesting
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -2,13 +2,15 @@
 using System.Text;
 using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
+using Player_related.Player_exp;
 using UnityEngine;
 
 namespace Game.Items {
     [Serializable]
     public sealed class Plantable : ItemProperty {
-        [field: SerializeField] private int GrowthDuration { get; set; }
-        [field: SerializeField] private int WateringRequirement { get; set; }
+        [field: SerializeField] public int GrowthDuration { get; private set; }
+        [field: SerializeField] public int WateringRequirement { get; private set; }
+        [field: SerializeField] public FarmingExpObject FarmingExpObject { get; private set; }
         
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
@@ -20,13 +22,13 @@ namespace Game.Items {
         public override IItemProperty Instantiate() {
             return new Plantable {
                 GrowthDuration = this.GrowthDuration, 
-                WateringRequirement = this.WateringRequirement
+                WateringRequirement = this.WateringRequirement,
+                FarmingExpObject = this.FarmingExpObject
             };
         }
 
         public override void Process(in Item item, GameObject target) {
-            // TODO: Implement this if anything needs to interact with a plantable item
-            // example: a plot of land may take in a seed item and instantiate a plant on it
+            // Example: handle planting logic here later
         }
     }
 }

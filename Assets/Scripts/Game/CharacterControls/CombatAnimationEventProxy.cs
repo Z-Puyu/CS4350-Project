@@ -2,6 +2,7 @@
 using SaintsField;
 using SaintsField.Samples.Scripts.IssueAndTesting.Issue.Issue8;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaponsSystem.Runtime.Combat;
 
 namespace Game.CharacterControls {
@@ -12,7 +13,11 @@ namespace Game.CharacterControls {
         [field: SerializeField, Required] private Transform RootTransform { get; set; }
         [field: SerializeField, Required] private GameCharacterController GameCharacterController { get; set; }
         
+        [field: SerializeField] UnityEvent onAttackEvent;
+        [field: SerializeField] UnityEvent onAttackEndEvent;
+        
         [field: SerializeField, AnimatorParam(nameof(this.GetAnimator), AnimatorControllerParameterType.Bool)]
+        
         private int AnimatorDeathFlag { get; set; }
         
         private Animator GetAnimator() {
@@ -26,10 +31,12 @@ namespace Game.CharacterControls {
         public void OnAttackEvent() {
             Vector3 forward = Math.Sign(this.RootTransform.localScale.x) * Vector3.right;
             this.Combatant.PerformAttack(forward);
+            onAttackEvent.Invoke();
         }
-
+        
         public void OnAttackEndEvent() {
             this.Combatant.QueryFinishAttack();
+            onAttackEndEvent.Invoke();
         }
 
         public void OnDeathEvent() {

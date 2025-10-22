@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Common;
@@ -9,6 +10,7 @@ using InteractionSystem.Runtime;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using Player_related.Player_quick_swap;
 using SaintsField;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,7 +27,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
-        [field: SerializeField, Required] private SpriteAnimator Animator { get; set; }
+        [field: SerializeField, Required] private FarmerSpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
         [field: SerializeField, Required] private AbilityCaster AbilityCaster { get; set; }
         [field: SerializeField, Required] private AbilityTargeter AbilityTargeter { get; set; }
@@ -33,7 +35,12 @@ namespace Game.Player {
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
-
+        [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        
+        [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
+        
+        private bool isQuickSwap = false;
+        private Vector2 currentMoveInput = Vector2.zero; // store the latest WASD input
         
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed) {
@@ -87,10 +94,13 @@ namespace Game.Player {
         {
             if (context.performed)
             {
-                Vector2 input = context.ReadValue<Vector2>();
-                this.Movement.MoveIn(input);
-            } else if (context.canceled) {
-                this.Movement.Stop();
+                currentMoveInput = context.ReadValue<Vector2>();
+                Movement.MoveIn(currentMoveInput);
+            }
+            else if (context.canceled)
+            {
+                currentMoveInput = Vector2.zero;
+                Movement.Stop();
             }
         }
 
@@ -152,6 +162,64 @@ namespace Game.Player {
             }
 
             this.Weaponry.Switch(2);
+        }
+        
+        public void OnQuickSwapPage(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                isQuickSwap = true;
+                PlayerQuickSwapUIManager.EnableBackdrop();
+            }
+            else if (context.canceled)
+            {
+                isQuickSwap = false;
+                PlayerQuickSwapUIManager.StartClosingBackdrop();
+            }
+        }
+        
+        public void OnToggleQuickSwap(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                Vector2 scrollDir = context.ReadValue<Vector2>();
+                PlayerQuickSwapUIManager.ToggleSelection(scrollDir.y);
+            }
+        }
+        
+
+        public void OnToggleQuickConsume(InputAction.CallbackContext context)
+        {
+            if (context.performed && isQuickSwap)
+            {
+                PlayerQuickSwapUIManager.UseItem();
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            const int dashCost = 20;
+
+            if (!Stamina.HasEnough(dashCost))
+            {
+                OnScreenDebugger.Log("Not enough stamina to dash.");
+                return;
+            }
+
+            Stamina.Consume(dashCost);
+
+            // Dash direction
+            Vector2 dashDir = currentMoveInput.sqrMagnitude > 0.01f 
+                ? currentMoveInput 
+                : Movement.GetLastMoveDirection();
+
+            Animator.LastDashDirection = dashDir;
+
+            // Start dash
+            Movement.Dash(dashDir);
         }
     }
 }
