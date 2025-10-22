@@ -20,6 +20,7 @@ MonoBehaviour:
   <Properties>k__BackingField:
   - rid: 4925886426016907350
   - rid: 5797885423291465731
+  - rid: 5797885850866417744
   references:
     version: 2
     RefIds:
@@ -35,3 +36,7 @@ MonoBehaviour:
         <GrowthDuration>k__BackingField: 300
         <WateringRequirement>k__BackingField: 1
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: 6116cfab740944c43a842e3473a33136, type: 2}
+    - rid: 5797885850866417744
+      type: {class: Stackable, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
+      data:
+        <StackLimit>k__BackingField: 20
