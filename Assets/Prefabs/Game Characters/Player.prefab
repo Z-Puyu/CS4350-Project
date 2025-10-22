@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4157221376081016574}
   m_Layer: 0
   m_Name: Combat level up
-  m_TagString: Untagged
+m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,38 +489,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3142445802842594223}
-  - component: {fileID: 8874084625110485873}
-  - component: {fileID: 5804928491059888873}
+  - component: {fileID: 5340205345432882912}
+  - component: {fileID: 2526590131007667173}
+  - component: {fileID: 3227091727185411073}
   m_Layer: 5
-  m_Name: InventoryUIManager
+  m_Name: BlacksmithUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3142445802842594223
+--- !u!4 &5340205345432882912
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3977834798771952007}
+  m_GameObject: {fileID: 4314263034823983887}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127567362339336635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8874084625110485873
+--- !u!114 &2526590131007667173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3977834798771952007}
+  m_GameObject: {fileID: 4314263034823983887}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &5804928491059888873
+--- !u!114 &3227091727185411073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -920,7 +920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3142445802842594223}
+  - {fileID: 5340205345432882912}
   - {fileID: 853389654264226462}
   - {fileID: 8726377236501616500}
   - {fileID: 5271378024318425583}
