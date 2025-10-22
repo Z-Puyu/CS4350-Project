@@ -1,5 +1,6 @@
 using System.Collections;
 using Events;
+using Game.Player;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
