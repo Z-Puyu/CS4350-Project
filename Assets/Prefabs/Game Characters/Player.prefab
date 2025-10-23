@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4157221376081016574}
   m_Layer: 0
   m_Name: Combat level up
-m_TagString: Untagged
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,13 +176,13 @@ MonoBehaviour:
   <OnStaminaDepleted>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6744392639426056991}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 6888346556913851788}
+        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
+        m_MethodName: UpdateStamina
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2526590131007667173}
   - component: {fileID: 3227091727185411073}
   m_Layer: 5
-  m_Name: BlacksmithUIManager
+  m_Name: InventoryUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314263034823983887}
+  m_GameObject: {fileID: 3977834798771952007}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314263034823983887}
+  m_GameObject: {fileID: 3977834798771952007}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da06682de3ac464489a94bcbfe07b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager.InventoryUIManager
-  uiDocument: {fileID: 8874084625110485873}
+  uiDocument: {fileID: 2526590131007667173}
   slotTemplate: {fileID: 9197481963319205126, guid: 8e9ff177de52b764e9ba196a121a989a, type: 3}
   inventory: {fileID: 6963433376467322382}
   seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
@@ -2602,13 +2602,17 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 4966769171549703863}
+    - target: {fileID: 2075937850055422755, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 7896945243682354547}
     - target: {fileID: 2546718422318084813, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2546718422318084813, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4201072404120615387, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_Pivot.x
@@ -2690,13 +2694,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7503450755970251009, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503450755970251009, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8675886182559523284, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_Name
       value: Player UI manager
       objectReference: {fileID: 0}
     - target: {fileID: 8675886182559523284, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2997,7 +3009,7 @@ PrefabInstance:
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <InventoryUIManager>k__BackingField
       value: 
-      objectReference: {fileID: 5804928491059888873}
+      objectReference: {fileID: 3227091727185411073}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <PlayerQuickSwapUIManager>k__BackingField
       value: 
