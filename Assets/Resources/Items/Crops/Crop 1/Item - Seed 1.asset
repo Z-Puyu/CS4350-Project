@@ -36,6 +36,7 @@ MonoBehaviour:
         <GrowthDuration>k__BackingField: 30
         <WateringRequirement>k__BackingField: 1
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: 6116cfab740944c43a842e3473a33136, type: 2}
+        <AttackBuff>k__BackingField: 1000
     - rid: 5797885850866417744
       type: {class: Stackable, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
