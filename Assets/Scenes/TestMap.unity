@@ -625,13 +625,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3131963813042837422, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131963813042837422, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227091727185411073, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 941275242}
     - target: {fileID: 3587219407281782821, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265353391164346235, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6846403353061881947, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917711693267311714, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917711693267311714, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7683393248670280377, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
       propertyPath: m_Sprite
@@ -1637,7 +1661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3815172192650684476, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.15
+      value: -21.33
       objectReference: {fileID: 0}
     - target: {fileID: 3815172192650684476, guid: f00fbde2610933d4cab1a94ce9a2ae91, type: 3}
       propertyPath: m_LocalPosition.y
@@ -59206,6 +59230,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96260e4c705f781418c71967a6b2a6af, type: 3}
+--- !u!114 &941275242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2526590131007667173, guid: 159f91ce46426b54daf1b6a547cb581d, type: 3}
+  m_PrefabInstance: {fileID: 197813702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
 --- !u!1001 &950220420
 PrefabInstance:
   m_ObjectHideFlags: 0

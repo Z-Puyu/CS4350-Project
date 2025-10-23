@@ -51,8 +51,6 @@ namespace GameplayAbilities.Runtime.StaminaSystem
             this.Root.AddModifier(mod);
 
             lastConsumeTime = Time.time;
-            if (newValue <= 0)
-                this.OnStaminaDepleted.Invoke();
         }
 
         public void Refill()
@@ -85,6 +83,7 @@ namespace GameplayAbilities.Runtime.StaminaSystem
             if (change.AttributeName != this.StaminaAttribute.Id)
                 return;
 
+            this.OnStaminaDepleted.Invoke();
             this.OnStaminaChanged?.Invoke((change.OldValue, change.CurrentValue));
 
 #if DEBUG
