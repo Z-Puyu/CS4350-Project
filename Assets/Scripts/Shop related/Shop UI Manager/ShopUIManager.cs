@@ -16,7 +16,7 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
 
         private ItemKey? _currentItemKey;
-        
+
         private VisualElement _root;
         private VisualElement _grid;
 
@@ -28,7 +28,7 @@ namespace Shop_related.Shop_UI_Manager
         public static ShopUIManager Instance;
 
         public SoilPlantInteraction CurrentSoil { get; private set; }
-        
+
         // Buttons
         private Button _buyButton;
 
@@ -40,27 +40,35 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnEnable()
         {
+            Debug.Log("[ShopKeeper] Checkpoint 1", this);
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
+            Debug.Log("[ShopKeeper] Checkpoint 2", this);
 
             _itemDescriptionContainer = _root.Q<VisualElement>("ItemDescriptionContainer");
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
-            
+            Debug.Log("[ShopKeeper] Checkpoint 3", this);
+
             _buyButton = _root.Q<Button>("BuyButton");
+            Debug.Log("[ShopKeeper] Checkpoint 4", this);
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
-            
+            Debug.Log("[ShopKeeper] Checkpoint 5", this);
+
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
+            Debug.Log("[ShopKeeper] Checkpoint 6", this);
 
             // Listen to inventory changes
             playerInventory.OnInventoryChanged += HandleInventoryChanged;
+            Debug.Log("[ShopKeeper] Checkpoint 7", this);
 
             // Initial draw
             RefreshInventoryUI();
+            Debug.Log("[ShopKeeper] Checkpoint 8", this);
         }
 
         private void OnDisable()
@@ -83,18 +91,30 @@ namespace Shop_related.Shop_UI_Manager
 
         private void RefreshInventoryUI()
         {
+            Debug.Log("[ShopKeeper] Refresh Inventory UI start", this);
+            Debug.Log($"[ShopKeeper] _grid: {_grid}, is null: {_grid == null}", this);
             _grid.Clear();
-            
-            foreach (var kvp in playerInventory) // kvp.Key = ItemKey, kvp.Value = quantity
+
+            Debug.Log("[ShopKeeper] for each start start", this);
+            foreach (var kvp in shopInventory.ItemsForSale) // kvp.Key = ItemKey, kvp.Value = quantity
             {
                 var slotElement = slotTemplate.CloneTree();
                 _grid.Add(slotElement);
 
                 var shopSlotUI = new ShopSlotUI(slotElement, this);
-                shopSlotUI.SetData(kvp.Key, kvp.Value);
+                shopSlotUI.SetData(kvp.itemKey, kvp.stock);
             }
+            Debug.Log("[ShopKeeper] for each start end", this);
         }
-        
+        public void SetShopInventory(ShopInventory inventory)
+        {
+            Debug.Log("[ShopKeeper] Set Shop Inventory called start", this);
+            this.shopInventory = inventory;
+            Debug.Log("[ShopKeeper] Set Shop Inventory called End", this);
+            Debug.Log($"[ShopKeeper] shopInventory: {shopInventory}", this);
+            RefreshInventoryUI();
+        }
+
         // === Button handlers ===
         private void OnBuyButtonClicked()
         {
