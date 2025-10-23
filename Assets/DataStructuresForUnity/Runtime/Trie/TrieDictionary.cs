@@ -13,44 +13,163 @@ namespace DataStructuresForUnity.Runtime.Trie {
     /// <typeparam name="V">The type of values stored in the dictionary.</typeparam>
     public class TrieDictionary<K, T, V> : ITrie<K, T>, IDictionary<K, V> where K : IEnumerable<T> {
         private sealed class Entry {
-            public SortedList<T, Entry> Children { get; } = new SortedList<T, Entry>(Comparer<T>.Default);
-            public bool IsEndOfKey { get; private set; }
-            public bool IsEndOfToken { get; set; }
-            public bool IsLeaf => this.Children.Count == 0;
-            public K Key { get; private set; }
-            public V Value { get; private set; }
+            internal IDictionary<T, Entry> Children { get; } = new SortedDictionary<T, Entry>(Comparer<T>.Default);
+            internal bool IsEndOfKey { get; private set; }
+            internal bool IsLeaf => this.Children.Count == 0;
+            internal K Key { get; private set; }
+            internal V Value { get; private set; }
+            internal int Count { get; private set; }
+            
+            private bool MarkAsEndOfKey(K key, V value) {
+                if (this.IsEndOfKey) {
+                    return false;
+                }
 
-            public void Empty() {
+                this.Count += 1;
+                this.IsEndOfKey = true;
+                this.Key = key;
+                this.Value = value;
+                return true;
+            }
+
+            internal bool Clear() {
+                if (this.IsLeaf && !this.IsEndOfKey) {
+                    return false;
+                }
+                
                 this.IsEndOfKey = false;
-                this.IsEndOfToken = false;
                 this.Children.Clear();
                 this.Key = default;
                 this.Value = default;
+                this.Count = 0;
+                return true;
             }
+            
+            internal bool TryInsert(K key, V value, IEnumerator<T> enumerator) {
+                if (!enumerator.MoveNext()) {
+                    return this.MarkAsEndOfKey(key, value);
+                }
+                
+                T element = enumerator.Current;
+                while (element is null && enumerator.MoveNext()) {
+                    element = enumerator.Current;
+                }
 
-            public void Put(K key, V value) {
-                this.Key = key;
-                this.Value = value;
-                this.IsEndOfKey = true;
-                this.IsEndOfToken = true;
-            }
-
-            public void EraseEntry() {
-                this.Key = default;
-                this.Value = default;
-                this.IsEndOfKey = false;
-            }
-
-            public IEnumerable<KeyValuePair<K, V>> AllChildEntries() {
-                Stack<Entry> stack = new Stack<Entry>();
-                stack.Push(this);
-                while (stack.TryPop(out Entry curr)) {
-                    if (curr.IsEndOfKey) {
-                        yield return new KeyValuePair<K, V>(curr.Key, curr.Value);
+                if (element is null) {
+                    return this.MarkAsEndOfKey(key, value);
+                }
+                
+                if (this.Children.TryGetValue(element, out Entry entry)) {
+                    if (!entry.TryInsert(key, value, enumerator)) {
+                        return false;
                     }
 
-                    for (int i = curr.Children.Count - 1; i >= 0; i -= 1) {
-                        stack.Push(curr.Children.Values[i]);
+                    this.Count += 1;
+                    return true;
+                }
+
+                this.Count += 1;
+                entry = new Entry();
+                this.Children.Add(element, entry);
+                return entry.TryInsert(key, value, enumerator);
+            }
+            
+            internal bool HasKey(IEnumerator<T> enumerator, bool hasSeparator, T separator, out Entry last) {
+                last = null;
+                if (!enumerator.MoveNext()) {
+                    return hasKey(out last);
+                }
+                
+                T element = enumerator.Current;
+                while (element is null && enumerator.MoveNext()) {
+                    element = enumerator.Current;
+                }
+
+                if (element is null) {
+                    return hasKey(out last);
+                }
+                
+                return this.Children.TryGetValue(element, out Entry child) &&
+                       child.HasKey(enumerator, hasSeparator, separator, out last);
+                
+                bool hasKey(out Entry entry) {
+                    bool isKey = this.IsEndOfKey && (this.Key?.Any() ?? false) &&
+                                 (!hasSeparator || !EqualityComparer<T>.Default.Equals(this.Key.Last(), separator));
+                    entry = isKey ? this : null;
+                    return isKey;
+                }
+            }
+
+            internal bool HasPrefix(IEnumerator<T> enumerator, bool hasSeparator, T separator, out Entry last) {
+                last = null;
+                if (!enumerator.MoveNext()) {
+                    return isEndOfPrefix(out last);
+                }
+                
+                T element = enumerator.Current;
+                while (element is null && enumerator.MoveNext()) {
+                    element = enumerator.Current;
+                }
+
+                if (element is null) {
+                    return isEndOfPrefix(out last);
+                }
+                
+                return this.Children.TryGetValue(element, out Entry child) &&
+                       child.HasPrefix(enumerator, hasSeparator, separator, out last);
+
+                bool isEndOfPrefix(out Entry entry) {
+                    bool isEnd = !hasSeparator || this.Children.ContainsKey(separator);
+                    entry = isEnd ? this : null;
+                    return isEnd;
+                }
+            }
+            
+            internal bool Remove(IEnumerator<T> enumerator) {
+                if (!enumerator.MoveNext()) {
+                    return removeSelf();
+                }
+                
+                T element = enumerator.Current;
+                while (element is null && enumerator.MoveNext()) {
+                    element = enumerator.Current;
+                }
+                
+                if (element is null) {
+                    return removeSelf();
+                }
+
+                if (!this.Children.TryGetValue(element, out Entry child) || !child.Remove(enumerator)) {
+                    return false;
+                }
+
+                this.Count -= 1;
+                if (child.IsLeaf && !child.IsEndOfKey) {
+                    this.Children.Remove(element);
+                }
+                    
+                return true;
+                
+                bool removeSelf() {
+                    if (!this.IsEndOfKey) {
+                        return false;
+                    }
+
+                    this.IsEndOfKey = false;
+                    this.Count -= 1;
+                    this.Value = default;
+                    return true;
+                }
+            }
+
+            internal IEnumerable<KeyValuePair<K, V>> AllChildEntries() {
+                if (this.IsEndOfKey) {
+                    yield return new KeyValuePair<K, V>(this.Key, this.Value);
+                }
+                
+                foreach (Entry child in this.Children.Values) {
+                    foreach (KeyValuePair<K, V> pair in child.AllChildEntries()) {
+                        yield return pair;
                     }
                 }
             }
@@ -82,7 +201,13 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// Must implement <see cref="IEnumerable{T}"/>.</typeparam>
         /// <typeparam name="T">The type of elements in the key sequences.</typeparam>
         /// <typeparam name="V">The type of values stored in the dictionary.</typeparam>
+        /// <param name="separator">The separator token.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="separator"/> is null.</exception>
         public TrieDictionary(T separator) {
+            if (separator is null) {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            
             this.Separator = separator;
             this.HasSeparator = true;
         }
@@ -120,7 +245,7 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// Removes all key-value pairs from the TrieDictionary.
         /// </summary>
         public void Clear() {
-            this.Root.Empty();
+            this.Root.Clear();
             this.Count = 0;
         }
 
@@ -172,28 +297,7 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// Must be a sequence type implementing <see cref="IEnumerable{T}"/>.</param>
         /// <param name="value">The value associated with the specified key.</param>
         public void Add(K key, V value) {
-            Entry curr = this.Root;
-            foreach (T element in key) {
-                if (!this.HasSeparator) {
-                    curr.IsEndOfToken = true;
-                } else if (EqualityComparer<T>.Default.Equals(element, this.Separator)) {
-                    curr.IsEndOfToken = true;
-                    continue;
-                }
-
-                if (!curr.Children.TryGetValue(element, out Entry next)) {
-                    next = new Entry();
-                    curr.Children.Add(element, next);
-                }
-
-                curr = next;
-            }
-
-            if (!curr.IsEndOfKey) {
-                this.Count += 1;
-            }
-
-            curr.Put(key, value);
+            this.Root.TryInsert(key, value, key.GetEnumerator());
         }
 
         /// <summary>
@@ -204,20 +308,7 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// <param name="key">The key to locate in the TrieDictionary.</param>
         /// <returns>True if the specified key exists in the TrieDictionary; otherwise, false.</returns>
         public bool ContainsKey(K key) {
-            Entry curr = this.Root;
-            foreach (T element in key) {
-                if (this.HasSeparator && EqualityComparer<T>.Default.Equals(element, this.Separator)) {
-                    continue;
-                }
-
-                if (!curr.Children.TryGetValue(element, out Entry next)) {
-                    return false;
-                }
-
-                curr = next;
-            }
-
-            return curr.IsEndOfKey;
+            return this.Root.HasKey(key.GetEnumerator(), this.HasSeparator, this.Separator, out Entry _);
         }
 
         /// <summary>
@@ -226,37 +317,9 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// <param name="key">The key of the entry to be removed.</param>
         /// <returns>True if the key was successfully found and removed; otherwise, false.</returns>
         public bool Remove(K key) {
-            return this.RemoveFrom(this.Root, key.GetEnumerator());
+            return this.Root.Remove(key.GetEnumerator());
         }
-
-        private bool RemoveFrom(Entry entry, IEnumerator<T> it) {
-            if (!it.MoveNext()) {
-                if (!entry.IsEndOfKey) {
-                    return false;
-                }
-
-                entry.EraseEntry();
-                this.Count -= 1;
-                return true;
-            }
-
-            T token = it.Current;
-            if (token == null || (this.HasSeparator && EqualityComparer<T>.Default.Equals(token, this.Separator))) {
-                return this.RemoveFrom(entry, it);
-            }
-
-            if (!entry.Children.TryGetValue(token, out Entry next)) {
-                return false;
-            }
-
-            bool hasRemoved = this.RemoveFrom(next, it);
-            if (next.IsLeaf && !next.IsEndOfKey) {
-                entry.Children.Remove(token);
-            }
-
-            return hasRemoved;
-        }
-
+        
         /// <summary>
         /// Attempts to retrieve the value associated with the specified key in the Trie dictionary.
         /// </summary>
@@ -270,25 +333,11 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// <c>true</c> if the key is found in the Trie dictionary; otherwise, <c>false</c>.
         /// </returns>
         public bool TryGetValue(K key, out V value) {
-            Entry curr = this.Root;
-            foreach (T element in key) {
-                if (this.HasSeparator && EqualityComparer<T>.Default.Equals(element, this.Separator)) {
-                    continue;
-                }
-
-                if (!curr.Children.TryGetValue(element, out Entry next)) {
-                    value = default;
-                    return false;
-                }
-
-                curr = next;
-            }
-
-            if (curr.IsEndOfKey) {
-                value = curr.Value;
+            if (this.Root.HasPrefix(key.GetEnumerator(), this.HasSeparator, this.Separator, out Entry entry)) {
+                value = entry.Value;
                 return true;
             }
-
+            
             value = default;
             return false;
         }
@@ -310,123 +359,54 @@ namespace DataStructuresForUnity.Runtime.Trie {
         /// If the trie does not define a separator, any prefix string of an existing key is considered present.
         /// </example>
         public bool ContainsPrefix(IEnumerable<T> prefix) {
-            if (prefix == null) {
-                return false;
-            }
-
-            T[] array = prefix.ToArray();
-            if (array[^1].Equals(this.Separator)) {
-                return false;
-            }
-
-            Entry curr = this.Root;
-            foreach (T element in array) {
-                if (this.HasSeparator && EqualityComparer<T>.Default.Equals(element, this.Separator)) {
-                    continue;
-                }
-
-                if (!curr.Children.TryGetValue(element, out Entry next)) {
-                    return false;
-                }
-
-                curr = next;
-            }
-
-            return curr.IsEndOfToken;
+            return prefix is not null && 
+                   this.Root.HasPrefix(prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry _);
         }
 
-        public IEnumerable<K> EnumerateWithPrefix(IEnumerable<T> prefix) {
-            return this.HasEntry(prefix, out Entry entry) ? entry.AllChildEntries().Select(kv => kv.Key) : Enumerable.Empty<K>();
+        public IEnumerable<K> PrefixSearch(IEnumerable<T> prefix) {
+            if (prefix is null ||
+                !this.Root.HasPrefix(prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry entry)) {
+                return Enumerable.Empty<K>();
+            }
+
+            return entry.AllChildEntries().Select(kv => kv.Key);
         }
 
         public bool RemoveAllWithPrefix(IEnumerable<T> prefix) {
-            return prefix is not null && removeFrom(this.Root, prefix.GetEnumerator());
-            
-            bool removeFrom(Entry entry, IEnumerator<T> it) {
-                if (!it.MoveNext()) {
-                    if (!entry.IsEndOfToken) {
-                        return false;
-                    }
-                    
-                    this.Count -= entry.AllChildEntries().Count();
-                    entry.Empty();
-                    return true;
-                }
-
-                T token = it.Current;
-                if (token == null || (this.HasSeparator && EqualityComparer<T>.Default.Equals(token, this.Separator))) {
-                    return removeFrom(entry, it); // skip separator
-                }
-
-                if (!entry.Children.TryGetValue(token, out Entry next)) {
-                    return false;
-                }
-
-                bool hasRemoved = removeFrom(next, it);
-                if (next.IsLeaf && !next.IsEndOfKey) {
-                    entry.Children.Remove(token);
-                }
-
-                return hasRemoved;
-            }
+            return prefix is not null && this.Root.HasPrefix(
+                prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry last
+            ) && last.Clear();
         }
 
         public bool Remove(IEnumerable<T> key) {
-            return this.RemoveFrom(this.Root, key.GetEnumerator());
+            return key is not null && this.Root.Remove(key.GetEnumerator());
         }
 
         public IEnumerable<K> Enumerate() {
             return this.Root.AllChildEntries().Select(kv => kv.Key);
         }
 
-        public IEnumerable<KeyValuePair<K, V>> CollectAllWithPrefix(IEnumerable<T> prefix) {
-            return this.HasEntry(prefix, out Entry entry)
-                    ? entry.AllChildEntries()
+        public IEnumerable<KeyValuePair<K, V>> PrefixSearchEntry(IEnumerable<T> prefix) {
+            return this.Root.HasPrefix(prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry e)
+                    ? e.AllChildEntries()
                     : Enumerable.Empty<KeyValuePair<K, V>>();
         }
 
         public S Aggregate<S>(IEnumerable<T> prefix, S seed, Func<S, V, S> aggregator) {
-            return this.HasEntry(prefix, out Entry entry) 
-                    ? entry.AllChildEntries().Aggregate(seed, (current, kv) => aggregator(current, kv.Value))
+            return this.Root.HasPrefix(prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry e) 
+                    ? e.AllChildEntries().Aggregate(seed, (current, kv) => aggregator(current, kv.Value))
                     : seed;
         }
         
         public void ForEachWithPrefix(IEnumerable<T> prefix, Action<K, V> action) {
-            if (prefix is null || !this.HasEntry(prefix, out Entry entry)) {
+            if (prefix is null ||
+                !this.Root.HasPrefix(prefix.GetEnumerator(), this.HasSeparator, this.Separator, out Entry entry)) {
                 return;
             }
 
             foreach (KeyValuePair<K, V> kv in entry.AllChildEntries()) {
                 action(kv.Key, kv.Value);
             }
-        }
-        
-        private bool HasEntry(IEnumerable<T> prefix, out Entry entry) {
-            if (prefix == null) {
-                entry = null;
-                return false;
-            }
-            
-            T[] array = prefix.ToArray();
-            if (array.Length == 0 || this.HasSeparator && array[^1].Equals(this.Separator)) {
-                entry = null;
-                return false;
-            }
-
-            entry = this.Root;
-            foreach (T element in array) {
-                if (this.HasSeparator && EqualityComparer<T>.Default.Equals(element, this.Separator)) {
-                    continue;
-                }
-
-                if (!entry.Children.TryGetValue(element, out Entry next)) {
-                    return false;
-                }
-
-                entry = next;
-            }
-            
-            return entry != this.Root && entry.IsEndOfToken;
         }
     }
 }

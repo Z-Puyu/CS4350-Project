@@ -22,7 +22,7 @@ namespace GameplayAbilities.Runtime.Attributes {
 
         public static IEnumerable<AttributeType> FindAllSubtypes(string id) {
             return Singleton<AttributeDatabase>.Instance.AttributeTypes
-                                               .CollectAllWithPrefix(id)
+                                               .PrefixSearchEntry(id)
                                                .Select(pair => pair.Value);
         }
     }
