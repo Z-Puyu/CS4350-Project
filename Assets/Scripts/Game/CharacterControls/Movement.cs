@@ -72,6 +72,15 @@ namespace Game.CharacterControls {
             StartCoroutine(DashRoutine(new Vector3(dir.x, dir.y, 0f).normalized));
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            StopAllCoroutines();
+            RootTransform.position += new Vector3(-lastMoveDirection.x/2.0f, -lastMoveDirection.y/2.0f, 0).normalized;
+            DashTrail.Clear(); 
+            DashTrail.emitting = false;
+            isDashing = false;
+        }
+
         private IEnumerator DashRoutine(Vector3 dir)
         {
             isDashing = true;
