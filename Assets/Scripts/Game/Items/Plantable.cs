@@ -11,7 +11,8 @@ namespace Game.Items {
         [field: SerializeField] public int GrowthDuration { get; private set; }
         [field: SerializeField] public int WateringRequirement { get; private set; }
         [field: SerializeField] public FarmingExpObject FarmingExpObject { get; private set; }
-        
+        [field: SerializeField] public float AttackBuff { get; private set; }
+
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
             sb.Append($"-GrowthDuration:{this.GrowthDuration}");
@@ -23,7 +24,8 @@ namespace Game.Items {
             return new Plantable {
                 GrowthDuration = this.GrowthDuration, 
                 WateringRequirement = this.WateringRequirement,
-                FarmingExpObject = this.FarmingExpObject
+                FarmingExpObject = this.FarmingExpObject,
+                AttackBuff = this.AttackBuff
             };
         }
 

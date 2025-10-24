@@ -8,6 +8,7 @@ using Player_related.Player_exp;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Game.Player;
 
 namespace Farming_related {
     public class SoilPlantInteraction : MonoBehaviour
@@ -44,9 +45,16 @@ namespace Farming_related {
         private Animator animator;
         private Transform player;
         private PlayerController playerController;
+    // persisted plantable for buff values
+    private Game.Items.Plantable currentPlantable;
+    // player's AttributeSet to apply global buff to
+    private GameplayAbilities.Runtime.Attributes.AttributeSet playerAttributeSet;
+    // active modifier applied to player (so we can remove it later)
+    private GameplayAbilities.Runtime.Modifiers.Modifier activePlayerModifier = GameplayAbilities.Runtime.Modifiers.Modifier.Empty;
 
         public delegate void OnHarvest();
         public event OnHarvest HarvestEvent;
+
 
         void Awake() => this.animator = GetComponent<Animator>();
         void Start()
@@ -55,6 +63,10 @@ namespace Farming_related {
             playerController = FindObjectOfType<PlayerController>();
 
             if (promptUI != null) promptUI.SetActive(false);
+
+            if (player != null) {
+                playerAttributeSet = player.GetComponentInChildren<GameplayAbilities.Runtime.Attributes.AttributeSet>();
+            }
         }
 
         void Update()
@@ -135,6 +147,11 @@ namespace Farming_related {
             PlantStage previousStage = currentStage;
             UpdatePlantStageByProgress();
 
+            // If stage changed, apply/remove flat buff based on new stage
+            if (currentStage != previousStage)
+            {
+                ApplyStageBuff(currentStage);
+            }
             // Reset waterings when advancing a stage that still requires watering
             if (currentStage != previousStage && currentStage <= PlantStage.Seedling)
             {
@@ -228,6 +245,9 @@ namespace Farming_related {
 
         public void PlantSeed(string seedId)
         {
+            // ensure player references are available before we try to apply buffs
+            EnsurePlayerRefs();
+
             plantedSeedId = seedId;
             hasPlant = true;
             currentStage = PlantStage.Planted;
@@ -254,6 +274,8 @@ namespace Farming_related {
                 
                 if (plantable != null)
                 {
+                    // persist plantable so we can read AttackBuff later
+                    this.currentPlantable = plantable;
                     float duration = Mathf.Max(1f, plantable.GrowthDuration);
                     this.baseGrowthSpeed = 1f / duration;
                     this.requiredWaterings = plantable.WateringRequirement;
@@ -274,6 +296,45 @@ namespace Farming_related {
             }
 
             PlayPlantAnimation("dry");
+            // Initialize buff state for newly planted seed
+            ApplyStageBuff(currentStage);
+        }
+
+        // Ensure player transform and attribute set are cached (recovery helper)
+        private void EnsurePlayerRefs()
+        {
+            // Try to use the same root-based lookup pattern as auto-replant: prefer the PlayerController root
+            if (playerController == null)
+            {
+                playerController = FindObjectOfType<PlayerController>();
+            }
+
+            if (player == null)
+            {
+                var p = GameObject.FindGameObjectWithTag("Player");
+                if (p != null) player = p.transform;
+            }
+
+            if (playerAttributeSet == null)
+            {
+                // 1) Try to find AttributeSet under the PlayerController root (preferred)
+                if (playerController != null)
+                {
+                    var root = playerController.transform.root;
+                    if (root != null)
+                    {
+                        playerAttributeSet = root.GetComponentInChildren<GameplayAbilities.Runtime.Attributes.AttributeSet>(true);
+                    }
+                }
+
+                // 2) Fallback: find under the player transform
+                if (playerAttributeSet == null && player != null)
+                {
+                    playerAttributeSet = player.GetComponentInChildren<GameplayAbilities.Runtime.Attributes.AttributeSet>(true);
+                }
+            }
+
+            Debug.Log($"[PlantBuff] EnsurePlayerRefs: player={(player!=null?player.name:"null")}, playerController={(playerController!=null?playerController.name:"null")}, playerAttributeSet={(playerAttributeSet!=null?playerAttributeSet.gameObject.name:"null")} ");
         }
 
         void WaterPlant()
@@ -302,6 +363,8 @@ namespace Farming_related {
             if (hasPlant && currentStage != PlantStage.Wilted)
                 PlayPlantAnimation("dry");
         }
+            // update global player buff from plant (applies regardless of player location)
+            // (moved to coroutine and UpdateGrowth to avoid stray top-level calls)
         #endregion
 
         #region Harvest
@@ -341,6 +404,8 @@ namespace Farming_related {
             string harvestedSeedId = plantedSeedId;
             plantedSeedId = null;
             hasPlant = false;
+            // remove any active buff when harvested
+            RemovePlayerBuff();
             currentStage = PlantStage.Planted;
             isWatered = false;
             growthProgress = 0f;
@@ -359,33 +424,62 @@ namespace Farming_related {
 
         private void TryAutoReplant(string seedId)
         {
-            if (string.IsNullOrEmpty(seedId) || playerController == null) return;
+            Debug.Log("Attempting auto replant...");
 
-            Inventory inventory = playerController.GetComponent<PlayerController>().GetComponentInChildren<Inventory>();
-            if (inventory == null)
+            if (string.IsNullOrEmpty(seedId) || playerController == null)
             {
-                Debug.LogWarning("⚠️ Player inventory not found for auto replant.");
+                Debug.LogWarning("⚠️ Cannot auto replant due to missing seedId or playerController.");
                 return;
             }
+
+            // Strict lookup: only use the Inventory located under the Player root.
+            Inventory inventory = null;
+            Transform root = playerController.transform.root;
+            if (root != null)
+            {
+                inventory = root.GetComponentInChildren<Inventory>(true);
+            }
+
+            if (inventory == null)
+            {
+                Debug.LogWarning("⚠️ Player inventory not found under Player root — auto replant cancelled.");
+                return;
+            }
+                // Remove player buff on harvest reset
+                // RemovePlayerBuff(); // This line is removed as per the patch goal
+
+            Debug.Log($"Using Inventory '{inventory.gameObject.name}' for auto replant. Checking inventory for seed {seedId}...");
 
             if (ItemDatabase.TryGet(seedId, out ItemData data))
             {
                 ItemKey seedKey = ItemKey.From(data);
 
-                if (inventory.Count(seedKey) > 0)
+                int count = inventory.Count(seedKey);
+                Debug.Log($"[Replant] seedKey='{seedKey}', seedId='{seedId}', count={count}");
+                if (count > 0)
                 {
-                    // Consume 1 seed and replant
                     inventory.Remove(seedKey);
-                    Debug.Log($"🌱 Auto replanted {seedId} from inventory.");
+                    Debug.Log($"🌱 Auto replanted {seedId} from inventory (removed key '{seedKey}').");
                     PlantSeed(seedId);
                 }
                 else
                 {
-                    Debug.Log($"⚠️ Auto replant failed — no {seedId} left in inventory.");
+                    Debug.LogWarning($"⚠️ Auto replant failed — no item for key '{seedKey}' in this inventory.");
+                    // dump inventory contents for diagnosis using the public enumerator
+                    Debug.Log("Inventory contents:");
+                    foreach (var kv in inventory) // inventory implements IEnumerable<KeyValuePair<ItemKey,int>>
+                    {
+                        ItemKey key = kv.Key;
+                        int qty = kv.Value;
+                        Debug.Log($" - id='{key.Id}', qty={qty}");
+                    }
                 }
+                // ...existing code...
             }
-
-            
+            else
+            {
+                Debug.LogWarning($"Seed item {seedId} not found in database for auto replant.");
+            }   
         }
 
         private void DropItem(string itemId, int count)
@@ -402,6 +496,123 @@ namespace Farming_related {
             }
         }
         #endregion
+
+        // ---------------------- Plant buff application to player ----------------------
+        // These are class-level methods (previously were accidentally nested inside DropItem
+        // which caused parse errors). The buff is applied when the plant is between
+        // Grown (inclusive) and Wilting (exclusive) and decays linearly.
+        private void UpdatePlayerBuff()
+        {
+            if (!hasPlant || currentPlantable == null || playerAttributeSet == null) {
+                RemovePlayerBuff();
+                return;
+            }
+
+            if (growthProgress < 0.5f || growthProgress >= 1.0f) {
+                RemovePlayerBuff();
+                return;
+            }
+
+            float normalized = (growthProgress - 0.5f) / 0.5f;
+            float buffPercent = Mathf.Clamp01(1f - normalized);
+            int magnitude = Mathf.RoundToInt(currentPlantable.AttackBuff * buffPercent);
+
+            if (magnitude <= 0) {
+                RemovePlayerBuff();
+                return;
+            }
+
+            var modifier = new GameplayAbilities.Runtime.Modifiers.Modifier(magnitude, GameplayAbilities.Runtime.Modifiers.Modifier.Operation.Multiply, "Damage.Physical");
+            if (!activePlayerModifier.Equals(GameplayAbilities.Runtime.Modifiers.Modifier.Empty) && activePlayerModifier.Equals(modifier)) return;
+
+            RemovePlayerBuff();
+            playerAttributeSet.AddModifier(modifier);
+            activePlayerModifier = modifier;
+            Debug.Log($"[PlantBuff] Applied player buff +{magnitude}% to Damage.Physical (seed={plantedSeedId}, progress={growthProgress:F2})");
+        }
+
+        private void RemovePlayerBuff()
+        {
+            if (activePlayerModifier.Equals(GameplayAbilities.Runtime.Modifiers.Modifier.Empty)) return;
+            if (playerAttributeSet == null) { activePlayerModifier = GameplayAbilities.Runtime.Modifiers.Modifier.Empty; return; }
+
+            playerAttributeSet.AddModifier(-activePlayerModifier);
+            activePlayerModifier = GameplayAbilities.Runtime.Modifiers.Modifier.Empty;
+            Debug.Log("[PlantBuff] Removed player buff");
+        }
+
+        // Apply a flat buff based on discrete plant stage transitions:
+        // - Grown  => full AttackBuff
+        // - Wilting => half AttackBuff
+        // - Wilted/others => remove buff
+        private void ApplyStageBuff(PlantStage stage)
+        {
+            Debug.Log($"[PlantBuff] ApplyStageBuff called: stage={stage}, plantedSeedId={plantedSeedId}, hasPlant={hasPlant}, currentPlantable={(currentPlantable!=null?"yes":"no")}, playerAttributeSet={(playerAttributeSet!=null?playerAttributeSet.gameObject.name:"null")} ");
+
+            // Attempt to recover missing playerAttributeSet at runtime
+            if (playerAttributeSet == null)
+            {
+                var playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null)
+                {
+                    playerAttributeSet = playerObj.GetComponentInChildren<GameplayAbilities.Runtime.Attributes.AttributeSet>();
+                }
+                Debug.Log($"[PlantBuff] Re-fetched playerAttributeSet={(playerAttributeSet!=null?playerAttributeSet.gameObject.name:"null")}");
+            }
+
+            // Attempt to recover currentPlantable from the plantedSeedId if possible
+            if (currentPlantable == null && !string.IsNullOrEmpty(plantedSeedId))
+            {
+                if (ItemDatabase.TryGet(plantedSeedId, out ItemData data) && data.Properties != null)
+                {
+                    foreach (var prop in data.Properties)
+                    {
+                        if (prop is Game.Items.Plantable p)
+                        {
+                            currentPlantable = p;
+                            break;
+                        }
+                    }
+                }
+                Debug.Log($"[PlantBuff] Recovered currentPlantable={(currentPlantable!=null?"yes":"no")} from plantedSeedId={plantedSeedId}");
+            }
+
+            if (currentPlantable == null || playerAttributeSet == null)
+            {
+                Debug.Log("[PlantBuff] ApplyStageBuff aborted: missing currentPlantable or playerAttributeSet after recovery attempts");
+                RemovePlayerBuff();
+                return;
+            }
+
+            int baseBuff = (int) Mathf.Max(0, currentPlantable.AttackBuff);
+
+            switch (stage)
+            {
+                case PlantStage.Grown:
+                    {
+                        var mod = new GameplayAbilities.Runtime.Modifiers.Modifier(baseBuff, GameplayAbilities.Runtime.Modifiers.Modifier.Operation.Multiply, "Damage.Physical");
+                        RemovePlayerBuff();
+                        playerAttributeSet.AddModifier(mod);
+                        activePlayerModifier = mod;
+                        Debug.Log($"[PlantBuff] Stage Grown: Applied flat buff +{baseBuff}% to Damage.Physical");
+                        break;
+                    }
+                case PlantStage.Wilting:
+                    {
+                        int half = Mathf.RoundToInt(baseBuff * 0.5f);
+                        if (half <= 0) { RemovePlayerBuff(); break; }
+                        var mod = new GameplayAbilities.Runtime.Modifiers.Modifier(half, GameplayAbilities.Runtime.Modifiers.Modifier.Operation.Multiply, "Damage.Physical");
+                        RemovePlayerBuff();
+                        playerAttributeSet.AddModifier(mod);
+                        activePlayerModifier = mod;
+                        Debug.Log($"[PlantBuff] Stage Wilting: Applied flat buff +{half}% (half) to Damage.Physical");
+                        break;
+                    }
+                default:
+                    RemovePlayerBuff();
+                    break;
+            }
+        }
 
         #region Animation
         void PlayPlantAnimation(string condition)

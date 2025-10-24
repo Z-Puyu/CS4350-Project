@@ -176,13 +176,13 @@ MonoBehaviour:
   <OnStaminaDepleted>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6888346556913851788}
-        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
-        m_MethodName: UpdateStamina
-        m_Mode: 1
+      - m_Target: {fileID: 6744392639426056991}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2526590131007667173}
   - component: {fileID: 3227091727185411073}
   m_Layer: 5
-  m_Name: InventoryUIManager
+  m_Name: Inventory UI Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2602,17 +2602,13 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 4966769171549703863}
-    - target: {fileID: 2075937850055422755, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
-      propertyPath: stamina
-      value: 
-      objectReference: {fileID: 7896945243682354547}
     - target: {fileID: 2546718422318084813, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2546718422318084813, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4201072404120615387, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_Pivot.x
@@ -2694,21 +2690,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7503450755970251009, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7503450755970251009, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8675886182559523284, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_Name
       value: Player UI manager
       objectReference: {fileID: 0}
     - target: {fileID: 8675886182559523284, guid: e508bca7e8f2f6f4b86f10743b481d79, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3006,10 +2994,6 @@ PrefabInstance:
       propertyPath: <AbilityTargeter>k__BackingField
       value: 
       objectReference: {fileID: 6015379781161121816}
-    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
-      propertyPath: <InventoryUIManager>k__BackingField
-      value: 
-      objectReference: {fileID: 3227091727185411073}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <PlayerQuickSwapUIManager>k__BackingField
       value: 
