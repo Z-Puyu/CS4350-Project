@@ -72,6 +72,7 @@ MonoBehaviour:
   slotTemplate: {fileID: 9197481963319205126, guid: 8e9ff177de52b764e9ba196a121a989a, type: 3}
   playerInventory: {fileID: 0}
   shopInventory: {fileID: 3626231950604769792}
+  PlayerMoney: {fileID: 0}
   seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
 --- !u!1 &1046336640422291364
 GameObject:
@@ -841,7 +842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: itemsForSale.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: itemsForSale.Array.data[0].price

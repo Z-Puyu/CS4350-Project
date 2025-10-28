@@ -12,33 +12,78 @@ namespace Shop.Runtime
     /// </summary>
     public class ShopInventory : MonoBehaviour
     {
-        [System.Serializable]
-        public class ShopItem
+        // [System.Serializable]
+        public bool TryGetItem(ItemKey key, out ShopItemData foundItem)
         {
-            public ItemData itemData;
-            public int price;
-            public int stock = -1;
-
-            public ItemKey itemKey => ItemKey.From(itemData);
+            foundItem = itemsForSale.Find(i => i.itemKey.Equals(key));
+            return foundItem != null;
         }
         [Header("Shop Items")]
-        [SerializeField] private List<ShopItem> itemsForSale = new List<ShopItem>();
+        [SerializeField] private List<ShopItemData> itemsForSale = new List<ShopItemData>();
 
-        public IReadOnlyList<ShopItem> ItemsForSale => itemsForSale;
+        public IReadOnlyList<ShopItemData> ItemsForSale => itemsForSale;
 
-        public void Use(SaintsDictionary<ItemData, int> itemDataDict)
+        public void Use(List<ShopItemData> shopItems)
         {
             itemsForSale.Clear();
-
-            foreach (var kvp in itemDataDict)
+            foreach (var saleItems in shopItems)
             {
-                itemsForSale.Add(new ShopItem
-                {
-                    itemData = kvp.Key,
-                    price = kvp.Value,
-                    stock = -1 // Or whatever default stock
-                });
+                // itemsForSale.Add(new ShopItemData
+                // {
+                //     itemData = saleItems.itemData,
+                //     price = saleItems.price,
+                //     stock = saleItems.stock // Or whatever default stock
+                // });
+                itemsForSale.Add(saleItems);
             }
+        }
+
+        public bool Remove(ItemKey item)
+        {
+            return Remove(1, item);
+        }
+
+        public bool Remove(int quantity, ItemKey item)
+        {
+            if (quantity < 1)
+            {
+                Debug.LogWarning("You must remove at least one unit of an item.", this);
+                return false;
+            }
+
+            // Find the item in the shop list
+            var shopItem = itemsForSale.Find(i => i.itemKey.Equals(item));
+            if (shopItem == null)
+            {
+                Debug.LogWarning($"Shop does not have any {item} to remove.", this);
+                return false;
+            }
+
+            // Infinite stock (-1) → cannot remove from count, but you might allow complete removal
+            if (shopItem.stock == -1)
+            {
+                Debug.Log($"Item {item} has infinite stock. Removing listing instead.", this);
+                itemsForSale.Remove(shopItem);
+                return true;
+            }
+
+            // Decrease stock
+            if (shopItem.stock < quantity)
+            {
+                Debug.LogWarning($"Trying to remove {quantity} of {item} but only {shopItem.stock} left.", this);
+                quantity = shopItem.stock;
+            }
+
+            shopItem.stock -= quantity;
+
+            // If stock is depleted, remove from list
+            if (shopItem.stock <= 0)
+            {
+                itemsForSale.Remove(shopItem);
+                Debug.Log($"Removed {item} from shop (stock depleted).", this);
+            }
+
+            return true;
         }
 
         public bool HasItem(ItemKey key) =>

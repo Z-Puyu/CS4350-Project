@@ -1,6 +1,7 @@
 using Farming_related;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using GameplayAbilities.Runtime.MoneySystem;
 using Shop.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,6 +14,8 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory playerInventory;
         [SerializeField] private ShopInventory shopInventory;
+        [SerializeField] private Money PlayerMoney;
+
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
 
         private ItemKey? _currentItemKey;
@@ -40,35 +43,27 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnEnable()
         {
-            Debug.Log("[ShopKeeper] Checkpoint 1", this);
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
-            Debug.Log("[ShopKeeper] Checkpoint 2", this);
 
             _itemDescriptionContainer = _root.Q<VisualElement>("ItemDescriptionContainer");
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
-            Debug.Log("[ShopKeeper] Checkpoint 3", this);
 
             _buyButton = _root.Q<Button>("BuyButton");
-            Debug.Log("[ShopKeeper] Checkpoint 4", this);
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
-            Debug.Log("[ShopKeeper] Checkpoint 5", this);
 
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
-            Debug.Log("[ShopKeeper] Checkpoint 6", this);
 
             // Listen to inventory changes
             playerInventory.OnInventoryChanged += HandleInventoryChanged;
-            Debug.Log("[ShopKeeper] Checkpoint 7", this);
 
             // Initial draw
             RefreshInventoryUI();
-            Debug.Log("[ShopKeeper] Checkpoint 8", this);
         }
 
         private void OnDisable()
@@ -91,27 +86,20 @@ namespace Shop_related.Shop_UI_Manager
 
         private void RefreshInventoryUI()
         {
-            Debug.Log("[ShopKeeper] Refresh Inventory UI start", this);
-            Debug.Log($"[ShopKeeper] _grid: {_grid}, is null: {_grid == null}", this);
             _grid.Clear();
-
-            Debug.Log("[ShopKeeper] for each start start", this);
-            foreach (var kvp in shopInventory.ItemsForSale) // kvp.Key = ItemKey, kvp.Value = quantity
+            foreach (var kvp in shopInventory.ItemsForSale) // kvp.itemKey = ItemKey, kvp.stock = quantity
             {
+
                 var slotElement = slotTemplate.CloneTree();
                 _grid.Add(slotElement);
 
                 var shopSlotUI = new ShopSlotUI(slotElement, this);
                 shopSlotUI.SetData(kvp.itemKey, kvp.stock);
             }
-            Debug.Log("[ShopKeeper] for each start end", this);
         }
         public void SetShopInventory(ShopInventory inventory)
         {
-            Debug.Log("[ShopKeeper] Set Shop Inventory called start", this);
             this.shopInventory = inventory;
-            Debug.Log("[ShopKeeper] Set Shop Inventory called End", this);
-            Debug.Log($"[ShopKeeper] shopInventory: {shopInventory}", this);
             RefreshInventoryUI();
         }
 
@@ -131,22 +119,35 @@ namespace Shop_related.Shop_UI_Manager
 
             var itemData = item;
 
-            // 🌱 If it's a seed and we have soil selected, plant it
-            Debug.Log($"[DEBUG] CurrentSoil is {(CurrentSoil == null ? "null" : "set")}");
-            if (itemData.Type.BelongsTo(seedType) && CurrentSoil != null)
+            // 2️⃣ Find the corresponding shop entry
+            if (!shopInventory.TryGetItem(itemKey, out var shopItem))
             {
-                CurrentSoil.PlantSeed(itemData.Id);
-                playerInventory.Remove(itemKey); // remove 1 seed
-                CurrentSoil = null;
-                gameObject.SetActive(false);
+                Debug.LogWarning($"Shop does not have {itemData.Name} for sale.");
+                return;
+            }
+            Debug.Log($"[MONEY] BEFORE Money current value is {PlayerMoney.Value}");
+            PlayerMoney.Add(100); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Remember to delete this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Debug.Log($"[MONEY] AFTER Money current value is {PlayerMoney.Value}");
+            Debug.Log($"[MONEY] Item Data name: {itemData.Name}");
+            Debug.Log($"[MONEY] shopItem.itemData.name: {shopItem.itemData.name}");
+            Debug.Log($"[MONEY] shopItem price: {shopItem.price}");
+            Debug.Log($"[MONEY] shopItem stock: {shopItem.stock}");
+            // Debug.Log($"[MONEY] Item Data Price: {item.price}");
+            // Debug.Log($"[MONEY] Item Data quantity: {item.stock}");
+
+            if (!PlayerMoney.Spend(shopItem.price))
+            {
+                Debug.Log("Purchase failed — not enough money!");
+                return;
             }
             else
             {
-                Debug.Log($"[DEBUG] Item '{itemData.Name}' has type '{itemData.Type?.name}'");
-                Debug.Log($"[DEBUG] SeedType reference is '{seedType?.name}'");
-                Debug.Log($"[DEBUG] BelongsTo result: {itemData.Type?.BelongsTo(seedType)}");
-                Debug.Log($"Use item: {itemData.Name} (not a seed, or no soil selected)");
+                Debug.Log($"[PURCHASE] Purchase made successfully! You just bought {shopItem.itemData.name}");
+                Debug.Log($"[PURCHASE] AFTER Money current value is {PlayerMoney.Value}");
             }
+            playerInventory.Add(itemKey);
+            shopInventory.Remove(itemKey);
+            RefreshInventoryUI();
         }
 
 

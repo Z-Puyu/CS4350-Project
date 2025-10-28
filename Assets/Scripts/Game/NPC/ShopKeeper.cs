@@ -31,7 +31,7 @@ namespace Game.NPC
             {
                 this.Animator.runtimeAnimatorController = this.Data.Animations;
             }
-            this.Inventory.Use(this.Data.Items);
+            this.Inventory.Use(this.Data.itemsForSale);
         }
         public void Interact()
         {
@@ -62,12 +62,9 @@ namespace Game.NPC
                 return;
             }
 
-            Debug.Log("[ShopKeeper] OpenShopUI method called!", this);
-
             shopUIManager.gameObject.SetActive(true);
             shopUIManager.SetShopInventory(this.Inventory);
 
-            Debug.Log("[ShopKeeper] Shop UI opened via ShopUIManager.");
         }
     }
 
