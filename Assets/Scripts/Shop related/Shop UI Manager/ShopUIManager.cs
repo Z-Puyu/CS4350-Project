@@ -1,6 +1,7 @@
 using Farming_related;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
+using GameplayAbilities.Runtime.MoneySystem;
 using Shop.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,10 +14,12 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory playerInventory;
         [SerializeField] private ShopInventory shopInventory;
+        [SerializeField] private Money PlayerMoney;
+
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
 
         private ItemKey? _currentItemKey;
-        
+
         private VisualElement _root;
         private VisualElement _grid;
 
@@ -28,7 +31,7 @@ namespace Shop_related.Shop_UI_Manager
         public static ShopUIManager Instance;
 
         public SoilPlantInteraction CurrentSoil { get; private set; }
-        
+
         // Buttons
         private Button _buyButton;
 
@@ -47,12 +50,12 @@ namespace Shop_related.Shop_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
-            
+
             _buyButton = _root.Q<Button>("BuyButton");
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
-            
+
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
 
@@ -84,17 +87,22 @@ namespace Shop_related.Shop_UI_Manager
         private void RefreshInventoryUI()
         {
             _grid.Clear();
-            
-            foreach (var kvp in playerInventory) // kvp.Key = ItemKey, kvp.Value = quantity
+            foreach (var kvp in shopInventory.ItemsForSale) // kvp.itemKey = ItemKey, kvp.stock = quantity
             {
+
                 var slotElement = slotTemplate.CloneTree();
                 _grid.Add(slotElement);
 
                 var shopSlotUI = new ShopSlotUI(slotElement, this);
-                shopSlotUI.SetData(kvp.Key, kvp.Value);
+                shopSlotUI.SetData(kvp.itemKey, kvp.stock);
             }
         }
-        
+        public void SetShopInventory(ShopInventory inventory)
+        {
+            this.shopInventory = inventory;
+            RefreshInventoryUI();
+        }
+
         // === Button handlers ===
         private void OnBuyButtonClicked()
         {
@@ -111,22 +119,35 @@ namespace Shop_related.Shop_UI_Manager
 
             var itemData = item;
 
-            // 🌱 If it's a seed and we have soil selected, plant it
-            Debug.Log($"[DEBUG] CurrentSoil is {(CurrentSoil == null ? "null" : "set")}");
-            if (itemData.Type.BelongsTo(seedType) && CurrentSoil != null)
+            // 2️⃣ Find the corresponding shop entry
+            if (!shopInventory.TryGetItem(itemKey, out var shopItem))
             {
-                CurrentSoil.PlantSeed(itemData.Id);
-                playerInventory.Remove(itemKey); // remove 1 seed
-                CurrentSoil = null;
-                gameObject.SetActive(false);
+                Debug.LogWarning($"Shop does not have {itemData.Name} for sale.");
+                return;
+            }
+            Debug.Log($"[MONEY] BEFORE Money current value is {PlayerMoney.Value}");
+            PlayerMoney.Add(100); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Remember to delete this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Debug.Log($"[MONEY] AFTER Money current value is {PlayerMoney.Value}");
+            Debug.Log($"[MONEY] Item Data name: {itemData.Name}");
+            Debug.Log($"[MONEY] shopItem.itemData.name: {shopItem.itemData.name}");
+            Debug.Log($"[MONEY] shopItem price: {shopItem.price}");
+            Debug.Log($"[MONEY] shopItem stock: {shopItem.stock}");
+            // Debug.Log($"[MONEY] Item Data Price: {item.price}");
+            // Debug.Log($"[MONEY] Item Data quantity: {item.stock}");
+
+            if (!PlayerMoney.Spend(shopItem.price))
+            {
+                Debug.Log("Purchase failed — not enough money!");
+                return;
             }
             else
             {
-                Debug.Log($"[DEBUG] Item '{itemData.Name}' has type '{itemData.Type?.name}'");
-                Debug.Log($"[DEBUG] SeedType reference is '{seedType?.name}'");
-                Debug.Log($"[DEBUG] BelongsTo result: {itemData.Type?.BelongsTo(seedType)}");
-                Debug.Log($"Use item: {itemData.Name} (not a seed, or no soil selected)");
+                Debug.Log($"[PURCHASE] Purchase made successfully! You just bought {shopItem.itemData.name}");
+                Debug.Log($"[PURCHASE] AFTER Money current value is {PlayerMoney.Value}");
             }
+            playerInventory.Add(itemKey);
+            shopInventory.Remove(itemKey);
+            RefreshInventoryUI();
         }
 
 

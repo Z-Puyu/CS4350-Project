@@ -3,6 +3,7 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using WeaponsSystem.Runtime.WeaponComponents;
 using UnityEngine;
+using Shop.Runtime;
 using UnityEngine.UIElements;
 
 namespace Blacksmith_related.Blacksmith_UI_Manager
@@ -12,7 +13,7 @@ namespace Blacksmith_related.Blacksmith_UI_Manager
         [SerializeField] private UIDocument uiDocument;
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory playerInventory;
-        [SerializeField] private Inventory shopInventory;
+        [SerializeField] private ShopInventory shopInventory;
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
 
         private ItemKey? _currentItemKey;
