@@ -29,6 +29,11 @@ namespace Map.Wave_manager
             StartWave();
         }
 
+        public int GetWave()
+        {
+            return wave + 1;
+        }
+
         public void SetCurrentRegion(RegionBorder.RegionBorder regionBorder)
         {
             currentMap = regionBorder;
