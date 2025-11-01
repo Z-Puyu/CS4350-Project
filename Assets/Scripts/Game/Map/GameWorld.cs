@@ -7,19 +7,20 @@ namespace Game.Map {
         private Grid Grid { get; set; }
         public List<Region> Regions { get; } = new List<Region>();
         public Vector3Int Origin => this.Regions.Count == 0 ? Vector3Int.zero : this.Regions[0].Origin;
+        public Transform playerSpawnPositiob;
         
         private void Awake() {
             this.Grid = this.GetComponent<Grid>();
             this.GetComponentsInChildren(this.Regions);
         }
 
+        public void TeleportPlayer(Transform playerTransform)
+        {
+            playerTransform.position = playerSpawnPositiob.position;
+        }
+
         public void Unlock(Region region) {
             this.Regions.Add(region);
-        }
-        
-        public void PlaceObject(GameObject obj, Vector3Int coordinates) {
-            Vector3 worldPosition = this.Grid.CellToWorld(coordinates);
-            obj.transform.position = worldPosition;
         }
 
         public bool HasCellAt(Vector3 worldPosition, out Vector3Int coordinates) {

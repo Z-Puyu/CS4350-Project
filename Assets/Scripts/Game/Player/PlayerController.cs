@@ -68,9 +68,16 @@ namespace Game.Player {
             } else {
                 this.Health.Refill();
                 GameWorldManager.Purgatory.gameObject.SetActive(true);
-                GameWorldManager.Purgatory.PlaceObject(this.gameObject, GameWorldManager.Purgatory.Origin);
                 GameWorldManager.Main.gameObject.SetActive(false);
+                GameWorldManager.Purgatory.TeleportPlayer(transform.parent);
             }
+        }
+
+        public void RevivePlayer()
+        {
+            GameWorldManager.Purgatory.gameObject.SetActive(false);
+            GameWorldManager.Main.gameObject.SetActive(true);
+            GameWorldManager.Main.TeleportPlayer(transform.parent);
         }
     }
 }

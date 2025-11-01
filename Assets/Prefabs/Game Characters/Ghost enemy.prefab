@@ -539,7 +539,7 @@ Transform:
   m_GameObject: {fileID: 7027765195220821809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.331, y: 0.144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -639,6 +639,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: dieSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 5692395dd1277aa419e51aaad408dcf8, type: 3}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: attackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ef00336debed4674cbdb638dc3de6e48, type: 3}
+    - target: {fileID: 1730655694827381410, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
+      propertyPath: damagedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f96d3453ff2bbf4081b6a59f98d4526, type: 3}
     - target: {fileID: 7451947533484182453, guid: 84a26e3e0f8f39d4792533bfa565dd4f, type: 3}
       propertyPath: m_Name
       value: EnemySFXComponent
@@ -1384,19 +1396,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
-      value: 1.75
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5377700067546639442, guid: d8b9cf9287f22da4286b8eaebfb9b9fb, type: 3}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
@@ -1546,29 +1558,17 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.09273133
       objectReference: {fileID: 0}
-    - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: m_Size.x
-      value: 0.1989158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.20970497
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0013486668
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0013486296
-      objectReference: {fileID: 0}
+    - target: {fileID: 3990052932965461405, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 99c84c29cbc62c3428803d51c428e557, type: 2}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1576,6 +1576,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1591,11 +1595,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8038510861533440685}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 3dba3e13f92c5b84f958fc90c2dac385, type: 2}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1611,6 +1623,10 @@ PrefabInstance:
       value: HandleDeath
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Game.enemies.EnemySFXTrigger, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -1623,11 +1639,19 @@ PrefabInstance:
       value: Game.Enemies.Enemy, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Events.CrossObjectEventSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790241432719237903, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4991569239397768627, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1668,7 +1692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Name
-      value: Base Enemy
+      value: Ghost enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_TagString
@@ -1754,7 +1778,7 @@ MonoBehaviour:
   <AbilitySystem>k__BackingField: {fileID: 6374959461441310899}
   <AttributeSet>k__BackingField: {fileID: 6518563513476792506}
   <Health>k__BackingField: {fileID: 1834705921085040249}
-  <Data>k__BackingField: {fileID: 0}
+  <Data>k__BackingField: {fileID: 11400000, guid: 381ac7cbb6f3a7f42aac163337fbcf17, type: 2}
   <Animator>k__BackingField: {fileID: 7805846891793197291}
   broadcastEnemyDiedData: {fileID: 11400000, guid: fe13c1f2cd49c39438aa705da02dace0, type: 2}
   <LootContainer>k__BackingField: {fileID: 2304056634079398031}

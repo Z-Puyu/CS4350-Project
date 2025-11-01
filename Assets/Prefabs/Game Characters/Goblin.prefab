@@ -106,26 +106,6 @@ PrefabInstance:
       propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Game.CharacterControls.CombatAnimationController, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_Size.x
-      value: 0.1989158
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.20970497
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0013486668
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0013486296
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878233940221489254, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3103484687931798473, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: dieSFX
       value: 
