@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameplayAbilities.Runtime.HealthSystem {
+    
     [DisallowMultipleComponent]
     public class Health : MonoBehaviour {
         [field: SerializeField, Required] private AttributeSet Root { get; set; }
         [field: SerializeField] private AttributeType HealthAttribute { get; set; }
         [field: SerializeField] private UnityEvent OnDeathEvent { get; set; } = new UnityEvent();
-        [field: SerializeField] private UnityEvent OnHealthChangeEvent { get; set; } = new UnityEvent();
-        
+
         public int Value => this.Root.GetCurrent(this.HealthAttribute.Id);
         public int MaxValue => this.Root.GetMax(this.HealthAttribute.Id);
         public int MinValue => this.Root.GetMin(this.HealthAttribute.Id);
@@ -26,7 +26,7 @@ namespace GameplayAbilities.Runtime.HealthSystem {
             int amount = this.MaxValue - this.Value;
             Modifier modifier = new Modifier(amount, Modifier.Operation.Offset, this.HealthAttribute.Id);
             this.Root.AddModifier(modifier);
-            OnHealthChangeEvent?.Invoke();
+            OnHealthChanged?.Invoke((Value, MaxValue));
         }
 
         private void HandleAttributeChange(AttributeChange change) {
@@ -36,7 +36,6 @@ namespace GameplayAbilities.Runtime.HealthSystem {
             
             
             this.OnHealthChanged?.Invoke((change.OldValue, change.CurrentValue));
-            OnHealthChangeEvent?.Invoke();
 #if DEBUG
             Debug.Log($"{this.transform.root.name}: Health changed from {change.OldValue} to {change.CurrentValue}", this);
 #endif

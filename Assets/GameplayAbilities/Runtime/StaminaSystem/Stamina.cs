@@ -11,7 +11,6 @@ namespace GameplayAbilities.Runtime.StaminaSystem
     {
         [field: SerializeField, Required] private AttributeSet Root { get; set; }
         [field: SerializeField] private AttributeType StaminaAttribute { get; set; }
-        [field: SerializeField] private UnityEvent OnStaminaDepleted { get; set; } = new UnityEvent();
         [field: SerializeField] private float RegenRatePerSecond { get; set; } = 10f;
         [field: SerializeField] private float RegenDelay { get; set; } = 1.5f; // delay after use before regen starts
 
@@ -82,8 +81,7 @@ namespace GameplayAbilities.Runtime.StaminaSystem
         {
             if (change.AttributeName != this.StaminaAttribute.Id)
                 return;
-
-            this.OnStaminaDepleted.Invoke();
+            
             this.OnStaminaChanged?.Invoke((change.OldValue, change.CurrentValue));
 
 #if DEBUG

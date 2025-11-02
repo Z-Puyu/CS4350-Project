@@ -1,5 +1,6 @@
 using System;
 using Map.Wave_manager;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class PurgatoryUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject purgatoryCanvas;
     [SerializeField] private Slider defeatedGhostGauge;
+    [SerializeField] private TextMeshProUGUI killRequirementText;
 
     private void Start()
     {
@@ -22,6 +24,11 @@ public class PurgatoryUIManager : MonoBehaviour
     public void UpdateGauge(float newValue)
     {
         defeatedGhostGauge.value = newValue;
+    }
+
+    public void UpdateText(int value, int maxValue)
+    {
+        killRequirementText.text = value.ToString() + "/" + maxValue.ToString(); 
     }
 
     public void ShowCanvas()
