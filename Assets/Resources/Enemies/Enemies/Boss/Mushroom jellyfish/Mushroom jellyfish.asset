@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8ba5488db84dd8bb6da97e5c205325, type: 3}
+  m_Name: Mushroom jellyfish
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.EnemyData
+  <Id>k__BackingField: enemy:chicken_head
+  <Name>k__BackingField: Chicken head
+  <EnemyExpObject>k__BackingField: {fileID: 11400000, guid: e929bbc4c60a346438bc92011be63b7c, type: 2}
+  <Animations>k__BackingField: {fileID: 22100000, guid: 8ddb90cde99cd654a92e12e8375bd827, type: 2}
+  <Attributes>k__BackingField: {fileID: 11400000, guid: 105a30e2f8d22f747bdddcd1a24e262f, type: 2}
+  <LootTable>k__BackingField: {fileID: 11400000, guid: 6210178a08b6fc64bb35de8ebb66be65, type: 2}
