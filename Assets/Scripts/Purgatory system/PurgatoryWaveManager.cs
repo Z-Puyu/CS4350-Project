@@ -21,14 +21,19 @@ namespace Purgatory_system
         
         [SerializeField] private PurgatoryUIManager purgatoryUIManager;
         [SerializeField] private CrossObjectEventSO revivePlayer;
+
+        private List<Enemy> spawnedEnemies = new List<Enemy>();
         
         private int spawnIndex;
+
+        void Awake()
+        {
+            purgatoryUIManager = GetComponent<PurgatoryUIManager>();
+        }
 
         void Start()
         {
             ResetGauge();
-            purgatoryUIManager = GetComponent<PurgatoryUIManager>();
-            purgatoryUIManager.ResetGauge();
             Vector2 origin = playerSpawnPosition.position;
             Vector2 topLeft = new Vector2(origin.x + 10, origin.y - 10);
             Vector2 bottomLeft = new Vector2(origin.x + 10, origin.y + 10);
@@ -47,27 +52,39 @@ namespace Purgatory_system
             yield return new WaitForSeconds(5.0f);
             for (int i = 0; i < 4; i++)
             {
-                Instantiate(ghostPrefab, spawnPositions[i], Quaternion.identity);       
+                Enemy ghostEnemy = Instantiate(ghostPrefab, spawnPositions[i], Quaternion.identity);       
+                spawnedEnemies.Add(ghostEnemy);
             }
         }
 
         public void SpawnEnemy()
         {
-            Instantiate(ghostPrefab, spawnPositions[spawnIndex], Quaternion.identity);
+            Enemy ghostEnemy = Instantiate(ghostPrefab, spawnPositions[spawnIndex], Quaternion.identity);
+            spawnedEnemies.Add(ghostEnemy);
             spawnIndex++;
             spawnIndex %= 4;
+        }
+        
+        public void ResetWave()
+        {
+            currentGaugeAmount = 0;
+            requiredGaugeAmount = (int) Mathf.Pow(2,waveManager.GetWave());
+            ResetGauge();
         }
 
         void ResetGauge()
         {
             currentGaugeAmount = 0;
             requiredGaugeAmount = (int) Mathf.Pow(2,waveManager.GetWave());
+            purgatoryUIManager.ResetGauge();
+            purgatoryUIManager.UpdateText(currentGaugeAmount, requiredGaugeAmount);
         }
 
         public void FillGauge()
         {
             currentGaugeAmount += 1;
             purgatoryUIManager.UpdateGauge((float)(currentGaugeAmount) / (float)requiredGaugeAmount);
+            purgatoryUIManager.UpdateText(currentGaugeAmount, requiredGaugeAmount);
             if (currentGaugeAmount == requiredGaugeAmount)
             {
                 revivePlayer.TriggerEvent();

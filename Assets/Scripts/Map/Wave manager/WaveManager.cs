@@ -122,5 +122,14 @@ namespace Map.Wave_manager
         {
             waveUIManager.StartCountdown(() => SpawnEnemy());
         }
+
+        public void ResetWave()
+        {
+            foreach (var enemy in allSpawnedEnemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+            allSpawnedEnemies.Clear();
+        }
     }   
 }
