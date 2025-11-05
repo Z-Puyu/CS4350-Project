@@ -173,21 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.StaminaSystem.Stamina
   <Root>k__BackingField: {fileID: 571178239294957684}
   <StaminaAttribute>k__BackingField: {fileID: 11400000, guid: c51475cc2f289fd42b9876382221a659, type: 2}
-  <OnStaminaDepleted>k__BackingField:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6888346556913851788}
-        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
-        m_MethodName: UpdateStamina
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   <RegenRatePerSecond>k__BackingField: 10
   <RegenDelay>k__BackingField: 1.5
 --- !u!1 &2720038900767561035
@@ -1147,7 +1132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -1164,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 6888346556913851788}
+      objectReference: {fileID: 614563610734293956}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
@@ -1187,7 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateHealth
+      value: Interrupt
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -1199,7 +1184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: PlayerBattleUIManager, Assembly-CSharp
+      value: WeaponsSystem.Runtime.Combat.Combatant, WeaponsSystem.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 2502113917305322032, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -1501,7 +1486,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4271568090847590464, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
@@ -1541,6 +1527,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6257958526641903012}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 3512869248356774463}
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5468757192089227282}
@@ -1916,6 +1905,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 475086927482219960}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3512869248356774463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846403353061881947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14534d284d0a4c01890ede28643e7754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Player.PlayerController
+  <AbilitySystem>k__BackingField: {fileID: 424405669693175933}
+  <AttributeSet>k__BackingField: {fileID: 571178239294957684}
+  <Health>k__BackingField: {fileID: 4966769171549703863}
+  broadcastItemCollected: {fileID: 11400000, guid: 0a5d66ab3b80d6945a3073444ef13890, type: 2}
+  <InitialData>k__BackingField: {fileID: 11400000, guid: 1133dd5f8ce2e32438037846a4d132f4, type: 2}
+  <Inventory>k__BackingField: {fileID: 6963433376467322382}
+  <HasAutoReplant>k__BackingField: 0
+  <Interactor>k__BackingField: {fileID: 3133375795614042883}
 --- !u!114 &5468757192089227282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3483,21 +3492,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4612013333770405214, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5319230930881902558, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
       propertyPath: m_Name
-      value: Player things to note UI manager
+      value: Player message UI manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5319230930881902558, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2481102068547501920}
   m_SourcePrefab: {fileID: 100100000, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
+--- !u!1 &3824564034782939831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5319230930881902558, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
+  m_PrefabInstance: {fileID: 8989783954920095081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2481102068547501920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824564034782939831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 046d20efb7e6baf46846dfbbaf527b2d, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5818827898353873529}
+        m_TargetAssemblyTypeName: Player_related.Player_things_to_note_ui_manager.PlayerThingsToNoteUIManager,
+          Assembly-CSharp
+        m_MethodName: SpawnBossRelatedMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &5271378024318425583 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3883671344223118470, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
   m_PrefabInstance: {fileID: 8989783954920095081}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5818827898353873529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3171239768214687504, guid: 7fad76d0b87204f4a9100e4c8dbdb5fb, type: 3}
+  m_PrefabInstance: {fileID: 8989783954920095081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824564034782939831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4375acb40e6ad8644a689663c7a10b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelUpUIManager

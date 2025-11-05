@@ -11,7 +11,7 @@ namespace Game.Enemies {
     public class Enemy : GameCharacterController {
         public static event UnityAction<EnemyDeathEvent> OnDeath; 
         
-        [field: SerializeField] private EnemyData Data { get; set; }
+        [field: SerializeField] protected EnemyData Data { get; set; }
         [field: SerializeField, Required] private Animator Animator { get; set; }
         [field: SerializeField, Required] private CrossObjectEventWithDataSO broadcastEnemyDiedData;
         [field: SerializeField, Required] private LootContainer LootContainer { get; set; }
@@ -19,6 +19,11 @@ namespace Game.Enemies {
 
         public string getEnemyId() {
             return Data.Id;
+        }
+
+        public EnemyData GetEnemyData()
+        {
+            return Data;
         }
 
         protected override void ConfigureAttributeSet() {

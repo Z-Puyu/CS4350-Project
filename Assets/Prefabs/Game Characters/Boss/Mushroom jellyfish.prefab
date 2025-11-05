@@ -1596,6 +1596,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4dd68adb845c41346b547597699f5fbd, type: 2}
+    - target: {fileID: 4271568090847590464, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: <LootContainer>k__BackingField
+      value: 
+      objectReference: {fileID: 2304056634079398031}
     - target: {fileID: 4691809310730695952, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
       value: 0.1989158
@@ -1771,9 +1775,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6938882542248394038}
-    - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8431198205224410881}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
 --- !u!114 &55136081064673507 stripped
@@ -1792,25 +1793,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6938882542248394038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187148960694751381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c369d0bae776ee24fbc1775374dfa3bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Boss
-  <AbilitySystem>k__BackingField: {fileID: 6374959461441310899}
-  <AttributeSet>k__BackingField: {fileID: 6518563513476792506}
-  <Health>k__BackingField: {fileID: 1834705921085040249}
-  <Data>k__BackingField: {fileID: 11400000, guid: 381ac7cbb6f3a7f42aac163337fbcf17, type: 2}
-  <Animator>k__BackingField: {fileID: 7805846891793197291}
-  broadcastEnemyDiedData: {fileID: 11400000, guid: 731e86236ae9e1b4e9b7bf820a298c82, type: 2}
-  <LootContainer>k__BackingField: {fileID: 2304056634079398031}
 --- !u!50 &8431198205224410881
 Rigidbody2D:
   serializedVersion: 5
@@ -1870,36 +1852,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512824a96433481b8ad83a29e71e2b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsSystem.Combat.Combatant
---- !u!114 &6374959461441310899 stripped
+--- !u!114 &6938882542248394038 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 248845586726081989, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4271568090847590464, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 187148960694751381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
+  m_Script: {fileID: 11500000, guid: c369d0bae776ee24fbc1775374dfa3bb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
---- !u!114 &6518563513476792506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 106646709540062668, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-  m_PrefabInstance: {fileID: 6560746732366513526}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Boss
 --- !u!4 &7261119136600267459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4596162042558898101, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
-  m_PrefabInstance: {fileID: 6560746732366513526}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7805846891793197291 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3990052932965461405, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8443594316671374492 stripped
