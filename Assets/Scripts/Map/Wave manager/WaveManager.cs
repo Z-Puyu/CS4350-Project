@@ -131,5 +131,11 @@ namespace Map.Wave_manager
             }
             allSpawnedEnemies.Clear();
         }
+
+        public void AddBossToNextWave(Component component, object enemy)
+        {
+            Boss enemyInformation = (Boss)((object[])enemy)[0];
+            waveToEnemySpawner[wave + 1][enemyInformation] = 1;
+        }
     }   
 }

@@ -332,8 +332,39 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnInteractAgainEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 909916446633266022}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: activate
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4759863161539669015}
+        m_TargetAssemblyTypeName: Map.MapNoticeboard, Assembly-CSharp
+        m_MethodName: OnInteractAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: activate
+          m_BoolArgument: 0
+        m_CallState: 2
+  <OnActivateAgainEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   mapUnlockRequirementSO: {fileID: 11400000, guid: c386f2459a737a14abbfa5f68c055f80, type: 2}
   broadcastNoticeboardUnlockRequirement: {fileID: 11400000, guid: 017908980cf3979488d871354bd2e014, type: 2}
+  broadcastNoticeboardBossSpawnt: {fileID: 11400000, guid: 725a890730b5381479b77cfb9f8701ee, type: 2}
 --- !u!95 &909916446633266022
 Animator:
   serializedVersion: 7

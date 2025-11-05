@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Enemies;
 using Map.Objectives;
 using Map.Objectives.Objective_UI;
 using Player_related.Player_things_to_note_ui_manager;
@@ -16,6 +17,7 @@ namespace Map
         public Sprite key;
         public List<KillEnemiesObjective> killEnemiesObjectives;
         public List<CollectItemObjective> collectItemObjectives;
+        public Boss bossToSpawn;
 
         public void SetTitle(TextMeshProUGUI objectiveText)
         {

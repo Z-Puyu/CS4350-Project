@@ -513,6 +513,52 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6269605857101911856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4871201719242838998}
+  - component: {fileID: 6499966458168243642}
+  m_Layer: 0
+  m_Name: TargetBoxSpawnerComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4871201719242838998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269605857101911856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6069861738717102634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6499966458168243642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269605857101911856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0222e6b6213d94ba5469418cb116ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.TargetBoxSpawnerComponent
+  targetBoxPrefab: {fileID: 3831949235337169978, guid: 109c3ad3c39e46140bc90c299b20d05c, type: 3}
+  targetingType: {fileID: 11400000, guid: 8c4770a459f991b46845df9d6bf7c7e9, type: 2}
 --- !u!1 &7027765195220821809
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +766,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
+      propertyPath: m_Graph
+      value: 
+      objectReference: {fileID: -9116254955077123856, guid: 2ec00a6ed385ae540a9f26799432188b, type: 2}
     - target: {fileID: 3632188772997273986, guid: a400750209251254aa77bf631a82d0be, type: 3}
       propertyPath: 'managedReferences[2098011628653249159]'
       value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[WeaponsSystem.DamageHandling.Combatant,
@@ -1712,6 +1762,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2755249797523856540}
+    - targetCorrespondingSourceObject: {fileID: 1094391696314402652, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4871201719242838998}
     - targetCorrespondingSourceObject: {fileID: 1199471404616313603, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6758833672881772651}
