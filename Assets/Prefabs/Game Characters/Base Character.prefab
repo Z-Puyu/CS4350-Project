@@ -46,6 +46,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3324175696564490730}
+  - component: {fileID: 4271568090847590464}
   - component: {fileID: 4284936676752762451}
   m_Layer: 3
   m_Name: Base Character
@@ -71,6 +72,26 @@ Transform:
   - {fileID: 1094391696314402652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4271568090847590464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454949747492492771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c369d0bae776ee24fbc1775374dfa3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.Boss
+  <AbilitySystem>k__BackingField: {fileID: 248845586726081989}
+  <AttributeSet>k__BackingField: {fileID: 106646709540062668}
+  <Health>k__BackingField: {fileID: 4790241432719237903}
+  <Data>k__BackingField: {fileID: 11400000, guid: b5cf4dbd7bed95145a836f869d2514f7, type: 2}
+  <Animator>k__BackingField: {fileID: 3990052932965461405}
+  broadcastEnemyDiedData: {fileID: 11400000, guid: 731e86236ae9e1b4e9b7bf820a298c82, type: 2}
+  <LootContainer>k__BackingField: {fileID: 0}
+  broadcastMessageOnSpawn: {fileID: 11400000, guid: 046d20efb7e6baf46846dfbbaf527b2d, type: 2}
 --- !u!50 &4284936676752762451
 Rigidbody2D:
   serializedVersion: 5
@@ -795,6 +816,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7afab12d694bfb9dee34d007daf648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Attributes.AttributeSet
+--- !u!114 &248845586726081989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5646577939156915835, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
+  m_PrefabInstance: {fileID: 5559903773095756734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659514198330222099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a7ee2d1ced409b88b7f56cdd6be47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.AbilitySystem
 --- !u!4 &6059059717299930962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819073491181274348, guid: 55a2ededaa6703f409c60cc52c0785cc, type: 3}
@@ -952,6 +984,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+--- !u!114 &4790241432719237903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2492692353690327303, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}
+  m_PrefabInstance: {fileID: 6984389544512453128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246f51e2f05e4540a333cce7141a4841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.HealthSystem.Health
 --- !u!4 &6886639991460117643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4575599896469915267, guid: 779a0ecdf2ae6f040a623facb4d70392, type: 3}

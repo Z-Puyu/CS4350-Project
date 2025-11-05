@@ -1,3 +1,4 @@
+using Game.Enemies;
 using Map;
 using Player_related.Things_to_note_text;
 using UnityEngine;
@@ -13,13 +14,13 @@ namespace Player_related.Player_things_to_note_ui_manager
         public void SpawnCombatLevelUpText(Component component, object change)
         {
             int levelChange = (int)((object[])change)[0];
-            SpawnText("Combat level increased by " + levelChange.ToString());
+            SpawnText("Combat level increased by " + levelChange.ToString(), new Color(1, 1, 1));
         }
         
         public void SpawnFarmingLevelUpText(Component component, object change)
         {
             int levelChange = (int)((object[])change)[0];
-            SpawnText("Farming level increased by " + levelChange.ToString());
+            SpawnText("Farming level increased by " + levelChange.ToString(), new Color(1, 1, 1));
         }
         
         public void SpawnClearRegionUnlockRequirementText(Component component, object mURSO)
@@ -33,11 +34,17 @@ namespace Player_related.Player_things_to_note_ui_manager
             MapUnlockRequirementSO mapUnlockRequirementSo = (MapUnlockRequirementSO)((object[])mURSO)[0];
             mapUnlockRequirementSo.SpawnTextWhenObjectiveIsCleared(this);
         }
+        
+        public void SpawnBossRelatedMessage(Component component, object pm)
+        {
+            PlayerMessage playerMessage = (PlayerMessage)((object[])pm)[0];
+            playerMessage.SpawnText(this);
+        }
 
-        public void SpawnText(string text)
+        public void SpawnText(string text, Color color)
         {
             GameObject levelUpText = Instantiate(thingsToNoteText.gameObject, backdrop);
-            levelUpText.GetComponent<ThingsToNoteText>().SetText(text, timeBeforeTextVanish);
+            levelUpText.GetComponent<ThingsToNoteText>().SetText(text, timeBeforeTextVanish, color);
         }
     }   
 }

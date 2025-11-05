@@ -76049,6 +76049,7 @@ GameObject:
   - component: {fileID: 1526864225}
   - component: {fileID: 1526864227}
   - component: {fileID: 1526864228}
+  - component: {fileID: 1526864229}
   m_Layer: 0
   m_Name: Wave manager
   m_TagString: Untagged
@@ -76200,6 +76201,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Map.Wave_manager.WaveManager, Assembly-CSharp
         m_MethodName: GetNewTargetEnemy
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1526864229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526864224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 725a890730b5381479b77cfb9f8701ee, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1526864225}
+        m_TargetAssemblyTypeName: Map.Wave_manager.WaveManager, Assembly-CSharp
+        m_MethodName: AddBossToNextWave
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

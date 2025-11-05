@@ -1754,6 +1754,7 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 7805846891793197291}
   broadcastEnemyDiedData: {fileID: 11400000, guid: 731e86236ae9e1b4e9b7bf820a298c82, type: 2}
   <LootContainer>k__BackingField: {fileID: 2304056634079398031}
+  broadcastMessageOnSpawn: {fileID: 0}
 --- !u!50 &8431198205224410881
 Rigidbody2D:
   serializedVersion: 5
