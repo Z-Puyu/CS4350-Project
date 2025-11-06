@@ -7,8 +7,16 @@ namespace Map.RegionBorder
     public class RegionBorder : MonoBehaviour
     {
         [SerializeField] private Tilemap tilemap;
+        private BoxCollider2D _boxCollider2D;
+        
         void Awake()
         {
+            _boxCollider2D = GetComponent<BoxCollider2D>();
+            _boxCollider2D.isTrigger = true;
+            if (!gameObject.CompareTag("Main map"))
+            {
+                _boxCollider2D.isTrigger = false;
+            }
             tilemap = GetComponent<Tilemap>();
         }
 

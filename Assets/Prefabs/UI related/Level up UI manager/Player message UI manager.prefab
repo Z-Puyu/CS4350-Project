@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2760017607312609058}
   - component: {fileID: 4108868845172295054}
   - component: {fileID: 2404567112865922258}
+  - component: {fileID: 2343622639693369045}
   m_Layer: 0
-  m_Name: Player things to note UI manager
+  m_Name: Player message UI manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,6 +182,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Player_related.Player_things_to_note_ui_manager.PlayerThingsToNoteUIManager,
           Assembly-CSharp
         m_MethodName: SpawnClearRegionUnlockRequirementText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2343622639693369045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319230930881902558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 725a890730b5381479b77cfb9f8701ee, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3171239768214687504}
+        m_TargetAssemblyTypeName: Player_related.Player_things_to_note_ui_manager.PlayerThingsToNoteUIManager,
+          Assembly-CSharp
+        m_MethodName: SpawnBossRelatedMessage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
