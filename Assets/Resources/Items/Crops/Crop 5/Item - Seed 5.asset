@@ -26,12 +26,13 @@ MonoBehaviour:
     - rid: 4925886426016907350
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
-        <Price>k__BackingField: 50
-        <HasDifferentPriceForSale>k__BackingField: 0
-        <Worth>k__BackingField: 0
+        <Price>k__BackingField: 40
+        <HasDifferentPriceForSale>k__BackingField: 1
+        <Worth>k__BackingField: 2
     - rid: 5797885423291465731
       type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
       data:
         <GrowthDuration>k__BackingField: 0
         <WateringRequirement>k__BackingField: 0
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: b28fbdc6e6e74db4d944b3643b4ae151, type: 2}
+        <AttackBuff>k__BackingField: 0

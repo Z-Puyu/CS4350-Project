@@ -6,6 +6,7 @@
             <ui:Button text="All items" name="AllTab" class="tab" />
             <ui:Button text="Seeds" name="SeedsTab" class="tab" />
             <ui:Button text="Crops" name="CropsTab" emoji-fallback-support="true" class="tab" />
+            <ui:Label text="$" name="MoneyCount" style="font-size: 30px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 300px; -unity-text-align: upper-left; align-self: stretch; margin-bottom: 50px; height: 8px; width: 136px; justify-content: flex-end; align-items: stretch; align-content: flex-start; right: auto; bottom: 12px; position: absolute;" />
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: column;">
             <ui:VisualElement name="TabHeader" style="flex-grow: 0; padding-left: 20px; padding-right: 20px; flex-wrap: nowrap; flex-direction: row; align-items: stretch; justify-content: flex-end; height: 118px; -unity-text-align: upper-left; background-color: rgb(89, 57, 31); border-left-color: rgb(230, 165, 63); border-right-color: rgb(230, 165, 63); border-top-color: rgb(230, 165, 63); border-bottom-color: rgb(230, 165, 63); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px;">

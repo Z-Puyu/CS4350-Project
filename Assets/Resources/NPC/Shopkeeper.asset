@@ -28,9 +28,9 @@ MonoBehaviour:
     - value: 10
     - value: 122
   itemsForSale:
+  - itemData: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
+    price: 0
+    stock: 5
   - itemData: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
-    price: 50
+    price: 0
     stock: 10
-  - itemData: {fileID: 11400000, guid: 50a2133a871ef8049a13ad0cc8f549db, type: 2}
-    price: 20
-    stock: 1
