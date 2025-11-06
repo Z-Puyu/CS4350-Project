@@ -8,11 +8,6 @@
             <ui:Button text="Crops" name="CropsTab" emoji-fallback-support="true" class="tab" />
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: column;">
-            <ui:VisualElement name="TabHeader" style="flex-grow: 0; padding-left: 20px; padding-right: 20px; flex-wrap: nowrap; flex-direction: row; align-items: stretch; justify-content: flex-end; height: 118px; -unity-text-align: upper-left; background-color: rgb(89, 57, 31); border-left-color: rgb(230, 165, 63); border-right-color: rgb(230, 165, 63); border-top-color: rgb(230, 165, 63); border-bottom-color: rgb(230, 165, 63); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px;">
-                <ui:Button text="Shop" name="ShopInventoryButton" class="itemButton" style="margin-bottom: 0;" />
-                <ui:Button text="Sell" name="SellerInventoryButton" class="itemButton" style="width: 250px; margin-left: 250px; margin-bottom: 0;" />
-                <ui:Button name="ExitButton" class="itemButton" style="width: 196px; margin-left: 425px; margin-bottom: 0; height: 93px; background-image: url(&quot;project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=4945972069173570739&amp;guid=5faddf85691868e4bb5b6234945a4948&amp;type=3#Pixel UI pack 1_270&quot;);" />
-            </ui:VisualElement>
             <ui:VisualElement name="Header" style="flex-grow: 0; padding-left: 20px; padding-right: 20px;">
                 <ui:Label text="Shop" style="font-size: 40px; -unity-font-style: bold;" />
             </ui:VisualElement>
@@ -29,10 +24,9 @@
                     <ui:VisualElement name="ItemIcon" style="flex-grow: 0; width: 350px; height: 350px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/Farming/animations/seed_1/grown/dry/seed_1_grown_dry-Sheet.png?fileID=-1937354148560845212&amp;guid=23089efb5264648eba5bd9c33a0982b6&amp;type=3#seed_1_grown_dry-Sheet_0&quot;); margin-bottom: 50px;" />
                     <ui:Label text="Item name is here" name="ItemName" style="font-size: 50px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 600px; -unity-text-align: middle-center; align-self: center; margin-bottom: 20px;" />
                     <ui:Label text="This is where the Item Description will appear..." name="ItemDescription" style="font-size: 30px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 300px; -unity-text-align: upper-left; align-self: center; margin-bottom: 50px;" />
+                    <ui:Label text="This is where the price will be stated" name="ItemPrice" parse-escape-sequences="false" style="font-size: 25px; -unity-font-style: bold; white-space: pre-wrap; color: rgb(255, 255, 255); max-height: none; max-width: 300px; -unity-text-align: upper-left; align-self: center; margin-bottom: 50px;" />
                     <ui:VisualElement name="ActionButtons" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center; justify-content: space-between; align-content: auto;">
-                        <ui:Button text="Buy item" name="BuyButton" class="itemButton" style="display: flex;" />
-                        <ui:Button text="Sell item" name="SellButton" class="itemButton" style="opacity: 1; display: flex; margin-right: 20px;" />
-                        <ui:Button text="Sell All" name="SellAllButton" class="itemButton" style="display: flex; margin-left: 20px;" />
+                        <ui:Button text="Buy item" name="BuyButton" class="itemButton" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

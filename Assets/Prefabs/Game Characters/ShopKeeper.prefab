@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4632010906883517445}
   - component: {fileID: 5323663698157867109}
   m_Layer: 0
-  m_Name: BlacksmithUIManager
+  m_Name: ShopKeeperUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 4305464790093161662}
   - component: {fileID: -1958409708301118018}
   m_Layer: 3
-  m_Name: Blacksmith
+  m_Name: ShopKeeper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
