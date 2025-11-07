@@ -33,10 +33,10 @@ MonoBehaviour:
     - rid: 5797885423291465731
       type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
       data:
-        <GrowthDuration>k__BackingField: 30
-        <WateringRequirement>k__BackingField: 1
+        <GrowthDuration>k__BackingField: 100
+        <WateringRequirement>k__BackingField: 2
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: 6116cfab740944c43a842e3473a33136, type: 2}
-        <AttackBuff>k__BackingField: 1000
+        <AttackBuff>k__BackingField: 100
     - rid: 5797885850866417744
       type: {class: Stackable, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
