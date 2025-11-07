@@ -885,7 +885,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1968,7 +1968,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_47
+      name: NUMBER_WINDOW
       rect:
         serializedVersion: 2
         x: 49
@@ -1977,7 +1977,7 @@ TextureImporter:
         height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -2122,7 +2122,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_54
+      name: Circle
       rect:
         serializedVersion: 2
         x: 66
@@ -2131,7 +2131,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 3, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -2144,7 +2144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_55
+      name: BUTTON_LIGHT_GREEN
       rect:
         serializedVersion: 2
         x: 97
@@ -2153,7 +2153,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -2540,7 +2540,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_73
+      name: BUTTON_GREEN
       rect:
         serializedVersion: 2
         x: 97
@@ -2549,7 +2549,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -2936,7 +2936,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_91
+      name: BUTTON_LIGHT_RED
       rect:
         serializedVersion: 2
         x: 97
@@ -2945,7 +2945,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -3332,7 +3332,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_109
+      name: BUTTON_RED
       rect:
         serializedVersion: 2
         x: 97
@@ -3341,7 +3341,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -3508,7 +3508,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_117
+      name: X-Green
       rect:
         serializedVersion: 2
         x: 417
@@ -3517,7 +3517,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -7087,6 +7087,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      BUTTON_GREEN: 8037278822220683920
+      BUTTON_LIGHT_GREEN: -7788530233391496657
+      BUTTON_LIGHT_RED: -1714826286559199688
+      BUTTON_RED: 1627526457832321798
+      Circle: -2448536373885827900
+      NUMBER_WINDOW: 4698084734912320967
       Pixel UI pack 1_0: -825855077544855921
       Pixel UI pack 1_1: 2644187960349470963
       Pixel UI pack 1_10: -6798008005890752040
@@ -7099,7 +7105,6 @@ TextureImporter:
       Pixel UI pack 1_106: -2257806905206014344
       Pixel UI pack 1_107: 6965180548041100383
       Pixel UI pack 1_108: 2552546186999777071
-      Pixel UI pack 1_109: 1627526457832321798
       Pixel UI pack 1_11: 1000121508289102257
       Pixel UI pack 1_110: 6714172852631649427
       Pixel UI pack 1_111: -6890008930149544167
@@ -7108,7 +7113,6 @@ TextureImporter:
       Pixel UI pack 1_114: 7607887169483296808
       Pixel UI pack 1_115: -5413267736532539621
       Pixel UI pack 1_116: -7385083887601695295
-      Pixel UI pack 1_117: 7758080344551047224
       Pixel UI pack 1_118: -3352667788177765721
       Pixel UI pack 1_119: -3835867686802820430
       Pixel UI pack 1_12: 6681833111273557150
@@ -7308,7 +7312,6 @@ TextureImporter:
       Pixel UI pack 1_44: 7520072428799407546
       Pixel UI pack 1_45: -8713979500690382324
       Pixel UI pack 1_46: 2872079009806699411
-      Pixel UI pack 1_47: 4698084734912320967
       Pixel UI pack 1_48: 1139651993604267385
       Pixel UI pack 1_49: -6373699566764805444
       Pixel UI pack 1_5: -3568253234799606981
@@ -7316,8 +7319,6 @@ TextureImporter:
       Pixel UI pack 1_51: 2349467858123774272
       Pixel UI pack 1_52: 7444907218686122113
       Pixel UI pack 1_53: -4464464098363829914
-      Pixel UI pack 1_54: -2448536373885827900
-      Pixel UI pack 1_55: -7788530233391496657
       Pixel UI pack 1_56: 3481882264696885822
       Pixel UI pack 1_57: -4338224008231212659
       Pixel UI pack 1_58: -1936670178838225054
@@ -7337,7 +7338,6 @@ TextureImporter:
       Pixel UI pack 1_70: -729278655770719794
       Pixel UI pack 1_71: -8678637353308842324
       Pixel UI pack 1_72: -5913271259585754490
-      Pixel UI pack 1_73: 8037278822220683920
       Pixel UI pack 1_74: 5898343471486523616
       Pixel UI pack 1_75: 7054122074006996332
       Pixel UI pack 1_76: 6227642782682184963
@@ -7357,7 +7357,6 @@ TextureImporter:
       Pixel UI pack 1_89: 5335864006819201778
       Pixel UI pack 1_9: 3298979127606021782
       Pixel UI pack 1_90: 9149081150046509467
-      Pixel UI pack 1_91: -1714826286559199688
       Pixel UI pack 1_92: 1692868413046533584
       Pixel UI pack 1_93: -4706772820784091233
       Pixel UI pack 1_94: -1897697811999063510
@@ -7366,6 +7365,7 @@ TextureImporter:
       Pixel UI pack 1_97: 8821744294002104068
       Pixel UI pack 1_98: 1830858184442682003
       Pixel UI pack 1_99: -4486504060233907196
+      X-Green: 7758080344551047224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

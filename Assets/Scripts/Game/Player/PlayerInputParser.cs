@@ -7,6 +7,7 @@ using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
+using Inventory_related.Inventory_UI_Manager_V2;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
@@ -26,6 +27,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Interactor Interactor { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
+        [field: SerializeField, Required] private InventoryUIManagerV2 InventoryUIManagerV2 { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private FarmerSpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
@@ -64,10 +66,10 @@ namespace Game.Player {
 
             OnScreenDebugger.Log(sb.ToString());
 
-            bool isInventoryActive = this.InventoryUIManager.gameObject.activeSelf;
+            bool isInventoryActive = this.InventoryUIManagerV2.gameObject.activeSelf;
 
             // Toggle inventory UI
-            this.InventoryUIManager.gameObject.SetActive(!isInventoryActive);
+            this.InventoryUIManagerV2.gameObject.SetActive(!isInventoryActive);
         }
 
         public void OnAttack(InputAction.CallbackContext context) {
