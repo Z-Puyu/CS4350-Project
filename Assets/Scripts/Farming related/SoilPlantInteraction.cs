@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Game.Player;
+using Inventory_related.Inventory_UI_Manager_V2;
 
 namespace Farming_related {
     public class SoilPlantInteraction : MonoBehaviour
@@ -214,7 +215,7 @@ namespace Farming_related {
         #region Planting & Watering
         void OpenInventoryForSeed()
         {
-            InventoryUIManager.Instance.OpenForSeedSelection(this);
+            InventoryUIManagerV2.Instance.OpenForSeedSelection(this);
         }
 
         public void PlantSeed(string seedId)
