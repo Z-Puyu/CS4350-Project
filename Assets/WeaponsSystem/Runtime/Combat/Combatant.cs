@@ -111,7 +111,6 @@ namespace WeaponsSystem.Runtime.Combat {
                 return false;           
             }
             
-            this.Weapon.gameObject.SetActive(false);
             this.Weapon = weapon;
             Debug.Log($"Equipped {weapon.name}");
             this.IsAttacking = false;

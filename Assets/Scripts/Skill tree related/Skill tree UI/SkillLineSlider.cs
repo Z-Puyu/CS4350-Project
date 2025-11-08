@@ -9,6 +9,11 @@ namespace Skill_tree_related.Skill_tree_UI
     {
         public Slider slider;
 
+        private void Start()
+        {
+            slider.value = 0;
+        }
+
         public void InitialiseLine(bool isFilled)
         {
             if (isFilled)
@@ -28,15 +33,15 @@ namespace Skill_tree_related.Skill_tree_UI
 
         IEnumerator FillLineAcrossTme(Action callback)
         {
-            if (slider.value >= 1)
+            while (true)
             {
-                callback();
-            }
-            else
-            {
-                slider.value += 0.05f;
-                yield return new WaitForSeconds(0.05f);
-                FillLineAcrossTme(callback);   
+                if (slider.value >= 1)
+                {
+                    callback();
+                    break;
+                }
+                slider.value += 0.1f;
+                yield return new WaitForSeconds(0.1f);
             }
         }
         

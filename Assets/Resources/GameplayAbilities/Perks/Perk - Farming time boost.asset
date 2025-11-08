@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
-  m_Name: Perk - Health Boost
+  m_Name: Perk - Farming time boost
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
-  <Name>k__BackingField: Health Boost
-  <Description>k__BackingField: Increases Player's health by 10%
+  <Name>k__BackingField: Speed up
+  <Description>k__BackingField: Reduce crop growth time by 1s
   <Prerequisites>k__BackingField: []
   <Modifiers>k__BackingField:
   - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 7ac0428bf2dcbe1478ebc96a726aea26, type: 2}
@@ -21,3 +21,5 @@ MonoBehaviour:
     <IsMultiplier>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 0}
+  <skillPointsToUnlock>k__BackingField: 1
+  <perkType>k__BackingField: 1

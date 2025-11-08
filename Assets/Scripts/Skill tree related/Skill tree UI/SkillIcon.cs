@@ -13,9 +13,17 @@ namespace Skill_tree_related.Skill_tree_UI {
         [SerializeField] private Sprite lockedIconBg;
         [SerializeField] private Sprite unlockedIconBg;
 
+        private bool isUnlocked;
+
         void Start()
         {
+            isUnlocked = false;
             this.image = this.GetComponent<Image>();
+        }
+
+        public void UnlockSkill()
+        {
+            isUnlocked = true;
         }
 
         public void InitialiseIcon(bool isFilled)
@@ -28,6 +36,11 @@ namespace Skill_tree_related.Skill_tree_UI {
             {
                 this.image.sprite = this.lockedIconBg;
             }
+        }
+
+        public bool CheckIsUnlocked()
+        {
+            return isUnlocked;
         }
 
         public void BroadcastSkill()

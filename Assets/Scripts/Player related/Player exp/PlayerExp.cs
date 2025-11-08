@@ -1,5 +1,6 @@
 using Events;
 using Game.Enemies;
+using GameplayAbilities.Runtime.Abilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,9 @@ namespace Player_related.Player_exp
         [SerializeField] private CrossObjectEventWithDataSO onFarmingLevelUp;
         private int combatExpNeededToLevelUp;
         private int farmingExpNeededToLevelUp;
+        
+        //Cache perk result
+        private Perk perk;
 
         void Start()
         {
@@ -91,6 +95,30 @@ namespace Player_related.Player_exp
             farmExpBar.value = ((float)farmingExp/(float)farmingExpNeededToLevelUp)*0.5f;
             numberOfCombatSkillPointText.text = combatSkillPoint.ToString();
             numberOfFarmingSkillPointText.text = farmingSkillPoint.ToString();
+        }
+
+        public bool EnoughPoint(Perk perk)
+        {
+            this.perk = perk;
+            if (perk.IsCombatPerk())
+            {
+                return combatSkillPoint >= perk.skillPointsToUnlock;
+            }
+            return farmingSkillPoint >= perk.skillPointsToUnlock;
+        }
+
+        public void MinusPoint()
+        {
+            if (perk == null) return;
+            
+            if (perk.IsCombatPerk())
+            {
+                combatSkillPoint -= perk.skillPointsToUnlock;
+                perk = null;
+                return;
+            }
+             farmingSkillPoint -= perk.skillPointsToUnlock;
+             perk = null;
         }
     }
 }

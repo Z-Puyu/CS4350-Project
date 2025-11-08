@@ -38,6 +38,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        [field: SerializeField, Required] private PlayerBattleUIManager PlayerBattleUIManager { get; set; }
         
         [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
         
@@ -145,7 +146,11 @@ namespace Game.Player {
                 return;
             }
 
-            this.Weaponry.Switch(0);
+            bool canSwitch = this.Weaponry.Switch(0);
+            if (canSwitch)
+            {
+                PlayerBattleUIManager.UpdateWeaponIcon(0);
+            }
         }
 
         public void OnSwitchToSecond(InputAction.CallbackContext context) {
@@ -153,7 +158,11 @@ namespace Game.Player {
                 return;
             }
 
-            this.Weaponry.Switch(1);
+            bool canSwitch = this.Weaponry.Switch(1);
+            if (canSwitch)
+            {
+                PlayerBattleUIManager.UpdateWeaponIcon(1);
+            }
         }
 
         public void OnSwitchToThird(InputAction.CallbackContext context)
@@ -163,7 +172,11 @@ namespace Game.Player {
                 return;
             }
 
-            this.Weaponry.Switch(2);
+            bool canSwitch = this.Weaponry.Switch(2);
+            if (canSwitch)
+            {
+                PlayerBattleUIManager.UpdateWeaponIcon(2);
+            }
         }
         
         public void OnQuickSwapPage(InputAction.CallbackContext context)
