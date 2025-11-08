@@ -1317,7 +1317,6 @@ GameObject:
   - component: {fileID: 2964447069335560441}
   - component: {fileID: 1142045542944250577}
   - component: {fileID: 2075937850055422755}
-  - component: {fileID: 7254836273019098096}
   - component: {fileID: 2715199660162378755}
   m_Layer: 5
   m_Name: Player UI manager
@@ -1439,34 +1438,6 @@ MonoBehaviour:
     - value: {fileID: 1739624393, guid: 76561d3135bd3ac45973a162c19e745b, type: 3}
     - value: {fileID: -1789377601, guid: 76561d3135bd3ac45973a162c19e745b, type: 3}
     - value: {fileID: 1294814486, guid: 76561d3135bd3ac45973a162c19e745b, type: 3}
---- !u!114 &7254836273019098096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675886182559523284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrossObjectEventWithDataListener
-  gameEvent: {fileID: 11400000, guid: 4b4533c8faf329843b9cac25965704cf, type: 2}
-  responseOnTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2075937850055422755}
-        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
-        m_MethodName: UpdateWeaponIcon
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2715199660162378755
 MonoBehaviour:
   m_ObjectHideFlags: 0
