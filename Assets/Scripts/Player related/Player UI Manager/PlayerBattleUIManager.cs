@@ -33,9 +33,9 @@ public class PlayerBattleUIManager : MonoBehaviour
         staminaBar.value = (float)stamina.Value/(float)stamina.MaxValue;
     }
 
-    public void UpdateWeaponIcon(Component component, object index)
+    public void UpdateWeaponIcon(int index)
     {
-        weaponIconImage.sprite = weaponIndexToWeaponIcon[(int)((object[]) index)[0]];
+        weaponIconImage.sprite = weaponIndexToWeaponIcon[index];
     }
 
     public void ShowObjectiveUnlockPromptIndicator()

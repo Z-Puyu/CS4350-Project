@@ -1210,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 2716461110618952316, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <DashTrail>k__BackingField
       value: 
-      objectReference: {fileID: 1079002082842346726}
+      objectReference: {fileID: 8379674413753977792}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2029,6 +2029,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6888346556913851788}
+        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
+        m_MethodName: UpdateWeaponIcon
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150496294135487135}
+        m_TargetAssemblyTypeName: WeaponsSystem.Runtime.Equipments.Weaponry, WeaponsSystem.Runtime
+        m_MethodName: Switch
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2121c436-9f57-4177-a07a-95c5d62ca6f2
     m_ActionName: 'Player/SwitchMelee[/Keyboard/1]'
   - m_PersistentCalls:
@@ -2045,6 +2069,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6888346556913851788}
+        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
+        m_MethodName: UpdateWeaponIcon
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150496294135487135}
+        m_TargetAssemblyTypeName: WeaponsSystem.Runtime.Equipments.Weaponry, WeaponsSystem.Runtime
+        m_MethodName: Switch
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a6084afc-e2fe-4668-ba9f-0f20e839c166
     m_ActionName: 'Player/SwitchRanged[/Keyboard/2]'
   - m_PersistentCalls:
@@ -2057,6 +2105,30 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6888346556913851788}
+        m_TargetAssemblyTypeName: PlayerBattleUIManager, Assembly-CSharp
+        m_MethodName: UpdateWeaponIcon
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150496294135487135}
+        m_TargetAssemblyTypeName: WeaponsSystem.Runtime.Equipments.Weaponry, WeaponsSystem.Runtime
+        m_MethodName: Switch
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -8,9 +8,10 @@ namespace WeaponsSystem.Runtime.Equipments {
     [DisallowMultipleComponent]
     public sealed class Weaponry : MonoBehaviour {
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
+        [field: SerializeField]
         private List<Weapon> Weapons { get; } = new List<Weapon>();
         private int CurrentActiveIndex { get; set; }
-        private HashSet<int> LockedWeapons { get; } = new HashSet<int>();
+        private HashSet<int> LockedWeapons { get;} = new HashSet<int>();
         
         public int Size => this.Weapons.Count;
         

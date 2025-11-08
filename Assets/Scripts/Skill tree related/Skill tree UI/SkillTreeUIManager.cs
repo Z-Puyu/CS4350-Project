@@ -22,6 +22,10 @@ namespace Skill_tree_related.Skill_tree_UI {
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
         
+        void Start() {
+            backdropPanel.SetActive(false);    
+        }
+        
         public void OpenBackdropPanel()
         {
             backdropPanel.SetActive(true);

@@ -32,7 +32,7 @@ namespace WeaponsSystem.Runtime.Combat {
             new UnityEvent<ISet<WeaponComponent>>();
         
         private Timer AttackTimer { get; set; }
-        
+        [field: SerializeField]
         private Weapon Weapon { get; set; }
         private bool IsAttacking { get; set; }
         
@@ -111,6 +111,7 @@ namespace WeaponsSystem.Runtime.Combat {
                 return false;           
             }
             
+            this.Weapon.gameObject.SetActive(false);
             this.Weapon = weapon;
             Debug.Log($"Equipped {weapon.name}");
             this.IsAttacking = false;
