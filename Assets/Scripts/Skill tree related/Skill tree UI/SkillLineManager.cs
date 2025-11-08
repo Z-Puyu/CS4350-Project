@@ -7,12 +7,13 @@ namespace Skill_tree_related.Skill_tree_UI
     {
         [SerializeField] private List<SkillIcon> skillIconsManaged;
         [SerializeField] private List<SkillLineSlider> skillLinesManaged;
+        private int level;
 
-        public void InitialiseLine(int level)
+        public void InitialiseLine()
         {
             for (int i = 0; i < skillIconsManaged.Count; i++)
             {
-                if (i <= level - 1)
+                if (i < level)
                 {
                     skillIconsManaged[i].InitialiseIcon(true);
                     skillLinesManaged[i].InitialiseLine(true);   
@@ -25,9 +26,18 @@ namespace Skill_tree_related.Skill_tree_UI
             }    
         }
 
-        public void LevelUp(int level)
+        public void LevelUp(SkillIcon skillIcon)
         {
-            skillLinesManaged[level - 1].FillLine(() => skillIconsManaged[level - 1].InitialiseIcon(true));
+            for (int i = 0; i < skillIconsManaged.Count; i++)
+            {
+                if (skillIconsManaged[i] == skillIcon)
+                {
+                    skillIcon.UnlockSkill();
+                    level++;
+                    skillLinesManaged[i].FillLine(() => skillIconsManaged[i].InitialiseIcon(true));
+                    return;
+                }
+            }
         }
         
     }
