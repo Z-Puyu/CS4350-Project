@@ -47,6 +47,7 @@ MonoBehaviour:
   <Interactor>k__BackingField: {fileID: 0}
   <Inventory>k__BackingField: {fileID: 0}
   <InventoryUIManager>k__BackingField: {fileID: 0}
+  <InventoryUIManagerV2>k__BackingField: {fileID: 0}
   <Movement>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 0}
   <Combatant>k__BackingField: {fileID: 0}
@@ -56,3 +57,7 @@ MonoBehaviour:
   <Weaponry>k__BackingField: {fileID: 0}
   <broadcastOpenNotebook>k__BackingField: {fileID: 11400000, guid: c18ca7095603885429344b34773ef14d, type: 2}
   <broadcastPauseGame>k__BackingField: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}
+  <broadcastPauseUIGame>k__BackingField: {fileID: 11400000, guid: a2d59c9579b0fce4889f3c6aef9389a4, type: 2}
+  <PlayerQuickSwapUIManager>k__BackingField: {fileID: 0}
+  <PlayerBattleUIManager>k__BackingField: {fileID: 0}
+  <Stamina>k__BackingField: {fileID: 0}

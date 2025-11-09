@@ -4,26 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Skill_tree_related.Skill_tree_UI {
-    public class SkillIcon : MonoBehaviour
+    public abstract class SkillIcon : MonoBehaviour
     {
-        [SerializeField] private Perk skillScriptableObject;
-        [SerializeField] private CrossObjectEventWithDataSO broadcastSkill;
-    
         [SerializeField] private Image image;
+        [SerializeField] protected Image spriteIcon;
         [SerializeField] private Sprite lockedIconBg;
         [SerializeField] private Sprite unlockedIconBg;
 
-        private bool isUnlocked;
+        //Is this skill icon unlocked?
+        [SerializeField] private bool isUnlocked = false;
+        
+        //Can we unlock this skill?
+        [SerializeField] private bool canUnlock = false;
 
         void Start()
         {
-            isUnlocked = false;
-            this.image = this.GetComponent<Image>();
+            image = GetComponent<Image>();
+            foreach (Transform childTransform in transform)
+            {
+                spriteIcon = childTransform.GetComponent<Image>();   
+            }
+            SetSkillIcon();
         }
 
         public void UnlockSkill()
         {
             isUnlocked = true;
+            canUnlock = false;
         }
 
         public void InitialiseIcon(bool isFilled)
@@ -42,10 +49,17 @@ namespace Skill_tree_related.Skill_tree_UI {
         {
             return isUnlocked;
         }
-
-        public void BroadcastSkill()
+        
+        public bool CheckCanUnlock()
         {
-            this.broadcastSkill.TriggerEvent(this, this.skillScriptableObject);
+            return canUnlock;
         }
+
+        public void SetCanUnlock()
+        {
+            canUnlock = true;
+        }
+
+        public abstract void SetSkillIcon();
     }
 }

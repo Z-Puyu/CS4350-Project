@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
-  m_Name: Perk - Health Boost
+  m_Name: Perk - watering down
   m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
-  <Name>k__BackingField: Health Boost
-  <Description>k__BackingField: Increases Player's health by 10%
+  <Name>k__BackingField: Watering requirement down
+  <Description>k__BackingField: Reduce watering requirement by 1
+  <sprite>k__BackingField: {fileID: -121985225634370792, guid: 2f08c486d3fb6824cae84a3277042537, type: 3}
   <Prerequisites>k__BackingField: []
   <Modifiers>k__BackingField:
-  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 7ac0428bf2dcbe1478ebc96a726aea26, type: 2}
-    <Magnitude>k__BackingField: 10
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: c377f4d9e7a103d4e8fa569a4f7a897b, type: 2}
+    <Magnitude>k__BackingField: 1
     <IsMultiplier>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 0}
-  <skillPointsToUnlock>k__BackingField: 1
-  <perkType>k__BackingField: 0
+  <skillPointsToUnlock>k__BackingField: 3
+  <perkType>k__BackingField: 1

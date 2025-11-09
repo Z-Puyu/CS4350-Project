@@ -247,7 +247,8 @@ namespace Farming_related {
                 {
                     // persist plantable so we can read AttackBuff later
                     this.currentPlantable = plantable;
-                    float duration = Mathf.Max(1f, plantable.GrowthDuration);
+                    float duration = Mathf.Max(1f, plantable.GrowthDuration - playerAttributeSet.Query("Growth time reduction", 0));
+                    Debug.Log($"Duration of growth: {duration}");
                     // initialize growth controller with plant parameters and thresholds
                     growthController.Initialize(duration, plantable.WateringRequirement, wetGrowthMultiplier, plantedThreshold, seedlingThreshold, grownThreshold, wiltingThreshold);
                     growthController.Plant();

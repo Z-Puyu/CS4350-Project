@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
+  m_Name: Perk - Stamina boost
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
+  <Name>k__BackingField: Stamina boost
+  <Description>k__BackingField: Increase stamina by 15
+  <sprite>k__BackingField: {fileID: 3867232208278529736, guid: ae5a8cd84de72444d891beeb75d42b5b, type: 3}
+  <Prerequisites>k__BackingField: []
+  <Modifiers>k__BackingField:
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 2c09c383d1e891e47bba0c2fbb91a2a9, type: 2}
+    <Magnitude>k__BackingField: 15
+    <IsMultiplier>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 11400000, guid: 8a0a748b9b31c8e4d883cfe434adee7b, type: 2}
+  <skillPointsToUnlock>k__BackingField: 1
+  <perkType>k__BackingField: 0

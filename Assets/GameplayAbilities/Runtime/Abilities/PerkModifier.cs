@@ -10,7 +10,7 @@ namespace GameplayAbilities.Runtime.Abilities {
         [field: SerializeField] private int Magnitude { get; set; }
         [field: SerializeField] private bool IsMultiplier { get; set; }
         
-        internal Modifier ToModifier() {
+        public Modifier ToModifier() {
             return new Modifier(
                 this.Magnitude, this.IsMultiplier ? Modifier.Operation.Multiply : Modifier.Operation.Shift,
                 this.TargetAttribute.Id

@@ -23,6 +23,7 @@ namespace Skill_tree_related.Skill_tree_UI {
         [Header("Skill tab")] 
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private TextMeshProUGUI skillPointNeedText;
         [SerializeField] private Button canUnlockButton;
         [SerializeField] private GameObject sidebar;
         
@@ -52,14 +53,56 @@ namespace Skill_tree_related.Skill_tree_UI {
             sidebar.SetActive(true);
             this.titleText.text = perk.Name;
             this.descriptionText.text = perk.Description;
-
-            if (skillIcon.CheckIsUnlocked())
+            skillPointNeedText.text = $"Require {perk.skillPointsToUnlock} skill points";
+            skillPointNeedText.gameObject.SetActive(true);
+            
+            if (skillIcon.CheckIsUnlocked() || !skillIcon.CheckCanUnlock())
             {
+                skillPointNeedText.gameObject.SetActive(false);
                 canUnlockButton.gameObject.SetActive(false);
             }
             else
             {
-                canUnlockButton.gameObject.SetActive(PlayerExp.EnoughPoint(perk));
+                bool canUnlock = PlayerExp.EnoughPoint(perk);
+                if (canUnlock)
+                {
+                    skillPointNeedText.color = Color.green;
+                }
+                else
+                {
+                    skillPointNeedText.color = Color.red;
+                }
+                canUnlockButton.gameObject.SetActive(canUnlock);
+            }
+        }
+        
+        public void SetWeaponSkillIconInformation(Component component, object skill)
+        {
+            skillIcon = (SkillIcon)component;
+            WeaponUnlockPerk perk = (WeaponUnlockPerk)((object[])skill)[0];
+            sidebar.SetActive(true);
+            this.titleText.text = perk.Name;
+            this.descriptionText.text = perk.Description;
+            skillPointNeedText.text = $"Require {perk.skillPointsToUnlock} skill points";
+            skillPointNeedText.gameObject.SetActive(true);
+            
+            if (skillIcon.CheckIsUnlocked() || !skillIcon.CheckCanUnlock())
+            {
+                skillPointNeedText.gameObject.SetActive(false);
+                canUnlockButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                bool canUnlock = PlayerExp.EnoughPoint(perk);
+                if (canUnlock)
+                {
+                    skillPointNeedText.color = Color.green;
+                }
+                else
+                {
+                    skillPointNeedText.color = Color.red;
+                }
+                canUnlockButton.gameObject.SetActive(canUnlock);
             }
         }
 

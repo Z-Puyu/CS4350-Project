@@ -19,17 +19,11 @@ public class PlayerBattleUIManager : MonoBehaviour
     void Awake()
     {
         objectiveUnlockedPromptIndicator.SetActive(false);
-        health.OnHealthChanged += UpdateHealth;
-        stamina.OnStaminaChanged += UpdateStamina;
-    }
-    
-    void UpdateHealth((int old, int curr) data)
-    {
-        healthBar.value = (float)data.curr/(float)health.MaxValue;
     }
 
-    public void UpdateStamina((int old, int curr) data)
+    void Update()
     {
+        healthBar.value = (float)health.Value/(float)health.MaxValue;
         staminaBar.value = (float)stamina.Value/(float)stamina.MaxValue;
     }
 
