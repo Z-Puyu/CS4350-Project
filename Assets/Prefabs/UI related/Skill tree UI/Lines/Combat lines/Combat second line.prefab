@@ -35,10 +35,10 @@ RectTransform:
   - {fileID: 3392319074577145255}
   - {fileID: 4519540593367534732}
   - {fileID: 5183701100458175572}
-  - {fileID: 8744282155470564278}
   - {fileID: 3390544946496400844}
   - {fileID: 7805266473318185891}
   - {fileID: 3143726386212360611}
+  - {fileID: 3795190074562452451}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -59,17 +59,127 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skill_tree_related.Skill_tree_UI.SkillLineManager
   skillIconsManaged:
-  - {fileID: 363241438355823070}
-  - {fileID: 834978031855904258}
-  - {fileID: 8470156769520220503}
-  - {fileID: 920031896319187343}
-  - {fileID: 3633638297758211693}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   skillLinesManaged:
   - {fileID: 8850525345031871607}
   - {fileID: 2823345354230209025}
   - {fileID: 2823997998638180970}
   - {fileID: 7236327052565199877}
   - {fileID: 2566413935311984133}
+--- !u!1001 &102292397034124092
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8109325782103794914}
+    m_Modifications:
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 45.2208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 45.2208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -930
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 165.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070107232964896383, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: e07b314d29d86fa45936fdfce64c961b, type: 2}
+    - target: {fileID: 6070107232964896383, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: broadcastWeaponUnlockSkillIcon
+      value: 
+      objectReference: {fileID: 11400000, guid: 547ab4614454f5040be156164cad9a65, type: 2}
+    - target: {fileID: 8168233439403564975, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+      propertyPath: m_Name
+      value: Weapon unlock icon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+--- !u!224 &3795190074562452451 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: aba69c30048ed7441917260f8d4e0fb9, type: 3}
+  m_PrefabInstance: {fileID: 102292397034124092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &252790270303837562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,10 +688,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -16.613
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184137511456949922, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3860409817716933643, guid: 8d6771016c1df3e47ac2e6530ed1ef09, type: 3}
+    - target: {fileID: 7456090300316991505, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 124af747cfdcc0f40b9cc82e570a8dc6, type: 2}
     - target: {fileID: 8168233439403564975, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
       propertyPath: m_Name
       value: Skill icon (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 124af747cfdcc0f40b9cc82e570a8dc6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -592,17 +722,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
   m_PrefabInstance: {fileID: 826675643355915347}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8470156769520220503 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 826675643355915347}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
 --- !u!1001 &4665737804355222398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -742,151 +861,6 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3211602343377322205, guid: 4b38a6aec60c6ae43acdb90abd03dfbd, type: 3}
   m_PrefabInstance: {fileID: 4665737804355222398}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5519651098221020009
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8109325782103794914}
-    m_Modifications:
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 45.2208
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 45.2208
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -921
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 149.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4278008393692452102, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 8071685920611331462, guid: 7170b9044af83a24794ddf258474f1e3, type: 3}
-    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -15.4079
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -15.4079
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00002861023
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.0000019073486
-      objectReference: {fileID: 0}
-    - target: {fileID: 7184137511456949922, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 105587632194010573, guid: bca940cbdf809064eb9644d6c0595740, type: 3}
-    - target: {fileID: 8168233439403564975, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: m_Name
-      value: Skill icon (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: lockedIconBg
-      value: 
-      objectReference: {fileID: 8071685920611331462, guid: 7170b9044af83a24794ddf258474f1e3, type: 3}
-    - target: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-      propertyPath: unlockedIconBg
-      value: 
-      objectReference: {fileID: 1893609610, guid: 7170b9044af83a24794ddf258474f1e3, type: 3}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
---- !u!114 &3633638297758211693 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 5519651098221020009}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
---- !u!224 &8744282155470564278 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 5519651098221020009}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6809441698388761356
 PrefabInstance:
@@ -1116,6 +1090,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7184137511456949922, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5318545276618211532, guid: 6412334a6ffac8242adc13e42e0a1e38, type: 3}
+    - target: {fileID: 7456090300316991505, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: ee25fb4d9cfb9b84ebf41877b2ed0f79, type: 2}
     - target: {fileID: 8168233439403564975, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
       propertyPath: m_Name
       value: Skill icon (3)
@@ -1125,17 +1107,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
---- !u!114 &920031896319187343 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 8228190356367164555}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
 --- !u!224 &5183701100458175572 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
@@ -1229,26 +1200,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -10.0729
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618119290400027179, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.3224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184137511456949922, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3768107215392563372, guid: 28a58d292df0ca54cbce514106c86738, type: 3}
+    - target: {fileID: 7456090300316991505, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 8887a2e22c52f0a40baf9194df8537d7, type: 2}
     - target: {fileID: 8168233439403564975, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
       propertyPath: m_Name
       value: Skill icon (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 8887a2e22c52f0a40baf9194df8537d7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
---- !u!114 &834978031855904258 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 8458476650092018438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
 --- !u!224 &4657523102215345113 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
@@ -1342,6 +1322,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7184137511456949922, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5318545276618211532, guid: 6412334a6ffac8242adc13e42e0a1e38, type: 3}
+    - target: {fileID: 7456090300316991505, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
+      propertyPath: skillScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: ee25fb4d9cfb9b84ebf41877b2ed0f79, type: 2}
     - target: {fileID: 8168233439403564975, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
       propertyPath: m_Name
       value: Skill icon
@@ -1351,17 +1339,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
---- !u!114 &363241438355823070 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9148213452230958340, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}
-  m_PrefabInstance: {fileID: 8934725511545586906}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
 --- !u!224 &5638179786671565829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3873187108605864159, guid: ccaea2e8940f0634e9d659e75c94db91, type: 3}

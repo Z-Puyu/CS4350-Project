@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3873187108605864159}
   - component: {fileID: 7011179156280337407}
   - component: {fileID: 4278008393692452102}
-  - component: {fileID: 9148213452230958340}
+  - component: {fileID: 4736080217254539578}
   - component: {fileID: 2162942476984170795}
   m_Layer: 5
   m_Name: Farming skill icon
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9148213452230958340
+--- !u!114 &4736080217254539578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,14 +162,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8168233439403564975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb4a9601d029804d82192e09b5ad886, type: 3}
+  m_Script: {fileID: 11500000, guid: 69c59b59e6f07fe4db575be3ab6058c7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillIcon
-  skillScriptableObject: {fileID: 11400000, guid: 83cfbab4eb4145e4d99fc832ac5ff36c, type: 2}
-  broadcastSkill: {fileID: 11400000, guid: 28a0d85b75ce5e8468d3da3f15ec25fd, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_tree_related.Skill_tree_UI.FarmingStatsSkillIcon
   image: {fileID: 4278008393692452102}
-  lockedIconBg: {fileID: -8571070166039891722, guid: 4c765722a864e1149a9c7bbc994eeef3, type: 3}
-  unlockedIconBg: {fileID: 620627035, guid: 4c765722a864e1149a9c7bbc994eeef3, type: 3}
+  spriteIcon: {fileID: 7184137511456949922}
+  lockedIconBg: {fileID: -4438313323357052988, guid: 00b88c09a77525f4f8716349805313dc, type: 3}
+  unlockedIconBg: {fileID: -1490668334, guid: 00b88c09a77525f4f8716349805313dc, type: 3}
+  isUnlocked: 0
+  canUnlock: 0
+  skillScriptableObject: {fileID: 0}
+  broadcastSkill: {fileID: 11400000, guid: 28a0d85b75ce5e8468d3da3f15ec25fd, type: 2}
 --- !u!114 &2162942476984170795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9148213452230958340}
-        m_TargetAssemblyTypeName: SkillIcon, Assembly-CSharp
+      - m_Target: {fileID: 4736080217254539578}
+        m_TargetAssemblyTypeName: Skill_tree_related.Skill_tree_UI.FarmingStatsSkillIcon,
+          Assembly-CSharp
         m_MethodName: BroadcastSkill
         m_Mode: 1
         m_Arguments:

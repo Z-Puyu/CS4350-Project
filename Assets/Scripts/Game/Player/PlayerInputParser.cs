@@ -167,16 +167,16 @@ namespace Game.Player {
 
         public void OnSwitchToThird(InputAction.CallbackContext context)
         {
-            if (!context.performed)
-            {
-                return;
-            }
-
-            bool canSwitch = this.Weaponry.Switch(2);
-            if (canSwitch)
-            {
-                PlayerBattleUIManager.UpdateWeaponIcon(2);
-            }
+            // if (!context.performed)
+            // {
+            //     return;
+            // }
+            //
+            // bool canSwitch = this.Weaponry.Switch(2);
+            // if (canSwitch)
+            // {
+            //     PlayerBattleUIManager.UpdateWeaponIcon(2);
+            // }
         }
         
         public void OnQuickSwapPage(InputAction.CallbackContext context)

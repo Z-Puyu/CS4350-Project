@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
+  m_Name: Perk - Crop yield boost
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
+  <Name>k__BackingField: Crop yield boost
+  <Description>k__BackingField: Increase chance of getting 1 more flower by 5%
+  <sprite>k__BackingField: {fileID: 4889836955308292853, guid: db6bc9f9d3756c74ab83d3918b3e9731, type: 3}
+  <Prerequisites>k__BackingField: []
+  <Modifiers>k__BackingField:
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 02e2d398979cd6541a0e0be8db298c42, type: 2}
+    <Magnitude>k__BackingField: 2
+    <IsMultiplier>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 0}
+  <skillPointsToUnlock>k__BackingField: 1
+  <perkType>k__BackingField: 1
