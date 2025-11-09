@@ -14,7 +14,7 @@ namespace Skill_tree_related.Skill_tree_UI
             this.broadcastWeaponUnlockSkillIcon.TriggerEvent(this, this.skillScriptableObject);
         }
         
-        override public void SetSkillIcon()
+        public override void SetSkillIcon()
         {
             spriteIcon.sprite = skillScriptableObject.sprite;
         }

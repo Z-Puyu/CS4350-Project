@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d94409401e4265409ace005f91296b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventListener
-  gameEvent: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}
+  gameEvent: {fileID: 11400000, guid: a2d59c9579b0fce4889f3c6aef9389a4, type: 2}
   responseOnTrigger:
     m_PersistentCalls:
       m_Calls:

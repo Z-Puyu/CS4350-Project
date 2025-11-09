@@ -37,6 +37,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseUIGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
         [field: SerializeField, Required] private PlayerBattleUIManager PlayerBattleUIManager { get; set; }
         
@@ -60,6 +61,7 @@ namespace Game.Player {
             }
 
             // Logging inventory items
+            broadcastPauseGame.TriggerEvent();
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
                 sb.AppendLine($"{item.Key.Id}: {item.Value}");
@@ -89,6 +91,7 @@ namespace Game.Player {
         public void OnOpenObjective(InputAction.CallbackContext context)
         {
             if (context.performed) {
+                broadcastPauseGame.TriggerEvent();
                 broadcastOpenNotebook.TriggerEvent();
             }
         }
@@ -112,6 +115,7 @@ namespace Game.Player {
             if (context.performed)
             {
                 broadcastPauseGame.TriggerEvent();
+                broadcastPauseUIGame.TriggerEvent();
             }
         }
 

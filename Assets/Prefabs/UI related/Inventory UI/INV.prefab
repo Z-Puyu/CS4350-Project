@@ -358,6 +358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager_V2.InventoryUIManagerV2
   gridContainer: {fileID: 6219808472321111488}
   slotPrefab: {fileID: 8588676675157333535, guid: f7e24634044fb5d4eac0b3c7ee15b6e7, type: 3}
+  seedType: {fileID: 0}
+  consumableType: {fileID: 0}
   itemViewerContainer: {fileID: 2215936972782374015}
   itemImage: {fileID: 8569372832003344567}
   itemNameText: {fileID: 8723586244403621997}
@@ -2255,6 +2257,34 @@ PrefabInstance:
     - target: {fileID: 3481517232387715342, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Events.CrossObjectEventSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731761007844424065, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6199803169170328577, guid: e6a21c379cd12c84b9d2b0c454bf6c81, type: 3}
       propertyPath: m_Name

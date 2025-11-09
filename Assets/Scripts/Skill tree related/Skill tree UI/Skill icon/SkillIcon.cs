@@ -20,7 +20,10 @@ namespace Skill_tree_related.Skill_tree_UI {
         void Start()
         {
             image = GetComponent<Image>();
-            spriteIcon = GetComponentInChildren<Image>();
+            foreach (Transform childTransform in transform)
+            {
+                spriteIcon = childTransform.GetComponent<Image>();   
+            }
             SetSkillIcon();
         }
 
