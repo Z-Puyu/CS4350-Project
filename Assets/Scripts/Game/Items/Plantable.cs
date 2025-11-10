@@ -4,6 +4,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using ModularItemsAndInventory.Runtime.Items.Properties;
 using Player_related.Player_exp;
 using UnityEngine;
+using GameplayAbilities.Runtime.Attributes;
 
 namespace Game.Items {
     [Serializable]
@@ -11,7 +12,8 @@ namespace Game.Items {
         [field: SerializeField] public int GrowthDuration { get; private set; }
         [field: SerializeField] public int WateringRequirement { get; private set; }
         [field: SerializeField] public FarmingExpObject FarmingExpObject { get; private set; }
-        [field: SerializeField] public float AttackBuff { get; private set; }
+    [field: SerializeField] public float AttackBuff { get; private set; }
+    [field: SerializeField] public AttributeType BuffAttribute { get; private set; }
 
         protected override string Encode() {
             StringBuilder sb = new StringBuilder(this.GetType().FullName);
@@ -25,7 +27,8 @@ namespace Game.Items {
                 GrowthDuration = this.GrowthDuration, 
                 WateringRequirement = this.WateringRequirement,
                 FarmingExpObject = this.FarmingExpObject,
-                AttackBuff = this.AttackBuff
+                AttackBuff = this.AttackBuff,
+                BuffAttribute = this.BuffAttribute
             };
         }
 

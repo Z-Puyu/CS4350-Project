@@ -63,13 +63,14 @@ namespace Farming_related
                 return;
             }
 
-            var modifier = new Modifier(magnitude, Modifier.Operation.Multiply, "Damage.Physical");
+            var targetAttribute = plantable.BuffAttribute == null ? "Damage.Physical" : plantable.BuffAttribute.Id;
+            var modifier = new Modifier(magnitude, Modifier.Operation.Multiply, targetAttribute);
             if (!activeModifier.Equals(Modifier.Empty) && activeModifier.Equals(modifier)) return;
 
             RemoveBuff();
             playerAttributeSet.AddModifier(modifier);
             activeModifier = modifier;
-            Debug.Log($"[PlantBuffProvider] Applied player buff +{magnitude}% to Damage.Physical (seed, progress={growthProgress:F2})");
+            Debug.Log($"[PlantBuffProvider] Applied player buff +{magnitude}% to {targetAttribute} (seed, progress={growthProgress:F2})");
         }
 
         /// <summary>
@@ -92,13 +93,14 @@ namespace Farming_related
             {
                 case SoilPlantInteraction.PlantStage.Grown:
                     {
-                        var mod = new Modifier(baseBuff, Modifier.Operation.Multiply, "Damage.Physical");
+                        var targetAttribute = plantable.BuffAttribute == null ? "Damage.Physical" : plantable.BuffAttribute.Id;
+                        var mod = new Modifier(baseBuff, Modifier.Operation.Multiply, targetAttribute);
                         RemoveBuff();
                         if (playerAttributeSet != null)
                         {
                             playerAttributeSet.AddModifier(mod);
                             activeModifier = mod;
-                            Debug.Log($"[PlantBuffProvider] Stage Grown: Applied flat buff +{baseBuff}% to Damage.Physical");
+                            Debug.Log($"[PlantBuffProvider] Stage Grown: Applied flat buff +{baseBuff}% to {targetAttribute}");
                         }
                         break;
                     }
@@ -106,13 +108,14 @@ namespace Farming_related
                     {
                         int half = Mathf.RoundToInt(baseBuff * 0.5f);
                         if (half <= 0) { RemoveBuff(); break; }
-                        var mod = new Modifier(half, Modifier.Operation.Multiply, "Damage.Physical");
+                        var targetAttribute = plantable.BuffAttribute == null ? "Damage.Physical" : plantable.BuffAttribute.Id;
+                        var mod = new Modifier(half, Modifier.Operation.Multiply, targetAttribute);
                         RemoveBuff();
                         if (playerAttributeSet != null)
                         {
                             playerAttributeSet.AddModifier(mod);
                             activeModifier = mod;
-                            Debug.Log($"[PlantBuffProvider] Stage Wilting: Applied flat buff +{half}% (half) to Damage.Physical");
+                            Debug.Log($"[PlantBuffProvider] Stage Wilting: Applied flat buff +{half}% (half) to {targetAttribute}");
                         }
                         break;
                     }

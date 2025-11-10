@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Items.ItemData
   <Id>k__BackingField: crop_5
   <Type>k__BackingField: {fileID: 11400000, guid: 73ac0fe562771384eb17a3c30f5e718e, type: 2}
-  <Name>k__BackingField: Crop 5
-  <Description>k__BackingField: Crop 5
+  <Name>k__BackingField: Crop of Domain
+  <Description>k__BackingField: Crop of Domain, sells for 50
   <CustomIcon>k__BackingField: {fileID: -2183655617119419819, guid: 13d3704d3cf25bb48bf0f3559a0c435f, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
-  - rid: 5797885423291465728
   references:
     version: 2
     RefIds:
@@ -29,8 +28,3 @@ MonoBehaviour:
         <Price>k__BackingField: 50
         <HasDifferentPriceForSale>k__BackingField: 0
         <Worth>k__BackingField: 0
-    - rid: 5797885423291465728
-      type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
-      data:
-        <GrowthDuration>k__BackingField: 2
-        <WateringRequirement>k__BackingField: 0
