@@ -154,6 +154,7 @@ namespace Game.Player {
             if (canSwitch)
             {
                 PlayerBattleUIManager.UpdateWeaponIcon(0);
+                Combatant.UpdateWeaponSprite(0);
             }
         }
 
@@ -166,6 +167,7 @@ namespace Game.Player {
             if (canSwitch)
             {
                 PlayerBattleUIManager.UpdateWeaponIcon(1);
+                Combatant.UpdateWeaponSprite(1);
             }
         }
 

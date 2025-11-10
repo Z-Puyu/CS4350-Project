@@ -18,23 +18,23 @@ namespace Skill_tree_related.Skill_tree_UI
 
         public void InitialiseLine()
         {
+            if (skillIconsManaged == null || skillIconsManaged.Count == 0) return;
+
             if (level == 0)
             {
                 skillIconsManaged[0].SetCanUnlock();
             }
+
             for (int i = 0; i < skillIconsManaged.Count; i++)
             {
-                if (i < level)
+                bool isUnlocked = i < level;
+                skillIconsManaged[i].InitialiseIcon(isUnlocked);
+
+                if (i < skillLinesManaged.Count)
                 {
-                    skillIconsManaged[i].InitialiseIcon(true);
-                    skillLinesManaged[i].InitialiseLine(true);   
+                    skillLinesManaged[i].InitialiseLine(isUnlocked);
                 }
-                else
-                {
-                    skillIconsManaged[i].InitialiseIcon(false);
-                    skillLinesManaged[i].InitialiseLine(false);
-                }
-            }    
+            }
         }
 
         public void LevelUp(SkillIcon skillIcon)
@@ -44,12 +44,14 @@ namespace Skill_tree_related.Skill_tree_UI
                 if (skillIconsManaged[i] == skillIcon)
                 {
                     if (i + 1 < skillIconsManaged.Count)
-                    {
                         skillIconsManaged[i + 1].SetCanUnlock();
-                    }
+
                     skillIcon.UnlockSkill();
                     level++;
-                    skillLinesManaged[i].FillLine(() => skillIconsManaged[i].InitialiseIcon(true));
+
+                    if (i < skillLinesManaged.Count)
+                        skillLinesManaged[i].FillLine(() => skillIconsManaged[i].InitialiseIcon(true));
+
                     return;
                 }
             }

@@ -1052,6 +1052,26 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: weaponIndexToWeaponSprite._saintsKeys.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: weaponIndexToWeaponSprite._saintsValues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: weaponIndexToWeaponSprite._saintsKeys.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: weaponIndexToWeaponSprite._saintsValues.Array.data[0].value
+      value: 
+      objectReference: {fileID: 5095617055059038125, guid: 08b6c25e7e6f46c458c35305f50b8727, type: 3}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: weaponIndexToWeaponSprite._saintsValues.Array.data[1].value
+      value: 
+      objectReference: {fileID: -6628414004274166170, guid: 11242ad98bddc3c4d836a86cc4cd1240, type: 3}
+    - target: {fileID: 1013458702745771644, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <OnComponentSetChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

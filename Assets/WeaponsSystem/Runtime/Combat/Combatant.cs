@@ -42,11 +42,17 @@ namespace WeaponsSystem.Runtime.Combat {
         private bool isSwinging = false;
         
         [field: SerializeField] private TrailRenderer SwingTrail { get; set; }
+        
+        private SpriteRenderer _attackOriginRenderer;
+        public SaintsDictionary<int, Sprite> weaponIndexToWeaponSprite;
 
         private void Awake() {
             if (!this.Owner) {
                 this.Owner = this.gameObject;
             }
+            
+            if (AttackOrigin)
+                _attackOriginRenderer = AttackOrigin.GetComponent<SpriteRenderer>();
         }
 
         private void Update() {
@@ -117,6 +123,29 @@ namespace WeaponsSystem.Runtime.Combat {
             weapon.gameObject.SetActive(true);
             this.OnSwitchedGear.Invoke(weapon);
             return true;
+        }
+
+        public void UpdateWeaponSprite(int weaponIndex)
+        {
+            if (_attackOriginRenderer == null)
+            {
+                Debug.LogWarning("AttackOrigin SpriteRenderer missing.", this);
+                return;
+            }
+
+            if (weaponIndexToWeaponSprite == null)
+            {
+                Debug.LogWarning("Weapon sprite dictionary is not assigned.", this);
+                return;
+            }
+
+            if (!weaponIndexToWeaponSprite.TryGetValue(weaponIndex, out Sprite newSprite) || newSprite == null)
+            {
+                Debug.LogWarning($"No sprite mapped for weapon index {weaponIndex}.", this);
+                return;
+            }
+
+            _attackOriginRenderer.sprite = newSprite;
         }
 
         public void HandleComponentSetChange(ISet<WeaponComponent> components) {
