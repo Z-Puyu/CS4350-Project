@@ -6,6 +6,7 @@ using ModularItemsAndInventory.Runtime.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Events;
 
 namespace Inventory_related.Inventory_UI_Manager_V2
 {
@@ -41,6 +42,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
 
         public static InventoryUIManagerV2 Instance { get; private set; }
         public SoilPlantInteraction CurrentSoil { get; private set; }
+        [SerializeField] private CrossObjectEventSO broadcastPauseGame;
 
         private void Awake()
         {
@@ -156,6 +158,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
 
         public void OpenForSeedSelection(SoilPlantInteraction soil)
         {
+            broadcastPauseGame.TriggerEvent();
             CurrentSoil = soil;
             gameObject.SetActive(true);
             RefreshInventoryUI();
