@@ -25,5 +25,10 @@ namespace Map.RegionBorder
             BoundsInt bounds = tilemap.cellBounds;
             return new List<float> { bounds.xMin, bounds.yMin, bounds.xMax, bounds.yMax };
         }
+
+        public bool GetMapIsUnlocked()
+        {
+            return _boxCollider2D.isTrigger;
+        }
     }
 }

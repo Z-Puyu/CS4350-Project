@@ -8,11 +8,11 @@ using UnityEngine.UI;
 namespace Game.Enemies {
     public class EnemyIndicator : MonoBehaviour
     {
-        private Enemy enemy;
-        private Camera camera;
-        private Image image;
+        protected Enemy enemy;
+        protected Camera camera;
+        protected Image image;
         public CrossObjectEventSO fetchNewEnemyToTarget;
-        private RectTransform rectTransform;
+        protected RectTransform rectTransform;
         [SerializeField] private float borderSize;
         [SerializeField] private float angleOffset;
         
