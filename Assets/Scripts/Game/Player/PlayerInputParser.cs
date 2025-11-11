@@ -42,6 +42,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private PlayerBattleUIManager PlayerBattleUIManager { get; set; }
         
         [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
+        [field: SerializeField] private bool isGunUnlocked = false;
         
         private bool isQuickSwap = false;
         private Vector2 currentMoveInput = Vector2.zero; // store the latest WASD input
@@ -72,7 +73,14 @@ namespace Game.Player {
             bool isInventoryActive = this.InventoryUIManagerV2.gameObject.activeSelf;
 
             // Toggle inventory UI
-            this.InventoryUIManagerV2.gameObject.SetActive(!isInventoryActive);
+            if (!isInventoryActive)
+            {
+                this.InventoryUIManagerV2.gameObject.SetActive(true);    
+            }
+            else
+            {
+                this.InventoryUIManagerV2.CloseInventory();
+            }
         }
 
         public void OnAttack(InputAction.CallbackContext context) {
@@ -161,6 +169,11 @@ namespace Game.Player {
         public void OnSwitchToSecond(InputAction.CallbackContext context) {
             if (!context.performed) {
                 return;
+            }
+
+            if (isGunUnlocked)
+            {
+                Weaponry.Unlock(1);
             }
 
             bool canSwitch = this.Weaponry.Switch(1);

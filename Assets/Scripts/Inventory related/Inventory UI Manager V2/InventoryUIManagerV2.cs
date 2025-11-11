@@ -17,6 +17,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
         [SerializeField] private InventorySlot slotPrefab;          // Prefab reference
         [SerializeField] private ItemType seedType;                 // assign in inspector, your "Seed" type asset
         [SerializeField] private ItemType consumableType;
+        [SerializeField] private CrossObjectEventSO unpausedEvent;
         
         [Header("Item Viewer UI")]
         [SerializeField] private GameObject itemViewerContainer;     // Entire right-hand panel
@@ -127,6 +128,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
 
                 // Reset soil reference and close the inventory
                 CurrentSoil = null;
+                unpausedEvent.TriggerEvent();
                 gameObject.SetActive(false);
             }
             else if (_currentItem.Type.BelongsTo(consumableType))
@@ -164,10 +166,11 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             RefreshInventoryUI();
         }
 
-        private void CloseInventory()
+        public void CloseInventory()
         {
             Debug.Log("ON SLOT CLICKED");
             // Play a subtle UI close sound or fade animation
+            unpausedEvent.TriggerEvent();
             gameObject.SetActive(false);
         }
     }

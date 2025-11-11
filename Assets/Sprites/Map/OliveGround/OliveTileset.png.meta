@@ -1,0 +1,7801 @@
+fileFormatVersion: 2
+guid: 29edbda795dfc2344b8b9275ae9fc707
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8880542351037044031
+    second: OliveTileset_0
+  - first:
+      213: -2385775048228601780
+    second: OliveTileset_1
+  - first:
+      213: 4501636837642557994
+    second: OliveTileset_2
+  - first:
+      213: -7566716094495085373
+    second: OliveTileset_3
+  - first:
+      213: -8603989269282048980
+    second: OliveTileset_4
+  - first:
+      213: 3418448139046120287
+    second: OliveTileset_5
+  - first:
+      213: -4094220159450286413
+    second: OliveTileset_6
+  - first:
+      213: -6926681112942098833
+    second: OliveTileset_7
+  - first:
+      213: -8802703586607475206
+    second: OliveTileset_8
+  - first:
+      213: 6927786635608194822
+    second: OliveTileset_9
+  - first:
+      213: -5653394474573584092
+    second: OliveTileset_10
+  - first:
+      213: -8521970266901915262
+    second: OliveTileset_11
+  - first:
+      213: 1268478379980653510
+    second: OliveTileset_12
+  - first:
+      213: -228164651430392118
+    second: OliveTileset_13
+  - first:
+      213: 3725035265393683533
+    second: OliveTileset_14
+  - first:
+      213: -253356625070390032
+    second: OliveTileset_15
+  - first:
+      213: -58338287635076720
+    second: OliveTileset_16
+  - first:
+      213: 2620959906751185046
+    second: OliveTileset_17
+  - first:
+      213: -7605240640497331172
+    second: OliveTileset_18
+  - first:
+      213: 3622066075217063306
+    second: OliveTileset_19
+  - first:
+      213: 2966131903046142417
+    second: OliveTileset_20
+  - first:
+      213: -1883338909572542730
+    second: OliveTileset_21
+  - first:
+      213: 4620173880599097063
+    second: OliveTileset_22
+  - first:
+      213: -8296431301967477571
+    second: OliveTileset_23
+  - first:
+      213: -5301966712593917923
+    second: OliveTileset_24
+  - first:
+      213: 7243842154050856918
+    second: OliveTileset_25
+  - first:
+      213: -4254423812103171957
+    second: OliveTileset_26
+  - first:
+      213: 7988120818155611684
+    second: OliveTileset_27
+  - first:
+      213: -5759116635091712029
+    second: OliveTileset_28
+  - first:
+      213: -7235369384513206172
+    second: OliveTileset_29
+  - first:
+      213: -8761429737245414654
+    second: OliveTileset_30
+  - first:
+      213: -7401842233361890126
+    second: OliveTileset_31
+  - first:
+      213: -3872595497200201838
+    second: OliveTileset_32
+  - first:
+      213: 3704073258465216835
+    second: OliveTileset_33
+  - first:
+      213: -2199568757447632971
+    second: OliveTileset_34
+  - first:
+      213: 8964626531528437656
+    second: OliveTileset_35
+  - first:
+      213: 2043669525225728645
+    second: OliveTileset_36
+  - first:
+      213: 760394794132384887
+    second: OliveTileset_37
+  - first:
+      213: -9085560078777295470
+    second: OliveTileset_38
+  - first:
+      213: 7997815240538066112
+    second: OliveTileset_39
+  - first:
+      213: -4284063089092912029
+    second: OliveTileset_40
+  - first:
+      213: -7335736586604475244
+    second: OliveTileset_41
+  - first:
+      213: -5606210682451685174
+    second: OliveTileset_42
+  - first:
+      213: 5202619836971840401
+    second: OliveTileset_43
+  - first:
+      213: -4863939163666735681
+    second: OliveTileset_44
+  - first:
+      213: 9001729422383022864
+    second: OliveTileset_45
+  - first:
+      213: -4830046176611597685
+    second: OliveTileset_46
+  - first:
+      213: -673948026066186229
+    second: OliveTileset_47
+  - first:
+      213: 5196512948161929867
+    second: OliveTileset_48
+  - first:
+      213: -8535311785508761926
+    second: OliveTileset_49
+  - first:
+      213: 1850826043905220023
+    second: OliveTileset_50
+  - first:
+      213: -6353234937919768070
+    second: OliveTileset_51
+  - first:
+      213: 25443622593331204
+    second: OliveTileset_52
+  - first:
+      213: -1542318339778414715
+    second: OliveTileset_53
+  - first:
+      213: 8738978845874999376
+    second: OliveTileset_54
+  - first:
+      213: 1855723892587722873
+    second: OliveTileset_55
+  - first:
+      213: 6601845626824884485
+    second: OliveTileset_56
+  - first:
+      213: 6302061419285804803
+    second: OliveTileset_57
+  - first:
+      213: -8771425176608386861
+    second: OliveTileset_58
+  - first:
+      213: -6808739481391011102
+    second: OliveTileset_59
+  - first:
+      213: -3122231453499669787
+    second: OliveTileset_60
+  - first:
+      213: -8762787591540130743
+    second: OliveTileset_61
+  - first:
+      213: 2814018652894615893
+    second: OliveTileset_62
+  - first:
+      213: -3619764947118990739
+    second: OliveTileset_63
+  - first:
+      213: 5063047133547425668
+    second: OliveTileset_64
+  - first:
+      213: -5569783542403484788
+    second: OliveTileset_65
+  - first:
+      213: -6607747897276627137
+    second: OliveTileset_66
+  - first:
+      213: -6725665526502457390
+    second: OliveTileset_67
+  - first:
+      213: -3829223290768026085
+    second: OliveTileset_68
+  - first:
+      213: 6710448344119515924
+    second: OliveTileset_69
+  - first:
+      213: 2125641388335843324
+    second: OliveTileset_70
+  - first:
+      213: -7929045534329860655
+    second: OliveTileset_71
+  - first:
+      213: 6808624146097097146
+    second: OliveTileset_72
+  - first:
+      213: 7215960206139354727
+    second: OliveTileset_73
+  - first:
+      213: -2333996129995481155
+    second: OliveTileset_74
+  - first:
+      213: -5887672975438933333
+    second: OliveTileset_75
+  - first:
+      213: -4742959683804663899
+    second: OliveTileset_76
+  - first:
+      213: 5576742147995564169
+    second: OliveTileset_77
+  - first:
+      213: -7386991502384994931
+    second: OliveTileset_78
+  - first:
+      213: -1164215608655273886
+    second: OliveTileset_79
+  - first:
+      213: -8005319391935819739
+    second: OliveTileset_80
+  - first:
+      213: -1971143748327858120
+    second: OliveTileset_81
+  - first:
+      213: 7113635506614254202
+    second: OliveTileset_82
+  - first:
+      213: 4442387036067847369
+    second: OliveTileset_83
+  - first:
+      213: -3120485139497452563
+    second: OliveTileset_84
+  - first:
+      213: -4977799683991409757
+    second: OliveTileset_85
+  - first:
+      213: 7584523857998536790
+    second: OliveTileset_86
+  - first:
+      213: -698027873142131840
+    second: OliveTileset_87
+  - first:
+      213: -828791340181997265
+    second: OliveTileset_88
+  - first:
+      213: 4909337714464465911
+    second: OliveTileset_89
+  - first:
+      213: 657001811830625310
+    second: OliveTileset_90
+  - first:
+      213: 906635085103111911
+    second: OliveTileset_91
+  - first:
+      213: 226662627049639410
+    second: OliveTileset_92
+  - first:
+      213: -8624492011809526627
+    second: OliveTileset_93
+  - first:
+      213: 3693043112465870929
+    second: OliveTileset_94
+  - first:
+      213: -7587326080771339739
+    second: OliveTileset_95
+  - first:
+      213: 4081517741337364663
+    second: OliveTileset_96
+  - first:
+      213: 2538582579295008486
+    second: OliveTileset_97
+  - first:
+      213: 1179939249194035016
+    second: OliveTileset_98
+  - first:
+      213: 2528815381902584660
+    second: OliveTileset_99
+  - first:
+      213: 2664450308271546874
+    second: OliveTileset_100
+  - first:
+      213: 2962304505087465988
+    second: OliveTileset_101
+  - first:
+      213: 814665093118213535
+    second: OliveTileset_102
+  - first:
+      213: 2300727098522781725
+    second: OliveTileset_103
+  - first:
+      213: -8002940362119427473
+    second: OliveTileset_104
+  - first:
+      213: 5327292684268931365
+    second: OliveTileset_105
+  - first:
+      213: 5081502756109355662
+    second: OliveTileset_106
+  - first:
+      213: -7679804349909455918
+    second: OliveTileset_107
+  - first:
+      213: -6087759765545991759
+    second: OliveTileset_108
+  - first:
+      213: 205450592496388376
+    second: OliveTileset_109
+  - first:
+      213: -5598135409716731768
+    second: OliveTileset_110
+  - first:
+      213: 2157506621640733740
+    second: OliveTileset_111
+  - first:
+      213: 4943625747120010607
+    second: OliveTileset_112
+  - first:
+      213: -6937683498453202681
+    second: OliveTileset_113
+  - first:
+      213: -8743706917250559940
+    second: OliveTileset_114
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OliveTileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35106697360e3b70800000000000000
+      internalID: 8880542351037044031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c400858eb3604eed0800000000000000
+      internalID: -2385775048228601780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a5f776ad6097e30800000000000000
+      internalID: 4501636837642557994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cca36f5dcf9df690800000000000000
+      internalID: -7566716094495085373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24bb21785d789880800000000000000
+      internalID: -8603989269282048980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5b60f28874c07f20800000000000000
+      internalID: 3418448139046120287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b6f8b305786e27c0800000000000000
+      internalID: -4094220159450286413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f66cda61a3c7fdf90800000000000000
+      internalID: -6926681112942098833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af554390ab386d580800000000000000
+      internalID: -8802703586607475206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60fff177d31742060800000000000000
+      internalID: 6927786635608194822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429a2e7adab1b81b0800000000000000
+      internalID: -5653394474573584092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289dede8131ebb980800000000000000
+      internalID: -8521970266901915262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c3820cad5a8a9110800000000000000
+      internalID: 1268478379980653510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acec039557565dcf0800000000000000
+      internalID: -228164651430392118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ce79976dbf1b330800000000000000
+      internalID: 3725035265393683533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f40039ed75eb7cf0800000000000000
+      internalID: -253356625070390032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099e4b0f2adb03ff0800000000000000
+      internalID: -58338287635076720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 690027416258f5420800000000000000
+      internalID: 2620959906751185046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1048
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c14dac78ee1c47690800000000000000
+      internalID: -7605240640497331172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8d6e46a7e9244230800000000000000
+      internalID: 3622066075217063306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9c4062041d92920800000000000000
+      internalID: 2966131903046142417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fec1477d390dd5e0800000000000000
+      internalID: -1883338909572542730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eea5a96aa72e1040800000000000000
+      internalID: 4620173880599097063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_23
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db40cceefa72ddc80800000000000000
+      internalID: -8296431301967477571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_24
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d18d4ecad51ab66b0800000000000000
+      internalID: -5301966712593917923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_25
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7a3314f0c478460800000000000000
+      internalID: 7243842154050856918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_26
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8090a3751045f4c0800000000000000
+      internalID: -4254423812103171957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_27
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426611daf818bde60800000000000000
+      internalID: 7988120818155611684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_28
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e7c059fee18310b0800000000000000
+      internalID: -5759116635091712029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_29
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4688a5121edc69b90800000000000000
+      internalID: -7235369384513206172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_30
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b61f2f216296680800000000000000
+      internalID: -8761429737245414654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_31
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b40bf494bf574990800000000000000
+      internalID: -7401842233361890126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_32
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29fca96c9e6c14ac0800000000000000
+      internalID: -3872595497200201838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_33
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 349c7d8e003876330800000000000000
+      internalID: 3704073258465216835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_34
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b759417edf8971e0800000000000000
+      internalID: -2199568757447632971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_35
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1016
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f6bc37550c86c70800000000000000
+      internalID: 8964626531528437656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58aee59fa929c5c10800000000000000
+      internalID: 2043669525225728645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77c215959077d8a00800000000000000
+      internalID: 760394794132384887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d5207ee3b99e180800000000000000
+      internalID: -9085560078777295470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc0a774692fdfe60800000000000000
+      internalID: 7997815240538066112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_40
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c11438153fb84c0800000000000000
+      internalID: -4284063089092912029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c8a9dd07a323a90800000000000000
+      internalID: -7335736586604475244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac09778561db232b0800000000000000
+      internalID: -5606210682451685174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_43
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1937b145d2b633840800000000000000
+      internalID: 5202619836971840401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbd9884d911df7cb0800000000000000
+      internalID: -4863939163666735681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013825967319cec70800000000000000
+      internalID: 9001729422383022864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_46
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b820552d79a38fcb0800000000000000
+      internalID: -4830046176611597685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_47
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b00df3d47d7a5a6f0800000000000000
+      internalID: -673948026066186229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_48
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82e8e97ef8bd1840800000000000000
+      internalID: 5196512948161929867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_49
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe8b81372b7c8980800000000000000
+      internalID: -8535311785508761926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_50
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd13081b747fa910800000000000000
+      internalID: 1850826043905220023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_51
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9f0be1c76c4d7a0800000000000000
+      internalID: -6353234937919768070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_52
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400897607d46a5000800000000000000
+      internalID: 25443622593331204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_53
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 984
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 587ffea34a5989ae0800000000000000
+      internalID: -1542318339778414715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 050580095f6174970800000000000000
+      internalID: 8738978845874999376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_55
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97875ea5c0bd0c910800000000000000
+      internalID: 1855723892587722873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_56
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5010dd89e977e9b50800000000000000
+      internalID: 6601845626824884485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_57
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3077939987b657750800000000000000
+      internalID: 6302061419285804803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_58
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0d65e5643a54680800000000000000
+      internalID: -8771425176608386861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_59
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eae283148f7281a0800000000000000
+      internalID: -6808739481391011102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_60
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e2c99b090b9ba4d0800000000000000
+      internalID: -3122231453499669787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_61
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cbc0cdc13546680800000000000000
+      internalID: -8762787591540130743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_62
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5595b153e076d0720800000000000000
+      internalID: 2814018652894615893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_63
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6adf8c75f204cdc0800000000000000
+      internalID: -3619764947118990739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_64
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f6724fa8e834640800000000000000
+      internalID: 5063047133547425668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_65
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c83393fc06724b2b0800000000000000
+      internalID: -5569783542403484788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_66
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f370e79fb409c44a0800000000000000
+      internalID: -6607747897276627137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_67
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dffab676d2a9a2a0800000000000000
+      internalID: -6725665526502457390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_68
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b169e1484bddbdac0800000000000000
+      internalID: -3829223290768026085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_69
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 952
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b1ada273d402d50800000000000000
+      internalID: 6710448344119515924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf740af949bcf7d10800000000000000
+      internalID: 2125641388335843324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_71
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd0f5ea81f56f190800000000000000
+      internalID: -7929045534329860655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_72
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab9c34556971d7e50800000000000000
+      internalID: 6808624146097097146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_73
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e6a40639d342460800000000000000
+      internalID: 7215960206139354727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf9b74c2eafb9fd0800000000000000
+      internalID: -2333996129995481155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_75
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba29b418f98ca4ea0800000000000000
+      internalID: -5887672975438933333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_76
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5afe2defb4f9d2eb0800000000000000
+      internalID: -4742959683804663899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_77
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988793fcf61946d40800000000000000
+      internalID: 5576742147995564169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_78
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d856385dd522c7990800000000000000
+      internalID: -7386991502384994931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_79
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260232c7210e7dfe0800000000000000
+      internalID: -1164215608655273886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_80
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5209e125d6467e090800000000000000
+      internalID: -8005319391935819739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_81
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 920
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 830afa7543715a4e0800000000000000
+      internalID: -1971143748327858120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_82
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a3959bdc5b8b260800000000000000
+      internalID: 7113635506614254202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_83
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccdf97f87786ad30800000000000000
+      internalID: 4442387036067847369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_84
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb7e557c4fc1b4d0800000000000000
+      internalID: -3120485139497452563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_85
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3abe3a89f8d4beab0800000000000000
+      internalID: -4977799683991409757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_86
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6506a7aa344a14960800000000000000
+      internalID: 7584523857998536790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_87
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 083ba02095b1056f0800000000000000
+      internalID: -698027873142131840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_88
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29388fcaaa8f74f0800000000000000
+      internalID: -828791340181997265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_89
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f32519f3a8712440800000000000000
+      internalID: 4909337714464465911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_90
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14d3fabaa32e1900800000000000000
+      internalID: 657001811830625310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_91
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee1a7c6ec3059c00800000000000000
+      internalID: 906635085103111911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_92
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd86295574452300800000000000000
+      internalID: 226662627049639410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_93
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c26e3b536af4880800000000000000
+      internalID: -8624492011809526627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_94
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1503bbae423504330800000000000000
+      internalID: 3693043112465870929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_95
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a4190012764b690800000000000000
+      internalID: -7587326080771339739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_96
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b84edcc2c674a830800000000000000
+      internalID: 4081517741337364663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_97
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e6bfd7e76bda3320800000000000000
+      internalID: 2538582579295008486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_98
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 888
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84760ccde7cff5010800000000000000
+      internalID: 1179939249194035016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_99
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45be8dc0138281320800000000000000
+      internalID: 2528815381902584660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_100
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1a43240770af420800000000000000
+      internalID: 2664450308271546874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_101
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a174e90483c1920800000000000000
+      internalID: 2962304505087465988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_102
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9db83ef5954e4b00800000000000000
+      internalID: 814665093118213535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_103
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d18c0983b13ddef10800000000000000
+      internalID: 2300727098522781725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_104
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a4c3d5428dfe090800000000000000
+      internalID: -8002940362119427473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_105
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 529036c98785ee940800000000000000
+      internalID: 5327292684268931365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_106
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a011f65df158640800000000000000
+      internalID: 5081502756109355662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_107
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dba52312aadb6590800000000000000
+      internalID: -7679804349909455918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_108
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b147b06fbee38ba0800000000000000
+      internalID: -6087759765545991759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_109
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81904a0b938e9d200800000000000000
+      internalID: 205450592496388376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_110
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8806c4b418d6f42b0800000000000000
+      internalID: -5598135409716731768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_111
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24f27767d001fd10800000000000000
+      internalID: 2157506621640733740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_112
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f65309fac694b9440800000000000000
+      internalID: 4943625747120010607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_113
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7098b969d9568bf90800000000000000
+      internalID: -6937683498453202681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_114
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c30972982ec18a680800000000000000
+      internalID: -8743706917250559940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_115
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc9c9eaab5e70b4cb0ea2c47054d8f7
+      internalID: 1025040016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_116
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 856
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099c1bddfad1164418f2d4d619e8cf82
+      internalID: -783690533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c64322adb8483479a1172f9c057562
+      internalID: -189560505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_118
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1cd657e27b75d40b7e8b7f258df489
+      internalID: -942591117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_119
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3085ddab9312da4f937c648543bdef0
+      internalID: -678806175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_120
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517a326c2f6367247a1f8bf21c2bd94f
+      internalID: -497313183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_121
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82fcc93602d68f0439e09e60cfb0d2b9
+      internalID: 674095011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_122
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41f5ca9d288df1428fbc8be28014442
+      internalID: -815828101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_123
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b27e3411a66a842499c857b17535283a
+      internalID: -1595112849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_124
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9663b2057d7fedb45b7b49d70355ed41
+      internalID: -1259929261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_125
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8417cc360538ef46a84fbd06653f1f1
+      internalID: -1311787951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_126
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c605edcd67f13414a832d671ca45ca19
+      internalID: 1808753860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_127
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61901e9688ff45499634c52d856df02
+      internalID: -993568363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_128
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655b81d972c8f04438db85ea649b33cd
+      internalID: 1612788648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_129
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef843394ad96e3f4fa5ef5a015518275
+      internalID: -1548191338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_130
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771c73341fb4d5e448fd7242fface57b
+      internalID: 124411073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_131
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f16ac84258d618479c26aaf6370b141
+      internalID: 1367817791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_132
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41c4119a9cc5d34a941f4b951607b62
+      internalID: -430167185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_133
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52db538881c32d94e95db0ab5fad25a3
+      internalID: 1984157066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_134
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 824
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba23836130dcbde4a90582ae57532e55
+      internalID: -502159845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_135
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8253460e639733d4e966cefea7b1ca6e
+      internalID: 1620397602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_136
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c7edfb139705ba4086d6db50db0d442
+      internalID: 129992774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_137
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704bd56bb2495f448b51b9b620ae5937
+      internalID: 1579893738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_138
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aeb648435412514c82cef55165e5ddb
+      internalID: 1241419504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_139
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f826e09df2ddb46866d6b7a7fe057f
+      internalID: -2086991078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_140
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 792
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5664bc5087561f5468175eb5b76a4431
+      internalID: -229861156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_141
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 760
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20bdfa1e8c641074fac86fb247a0fd20
+      internalID: -1426206027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_142
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 760
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c18a40595ffcf374b9404a1893c7538b
+      internalID: -1845326465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_143
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 760
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 183cbda826c825640bc0bf21109392bd
+      internalID: 2005331958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_144
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 760
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b190d70030ca994f982ceaa20545625
+      internalID: -1238179759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_145
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 760
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 305af197fe29c6b429b9527939156c2e
+      internalID: 483628897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_146
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 728
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3593c2e04436a4646b8bbf076d145f6f
+      internalID: 1987263931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_147
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 728
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a16a028d09d4b542aaae288b0ad44db
+      internalID: 558575065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_148
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 728
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656b13deaef7e3b4c9bb8978fa62d9aa
+      internalID: -204573705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_149
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 728
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79190485e54f5cf4689e018186636df6
+      internalID: -691546525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_150
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 696
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afcdf8749cda06748a4a164619aced0b
+      internalID: -1733581510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_151
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 696
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4fb2d41b7057fe449eaabb49ee9edf0
+      internalID: -770309259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_152
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 696
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a630db95e9cf2499d06bc77d37e7f1
+      internalID: -1640366315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_153
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 696
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4d4452de51c4449b7c63ec680d7a0b
+      internalID: -172859108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_154
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 696
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864dc4c090245ab41a4708faeed21e24
+      internalID: 2046098322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_155
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 664
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f131917b61ae64897a6ad4d2dd8fe4
+      internalID: -182610999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_156
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 664
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5316160463877e46990e7ab1376bd9e
+      internalID: 1471404680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_157
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 664
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f1682677e48d74c9bee93fe4c3b14b
+      internalID: -111169665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_158
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 664
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329478aeec6141340a65cb96ba163968
+      internalID: -1371019014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_159
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9710a81a0872f074b81441c894759d19
+      internalID: 357053611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_160
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4a34799358e904099d576a0d1c6d56
+      internalID: -85187884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_161
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3993d40f7629f3f48a40c57429f5d71a
+      internalID: 1073032714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_162
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1126132952bf7994293121a00cdf82b9
+      internalID: 1260663234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_163
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e502e3ea6cb074c85b9db5b877e707
+      internalID: -1059128251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_164
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 600
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b42d0033a070e547a79fe6a1d07fd34
+      internalID: 515000690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_165
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 600
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 281a96f52292fac479b663d8ff14df37
+      internalID: 460874236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_166
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 600
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e017bb8b5f792fb41997e1bcbac42ed7
+      internalID: 933945173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_167
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 600
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a66eab5add79964d81b9a32a51772cf
+      internalID: 1615047145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_168
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 600
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4fa83c2d4eb5284290fa04fd4ffc1ce
+      internalID: 1111717584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_169
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d73aadbcc48e5b24d97c3c7521f0ede3
+      internalID: -1289038322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_170
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc5d7d3ca873214889d225d14e5bc0e
+      internalID: 218502098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_171
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4b6631c9d4c53439c912095485dbeb
+      internalID: -1590308928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_172
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 244735ce617962b43adceaf5598a15e4
+      internalID: -827890842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_173
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b68320c419af9e47940958cdc75577e
+      internalID: 677498236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_174
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ccc92089f6f9524783c18243c357858
+      internalID: 535792057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_175
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7fd314c3f3fcb42a48cf654a3cfdd8
+      internalID: 2029280103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_176
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6897549da0d7b0944bc41b9fe884612f
+      internalID: 662430670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_177
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa82a714d58cd445ba7cd95f7b9765f
+      internalID: -1070643016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_178
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d0f99a077a78c4b82c954c1b3fa80e
+      internalID: 1310620622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_179
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3e5da9bf5b47034381c8c7bd256188e
+      internalID: -2145619089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_180
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8fcd2cb4d9f2d64bba5c2dac30ce26d
+      internalID: 625990045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_181
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 451d88321d1343b43bd12fa6ccf23e1f
+      internalID: 905852150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_182
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c24fda47e8df842add40025e2bb84a
+      internalID: 1074332237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_183
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 813d51a5af603ab4bb05b97732f14926
+      internalID: -2037009586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_184
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f88ec2dbe45add45b2cc5ef20c7851e
+      internalID: 923834912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_185
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594dddb3b38f8e8429505fdda91f108d
+      internalID: -357197718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_186
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e70c02cee41dcc42888e8cc254a799a
+      internalID: -335898011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_187
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c33912cdb162e344498174c666b0caf4
+      internalID: -924034603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_188
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 368a0e041d4f92a4e9a9f5265f79c099
+      internalID: -1643081163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_189
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a2197928f886141828257a54680036
+      internalID: 1661008722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_190
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9177a691cb261254aa009c5f7757ac1e
+      internalID: -1150282700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_191
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e1ba5d79434c94780dc59b389628e7
+      internalID: -1365366323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_192
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e57e75803d3cb4299d9c174439a130
+      internalID: 651602144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_193
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e887698d4d696040a1340d486da1b03
+      internalID: -420329776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_194
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4392458bc24f5489efc44c73df3019
+      internalID: -1686158200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_195
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf72fe50ce34094d96658ff20612471
+      internalID: -169811156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_196
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95cd573f942cb0c488068940cc514f15
+      internalID: -1695681912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_197
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1d8f463d48b35744904068369ec9a65
+      internalID: -1703338803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_198
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 188126caddc881b48a132ef158e1266e
+      internalID: 199124829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_199
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a7e976bab6015478f9370200dafc78
+      internalID: 214085587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_200
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb5cec9896037747995b99348049889
+      internalID: 2082094167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_201
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d6c761dee4ea04182d39d06810847d
+      internalID: -1117921970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_202
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab3ed30750153e4a97c636bddc9fb2b
+      internalID: -838058940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_203
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2a6c52aaa198246a4e18f60f0e8bfd
+      internalID: -1692631161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_204
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd875a967c5f234296fe9981d2c6406
+      internalID: -1743722226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_205
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf45e668af3519944a7fbdcf86872f16
+      internalID: 1490281737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_206
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb28af5390f76f4a83c180e507ae78c
+      internalID: 373184605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_207
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf3e93318c447046936b9d2e990ec07
+      internalID: -893647033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_208
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ebd3f389660bd43ba4c9b8fccbd26e
+      internalID: -1722685321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_209
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ad26ed3ee88ea4a953327920c95ab2
+      internalID: -48309305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_210
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60074e6acb416947a08d4b36ccbe686
+      internalID: -1459254010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_211
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d3d1278f5918144ca73c1d37c914830
+      internalID: -808569692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_212
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e21e21989a75e247af9bea5eb05c6cf
+      internalID: 284585845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_213
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8d0e16d9fdbe744831e059c01de01e
+      internalID: 1636108484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_214
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7fcf8cefd45e894785fe1488aadf622
+      internalID: 1483647570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_215
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b48896feb3f80b49821d5437c93bd7f
+      internalID: 1737707314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_216
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3af3f1498dedce44a1f5e68c2f26b23
+      internalID: 110632136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_217
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eccbb373c46ef044adca100be5ea249
+      internalID: 1957796902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_218
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d837fe1c34d384ca2cf46565c230ed
+      internalID: -996637389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_219
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4cba93ec8d2e4644848a644baf9ecc9
+      internalID: 752429228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_220
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf83dea82d51544c81e4df684a2efb6
+      internalID: 1813624077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_221
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2287d9ec2aad424479eadd81cdc18ce9
+      internalID: -311950145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_222
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdddde0e2b7d38641b71237199fada03
+      internalID: 1826786130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_223
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 314ff06b6b53c25428739fbd25cb0c60
+      internalID: 1016587601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_224
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d4a44fc1906ac47be2ddd3e0e7600e
+      internalID: 272394025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_225
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95935a84e9fbc7d43a90bc19d6dcdea9
+      internalID: -1959938399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_226
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed34cb30acad774d92a1e33948f848e
+      internalID: -46011254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_227
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc88f4dd7491f0d45a9fdc517544ab30
+      internalID: -321937334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_228
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2829d62ecf0ca6548ad6088bf6e44cc3
+      internalID: 1929726369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_229
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c315b887eb724946bb8c5eb22c5f75c
+      internalID: 282353089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_230
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a415135b0c691c24abeec28ff4260f2c
+      internalID: -1381432209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_231
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc14790df16947d48b9d58d5f168c2e7
+      internalID: 1697499671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_232
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1ef01cde1881a4bb76eb0d172e717e
+      internalID: -394332060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_233
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659c45538342af44caca2afcec990236
+      internalID: 1728456788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_234
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ebc6ce1d775c8a428555c60b6dea00a
+      internalID: -1696807689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_235
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea1b7c523174954593c998dc20fe632
+      internalID: 1390268041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_236
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40b0680e2ca766e4d84e3b0687e2fd84
+      internalID: 1732821679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_237
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99dc06899e4bac841b243a6c8a097f86
+      internalID: 1336226433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_238
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce24670b8c028d4abb4f2c5f651e36e
+      internalID: -454380873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_239
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1b8db3aacf5414eb21734e424132c4
+      internalID: 582146823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_240
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aeb85901be88f447ae851cabfdb4b84
+      internalID: 1215128373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_241
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada20b0835d5a8a43bdbcc01da74af12
+      internalID: 1752395979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_242
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 217e3e10b12d197419bdbd0e86212785
+      internalID: -365519788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_243
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49429e1c6ed74fd409ba0616a0cb775d
+      internalID: 1066727528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_244
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6e711fe2cba3c4289372de3e1ba2d6
+      internalID: -834335218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_245
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e582e7094a21af469f97e88503eaf13
+      internalID: 912097193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_246
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d58288259fa2a1941ac8fc431cceaf0b
+      internalID: 12854700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_247
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85aa0eaa6db47e4285e8779f2036d42
+      internalID: -881221116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_248
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3853248c8c5a3b940b1047f096042db8
+      internalID: -733258978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_249
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc40c3b5bb454f4d9833b10c4647d5c
+      internalID: 1758416887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_250
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb84b459031e9747bc34095a77694fd
+      internalID: -1305927839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_251
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4226a261e6f1cef40863964481161d54
+      internalID: -608774574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_252
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa65b19332be2d0479abe14b949638ff
+      internalID: -1312027749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_253
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a88fdfe36cbf44baef1b086553435a
+      internalID: 2108254288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_254
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43e05c2335c2e94ea9df2b1eac6bd89
+      internalID: -261740921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_255
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a68690e78379f4449be78adaa6f8827a
+      internalID: 1298426309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_256
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52816e2c66e97d4aa6fbcac7d541b34
+      internalID: -615695179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_257
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f21a5715dc29448b0868b2444e570d
+      internalID: -1062237618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_258
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a39703710e2a12418ae617bcf36da08
+      internalID: -154738453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_259
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb9777410379fd47b41ad8c0ebbf69e
+      internalID: 2086882812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_260
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6accc370c08c6de43bd83f2acf7b6323
+      internalID: 1184392649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_261
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40cc692d564a6b54c8717ac0fe5d765e
+      internalID: -365046862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_262
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db3b4fc0895a91408a3307425a52498
+      internalID: 1197463537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_263
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94cf2912d2ee47443aa52801c787e443
+      internalID: -2101197277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_264
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b6f1e410a061042af377258ce169d9
+      internalID: -1532542006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_265
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d7494260a3daca49b52b1cd553297bc
+      internalID: -1965368040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_266
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42733088984aae74f8fb9e5cc5e833c3
+      internalID: -1439700638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_267
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ba4e1e3266f1d48868d8c2dd6eaba8
+      internalID: -933357624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_268
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221a5149a5ad8ba45a9ce77d008ff775
+      internalID: 833179777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_269
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1406add8d963b5945b9a528974986b39
+      internalID: -312661082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_270
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7868d9c1884ef3c4c9c3d3c09f5a3c3f
+      internalID: -851288362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_271
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a2853d845dc674f804a63f51bd995d
+      internalID: 850208832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_272
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1397cdf2f0f95547abfb15e36560d6d
+      internalID: 85447736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_273
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d290cdfbc3b8834488e205a2dbce37a4
+      internalID: -816417512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_274
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 468fb13f8231ade418298583d56f0441
+      internalID: 1839926260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_275
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e60aa2b0ab992847b501f0567c001d6
+      internalID: -1360707670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_276
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2241f7b8945f5694986249f8f14b38c6
+      internalID: 1203181785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_277
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfab628cce544b44ea5a3e4c57cd7994
+      internalID: 1486513347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_278
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bbe08a9973fc71469e85f307af547b9
+      internalID: 622817038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_279
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50cf82fa3fc96a84fa0e0994c8035575
+      internalID: -1503553043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_280
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64613b7124d357c4aa6d7f2f5e37a244
+      internalID: 1213327771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_281
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76d3898eb47bfe40bf0286fdd725340
+      internalID: 1046067666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_282
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef600ea51302eb40a4b83043e3ee39c
+      internalID: 1889270310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_283
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0539e3bce27a07e4186b1c57808c3a8b
+      internalID: 116827379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_284
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15825312613c16f4e907ac643e8955ad
+      internalID: -215993410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_285
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4de4b40a3bfb849be02b2b0d799db3
+      internalID: 2026967293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_286
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5502101aea3145944bdf969f7088efe8
+      internalID: -2137937124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_287
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39403c19e0051a24583a81bae72b6444
+      internalID: 428190814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_288
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad9320bf609aac40a2cf8e9871891a6
+      internalID: -633784281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_289
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d12a6c77c00e5e24cb947dbaff3da75e
+      internalID: 1093182614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_290
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f194881639faad488362ef774377ca2
+      internalID: 180869276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_291
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b605dbb929f9041b9608900432b317
+      internalID: -1483476421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_292
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591395984bbf0d74b9b24014fc5e8858
+      internalID: 1120126973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_293
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6080fcd2329ef2841839752b672c48b4
+      internalID: 814997150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_294
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04406d65feb9dd246bb0b720ddbd01e9
+      internalID: 414232972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_295
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 184
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f69bee435f745544b9a79a3c47ea22a
+      internalID: -7664624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_296
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171fde253a012c849bef5100d65debe3
+      internalID: 1309838942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_297
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7df94f926e5a5540a02fb87f1007c12
+      internalID: -777902693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_298
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8444c7efb27df8b48afc881ed077eaf2
+      internalID: 2053737166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_299
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d76857b930d2214eb02ca33bab93733
+      internalID: -402097686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_300
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592fb9266a2467943990bd4e0cccdc96
+      internalID: -613184584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_301
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ac37c371bc1e44db1c4468bbaf16ed
+      internalID: 1116473826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_302
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704662be9848f7c40936f7c7a78ebe09
+      internalID: -1127005688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_303
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5781a94f2deb8d347b7a0ff9828e4e3a
+      internalID: -381199976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_304
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9dfd5b338a4ff8468fef52bdfa36a01
+      internalID: -1692572638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_305
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e04f4d7a5328034792c3c76886bbb41
+      internalID: -196818850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_306
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b443aa9a33940941a566c3006771e05
+      internalID: 439909686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_307
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58718b7eb13834b4ab0b962c43d84ba3
+      internalID: -267097540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_308
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0842bf18603bfe4fb632f4198483f30
+      internalID: 1540647491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_309
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fe2e7e4741dc7b428d1e3830139cabd
+      internalID: 1166311821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_310
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 152
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c9d884c0210e2e4fb6a35d6838c5063
+      internalID: -856991253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_311
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24db6f6ff7d7e1642bcfa96817bb7ac6
+      internalID: 1098453318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_312
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299390b9debc6394fb0e28a491903299
+      internalID: 1062175629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_313
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6db45aba146cce4b869aa4271b5b83c
+      internalID: -606724292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_314
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924afc2729992724f83a341732e2c7b1
+      internalID: -1512682649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_315
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20169c78ce9d37488dc6399f8996151
+      internalID: 1741790701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_316
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a0261983089b443a917b55f313032c
+      internalID: -950454436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_317
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd5c700a9b30e64fa53428fc4c297ea
+      internalID: 135154145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OliveTileset_318
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb61f24bc673b1845a3861ad5d507166
+      internalID: 222245291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b9b155d8ff3aa25428e20100ad3c129e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      OliveTileset_0: 8880542351037044031
+      OliveTileset_1: -2385775048228601780
+      OliveTileset_10: -5653394474573584092
+      OliveTileset_100: 2664450308271546874
+      OliveTileset_101: 2962304505087465988
+      OliveTileset_102: 814665093118213535
+      OliveTileset_103: 2300727098522781725
+      OliveTileset_104: -8002940362119427473
+      OliveTileset_105: 5327292684268931365
+      OliveTileset_106: 5081502756109355662
+      OliveTileset_107: -7679804349909455918
+      OliveTileset_108: -6087759765545991759
+      OliveTileset_109: 205450592496388376
+      OliveTileset_11: -8521970266901915262
+      OliveTileset_110: -5598135409716731768
+      OliveTileset_111: 2157506621640733740
+      OliveTileset_112: 4943625747120010607
+      OliveTileset_113: -6937683498453202681
+      OliveTileset_114: -8743706917250559940
+      OliveTileset_115: 1025040016
+      OliveTileset_116: -783690533
+      OliveTileset_117: -189560505
+      OliveTileset_118: -942591117
+      OliveTileset_119: -678806175
+      OliveTileset_12: 1268478379980653510
+      OliveTileset_120: -497313183
+      OliveTileset_121: 674095011
+      OliveTileset_122: -815828101
+      OliveTileset_123: -1595112849
+      OliveTileset_124: -1259929261
+      OliveTileset_125: -1311787951
+      OliveTileset_126: 1808753860
+      OliveTileset_127: -993568363
+      OliveTileset_128: 1612788648
+      OliveTileset_129: -1548191338
+      OliveTileset_13: -228164651430392118
+      OliveTileset_130: 124411073
+      OliveTileset_131: 1367817791
+      OliveTileset_132: -430167185
+      OliveTileset_133: 1984157066
+      OliveTileset_134: -502159845
+      OliveTileset_135: 1620397602
+      OliveTileset_136: 129992774
+      OliveTileset_137: 1579893738
+      OliveTileset_138: 1241419504
+      OliveTileset_139: -2086991078
+      OliveTileset_14: 3725035265393683533
+      OliveTileset_140: -229861156
+      OliveTileset_141: -1426206027
+      OliveTileset_142: -1845326465
+      OliveTileset_143: 2005331958
+      OliveTileset_144: -1238179759
+      OliveTileset_145: 483628897
+      OliveTileset_146: 1987263931
+      OliveTileset_147: 558575065
+      OliveTileset_148: -204573705
+      OliveTileset_149: -691546525
+      OliveTileset_15: -253356625070390032
+      OliveTileset_150: -1733581510
+      OliveTileset_151: -770309259
+      OliveTileset_152: -1640366315
+      OliveTileset_153: -172859108
+      OliveTileset_154: 2046098322
+      OliveTileset_155: -182610999
+      OliveTileset_156: 1471404680
+      OliveTileset_157: -111169665
+      OliveTileset_158: -1371019014
+      OliveTileset_159: 357053611
+      OliveTileset_16: -58338287635076720
+      OliveTileset_160: -85187884
+      OliveTileset_161: 1073032714
+      OliveTileset_162: 1260663234
+      OliveTileset_163: -1059128251
+      OliveTileset_164: 515000690
+      OliveTileset_165: 460874236
+      OliveTileset_166: 933945173
+      OliveTileset_167: 1615047145
+      OliveTileset_168: 1111717584
+      OliveTileset_169: -1289038322
+      OliveTileset_17: 2620959906751185046
+      OliveTileset_170: 218502098
+      OliveTileset_171: -1590308928
+      OliveTileset_172: -827890842
+      OliveTileset_173: 677498236
+      OliveTileset_174: 535792057
+      OliveTileset_175: 2029280103
+      OliveTileset_176: 662430670
+      OliveTileset_177: -1070643016
+      OliveTileset_178: 1310620622
+      OliveTileset_179: -2145619089
+      OliveTileset_18: -7605240640497331172
+      OliveTileset_180: 625990045
+      OliveTileset_181: 905852150
+      OliveTileset_182: 1074332237
+      OliveTileset_183: -2037009586
+      OliveTileset_184: 923834912
+      OliveTileset_185: -357197718
+      OliveTileset_186: -335898011
+      OliveTileset_187: -924034603
+      OliveTileset_188: -1643081163
+      OliveTileset_189: 1661008722
+      OliveTileset_19: 3622066075217063306
+      OliveTileset_190: -1150282700
+      OliveTileset_191: -1365366323
+      OliveTileset_192: 651602144
+      OliveTileset_193: -420329776
+      OliveTileset_194: -1686158200
+      OliveTileset_195: -169811156
+      OliveTileset_196: -1695681912
+      OliveTileset_197: -1703338803
+      OliveTileset_198: 199124829
+      OliveTileset_199: 214085587
+      OliveTileset_2: 4501636837642557994
+      OliveTileset_20: 2966131903046142417
+      OliveTileset_200: 2082094167
+      OliveTileset_201: -1117921970
+      OliveTileset_202: -838058940
+      OliveTileset_203: -1692631161
+      OliveTileset_204: -1743722226
+      OliveTileset_205: 1490281737
+      OliveTileset_206: 373184605
+      OliveTileset_207: -893647033
+      OliveTileset_208: -1722685321
+      OliveTileset_209: -48309305
+      OliveTileset_21: -1883338909572542730
+      OliveTileset_210: -1459254010
+      OliveTileset_211: -808569692
+      OliveTileset_212: 284585845
+      OliveTileset_213: 1636108484
+      OliveTileset_214: 1483647570
+      OliveTileset_215: 1737707314
+      OliveTileset_216: 110632136
+      OliveTileset_217: 1957796902
+      OliveTileset_218: -996637389
+      OliveTileset_219: 752429228
+      OliveTileset_22: 4620173880599097063
+      OliveTileset_220: 1813624077
+      OliveTileset_221: -311950145
+      OliveTileset_222: 1826786130
+      OliveTileset_223: 1016587601
+      OliveTileset_224: 272394025
+      OliveTileset_225: -1959938399
+      OliveTileset_226: -46011254
+      OliveTileset_227: -321937334
+      OliveTileset_228: 1929726369
+      OliveTileset_229: 282353089
+      OliveTileset_23: -8296431301967477571
+      OliveTileset_230: -1381432209
+      OliveTileset_231: 1697499671
+      OliveTileset_232: -394332060
+      OliveTileset_233: 1728456788
+      OliveTileset_234: -1696807689
+      OliveTileset_235: 1390268041
+      OliveTileset_236: 1732821679
+      OliveTileset_237: 1336226433
+      OliveTileset_238: -454380873
+      OliveTileset_239: 582146823
+      OliveTileset_24: -5301966712593917923
+      OliveTileset_240: 1215128373
+      OliveTileset_241: 1752395979
+      OliveTileset_242: -365519788
+      OliveTileset_243: 1066727528
+      OliveTileset_244: -834335218
+      OliveTileset_245: 912097193
+      OliveTileset_246: 12854700
+      OliveTileset_247: -881221116
+      OliveTileset_248: -733258978
+      OliveTileset_249: 1758416887
+      OliveTileset_25: 7243842154050856918
+      OliveTileset_250: -1305927839
+      OliveTileset_251: -608774574
+      OliveTileset_252: -1312027749
+      OliveTileset_253: 2108254288
+      OliveTileset_254: -261740921
+      OliveTileset_255: 1298426309
+      OliveTileset_256: -615695179
+      OliveTileset_257: -1062237618
+      OliveTileset_258: -154738453
+      OliveTileset_259: 2086882812
+      OliveTileset_26: -4254423812103171957
+      OliveTileset_260: 1184392649
+      OliveTileset_261: -365046862
+      OliveTileset_262: 1197463537
+      OliveTileset_263: -2101197277
+      OliveTileset_264: -1532542006
+      OliveTileset_265: -1965368040
+      OliveTileset_266: -1439700638
+      OliveTileset_267: -933357624
+      OliveTileset_268: 833179777
+      OliveTileset_269: -312661082
+      OliveTileset_27: 7988120818155611684
+      OliveTileset_270: -851288362
+      OliveTileset_271: 850208832
+      OliveTileset_272: 85447736
+      OliveTileset_273: -816417512
+      OliveTileset_274: 1839926260
+      OliveTileset_275: -1360707670
+      OliveTileset_276: 1203181785
+      OliveTileset_277: 1486513347
+      OliveTileset_278: 622817038
+      OliveTileset_279: -1503553043
+      OliveTileset_28: -5759116635091712029
+      OliveTileset_280: 1213327771
+      OliveTileset_281: 1046067666
+      OliveTileset_282: 1889270310
+      OliveTileset_283: 116827379
+      OliveTileset_284: -215993410
+      OliveTileset_285: 2026967293
+      OliveTileset_286: -2137937124
+      OliveTileset_287: 428190814
+      OliveTileset_288: -633784281
+      OliveTileset_289: 1093182614
+      OliveTileset_29: -7235369384513206172
+      OliveTileset_290: 180869276
+      OliveTileset_291: -1483476421
+      OliveTileset_292: 1120126973
+      OliveTileset_293: 814997150
+      OliveTileset_294: 414232972
+      OliveTileset_295: -7664624
+      OliveTileset_296: 1309838942
+      OliveTileset_297: -777902693
+      OliveTileset_298: 2053737166
+      OliveTileset_299: -402097686
+      OliveTileset_3: -7566716094495085373
+      OliveTileset_30: -8761429737245414654
+      OliveTileset_300: -613184584
+      OliveTileset_301: 1116473826
+      OliveTileset_302: -1127005688
+      OliveTileset_303: -381199976
+      OliveTileset_304: -1692572638
+      OliveTileset_305: -196818850
+      OliveTileset_306: 439909686
+      OliveTileset_307: -267097540
+      OliveTileset_308: 1540647491
+      OliveTileset_309: 1166311821
+      OliveTileset_31: -7401842233361890126
+      OliveTileset_310: -856991253
+      OliveTileset_311: 1098453318
+      OliveTileset_312: 1062175629
+      OliveTileset_313: -606724292
+      OliveTileset_314: -1512682649
+      OliveTileset_315: 1741790701
+      OliveTileset_316: -950454436
+      OliveTileset_317: 135154145
+      OliveTileset_318: 222245291
+      OliveTileset_32: -3872595497200201838
+      OliveTileset_33: 3704073258465216835
+      OliveTileset_34: -2199568757447632971
+      OliveTileset_35: 8964626531528437656
+      OliveTileset_36: 2043669525225728645
+      OliveTileset_37: 760394794132384887
+      OliveTileset_38: -9085560078777295470
+      OliveTileset_39: 7997815240538066112
+      OliveTileset_4: -8603989269282048980
+      OliveTileset_40: -4284063089092912029
+      OliveTileset_41: -7335736586604475244
+      OliveTileset_42: -5606210682451685174
+      OliveTileset_43: 5202619836971840401
+      OliveTileset_44: -4863939163666735681
+      OliveTileset_45: 9001729422383022864
+      OliveTileset_46: -4830046176611597685
+      OliveTileset_47: -673948026066186229
+      OliveTileset_48: 5196512948161929867
+      OliveTileset_49: -8535311785508761926
+      OliveTileset_5: 3418448139046120287
+      OliveTileset_50: 1850826043905220023
+      OliveTileset_51: -6353234937919768070
+      OliveTileset_52: 25443622593331204
+      OliveTileset_53: -1542318339778414715
+      OliveTileset_54: 8738978845874999376
+      OliveTileset_55: 1855723892587722873
+      OliveTileset_56: 6601845626824884485
+      OliveTileset_57: 6302061419285804803
+      OliveTileset_58: -8771425176608386861
+      OliveTileset_59: -6808739481391011102
+      OliveTileset_6: -4094220159450286413
+      OliveTileset_60: -3122231453499669787
+      OliveTileset_61: -8762787591540130743
+      OliveTileset_62: 2814018652894615893
+      OliveTileset_63: -3619764947118990739
+      OliveTileset_64: 5063047133547425668
+      OliveTileset_65: -5569783542403484788
+      OliveTileset_66: -6607747897276627137
+      OliveTileset_67: -6725665526502457390
+      OliveTileset_68: -3829223290768026085
+      OliveTileset_69: 6710448344119515924
+      OliveTileset_7: -6926681112942098833
+      OliveTileset_70: 2125641388335843324
+      OliveTileset_71: -7929045534329860655
+      OliveTileset_72: 6808624146097097146
+      OliveTileset_73: 7215960206139354727
+      OliveTileset_74: -2333996129995481155
+      OliveTileset_75: -5887672975438933333
+      OliveTileset_76: -4742959683804663899
+      OliveTileset_77: 5576742147995564169
+      OliveTileset_78: -7386991502384994931
+      OliveTileset_79: -1164215608655273886
+      OliveTileset_8: -8802703586607475206
+      OliveTileset_80: -8005319391935819739
+      OliveTileset_81: -1971143748327858120
+      OliveTileset_82: 7113635506614254202
+      OliveTileset_83: 4442387036067847369
+      OliveTileset_84: -3120485139497452563
+      OliveTileset_85: -4977799683991409757
+      OliveTileset_86: 7584523857998536790
+      OliveTileset_87: -698027873142131840
+      OliveTileset_88: -828791340181997265
+      OliveTileset_89: 4909337714464465911
+      OliveTileset_9: 6927786635608194822
+      OliveTileset_90: 657001811830625310
+      OliveTileset_91: 906635085103111911
+      OliveTileset_92: 226662627049639410
+      OliveTileset_93: -8624492011809526627
+      OliveTileset_94: 3693043112465870929
+      OliveTileset_95: -7587326080771339739
+      OliveTileset_96: 4081517741337364663
+      OliveTileset_97: 2538582579295008486
+      OliveTileset_98: 1179939249194035016
+      OliveTileset_99: 2528815381902584660
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
