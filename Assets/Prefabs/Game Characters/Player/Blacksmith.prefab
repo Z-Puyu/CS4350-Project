@@ -73,6 +73,9 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   blacksmithInventory: {fileID: 3855913586144040861}
   PlayerMoney: {fileID: 0}
+  MeleeWeapon: {fileID: 0}
+  RangedWeapon: {fileID: 0}
+  PlaceableWeapon: {fileID: 0}
   seedType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
   broadcastPauseGame: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}
   broadcastUnPauseGame: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
@@ -286,7 +289,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110630097966792827}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b6a6995c0b830764ba7a989c8e83a33b, type: 2}
   m_CullingMode: 0
