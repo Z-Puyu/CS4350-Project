@@ -44,6 +44,7 @@ namespace WeaponsSystem.Runtime.Combat {
         [field: SerializeField] private TrailRenderer SwingTrail { get; set; }
         
         private SpriteRenderer _attackOriginRenderer;
+        private int _currentWeaponIndex;
         public SaintsDictionary<int, Sprite> weaponIndexToWeaponSprite;
 
         private void Awake() {
@@ -75,15 +76,27 @@ namespace WeaponsSystem.Runtime.Combat {
                 SwingTrail.Clear();
                 SwingTrail.emitting = true;   // Start emitting
             }
-            
-            if (this.Weapon.CurrentComboIndex < 0) {
-                this.IsAttacking = false;
-            } else {
-                this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+
+            if (_currentWeaponIndex == 1)
+            {
+                if (this.Weapon.CurrentComboIndex < 0) {
+                    this.IsAttacking = false;
+                } else {
+                    this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+                    Debug.Log("GUN FIRED -> TRIGGER AN FX AT THIS POINT");
+                }
+            }
+            else
+            {
+                if (this.Weapon.CurrentComboIndex < 0) {
+                    this.IsAttacking = false;
+                } else {
+                    this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
                 
-                // Start swing
-                if (swingRoutine != null) StopCoroutine(swingRoutine);
-                swingRoutine = StartCoroutine(SwingWeapon());
+                    // Start swing
+                    if (swingRoutine != null) StopCoroutine(swingRoutine);
+                    swingRoutine = StartCoroutine(SwingWeapon());
+                }
             }
         }
 
@@ -127,6 +140,7 @@ namespace WeaponsSystem.Runtime.Combat {
 
         public void UpdateWeaponSprite(int weaponIndex)
         {
+            _currentWeaponIndex = weaponIndex;
             if (_attackOriginRenderer == null)
             {
                 Debug.LogWarning("AttackOrigin SpriteRenderer missing.", this);
