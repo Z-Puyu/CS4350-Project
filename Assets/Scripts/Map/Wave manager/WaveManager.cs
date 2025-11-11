@@ -29,6 +29,11 @@ namespace Map.Wave_manager
             StartWave();
         }
 
+        public int GetWave()
+        {
+            return wave + 1;
+        }
+
         public void SetCurrentRegion(RegionBorder.RegionBorder regionBorder)
         {
             currentMap = regionBorder;
@@ -46,10 +51,10 @@ namespace Map.Wave_manager
 
         void SpawnEnemy()
         {
-            Vector2 topLeft = new Vector2(minX + 5, maxY - 5);
-            Vector2 bottomLeft = new Vector2(minX + 5, minY + 5);
-            Vector2 topRight = new Vector2(maxX - 5, maxY - 5);
-            Vector2 bottomRight = new Vector2(maxX - 5, minY + 5);
+            Vector2 topLeft = new Vector2(minX + 3, maxY - 3);
+            Vector2 bottomLeft = new Vector2(minX + 3, minY + 3);
+            Vector2 topRight = new Vector2(maxX - 3, maxY - 3);
+            Vector2 bottomRight = new Vector2(maxX - 3, minY + 3);
             List<Vector2> spawnPoints = new List<Vector2>(){topLeft, topRight, bottomRight, bottomLeft};
             SaintsDictionary<Enemy, int> enemiesForThisWave = waveToEnemySpawner[wave];
             List<Enemy> allEnemyDataForThisWave = enemiesForThisWave.Keys.ToList();
@@ -116,6 +121,21 @@ namespace Map.Wave_manager
         public void StartWave()
         {
             waveUIManager.StartCountdown(() => SpawnEnemy());
+        }
+
+        public void ResetWave()
+        {
+            foreach (var enemy in allSpawnedEnemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+            allSpawnedEnemies.Clear();
+        }
+
+        public void AddBossToNextWave(Component component, object enemy)
+        {
+            Boss enemyInformation = (Boss)component;
+            waveToEnemySpawner[wave + 1][enemyInformation] = 1;
         }
     }   
 }

@@ -1,8 +1,10 @@
 using Events;
 using Game.Enemies;
+using GameplayAbilities.Runtime.Abilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using WeaponsSystem.Runtime.Equipments;
 
 namespace Player_related.Player_exp
 {
@@ -14,10 +16,15 @@ namespace Player_related.Player_exp
         [SerializeField] private int farmingExpLevel;
         [SerializeField] private int combatSkillPoint;
         [SerializeField] private int farmingSkillPoint;
+        [SerializeField] private Weaponry Weaponry;
         [SerializeField] private CrossObjectEventWithDataSO onCombatLevelUp;
         [SerializeField] private CrossObjectEventWithDataSO onFarmingLevelUp;
         private int combatExpNeededToLevelUp;
         private int farmingExpNeededToLevelUp;
+        
+        //Cache perk result
+        private Perk perk;
+        private WeaponUnlockPerk weaponUnlockPerk;
 
         void Start()
         {
@@ -91,6 +98,52 @@ namespace Player_related.Player_exp
             farmExpBar.value = ((float)farmingExp/(float)farmingExpNeededToLevelUp)*0.5f;
             numberOfCombatSkillPointText.text = combatSkillPoint.ToString();
             numberOfFarmingSkillPointText.text = farmingSkillPoint.ToString();
+        }
+
+        public bool EnoughPoint(Perk perk)
+        {
+            this.perk = perk;
+            weaponUnlockPerk = null;
+            if (perk.IsCombatPerk())
+            {
+                return combatSkillPoint >= perk.skillPointsToUnlock;
+            }
+            return farmingSkillPoint >= perk.skillPointsToUnlock;
+        }
+        
+        public bool EnoughPoint(WeaponUnlockPerk perk)
+        {
+            this.perk = null;
+            weaponUnlockPerk = perk;
+            return combatSkillPoint >= perk.skillPointsToUnlock;
+        }
+
+        public void MinusPoint(AbilitySystem abilitySystem)
+        {
+            if (weaponUnlockPerk != null)
+            {
+                Weaponry.Unlock(weaponUnlockPerk.weaponIndex);
+                weaponUnlockPerk = null;
+                return;
+            }
+
+            if (perk != null)
+            {
+                foreach (var modifier in perk.Modifiers)
+                {
+                    abilitySystem.AddModifier(modifier.ToModifier());   
+                }
+            
+                if (perk.IsCombatPerk())
+                {
+                    combatSkillPoint -= perk.skillPointsToUnlock;
+                    perk = null;
+                    return;
+                }
+                farmingSkillPoint -= perk.skillPointsToUnlock;
+                perk = null;    
+            }
+            
         }
     }
 }

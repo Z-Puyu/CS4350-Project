@@ -8,10 +8,11 @@ namespace Player_related.Things_to_note_text
     {
         [SerializeField] private TextMeshProUGUI text;
         
-        public void SetText(string text, int time)
+        public void SetText(string text, int time, Color color)
         {
             this.text.text = text;
             StartCoroutine(StartCountdown(time));
+            this.text.color = color;
         }
 
         IEnumerator StartCountdown(int time)

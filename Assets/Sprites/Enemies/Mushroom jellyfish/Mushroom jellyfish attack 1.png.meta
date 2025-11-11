@@ -1,0 +1,545 @@
+fileFormatVersion: 2
+guid: fe9f83a5859e4a44e89947d762d49eac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 524202001784260165
+    second: Mushroom jellyfish attack 1_0
+  - first:
+      213: 8978609471162766940
+    second: Mushroom jellyfish attack 1_1
+  - first:
+      213: -4530742271921769088
+    second: Mushroom jellyfish attack 1_2
+  - first:
+      213: -7187812918990312880
+    second: Mushroom jellyfish attack 1_3
+  - first:
+      213: -5877990982285397135
+    second: Mushroom jellyfish attack 1_4
+  - first:
+      213: -2110776911111180694
+    second: Mushroom jellyfish attack 1_5
+  - first:
+      213: 67870303344000669
+    second: Mushroom jellyfish attack 1_6
+  - first:
+      213: -2301372357072758408
+    second: Mushroom jellyfish attack 1_7
+  - first:
+      213: -1541683118049399154
+    second: Mushroom jellyfish attack 1_8
+  - first:
+      213: 1967321554961595458
+    second: Mushroom jellyfish attack 1_9
+  - first:
+      213: 2058256397843246328
+    second: Mushroom jellyfish attack 1_10
+  - first:
+      213: -2160059207816334814
+    second: Mushroom jellyfish attack 1_11
+  - first:
+      213: 2251576975847908068
+    second: Mushroom jellyfish attack 1_12
+  - first:
+      213: -6868948925132473924
+    second: Mushroom jellyfish attack 1_13
+  - first:
+      213: 2514742308104877104
+    second: Mushroom jellyfish attack 1_14
+  - first:
+      213: -1510260641760691487
+    second: Mushroom jellyfish attack 1_15
+  - first:
+      213: -9108523740113783597
+    second: Mushroom jellyfish attack 1_16
+  - first:
+      213: -5533478353481632025
+    second: Mushroom jellyfish attack 1_17
+  - first:
+      213: -2884658826250035998
+    second: Mushroom jellyfish attack 1_18
+  - first:
+      213: -3902717212971329504
+    second: Mushroom jellyfish attack 1_19
+  - first:
+      213: 7190193974478477250
+    second: Mushroom jellyfish attack 1_20
+  - first:
+      213: 2259033861060340479
+    second: Mushroom jellyfish attack 1_21
+  - first:
+      213: -3207843787475568920
+    second: Mushroom jellyfish attack 1_22
+  - first:
+      213: -6191371293221156438
+    second: Mushroom jellyfish attack 1_23
+  - first:
+      213: -553782244889402558
+    second: Mushroom jellyfish attack 1_24
+  - first:
+      213: -5524617061391041528
+    second: Mushroom jellyfish attack 1_25
+  - first:
+      213: -221488818052026631
+    second: Mushroom jellyfish attack 1_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54646ea71f6564700800000000000000
+      internalID: 524202001784260165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c565d994ebd6a9c70800000000000000
+      internalID: 8978609471162766940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 085b14998e19f11c0800000000000000
+      internalID: -4530742271921769088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05a6e9b9b32cf3c90800000000000000
+      internalID: -7187812918990312880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173fde3385e2d6ea0800000000000000
+      internalID: -5877990982285397135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e2f1d259305b2e0800000000000000
+      internalID: -2110776911111180694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9efd996eaf11f000800000000000000
+      internalID: 67870303344000669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87956c0d802ef00e0800000000000000
+      internalID: -2301372357072758408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ee2705f57da9ae0800000000000000
+      internalID: -1541683118049399154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c747ae7845d4b10800000000000000
+      internalID: 1967321554961595458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_10
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc2f1ae945609c10800000000000000
+      internalID: 2058256397843246328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_11
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222bb40589de502e0800000000000000
+      internalID: -2160059207816334814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_12
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e2ecd584553f3f10800000000000000
+      internalID: 2251576975847908068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_13
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb97d2988579ca0a0800000000000000
+      internalID: -6868948925132473924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom jellyfish attack 1_14
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034bc383ec826e220800000000000000
+      internalID: 2514742308104877104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e6041d3dfc112764fab6b8b34400713a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":15.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Mushroom jellyfish attack 1_0: 524202001784260165
+      Mushroom jellyfish attack 1_1: 8978609471162766940
+      Mushroom jellyfish attack 1_10: 2058256397843246328
+      Mushroom jellyfish attack 1_11: -2160059207816334814
+      Mushroom jellyfish attack 1_12: 2251576975847908068
+      Mushroom jellyfish attack 1_13: -6868948925132473924
+      Mushroom jellyfish attack 1_14: 2514742308104877104
+      Mushroom jellyfish attack 1_2: -4530742271921769088
+      Mushroom jellyfish attack 1_3: -7187812918990312880
+      Mushroom jellyfish attack 1_4: -5877990982285397135
+      Mushroom jellyfish attack 1_5: -2110776911111180694
+      Mushroom jellyfish attack 1_6: 67870303344000669
+      Mushroom jellyfish attack 1_7: -2301372357072758408
+      Mushroom jellyfish attack 1_8: -1541683118049399154
+      Mushroom jellyfish attack 1_9: 1967321554961595458
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,8 @@
 using GameplayAbilities.Runtime.Attributes;
 using ModularItemsAndInventory.Runtime.LootContainers;
 using Player_related.Player_exp;
+using Player_related.Player_things_to_note_ui_manager;
+using SaintsField;
 using UnityEngine;
 
 namespace Game.Enemies {
@@ -12,5 +14,8 @@ namespace Game.Enemies {
         [field: SerializeField] public AnimatorOverrideController Animations { get; private set; }
         [field: SerializeField] public AttributeTable Attributes { get; private set; }
         [field: SerializeField] public LootTable LootTable { get; private set; }
+        [field: SerializeField] public PlayerMessage messageForPlayerBeforeSpawn { get; private set; }
+        [field: SerializeField] public PlayerMessage messageForPlayerOnSpawn { get; private set; }
+        
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8ba5488db84dd8bb6da97e5c205325, type: 3}
+  m_Name: Mushroom jellyfish
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemies.EnemyData
+  <Id>k__BackingField: enemy_mushroom_jellyfish
+  <Name>k__BackingField: Mushroom jellyfish
+  <EnemyExpObject>k__BackingField: {fileID: 11400000, guid: 7625017c674dccb4895dbe0328e0d9e6, type: 2}
+  <Animations>k__BackingField: {fileID: 22100000, guid: 305a0f74d626eed40a23e1c8931b73ae, type: 2}
+  <Attributes>k__BackingField: {fileID: 11400000, guid: 3be12c5c71cdeab43802460f574316d9, type: 2}
+  <LootTable>k__BackingField: {fileID: 11400000, guid: a8b11bf6277fc0c41846e2fd12cc4c8e, type: 2}
+  <messageForPlayerBeforeSpawn>k__BackingField: {fileID: 11400000, guid: 9bc404afd8265734daf864276c87064d, type: 2}
+  <messageForPlayerOnSpawn>k__BackingField: {fileID: 11400000, guid: 9f7189941b224e8499c0069176345fc7, type: 2}

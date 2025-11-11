@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Items.ItemData
   <Id>k__BackingField: seed_2
   <Type>k__BackingField: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
-  <Name>k__BackingField: Seed 2
-  <Description>k__BackingField: Seed 2
+  <Name>k__BackingField: Seed of Frost
+  <Description>k__BackingField: Grants 100% Ice Damage
   <CustomIcon>k__BackingField: {fileID: 3329518133669724521, guid: ccf80e0dae4085d40842e936212de1e3, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
@@ -26,13 +26,14 @@ MonoBehaviour:
     - rid: 4925886426016907350
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
-        <Price>k__BackingField: 25
-        <HasDifferentPriceForSale>k__BackingField: 1
-        <Worth>k__BackingField: 2
+        <Price>k__BackingField: 10
+        <HasDifferentPriceForSale>k__BackingField: 0
+        <Worth>k__BackingField: 0
     - rid: 5797885423291465731
       type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
       data:
-        <GrowthDuration>k__BackingField: 0
-        <WateringRequirement>k__BackingField: 0
+        <GrowthDuration>k__BackingField: 100
+        <WateringRequirement>k__BackingField: 3
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: 27df9db6a8bc43c4288864d58141bb36, type: 2}
-        <AttackBuff>k__BackingField: 0
+        <AttackBuff>k__BackingField: 100
+        <BuffAttribute>k__BackingField: {fileID: 11400000, guid: b4d3fd49aad078745859aab697ef9dd9, type: 2}

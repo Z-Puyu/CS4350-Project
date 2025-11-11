@@ -7,6 +7,7 @@ using Game.CharacterControls;
 using GameplayAbilities.Runtime.Abilities;
 using GameplayAbilities.Runtime.Targeting;
 using InteractionSystem.Runtime;
+using Inventory_related.Inventory_UI_Manager_V2;
 using Inventory_related.Inventory_UI_Manager;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
@@ -26,6 +27,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private Interactor Interactor { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
         [field: SerializeField, Required] private InventoryUIManager InventoryUIManager { get; set; }
+        [field: SerializeField, Required] private InventoryUIManagerV2 InventoryUIManagerV2 { get; set; }
         [field: SerializeField, Required] private Movement Movement { get; set; }
         [field: SerializeField, Required] private FarmerSpriteAnimator Animator { get; set; }
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
@@ -35,9 +37,12 @@ namespace Game.Player {
         [field: SerializeField, Required] private Weaponry Weaponry { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastOpenNotebook { get; set; }
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseGame { get; set; }
+        [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseUIGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
+        [field: SerializeField, Required] private PlayerBattleUIManager PlayerBattleUIManager { get; set; }
         
         [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
+        [field: SerializeField] private bool isGunUnlocked = false;
         
         private bool isQuickSwap = false;
         private Vector2 currentMoveInput = Vector2.zero; // store the latest WASD input
@@ -57,6 +62,7 @@ namespace Game.Player {
             }
 
             // Logging inventory items
+            broadcastPauseGame.TriggerEvent();
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
                 sb.AppendLine($"{item.Key.Id}: {item.Value}");
@@ -64,10 +70,17 @@ namespace Game.Player {
 
             OnScreenDebugger.Log(sb.ToString());
 
-            bool isInventoryActive = this.InventoryUIManager.gameObject.activeSelf;
+            bool isInventoryActive = this.InventoryUIManagerV2.gameObject.activeSelf;
 
             // Toggle inventory UI
-            this.InventoryUIManager.gameObject.SetActive(!isInventoryActive);
+            if (!isInventoryActive)
+            {
+                this.InventoryUIManagerV2.gameObject.SetActive(true);    
+            }
+            else
+            {
+                this.InventoryUIManagerV2.CloseInventory();
+            }
         }
 
         public void OnAttack(InputAction.CallbackContext context) {
@@ -86,6 +99,7 @@ namespace Game.Player {
         public void OnOpenObjective(InputAction.CallbackContext context)
         {
             if (context.performed) {
+                broadcastPauseGame.TriggerEvent();
                 broadcastOpenNotebook.TriggerEvent();
             }
         }
@@ -109,6 +123,7 @@ namespace Game.Player {
             if (context.performed)
             {
                 broadcastPauseGame.TriggerEvent();
+                broadcastPauseUIGame.TriggerEvent();
             }
         }
 
@@ -143,7 +158,12 @@ namespace Game.Player {
                 return;
             }
 
-            this.Weaponry.Switch(0);
+            bool canSwitch = this.Weaponry.Switch(0);
+            if (canSwitch)
+            {
+                PlayerBattleUIManager.UpdateWeaponIcon(0);
+                Combatant.UpdateWeaponSprite(0);
+            }
         }
 
         public void OnSwitchToSecond(InputAction.CallbackContext context) {
@@ -151,17 +171,31 @@ namespace Game.Player {
                 return;
             }
 
-            this.Weaponry.Switch(1);
+            if (isGunUnlocked)
+            {
+                Weaponry.Unlock(1);
+            }
+
+            bool canSwitch = this.Weaponry.Switch(1);
+            if (canSwitch)
+            {
+                PlayerBattleUIManager.UpdateWeaponIcon(1);
+                Combatant.UpdateWeaponSprite(1);
+            }
         }
 
         public void OnSwitchToThird(InputAction.CallbackContext context)
         {
-            if (!context.performed)
-            {
-                return;
-            }
-
-            this.Weaponry.Switch(2);
+            // if (!context.performed)
+            // {
+            //     return;
+            // }
+            //
+            // bool canSwitch = this.Weaponry.Switch(2);
+            // if (canSwitch)
+            // {
+            //     PlayerBattleUIManager.UpdateWeaponIcon(2);
+            // }
         }
         
         public void OnQuickSwapPage(InputAction.CallbackContext context)

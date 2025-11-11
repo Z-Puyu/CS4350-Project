@@ -20,20 +20,16 @@ public class PlayerBattleUIManager : MonoBehaviour
     {
         objectiveUnlockedPromptIndicator.SetActive(false);
     }
-    
-    public void UpdateHealth()
+
+    void Update()
     {
         healthBar.value = (float)health.Value/(float)health.MaxValue;
-    }
-
-    public void UpdateStamina()
-    {
         staminaBar.value = (float)stamina.Value/(float)stamina.MaxValue;
     }
 
-    public void UpdateWeaponIcon(Component component, object index)
+    public void UpdateWeaponIcon(int index)
     {
-        weaponIconImage.sprite = weaponIndexToWeaponIcon[(int)((object[]) index)[0]];
+        weaponIconImage.sprite = weaponIndexToWeaponIcon[index];
     }
 
     public void ShowObjectiveUnlockPromptIndicator()

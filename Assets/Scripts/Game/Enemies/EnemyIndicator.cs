@@ -16,7 +16,7 @@ namespace Game.Enemies {
         [SerializeField] private float borderSize;
         [SerializeField] private float angleOffset;
         
-        void Start()
+        protected void Start()
         {
             image = GetComponent<Image>();
             camera = Camera.main;
@@ -36,12 +36,12 @@ namespace Game.Enemies {
             }
         }
 
-        void Update()
+        protected void Update()
         {
             UpdatePosition();
         }
 
-        void UpdatePosition()
+        protected void UpdatePosition()
         {
             if (enemy.IsUnityNull())
             {

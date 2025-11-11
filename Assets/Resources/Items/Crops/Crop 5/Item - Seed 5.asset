@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModularItemsAndInventory.Runtime.Items.ItemData
   <Id>k__BackingField: seed_5
   <Type>k__BackingField: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
-  <Name>k__BackingField: Seed 5
-  <Description>k__BackingField: Seed 5
+  <Name>k__BackingField: Seed of Domain
+  <Description>k__BackingField: Grants 50% Attack Range
   <CustomIcon>k__BackingField: {fileID: -4075644147831172029, guid: 70ea086f1e0d2eb43a90ed7ac32df65a, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
@@ -29,10 +29,15 @@ MonoBehaviour:
         <Price>k__BackingField: 40
         <HasDifferentPriceForSale>k__BackingField: 1
         <Worth>k__BackingField: 2
+        <Price>k__BackingField: 10
+        <HasDifferentPriceForSale>k__BackingField: 0
+        <Worth>k__BackingField: 0
     - rid: 5797885423291465731
       type: {class: Plantable, ns: Game.Items, asm: Assembly-CSharp}
       data:
-        <GrowthDuration>k__BackingField: 0
-        <WateringRequirement>k__BackingField: 0
+        <GrowthDuration>k__BackingField: 600
+        <WateringRequirement>k__BackingField: 3
         <FarmingExpObject>k__BackingField: {fileID: 11400000, guid: b28fbdc6e6e74db4d944b3643b4ae151, type: 2}
         <AttackBuff>k__BackingField: 0
+        <AttackBuff>k__BackingField: 50
+        <BuffAttribute>k__BackingField: {fileID: 11400000, guid: 8b53de4132421de459fda77ca9b7700a, type: 2}

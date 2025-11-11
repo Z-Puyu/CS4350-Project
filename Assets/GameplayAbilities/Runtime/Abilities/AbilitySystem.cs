@@ -98,5 +98,10 @@ namespace GameplayAbilities.Runtime.Abilities {
         private void Update() {
             this.UpdateCooldowns();
         }
+
+        public void AddModifier(Modifier modifier)
+        {
+            AttributeSet.AddModifier(modifier);
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace WeaponsSystem.Runtime.Combat {
             new UnityEvent<ISet<WeaponComponent>>();
         
         private Timer AttackTimer { get; set; }
-        
+        [field: SerializeField]
         private Weapon Weapon { get; set; }
         private bool IsAttacking { get; set; }
         
@@ -42,11 +42,18 @@ namespace WeaponsSystem.Runtime.Combat {
         private bool isSwinging = false;
         
         [field: SerializeField] private TrailRenderer SwingTrail { get; set; }
+        
+        private SpriteRenderer _attackOriginRenderer;
+        private int _currentWeaponIndex;
+        public SaintsDictionary<int, Sprite> weaponIndexToWeaponSprite;
 
         private void Awake() {
             if (!this.Owner) {
                 this.Owner = this.gameObject;
             }
+            
+            if (AttackOrigin)
+                _attackOriginRenderer = AttackOrigin.GetComponent<SpriteRenderer>();
         }
 
         private void Update() {
@@ -69,15 +76,27 @@ namespace WeaponsSystem.Runtime.Combat {
                 SwingTrail.Clear();
                 SwingTrail.emitting = true;   // Start emitting
             }
-            
-            if (this.Weapon.CurrentComboIndex < 0) {
-                this.IsAttacking = false;
-            } else {
-                this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+
+            if (_currentWeaponIndex == 1)
+            {
+                if (this.Weapon.CurrentComboIndex < 0) {
+                    this.IsAttacking = false;
+                } else {
+                    this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
+                    Debug.Log("GUN FIRED -> TRIGGER AN FX AT THIS POINT");
+                }
+            }
+            else
+            {
+                if (this.Weapon.CurrentComboIndex < 0) {
+                    this.IsAttacking = false;
+                } else {
+                    this.OnAttacked.Invoke(this.Weapon.CurrentComboIndex);
                 
-                // Start swing
-                if (swingRoutine != null) StopCoroutine(swingRoutine);
-                swingRoutine = StartCoroutine(SwingWeapon());
+                    // Start swing
+                    if (swingRoutine != null) StopCoroutine(swingRoutine);
+                    swingRoutine = StartCoroutine(SwingWeapon());
+                }
             }
         }
 
@@ -117,6 +136,30 @@ namespace WeaponsSystem.Runtime.Combat {
             weapon.gameObject.SetActive(true);
             this.OnSwitchedGear.Invoke(weapon);
             return true;
+        }
+
+        public void UpdateWeaponSprite(int weaponIndex)
+        {
+            _currentWeaponIndex = weaponIndex;
+            if (_attackOriginRenderer == null)
+            {
+                Debug.LogWarning("AttackOrigin SpriteRenderer missing.", this);
+                return;
+            }
+
+            if (weaponIndexToWeaponSprite == null)
+            {
+                Debug.LogWarning("Weapon sprite dictionary is not assigned.", this);
+                return;
+            }
+
+            if (!weaponIndexToWeaponSprite.TryGetValue(weaponIndex, out Sprite newSprite) || newSprite == null)
+            {
+                Debug.LogWarning($"No sprite mapped for weapon index {weaponIndex}.", this);
+                return;
+            }
+
+            _attackOriginRenderer.sprite = newSprite;
         }
 
         public void HandleComponentSetChange(ISet<WeaponComponent> components) {

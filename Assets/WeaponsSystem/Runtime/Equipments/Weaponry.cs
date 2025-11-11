@@ -8,31 +8,36 @@ namespace WeaponsSystem.Runtime.Equipments {
     [DisallowMultipleComponent]
     public sealed class Weaponry : MonoBehaviour {
         [field: SerializeField, Required] private Combatant Combatant { get; set; }
+        [field: SerializeField]
         private List<Weapon> Weapons { get; } = new List<Weapon>();
         private int CurrentActiveIndex { get; set; }
-        private HashSet<int> LockedWeapons { get; } = new HashSet<int>();
+        private HashSet<int> LockedWeapons { get;} = new HashSet<int>();
         
         public int Size => this.Weapons.Count;
         
         private void Awake() {
             this.GetComponentsInChildren(this.Weapons);
+            Lock(1);
+            Lock(2);
         }
 
         private void Start() {
             this.Switch(this.CurrentActiveIndex);
+            Weapons[CurrentActiveIndex].gameObject.SetActive(true);
         }
 
-        public void Switch(int index) {
+        public bool Switch(int index) {
             if (index < 0 || index >= this.Weapons.Count) {
                 Debug.LogError($"Index {index} is out of bounds for damage dealers list.", this);
-                return;
+                return false;
             }
 
             if (this.LockedWeapons.Contains(index) || !this.Combatant.Equip(this.Weapons[index])) {
-                return;
+                return false;
             }
             
             this.CurrentActiveIndex = index;
+            return true;
         }
         
         public void Lock(int index) {

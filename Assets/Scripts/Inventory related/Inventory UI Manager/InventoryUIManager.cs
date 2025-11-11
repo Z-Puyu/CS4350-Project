@@ -4,6 +4,7 @@ using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Events;
 
 namespace Inventory_related.Inventory_UI_Manager
 {
@@ -13,7 +14,7 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private VisualTreeAsset slotTemplate; // assign Slot.uxml in inspector
         [SerializeField] private Inventory inventory;
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
-
+        [SerializeField] private CrossObjectEventSO broadcastPauseGame;
         private ItemKey? _currentItemKey;
         
         private VisualElement _root;
@@ -163,6 +164,7 @@ namespace Inventory_related.Inventory_UI_Manager
 
         public void OpenForSeedSelection(SoilPlantInteraction soil)
         {
+            broadcastPauseGame.TriggerEvent();
             CurrentSoil = soil;
             gameObject.SetActive(true);
             RefreshInventoryUI();
