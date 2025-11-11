@@ -73,8 +73,12 @@ PrefabInstance:
       value: WeaponsSystem.Runtime WeaponsSystem.Runtime.WeaponComponents.WeaponComponentController
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: 'managedReferences[5637489946061439430]'
+      value: WeaponsSystem.Runtime WeaponsSystem.Runtime.WeaponComponents.WeaponComponentController
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: '<WeaponControllers>k__BackingField.Array.data[0]'
-      value: 5580717541616517210
+      value: 5637489946061439430
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803629].<RangeAttribute>k__BackingField
@@ -225,6 +229,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
       value: Damage.Elemental.Fire
       objectReference: {fileID: 0}
@@ -278,6 +286,14 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7219c48179bf5fc4eaf9f63a802e39de, type: 2}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717541616517210].<PossibleComponents>k__BackingField._saintsList.Array.data[1].value
+      value: 
+      objectReference: {fileID: 11400000, guid: eedbef10c7566c64daa9212974e64432, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.data[0].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 7219c48179bf5fc4eaf9f63a802e39de, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.data[1].value
       value: 
       objectReference: {fileID: 11400000, guid: eedbef10c7566c64daa9212974e64432, type: 2}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}

@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
   m_Name: Spread Projectiles
   m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
+  id: spread_projectile
+  itemName: Shotgun Shells
+  Description: Spread shot baby. But low damage that can't kill a baby
+  weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
+  icon: {fileID: 0}
+  price: 0
+  craftingMaterials:
+  - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
+    amount: 1
+  rarity: Common
+  levelRequirement: 1
+  weaponCategory: 1
   <ProjectileModesOnAttack>k__BackingField: 02000000
   <ProjectileModeOnWeapon>k__BackingField: 0
   <EffectOnWeapon>k__BackingField:

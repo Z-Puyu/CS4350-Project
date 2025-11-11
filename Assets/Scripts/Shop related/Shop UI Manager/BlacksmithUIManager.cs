@@ -11,6 +11,7 @@ using Game.NPC;
 using System.Diagnostics;
 using System.Collections.Generic;
 using Events;
+using WeaponsSystem.Runtime.Weapons;
 
 namespace Shop_related.Shop_UI_Manager
 {
@@ -21,6 +22,9 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private Inventory playerInventory;
         [SerializeField] private BlacksmithInventory blacksmithInventory;
         [SerializeField] private Money PlayerMoney;
+        [SerializeField] private Weapon MeleeWeapon;
+        [SerializeField] private Weapon RangedWeapon;
+        [SerializeField] private Weapon PlaceableWeapon;
 
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
         [SerializeField] private CrossObjectEventSO broadcastPauseGame;
@@ -52,7 +56,7 @@ namespace Shop_related.Shop_UI_Manager
         private Button _rangedButton;
         private Button _placableButton;
         private Button _exitButton;
-        
+
 
         private string currentWeaponCategory = "Melee";
         private List<(ItemKey material, int amount)> requiredMaterials = new List<(ItemKey, int)>();
@@ -93,7 +97,7 @@ namespace Shop_related.Shop_UI_Manager
 
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
-            // _equipButton.clicked += ;
+            _equipButton.clicked += OnEquipButtonClicked;
             _meleeButton.clicked += ChangeToMelee;
             _rangedButton.clicked += ChangeToRanged;
             _placableButton.clicked += ChangeToPlaceable;
@@ -230,16 +234,21 @@ namespace Shop_related.Shop_UI_Manager
         {
             _grid.Clear();
             _moneyCount.text = "$" + PlayerMoney.Value.ToString();
+
+            // Get the currently equipped component
+            WeaponComponent equippedComponent = GetEquippedComponent();
+
             foreach (var kvp in blacksmithInventory.WeaponsForSale) // kvp.itemKey = ItemKey, kvp.stock = quantity
             {
-
                 if (ComponentDatabase.TryGet(kvp.name, out WeaponComponent component) && string.Equals(component.weaponCategory.ToString(), currentWeaponCategory, System.StringComparison.OrdinalIgnoreCase))
                 {
                     var slotElement = slotTemplate.CloneTree();
                     _grid.Add(slotElement);
 
                     var blacksmithSlotUI = new BlacksmithSlotUI(slotElement, this);
-                    blacksmithSlotUI.SetData(kvp.name);
+                    // Check if this component is the one currently equipped
+                    bool isEquipped = equippedComponent != null && equippedComponent.name == component.name;
+                    blacksmithSlotUI.SetData(kvp.name, isEquipped);
                 }
                 else
                 {
@@ -309,6 +318,83 @@ namespace Shop_related.Shop_UI_Manager
             UpdateItemPanel(_currentItemKey.Value, _currentComponent);
 
             // 6. Refresh UI
+            RefreshInventoryUI();
+        }
+
+        // Inside BlacksmithUIManager.cs
+
+        private WeaponComponent GetEquippedComponent()
+        {
+            Weapon targetWeapon = null;
+            switch (currentWeaponCategory)
+            {
+                case "Melee":
+                    targetWeapon = MeleeWeapon;
+                    break;
+                case "Ranged":
+                    targetWeapon = RangedWeapon;
+                    break;
+                case "Placeable":
+                    targetWeapon = PlaceableWeapon;
+                    break;
+                default:
+                    return null;
+            }
+
+            // Since you enforce a single-slot system via TestComponents.Clear(), 
+            // the equipped component will be the first (and only) item.
+            if (targetWeapon != null && targetWeapon.TestComponents.Count > 0)
+            {
+                return targetWeapon.TestComponents[0];
+            }
+
+            return null;
+        }
+
+        private void OnEquipButtonClicked()
+        {
+            if (_currentComponent == null)
+            {
+                UnityEngine.Debug.LogWarning("[EQUIPMENT] No component selected to equip.");
+                return;
+            }
+
+            Weapon targetWeapon = null;
+
+            // 1) Determine which weapon to modify
+            switch (currentWeaponCategory)
+            {
+                case "Melee":
+                    targetWeapon = MeleeWeapon;
+                    break;
+                case "Ranged":
+                    targetWeapon = RangedWeapon;
+                    break;
+                case "Placeable":
+                    targetWeapon = PlaceableWeapon;
+                    break;
+                default:
+                    UnityEngine.Debug.LogWarning("[EQUIPMENT] Unknown weapon category.");
+                    return;
+            }
+
+            if (targetWeapon == null)
+            {
+                UnityEngine.Debug.LogError($"[EQUIPMENT] No weapon assigned for category {currentWeaponCategory}.");
+                return;
+            }
+
+            // 2) Check if weapon already has the component
+            if (targetWeapon.TestComponents.Contains(_currentComponent))
+            {
+                UnityEngine.Debug.Log($"[EQUIPMENT] {targetWeapon.name} already has {_currentComponent.name} equipped.");
+                return;
+            }
+
+            // 3) Add it to TestComponents list
+            targetWeapon.AddComponent(_currentComponent);
+            // 5) Optional: Update UI
+            UpdateItemPanel(_currentItemKey.Value, _currentComponent);
             RefreshInventoryUI();
         }
 
