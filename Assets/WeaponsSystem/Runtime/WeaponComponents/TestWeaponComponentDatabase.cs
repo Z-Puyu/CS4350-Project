@@ -9,7 +9,7 @@ namespace WeaponsSystem.Runtime.WeaponComponents {
             var allComponents = ComponentDatabase.All;
 
             foreach (var comp in allComponents) {
-                Debug.Log($"Loaded Component: {comp.itemName} | Price: {comp.price} | Rarity: {comp.rarity}");
+                Debug.Log($"Loaded Component: {comp.ItemName} | Price: {comp.price} | Rarity: {comp.rarity}");
                 foreach(var mat in comp.craftingMaterials)
                 {
                     Debug.Log($"Material cost: {mat.material} | Amount: {mat.amount}");
@@ -18,7 +18,7 @@ namespace WeaponsSystem.Runtime.WeaponComponents {
 
             // Example: Try to get one directly by name
             if (ComponentDatabase.TryGet("FireComponent", out var fireComp)) {
-                Debug.Log($"Successfully retrieved FireComponent! Name: {fireComp.itemName}");
+                Debug.Log($"Successfully retrieved FireComponent! Name: {fireComp.ItemName}");
             } else {
                 Debug.LogWarning("Could not find FireComponent!");
             }

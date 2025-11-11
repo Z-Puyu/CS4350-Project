@@ -1,8 +1,10 @@
 using Events;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using Shop.Runtime;
 using UnityEngine;
 using Shop_related.Shop_UI_Manager;
+using ModularItemsAndInventory.Runtime.Items;
 
 namespace Game.NPC
 {
@@ -31,7 +33,27 @@ namespace Game.NPC
             {
                 this.Animator.runtimeAnimatorController = this.Data.Animations;
             }
-            this.Inventory.Use(this.Data.itemsForSale);
+            // Convert SaintsDictionary<ItemData, int> → List<ShopItemData>
+            var shopItems = new List<ShopItemData>();
+
+            foreach (var kvp in this.Data.itemsForSale)
+            {
+                ItemData itemData = kvp.Key;
+                int stock = kvp.Value;
+
+                // Build the ShopItemData object
+                var shopItem = new ShopItemData
+                {
+                    itemData = itemData,
+                    price = 0,
+                    stock = stock
+                };
+
+                shopItems.Add(shopItem);
+            }
+
+            this.Inventory.Use(shopItems);
+            // this.Inventory.Use(this.Data.itemsForSale);
         }
         public void Interact()
         {

@@ -16,21 +16,20 @@ MonoBehaviour:
   <Name>k__BackingField: Shopkeeper 1
   <Attributes>k__BackingField: {fileID: 11400000, guid: 4b16238bf0d1710489ea1fd80abbff29, type: 2}
   <Animations>k__BackingField: {fileID: 0}
-  <Items>k__BackingField:
+  <itemsForSale>k__BackingField:
     _keys: []
     _values: 
     _saintsKeys:
     - value: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
     - value: {fileID: 11400000, guid: f5d6b15c677984947ade55641b2364c4, type: 2}
+    - value: {fileID: 11400000, guid: 50a2133a871ef8049a13ad0cc8f549db, type: 2}
+    - value: {fileID: 11400000, guid: dbff28cf407a57140baf5c3208310f39, type: 2}
+    - value: {fileID: 11400000, guid: b49df22135e8f064e83ce295f67f6224, type: 2}
     - value: {fileID: 11400000, guid: 943b8ae7aba727e4cb5e22a9e42e3a47, type: 2}
     _saintsValues:
-    - value: 5
     - value: 10
-    - value: 122
-  itemsForSale:
-  - itemData: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
-    price: 50
-    stock: 10
-  - itemData: {fileID: 11400000, guid: 50a2133a871ef8049a13ad0cc8f549db, type: 2}
-    price: 20
-    stock: 1
+    - value: 20
+    - value: 20
+    - value: 10
+    - value: 10
+    - value: 5

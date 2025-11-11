@@ -27,8 +27,8 @@ MonoBehaviour:
       type: {class: Merchandise, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:
         <Price>k__BackingField: 50
-        <HasDifferentPriceForSale>k__BackingField: 0
-        <Worth>k__BackingField: 0
+        <HasDifferentPriceForSale>k__BackingField: 1
+        <Worth>k__BackingField: 10
     - rid: 5797885423291465730
       type: {class: Stackable, ns: ModularItemsAndInventory.Runtime.Items.Properties, asm: ModularItemsAndInventory.Runtime}
       data:

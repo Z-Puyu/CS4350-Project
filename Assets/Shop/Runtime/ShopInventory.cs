@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using SaintsField;
 using ModularItemsAndInventory.Runtime.Items;
+using ModularItemsAndInventory.Runtime.Inventory;
 using UnityEngine;
 
 namespace Shop.Runtime
@@ -36,6 +37,66 @@ namespace Shop.Runtime
                 // });
                 itemsForSale.Add(saleItems);
             }
+        }
+        public bool Add(ItemKey item)
+        {
+            return Add(1, item);
+        }
+
+        public bool Add(int quantity, ItemKey item)
+        { 
+            Debug.Log($"[quantity] quantity of itemKey in player inventory: {quantity}");
+            if (quantity < 1)
+            {
+                Debug.LogWarning("You must add at least one unit of an item.", this);
+                return false;
+            }
+
+            // Try get the item data from the ItemDatabase
+            if (!ItemDatabase.TryGet(item, out Item foundItem))
+            {
+                Debug.LogWarning($"[ShopInventory] Item {item} not found in database.", this);
+                return false;
+            }
+
+            // Now get ItemData from the database by ID or key
+            if (!ItemDatabase.TryGet(foundItem.Id, out ItemData foundItemData))
+            {
+                Debug.LogWarning($"[ShopInventory] ItemData for {foundItem.Id} not found in database.", this);
+                return false;
+            }
+
+            // Check if this item already exists in the shop list
+            var shopItem = itemsForSale.Find(i => i.itemKey.Equals(item));
+
+            if (shopItem != null)
+            {
+                // If item exists and stock isn’t infinite
+                if (shopItem.stock != -1)
+                {
+                    shopItem.stock += quantity;
+                    Debug.Log($"[ShopInventory] Increased {foundItem.Name} stock by {quantity} (new stock: {shopItem.stock}).", this);
+                }
+                else
+                {
+                    Debug.Log($"[ShopInventory] Item {foundItem.Name} has infinite stock; not increasing count.", this);
+                }
+            }
+            else
+            {
+                // Create a new shop entry
+                itemsForSale.Add(new ShopItemData
+                {
+                    itemData = foundItemData,
+                    stock = quantity,
+                    price = foundItem.Properties.HaveExactly<ModularItemsAndInventory.Runtime.Items.Properties.Merchandise>(
+                        out var merchandise) ? merchandise.Price : 0
+                });
+
+                Debug.Log($"[ShopInventory] Added new item {foundItem.Name} with stock {quantity}.", this);
+            }
+
+            return true;
         }
 
         public bool Remove(ItemKey item)

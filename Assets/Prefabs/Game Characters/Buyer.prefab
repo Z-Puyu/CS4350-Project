@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5527324381520435826}
   - component: {fileID: 4632010906883517445}
   - component: {fileID: 5323663698157867109}
-  - component: {fileID: 723893574853731415}
   m_Layer: 0
-  m_Name: BlacksmithUIManager
+  m_Name: ShopKeeperUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: fab793c9d6b46e8448860aa7327f9969, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 754803667bf16f34ca713806a57041a0, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 81458ec68086138469af436fa1687648, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -72,27 +71,9 @@ MonoBehaviour:
   uiDocument: {fileID: 4632010906883517445}
   slotTemplate: {fileID: 9197481963319205126, guid: 6b59564d52453ad46b4b77d022b01abc, type: 3}
   playerInventory: {fileID: 0}
-  shopInventory: {fileID: 0}
+  shopInventory: {fileID: 3626231950604769792}
   PlayerMoney: {fileID: 0}
   seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
---- !u!114 &723893574853731415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411299569272357995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25a4a7121de5ca4d9e57dff109007bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shop_related.Shop_UI_Manager.BlacksmithUIManager
-  uiDocument: {fileID: 4632010906883517445}
-  slotTemplate: {fileID: 9197481963319205126, guid: 884f44ae8b7280048b4245b3bb590ce4, type: 3}
-  playerInventory: {fileID: 0}
-  blacksmithInventory: {fileID: 3855913586144040861}
-  PlayerMoney: {fileID: 0}
-  seedType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
 --- !u!1 &1046336640422291364
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +286,7 @@ Animator:
   m_GameObject: {fileID: 5110630097966792827}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b6a6995c0b830764ba7a989c8e83a33b, type: 2}
+  m_Controller: {fileID: 9100000, guid: aa9d43e74696c124895a4bef85c5432f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -324,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110630097966792827}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
   m_Name: 
@@ -341,7 +322,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110630097966792827}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
   m_Name: 
@@ -359,7 +340,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110630097966792827}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b857dd1b3a2441f9ea1a890f47741bf, type: 3}
   m_Name: 
@@ -400,7 +381,7 @@ GameObject:
   - component: {fileID: 4305464790093161662}
   - component: {fileID: -1958409708301118018}
   m_Layer: 3
-  m_Name: Blacksmith
+  m_Name: Buyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.NPC.ShopKeeper
   <Data>k__BackingField: {fileID: 11400000, guid: 149d613619ab1994b9ec2a5fbb35356b, type: 2}
   <Animator>k__BackingField: {fileID: 0}
-  <Inventory>k__BackingField: {fileID: 0}
+  <Inventory>k__BackingField: {fileID: 3626231950604769792}
   broadcastOpenShopUI: {fileID: 0}
   shopUIManager: {fileID: 5323663698157867109}
 --- !u!61 &4305464790093161662
@@ -710,7 +691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5313916371536454100}
+  - {fileID: 4435539552924692946}
   m_Father: {fileID: 816010949889629826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8587544095059403674
@@ -803,7 +784,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &939397866615629926
+--- !u!1001 &8735162563063920736
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -811,79 +792,88 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3204492727706782710}
     m_Modifications:
-    - target: {fileID: 1280060805850239716, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 1280060805850239716, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_Name
-      value: BlacksmithInventoryComponent
+      value: ShopInventoryComponent
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 1280060805850239716, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03344
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47444
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5434576664938881632, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
+    - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+      propertyPath: itemsForSale.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+      propertyPath: itemsForSale.Array.data[0].price
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+      propertyPath: itemsForSale.Array.data[0].stock
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+      propertyPath: itemsForSale.Array.data[0].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1280060805850239716, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3855913586144040861}
-  m_SourcePrefab: {fileID: 100100000, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
---- !u!1 &2074710154753407618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1280060805850239716, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
-  m_PrefabInstance: {fileID: 939397866615629926}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3855913586144040861
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+--- !u!114 &3626231950604769792 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5434576664938881632, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+  m_PrefabInstance: {fileID: 8735162563063920736}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074710154753407618}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42552a57b3484724fb7857c6233a6cec, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c5ebacfaa88bf241b9787b0dd98adf6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shop.Runtime.BlacksmithInventory
-  weaponsForSale: []
---- !u!4 &5313916371536454100 stripped
+  m_EditorClassIdentifier: Assembly-CSharp::Shop.Runtime.ShopInventory
+--- !u!4 &4435539552924692946 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4951632649672346034, guid: cbc04352b4144cb47a116475b2e202bb, type: 3}
-  m_PrefabInstance: {fileID: 939397866615629926}
+  m_CorrespondingSourceObject: {fileID: 4951632649672346034, guid: 6e1935908c31ccb40bec3ea971eee7f0, type: 3}
+  m_PrefabInstance: {fileID: 8735162563063920736}
   m_PrefabAsset: {fileID: 0}

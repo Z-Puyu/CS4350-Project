@@ -24,8 +24,13 @@ namespace ModularItemsAndInventory.Runtime.Items {
                     : new ItemKey(item.Id, string.Empty, string.Empty);
         }
 
-        public static ItemKey From(ItemData data) {
+        public static ItemKey From(ItemData data)
+        {
             return new ItemKey(data.Id, string.Empty, string.Empty);
+        }
+        
+        public static ItemKey FromID(string id) {
+            return new ItemKey(id, string.Empty, string.Empty);
         }
 
         public override string ToString() {

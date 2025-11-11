@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
   m_Name: IceComponent
   m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
-  Id: ice_hild
+  id: ice_hild
   itemName: Ice hild
   Description: A ice hild
+  weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
   icon: {fileID: 0}
   price: 100
-  craftingMaterials: []
+  craftingMaterials:
+  - material: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
+    amount: 3
   rarity: Rare
   levelRequirement: 1
   <ProjectileModesOnAttack>k__BackingField: 
