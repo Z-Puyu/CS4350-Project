@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
   m_Name: FireComponent
   m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
-  Id: fire_blade
+  id: fire_blade
   itemName: Fire blade
   Description: A fire blade
+  weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
   icon: {fileID: 0}
   price: 50
   craftingMaterials:
   - material: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
     amount: 4
-  - material: {fileID: 11400000, guid: dbff28cf407a57140baf5c3208310f39, type: 2}
+  - material: {fileID: 11400000, guid: 69c90f23a4e1a8945b23cfd5f62884f5, type: 2}
     amount: 20
   rarity: Common
   levelRequirement: 1

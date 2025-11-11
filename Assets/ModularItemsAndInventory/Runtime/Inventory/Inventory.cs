@@ -8,7 +8,8 @@ using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ModularItemsAndInventory.Runtime.Inventory {
+namespace ModularItemsAndInventory.Runtime.Inventory
+{
     /// <summary>
     /// Manages an inventory system that organises items into categories based on their type definitions
     /// and tracks the quantities of each item. Ensures constraints for what items can be stored and provides
@@ -20,10 +21,12 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
     /// Supports operations such as adding, removing, counting, and querying items.
     /// </remarks>
     [DisallowMultipleComponent]
-    public class Inventory : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>> {
+    public class Inventory : MonoBehaviour, IEnumerable<KeyValuePair<ItemKey, int>>
+    {
         public enum OperationType { AddItem, RemoveItem }
 
-        public readonly struct ItemOperation {
+        public readonly struct ItemOperation
+        {
             public ItemKey Item { get; }
             public int OldQuantity { get; }
             public int CurrentQuantity { get; }
@@ -31,7 +34,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
             public int QuantityChange => this.CurrentQuantity - this.OldQuantity;
 
-            public ItemOperation(ItemKey item, int oldQuantity, int currentQuantity, OperationType operationType) {
+            public ItemOperation(ItemKey item, int oldQuantity, int currentQuantity, OperationType operationType)
+            {
                 this.Item = item;
                 this.OldQuantity = oldQuantity;
                 this.CurrentQuantity = currentQuantity;
@@ -43,11 +47,11 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
 
         private Dictionary<ItemType, Dictionary<ItemKey, int>> Items { get; set; } =
             new Dictionary<ItemType, Dictionary<ItemKey, int>>();
-        
+
         private Dictionary<string, int> UniqueItems { get; set; } = new Dictionary<string, int>();
 
         [field: SerializeField] private List<string> quickSwapItems = new List<string>();
-        
+
         public event UnityAction<ItemOperation> OnInventoryChanged;
         public UnityEvent OnQuickSwapConsumption;
 
@@ -60,9 +64,12 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// for the specified item type definition.
         /// If no items of the given type are present, an empty dictionary is returned.
         /// </returns>
-        public IReadOnlyDictionary<ItemKey, int> this[[NotNull] ItemType type] {
-            get {
-                if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> items)) {
+        public IReadOnlyDictionary<ItemKey, int> this[[NotNull] ItemType type]
+        {
+            get
+            {
+                if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> items))
+                {
                     return new ReadOnlyDictionary<ItemKey, int>(items);
                 }
 
@@ -75,7 +82,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item for which the count is to be retrieved.</param>
         /// <returns>The total number of the specified item in the inventory. Returns 0 if the item does not exist in the inventory.</returns>
-        public int Count(ItemKey item) {
+        public int Count(ItemKey item)
+        {
             return !this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record)
                     ? 0
                     : record.GetValueOrDefault(item, 0);
@@ -86,10 +94,11 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="type">The type definition of the items to be counted.</param>
         /// <returns>The total count of items with the specified type in the inventory. Returns 0 if no items of that type are found.</returns>
-        public int Count([NotNull] ItemType type) {
+        public int Count([NotNull] ItemType type)
+        {
             return this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record) ? record.Values.Sum() : 0;
         }
-        
+
         /// <summary>
         /// Counts an item by its ID.
         /// </summary>
@@ -105,7 +114,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="predicate">The condition to evaluate against each item in the inventory.</param>
         /// <returns>The total count of items that meet the specified condition.</returns>
-        public int Count(Predicate<Item> predicate) {
+        public int Count(Predicate<Item> predicate)
+        {
             return this.Items.SelectMany(entry => entry.Value)
                        .Count(pair => ItemDatabase.TryGet(pair.Key, out Item item) && predicate(item));
         }
@@ -115,7 +125,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item to be checked for storage eligibility.</param>
         /// <returns>true if the item can be stored in the inventory; otherwise, false.</returns>
-        public bool CanStore(ItemKey item) {
+        public bool CanStore(ItemKey item)
+        {
             return this.DefinedItemTypes && this.DefinedItemTypes.Contains(ItemDatabase.TypeOf(item));
         }
 
@@ -124,7 +135,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// </summary>
         /// <param name="item">The item to be added to the inventory.</param>
         /// <returns>True if the item was successfully added to the inventory, otherwise false.</returns>
-        public bool Add(ItemKey item) {
+        public bool Add(ItemKey item)
+        {
             return this.Add(1, item);
         }
 
@@ -134,25 +146,31 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="quantity">The quantity of the item to add. Must be greater than or equal to 1.</param>
         /// <param name="item">The item to add to the inventory.</param>
         /// <returns>True if the item was successfully added to the inventory; otherwise, false.</returns>
-        public bool Add(int quantity, ItemKey item) {
-            if (quantity < 1) {
+        public bool Add(int quantity, ItemKey item)
+        {
+            if (quantity < 1)
+            {
                 Debug.LogWarning("Minimally should add one copy of an item.", this);
                 return false;
             }
 
-            if (!this.CanStore(item)) {
+            if (!this.CanStore(item))
+            {
                 return false;
             }
 
             int oldQty = 0;
             int currQty;
             ItemType type = ItemDatabase.TypeOf(item);
-            if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record)) {
+            if (this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record))
+            {
                 oldQty = record.GetValueOrDefault(item, 0);
                 currQty = oldQty + quantity;
                 record[item] = currQty;
                 this.UniqueItems[item.Id] = currQty;
-            } else {
+            }
+            else
+            {
                 currQty = quantity;
                 this.Items.Add(type, new Dictionary<ItemKey, int> { { item, currQty } });
                 this.UniqueItems.Add(item.Id, currQty);
@@ -163,20 +181,70 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         }
 
         /// <summary>
+        /// Adds the component to the inventory in UniqueItems.
+        /// </summary>
+        /// <param name="componentName">The name of the component to be added.</param>
+        /// <returns>True if the item was successfully added to the inventory; otherwise, false.</returns>
+        public bool AddComponent(string componentName)
+        {
+            if (string.IsNullOrEmpty(componentName))
+                return false;
+
+            // Only allow one copy of each component
+            if (UniqueItems.ContainsKey(componentName))
+            {
+                Debug.Log($"Component {componentName} already in inventory.");
+                return false;
+            }
+
+            UniqueItems[componentName] = 1;
+            Debug.Log($"Added component {componentName} to inventory.");
+            return true;
+        }
+
+        /// <summary>
+        /// Removes the component to the inventory in UniqueItems.
+        /// </summary>
+        /// <param name="componentName">The name of the component to be removed.</param>
+        /// <returns>True if the item was successfully removed to the inventory; otherwise, false.</returns>
+        public bool RemoveComponent(string componentName)
+        {
+            if (!UniqueItems.ContainsKey(componentName))
+                return false;
+
+            UniqueItems.Remove(componentName);
+            Debug.Log($"Removed component {componentName} from inventory.");
+            return true;
+        }
+
+        /// <summary>
+        /// Check to see if the component is in the inventory in UniqueItems.
+        /// </summary>
+        /// <param name="componentName">The name of the component to be checked.</param>
+        /// <returns>True if the item is inside the inventory; otherwise, false.</returns>
+        public bool HasComponent(string componentName)
+        {
+            return UniqueItems.ContainsKey(componentName);
+        }
+
+        /// <summary>
         /// Removes all instances of the specified item from the inventory.
         /// </summary>
         /// <param name="item">The item to remove from the inventory.</param>
-        public void RemoveAll(ItemKey item) {
+        public void RemoveAll(ItemKey item)
+        {
             if (!this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record) ||
-                !record.Remove(item, out int count)) {
+                !record.Remove(item, out int count))
+            {
                 return;
             }
 
             this.UniqueItems[item.Id] -= count;
-            if (this.UniqueItems[item.Id] <= 0) {
+            if (this.UniqueItems[item.Id] <= 0)
+            {
                 this.UniqueItems.Remove(item.Id);
             }
-                
+
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, 0, OperationType.RemoveItem));
         }
 
@@ -186,7 +254,8 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="item">The item to be removed from the inventory. Must already exist in the inventory.</param>
         /// <returns>True if the item was successfully removed; otherwise,
         /// false if the item does not exist in the inventory or could not be removed.</returns>
-        public bool Remove(ItemKey item) {
+        public bool Remove(ItemKey item)
+        {
             return this.Remove(1, item);
         }
 
@@ -200,25 +269,30 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// Returns false if the item is null, the quantity is invalid, or the item does not exist
         /// in the required quantity within the inventory.
         /// </returns>
-        public bool Remove(int quantity, ItemKey item) {
-            if (quantity < 1) {
+        public bool Remove(int quantity, ItemKey item)
+        {
+            if (quantity < 1)
+            {
                 Debug.LogWarning("Minimally should remove one copy of an item.", this);
                 return false;
             }
 
             ItemType type = ItemDatabase.TypeOf(item);
             if (!this.Items.TryGetValue(type, out Dictionary<ItemKey, int> record) ||
-                !record.TryGetValue(item, out int count)) {
+                !record.TryGetValue(item, out int count))
+            {
                 Debug.LogWarning($"Does not have any {item} to remove.", this);
                 return false;
             }
 
-            if (count < quantity) {
+            if (count < quantity)
+            {
                 Debug.LogWarning($"Trying to remove {quantity} copies of {item} but only has {count}.", this);
             }
 
             int remaining = record[item] = count - quantity;
-            if (remaining <= 0) {
+            if (remaining <= 0)
+            {
                 record.Remove(item);
                 if (quickSwapItems.Contains(item.Id))
                 {
@@ -227,10 +301,11 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
             }
 
             this.UniqueItems[item.Id] -= quantity;
-            if (this.UniqueItems[item.Id] <= 0) {
+            if (this.UniqueItems[item.Id] <= 0)
+            {
                 this.UniqueItems.Remove(item.Id);
             }
-            
+
             this.OnInventoryChanged?.Invoke(new ItemOperation(item, count, remaining, OperationType.RemoveItem));
             return true;
         }
@@ -242,19 +317,23 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
         /// <param name="item">The item whose availability is to be verified.</param>
         /// <returns>Returns true if the inventory contains at least the specified quantity of the item;
         /// otherwise, returns false.</returns>
-        public bool ContainsAtLeast(int quantity, ItemKey item) {
-            if (!this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record)) {
+        public bool ContainsAtLeast(int quantity, ItemKey item)
+        {
+            if (!this.Items.TryGetValue(ItemDatabase.TypeOf(item), out Dictionary<ItemKey, int> record))
+            {
                 return false;
             }
 
             return record.TryGetValue(item, out int count) && count >= quantity;
         }
 
-        public IEnumerator<KeyValuePair<ItemKey, int>> GetEnumerator() {
+        public IEnumerator<KeyValuePair<ItemKey, int>> GetEnumerator()
+        {
             return this.Items.SelectMany(record => record.Value).GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return this.GetEnumerator();
         }
 
@@ -265,20 +344,20 @@ namespace ModularItemsAndInventory.Runtime.Inventory {
                 quickSwapItems.Remove(id);
                 return false;
             }
-            quickSwapItems.Add(id); 
+            quickSwapItems.Add(id);
             return true;
         }
 
         public bool isInQuickSwap(string id)
         {
             return quickSwapItems.Contains(id);
-        }  
+        }
 
         public List<string> GetQuickSwapItems()
         {
             return quickSwapItems;
         }
-        
+
         public void UseItem(int index)
         {
             if (index >= quickSwapItems.Count)

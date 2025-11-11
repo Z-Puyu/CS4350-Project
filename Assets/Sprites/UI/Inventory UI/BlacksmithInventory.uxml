@@ -1,0 +1,37 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SlotV2" src="project://database/Assets/Sprites/UI/Inventory%20UI/SlotV2.uxml?fileID=9197481963319205126&amp;guid=8e9ff177de52b764e9ba196a121a989a&amp;type=3#SlotV2" />
+    <Style src="project://database/Assets/Sprites/UI/Inventory%20UI/InventoryV2.uss?fileID=7433441132597879392&amp;guid=be27a82377594af47958bae6c213bb21&amp;type=3#InventoryV2" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; background-color: rgba(176, 112, 60, 0.67);">
+        <ui:Label text="$" name="MoneyCount" style="font-size: 30px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 300px; -unity-text-align: upper-left; align-self: stretch; margin-bottom: 50px; height: 8px; width: 136px; justify-content: flex-end; align-items: stretch; align-content: flex-start; right: auto; bottom: 12px; position: absolute;" />
+        <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: column;">
+            <ui:VisualElement name="TabHeader" style="flex-grow: 0; padding-left: 20px; padding-right: 20px; flex-wrap: nowrap; flex-direction: row; align-items: stretch; justify-content: flex-end; height: 118px; -unity-text-align: upper-left; background-color: rgb(89, 57, 31); border-left-color: rgb(230, 165, 63); border-right-color: rgb(230, 165, 63); border-top-color: rgb(230, 165, 63); border-bottom-color: rgb(230, 165, 63); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px;">
+                <ui:Button text="Meele" name="MeleeButton" class="itemButton" style="margin-bottom: 0;" />
+                <ui:Button text="Ranged" name="RangedButton" class="itemButton" style="width: 250px; margin-left: 250px; margin-bottom: 0;" />
+                <ui:Button text="Placeable" name="PlaceableButton" class="itemButton" style="width: 250px; margin-left: 250px; margin-bottom: 0;" />
+                <ui:Button name="ExitButton" class="itemButton" style="width: 196px; margin-left: 225px; margin-bottom: 0; height: 93px; background-image: url(&quot;project://database/Assets/Sprites/UI/Test%20UI/Pixel%20UI%20pack%201.png?fileID=4945972069173570739&amp;guid=5faddf85691868e4bb5b6234945a4948&amp;type=3#Pixel UI pack 1_270&quot;);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Header" style="flex-grow: 0; padding-left: 20px; padding-right: 20px;">
+                <ui:Label text="Blacksmith" style="font-size: 40px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="GridContainer" style="flex-grow: 1; flex-direction: row; width: 1840px;">
+                <ui:ScrollView name="Grid" style="flex-grow: 1; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; flex-direction: column; width: 1140px;">
+                    <ui:Instance template="SlotV2" name="TemplateContainer" data-source="project://database/Assets/Sprites/UI/Inventory%20UI/BlacksmithSlot.uxml?fileID=9197481963319205126&amp;guid=884f44ae8b7280048b4245b3bb590ce4&amp;type=3#BlacksmithSlot" />
+                    <ui:Instance template="SlotV2" />
+                    <ui:Instance template="SlotV2" />
+                    <ui:Instance template="SlotV2" />
+                    <ui:Instance template="SlotV2" />
+                    <ui:Instance template="SlotV2" />
+                </ui:ScrollView>
+                <ui:VisualElement name="ItemDescriptionContainer" style="flex-grow: 0; width: 700px; background-color: rgb(89, 57, 31); padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; background-image: none; -unity-background-scale-mode: stretch-to-fill; border-left-color: rgb(255, 184, 69); border-right-color: rgb(255, 184, 69); border-top-color: rgb(255, 184, 69); border-bottom-color: rgb(255, 184, 69); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px;">
+                    <ui:VisualElement name="ItemIcon" style="flex-grow: 0; width: 350px; height: 350px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/Farming/animations/seed_1/grown/dry/seed_1_grown_dry-Sheet.png?fileID=-1937354148560845212&amp;guid=23089efb5264648eba5bd9c33a0982b6&amp;type=3#seed_1_grown_dry-Sheet_0&quot;); margin-bottom: 50px;" />
+                    <ui:Label text="Item name is here" name="ItemName" style="font-size: 50px; -unity-font-style: bold; white-space: normal; color: rgb(255, 255, 255); max-height: none; max-width: 600px; -unity-text-align: middle-center; align-self: center; margin-bottom: 20px;" />
+                    <ui:VisualElement name="MaterialCostContainer" style="flex-grow: 0; width: auto; background-color: rgb(89, 57, 31); padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; background-image: none; -unity-background-scale-mode: stretch-to-fill; border-left-color: rgb(255, 184, 69); border-right-color: rgb(255, 184, 69); border-top-color: rgb(255, 184, 69); border-bottom-color: rgb(255, 184, 69); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px;" />
+                    <ui:VisualElement name="ActionButtons" style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center; justify-content: space-between; align-content: auto;">
+                        <ui:Button text="Buy Component" name="BuyButton" class="itemButton" style="display: flex; width: 285px;" />
+                        <ui:Button text="Equip Component" name="EquipButton" class="itemButton" style="display: flex; width: 322px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -10,36 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
-  m_Name: Explosives
+  m_Name: HeavyBullet
   m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
-  id: 
-  itemName: 
-  Description: 
+  id: heavy_bullet
+  itemName: Heavy Bullets
+  Description: Bullets with extra weight.
+  weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
   icon: {fileID: 0}
-  price: 0
-  craftingMaterials: []
+  price: 25
+  craftingMaterials:
+  - material: {fileID: 11400000, guid: f895a64cdffe34a4b9970af64cec5268, type: 2}
+    amount: 3
   rarity: Common
   levelRequirement: 1
+  weaponCategory: 1
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
     rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 5580717538616803645
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 5580717538616803645
-      type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
-      data:
-        <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: Weapon.Projectile.ExplosionRadius
-          <Method>k__BackingField: 0
-          <Form>k__BackingField: 0
-          <Source>k__BackingField: 0
-          <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 2
-          <Coefficient>k__BackingField: 0
-          <Label>k__BackingField: 

@@ -20,7 +20,7 @@ namespace Weapon_system_page {
             foreach (var data in weaponComponents)
             {
                 GameObject go = Object.Instantiate(this.itemPrefab, this.contentParent);
-                go.transform.Find("NameText")?.GetComponent<TextMeshProUGUI>().SetText(data.itemName);
+                go.transform.Find("NameText")?.GetComponent<TextMeshProUGUI>().SetText(data.ItemName);
                 go.transform.Find("PriceText")?.GetComponent<TextMeshProUGUI>().SetText($"${data.price}");
                 go.transform.Find("RarityText")?.GetComponent<TextMeshProUGUI>().SetText(data.rarity.ToString());
                 var icon = go.transform.Find("Icon")?.GetComponent<Image>();
