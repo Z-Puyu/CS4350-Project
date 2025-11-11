@@ -47,7 +47,7 @@ namespace Player_related.Player_exp
 
         private void CalculateExpToLevelUp()
         {
-            combatExpNeededToLevelUp = (int) Mathf.Round(Mathf.Pow(combatExpLevel, 1.75f));
+            combatExpNeededToLevelUp = (int) Mathf.Round(Mathf.Pow(combatExpLevel, 2f));
             farmingExpNeededToLevelUp = (int) Mathf.Round(Mathf.Pow(farmingExpLevel, 1.75f));
         }
         

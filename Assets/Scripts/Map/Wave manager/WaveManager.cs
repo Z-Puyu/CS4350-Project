@@ -15,16 +15,20 @@ namespace Map.Wave_manager
         [SerializeField] private SaintsDictionary<string, int> killCounter = new SaintsDictionary<string, int>();
         [SerializeField] private RegionBorder.RegionBorder initialMap;
         [SerializeField] private RegionBorder.RegionBorder currentMap;
+        private RegionBorder.RegionBorder previousMap;
         [SerializeField] private float minX;
         [SerializeField] private float minY;
         [SerializeField] private float maxX;
         [SerializeField] private float maxY;
         [SerializeField] private CrossObjectEventWithDataSO setNewRandomTargetEnemy;
+        [SerializeField] private CrossObjectEventWithDataSO setNewRandomTargetBoss;
         private List<Enemy> allSpawnedEnemies = new List<Enemy>();
+        private List<Boss> allSpawnedBoss = new List<Boss>();
         
         void Start()
         {
             SetBoundary(initialMap);
+            previousMap = currentMap;
             currentMap = initialMap;
             StartWave();
         }
@@ -36,8 +40,20 @@ namespace Map.Wave_manager
 
         public void SetCurrentRegion(RegionBorder.RegionBorder regionBorder)
         {
+            previousMap = currentMap;
             currentMap = regionBorder;
-            SetBoundary(regionBorder);
+            
+            //There is a very weird bug where crashing into a locked map
+            //causes the current map to be that locked map. This fixes
+            //the spawning issue
+            if (!currentMap.GetMapIsUnlocked())
+            {
+                SetBoundary(previousMap);
+            }
+            else
+            {
+                SetBoundary(currentMap);
+            }
         }
 
         public void SetBoundary(RegionBorder.RegionBorder mapBorder)
@@ -77,7 +93,14 @@ namespace Map.Wave_manager
                         }
                         isEnemyStillSpawning = true;
                         Enemy spawnedEnemy = Instantiate(allEnemyDataForThisWave[i], spawnPoints[spawnIndex], Quaternion.identity);
-                        allSpawnedEnemies.Add(spawnedEnemy);
+                        if (spawnedEnemy.GetComponent<Boss>() != null) 
+                        {
+                            allSpawnedBoss.Add((Boss) spawnedEnemy);
+                        }
+                        else
+                        {
+                            allSpawnedEnemies.Add(spawnedEnemy);
+                        }
                         counter[i] -= 1;
                         spawnIndex++;
                         spawnIndex %= 4;   
@@ -89,21 +112,40 @@ namespace Map.Wave_manager
                 }
             }
             GetNewTargetEnemy();
+            GetNewTargetBoss();
         }
 
         public void CheckIfWaveCleared(Component component, object enemyData)
         {
-            Enemy enemy = (Enemy)component;
-            if (!killCounter.ContainsKey(enemy.getEnemyId()))
+            if (component is Enemy)
             {
-                return;
+                Enemy enemy = (Enemy)component;
+                if (!killCounter.ContainsKey(enemy.getEnemyId()))
+                {
+                    return;
+                }
+                allSpawnedEnemies.Remove(enemy);
+                killCounter[enemy.getEnemyId()] -= 1;
+                GetNewTargetEnemy();
+                if (killCounter[enemy.getEnemyId()] == 0)
+                {
+                    killCounter.Remove(enemy.getEnemyId());
+                }
             }
-            allSpawnedEnemies.Remove(enemy);
-            killCounter[enemy.getEnemyId()] -= 1;
-            GetNewTargetEnemy();
-            if (killCounter[enemy.getEnemyId()] == 0)
+            else
             {
-                killCounter.Remove(enemy.getEnemyId());
+                Boss boss = (Boss) component;
+                if (!killCounter.ContainsKey(boss.getEnemyId()))
+                {
+                    return;
+                }
+                allSpawnedBoss.Remove(boss);
+                killCounter[boss.getEnemyId()] -= 1;
+                GetNewTargetBoss();
+                if (killCounter[boss.getEnemyId()] == 0)
+                {
+                    killCounter.Remove(boss.getEnemyId());
+                }
             }
 
             if (killCounter.Count == 0)
@@ -116,6 +158,11 @@ namespace Map.Wave_manager
         public void GetNewTargetEnemy()
         {
             if (allSpawnedEnemies.Count - 1 >= 0) setNewRandomTargetEnemy.TriggerEvent(allSpawnedEnemies[Random.Range(0, allSpawnedEnemies.Count - 1)]);
+        }
+        
+        public void GetNewTargetBoss()
+        {
+            if (allSpawnedBoss.Count - 1 >= 0) setNewRandomTargetBoss.TriggerEvent(allSpawnedBoss[Random.Range(0, allSpawnedBoss.Count - 1)]);
         }
 
         public void StartWave()
@@ -135,7 +182,14 @@ namespace Map.Wave_manager
         public void AddBossToNextWave(Component component, object enemy)
         {
             Boss enemyInformation = (Boss)component;
-            waveToEnemySpawner[wave + 1][enemyInformation] = 1;
+            if (waveToEnemySpawner[wave + 1].ContainsKey(enemyInformation))
+            {
+                waveToEnemySpawner[wave + 1][enemyInformation]++;
+            }
+            else
+            {
+                waveToEnemySpawner[wave + 1][enemyInformation] = 1;
+            }
         }
     }   
 }
