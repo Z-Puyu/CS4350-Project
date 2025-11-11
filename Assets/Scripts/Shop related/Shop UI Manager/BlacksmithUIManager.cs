@@ -10,6 +10,8 @@ using UnityEngine.UIElements;
 using Game.NPC;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Events;
+using WeaponsSystem.Runtime.Weapons;
 
 namespace Shop_related.Shop_UI_Manager
 {
@@ -20,8 +22,13 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private Inventory playerInventory;
         [SerializeField] private BlacksmithInventory blacksmithInventory;
         [SerializeField] private Money PlayerMoney;
+        [SerializeField] private Weapon MeleeWeapon;
+        [SerializeField] private Weapon RangedWeapon;
+        [SerializeField] private Weapon PlaceableWeapon;
 
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
+        [SerializeField] private CrossObjectEventSO broadcastPauseGame;
+        [SerializeField] private CrossObjectEventSO broadcastUnPauseGame;
 
         private ItemKey? _currentItemKey;
         private WeaponComponent _currentComponent;
@@ -36,7 +43,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private Label _moneyCount;
 
-        private VisualElement _itemIcon;
+        private VisualElement _itemMainIcon;
 
         public static BlacksmithUIManager Instance;
 
@@ -50,6 +57,7 @@ namespace Shop_related.Shop_UI_Manager
         private Button _placableButton;
         private Button _exitButton;
 
+
         private string currentWeaponCategory = "Melee";
         private List<(ItemKey material, int amount)> requiredMaterials = new List<(ItemKey, int)>();
         private string currentComponentName;
@@ -62,6 +70,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnEnable()
         {
+            broadcastPauseGame.TriggerEvent();
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
 
@@ -70,7 +79,7 @@ namespace Shop_related.Shop_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _moneyCount = _root.Q<Label>("MoneyCount");
             _materialCost = _root.Q<Label>("MaterialCost");
-            _itemIcon = _root.Q<VisualElement>("ItemIcon");
+            _itemMainIcon = _root.Q<VisualElement>("ItemMainIcon");
 
             _buyButton = _root.Q<Button>("BuyButton");
             _equipButton = _root.Q<Button>("EquipButton");
@@ -88,7 +97,7 @@ namespace Shop_related.Shop_UI_Manager
 
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
-            // _equipButton.clicked += ;
+            _equipButton.clicked += OnEquipButtonClicked;
             _meleeButton.clicked += ChangeToMelee;
             _rangedButton.clicked += ChangeToRanged;
             _placableButton.clicked += ChangeToPlaceable;
@@ -104,6 +113,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnDisable()
         {
+            broadcastUnPauseGame.TriggerEvent();
             playerInventory.OnInventoryChanged -= HandleInventoryChanged;
         }
 
@@ -145,7 +155,7 @@ namespace Shop_related.Shop_UI_Manager
             _currentItemKey = itemKey;
             _currentComponent = component;
             _itemName.text = component.ItemName;
-            _itemIcon.style.backgroundImage = new StyleBackground(component.icon);
+            _itemMainIcon.style.backgroundImage = new StyleBackground(component.icon);
             currentComponentName = component.name;
             ItemKey itemKey2 = component.GetItemKey();
             if (playerInventory.HasComponent(currentComponentName))
@@ -174,7 +184,7 @@ namespace Shop_related.Shop_UI_Manager
 
                             // Create a label for this material
                             Label materialLabel = new Label($"{matCost.material.name} x{matCost.amount}");
-                            materialLabel.style.fontSize = 30;
+                            materialLabel.AddToClassList("material-label");
 
                             // Set color based on whether player has enough
                             if (playerAmount >= matCost.amount)
@@ -217,23 +227,28 @@ namespace Shop_related.Shop_UI_Manager
             _equipButton.style.display = DisplayStyle.None;
 
             // Optionally clear the icon too (if you set it dynamically elsewhere)
-            _itemIcon.Clear();
+            _itemMainIcon.Clear();
         }
 
         private void RefreshInventoryUI()
         {
             _grid.Clear();
             _moneyCount.text = "$" + PlayerMoney.Value.ToString();
+
+            // Get the currently equipped component
+            WeaponComponent equippedComponent = GetEquippedComponent();
+
             foreach (var kvp in blacksmithInventory.WeaponsForSale) // kvp.itemKey = ItemKey, kvp.stock = quantity
             {
-
                 if (ComponentDatabase.TryGet(kvp.name, out WeaponComponent component) && string.Equals(component.weaponCategory.ToString(), currentWeaponCategory, System.StringComparison.OrdinalIgnoreCase))
                 {
                     var slotElement = slotTemplate.CloneTree();
                     _grid.Add(slotElement);
 
                     var blacksmithSlotUI = new BlacksmithSlotUI(slotElement, this);
-                    blacksmithSlotUI.SetData(kvp.name);
+                    // Check if this component is the one currently equipped
+                    bool isEquipped = equippedComponent != null && equippedComponent.name == component.name;
+                    blacksmithSlotUI.SetData(kvp.name, isEquipped);
                 }
                 else
                 {
@@ -303,6 +318,83 @@ namespace Shop_related.Shop_UI_Manager
             UpdateItemPanel(_currentItemKey.Value, _currentComponent);
 
             // 6. Refresh UI
+            RefreshInventoryUI();
+        }
+
+        // Inside BlacksmithUIManager.cs
+
+        private WeaponComponent GetEquippedComponent()
+        {
+            Weapon targetWeapon = null;
+            switch (currentWeaponCategory)
+            {
+                case "Melee":
+                    targetWeapon = MeleeWeapon;
+                    break;
+                case "Ranged":
+                    targetWeapon = RangedWeapon;
+                    break;
+                case "Placeable":
+                    targetWeapon = PlaceableWeapon;
+                    break;
+                default:
+                    return null;
+            }
+
+            // Since you enforce a single-slot system via TestComponents.Clear(), 
+            // the equipped component will be the first (and only) item.
+            if (targetWeapon != null && targetWeapon.TestComponents.Count > 0)
+            {
+                return targetWeapon.TestComponents[0];
+            }
+
+            return null;
+        }
+
+        private void OnEquipButtonClicked()
+        {
+            if (_currentComponent == null)
+            {
+                UnityEngine.Debug.LogWarning("[EQUIPMENT] No component selected to equip.");
+                return;
+            }
+
+            Weapon targetWeapon = null;
+
+            // 1) Determine which weapon to modify
+            switch (currentWeaponCategory)
+            {
+                case "Melee":
+                    targetWeapon = MeleeWeapon;
+                    break;
+                case "Ranged":
+                    targetWeapon = RangedWeapon;
+                    break;
+                case "Placeable":
+                    targetWeapon = PlaceableWeapon;
+                    break;
+                default:
+                    UnityEngine.Debug.LogWarning("[EQUIPMENT] Unknown weapon category.");
+                    return;
+            }
+
+            if (targetWeapon == null)
+            {
+                UnityEngine.Debug.LogError($"[EQUIPMENT] No weapon assigned for category {currentWeaponCategory}.");
+                return;
+            }
+
+            // 2) Check if weapon already has the component
+            if (targetWeapon.TestComponents.Contains(_currentComponent))
+            {
+                UnityEngine.Debug.Log($"[EQUIPMENT] {targetWeapon.name} already has {_currentComponent.name} equipped.");
+                return;
+            }
+
+            // 3) Add it to TestComponents list
+            targetWeapon.AddComponent(_currentComponent);
+            // 5) Optional: Update UI
+            UpdateItemPanel(_currentItemKey.Value, _currentComponent);
             RefreshInventoryUI();
         }
 

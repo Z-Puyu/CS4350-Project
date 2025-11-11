@@ -74,6 +74,8 @@ MonoBehaviour:
   shopInventory: {fileID: 3626231950604769792}
   PlayerMoney: {fileID: 0}
   seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
+  broadcastPauseGame: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}
+  broadcastUnPauseGame: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
 --- !u!1 &1046336640422291364
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +267,7 @@ SpriteRenderer:
   m_SortingLayerID: -374179137
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -237195704631322953, guid: d4bbd7fa6b85a9c47bd83bfcf8902255, type: 3}
+  m_Sprite: {fileID: -3456532010920386237, guid: 5bbf64c60cae7ba4a93aaef7551d8c85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

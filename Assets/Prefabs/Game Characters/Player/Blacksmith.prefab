@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5527324381520435826}
   - component: {fileID: 4632010906883517445}
-  - component: {fileID: 5323663698157867109}
   - component: {fileID: 723893574853731415}
   m_Layer: 0
   m_Name: BlacksmithUIManager
@@ -57,24 +56,6 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &5323663698157867109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411299569272357995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a2947e403ea7b49b6660596e7f5d41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shop_related.Shop_UI_Manager.ShopUIManager
-  uiDocument: {fileID: 4632010906883517445}
-  slotTemplate: {fileID: 9197481963319205126, guid: 6b59564d52453ad46b4b77d022b01abc, type: 3}
-  playerInventory: {fileID: 0}
-  shopInventory: {fileID: 0}
-  PlayerMoney: {fileID: 0}
-  seedType: {fileID: 11400000, guid: a673098c5563ec848b47e01816a8ae51, type: 2}
 --- !u!114 &723893574853731415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +74,8 @@ MonoBehaviour:
   blacksmithInventory: {fileID: 3855913586144040861}
   PlayerMoney: {fileID: 0}
   seedType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
+  broadcastPauseGame: {fileID: 11400000, guid: 94d31efb2afd7e34ca25b70a1843a614, type: 2}
+  broadcastUnPauseGame: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
 --- !u!1 &1046336640422291364
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +267,7 @@ SpriteRenderer:
   m_SortingLayerID: -374179137
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -237195704631322953, guid: d4bbd7fa6b85a9c47bd83bfcf8902255, type: 3}
+  m_Sprite: {fileID: -3456532010920386237, guid: 5bbf64c60cae7ba4a93aaef7551d8c85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -396,9 +379,9 @@ GameObject:
   m_Component:
   - component: {fileID: 816010949889629826}
   - component: {fileID: 8763090206165979737}
-  - component: {fileID: 53517564634671114}
   - component: {fileID: 4305464790093161662}
   - component: {fileID: -1958409708301118018}
+  - component: {fileID: 2355566772541053602}
   m_Layer: 3
   m_Name: Blacksmith
   m_TagString: Untagged
@@ -452,23 +435,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &53517564634671114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293785741105045494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12acbbf74483ea488b776a9417f9edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.NPC.ShopKeeper
-  <Data>k__BackingField: {fileID: 11400000, guid: 149d613619ab1994b9ec2a5fbb35356b, type: 2}
-  <Animator>k__BackingField: {fileID: 0}
-  <Inventory>k__BackingField: {fileID: 0}
-  broadcastOpenShopUI: {fileID: 0}
-  shopUIManager: {fileID: 5323663698157867109}
 --- !u!61 &4305464790093161662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -531,8 +497,8 @@ MonoBehaviour:
   <OnInteracted>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 53517564634671114}
-        m_TargetAssemblyTypeName: Game.NPC.ShopKeeper, Assembly-CSharp
+      - m_Target: {fileID: 2355566772541053602}
+        m_TargetAssemblyTypeName: Game.NPC.Blacksmith, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 1
         m_Arguments:
@@ -579,6 +545,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2355566772541053602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293785741105045494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0159c0313c7f04c8595e326cafe8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.NPC.Blacksmith
+  <Data>k__BackingField: {fileID: 11400000, guid: 3ef8f585e3d9c814b9175300fa7f63d1, type: 2}
+  <Animator>k__BackingField: {fileID: 0}
+  <Inventory>k__BackingField: {fileID: 3855913586144040861}
+  broadcastOpenShopUI: {fileID: 0}
+  blacksmithUIManager: {fileID: 723893574853731415}
 --- !u!1 &7839914855000246550
 GameObject:
   m_ObjectHideFlags: 0

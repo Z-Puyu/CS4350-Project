@@ -12,10 +12,15 @@ namespace Shop_related.Shop_UI_Manager
         private readonly Label _quantityLabel;
         private readonly Label _priceLabel;
         private Label _itemDescription;
+        private readonly VisualElement _root;
         private readonly BlacksmithUIManager _uiManager;
 
         private ItemKey _itemKey;
         private WeaponComponent _component;
+
+        // Define the colors once using UnityEngine.Color or Color32
+        private static readonly Color DefaultColor = new Color32(160, 82, 45, 255); // Sienna (A0522D)
+        private static readonly Color EquippedColor = new Color32(0, 100, 0, 255); // Dark Green
         public BlacksmithSlotUI(VisualElement root, BlacksmithUIManager uiManager)
         {
             _uiManager = uiManager;
@@ -31,7 +36,7 @@ namespace Shop_related.Shop_UI_Manager
             root.RegisterCallback<ClickEvent>(OnClick);
         }
 
-        public void SetData(string componentName)
+        public void SetData(string componentName, bool isEquipped)
         {
             if (!ComponentDatabase.TryGet(componentName, out WeaponComponent component))
             {
@@ -46,8 +51,17 @@ namespace Shop_related.Shop_UI_Manager
                 _iconElement.style.backgroundImage = new StyleBackground(component.icon);
             _itemDescription.text = component.Description;
 
-            // _quantityLabel.text = "X" + quantity.ToString();
-            // _priceLabel.text = "$" + price.ToString();
+            if (isEquipped)
+            {
+                // Set background to dark green
+                _itemDescription.style.backgroundColor = new StyleColor(EquippedColor);
+            }
+            else
+            {
+                // Set background to sienna (A0522D)
+                _itemDescription.style.backgroundColor = new StyleColor(DefaultColor);
+            }
+
             Debug.Log($"SetData is Called with: key = {component.name}");
         }
 

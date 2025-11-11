@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a26dbd1005d4b699a043e8e9d9a3c4e, type: 3}
   m_Name: Explosives
   m_EditorClassIdentifier: WeaponsSystem.Runtime::WeaponsSystem.Runtime.WeaponComponents.WeaponComponent
-  id: 
-  itemName: 
-  Description: 
+  id: explosive
+  itemName: Explosive Bullets
+  Description: Bullets filled with Extra Gunpowder. Careful not to burn your eyebrowns
+  weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
   icon: {fileID: 0}
   price: 0
-  craftingMaterials: []
+  craftingMaterials:
+  - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
+    amount: 0
   rarity: Common
   levelRequirement: 1
+  weaponCategory: 1
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
