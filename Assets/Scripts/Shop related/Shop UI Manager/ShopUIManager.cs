@@ -7,6 +7,7 @@ using Shop.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Game.NPC;
+using Events;
 
 namespace Shop_related.Shop_UI_Manager
 {
@@ -19,6 +20,8 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private Money PlayerMoney;
 
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
+        [SerializeField] private CrossObjectEventSO broadcastPauseGame;
+        [SerializeField] private CrossObjectEventSO broadcastUnPauseGame;
 
         private ItemKey? _currentItemKey;
 
@@ -31,7 +34,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private Label _moneyCount;
 
-        private VisualElement _itemIcon;
+        private VisualElement _itemMainIcon;
 
         public static ShopUIManager Instance;
 
@@ -55,6 +58,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnEnable()
         {
+            broadcastPauseGame.TriggerEvent();
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
 
@@ -62,7 +66,7 @@ namespace Shop_related.Shop_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _moneyCount = _root.Q<Label>("MoneyCount");
             _itemDescription = _root.Q<Label>("ItemDescription");
-            _itemIcon = _root.Q<VisualElement>("ItemIcon");
+            _itemMainIcon = _root.Q<VisualElement>("ItemMainIcon");
 
             _buyButton = _root.Q<Button>("BuyButton");
             _sellButton = _root.Q<Button>("SellButton");
@@ -98,6 +102,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnDisable()
         {
+            broadcastUnPauseGame.TriggerEvent();
             playerInventory.OnInventoryChanged -= HandleInventoryChanged;
         }
 
@@ -135,7 +140,9 @@ namespace Shop_related.Shop_UI_Manager
             _currentItemKey = itemKey;
             _itemDescription.text = itemData.Description;
             _itemName.text = itemData.Name;
-            _itemIcon.style.backgroundImage = new StyleBackground(itemData.Icon);
+            if (itemData.Icon != null)
+                _itemMainIcon.style.backgroundImage = new StyleBackground(itemData.Icon);
+            // _itemMainIcon.style.backgroundImage = new StyleBackground(itemData.Icon);
         }
 
         public void ClearItemPanel()
@@ -151,7 +158,7 @@ namespace Shop_related.Shop_UI_Manager
             _itemName.text = string.Empty;
 
             // Optionally clear the icon too (if you set it dynamically elsewhere)
-            _itemIcon.Clear();
+            _itemMainIcon.Clear();
         }
 
         private void RefreshShopInventoryUI()

@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 using Game.NPC;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Events;
 
 namespace Shop_related.Shop_UI_Manager
 {
@@ -22,6 +23,8 @@ namespace Shop_related.Shop_UI_Manager
         [SerializeField] private Money PlayerMoney;
 
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
+        [SerializeField] private CrossObjectEventSO broadcastPauseGame;
+        [SerializeField] private CrossObjectEventSO broadcastUnPauseGame;
 
         private ItemKey? _currentItemKey;
         private WeaponComponent _currentComponent;
@@ -36,7 +39,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private Label _moneyCount;
 
-        private VisualElement _itemIcon;
+        private VisualElement _itemMainIcon;
 
         public static BlacksmithUIManager Instance;
 
@@ -49,6 +52,7 @@ namespace Shop_related.Shop_UI_Manager
         private Button _rangedButton;
         private Button _placableButton;
         private Button _exitButton;
+        
 
         private string currentWeaponCategory = "Melee";
         private List<(ItemKey material, int amount)> requiredMaterials = new List<(ItemKey, int)>();
@@ -62,6 +66,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnEnable()
         {
+            broadcastPauseGame.TriggerEvent();
             _root = uiDocument.rootVisualElement;
             _grid = _root.Q<VisualElement>("Grid");
 
@@ -70,7 +75,7 @@ namespace Shop_related.Shop_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _moneyCount = _root.Q<Label>("MoneyCount");
             _materialCost = _root.Q<Label>("MaterialCost");
-            _itemIcon = _root.Q<VisualElement>("ItemIcon");
+            _itemMainIcon = _root.Q<VisualElement>("ItemMainIcon");
 
             _buyButton = _root.Q<Button>("BuyButton");
             _equipButton = _root.Q<Button>("EquipButton");
@@ -104,6 +109,7 @@ namespace Shop_related.Shop_UI_Manager
 
         private void OnDisable()
         {
+            broadcastUnPauseGame.TriggerEvent();
             playerInventory.OnInventoryChanged -= HandleInventoryChanged;
         }
 
@@ -145,7 +151,7 @@ namespace Shop_related.Shop_UI_Manager
             _currentItemKey = itemKey;
             _currentComponent = component;
             _itemName.text = component.ItemName;
-            _itemIcon.style.backgroundImage = new StyleBackground(component.icon);
+            _itemMainIcon.style.backgroundImage = new StyleBackground(component.icon);
             currentComponentName = component.name;
             ItemKey itemKey2 = component.GetItemKey();
             if (playerInventory.HasComponent(currentComponentName))
@@ -174,7 +180,7 @@ namespace Shop_related.Shop_UI_Manager
 
                             // Create a label for this material
                             Label materialLabel = new Label($"{matCost.material.name} x{matCost.amount}");
-                            materialLabel.style.fontSize = 30;
+                            materialLabel.AddToClassList("material-label");
 
                             // Set color based on whether player has enough
                             if (playerAmount >= matCost.amount)
@@ -217,7 +223,7 @@ namespace Shop_related.Shop_UI_Manager
             _equipButton.style.display = DisplayStyle.None;
 
             // Optionally clear the icon too (if you set it dynamically elsewhere)
-            _itemIcon.Clear();
+            _itemMainIcon.Clear();
         }
 
         private void RefreshInventoryUI()

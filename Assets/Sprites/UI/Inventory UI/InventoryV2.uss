@@ -43,3 +43,12 @@
     height: 120px;
     align-self: center;
 }
+
+@font-face {
+    font-family: "PublicPixel";
+    src: url("project://database/Assets/Sprites/UI/MainMenu UI/PublicPixel.ttf");
+}
+.material-label {
+    -unity-font-definition: url("project://database/Assets/Sprites/UI/MainMenu UI/PublicPixel.ttf");
+    font-size: 22px;
+}
