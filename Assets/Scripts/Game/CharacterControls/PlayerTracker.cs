@@ -7,11 +7,13 @@ namespace Game.CharacterControls {
         private GameObject player;
         private Transform SelfTransform { get; set; }
         private Transform Parent { get; set; }
+        public bool shouldFlip { get; set; }
 
         public void Awake() {
             this.SelfTransform = this.transform;
             this.Parent = this.SelfTransform.parent;
             this.player = GameObject.FindWithTag("Player");
+            this.shouldFlip = false;
         }
 
         public void Update() {
@@ -33,8 +35,10 @@ namespace Game.CharacterControls {
 
             if (Math.Abs(this.SelfTransform.rotation.z) > Quaternion.AngleAxis(90, Vector3.forward).z) {
                 scale.y = Mathf.Abs(scale.y) * -1;
+                shouldFlip = true;
             } else {
                 scale.y = Mathf.Abs(scale.y);
+                shouldFlip = false;
             }
 
             this.SelfTransform.localScale = scale;
