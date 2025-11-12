@@ -39,7 +39,7 @@ namespace Shop_related.Shop_UI_Manager
         private VisualElement _itemDescriptionContainer;
         private VisualElement _materialCostContainer;
         private Label _materialCost;
-        private Label _itemName;
+        private Label _itemDescription;
 
         private Label _moneyCount;
 
@@ -52,6 +52,7 @@ namespace Shop_related.Shop_UI_Manager
         // Buttons
         private Button _buyButton;
         private Button _equipButton;
+        private Button _unequipButton;
         private Button _meleeButton;
         private Button _rangedButton;
         private Button _placableButton;
@@ -76,13 +77,14 @@ namespace Shop_related.Shop_UI_Manager
 
             _itemDescriptionContainer = _root.Q<VisualElement>("ItemDescriptionContainer");
             _materialCostContainer = _root.Q<VisualElement>("MaterialCostContainer");
-            _itemName = _root.Q<Label>("ItemName");
+            _itemDescription = _root.Q<Label>("ItemDescription");
             _moneyCount = _root.Q<Label>("MoneyCount");
             _materialCost = _root.Q<Label>("MaterialCost");
             _itemMainIcon = _root.Q<VisualElement>("ItemMainIcon");
 
             _buyButton = _root.Q<Button>("BuyButton");
             _equipButton = _root.Q<Button>("EquipButton");
+            _unequipButton = _root.Q<Button>("UnequipButton");
             _meleeButton = _root.Q<Button>("MeleeButton");
             _rangedButton = _root.Q<Button>("RangedButton");
             _placableButton = _root.Q<Button>("PlaceableButton");
@@ -94,10 +96,12 @@ namespace Shop_related.Shop_UI_Manager
 
 
             _equipButton.style.display = DisplayStyle.None;
+            _unequipButton.style.display = DisplayStyle.None;
 
             // Register button actions
             _buyButton.clicked += OnBuyButtonClicked;
             _equipButton.clicked += OnEquipButtonClicked;
+            _unequipButton.clicked += OnUnequipButtonClicked;
             _meleeButton.clicked += ChangeToMelee;
             _rangedButton.clicked += ChangeToRanged;
             _placableButton.clicked += ChangeToPlaceable;
@@ -149,26 +153,56 @@ namespace Shop_related.Shop_UI_Manager
             return playerInventory.Count(key);
         }
 
+        private bool IsComponentEquipped(WeaponComponent component)
+        {
+            if (component == null) return false;
+
+            // Check all three weapon types
+            if (MeleeWeapon != null && MeleeWeapon.TestComponents.Contains(component))
+                return true;
+
+            if (RangedWeapon != null && RangedWeapon.TestComponents.Contains(component))
+                return true;
+
+            if (PlaceableWeapon != null && PlaceableWeapon.TestComponents.Contains(component))
+                return true;
+
+            return false;
+        }
+
         public void UpdateItemPanel(ItemKey itemKey, WeaponComponent component)
         {
             _itemDescriptionContainer.style.visibility = Visibility.Visible;
             _currentItemKey = itemKey;
             _currentComponent = component;
-            _itemName.text = component.ItemName;
+            _itemDescription.text = component.Description;
             _itemMainIcon.style.backgroundImage = new StyleBackground(component.icon);
             currentComponentName = component.name;
-            ItemKey itemKey2 = component.GetItemKey();
-            if (playerInventory.HasComponent(currentComponentName))
+            bool isOwned = playerInventory.HasComponent(currentComponentName);
+            bool isEquipped = IsComponentEquipped(component);
+            if (isEquipped)
             {
+                // Player owns and has it equipped
+                _materialCostContainer.style.display = DisplayStyle.None;
+                _buyButton.style.display = DisplayStyle.None;
+                _equipButton.style.display = DisplayStyle.None;
+                _unequipButton.style.display = DisplayStyle.Flex;
+            }
+            else if (isOwned)
+            {
+                // Player owns it but it’s not equipped
                 _materialCostContainer.style.display = DisplayStyle.None;
                 _buyButton.style.display = DisplayStyle.None;
                 _equipButton.style.display = DisplayStyle.Flex;
+                _unequipButton.style.display = DisplayStyle.None;
             }
             else
             {
+                // Player doesn’t own it yet
                 _materialCostContainer.style.display = DisplayStyle.Flex;
                 _buyButton.style.display = DisplayStyle.Flex;
                 _equipButton.style.display = DisplayStyle.None;
+                _unequipButton.style.display = DisplayStyle.None;
                 _materialCostContainer.Clear();
                 requiredMaterials.Clear();
                 if (component.craftingMaterials != null && component.craftingMaterials.Count > 0)
@@ -183,7 +217,7 @@ namespace Shop_related.Shop_UI_Manager
                             int playerAmount = GetPlayerAmount(matCost.material);
 
                             // Create a label for this material
-                            Label materialLabel = new Label($"{matCost.material.name} x{matCost.amount}");
+                            Label materialLabel = new Label($"{matCost.material.Name}: x{playerAmount} / x{matCost.amount}");
                             materialLabel.AddToClassList("material-label");
 
                             // Set color based on whether player has enough
@@ -221,10 +255,11 @@ namespace Shop_related.Shop_UI_Manager
             // Clear the text fields
             _materialCostContainer.Clear();
             requiredMaterials.Clear();
-            _itemName.text = string.Empty;
+            _itemDescription.text = string.Empty;
 
             _buyButton.style.display = DisplayStyle.Flex;
             _equipButton.style.display = DisplayStyle.None;
+            _unequipButton.style.display = DisplayStyle.None;
 
             // Optionally clear the icon too (if you set it dynamically elsewhere)
             _itemMainIcon.Clear();
@@ -394,6 +429,50 @@ namespace Shop_related.Shop_UI_Manager
             // 3) Add it to TestComponents list
             targetWeapon.AddComponent(_currentComponent);
             // 5) Optional: Update UI
+            UpdateItemPanel(_currentItemKey.Value, _currentComponent);
+            RefreshInventoryUI();
+        }
+
+        private void OnUnequipButtonClicked()
+        {
+            if (_currentComponent == null)
+            {
+                UnityEngine.Debug.LogWarning("[EQUIPMENT] No component selected to unequip.");
+                return;
+            }
+
+            Weapon targetWeapon = null;
+
+            switch (currentWeaponCategory)
+            {
+                case "Melee":
+                    targetWeapon = MeleeWeapon;
+                    break;
+                case "Ranged":
+                    targetWeapon = RangedWeapon;
+                    break;
+                case "Placeable":
+                    targetWeapon = PlaceableWeapon;
+                    break;
+                default:
+                    UnityEngine.Debug.LogWarning("[EQUIPMENT] Unknown weapon category.");
+                    return;
+            }
+            if (targetWeapon == null)
+            {
+                UnityEngine.Debug.LogWarning($"[EQUIPMENT] No weapon found for category {currentWeaponCategory}.");
+                return;
+            }
+            if (!targetWeapon.TestComponents.Contains(_currentComponent))
+            {
+                UnityEngine.Debug.LogWarning($"[EQUIPMENT] {_currentComponent.name} not equipped on {targetWeapon.name}.");
+                return;
+            }
+
+            // Unequip it
+            targetWeapon.RemoveComponent(_currentComponent);
+            UnityEngine.Debug.Log($"[EQUIPMENT] Unequipped {_currentComponent.name} from {targetWeapon.name}.");
+
             UpdateItemPanel(_currentItemKey.Value, _currentComponent);
             RefreshInventoryUI();
         }

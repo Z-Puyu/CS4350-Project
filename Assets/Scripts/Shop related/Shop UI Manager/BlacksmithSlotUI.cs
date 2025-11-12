@@ -11,7 +11,7 @@ namespace Shop_related.Shop_UI_Manager
         private readonly VisualElement _iconElement;
         private readonly Label _quantityLabel;
         private readonly Label _priceLabel;
-        private Label _itemDescription;
+        private Label _itemName;
         private readonly VisualElement _root;
         private readonly BlacksmithUIManager _uiManager;
 
@@ -26,7 +26,7 @@ namespace Shop_related.Shop_UI_Manager
             _uiManager = uiManager;
 
             _iconElement = root.Q<VisualElement>("ItemIcon");
-            _itemDescription = root.Q<Label>("ItemDescription");
+            _itemName = root.Q<Label>("ItemName");
             _quantityLabel = root.Q<Label>("ItemQuantity");
             _priceLabel = root.Q<Label>("ItemPrice");
             var container = root.Q<VisualElement>("Container");
@@ -49,17 +49,17 @@ namespace Shop_related.Shop_UI_Manager
 
             if (component.icon != null)
                 _iconElement.style.backgroundImage = new StyleBackground(component.icon);
-            _itemDescription.text = component.Description;
+            _itemName.text = component.ItemName;
 
             if (isEquipped)
             {
                 // Set background to dark green
-                _itemDescription.style.backgroundColor = new StyleColor(EquippedColor);
+                _itemName.style.backgroundColor = new StyleColor(EquippedColor);
             }
             else
             {
                 // Set background to sienna (A0522D)
-                _itemDescription.style.backgroundColor = new StyleColor(DefaultColor);
+                _itemName.style.backgroundColor = new StyleColor(DefaultColor);
             }
 
             Debug.Log($"SetData is Called with: key = {component.name}");

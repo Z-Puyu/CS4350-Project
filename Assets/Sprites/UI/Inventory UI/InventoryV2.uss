@@ -44,11 +44,7 @@
     align-self: center;
 }
 
-@font-face {
-    font-family: "PublicPixel";
-    src: url("project://database/Assets/Sprites/UI/MainMenu UI/PublicPixel.ttf");
-}
 .material-label {
-    -unity-font-definition: url("project://database/Assets/Sprites/UI/MainMenu UI/PublicPixel.ttf");
-    font-size: 22px;
+    -unity-font-definition: url("project://database/Assets/Sprites/UI/MainMenu%20UI/PublicPixel.ttf?fileID=12800000&guid=f62218364d7fe6942bde380b36b98c95&type=3#PublicPixel");
+    font-size: 18px;
 }
