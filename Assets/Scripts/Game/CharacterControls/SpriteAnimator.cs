@@ -67,8 +67,8 @@ namespace Game.CharacterControls {
 
             // Apply flip only if needed
             if (xScale != Math.Sign(this.RootTransform.localScale.x)) {
-                Vector3 scale = this.RootTransform.localScale;
-                this.RootTransform.localScale = new Vector3(xScale * Math.Abs(scale.x), scale.y, scale.z);
+                Vector3 scale = this.SpriteRenderer.transform.localScale;
+                this.SpriteRenderer.transform.localScale = new Vector3(xScale * Mathf.Abs(scale.x), scale.y, scale.z);
             }
         }
     }

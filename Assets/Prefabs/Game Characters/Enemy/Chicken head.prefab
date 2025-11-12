@@ -1488,11 +1488,11 @@ PrefabInstance:
       objectReference: {fileID: 8431198205224410881}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.8319788
       objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.660357
       objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1710,13 +1710,39 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6454949747492492771, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8431198205224410881}
+    - targetCorrespondingSourceObject: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2575035762900416633}
   m_SourcePrefab: {fileID: 100100000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+--- !u!1 &923799562189777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6561529514998742695, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+  m_PrefabInstance: {fileID: 6560746732366513526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2575035762900416633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923799562189777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e60539b12a4cc1866aeadce67efa59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.EnemySpriteAnimator
+  <RootTransform>k__BackingField: {fileID: 8443594316671374492}
+  <MovementComponent>k__BackingField: {fileID: 9132942257771108106}
+  <PixelOffset>k__BackingField: 0
+  <AnimatorMovementFlag>k__BackingField: -268154354
+  <AnimatorAttackTrigger>k__BackingField: 1080829965
+  <PlayerTracker>k__BackingField: {fileID: 0}
 --- !u!114 &55136081064673507 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6615670882161919381, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
   m_PrefabInstance: {fileID: 6560746732366513526}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 923799562189777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
