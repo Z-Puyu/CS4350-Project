@@ -18,7 +18,20 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-        [field: SerializeField] public bool HasAutoReplant { get; private set; } = false;
+
+        // Auto-replant is driven by the player's AttributeSet so perks can enable it
+        // by adding a modifier to the attribute with id "farming.auto_replant".
+        // The property reads the AttributeSet at runtime and returns true when
+        // the attribute value is >= 1.
+        public bool HasAutoReplant {
+            get {
+                try {
+                    return this.AttributeSet != null && this.AttributeSet.Has(1, "farming.auto_replant");
+                } catch {
+                    return false;
+                }
+            }
+        }
         
         [field: SerializeField, Required]
         private Interactor Interactor { get; set; }

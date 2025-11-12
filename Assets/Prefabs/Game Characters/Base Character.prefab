@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 4596162042558898101}
   - component: {fileID: 1590959129665856517}
   - component: {fileID: 3990052932965461405}
-  - component: {fileID: 2205906151554961017}
+  - component: {fileID: 399553754225465398}
   - component: {fileID: 6615670882161919381}
   - component: {fileID: 5081366553144432299}
   m_Layer: 0
@@ -235,7 +235,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2205906151554961017
+--- !u!114 &399553754225465398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,14 +244,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6561529514998742695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e60539b12a4cc1866aeadce67efa59, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.EnemySpriteAnimator
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <MovementComponent>k__BackingField: {fileID: 2716461110618952316}
   <PixelOffset>k__BackingField: 0
   <AnimatorMovementFlag>k__BackingField: -268154354
   <AnimatorAttackTrigger>k__BackingField: 1080829965
+  <PlayerTracker>k__BackingField: {fileID: 0}
 --- !u!114 &6615670882161919381
 MonoBehaviour:
   m_ObjectHideFlags: 0
