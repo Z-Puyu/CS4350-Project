@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Events;
+using GameplayAbilities.Runtime.HealthSystem;
 
 namespace Inventory_related.Inventory_UI_Manager_V2
 {
@@ -18,6 +19,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
         [SerializeField] private ItemType seedType;                 // assign in inspector, your "Seed" type asset
         [SerializeField] private ItemType consumableType;
         [SerializeField] private CrossObjectEventSO unpausedEvent;
+        [SerializeField] private Health playerHealth;
         
         [Header("Item Viewer UI")]
         [SerializeField] private GameObject itemViewerContainer;     // Entire right-hand panel
@@ -121,6 +123,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             if (_currentItem.Type.BelongsTo(seedType) && CurrentSoil != null)
             {
                 Debug.Log($"Planting seed: {_currentItem.Name}");
+                Debug.Log($"Animation to be played: {_currentItem.Id}_....");
                 CurrentSoil.PlantSeed(_currentItem.Id);
 
                 // Remove one item from inventory
@@ -128,18 +131,20 @@ namespace Inventory_related.Inventory_UI_Manager_V2
 
                 // Reset soil reference and close the inventory
                 CurrentSoil = null;
-                unpausedEvent.TriggerEvent();
-                gameObject.SetActive(false);
             }
             else if (_currentItem.Type.BelongsTo(consumableType))
             {
                 Debug.Log($"Using Consumable: {_currentItem.Name}");
-                
+                playerHealth.Refill();
+                inventory.Remove(_currentItemKey);
             }
             else
             {
                 Debug.Log($"Use item: {_currentItem.Name} (not a seed, or no soil selected)");
             }
+            
+            unpausedEvent.TriggerEvent();
+            gameObject.SetActive(false);
         }
 
         private void OnQuickSwapItem()

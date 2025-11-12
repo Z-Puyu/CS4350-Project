@@ -4298,6 +4298,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6963433376467322382}
     - target: {fileID: 8897151201726426952, guid: 9c173583d09e86344a5dd1ba420ccd65, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 4966769171549703863}
+    - target: {fileID: 8897151201726426952, guid: 9c173583d09e86344a5dd1ba420ccd65, type: 3}
       propertyPath: unpausedEvent
       value: 
       objectReference: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}

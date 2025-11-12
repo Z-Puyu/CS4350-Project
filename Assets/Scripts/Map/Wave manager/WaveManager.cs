@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Events;
@@ -22,6 +23,13 @@ namespace Map.Wave_manager
         [SerializeField] private float maxY;
         [SerializeField] private CrossObjectEventWithDataSO setNewRandomTargetEnemy;
         [SerializeField] private CrossObjectEventWithDataSO setNewRandomTargetBoss;
+        
+        // New balance parameters
+        [Header("Wave Balance Settings")]
+        [SerializeField] private float baseSpawnDelay = 1.2f;       // seconds between spawns in early waves
+        [SerializeField] private float spawnDelayDecayPerWave = 0.1f; // how much faster each wave spawns
+        [SerializeField] private int maxActiveEnemies = 4;         // cap on total enemies alive at once
+        
         private List<Enemy> allSpawnedEnemies = new List<Enemy>();
         private List<Boss> allSpawnedBoss = new List<Boss>();
         
@@ -67,50 +75,65 @@ namespace Map.Wave_manager
 
         void SpawnEnemy()
         {
+            StartCoroutine(SpawnEnemiesGradually());
+        }
+        
+        private IEnumerator SpawnEnemiesGradually()
+        {
             Vector2 topLeft = new Vector2(minX + 3, maxY - 3);
             Vector2 bottomLeft = new Vector2(minX + 3, minY + 3);
             Vector2 topRight = new Vector2(maxX - 3, maxY - 3);
             Vector2 bottomRight = new Vector2(maxX - 3, minY + 3);
-            List<Vector2> spawnPoints = new List<Vector2>(){topLeft, topRight, bottomRight, bottomLeft};
+            List<Vector2> spawnPoints = new List<Vector2>() { topLeft, topRight, bottomRight, bottomLeft };
+
             SaintsDictionary<Enemy, int> enemiesForThisWave = waveToEnemySpawner[wave];
             List<Enemy> allEnemyDataForThisWave = enemiesForThisWave.Keys.ToList();
             List<int> counter = enemiesForThisWave.Values.ToList();
+
             int spawnIndex = 0;
-            while (true)
+            bool isEnemyStillSpawning = true;
+
+            while (isEnemyStillSpawning)
             {
-                bool isEnemyStillSpawning = false;
+                isEnemyStillSpawning = false;
+
                 for (int i = 0; i < allEnemyDataForThisWave.Count; i++)
                 {
                     if (counter[i] > 0)
                     {
-                        if (killCounter.ContainsKey(allEnemyDataForThisWave[i].getEnemyId()))
+                        // Cap active enemies to prevent swarming
+                        if (allSpawnedEnemies.Count + allSpawnedBoss.Count >= maxActiveEnemies)
                         {
-                            killCounter[allEnemyDataForThisWave[i].getEnemyId()] += 1;
+                            yield return new WaitUntil(() =>
+                                allSpawnedEnemies.Count + allSpawnedBoss.Count < maxActiveEnemies);
                         }
+
+                        string enemyId = allEnemyDataForThisWave[i].getEnemyId();
+
+                        if (killCounter.ContainsKey(enemyId))
+                            killCounter[enemyId] += 1;
                         else
-                        {
-                            killCounter[allEnemyDataForThisWave[i].getEnemyId()] = 1;
-                        }
-                        isEnemyStillSpawning = true;
-                        Enemy spawnedEnemy = Instantiate(allEnemyDataForThisWave[i], spawnPoints[spawnIndex], Quaternion.identity);
-                        if (spawnedEnemy.GetComponent<Boss>() != null) 
-                        {
-                            allSpawnedBoss.Add((Boss) spawnedEnemy);
-                        }
+                            killCounter[enemyId] = 1;
+
+                        Enemy spawnedEnemy = Instantiate(allEnemyDataForThisWave[i],
+                            spawnPoints[spawnIndex], Quaternion.identity);
+
+                        if (spawnedEnemy.GetComponent<Boss>() != null)
+                            allSpawnedBoss.Add((Boss)spawnedEnemy);
                         else
-                        {
                             allSpawnedEnemies.Add(spawnedEnemy);
-                        }
-                        counter[i] -= 1;
-                        spawnIndex++;
-                        spawnIndex %= 4;   
+
+                        counter[i]--;
+                        spawnIndex = (spawnIndex + 1) % 4;
+                        isEnemyStillSpawning = true;
+
+                        // Gradually faster spawn rate as waves increase
+                        float delay = Mathf.Max(0.3f, baseSpawnDelay - (wave * spawnDelayDecayPerWave));
+                        yield return new WaitForSeconds(delay);
                     }
                 }
-                if (!isEnemyStillSpawning)
-                {
-                    break;
-                }
             }
+
             GetNewTargetEnemy();
             GetNewTargetBoss();
         }
