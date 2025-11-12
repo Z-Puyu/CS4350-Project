@@ -2174,11 +2174,10 @@ MonoBehaviour:
     m_ActionName: 'Player/OpenObjective[/Keyboard/o]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3580744060895484157}
-        m_TargetAssemblyTypeName: Skill_tree_related.Skill_tree_UI.SkillTreeUIManager,
-          Assembly-CSharp
-        m_MethodName: OpenBackdropPanel
-        m_Mode: 1
+      - m_Target: {fileID: 2076975899314662873}
+        m_TargetAssemblyTypeName: Game.Player.PlayerInputParser, Assembly-CSharp
+        m_MethodName: OnOpenSkillTree
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2533,6 +2532,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Events.CrossObjectEventSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 107853044870007202, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 369090584727181713, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2835,7 +2862,7 @@ PrefabInstance:
       objectReference: {fileID: 6058483238646988093}
     - target: {fileID: 3355103382599588735, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_fontSize
-      value: 11.9
+      value: 14.35
       objectReference: {fileID: 0}
     - target: {fileID: 3463886976245880319, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4556,6 +4583,10 @@ PrefabInstance:
       propertyPath: <InventoryUIManager>k__BackingField
       value: 
       objectReference: {fileID: 3227091727185411073}
+    - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
+      propertyPath: <SkillTreeUIManager>k__BackingField
+      value: 
+      objectReference: {fileID: 3580744060895484157}
     - target: {fileID: 5050050693828475385, guid: 09e8926929eb9f34c8088ba0638bdee9, type: 3}
       propertyPath: <InventoryUIManagerV2>k__BackingField
       value: 
