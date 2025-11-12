@@ -217,6 +217,10 @@ PrefabInstance:
       value: 5580717539960029589
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803637].<PossibleComponents>k__BackingField._saintsList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803416].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
       value: Damage.Elemental.Fire
       objectReference: {fileID: 0}
@@ -264,6 +268,22 @@ PrefabInstance:
       propertyPath: managedReferences[5580717538616803422].<AttackAttributes>k__BackingField.Array.data[3].<Id>k__BackingField
       value: Damage.Physical.Melee
       objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803637].<PossibleComponents>k__BackingField._saintsList.Array.data[0].value
+      value: 
+      objectReference: {fileID: 11400000, guid: dff9c57831aa98946bede75498a6e597, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803637].<PossibleComponents>k__BackingField._saintsList.Array.data[1].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 5065d4615faf6b84ebff50389e1ba6b4, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803637].<PossibleComponents>k__BackingField._saintsList.Array.data[2].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b0555d1c4aa52248a5e4163b0fd4308, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5580717538616803637].<PossibleComponents>k__BackingField._saintsList.Array.data[3].value
+      value: 
+      objectReference: {fileID: 11400000, guid: ecabfacde718bd142a5ad134b5d6c1a8, type: 2}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803640].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
       value: Damage.Elemental.Fire

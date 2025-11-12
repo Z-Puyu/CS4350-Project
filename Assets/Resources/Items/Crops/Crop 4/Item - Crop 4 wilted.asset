@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: wilting_4
   <Type>k__BackingField: {fileID: 11400000, guid: 73ac0fe562771384eb17a3c30f5e718e, type: 2}
   <Name>k__BackingField: Wilting Crop of Static
-  <Description>k__BackingField: Wilting Crop of Static, sells for 20
+  <Description>k__BackingField: Wilting Crop of Static, sells for 5
   <CustomIcon>k__BackingField: {fileID: -2862985932543244140, guid: 074caf756046d1740bfd77ba49cd3c95, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
@@ -27,4 +27,4 @@ MonoBehaviour:
       data:
         <Price>k__BackingField: 20
         <HasDifferentPriceForSale>k__BackingField: 1
-        <Worth>k__BackingField: 2
+        <Worth>k__BackingField: 5

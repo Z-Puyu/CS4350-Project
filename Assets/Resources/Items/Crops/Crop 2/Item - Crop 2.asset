@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: crop_2
   <Type>k__BackingField: {fileID: 11400000, guid: 73ac0fe562771384eb17a3c30f5e718e, type: 2}
   <Name>k__BackingField: Crop of Frost
-  <Description>k__BackingField: Crop of Frost, sells for 50
+  <Description>k__BackingField: Crop of Frost, sells for 15
   <CustomIcon>k__BackingField: {fileID: -7402870161864934325, guid: c17ee7894a6ddae4da6473de4e87b185, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
@@ -27,4 +27,4 @@ MonoBehaviour:
       data:
         <Price>k__BackingField: 50
         <HasDifferentPriceForSale>k__BackingField: 1
-        <Worth>k__BackingField: 5
+        <Worth>k__BackingField: 15

@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[0].<Id>k__BackingField
@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.data[1].value
       value: 
       objectReference: {fileID: 11400000, guid: eedbef10c7566c64daa9212974e64432, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: managedReferences[5637489946061439430].<PossibleComponents>k__BackingField._saintsList.Array.data[2].value
+      value: 
+      objectReference: {fileID: 11400000, guid: 90ec34df9adb9d64a91ca662768890c5, type: 2}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: managedReferences[5580717538616803629].<AttackAttributes>k__BackingField.Array.data[0].<Coefficient>k__BackingField
       value: 1
