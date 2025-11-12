@@ -43,7 +43,7 @@ namespace Game.Enemies {
             if (this.Animator) {
                 this.Animator.runtimeAnimatorController = this.Data.Animations;
             }
-            
+            this.LastAttacker = GameObject.FindWithTag("Player");
             this.AttributeSet.Initialise(this.Data.Attributes);
             this.LootContainer.Use(this.Data.LootTable);
         }

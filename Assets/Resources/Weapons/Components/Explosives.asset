@@ -20,7 +20,7 @@ MonoBehaviour:
   price: 0
   craftingMaterials:
   - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
-    amount: 0
+    amount: 1
   rarity: Common
   levelRequirement: 1
   weaponCategory: 1
@@ -44,6 +44,6 @@ MonoBehaviour:
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 2
+          <DefaultValue>k__BackingField: 15
           <Coefficient>k__BackingField: 0
           <Label>k__BackingField: 

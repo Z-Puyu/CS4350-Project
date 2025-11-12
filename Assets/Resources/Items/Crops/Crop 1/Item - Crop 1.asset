@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: crop_1
   <Type>k__BackingField: {fileID: 11400000, guid: 73ac0fe562771384eb17a3c30f5e718e, type: 2}
   <Name>k__BackingField: Crop of Courage
-  <Description>k__BackingField: Crop of Courage, sells for 50
+  <Description>k__BackingField: Crop of Courage, sells for 15
   <CustomIcon>k__BackingField: {fileID: -7319062607089328185, guid: 6d83cdd7eb63a42bb863665e0a40818a, type: 3}
   <Properties>k__BackingField:
   - rid: 4925886426016907350
@@ -27,4 +27,4 @@ MonoBehaviour:
       data:
         <Price>k__BackingField: 50
         <HasDifferentPriceForSale>k__BackingField: 1
-        <Worth>k__BackingField: 5
+        <Worth>k__BackingField: 15
