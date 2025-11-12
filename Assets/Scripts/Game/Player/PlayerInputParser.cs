@@ -17,6 +17,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using WeaponsSystem.Runtime.Combat;
 using WeaponsSystem.Runtime.Equipments;
+using Skill_tree_related.Skill_tree_UI;
 
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
@@ -40,6 +41,7 @@ namespace Game.Player {
         [field: SerializeField, Required] private CrossObjectEventSO broadcastPauseUIGame { get; set; }
         [field: SerializeField, Required] private PlayerQuickSwapUIManager PlayerQuickSwapUIManager { get; set; }
         [field: SerializeField, Required] private PlayerBattleUIManager PlayerBattleUIManager { get; set; }
+        [field: SerializeField, Required] private SkillTreeUIManager SkillTreeUIManager { get; set; }
         
         [field: SerializeField, Required] private GameplayAbilities.Runtime.StaminaSystem.Stamina Stamina { get; set; }
         [field: SerializeField] private bool isGunUnlocked = false;
@@ -102,6 +104,15 @@ namespace Game.Player {
                 broadcastPauseGame.TriggerEvent();
                 broadcastOpenNotebook.TriggerEvent();
             }
+        }
+
+        public void OnOpenSkillTree(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+            broadcastPauseGame.TriggerEvent();
+
+            this.SkillTreeUIManager.OpenBackdropPanel();
         }
 
         public void OnMove(InputAction.CallbackContext context)
