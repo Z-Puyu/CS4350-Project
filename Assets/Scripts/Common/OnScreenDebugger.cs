@@ -25,7 +25,7 @@ namespace Common {
         }
 
         private void UpdateText() {
-            if (this.Messages.TryDequeue(out string _)) {
+            if (this.Messages.TryDequeue(out string _) && TextBox != null) {
                 this.TextBox.text = string.Join('\n', this.Messages);
             }
         }

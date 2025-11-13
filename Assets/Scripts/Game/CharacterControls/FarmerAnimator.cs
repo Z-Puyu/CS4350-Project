@@ -94,9 +94,8 @@ namespace Game.CharacterControls {
 
             // Flip sprite
             if (Mathf.Abs(toMouse.x) > 0.01f) {
-                int xScale = toMouse.x < 0 ? -1 : 1;
-                Vector3 scale = this.RootTransform.localScale;
-                this.RootTransform.localScale = new Vector3(xScale * Mathf.Abs(scale.x), scale.y, scale.z);
+                bool facingLeft = toMouse.x < 0;
+                this.SpriteRenderer.flipX = facingLeft;
             }
         }
     }

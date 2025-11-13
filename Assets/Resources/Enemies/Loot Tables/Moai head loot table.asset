@@ -17,10 +17,15 @@ MonoBehaviour:
     _values: []
     _saintsKeys:
     - value: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
+    - value: {fileID: 11400000, guid: b49df22135e8f064e83ce295f67f6224, type: 2}
     _saintsValues:
     - value:
         <MaxDrop>k__BackingField: 3
         <Weight>k__BackingField: 1
+        <CountPerDrop>k__BackingField: {x: 1, y: 1}
+    - value:
+        <MaxDrop>k__BackingField: 10
+        <Weight>k__BackingField: 5
         <CountPerDrop>k__BackingField: {x: 1, y: 1}
   <AlwaysDrop>k__BackingField:
     _keys: []

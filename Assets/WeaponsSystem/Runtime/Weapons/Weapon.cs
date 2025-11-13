@@ -125,6 +125,35 @@ namespace WeaponsSystem.Runtime.Weapons
                 }
             }
         }
+        public void RemoveComponent(WeaponComponent componentToRemove)
+        {
+            if (TestComponents.Contains(componentToRemove))
+            {
+                TestComponents.Clear();
+
+                foreach (IWeaponController controller in this.WeaponControllers)
+                {
+                    if (controller is WeaponComponentController componentController)
+                    {
+                        bool removed = componentController.RemoveComponent(0);
+                        if (removed)
+                        {
+                            UnityEngine.Debug.Log($"[EQUIPMENT] Removed component {componentToRemove.name} from slot 0.");
+                        }
+                    }
+                }
+
+                // Optionally update controllers after removal
+                foreach (IWeaponController controller in this.WeaponControllers)
+                {
+                    controller.Possess(this, this.Stats);
+                }
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning($"[EQUIPMENT] Attempted to remove component {componentToRemove.name} but it was not equipped.");
+            }
+        }
 
     }
 }

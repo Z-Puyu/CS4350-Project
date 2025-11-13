@@ -16,7 +16,7 @@ namespace Inventory_related.Inventory_UI_Manager
         [SerializeField] private ItemType seedType; // assign in inspector, your "Seed" type asset
         [SerializeField] private CrossObjectEventSO broadcastPauseGame;
         private ItemKey? _currentItemKey;
-        
+
         private VisualElement _root;
         private VisualElement _grid;
 
@@ -28,7 +28,7 @@ namespace Inventory_related.Inventory_UI_Manager
         public static InventoryUIManager Instance;
 
         public SoilPlantInteraction CurrentSoil { get; private set; }
-        
+
         // Buttons
         private Button _useButton;
         private Button _dropButton;
@@ -51,14 +51,14 @@ namespace Inventory_related.Inventory_UI_Manager
             _itemName = _root.Q<Label>("ItemName");
             _itemDescription = _root.Q<Label>("ItemDescription");
             _itemIcon = _root.Q<VisualElement>("ItemIcon");
-            
+
             _useButton = _root.Q<Button>("UseButton");
             _dropButton = _root.Q<Button>("DropButton");
-            _quickEquipButton =  _root.Q<Button>("QuickEquipButton");
+            _quickEquipButton = _root.Q<Button>("QuickEquipButton");
 
             // Hide item description
             _itemDescriptionContainer.style.visibility = Visibility.Hidden;
-            
+
             // Register button actions
             _useButton.clicked += OnUseButtonClicked;
             _dropButton.clicked += OnDropButtonClicked;
@@ -98,21 +98,34 @@ namespace Inventory_related.Inventory_UI_Manager
             }
         }
 
+        public void ClearItemPanel()
+        {
+            // Hide the whole description container
+            _itemDescriptionContainer.style.visibility = Visibility.Hidden;
+
+            // Clear stored item key
+            _currentItemKey = null;
+
+            // Clear the text fields
+            _itemDescription.text = string.Empty;
+            _itemName.text = string.Empty;
+        }
+
         private void RefreshInventoryUI()
         {
             _grid.Clear();
-            
+
             foreach (var kvp in inventory) // kvp.Key = ItemKey, kvp.Value = quantity
             {
                 var slotElement = slotTemplate.CloneTree();
                 _grid.Add(slotElement);
-                
+
                 var slotUI = new SlotUI(slotElement, this, inventory.isInQuickSwap(kvp.Key.Id));
                 mappedIdToSlotUI[kvp.Key.Id] = slotUI;
                 slotUI.SetData(kvp.Key, kvp.Value);
             }
         }
-        
+
         // === Button handlers ===
         private void OnUseButtonClicked()
         {
@@ -136,6 +149,7 @@ namespace Inventory_related.Inventory_UI_Manager
                 CurrentSoil.PlantSeed(itemData.Id);
                 inventory.Remove(itemKey); // remove 1 seed
                 CurrentSoil = null;
+                ClearItemPanel();
                 gameObject.SetActive(false);
             }
             else
@@ -146,7 +160,7 @@ namespace Inventory_related.Inventory_UI_Manager
                 Debug.Log($"Use item: {itemData.Name} (not a seed, or no soil selected)");
             }
         }
-        
+
         private void OnDropButtonClicked()
         {
             if (!_currentItemKey.HasValue) return;
@@ -157,7 +171,7 @@ namespace Inventory_related.Inventory_UI_Manager
         private void OnQuickEquipButtonClicked()
         {
             if (!_currentItemKey.HasValue) return;
-            
+
             bool isInQuickSwap = inventory.HandleItemForQuickSwap(_currentItemKey.Value.Id);
             mappedIdToSlotUI[_currentItemKey.Value.Id].HandleItemForQuickSwap(isInQuickSwap);
         }

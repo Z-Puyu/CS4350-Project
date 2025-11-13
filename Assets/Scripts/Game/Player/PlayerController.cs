@@ -4,11 +4,15 @@ using Events;
 using Game.CharacterControls;
 using Game.Enemies;
 using Game.Map;
+using GameplayAbilities.Runtime.MoneySystem;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
 
@@ -18,7 +22,20 @@ namespace Game.Player {
         public CrossObjectEventWithDataSO broadcastItemCollected;
         [field: SerializeField] private PlayerData InitialData { get; set; }
         [field: SerializeField, Required] private Inventory Inventory { get; set; }
-        [field: SerializeField] public bool HasAutoReplant { get; private set; } = false;
+
+        // Auto-replant is driven by the player's AttributeSet so perks can enable it
+        // by adding a modifier to the attribute with id "farming.auto_replant".
+        // The property reads the AttributeSet at runtime and returns true when
+        // the attribute value is >= 1.
+        public bool HasAutoReplant {
+            get {
+                try {
+                    return this.AttributeSet != null && this.AttributeSet.Has(1, "farming.auto_replant");
+                } catch {
+                    return false;
+                }
+            }
+        }
         
         [field: SerializeField, Required]
         private Interactor Interactor { get; set; }
@@ -47,6 +64,12 @@ namespace Game.Player {
         }
 
         private void HandleEnemyDeath(EnemyDeathEvent @event) {
+            int gold = Random.Range(@event.DeadEnemy.Money.x, @event.DeadEnemy.Money.y + 1);
+            Money money = this.transform.parent.GetComponentInChildren<Money>();
+            money.Add(gold);
+#if DEBUG
+            Debug.Log($"Current gold: {money.Value}");
+#endif
             if (@event.Killer != this.gameObject && @event.Killer.transform.IsChildOf(this.transform)) {
                 return;
             }
