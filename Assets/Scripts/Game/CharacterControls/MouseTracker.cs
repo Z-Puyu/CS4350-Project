@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.CharacterControls {
@@ -27,6 +28,12 @@ namespace Game.CharacterControls {
             // 4. Rotate AttackOrigin so its local +X points toward mouse
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle-90f);
+
+            if (Math.Abs(angle) >= 90f) {
+                Vector3 localScale = this.transform.localScale;
+                localScale.x = Math.Abs(localScale.x) * -1f;
+                this.transform.localScale = localScale;
+            }
         }
     }
 }
