@@ -54,6 +54,7 @@ namespace ModularItemsAndInventory.Runtime.LootContainers {
         public void Use(LootTable table) {
             this.Container.Clear();
             this.Loots.Clear();
+            this.LootTable = table;
             foreach ((ItemKey item, DropConfig config) in this.LootTable) {
                 this.Loots.Add(item, config);
             }

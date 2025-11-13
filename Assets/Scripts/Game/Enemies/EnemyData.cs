@@ -16,6 +16,6 @@ namespace Game.Enemies {
         [field: SerializeField] public LootTable LootTable { get; private set; }
         [field: SerializeField] public PlayerMessage messageForPlayerBeforeSpawn { get; private set; }
         [field: SerializeField] public PlayerMessage messageForPlayerOnSpawn { get; private set; }
-        
+        [field: SerializeField, MinMaxSlider(0, 100)] public Vector2Int Money { get; private set; }
     }
 }

@@ -4,11 +4,15 @@ using Events;
 using Game.CharacterControls;
 using Game.Enemies;
 using Game.Map;
+using GameplayAbilities.Runtime.MoneySystem;
 using InteractionSystem.Runtime;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using SaintsField;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 //using WeaponsSystem;
 //using WeaponsSystem.DamageHandling;
 
@@ -60,6 +64,12 @@ namespace Game.Player {
         }
 
         private void HandleEnemyDeath(EnemyDeathEvent @event) {
+            int gold = Random.Range(@event.DeadEnemy.Money.x, @event.DeadEnemy.Money.y + 1);
+            Money money = this.transform.parent.GetComponentInChildren<Money>();
+            money.Add(gold);
+#if DEBUG
+            Debug.Log($"Current gold: {money.Value}");
+#endif
             if (@event.Killer != this.gameObject && @event.Killer.transform.IsChildOf(this.transform)) {
                 return;
             }

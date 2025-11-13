@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 1834705921085040249, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnDeathEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6688861567839838337, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
