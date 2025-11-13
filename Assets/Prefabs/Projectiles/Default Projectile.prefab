@@ -206,6 +206,7 @@ MonoBehaviour:
   <DisintegrationParticles>k__BackingField: {fileID: 0}
   <Controllers>k__BackingField:
   - rid: 5580717538616803652
+  - rid: 7277498451915440204
   references:
     version: 2
     RefIds:
@@ -213,3 +214,7 @@ MonoBehaviour:
       type: {class: ProjectileDurabilityController, ns: Projectiles.Runtime, asm: Projectiles.Runtime}
       data:
         <Durability>k__BackingField: 1
+    - rid: 7277498451915440204
+      type: {class: ExplosionController2D, ns: Projectiles.Runtime, asm: Projectiles.Runtime}
+      data:
+        <ParticleOnHit>k__BackingField: {fileID: 0}

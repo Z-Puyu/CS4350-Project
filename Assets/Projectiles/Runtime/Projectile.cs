@@ -119,6 +119,7 @@ namespace Projectiles.Runtime {
             this.Direction = Vector3.zero;
             this.LaunchPoint = Vector3.zero;
             this.OnHit = null;
+            this.gameObject.SetActive(false);
             base.Return();
         }
 
@@ -160,16 +161,21 @@ namespace Projectiles.Runtime {
             if (this.DisintegrationParticles) {
                 this.DisintegrationParticles.Play();
             }
-            
-            yield return new WaitUntil(hasFinishedAllVisualEffects);
+
+            yield return new WaitUntil(() => (!this.FlyParticles || !this.FlyParticles.IsAlive()) &&
+                                             (!this.DisintegrationParticles ||
+                                              !this.DisintegrationParticles.IsAlive()) &&
+                                             this.Controllers.TrueForAll(controller => controller.IsIdle));
             this.Return();
             yield break;
 
+            /*
             bool hasFinishedAllVisualEffects() {
-                return (!this.FlyParticles || !this.FlyParticles.IsAlive()) &&
+                return (() => (!this.FlyParticles || !this.FlyParticles.IsAlive()) &&
                        (!this.DisintegrationParticles || !this.DisintegrationParticles.IsAlive()) &&
                        this.Controllers.TrueForAll(controller => controller.IsIdle);
             }
+            */
         }
 
         private void Travel(float deltaTime) {
