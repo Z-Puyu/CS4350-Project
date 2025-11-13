@@ -27,19 +27,16 @@ MonoBehaviour:
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 7277498416137764938
+    rid: 7277498416137764948
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7277498416137764938
+    - rid: 7277498416137764948
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: Damage.Physical.Melee
+        - <TargetAttribute>k__BackingField: Damage.Physical
           <Method>k__BackingField: 1
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
