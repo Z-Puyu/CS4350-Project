@@ -42,7 +42,7 @@ namespace Map.RegionBorder
             tilemap.color = Color.white;
             foreach (var subtilemap in subTileaps)
             {
-                subtilemap.color = new Color(0.3f, 0.3f, 0.3f);   
+                subtilemap.color = Color.white;   
             }
         }
 
