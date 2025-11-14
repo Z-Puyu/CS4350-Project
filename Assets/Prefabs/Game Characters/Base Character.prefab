@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 4596162042558898101}
   - component: {fileID: 1590959129665856517}
   - component: {fileID: 3990052932965461405}
-  - component: {fileID: 2205906151554961017}
+  - component: {fileID: 399553754225465398}
   - component: {fileID: 6615670882161919381}
   - component: {fileID: 5081366553144432299}
   m_Layer: 0
@@ -235,7 +235,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2205906151554961017
+--- !u!114 &399553754225465398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,14 +244,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6561529514998742695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3dd51a9efb94bb2b95cda342cec98e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e60539b12a4cc1866aeadce67efa59, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player.PlayerAnimator
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.EnemySpriteAnimator
   <RootTransform>k__BackingField: {fileID: 3324175696564490730}
   <MovementComponent>k__BackingField: {fileID: 2716461110618952316}
   <PixelOffset>k__BackingField: 0
   <AnimatorMovementFlag>k__BackingField: -268154354
   <AnimatorAttackTrigger>k__BackingField: 1080829965
+  <PlayerTracker>k__BackingField: {fileID: 8398170119875653849}
 --- !u!114 &6615670882161919381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +436,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5065657347276024828, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 8398170119875653849}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
 --- !u!114 &1013458702745771644 stripped
 MonoBehaviour:
@@ -453,6 +457,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1651668061083998253, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
   m_PrefabInstance: {fileID: 454449849331479342}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4612340495738067154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5065657347276024828, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}
+  m_PrefabInstance: {fileID: 454449849331479342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8398170119875653849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612340495738067154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d202024dd64b91b91959b959b958b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.PlayerTracker
+  offset: 0
 --- !u!114 &5283230525952478159 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5701356540397893857, guid: 3dc16ad728ec43f449eba60c46055afe, type: 3}

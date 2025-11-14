@@ -16,26 +16,23 @@ MonoBehaviour:
   itemName: Shotgun Shells
   Description: Spread shot baby. But low damage that can't kill a baby
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 6125417721769082936, guid: dfab79aa077e17a44a992c91be831dd3, type: 3}
   price: 0
   craftingMaterials:
   - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
-    amount: 1
+    amount: 5
   rarity: Common
   levelRequirement: 1
   weaponCategory: 1
-  <ProjectileModesOnAttack>k__BackingField: 02000000
-  <ProjectileModeOnWeapon>k__BackingField: 0
+  <ProjectileModesOnAttack>k__BackingField: 
+  <ProjectileModeOnWeapon>k__BackingField: 2
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 5580717538616803645
+    rid: 7277498451915440206
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5580717538616803645
+    - rid: 7277498451915440206
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:
@@ -44,6 +41,6 @@ MonoBehaviour:
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 1
+          <DefaultValue>k__BackingField: 2
           <Coefficient>k__BackingField: 0
           <Label>k__BackingField: 

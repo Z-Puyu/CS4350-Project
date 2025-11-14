@@ -16,26 +16,23 @@ MonoBehaviour:
   itemName: Ice hild
   Description: Cold to the touch. Beware of Frostbite
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2062336647144756415, guid: 9ecd43f2ec2cab643ba8437bb1bfcd24, type: 3}
   price: 100
   craftingMaterials:
   - material: {fileID: 11400000, guid: 744d6c4b4679e9f438c4cf9d26d0aa2a, type: 2}
-    amount: 1
+    amount: 5
   rarity: Rare
   levelRequirement: 1
   weaponCategory: 0
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 7277498416137764944
+    rid: 7277498451915440199
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7277498416137764944
+    - rid: 7277498451915440199
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:

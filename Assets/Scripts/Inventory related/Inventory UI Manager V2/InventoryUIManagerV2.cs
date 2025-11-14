@@ -20,7 +20,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
         [SerializeField] private ItemType consumableType;
         [SerializeField] private CrossObjectEventSO unpausedEvent;
         [SerializeField] private Health playerHealth;
-        
+
         [Header("Item Viewer UI")]
         [SerializeField] private GameObject itemViewerContainer;     // Entire right-hand panel
         [SerializeField] private Image itemImage;                    // ItemViewerContainer -> ItemImage
@@ -37,10 +37,10 @@ namespace Inventory_related.Inventory_UI_Manager_V2
 
         [Header("Player Inventory")]
         [SerializeField] private Inventory inventory;
-        
+
         private ItemData _currentItem;
         private ItemKey _currentItemKey;
-        
+
         private Dictionary<string, InventorySlot> _mappedSlots = new();
 
         public static InventoryUIManagerV2 Instance { get; private set; }
@@ -60,14 +60,14 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             quickSwapButton.onClick.AddListener(OnQuickSwapItem);
             dropButton.onClick.AddListener(OnDropItem);
             closeButton.onClick.AddListener(CloseInventory);
-            
+
             // Listen to inventory changes
             inventory.OnInventoryChanged += HandleInventoryChanged;
-            
+
             // Initial draw
             RefreshInventoryUI();
         }
-        
+
         private void HandleInventoryChanged(Inventory.ItemOperation operation)
         {
             RefreshInventoryUI();
@@ -102,7 +102,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             Debug.Log("ON SLOT CLICKED");
             _currentItem = itemData;
             _currentItemKey = itemKey;
-            
+
             itemViewerContainer.SetActive(true);
 
             itemImage.sprite = itemData.Icon;
@@ -113,6 +113,16 @@ namespace Inventory_related.Inventory_UI_Manager_V2
                 inventory.isInQuickSwap(itemData.Id) ? "Quick Unequip" : "Quick Equip";
         }
 
+        public void ClearItemPanel()
+        {
+            itemViewerContainer.SetActive(false);
+
+            // Clear the text fields
+            itemImage.sprite = null;
+            itemNameText.text = string.Empty;
+            itemDescriptionText.text = string.Empty;
+        }
+
         private void OnUseItem()
         {
             if (_currentItem == null) return;
@@ -120,17 +130,26 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             Debug.Log($"[DEBUG] CurrentSoil is {(CurrentSoil == null ? "null" : "set")}");
 
             // 🌱 If it's a seed and we have soil selected, plant it
-            if (_currentItem.Type.BelongsTo(seedType) && CurrentSoil != null)
+            if (CurrentSoil != null)
             {
-                Debug.Log($"Planting seed: {_currentItem.Name}");
-                Debug.Log($"Animation to be played: {_currentItem.Id}_....");
-                CurrentSoil.PlantSeed(_currentItem.Id);
+                if (_currentItem.Type.BelongsTo(seedType))
+                {
+                    Debug.Log($"Planting seed: {_currentItem.Name}");
+                    Debug.Log($"Animation to be played: {_currentItem.Id}_....");
+                    CurrentSoil.PlantSeed(_currentItem.Id);
 
-                // Remove one item from inventory
-                inventory.Remove(_currentItemKey);
+                    // Remove one item from inventory
+                    inventory.Remove(_currentItemKey);
 
-                // Reset soil reference and close the inventory
-                CurrentSoil = null;
+                    ClearItemPanel();
+                    // Reset soil reference and close the inventory
+                    CurrentSoil = null;
+                }
+                else if (_currentItem.Type.BelongsTo(consumableType))
+                {
+                    Debug.Log($"Using Consumable to plant: {_currentItem.Name}. Not allowed");
+                    return;
+                }
             }
             else if (_currentItem.Type.BelongsTo(consumableType))
             {
@@ -142,7 +161,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             {
                 Debug.Log($"Use item: {_currentItem.Name} (not a seed, or no soil selected)");
             }
-            
+
             unpausedEvent.TriggerEvent();
             gameObject.SetActive(false);
         }
@@ -151,7 +170,7 @@ namespace Inventory_related.Inventory_UI_Manager_V2
         {
             if (!_currentItem) return;
             Debug.Log($"Quick-swap item: {_currentItem.Name}");
-            
+
             bool isInQuickSwap = inventory.HandleItemForQuickSwap(_currentItem.Id);
             _mappedSlots[_currentItemKey.Id].HandleItemForQuickSwap(isInQuickSwap);
         }

@@ -107,6 +107,7 @@ namespace WeaponsSystem.Runtime.Combat {
             
             Vector3 pos = this.AttackOrigin.position;
             Vector3 direction = (pos - this.Owner.transform.position).normalized;
+            pos += 0.5f * direction;
             this.Weapon.Attack(this.Owner, this.EnemyTags, this.EnemyLayerMask, pos, direction);
         }
 

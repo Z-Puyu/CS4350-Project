@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4ffb4ff90e4fc49a031ad08577e603, type: 3}
+  m_Name: Unlocked auto replant
+  m_EditorClassIdentifier: GameplayAbilities.Runtime::GameplayAbilities.Runtime.Abilities.Perk
+  <Name>k__BackingField: Auto Replant
+  <Description>k__BackingField: Auto replant seeds of harvested plant
+  <sprite>k__BackingField: {fileID: 1581302680732236662, guid: 5faddf85691868e4bb5b6234945a4948, type: 3}
+  <Prerequisites>k__BackingField: []
+  <Modifiers>k__BackingField:
+  - <TargetAttribute>k__BackingField: {fileID: 11400000, guid: 1697441e8aa884bf2b3c61fe293c1a84, type: 2}
+    <Magnitude>k__BackingField: 1
+    <IsMultiplier>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 0}
+  <skillPointsToUnlock>k__BackingField: 3
+  <perkType>k__BackingField: 1

@@ -16,28 +16,23 @@ MonoBehaviour:
   itemName: Fire blade
   Description: Prefect for BBQ. Too bad only plants can be eaten.
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2062336647144756415, guid: 9ecd43f2ec2cab643ba8437bb1bfcd24, type: 3}
   price: 50
   craftingMaterials:
-  - material: {fileID: 11400000, guid: 6ef0dbaec8f43f447949de324581dfde, type: 2}
-    amount: 4
-  - material: {fileID: 11400000, guid: 69c90f23a4e1a8945b23cfd5f62884f5, type: 2}
-    amount: 20
+  - material: {fileID: 11400000, guid: 744d6c4b4679e9f438c4cf9d26d0aa2a, type: 2}
+    amount: 5
   rarity: Common
   levelRequirement: 1
   weaponCategory: 0
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 7277498416137764942
+    rid: 7277498451915440200
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7277498416137764942
+    - rid: 7277498451915440200
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:

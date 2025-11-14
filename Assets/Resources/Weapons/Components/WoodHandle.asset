@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Wooden Handle
   Description: Got to start somewhere. You just started at the bottom.
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2062336647144756415, guid: 9ecd43f2ec2cab643ba8437bb1bfcd24, type: 3}
   price: 0
   craftingMaterials:
   - material: {fileID: 11400000, guid: f5d6b15c677984947ade55641b2364c4, type: 2}
@@ -27,23 +27,20 @@ MonoBehaviour:
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 7277498416137764946
+    rid: 7277498416137764950
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7277498416137764946
+    - rid: 7277498416137764950
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: Damage
-          <Method>k__BackingField: 1
+        - <TargetAttribute>k__BackingField: Damage.Physical.Melee
+          <Method>k__BackingField: 2
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 5
+          <DefaultValue>k__BackingField: 1
           <Coefficient>k__BackingField: 0
           <Label>k__BackingField: 

@@ -1,11 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [Header("Containers")]
-    public GameObject mainContainer;
-    public GameObject settingsContainer;
+    public GameObject tutorialContainer;
 
     public void GoToScene(string scene)
     {
@@ -18,15 +18,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void OpenSettings()
+    public void OpenTutorial()
     {
-        mainContainer.SetActive(false);
-        settingsContainer.SetActive(true);
-    }
-
-    public void BackToMain()
-    {
-        settingsContainer.SetActive(false);
-        mainContainer.SetActive(true);
+        this.gameObject.SetActive(false);
+        tutorialContainer.SetActive(true);
     }
 }

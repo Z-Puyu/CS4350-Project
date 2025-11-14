@@ -16,10 +16,10 @@ MonoBehaviour:
   itemName: Explosive Bullets
   Description: Bullets filled with Extra Gunpowder. Careful not to burn your eyebrowns
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 6125417721769082936, guid: dfab79aa077e17a44a992c91be831dd3, type: 3}
   price: 0
   craftingMaterials:
-  - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
+  - material: {fileID: 11400000, guid: f5d6b15c677984947ade55641b2364c4, type: 2}
     amount: 1
   rarity: Common
   levelRequirement: 1
@@ -27,15 +27,12 @@ MonoBehaviour:
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 5580717538616803645
+    rid: 7277498451915440203
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5580717538616803645
+    - rid: 7277498451915440203
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:
@@ -44,6 +41,14 @@ MonoBehaviour:
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 15
+          <DefaultValue>k__BackingField: 3
+          <Coefficient>k__BackingField: 0
+          <Label>k__BackingField: 
+        - <TargetAttribute>k__BackingField: Damage.Physical.Explosion
+          <Method>k__BackingField: 0
+          <Form>k__BackingField: 0
+          <Source>k__BackingField: 0
+          <SourceAttribute>k__BackingField: 
+          <DefaultValue>k__BackingField: 10
           <Coefficient>k__BackingField: 0
           <Label>k__BackingField: 

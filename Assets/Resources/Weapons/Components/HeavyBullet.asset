@@ -16,34 +16,37 @@ MonoBehaviour:
   itemName: Heavy Bullets
   Description: Bullets with extra weight.
   weaponItemType: {fileID: 11400000, guid: 8e43cf3cbb3486642af8a7093c680127, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 6125417721769082936, guid: dfab79aa077e17a44a992c91be831dd3, type: 3}
   price: 25
   craftingMaterials:
+  - material: {fileID: 11400000, guid: e01728368702c463f98d229fdb665bc1, type: 2}
+    amount: 1
+  - material: {fileID: 11400000, guid: 744d6c4b4679e9f438c4cf9d26d0aa2a, type: 2}
+    amount: 1
+  - material: {fileID: 11400000, guid: 69c90f23a4e1a8945b23cfd5f62884f5, type: 2}
+    amount: 1
   - material: {fileID: 11400000, guid: f895a64cdffe34a4b9970af64cec5268, type: 2}
-    amount: 3
+    amount: 1
   rarity: Common
   levelRequirement: 1
   weaponCategory: 1
   <ProjectileModesOnAttack>k__BackingField: 
   <ProjectileModeOnWeapon>k__BackingField: 4
   <EffectOnWeapon>k__BackingField:
-    rid: -2
-  <EffectsOnAttack>k__BackingField:
-  - rid: 7277498416137764943
+    rid: 7277498451915440205
+  <EffectsOnAttack>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7277498416137764943
+    - rid: 7277498451915440205
       type: {class: ModifierEffect, ns: GameplayAbilities.Runtime.Modifiers, asm: GameplayAbilities.Runtime}
       data:
         <Modifiers>k__BackingField:
-        - <TargetAttribute>k__BackingField: Damage
+        - <TargetAttribute>k__BackingField: Damage.Physical.Projectile
           <Method>k__BackingField: 1
           <Form>k__BackingField: 0
           <Source>k__BackingField: 0
           <SourceAttribute>k__BackingField: 
-          <DefaultValue>k__BackingField: 10
+          <DefaultValue>k__BackingField: 50
           <Coefficient>k__BackingField: 0
           <Label>k__BackingField: 

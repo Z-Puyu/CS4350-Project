@@ -1044,7 +1044,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_5
+      name: RIGHT
       rect:
         serializedVersion: 2
         x: 321
@@ -1053,7 +1053,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -1088,7 +1088,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel UI pack 1_7
+      name: LEFT
       rect:
         serializedVersion: 2
         x: 385
@@ -1097,7 +1097,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -7092,6 +7092,7 @@ TextureImporter:
       BUTTON_LIGHT_RED: -1714826286559199688
       BUTTON_RED: 1627526457832321798
       Circle: -2448536373885827900
+      LEFT: -671771807649252554
       NUMBER_WINDOW: 4698084734912320967
       Pixel UI pack 1_0: -825855077544855921
       Pixel UI pack 1_1: 2644187960349470963
@@ -7314,7 +7315,6 @@ TextureImporter:
       Pixel UI pack 1_46: 2872079009806699411
       Pixel UI pack 1_48: 1139651993604267385
       Pixel UI pack 1_49: -6373699566764805444
-      Pixel UI pack 1_5: -3568253234799606981
       Pixel UI pack 1_50: -3247213812614041250
       Pixel UI pack 1_51: 2349467858123774272
       Pixel UI pack 1_52: 7444907218686122113
@@ -7334,7 +7334,6 @@ TextureImporter:
       Pixel UI pack 1_67: 7130044889333264534
       Pixel UI pack 1_68: -2799937082790339132
       Pixel UI pack 1_69: -5309741198838923085
-      Pixel UI pack 1_7: -671771807649252554
       Pixel UI pack 1_70: -729278655770719794
       Pixel UI pack 1_71: -8678637353308842324
       Pixel UI pack 1_72: -5913271259585754490
@@ -7365,6 +7364,7 @@ TextureImporter:
       Pixel UI pack 1_97: 8821744294002104068
       Pixel UI pack 1_98: 1830858184442682003
       Pixel UI pack 1_99: -4486504060233907196
+      RIGHT: -3568253234799606981
       X-Green: 7758080344551047224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
