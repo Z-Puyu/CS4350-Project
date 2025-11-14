@@ -167,15 +167,6 @@ namespace Projectiles.Runtime {
                                               !this.DisintegrationParticles.IsAlive()) &&
                                              this.Controllers.TrueForAll(controller => controller.IsIdle));
             this.Return();
-            yield break;
-
-            /*
-            bool hasFinishedAllVisualEffects() {
-                return (() => (!this.FlyParticles || !this.FlyParticles.IsAlive()) &&
-                       (!this.DisintegrationParticles || !this.DisintegrationParticles.IsAlive()) &&
-                       this.Controllers.TrueForAll(controller => controller.IsIdle);
-            }
-            */
         }
 
         private void Travel(float deltaTime) {
