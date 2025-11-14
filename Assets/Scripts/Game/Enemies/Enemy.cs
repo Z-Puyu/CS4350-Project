@@ -59,7 +59,12 @@ namespace Game.Enemies {
                 Vector3 position = this.transform.position + new Vector3(
                     Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0
                 );
-                Object.Instantiate(this.PickUpPrefab, position, Quaternion.identity).With(drop.Value, drop.Key);
+                if (this.PickUpPrefab != null) { // <-- null check
+                    Object.Instantiate(this.PickUpPrefab, position, Quaternion.identity)
+                        .With(drop.Value, drop.Key);
+                } else {
+                    Debug.LogWarning($"PickUpPrefab is null for {this.name}. Cannot spawn loot.");
+                }
             }
 
             Enemy.OnDeath?.Invoke(new EnemyDeathEvent(this.Data, this.LastAttacker));
