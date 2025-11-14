@@ -12,6 +12,7 @@ namespace Map.Map_manager
         {
             MapUnlockRequirementSO mapRequirement = (MapUnlockRequirementSO)((object[])requirement)[0];
             BoxCollider2D collider = mapRequirementToRegion[mapRequirement];
+            collider.gameObject.GetComponent<RegionBorder.RegionBorder>().UnlockRegion();
             collider.isTrigger = true;
         }
     }

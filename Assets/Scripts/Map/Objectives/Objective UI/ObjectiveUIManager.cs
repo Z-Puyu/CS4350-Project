@@ -15,6 +15,14 @@ namespace Map.Objectives.Objective_UI
             Reset();
             backdrop.SetActive(true);    
         }
+
+        public void UpdatePanels(MapUnlockRequirementSO currentMapSO)
+        {
+            foreach (var panel in spawnedPanels)
+            {
+                panel.UpdatePanel(currentMapSO);
+            }
+        }
         
         public void SpawnPanel(MapUnlockRequirementSO requirementSO, bool isSelected)
         {

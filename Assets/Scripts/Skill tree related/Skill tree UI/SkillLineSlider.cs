@@ -40,8 +40,8 @@ namespace Skill_tree_related.Skill_tree_UI
                     callback();
                     break;
                 }
-                slider.value += 0.1f;
-                yield return new WaitForSeconds(0.1f);
+                slider.value += 0.05f;
+                yield return new WaitForSeconds(0.05f);
             }
         }
         

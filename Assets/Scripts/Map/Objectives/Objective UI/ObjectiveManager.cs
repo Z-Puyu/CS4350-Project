@@ -31,7 +31,8 @@ namespace Map.Objectives.Objective_UI
 
         public void SetChosenUnlockedRequirementSO(Component component, object urSO)
         {
-            this.chosenRequirement = (MapUnlockRequirementSO)((object[])urSO)[0];
+            chosenRequirement = (MapUnlockRequirementSO)((object[])urSO)[0];
+            objectiveUIManager.UpdatePanels(chosenRequirement);
             UpdateIncompleteObjectivesText();
         }
         

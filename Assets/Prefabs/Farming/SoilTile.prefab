@@ -344,6 +344,7 @@ MonoBehaviour:
   buffApplyStart: 0.5
   buffApplyEnd: 1
   broadcastFarmingExpObject: {fileID: 11400000, guid: 46ddefcd11c362144919ac5872016a9c, type: 2}
+  broadcastSoilInfo: {fileID: 11400000, guid: 74f2ed67059f24247ba035237a20531b, type: 2}
 --- !u!95 &4729997039825941795
 Animator:
   serializedVersion: 7

@@ -8,9 +8,9 @@ namespace Map.Objectives.Objective_UI
         [SerializeField] private TextMeshProUGUI objectiveText;
         [SerializeField] private GameObject backgroundImage;
         
-        public void SetText(string text, bool isCompleted)
+        public void SetText(string text, int currentCount, int requiredCOunt, bool isCompleted)
         {
-            objectiveText.text = text;
+            objectiveText.text = text + " (" + currentCount + "/" + requiredCOunt + ")";
             if (isCompleted)
             {
                 objectiveText.color = Color.red;

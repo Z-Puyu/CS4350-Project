@@ -63,6 +63,7 @@ namespace Farming_related {
     private PlantBuffProvider plantBuffProvider;
     // controller that owns harvesting/drop/auto-replant behavior
     private PlantHarvestController harvestController;
+    public CrossObjectEventWithDataSO broadcastSoilInfo;
 
         public delegate void OnHarvest();
         public event OnHarvest HarvestEvent;
@@ -120,13 +121,14 @@ namespace Farming_related {
         }
 
         #region Trigger Handling
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             if (other.transform.root.CompareTag("Player"))
             {
                 this.playerIsOver = true;
             }
-
+                
+            broadcastSoilInfo.TriggerEvent(this, playerIsOver);
             Debug.Log($"Player is over soil: {playerIsOver}");
         }
 
@@ -138,6 +140,7 @@ namespace Farming_related {
                 if (promptText != null) promptText.gameObject.SetActive(false);
             }
 
+            broadcastSoilInfo.TriggerEvent(this, playerIsOver);
             Debug.Log($"Player is over soil: {playerIsOver}");
         }
         #endregion
@@ -215,7 +218,7 @@ namespace Farming_related {
         #region Planting & Watering
         void OpenInventoryForSeed()
         {
-            InventoryUIManagerV2.Instance.OpenForSeedSelection(this);
+            InventoryUIManagerV2.Instance.OpenForSeedSelection();
         }
 
         public void PlantSeed(string seedId)

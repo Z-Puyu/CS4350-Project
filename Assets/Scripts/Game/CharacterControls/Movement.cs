@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Map.RegionBorder;
 using UnityEngine;
 using SaintsField;
 using Unity.VisualScripting;
@@ -76,7 +77,10 @@ namespace Game.CharacterControls {
         private void OnCollisionEnter2D(Collision2D other)
         {
             StopAllCoroutines();
-            RootTransform.position += new Vector3(-lastMoveDirection.x/2.0f, -lastMoveDirection.y/2.0f, 0).normalized;
+            if (gameObject.CompareTag("Player") && other.gameObject.CompareTag("Region border")) 
+            {
+                RootTransform.position += new Vector3(-lastMoveDirection.x/2.0f, -lastMoveDirection.y/2.0f, 0).normalized;   
+            }
             DashTrail.Clear(); 
             DashTrail.emitting = false;
             isDashing = false;

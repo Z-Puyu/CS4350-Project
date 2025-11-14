@@ -51,7 +51,7 @@ namespace ModularItemsAndInventory.Runtime.Inventory
         private Dictionary<string, int> UniqueItems { get; set; } = new Dictionary<string, int>();
 
         [field: SerializeField] private List<string> quickSwapItems = new List<string>();
-
+            
         public event UnityAction<ItemOperation> OnInventoryChanged;
         public UnityEvent OnQuickSwapConsumption;
 
@@ -358,17 +358,17 @@ namespace ModularItemsAndInventory.Runtime.Inventory
             return quickSwapItems;
         }
 
-        public void UseItem(int index)
+        public ItemData UseItem(int index)
         {
             if (index >= quickSwapItems.Count)
             {
-                return;
+                return null;
             }
             string quickSwapItemId = quickSwapItems[index];
             ItemData item;
             ItemDatabase.TryGet(quickSwapItemId, out item);
-            Remove(1, ItemKey.From(item));
             OnQuickSwapConsumption?.Invoke();
+            return item;
         }
     }
 }

@@ -16,6 +16,11 @@ namespace Map.Objectives
         {
             currentItemCounter = 0;
         }
+        
+        public override void SetText(ObjectiveText objectiveText)
+        {
+            objectiveText.SetText(title, currentItemCounter, itemToCollectAmount, IsComplete());
+        }
 
         public void AddProgress(ObjectiveManager objectiveManager, ItemData itemToCollect, List<CollectItemObjective> allCollectItesmObjectives) {
             if (this.itemToCollect == itemToCollect)

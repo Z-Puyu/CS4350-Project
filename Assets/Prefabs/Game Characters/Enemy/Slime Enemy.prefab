@@ -259,13 +259,41 @@ PrefabInstance:
       value: -0.07455498
       objectReference: {fileID: 0}
     - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 5672507766704322158}
     - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 3964626787268648900}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: PlayDamagedSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: Game.enemies.EnemySFXTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
       propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8300000, guid: c40b4666391cc4a4ab90973c0df82298, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769985381950668614, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+      propertyPath: <OnHitEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5012655444641614607, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
     m_RemovedGameObjects:
@@ -291,6 +319,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da461797e4e3401d834d32bcb6464d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.CharacterControls.CombatAnimationController
+--- !u!114 &3964626787268648900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4213432807947018704, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}
+  m_PrefabInstance: {fileID: 971706449435426324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defb089a09f7bac46a8a07249d8aa3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.enemies.EnemySFXTrigger
 --- !u!4 &5104026819878441057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5451911396686442101, guid: e0e361bbd0d52d54bae0d78a5755fd1f, type: 3}

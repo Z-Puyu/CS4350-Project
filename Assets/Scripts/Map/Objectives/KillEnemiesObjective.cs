@@ -17,6 +17,11 @@ namespace Map.Objectives
 		{
 			currentKillCounter = 0;
 		}
+		
+		public override void SetText(ObjectiveText objectiveText)
+		{
+			objectiveText.SetText(title, currentKillCounter, enemyToKillAmount, IsComplete());
+		}
 
 		public void AddProgress(ObjectiveManager objectiveManager, List<KillEnemiesObjective> allKillEnemiesObjectives, EnemyData enemyData) {
 			if (enemyData == enemyToKill) 

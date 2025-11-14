@@ -10,10 +10,7 @@ namespace Map.Objectives
 
         public void AddProgress() {}
 
-        public void SetText(ObjectiveText objectiveText)
-        {
-            objectiveText.SetText(title, IsComplete());
-        }
+        public abstract void SetText(ObjectiveText objectiveText);
 
         public abstract bool IsComplete();
     }
