@@ -44,7 +44,8 @@ namespace Inventory_related.Inventory_UI_Manager_V2
         private Dictionary<string, InventorySlot> _mappedSlots = new();
 
         public static InventoryUIManagerV2 Instance { get; private set; }
-        public SoilPlantInteraction CurrentSoil { get; private set; }
+        
+        [SerializeField] private InventoryV2UIManagerSoilDetector soilDetector;
         [SerializeField] private CrossObjectEventSO broadcastPauseGame;
 
         private void Awake()
@@ -113,6 +114,12 @@ namespace Inventory_related.Inventory_UI_Manager_V2
                 inventory.isInQuickSwap(itemData.Id) ? "Quick Unequip" : "Quick Equip";
         }
 
+        public void OnUseItem(ItemData itemData)
+        {
+            _currentItem = itemData;
+            OnUseItem();
+        }
+
         public void ClearItemPanel()
         {
             itemViewerContainer.SetActive(false);
@@ -122,10 +129,11 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             itemNameText.text = string.Empty;
             itemDescriptionText.text = string.Empty;
         }
-
+ 
         private void OnUseItem()
         {
             if (_currentItem == null) return;
+            SoilPlantInteraction CurrentSoil = soilDetector.GetCurrentSoil();
 
             Debug.Log($"[DEBUG] CurrentSoil is {(CurrentSoil == null ? "null" : "set")}");
 
@@ -182,10 +190,9 @@ namespace Inventory_related.Inventory_UI_Manager_V2
             Debug.Log($"Dropped item: {_currentItem.Name}");
         }
 
-        public void OpenForSeedSelection(SoilPlantInteraction soil)
+        public void OpenForSeedSelection()
         {
             broadcastPauseGame.TriggerEvent();
-            CurrentSoil = soil;
             gameObject.SetActive(true);
             RefreshInventoryUI();
         }

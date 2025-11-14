@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_related.Player_quick_swap.PlayerQuickSwapUIManager
   player_inventory: {fileID: 0}
+  InventoryUIManagerV2: {fileID: 0}
   backdrop: {fileID: 7359979358717282663}
   allQuickSwapIcons:
   - {fileID: 7805941761373931612}

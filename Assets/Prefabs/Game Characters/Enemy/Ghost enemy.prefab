@@ -1780,8 +1780,9 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 1834705921085040249}
   <Data>k__BackingField: {fileID: 11400000, guid: 381ac7cbb6f3a7f42aac163337fbcf17, type: 2}
   <Animator>k__BackingField: {fileID: 7805846891793197291}
-  broadcastEnemyDiedData: {fileID: 11400000, guid: fe13c1f2cd49c39438aa705da02dace0, type: 2}
+  broadcastEnemyDiedData: {fileID: 11400000, guid: 046d20efb7e6baf46846dfbbaf527b2d, type: 2}
   <LootContainer>k__BackingField: {fileID: 2304056634079398031}
+  <PickUpPrefab>k__BackingField: {fileID: 0}
 --- !u!50 &8431198205224410881
 Rigidbody2D:
   serializedVersion: 5

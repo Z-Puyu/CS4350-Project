@@ -7,13 +7,12 @@ namespace Map.RegionBorder
     public class RegionBorder : MonoBehaviour
     {
         [SerializeField] private Tilemap tilemap;
-        private Tilemap childTilemap;
+        [SerializeField] private List<Tilemap> subTileaps;
         private BoxCollider2D _boxCollider2D;
         
         void Awake()
         {
             tilemap = GetComponent<Tilemap>();
-            childTilemap = transform.GetChild(0).GetComponentInChildren<Tilemap>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
             tilemap = GetComponent<Tilemap>();
             if (_boxCollider2D == null)
@@ -25,7 +24,10 @@ namespace Map.RegionBorder
             {
                 _boxCollider2D.isTrigger = false;
                 tilemap.color = new Color(0.3f, 0.3f, 0.3f);
-                childTilemap.color = new Color(0.3f, 0.3f, 0.3f);
+                foreach (var subtilemap in subTileaps)
+                {
+                    subtilemap.color = new Color(0.3f, 0.3f, 0.3f);   
+                }
             }
         }
 
@@ -38,7 +40,10 @@ namespace Map.RegionBorder
         public void UnlockRegion()
         {
             tilemap.color = Color.white;
-            childTilemap.color = Color.white;
+            foreach (var subtilemap in subTileaps)
+            {
+                subtilemap.color = new Color(0.3f, 0.3f, 0.3f);   
+            }
         }
 
         public bool GetMapIsUnlocked()

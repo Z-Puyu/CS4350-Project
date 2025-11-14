@@ -71,7 +71,7 @@ namespace Game.Player {
             }
 
             OnScreenDebugger.Log(sb.ToString());
-
+            
             bool isInventoryActive = this.InventoryUIManagerV2.gameObject.activeSelf;
 
             // Toggle inventory UI

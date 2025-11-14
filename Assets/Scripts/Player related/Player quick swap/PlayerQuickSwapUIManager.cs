@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Events;
+using Inventory_related.Inventory_UI_Manager_V2;
 using ModularItemsAndInventory.Runtime.Inventory;
 using ModularItemsAndInventory.Runtime.Items;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Player_related.Player_quick_swap
     {
         private Animator backdropAnimator;
         [SerializeField] private Inventory player_inventory;
+        [SerializeField] private InventoryUIManagerV2 InventoryUIManagerV2;
         [SerializeField] private GameObject backdrop;
         [SerializeField] private List<QuickSwapIcon> allQuickSwapIcons;
         [SerializeField] private CrossObjectEventWithDataSO broadcastItemToUse;
@@ -84,7 +86,8 @@ namespace Player_related.Player_quick_swap
         
         public void UseItem()
         {
-            player_inventory.UseItem(index);
+            ItemData itemData = player_inventory.UseItem(index);
+            if (itemData != null) InventoryUIManagerV2.OnUseItem(itemData);
         }
         
     }

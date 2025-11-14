@@ -1042,6 +1042,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpEffect
   timeToDisplay: 6
+--- !u!1 &8401915902365222663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5478368037531779108}
+  - component: {fileID: 6603698823382245958}
+  - component: {fileID: 2778310633864170651}
+  m_Layer: 0
+  m_Name: Inventory V2 UI manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5478368037531779108
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401915902365222663}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2713376046348135637}
+  m_Father: {fileID: 1127567362339336635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.93999994, y: 0.3399999}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6603698823382245958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401915902365222663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ad9070cf058e419d934ee1234795f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Events.CrossObjectEventWithDataListener
+  gameEvent: {fileID: 11400000, guid: 74f2ed67059f24247ba035237a20531b, type: 2}
+  responseOnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2778310633864170651}
+        m_TargetAssemblyTypeName: Inventory_related.Inventory_UI_Manager_V2.InventoryV2UIManagerSoilDetector,
+          Assembly-CSharp
+        m_MethodName: SetCurrentSoil
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2778310633864170651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401915902365222663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96aadec8add3bc479be072081dfabde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager_V2.InventoryV2UIManagerSoilDetector
 --- !u!1 &8537138761219603683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1468,7 @@ Transform:
   - {fileID: 8726377236501616500}
   - {fileID: 5271378024318425583}
   - {fileID: 2584156633800339723}
-  - {fileID: 2713376046348135637}
+  - {fileID: 5478368037531779108}
   m_Father: {fileID: 2933533461722758226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &83396401444506913
@@ -4235,7 +4314,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1127567362339336635}
+    m_TransformParent: {fileID: 5478368037531779108}
     m_Modifications:
     - target: {fileID: 398041162024178190, guid: 9c173583d09e86344a5dd1ba420ccd65, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4826,6 +4905,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4966769171549703863}
     - target: {fileID: 8897151201726426952, guid: 9c173583d09e86344a5dd1ba420ccd65, type: 3}
+      propertyPath: soilDetector
+      value: 
+      objectReference: {fileID: 2778310633864170651}
+    - target: {fileID: 8897151201726426952, guid: 9c173583d09e86344a5dd1ba420ccd65, type: 3}
       propertyPath: unpausedEvent
       value: 
       objectReference: {fileID: 11400000, guid: 7d35e4de52de10d4d8a248b6442d3fe2, type: 2}
@@ -4903,6 +4986,10 @@ PrefabInstance:
       propertyPath: player_inventory
       value: 
       objectReference: {fileID: 6963433376467322382}
+    - target: {fileID: 4676484651197885537, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
+      propertyPath: InventoryUIManagerV2
+      value: 
+      objectReference: {fileID: 2897501904368182659}
     - target: {fileID: 6161798701671171656, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
       propertyPath: m_Name
       value: Quick swap slot 1
