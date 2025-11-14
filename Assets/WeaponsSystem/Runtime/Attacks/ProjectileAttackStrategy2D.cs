@@ -10,38 +10,38 @@ using Projectile = Projectiles.Runtime.Projectile;
 namespace WeaponsSystem.Runtime.Attacks {
     public class ProjectileAttackStrategy2D : AttackStrategy {
         [field: SerializeField] private Projectile ProjectilePrefab { get; set; }
-        
-        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))] 
+
+        [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string RangeAttribute { get; set; }
 
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string SpeedAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string ProjectileSpreadAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string ProjectilesPerShotAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string ExplosionRadiusAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string ParallelProjectileSpacingAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string ShotsPerAttackAttribute { get; set; }
-        
+
         [field: SerializeField, TreeDropdown(nameof(this.AttributeOptions))]
         private string IntervalBetweenShotsAttribute { get; set; }
-        
+
         private void SpawnSpreadBullet(AttackContext context, int speed, int range) {
             int multiplicity = context.WeaponStats.GetCurrent(this.ProjectilesPerShotAttribute);
             if (multiplicity == 1) {
                 this.SpawnSingleBullet(context).Launch(context.AttackPoint, context.AttackDirection, speed, range);
                 return;
             }
-            
+
             int spread = context.WeaponStats.GetCurrent(this.ProjectileSpreadAttribute);
             float startAngle = -spread / 2.0f;
             float angleStep = spread / (multiplicity - 1.0f);
@@ -58,7 +58,7 @@ namespace WeaponsSystem.Runtime.Attacks {
                 this.SpawnSingleBullet(context).Launch(context.AttackPoint, context.AttackDirection, speed, range);
                 return;
             }
-            
+
             Vector3 orthogonal = Vector3.Cross(context.AttackDirection, Vector3.forward).normalized;
             float spacing = context.WeaponStats.GetCurrent(this.ParallelProjectileSpacingAttribute) / 1000.0f;
             float interval = spacing / (multiplicity - 1.0f);
@@ -68,7 +68,7 @@ namespace WeaponsSystem.Runtime.Attacks {
                 this.SpawnSingleBullet(context).Launch(position, context.AttackDirection, speed, range);
             }
         }
-        
+
         private Projectile SpawnSingleBullet(AttackContext context) {
             if (!this.ProjectilePrefab) {
 #if DEBUG
@@ -76,11 +76,14 @@ namespace WeaponsSystem.Runtime.Attacks {
 #endif
                 return null;
             }
-            
-            return ObjectPools<Projectile>.Get(this.ProjectilePrefab, context.AttackPoint)
-                                          .Targeting(context.AttackableTags)
-                                          .WhenHit(handleProjectileHit);
-            
+
+            Projectile projectile = ObjectPools<Projectile>.Get(this.ProjectilePrefab, context.AttackPoint)
+                                                           .Targeting(context.AttackableTags)
+                                                           .WhenHit(handleProjectileHit);
+            int er = context.WeaponStats.GetCurrent(this.ExplosionRadiusAttribute);
+            ((ExplosionController2D)projectile.GetController<ExplosionController2D>()).CandidateTargetGetter = centre => Physics2D.OverlapCircleAll(centre, er, context.AttackableLayers);
+            return projectile;
+
             void handleProjectileHit(Vector3 hitPoint, GameObject hitObject) {
                 if (hitObject.TryGetComponent(out IDamageable damageable) &&
                     this.AllowsDamageOn(hitObject, context.Instigator)) {

@@ -77,6 +77,14 @@ PrefabInstance:
       value: WeaponsSystem.Runtime WeaponsSystem.Runtime.WeaponComponents.WeaponComponentController
       objectReference: {fileID: 0}
     - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: <TestComponents>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
+      propertyPath: '<TestComponents>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7219c48179bf5fc4eaf9f63a802e39de, type: 2}
+    - target: {fileID: 2943639609564163612, guid: c48a34fa10dee664e8a1f662f036fb1d, type: 3}
       propertyPath: '<WeaponControllers>k__BackingField.Array.data[0]'
       value: 5637489946061439430
       objectReference: {fileID: 0}
