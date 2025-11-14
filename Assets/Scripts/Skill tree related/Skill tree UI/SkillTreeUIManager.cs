@@ -25,14 +25,17 @@ namespace Skill_tree_related.Skill_tree_UI {
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private TextMeshProUGUI skillPointNeedText;
         [SerializeField] private Button canUnlockButton;
+        private TextMeshProUGUI canUnlockButtonText;
         [SerializeField] private GameObject sidebar;
         
         //Cache the skill icon result
         private SkillIcon skillIcon;
         
-        void Start() {
+        void Start()
+        {
+            canUnlockButtonText = canUnlockButton.GetComponentInChildren<TextMeshProUGUI>();
             backdropPanel.SetActive(false);   
-            canUnlockButton.gameObject.SetActive(false);
+            canUnlockButton.interactable = false;
             sidebar.SetActive(false);
         }
         
@@ -55,11 +58,19 @@ namespace Skill_tree_related.Skill_tree_UI {
             this.descriptionText.text = perk.Description;
             skillPointNeedText.text = $"Require {perk.skillPointsToUnlock} skill points";
             skillPointNeedText.gameObject.SetActive(true);
+            canUnlockButton.interactable = false;
+            canUnlockButtonText.color = Color.grey;
+            canUnlockButton.gameObject.SetActive(true);
             
-            if (skillIcon.CheckIsUnlocked() || !skillIcon.CheckCanUnlock())
+            if (skillIcon.CheckIsUnlocked())
             {
-                skillPointNeedText.gameObject.SetActive(false);
                 canUnlockButton.gameObject.SetActive(false);
+                skillPointNeedText.gameObject.SetActive(false);
+            } 
+            else if (!skillIcon.CheckCanUnlock())
+            {
+                skillPointNeedText.text = "Lock behind previous node";
+                skillPointNeedText.color = Color.grey;
             }
             else
             {
@@ -67,12 +78,13 @@ namespace Skill_tree_related.Skill_tree_UI {
                 if (canUnlock)
                 {
                     skillPointNeedText.color = Color.green;
+                    canUnlockButtonText.color = Color.white;
                 }
                 else
                 {
                     skillPointNeedText.color = Color.red;
                 }
-                canUnlockButton.gameObject.SetActive(canUnlock);
+                canUnlockButton.interactable = canUnlock;
             }
         }
         
@@ -86,10 +98,19 @@ namespace Skill_tree_related.Skill_tree_UI {
             skillPointNeedText.text = $"Require {perk.skillPointsToUnlock} skill points";
             skillPointNeedText.gameObject.SetActive(true);
             
-            if (skillIcon.CheckIsUnlocked() || !skillIcon.CheckCanUnlock())
+            canUnlockButton.interactable = false;
+            canUnlockButtonText.color = Color.grey;
+            canUnlockButton.gameObject.SetActive(true);
+            
+            if (skillIcon.CheckIsUnlocked())
             {
-                skillPointNeedText.gameObject.SetActive(false);
                 canUnlockButton.gameObject.SetActive(false);
+                skillPointNeedText.gameObject.SetActive(false);
+            }
+            else if (!skillIcon.CheckCanUnlock())
+            {
+                skillPointNeedText.text = "Lock behind previous node";
+                skillPointNeedText.color = Color.grey;
             }
             else
             {
@@ -97,12 +118,13 @@ namespace Skill_tree_related.Skill_tree_UI {
                 if (canUnlock)
                 {
                     skillPointNeedText.color = Color.green;
+                    canUnlockButtonText.color = Color.white;
                 }
                 else
                 {
                     skillPointNeedText.color = Color.red;
                 }
-                canUnlockButton.gameObject.SetActive(canUnlock);
+                canUnlockButton.interactable = canUnlock;
             }
         }
 

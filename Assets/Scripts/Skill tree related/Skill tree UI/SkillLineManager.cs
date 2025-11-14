@@ -12,8 +12,8 @@ namespace Skill_tree_related.Skill_tree_UI
 
         void Start()
         {
-            GetComponentsInChildren<SkillIcon>(skillIconsManaged);
-            GetComponentsInChildren<SkillLineSlider>(skillLinesManaged);
+            GetComponentsInChildren(skillIconsManaged);
+            GetComponentsInChildren(skillLinesManaged);
         }
 
         public void InitialiseLine()

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Map.MapUnlockRequirementSO
   title: Region 6
   key: {fileID: 8120380484717458469, guid: f0d46afc6b5c213408db0fbd22d57976, type: 3}
-  killEnemiesObjectives: []
+  killEnemiesObjectives:
+  - {fileID: 11400000, guid: bdd299ae03e2aaa4d94dfdfb2740ce93, type: 2}
+  - {fileID: 11400000, guid: 86b84143055130b4eb598320cb1bcd5f, type: 2}
   collectItemObjectives:
   - {fileID: 11400000, guid: e2a23e9c2214bc04c8d489f2a4c4f376, type: 2}
+  - {fileID: 11400000, guid: 2ba98a920bd69ea449db02779a3d2372, type: 2}
   bossToSpawn: {fileID: 6938882542248394038, guid: 774386ea36b24824d8dc60746f5881b4, type: 3}

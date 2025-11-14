@@ -1129,6 +1129,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590959129665856517, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_Size.x
       value: 1.5
       objectReference: {fileID: 0}
@@ -1236,6 +1240,10 @@ PrefabInstance:
       propertyPath: <DashTrail>k__BackingField
       value: 
       objectReference: {fileID: 8379674413753977792}
+    - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324175696564490730, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.00765
@@ -2862,7 +2870,7 @@ PrefabInstance:
       objectReference: {fileID: 6058483238646988093}
     - target: {fileID: 3355103382599588735, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_fontSize
-      value: 14.35
+      value: 11.9
       objectReference: {fileID: 0}
     - target: {fileID: 3463886976245880319, guid: a465e6dd88c572c49b00e733852e2c7c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4394,6 +4402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory quick swap UI manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3121636158281951376, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3406198348478189843, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -4453,6 +4465,10 @@ PrefabInstance:
     - target: {fileID: 8809252398519535390, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
       propertyPath: m_SizeDelta.y
       value: 4.5109
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809252398519535390, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8809252398519535390, guid: 89a56e06d37b5754bb6c2fdaea357b32, type: 3}
       propertyPath: m_LocalPosition.x

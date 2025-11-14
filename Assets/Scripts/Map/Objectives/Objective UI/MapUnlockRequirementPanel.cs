@@ -12,6 +12,7 @@ namespace Map.Objectives.Objective_UI
         [SerializeField] private ObjectiveText objectiveTextPrefab;
         [SerializeField] private Transform spawnContent;
         [SerializeField] private MapUnlockRequirementSO unlockRequirementSo;
+        [SerializeField] private GameObject selectedObjectiveIndicator;
         [SerializeField] private List<GameObject> spawnedObjectiveText = new List<GameObject>();
 
         [SerializeField] private Image panelImage;
@@ -22,16 +23,21 @@ namespace Map.Objectives.Objective_UI
         {
             if (isSelected)
             {
-                
+                selectedObjectiveIndicator.SetActive(true);
             }
             else
             {
-                
+                selectedObjectiveIndicator.SetActive(false);
             }
             this.unlockRequirementSo = unlockRequirementSo;
             panelImage.sprite = possibleBackground[Random.Range(0, possibleBackground.Count - 1)];
             this.unlockRequirementSo.SetTitle(objectiveTitle);
             this.unlockRequirementSo.SpawnObjectiveText(objectiveTextPrefab.gameObject, spawnContent, spawnedObjectiveText);
+        }
+
+        public void UpdatePanel(MapUnlockRequirementSO currentMapSO)
+        {
+            selectedObjectiveIndicator.SetActive(currentMapSO == unlockRequirementSo);
         }
 
         public void Reset()
@@ -45,7 +51,13 @@ namespace Map.Objectives.Objective_UI
 
         public void BroadcastUnlockRequirement()
         {
+            selectedObjectiveIndicator.SetActive(true);
             broadcastUnlockRequiremet.TriggerEvent(this, unlockRequirementSo);
+        }
+
+        public void HideIndicator()
+        {
+            selectedObjectiveIndicator.SetActive(false);
         }
     }
 }
