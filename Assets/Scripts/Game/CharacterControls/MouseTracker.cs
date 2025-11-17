@@ -1,19 +1,40 @@
 using System;
 using UnityEngine;
+using WeaponsSystem.Runtime.Combat;
 
 namespace Game.CharacterControls {
     public class MouseTracker : MonoBehaviour {
         [SerializeField] private float offset = 0.5f;
         private Camera mainCamera;
         private Transform parent;
-
-        private void Awake() {
-            mainCamera = Camera.main;
+        private Combatant combatant;
+        
+        private void Awake()
+        {
             parent = transform.parent;
+            combatant = parent.GetComponent<Combatant>();
         }
 
-        private void Update() {
+        private void Start()
+        {
+            // Ensure a valid camera reference, even if it appears late
+            StartCoroutine(EnsureCamera());
+        }
+
+        private System.Collections.IEnumerator EnsureCamera()
+        {
+            while (Camera.main == null)
+                yield return null;
+
+            mainCamera = Camera.main;
+        }
+
+        private void LateUpdate() {
             if (!parent || !mainCamera) return;
+            
+            // Do not override Combatant's manual swing motion
+            if (combatant != null && combatant.IsSwinging)
+                return;
 
             // 1. Mouse world position
             Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);

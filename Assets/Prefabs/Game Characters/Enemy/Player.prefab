@@ -1121,6 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96aadec8add3bc479be072081dfabde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory_related.Inventory_UI_Manager_V2.InventoryV2UIManagerSoilDetector
+  currentSoil: {fileID: 0}
 --- !u!1 &8537138761219603683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1658,10 @@ PrefabInstance:
       propertyPath: offset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1228523745232087521, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
+      propertyPath: combatant
+      value: 
+      objectReference: {fileID: 614563610734293956}
     - target: {fileID: 1362842556525151000, guid: 5624fb70759643c4a9be3b0f0b0d415f, type: 3}
       propertyPath: <EnemyTags>k__BackingField.Array.size
       value: 1

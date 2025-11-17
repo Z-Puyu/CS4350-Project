@@ -64,7 +64,6 @@ namespace Game.Player {
             }
 
             // Logging inventory items
-            broadcastPauseGame.TriggerEvent();
             StringBuilder sb = new StringBuilder("Inventory:\n");
             foreach (KeyValuePair<ItemKey, int> item in this.Inventory) {
                 sb.AppendLine($"{item.Key.Id}: {item.Value}");
@@ -78,6 +77,7 @@ namespace Game.Player {
             if (!isInventoryActive)
             {
                 this.InventoryUIManagerV2.gameObject.SetActive(true);    
+                broadcastPauseGame.TriggerEvent();
             }
             else
             {
@@ -89,11 +89,12 @@ namespace Game.Player {
             if (!context.performed) {
                 return;
             }
-
-            OnScreenDebugger.Log("Attack");
+            
             if (this.AbilityTargeter.IsTargting) {
+                Debug.Log("Ability Attack");
                 this.AbilityTargeter.Confirm();
             } else {
+                Debug.Log("Melee Attack");
                 this.Combatant.StartAttack();
             }
         }
