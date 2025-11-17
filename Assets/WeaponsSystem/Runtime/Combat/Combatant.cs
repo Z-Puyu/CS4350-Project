@@ -46,6 +46,8 @@ namespace WeaponsSystem.Runtime.Combat {
         private SpriteRenderer _attackOriginRenderer;
         private int _currentWeaponIndex;
         public SaintsDictionary<int, Sprite> weaponIndexToWeaponSprite;
+        
+        public bool IsSwinging => isSwinging;
 
         private void Awake() {
             if (!this.Owner) {
@@ -101,13 +103,32 @@ namespace WeaponsSystem.Runtime.Combat {
         }
 
         public void PerformAttack(Vector3 forward) {
-            if (!this.IsAttacking) {
-                return;
-            }
-            
+            if (!this.IsAttacking) return;
+
             Vector3 pos = this.AttackOrigin.position;
-            Vector3 direction = (pos - this.Owner.transform.position).normalized;
-            pos += 0.5f * direction;
+            Vector3 pivot = this.Owner.transform.position;
+
+            // If direction collapses, fall back to the mouse
+            Vector3 direction = (pos - pivot);
+            if (direction.sqrMagnitude < 0.0001f)
+            {
+                Camera cam = Camera.main;
+                if (cam)
+                {
+                    Vector3 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
+                    mouseWorld.z = 0f;
+                    direction = (mouseWorld - pivot);
+                }
+                else
+                {
+                    direction = Vector3.right; // absolute fallback
+                }
+            }
+
+            direction.Normalize();
+            pos = pivot + direction * 0.5f;
+
+            Debug.Log($"Attack Point: {pos}, Forward: {direction}");
             this.Weapon.Attack(this.Owner, this.EnemyTags, this.EnemyLayerMask, pos, direction);
         }
 

@@ -21,6 +21,17 @@ namespace Player_related.Player_quick_swap
         void Start()
         {
             backdropAnimator = GetComponent<Animator>();
+            if (allQuickSwapIcons == null || allQuickSwapIcons.Count == 0)
+            {
+                Debug.LogError("QuickSwapIcons list is empty or unassigned!", this);
+                return;
+            }
+
+            if (allQuickSwapIcons[0] == null)
+            {
+                Debug.LogError("QuickSwapIcons[0] is null! Assign your QuickSwapIcon references in the Inspector.", this);
+                return;
+            }
             allQuickSwapIcons[index].Select();
             CloseBackdrop();
         }

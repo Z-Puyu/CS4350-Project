@@ -13,11 +13,14 @@ namespace Player_related.Player_quick_swap
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI itemQuantity;
 
+        private void Awake()
+        {
+            imageRenderer = GetComponent<Image>();
+        }
         private void Start()
         {
             itemIcon.gameObject.SetActive(false);
             itemQuantity.gameObject.SetActive(false);
-            imageRenderer = GetComponent<Image>();
         }
 
         public void SetIcon(Sprite iconSprite, int quantity)
